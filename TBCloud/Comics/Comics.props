@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="TaskBuilder Environment" />
+  <PropertyGroup>	
+
+	<MicroareaDevelopment>1</MicroareaDevelopment>
+	<Installation>$(SolutionDir)..\..\..</Installation>
+
+	<TaskBuilder>$(Installation)\Standard\Taskbuilder</TaskBuilder>
+	<MicroareaUtility>$(TaskBuilder)\Framework\TbUtility</MicroareaUtility>
+	<TBStd>$(TaskBuilder)\..</TBStd>
+	<TBFramework>$(TaskBuilder)\Framework</TBFramework>
+	<TBExtensions>$(TaskBuilder)\Extensions</TBExtensions>
+	<TBOcLib>$(TaskBuilder)\OtherComponents\OcLib</TBOcLib>
+	<TBOcDev>$(TaskBuilder)\OtherComponents\OcDev</TBOcDev>
+	<TBOcBin>$(TaskBuilder)\OtherComponents\OcBin</TBOcBin>
+	<TBApps>$(TBStd)\Applications</TBApps>
+	<Erp>$(TBApps)\Erp</Erp>
+	<Comics>$(TBApps)\Comics</Comics>
+	<TBBin>$(Installation)\Apps</TBBin>
+	<TBAppsBin>$(TBBin)\TBApps</TBAppsBin>
+  </PropertyGroup>
+  <ItemGroup />
+</Project>

@@ -1,0 +1,28 @@
+﻿{
+  "id": "ID_EXTDOC_SLAVE_TOOLBAR_TOOLS",
+  "name": "Main",
+  "type": 14 /*Toolbar*/,
+  "bottom": true,
+  "items": [
+
+    {
+      "icon": "Framework.TbFrameworkImages.Images.25x25.Escape.png",
+      "id": "IDC_BOXSELECTION_UNDO",
+      "name": "Cancel",
+      "text": "Cancel",
+      "hint": "Cancel",
+      "alignRight": true,
+      "type": 15 /*ToolbarButton*/
+    },
+    {
+      "icon": "Framework.TbFrameworkImages.Images.25x25.ok.png",
+      "id": "IDC_BOXSELECTION_OK",
+      "name": "Ok",
+      "text": "Ok",
+      "hint": "Ok",
+      "alignRight": true,
+      "default": true,
+      "type": 15 /*ToolbarButton*/
+    }
+  ]
+}

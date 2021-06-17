@@ -1,0 +1,13 @@
+﻿{
+  "type": "Frame",
+  "dockable": false,
+  "statusBar": false,
+  "systemMenu": true,
+  "slave": true,
+  "id": "IDD_BOXSELECTION",
+  "name": "BoxSelection",
+  "items": [
+    { "href": "IDD_BOXSELECTION_TOOLBAR" },
+    { "href": "IDD_BOXSELECTION_VIEW" }
+  ]
+}

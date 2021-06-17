@@ -1,0 +1,6 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+
+#define IDC_LOAD_BOX_OK			GET_ID(IDC_LOAD_BOX_OK)
+#define IDC_LOAD_BOX_UNDO		GET_ID(IDC_LOAD_BOX_UNDO)
+

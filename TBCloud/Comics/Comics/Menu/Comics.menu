@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AppMenu>
+	<Application name="Comics">
+		<Title localizable="true">Comics</Title>
+		<Group name="Comics.Comics">
+			<Title localizable="true">Comics Management</Title>
+			<Menu name = "Master Table">
+				<Title localizable="true">Master Table</Title>
+				<Document>
+					<Title localizable="true">Collections</Title>
+					<Object>Comics.Comics.Documents.Collections</Object>
+				</Document>
+				<Document>
+					<Title localizable="true">Boxes</Title>
+					<Object>Comics.Comics.Documents.Boxes</Object>
+				</Document>
+				<Batch>
+					<Title localizable="true">Collections Copy</Title>
+					<Object>Comics.Comics.Documents.CollectionsCopy</Object>
+				</Batch>
+			</Menu>
+
+		</Group>
+	</Application>
+</AppMenu>

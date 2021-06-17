@@ -1,0 +1,146 @@
+{
+  "id": "IDD_BOX_COLLECTIONS",
+  "type": "Tile",
+  "text": "Collections",
+  "x": 0,
+  "y": 0,
+  "width": 500,
+  "height": 118,
+  "child": true,
+  "items": [
+    {
+      "id": "IDC_BOX_COLLECTIONS_BODY_EDIT",
+      "type": "BodyEdit",
+      "text": "Body Edit",
+      "x": 0,
+      "y": 0,
+      "width": 500,
+      "height": 116,
+      "controlClass": "BodyEdit",
+      "name": "BoxCollections",
+      "binding": {
+        "datasource": "DBTBoxCollections"
+      },
+      "items": [
+        {
+          "type": "ColTitle",
+          "controlClass": "StringEdit",
+          "id": "IDC_BOX_COLLECTIONS_COLLECTION",
+          "text": "Collection",
+          "name": "Collection",
+          "binding": {
+            "datasource": "Collection",
+            "hotLink": "HKLCollections",
+            "hotLinkNS": "Comics.Comics.Dbl.Collections",
+            "mustExistData": false,
+            "enableAddOnFly": true
+          }
+        },
+        {
+          "type": "ColTitle",
+          "controlClass": "StringStatic",
+          "id": "IDC_BOX_COLLECTIONS_COLLECTION_DESCRI",
+          "text": "Descrizione Collection",
+          "name": "CollectionDescription",
+          "binding": {
+            "datasource": "HKLCollections.Description"
+          },
+          "chars": 64,
+          "rows": 2
+        },
+        {
+          "type": "ColTitle",
+          "controlClass": "DateEdit",
+          "id": "IDC_BOX_COLLECTIONS_CREATION_DATE",
+          "text": "Creation Date",
+          "name": "CreationDate",
+          "binding": {
+            "datasource": "CreationDate"
+          }
+        },
+        {
+          "type": "ColTitle",
+          "controlClass": "StringEdit",
+          "id": "IDC_BOX_COLLECTIONS_FROM_NUM",
+          "text": "From Number",
+          "name": "FromNumber",
+          "binding": {
+            "datasource": "FromNumber"
+          }
+        },
+        {
+          "type": "ColTitle",
+          "controlClass": "StringEdit",
+          "id": "IDC_BOX_COLLECTIONS_LAST_RECEIPT_NUM",
+          "text": "Last Receipt Number",
+          "name": "LastReceiptNumber",
+          "binding": {
+            "datasource": "LastReceiptNumber"
+          }
+        },
+        {
+          "type": "ColTitle",
+          "controlClass": "StringEdit",
+          "id": "IDC_BOX_COLLECTIONS_LAST_ISSUED_NUM",
+          "text": "Last Issued Number",
+          "name": "LastIssuedNumber",
+          "binding": {
+            "datasource": "LastIssuedNumber"
+          }
+        },
+        {
+          "type": "ColTitle",
+          "controlClass": "DateEdit",
+          "id": "IDC_BOX_COLLECTIONS_LAST_RECEIPT_DATE",
+          "text": "Last Receipt Date",
+          "name": "LastReceiptDate",
+          "binding": {
+            "datasource": "LastReceiptDate"
+          }
+        },
+        {
+          "type": "ColTitle",
+          "controlClass": "DateEdit",
+          "id": "IDC_BOX_COLLECTIONS_LAST_ISSUED_DATE",
+          "text": "Last Issued Date",
+          "name": "LastIssuedDate",
+          "binding": {
+            "datasource": "LastIssuedDate"
+          }
+        },
+        {
+          "type": "ColTitle",
+          "controlClass": "DateEdit",
+          "id": "IDC_BOX_COLLECTIONS_CLOSING_DATE",
+          "text": "Closing Date",
+          "name": "ClosingDate",
+          "binding": {
+            "datasource": "ClosingDate"
+          }
+        },
+        {
+          "type": "ColTitle",
+          "controlClass": "CheckBox",
+          "id": "IDC_BOX_COLLECTIONS_CLOSED",
+          "text": "Closed",
+          "name": "IsClosed",
+          "binding": {
+            "datasource": "IsClosed"
+          }
+        },
+        {
+          "type": "ColTitle",
+          "controlClass": "StringEdit",
+          "id": "IDC_BOX_COLLECTIONS_NOTES",
+          "text": "Notes",
+          "name": "Notes",
+          "binding": {
+            "datasource": "Notes"
+          }
+        }
+      ]
+    }
+  ],
+  "name": "Collection",
+  "size": 2
+}

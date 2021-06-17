@@ -1,0 +1,24 @@
+﻿{
+  
+  "id": "IDD_TD_ITEMS_SALE_PURCHASE",
+  "items": [
+    {
+      "anchor": "COL2",
+      "binding": {
+        "datasource": "Items.Collection", 
+        "hotLink": {
+          "name": "HKLCollections",
+          "namespace": "Comics.Comics.Dbl.Collections"
+        }
+      },
+      "controlCaption": "Collection",
+      "controlClass": "StringEdit",
+      "height": 10,
+      "id": "IDC_ITM_COLLECTION",
+      "type": "Edit",
+      "width": 90
+
+    }
+  ]
+  
+}

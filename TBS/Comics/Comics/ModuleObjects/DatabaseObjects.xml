@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DatabaseObjects>
+	<Signature>Comics</Signature>
+	<Release>4</Release>
+	<Tables>
+		<Table namespace="Comics.Comics.Dbl.CO_Collections" mastertable="true">
+			<Create release="1" createstep="1" />
+		</Table>
+		<Table namespace="Comics.Comics.Dbl.CO_Boxes" mastertable="true">
+			<Create release="2" createstep="2" />
+		</Table>
+		<Table namespace="Comics.Comics.Dbl.CO_CollectionsBox" >
+			<Create release="2" createstep="2" />
+		</Table>
+		<Table namespace="Comics.Comics.Dbl.CO_ReceiptsBox" >
+			<Create release="2" createstep="2" />
+		</Table>
+		<Table namespace="Comics.Comics.Dbl.CO_TmpLoadComics" mastertable="true">
+			<Create release="4" createstep="1" />
+		</Table>
+		<Table namespace="Comics.Comics.Dbl.CO_TmpUnloadComics" mastertable="true">
+			<Create release="4" createstep="2" />
+		</Table>
+	</Tables>
+</DatabaseObjects>

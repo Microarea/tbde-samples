@@ -1,0 +1,17 @@
+<Brands>
+	<Brand>
+		<Applications>
+			<Application name="Comics">
+			<MenuTitle>Comics TB Application</MenuTitle>
+			</Application>
+		</Applications>
+		<BrandedKeys>
+			<BrandedKey source="Company" branded="Microarea spa" />
+			<BrandedKey source="CompanyLogo" branded="Image.Comics.Comics.CompanyLogo.png" />
+			<BrandedKey source="MenuManagerSplash" branded="Image.Comics.Comics.SplashMenuManager.jpg" />
+			<BrandedKey source="ProductTitle" branded="Comics TB Application" />
+		</BrandedKeys>
+	</Brand>
+</Brands>
+	
+

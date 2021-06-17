@@ -1,0 +1,158 @@
+﻿{
+  "height": 179,
+  "id": "IDD_TD_BOXES",
+  "items": [
+    {
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "DBTBoxes.BoxNo"
+      },
+      "controlClass": "StringEdit",
+      "height": 12,
+      "controlCaption": "Box No",
+      "id": "IDC_BOXES_BOXNO",
+      "type": "Edit",
+      "width": 56,
+      "anchor": "COL1"
+    },
+    {
+      "binding": {
+        "datasource": "DBTBoxes.IsClosed"
+      },
+      "controlClass": "CheckBox",
+      "text": "Is Closed  ",
+      "height": 8,
+      "id": "IDC_BOXES_CLOSED",
+      "tabStop": false,
+      "type": "Check",
+      "width": 48,
+      "anchor": "IDC_BOXES_BOXNO"
+    },
+    {
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "DBTBoxes.ClosingDate"
+      },
+      "controlClass": "DateEdit",
+      "height": 12,
+      "controlCaption": "Closing Date",
+      "id": "IDC_BOXES_CLOSING_DATE",
+      "type": "Edit",
+      "width": 56,
+      "anchor": "COL1"
+    },
+    {
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "DBTBoxes.CreationDate"
+      },
+      "controlClass": "DateEdit",
+      "controlCaption": "Creation Date",
+      "height": 12,
+      "id": "IDC_BOXES_CREATION_DATE",
+      "type": "Edit",
+      "width": 56,
+      "anchor": "COL1"
+    },
+
+    {
+      "autoVScroll": true,
+      "binding": {
+        "datasource": "DBTBoxes.Notes"
+      },
+      "controlClass": "StringEdit",
+      "height": 23,
+      "id": "IDC_BOXES_NOTES",
+      "controlCaption": "Notes",
+      "multiline": true,
+      "type": "Edit",
+      "vScroll": true,
+      "wantReturn": true,
+      "width": 277,
+      "anchor": "COL1"
+    },
+    {
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "DBTBoxes.Mail"
+      },
+      "controlClass": "EmailAddressEdit",
+      "controlCaption": "Mail",
+      "height": 12,
+      "id": "IDC_BOXES_MAIL",
+      "type": "Edit",
+      "width": 265,
+      "anchor": "COL1"
+    },
+    {
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "DBTBoxes.Telephone2"
+      },
+      "controlClass": "StringEdit",
+      "controlCaption": "Telephone2",
+      "height": 12,
+      "id": "IDC_BOXES_TELEPHONE2",
+      "type": "Edit",
+      "width": 93,
+      "anchor": "COL1"
+    },
+    {
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "DBTBoxes.Telephone1"
+      },
+      "controlClass": "StringEdit",
+      "height": 12,
+      "id": "IDC_BOXES_TELEPHONE1",
+      "controlCaption": "Telephone1",
+      "type": "Edit",
+      "width": 94,
+      "anchor": "COL1"
+    },
+    {
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "DBTBoxes.Discount"
+      },
+      "controlClass": "PercentEdit",
+      "controlCaption": "Discount",
+      "height": 12,
+      "id": "IDC_BOXES_DISCOUNT",
+      "type": "Edit",
+      "width": 56,
+      "anchor": "COL1"
+    },
+    {
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "DBTBoxes.Name"
+      },
+      "controlClass": "StringEdit",
+      "controlCaption": "Name",
+      "height": 12,
+      "id": "IDC_BOXES_NAME",
+      "type": "Edit",
+      "width": 136,
+      "anchor": "COL1"
+    },
+    {
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "DBTBoxes.LastName"
+      },
+      "controlClass": "StringEdit",
+      "controlCaption": "LastName",
+      "height": 12,
+      "id": "IDC_BOXES_LAST_NAME",
+      "type": "Edit",
+      "width": 265,
+      "anchor": "COL1"
+    }
+
+  ],
+  "type": "Tile",
+  "hasStaticArea": true,
+  "size": "Standard",
+  "width": 549
+}

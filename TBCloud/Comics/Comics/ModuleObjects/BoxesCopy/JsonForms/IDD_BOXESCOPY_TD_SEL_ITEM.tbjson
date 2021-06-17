@@ -1,0 +1,90 @@
+﻿{
+  "height": 85,
+  "id": "IDD_BOXESCOPY_TD_SEL_ITEM",
+  "items": [
+    {
+      "anchor": "COL1",
+      "binding": {
+        "datasource": "bAllItem"
+      },
+      "controlClass": "RadioButton",
+      "group": true,
+      "height": 10,
+      "id": "IDC_BOXESCOPY_ITEMS_RADIO_ALL",
+      "tabStop": false,
+      "text": "All",
+      "type": "Radio",
+      "captionSize": 2,
+      "controlSize": 1
+    },
+    {
+      "anchor": "COL1",
+      "binding": {
+        "datasource": "bItemSel"
+      },
+      "controlClass": "RadioButton",
+      "height": 10,
+      "id": "IDC_BOXESCOPY_ITEMS_RADIO_SEL",
+      "tabStop": false,
+      "text": "Selection",
+      "type": "Radio",
+      "width": 35,
+      "controlSize": 1,
+      "captionSize": 2
+    },
+    {
+      "anchor": "COL1",
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "FromItem",
+        "hotLink": {
+          "name": "HKLFromItem",
+          "mustExistData": true,
+          "enableAddOnFly": false,
+          "namespace": "ERP.Items.Dbl.Items"
+        }
+      },
+      "controlClass": "ItemEdit",
+      "textLimit": "{{ItemMaxLen}}",
+      "height": 12,
+      "id": "IDC_BOXESCOPY_FROM_ITEM", 
+      "type": "Edit",
+      "width": 122,
+      "controlSize": 5,
+      "captionSize": 2,
+      "marginLeft": 30,
+      "controlCaption": "From"
+    },
+    {
+      "anchor": "COL1",
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "ToItem",
+        "hotLink": {
+          "name": "HKLToItem",
+          "mustExistData": true,
+          "enableAddOnFly": false,
+          "namespace": "ERP.Items.Dbl.Items"
+        }
+      },
+      "controlCaption": "To",
+      "marginLeft": 30,
+      "controlClass": "ItemEdit", 
+      "textLimit": "{{ItemMaxLen}}",
+      "height": 12,
+      "id": "IDC_BOXESCOPY_A_ITEM",
+      "type": "Edit",
+      "width": 122,
+      "controlSize": 5,
+      "captionSize": 2
+    }
+    
+  ],
+  "name": "CBoxesCopyItemTileDlg",
+  "size": "Mini",
+  "text": "Item ",
+  "tileStyle": "Filter",
+  "type": "Tile",
+  "width": 161,
+  "grid": "col "
+}

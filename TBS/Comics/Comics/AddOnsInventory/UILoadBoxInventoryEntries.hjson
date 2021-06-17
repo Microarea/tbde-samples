@@ -1,0 +1,8 @@
+#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+#include	<Comics\ModuleObjects\CDLoadBoxInventoryEntries\JsonForms\IDD_LOAD_BOX.hjson>
+#include	<Comics\ModuleObjects\CDLoadBoxInventoryEntries\JsonForms\IDD_LOAD_BOX_VIEW.hjson>
+#include	<Comics\ModuleObjects\CDLoadBoxInventoryEntries\JsonForms\IDD_LOAD_BOX_TOOLBAR.hjson>
+#include	<Comics\ModuleObjects\CDLoadBoxInventoryEntries\JsonForms\IDD_TD_LOAD_BOX_HEADER.hjson>
+
+

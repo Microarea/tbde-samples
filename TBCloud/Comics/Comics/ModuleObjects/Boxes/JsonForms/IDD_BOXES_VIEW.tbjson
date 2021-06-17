@@ -1,0 +1,69 @@
+﻿{
+  "id": "IDD_BOXES_VIEW",
+  "type": "View",
+  "width": 438,
+  "height": 381,
+  "items": [
+
+    {
+      "type": "TileGroup",
+      "layoutType": 3, /*HBOX*/
+      "layoutAlign": "Stretch",
+      "flex": 0,
+      "id": "IDC_TG_HEADER_BOXES",
+      "items": [
+        {
+          "href": "IDD_TD_BOXES"
+        }//,
+        //{
+        //  "name": "StatusTilePanelName",
+        //  "type": "StatusTilePanel",
+        //  "items": [
+        //    {
+        //      "href": "IDD_TS_BOXES_STATUS"
+        //    }
+        //  ]
+        //}
+      ],
+      "width": 300,
+      "height": 300
+    },
+    {
+      "type": "TileManager",
+      "id": "IDC_BOXES_TABBER",
+      "flex": -1,
+      "items": [
+        {
+          "type": "TileGroup",
+          "text": "Collections",
+          "icon": "Image.ERP.Core.Images.25x25.Sales.png",
+          "id": "IDC_TG_COLLECTION",
+          "flex": -1,
+          "items": [
+            {
+              "href": "IDD_BOX_COLLECTIONS"
+            }
+          ],
+          "width": 300,
+          "height": 300
+        },
+        {
+          "type": "TileGroup",
+          "text": "Entries",
+          "icon": "Image.ERP.Core.Images.25x25.SalesMore.png",
+          "id": "IDC_TG_ENTRIES",
+          "flex": -1,
+          "items": [
+            {
+              "href": "IDD_BOX_ENTRIES"
+            }
+          ],
+          "width": 300,
+          "height": 300
+        }
+      ],
+      "width": 300,
+      "height": 300
+    }
+  ]
+}

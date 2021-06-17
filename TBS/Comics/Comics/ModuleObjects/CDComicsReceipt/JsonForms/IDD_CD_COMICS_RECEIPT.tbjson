@@ -1,0 +1,27 @@
+﻿{
+  "id": "IDD_SALE_DOCUMENT_TOOLBAR",
+  "items": [
+    {
+     
+      "icon": "Image.ERP.Core.Images.25x25.LoadDocument.png",
+      "id": "ID_RECLASS_BTN_RESEARCH_COMICS_TO_BE_DELIVERED",
+      "name": "RicercatoreFumettiDaConsegnare",
+      "text": "Carica Fumetti",
+      "hint": "Carica Fumetti",
+      "type": "ToolbarButton"
+    }
+  ]
+}
+
+
+//{
+//  "id": "ID_INVOICE_DOC_LOAD_DOCUMENT",
+//  "items": [
+//    {
+//      "activation": "Defined('nFilterBoxNo')",
+//      "id": "ID_RECLASS_BTN_RESEARCH_COMICS_TO_BE_DELIVERED",
+//      "text": "Carica Fumetti",
+//      "type": "MenuItem"
+//    }
+//  ]
+//}

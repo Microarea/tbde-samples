@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ClientDocumentObjects>
+  <ClientDocuments>
+    <ServerDocument namespace="ERP.Inventory.Documents.InventoryEntries">
+      <ClientDocument namespace="Comics.Comics.AddOnsInventory.CDLoadBoxInventoryEntries" localize="Inventory Entries Load Box" />
+    </ServerDocument>
+	  <ServerDocument namespace="ERP.Sales.Documents.Receipt">
+		  <ClientDocument namespace="Comics.Comics.AddOnsSales.CDComicsReceipt" localize="Comics Receipt" />
+	  </ServerDocument>
+    </ClientDocuments>
+	<ClientForms>
+		<ClientForm name="D.Comics.Comics.CDCollectionItems.IDD_TD_COLLECTION_ITEM"             server="IDD_ITEMS"/>
+		<ClientForm name="D.Comics.Comics.CDLoadBoxInventoryReasons.IDD_TD_INVRSN_LOAD_BOX"     server="IDD_INVENTORY_REASON"/>
+		<ClientForm name="D.Comics.Comics.CDComicsReceipt.IDD_CD_COMICS_RECEIPT"                server="IDD_SALE_DOCUMENT"/>
+	</ClientForms>
+</ClientDocumentObjects>

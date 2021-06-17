@@ -1,0 +1,8 @@
+<Applications localize="Comics">
+  <Application container="Applications" name="Comics">
+    <Incompatibilities />
+    <Prerequesites />
+  <Module name="Comics">
+  </Module>
+  </Application>
+</Applications>  

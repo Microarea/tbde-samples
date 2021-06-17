@@ -1,0 +1,4 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+#define	IDD_BOM_ADD_REFERENCE_LINE			GET_IDD(IDD_BOM_ADD_REFERENCE_LINE, D.ERP.BillOfMaterials.BillOfMaterials)
+#define	IDD_TG_BOM_REFCOMP			GET_IDC(IDD_TG_BOM_REFCOMP)

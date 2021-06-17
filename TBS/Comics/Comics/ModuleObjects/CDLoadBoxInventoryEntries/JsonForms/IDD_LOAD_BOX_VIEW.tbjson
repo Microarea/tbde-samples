@@ -1,0 +1,23 @@
+﻿{
+  "id": "IDD_LOAD_BOX_VIEW",
+  "name": "LoadBoxSlaveView",
+  "type": "View",
+  "child": true,
+  "items": [
+    {
+      "id": "IDC_TG_LOAD_BOX",
+      "name": "LoadBoxSlave",
+      "type": "TileGroup",
+      "layoutType": "VBox",
+      "items": [
+            {
+              "href": "IDD_TD_LOAD_BOX_HEADER"
+            },
+            {
+              "href": "IDD_TD_LOAD_BOX_DETAILS"
+            }
+          ]
+        
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+
+#define IDD_TD_LOAD_BOX_HEADER	GET_IDD(IDD_TD_LOAD_BOX_HEADER, D.Comics.Comics.CDLoadBoxInventoryEntries)
+#define IDC_BOX_SELECTION_QUANTITY GET_IDC(IDC_BOX_SELECTION_QUANTITY)

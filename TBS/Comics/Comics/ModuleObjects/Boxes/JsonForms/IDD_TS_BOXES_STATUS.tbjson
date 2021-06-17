@@ -1,0 +1,9 @@
+﻿{
+  "type": "StandardStatusTile",
+  "name": "BoxesStatusTile",
+  "id": "IDD_TS_BOXES_STATUS",
+  "stringValue": "Boxe Status",
+  "icon": "{{ImageBox}}"
+
+
+}

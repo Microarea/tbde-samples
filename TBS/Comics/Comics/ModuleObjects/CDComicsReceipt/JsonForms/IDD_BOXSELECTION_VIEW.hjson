@@ -1,0 +1,4 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+#define	IDD_LOAD_BOX_VIEW			GET_IDD(IDD_LOAD_BOX_VIEW, D.Comics.Comics.CDComicsReceipt)
+

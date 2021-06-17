@@ -1,0 +1,3 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+#define	IDD_COLLECTIONS_COPY	GET_IDD(IDD_COLLECTIONS_COPY,  D.Comics.Comics.CollectionsCopy)

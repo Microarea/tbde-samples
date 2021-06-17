@@ -1,0 +1,17 @@
+﻿{
+  "id": "IDD_BOM_ADD_REFERENCE_LINE",
+  "type": "View",
+  "text": "Enter Operation",
+   "items": [
+    {
+      "id": "IDD_TG_BOM_REFCOMP",
+      "type": 72 /*TileGroup*/,
+      "layoutType": 4 /*VBOX*/,
+      "items": [
+        {
+          "href": "IDD_BOM_TD_REFERENCE"
+        }
+      ]
+    }
+  ]
+}

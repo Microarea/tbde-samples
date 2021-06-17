@@ -1,0 +1,9 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+#include	<Comics\ModuleObjects\Boxes\JsonForms\IDD_BOX_COLLECTIONS.hjson>
+#include	<Comics\ModuleObjects\Boxes\JsonForms\IDD_BOX_ENTRIES.hjson>
+#include	<Comics\ModuleObjects\Boxes\JsonForms\IDD_TD_BOXES.hjson>
+#include	<Comics\ModuleObjects\Boxes\JsonForms\IDD_BOXES_VIEW.hjson>
+
+
+#define IDD_BOXES	GET_IDD(IDD_BOXES,D.Comics.Comics.Boxes)

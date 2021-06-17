@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AddOnDatabaseObjects version="1">
+	<AdditionalColumns>
+		<Table namespace="ERP.Items.Dbl.MA_Items">
+			<AlterTable namespace="Comics.Comics.Dbl" release="3" createstep="1" />
+			<Columns>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="20">Collection</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+			</Columns>
+		</Table>
+		<Table namespace="ERP.Inventory.Dbl.MA_InventoryReasons">
+			<AlterTable namespace="Comics.Comics.Dbl" release="3" createstep="2" />
+			<Columns>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Bool" defaultvalue="false" length="1">ComicsLoadBox</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+			</Columns>
+		</Table>
+	</AdditionalColumns>
+</AddOnDatabaseObjects>
+

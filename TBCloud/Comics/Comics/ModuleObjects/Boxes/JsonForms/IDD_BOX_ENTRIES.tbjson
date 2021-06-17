@@ -1,0 +1,69 @@
+{
+  "id": "IDD_BOX_ENTRIES",
+  "type": "Tile",
+  "text": "Entries",
+  "x": 0,
+  "y": 0,
+  "width": 500,
+  "height": 118,
+  "child": true,
+
+  "items": [
+    {
+      "id": "IDC_BOX_ENTRIES_BODY_EDIT",
+      "type": "BodyEdit",
+      "text": "Body Edit",
+      "x": 0,
+      "y": 0,
+      "width": 500,
+      "height": 116,
+      "clipChildren": true,
+      "ownerDraw": true,
+      "controlClass": "BodyEdit",
+      "name": "Box Entries",
+      "binding": {
+        "datasource": "DBTBoxEntries"
+      },
+      "items": [
+        {
+          "type": "ColTitle",
+          "controlClass": "StringEdit",
+          "id": "IDC_BOX_ENTRIES_ITEM",
+          "text": "Item",
+          "name": "Item",
+          "binding": {
+            "datasource": "Item",
+            "hotLink": "HKLItems",
+            "hotLinkNS": "ERP.Items.Dbl.Items",
+            "mustExistData": true,
+            "enableAddOnFly": false
+          }
+        },
+        {
+          "type": "ColTitle",
+          "controlClass": "StringStatic",
+          "id": "IDC_BOX_ENTRIES_ITEM_DESCRI",
+          "text": "Description",
+          "name": "ItemDescription",
+          "binding": {
+            "datasource": "HKLItems.Description"
+          },
+          "chars": 64,
+          "rows": 2
+        },
+        {
+          "type": "ColTitle",
+          "controlClass": "DateEdit",
+          "id": "IDC_BOX_ENTRIES_RECEIPT_DATE",
+          "text": "Receipt Date",
+          "name": "ReceiptDate",
+          "binding": {
+            "datasource": "ReceiptDate"
+          }
+        }
+      ]
+    }
+  ],
+  "name": "Item",
+  "size": 2
+}

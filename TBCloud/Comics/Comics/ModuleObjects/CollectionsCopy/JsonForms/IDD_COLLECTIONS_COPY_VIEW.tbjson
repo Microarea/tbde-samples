@@ -1,0 +1,44 @@
+﻿{
+  "id": "IDD_COLLECTIONS_COPY_VIEW",
+  "text": "Create New Collection on the Basis of Another Collection",
+  "name": "CollectionsCopy",
+  "type": 1,
+  "child": true,
+  "width": 395,
+  "height": 102,
+  "items": [
+    {
+      "id": "IDC_TB_ACTIVITY_DOCUMENT_TG",
+      "name": "ActivityTileGroup",
+      "type": "TileGroup",
+      "pinnable": false,
+      "width": 392,
+      "height": 100,
+      "layoutType": 4, /*VBOX*/
+      "clipChildren": true,
+      "items": [
+        {
+          "href": "M.Framework.TbGes.UITileDialog.IDD_TB_HEADER_TILE"
+        },
+        {
+          "href": "M.Framework.TbGes.TbActivityDocument.IDC_TB_ACTIVITY_DOCUMENT_ACTIONS",
+          "name": "{{ActionsPanelText}}", //fisso
+          "text": "Actions",
+          "collapsible": false,
+          "collapsed": false,
+          "items": [
+            {
+              "href": "IDD_TD_COLLECTIONS_COPY_NEW_CODE"
+            },
+            {
+              "href": "IDD_TD_COLLECTIONS_COPY_ALSO_COPY"
+            }
+          ]
+        },
+        {
+          "href": "M.Framework.TbGes.TBActivityDocument.IDD_TB_ACTIVITY_DOCUMENT_TD_PROGRESS"
+        }
+      ]
+    }
+  ]
+}

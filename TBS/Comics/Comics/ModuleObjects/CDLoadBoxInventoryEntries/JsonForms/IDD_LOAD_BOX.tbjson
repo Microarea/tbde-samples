@@ -1,0 +1,13 @@
+﻿{
+  "type": "Frame",
+
+  "dockable": false,
+  "statusBar": false,
+  "systemMenu": true,
+  "slave": true,
+  "name": "ProdPlanCopyProdPlan",
+  "items": [
+    { "href": "IDD_LOAD_BOX_TOOLBAR" },
+    { "href": "IDD_LOAD_BOX_VIEW" }
+  ]
+}

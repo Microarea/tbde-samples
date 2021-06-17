@@ -1,0 +1,16 @@
+//Include this file at the beginning of your .H, after including ALL the other .H
+///////////////////////////////////////////////////////////////////////////////
+
+// _AFXDLL support
+///////////////////////////////////////////////////////////////////////////////
+
+#ifdef _AFXDLL
+#		undef TB_EXPORT
+#		ifdef _COMICS_COMICSDBLEXT
+#			define TB_EXPORT  _declspec(dllexport)
+#		else
+#			define TB_EXPORT  _declspec(dllimport)
+#		endif
+#		undef  AFX_DATA
+#		define AFX_DATA TB_EXPORT
+#endif

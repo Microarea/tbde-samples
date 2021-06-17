@@ -1,0 +1,26 @@
+﻿{
+  "id": "IDD_BOXESCOPY_VIEW",
+  "type": 1,
+  "items": [
+    {
+      "id": "IDC_WIZARD_TAB",
+      "type": 89, /*WizardManager*/
+      "text": "TabManager",
+      "items": [
+        //{
+        //  "href": "IDD_BOXESCOPY_ACTION",
+        //  "name": "Actions"
+        //},
+        {
+          "href": "IDD_BOXESCOPY_FILTERS",
+          "name": "Filters"
+        },
+
+        {
+          "href": "IDD_BOXESCOPY_WIZ_BE",
+          "name": "Last"
+        }
+      ]
+    }
+  ]
+}

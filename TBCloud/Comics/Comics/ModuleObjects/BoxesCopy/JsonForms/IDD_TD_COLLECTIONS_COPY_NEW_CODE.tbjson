@@ -1,0 +1,51 @@
+﻿{
+  "collapsible": false,
+  "height": 50,
+  "id": "IDD_TD_COLLECTIONS_COPY_NEW_CODE",
+  "items": [
+    {
+      "binding": {
+        "datasource": "OldCollection",
+        "hotLink": {
+          "mustExistData": true,
+          "name": "HKLCollectionsInstance",
+          "namespace": "Comics.Comics.Dbl.Collections"
+        }
+      },
+      "controlCaption": "Old Code",
+      "controlClass": "StringEdit",
+      "height": 12,
+      "id": "IDC_CODE_OLD_COLLECTION",
+      "marginLeft": 40,
+      "type": "Edit",
+      "width": 62,
+      "x": 52,
+      "y": 2
+    },
+
+    {
+      "binding": {
+        "datasource": "NewCollection"
+      },
+      "controlCaption": "New Code",
+      "controlClass": "StringEdit",
+      "group": true,
+      "height": 12,
+      "id": "IDC_CODE_NEW_COLLECTION",
+      "marginLeft": 40,
+      "type": "Edit",
+      "width": 62,
+      "x": 52,
+      "y": 16
+    }
+  ],
+  "name": "CollectionCode",
+  "overlapped": true,
+  "pinnable": false,
+  "size": "Mini",
+  "text": "Collection Code",
+  "tileStyle": "Filter",
+  "type": "Tile",
+  "width": 161,
+  "grid": "col "
+}

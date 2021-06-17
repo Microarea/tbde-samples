@@ -1,0 +1,4 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+#define	IDD_SUBSBOMITEM			GET_IDD(IDD_SUBSBOMITEM, D.Comics.Comics.BoxesCopy)
+

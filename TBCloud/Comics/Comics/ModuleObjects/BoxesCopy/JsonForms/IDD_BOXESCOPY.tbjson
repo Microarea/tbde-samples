@@ -1,0 +1,11 @@
+﻿{
+  "href": "M.Framework.TbGes.TbGes.IDD_WIZARD_FRAME",
+  "name": "BoxesCopyFrame",
+  "wizard": true,
+  "stepper": true,
+  "items": [
+    {
+      "href": "IDD_BOXESCOPY_VIEW"
+    }
+  ]
+}

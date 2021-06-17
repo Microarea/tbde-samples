@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CreateInfo>
+  <ModuleInfo name="Comics" />
+  <Level1>
+	<Step numstep="1" script="CO_Collections.sql" />
+	<Step numstep="2" script="CO_Boxes.sql" />
+	<Step numstep="3" script="Alter_MA_Items.sql" />
+	<Step numstep="4" script="Alter_MA_InventoryReasons.sql" />
+	<Step numstep="5" script="CO_TmpLoadComics.sql" />
+	<Step numstep="6" script="CO_TmpUnloadComics.sql" />
+	</Level1>
+  <Level2 />
+</CreateInfo>
+

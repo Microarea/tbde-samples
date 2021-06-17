@@ -1,0 +1,6 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+
+#define IDC_BOXSELECTION_OK			GET_ID(IDC_BOXSELECTION_OK)
+#define IDC_BOXSELECTION_UNDO		GET_ID(IDC_BOXSELECTION_UNDO)
+

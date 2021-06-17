@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="ComicsAddOnsInventoryinterface.cpp" />
+    <ClCompile Include="ComicsAddOnsInventory.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="CDLoadBoxInventoryEntries.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="CDLoadBoxInventoryEntries.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="beginh.dex" />
+    <None Include="endh.dex" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{3e1725c2-30e8-4675-9d6d-50057197f209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9e468915-5c79-4a4e-bf66-4ef7aca3485f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

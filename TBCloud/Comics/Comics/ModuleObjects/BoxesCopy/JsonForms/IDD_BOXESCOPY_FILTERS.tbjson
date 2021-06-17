@@ -1,0 +1,35 @@
+﻿{
+  "id": "IDD_BOXESCOPY_FILTERS",
+  "type": 90,
+  "text": "Filters",
+  "name": "CompReplaceFilters",
+  "items": [
+    {
+      "id": "IDC_TG_BOXESCOPY_FILTER",
+      "type": 72,
+      "name": "WizardFilters",
+      "layoutType": 4, /*VBOX*/
+      "clipChildren": true,
+      "ownerDraw": true,
+      "hasPinnableTiles": true,
+      "ownsPane": true,
+      "items": [
+        {
+          "href": "M.Framework.TbGes.UITileDialog.IDD_TB_HEADER_TILE"
+        },
+        {
+          "type": 88 /*FilterGroup*/,
+          "text": "Filters",
+          "layoutType": 1 /*COLUMN*/,
+          "layoutAlign": 0,
+          "items": [
+            {
+              "href": "IDD_BOXESCOPY_TD_SEL_ITEM"
+
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

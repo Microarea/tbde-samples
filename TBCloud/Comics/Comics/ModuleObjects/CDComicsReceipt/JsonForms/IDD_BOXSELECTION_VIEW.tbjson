@@ -1,0 +1,20 @@
+﻿{
+  "id": "IDD_BOXSELECTION_VIEW",
+  "name": "LoadBoxSlaveView",
+  "type": "View",
+  "child": true,
+  "items": [
+    {
+      "id": "IDC_TG_BOXSELECTION",
+      "name": "LoadBoxSlave",
+      "type": "TileGroup",
+      "layoutType": "VBox",
+      "items": [
+        {
+          "href": "IDD_TD_BOXSELECTION"
+        }
+      ]
+
+    }
+  ]
+}

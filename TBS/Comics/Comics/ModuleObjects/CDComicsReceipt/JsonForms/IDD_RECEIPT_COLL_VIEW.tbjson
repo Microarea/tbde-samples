@@ -1,0 +1,20 @@
+﻿{
+  "id": "IDD_RECEIPT_COLL_VIEW",
+  "name": "ReceiptCollSlaveView",
+  "type": "View",
+  "child": true,
+  "items": [
+    {
+      "id": "IDC_TG_RECEIPT_COLL",
+      "name": "ReceiptCollSlave",
+      "type": "TileGroup",
+      "layoutType": "VBox",
+      "items": [
+        {
+          "href": "IDD_TD_RECEIPT_COLL_DETAILS"
+        }
+      ]
+
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+﻿{
+  "id": "IDD_TD_LOAD_BOX_HEADER",
+  "type": "Tile",
+  "name": "LoadBox",
+  "text": "Load Box",
+  "size": "Standard",
+  "collapsible": false,
+  "width": 325,
+  "height": 60,
+  "hasStaticArea": true,
+  "items": [
+    {
+      "anchor": "COL1",
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "Item"
+
+      },
+      "controlCaption": "Item",
+      "controlClass": "StringStatic",
+      "height": 12,
+      "id": "IDC_BOX_SELECTION_ITEM",
+      "type": "Label",
+      "width": 68
+    },
+    {
+      "anchor": "IDC_BOX_SELECTION_ITEM",
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "UoM"
+      },
+      "controlCaption": "UoM",
+      "controlClass": "StringStatic",
+      "height": 12,
+      "id": "IDC_BOX_SELECTION_UOM",
+      "type": "Label",
+      "width": 68
+    },
+    {
+      "anchor": "IDC_BOX_SELECTION_UOM",
+      "binding": {
+        "datasource": "LoadQuantity"
+      },
+      "captionWidth": 87,
+      "controlCaption": "Quantity",
+      "controlClass": "QuantityEdit",
+      "height": 12,
+      "id": "IDC_BOX_SELECTION_QUANTITY",
+      "name": "QuantityToLoad",
+      "type": "Edit",
+      "width": 46
+    }
+
+  ]
+
+}
+

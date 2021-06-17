@@ -1,0 +1,18 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+
+//#include	<Comics\ModuleObjects\BoxesCopy\JsonForms\IDD_BOXESCOPY_FILTERS.hjson>
+//#include	<Comics\ModuleObjects\BoxesCopy\JsonForms\IDD_BOXESCOPY_WIZ_BE.hjson>
+//#include	<Comics\ModuleObjects\BoxesCopy\JsonForms\IDD_BOXESCOPY_TD_SEL_ITEM.hjson>
+//#include	<Comics\ModuleObjects\BoxesCopy\JsonForms\IDD_TD_BOXESCOPY_SELECTIONS_BE.hjson>
+//#include	<Comics\ModuleObjects\BoxesCopy\JsonForms\IDR_BOXESCOPY_AUX_ACCELERATOR.hjson>
+
+
+#define	IDD_BOXESCOPY						GET_IDD(IDD_BOXESCOPY, D.Comics.Comics.BoxesCopy)
+
+//-----------------------------------------------------------------------------------------------------
+//Type:	IDC
+//-----------------------------------------------------------------------------------------------------
+
+#define IDC_BOXESCOPY_ITEMS_RADIO_ALL	GET_IDC(IDC_BOXESCOPY_ITEMS_RADIO_ALL)
+

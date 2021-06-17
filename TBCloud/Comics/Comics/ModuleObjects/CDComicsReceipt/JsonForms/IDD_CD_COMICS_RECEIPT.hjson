@@ -1,0 +1,5 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+#define IDD_CD_COMICS_RECEIPT									GET_IDD( IDD_CD_COMICS_RECEIPT, D.Comics.Comics.CDComicsReceipt )
+#define ID_RECLASS_BTN_RESEARCH_COMICS_TO_BE_DELIVERED			GET_ID( ID_RECLASS_BTN_RESEARCH_COMICS_TO_BE_DELIVERED )
+

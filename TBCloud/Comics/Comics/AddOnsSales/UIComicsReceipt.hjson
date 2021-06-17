@@ -1,0 +1,13 @@
+#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+#include	<Comics\ModuleObjects\CDComicsReceipt\JsonForms\IDD_BOXSELECTION.hjson>
+#include	<Comics\ModuleObjects\CDComicsReceipt\JsonForms\IDD_BOXSELECTION_TOOLBAR.hjson>
+#include	<Comics\ModuleObjects\CDComicsReceipt\JsonForms\IDD_BOXSELECTION_VIEW.hjson>
+#include	<Comics\ModuleObjects\CDComicsReceipt\JsonForms\IDD_CD_COMICS_RECEIPT.hjson>
+#include	<Comics\ModuleObjects\CDComicsReceipt\JsonForms\IDD_RECEIPT_COLL.hjson>
+#include	<Comics\ModuleObjects\CDComicsReceipt\JsonForms\IDD_RECEIPT_COLL_TOOLBAR.hjson>
+#include	<Comics\ModuleObjects\CDComicsReceipt\JsonForms\IDD_RECEIPT_COLL_VIEW.hjson>
+#include	<Comics\ModuleObjects\CDComicsReceipt\JsonForms\IDD_TD_BOXSELECTION.hjson>
+#include	<Comics\ModuleObjects\CDComicsReceipt\JsonForms\IDD_TD_RECEIPT_COLL_DETAILS.hjson>
+
+

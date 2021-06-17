@@ -1,0 +1,4 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+#define	IDD_BOXESCOPY			GET_IDD(IDD_BOXESCOPY,  D.Comics.Comics.BoxesCopy)
+#define	IDC_TG_BOXESCOPY_SELECTIONS			GET_IDC(IDC_TG_BOXESCOPY_SELECTIONS)

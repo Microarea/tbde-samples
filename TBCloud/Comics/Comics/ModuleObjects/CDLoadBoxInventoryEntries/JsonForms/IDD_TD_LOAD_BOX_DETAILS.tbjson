@@ -1,0 +1,89 @@
+﻿{
+  "collapsed": false,
+  "collapsible": false,
+  "id": "IDD_TD_LOAD_BOX_DETAILS",
+  "items": [
+    {
+      "binding": {
+        "datasource": "DBTBoxesSelection"
+      },
+      "controlClass": "BodyEdit",
+      "type": "BodyEdit",
+      "name": "BEBoxesSelection",
+      "width": 325,
+      "height": 126,
+      "id": "IDC_BOX_SELECTION_BODY_EDIT" ,
+            "items": [
+        {
+          "binding": {
+            "datasource": "DBTBoxesSelection.IsSelected"
+          },
+          "controlClass": "CheckBox",
+          "id": "IDC_IS_SELECTED",
+          "name": "Selected",
+          "text": "Sel.",
+          "type": "ColTitle"
+        },
+        {
+          "binding": {
+            "datasource": "DBTBoxesSelection.BoxNo"
+          },
+          "controlClass": "StringStatic",
+          "id": "IDC_BOX_NO",
+          "name": "BoxNo",
+          "text": "BoxNo",
+          "type": "ColTitle"
+        },
+        {
+          "binding": {
+            "datasource": "DBTBoxesSelection.LastName"
+          },
+          "controlClass": "StringStatic",
+          "id": "IDC_LASTNAME",
+          "name": "LastName",
+          "text": "Last Name",
+          "type": "ColTitle"
+        },
+        {
+          "binding": {
+            "datasource": "DBTBoxesSelection.Name"
+          },
+          "controlClass": "StringStatic",
+          "id": "IDC_NAME",
+          "name": "Name",
+          "text": "Name",
+          "type": "ColTitle"
+        },
+        {
+          "binding": {
+            "datasource": "DBTBoxesSelection.CollectionNotes"
+          },
+          "controlClass": "StringStatic",
+          "id": "IDC_COLLECTION_NOTES",
+          "name": "CollectionNotes",
+          "text": "Collection Notes",
+          "type": "ColTitle"
+        },
+        {
+          "binding": {
+            "datasource": "DBTBoxesSelection.CollectionCreationDate"
+          },
+          "controlClass": "DateStatic",
+          "id": "IDC_COLLECTION_NOTES",
+          "name": "CollectionCreationDate",
+          "text": "Collection Creation Date",
+          "type": "ColTitle"
+        }
+      ]
+    }
+  ],
+  "name": "LoadBoxDetail",
+  "size": "AutoFill",
+  "text": "Load Box Detail",
+  "width": 325,
+  "height": 126,
+  "child": true,
+  "type": "Tile"
+}
+
+

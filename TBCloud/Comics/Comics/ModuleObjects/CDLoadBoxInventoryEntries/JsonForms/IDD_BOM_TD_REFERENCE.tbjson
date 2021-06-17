@@ -1,0 +1,66 @@
+﻿{
+  "collapsible": false,
+  "height": 43,
+  "id": "IDD_BOM_TD_REFERENCE",
+  "items": [
+    {
+      "anchor": "COL1",
+      "binding": {
+        "datasource": "Operation"
+      },
+      "comboType": 1,
+      "controlClass": "StringComboDropDown",
+      "itemSource": {
+        "name": "OperationComboBox",
+        "namespace": "ERP.BillOfMaterials.Components.UseInOperationComboBox"
+      },
+      "group": true,
+      "height": 37,
+      "id": "IDC_BOM_REFERENCE_OPERATION",
+      "sort": true,
+      "type": "Combo",
+      "vScroll": true,
+      "width": 85,
+      "controlSize": 4,
+      "captionSize": 0
+    },
+    {
+      "anchor": "COL1",
+      "binding": {
+        "datasource": "bInsertBefore"
+      },
+      "controlClass": "RadioButton",
+      "group": true,
+      "height": 10,
+      "id": "IDC_BOM_INSERT_BEFORE",
+      "tabStop": false,
+      "text": "Before the current row",
+      "type": "Radio",
+      "width": 118,
+      "controlSize": 1,
+      "captionSize": 3
+    },
+    {
+      "anchor": "COL1",
+      "binding": {
+        "datasource": "bInsertAfter"
+      },
+      "controlClass": "RadioButton",
+      "height": 8,
+      "id": "IDC_BOM_INSERT_AFTER",
+      "tabStop": false,
+      "text": "After the current row",
+      "type": "Radio",
+      "width": 117,
+      "controlSize": 1,
+      "captionSize": 3
+    }
+  ],
+  "name": "CBillOfMaterialsCompReferenceTileDlg",
+  "pinnable": false,
+  "size": "Mini",
+  "type": "Tile",
+  "width": 166,
+  "grid": "col",
+  "customGrid": true
+}

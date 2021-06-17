@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<HotKeyLink>
+  <Function namespace="Comics.Comics.Dbl.Boxes" localize="Boxes" type="string">
+    <Param name="Attivi" type="integer" localize="0 (Active) / 1 (Disabled) / 2 (Both)" />
+  </Function>
+  <DbField name="CO_Caselle.NoCasella" />
+  <ComboBox />
+  <ClassName>HKLBoxes</ClassName>
+</HotKeyLink>

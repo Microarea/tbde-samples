@@ -1,0 +1,30 @@
+﻿{
+  "collapsible": false,
+  "height": 50,
+  "id": "IDD_TD_COLLECTIONS_COPY_ALSO_DISABLED",
+  "items": [
+        {
+      "anchor": "COL1",
+      "binding": {
+        "datasource": "bSetNewDisabled"
+      },
+      "controlClass": "CheckBox",
+      "height": 9,
+      "id": "IDC_NEW_CODE_COLLECTION_DISABLED",
+      "isText": true,
+      "text": "Set new Collection disabled",
+      "type": "Check",
+      "vertAlign": "Top",
+      "width": 151
+    }
+  ],
+  "name": "CopyAlsoDisabled",
+  "overlapped": true,
+  "pinnable": false,
+  "size": "Mini",
+  "text": "Options",
+  "tileStyle": "Filter",
+  "type": "Tile",
+  "width": 161,
+  "grid": "col "
+}

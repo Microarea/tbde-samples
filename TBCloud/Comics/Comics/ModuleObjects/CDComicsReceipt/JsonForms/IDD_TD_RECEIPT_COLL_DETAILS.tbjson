@@ -1,0 +1,99 @@
+﻿{
+  "collapsed": false,
+  "collapsible": false,
+  "id": "IDD_TD_RECEIPT_COLL_DETAILS",
+  "items": [
+    {
+      "binding": {
+        "datasource": "DBTComicsToBeDelivered"
+      },
+      "controlClass": "BodyEdit",
+      "type": "BodyEdit",
+      "name": "BEBoxesSelection",
+      "width": 325,
+      "height": 126,
+      "id": "IDC_COLL_SELECTION_BODY_EDIT",
+      "items": [
+        {
+          "binding": {
+            "datasource": "DBTComicsToBeDelivered.IsSelected"
+          },
+          "controlClass": "CheckBox",
+          "id": "IDC_IS_SELECTED",
+          "name": "Selected",
+          "text": "Sel.",
+          "type": "ColTitle"
+        },
+        {
+          "binding": {
+            "datasource": "DBTComicsToBeDelivered.Item"
+          },
+          "controlClass": "StringStatic",
+          "id": "IDC_ITEM",
+          "name": "Item",
+          "text": "Item",
+          "type": "ColTitle"
+        },
+        {
+          "binding": {
+            "datasource": "DBTComicsToBeDelivered.BoxNo"
+          },
+          "controlClass": "StringStatic",
+          "id": "IDC_COLL_NO",
+          "name": "BoxNo",
+          "text": "BoxNo",
+          "type": "ColTitle"
+        },
+        {
+          "binding": {
+            "datasource": "DBTComicsToBeDelivered.LastName"
+          },
+          "controlClass": "StringStatic",
+          "id": "IDC_LASTNAME",
+          "name": "LastName",
+          "text": "Last Name",
+          "type": "ColTitle"
+        },
+        {
+          "binding": {
+            "datasource": "DBTComicsToBeDelivered.Name"
+          },
+          "controlClass": "StringStatic",
+          "id": "IDC_NAME",
+          "name": "Name",
+          "text": "Name",
+          "type": "ColTitle"
+        },
+        {
+          "binding": {
+            "datasource": "DBTComicsToBeDelivered.CollectionNotes"
+          },
+          "controlClass": "StringStatic",
+          "id": "IDC_COLLECTION_NOTES",
+          "name": "CollectionNotes",
+          "text": "Collection Notes",
+          "type": "ColTitle"
+        },
+        {
+          "binding": {
+            "datasource": "DBTComicsToBeDelivered.CollectionCreationDate"
+          },
+          "controlClass": "DateStatic",
+          "id": "IDC_COLLECTION_NOTES",
+          "name": "CollectionCreationDate",
+          "text": "Collection Creation Date",
+          "type": "ColTitle"
+        }
+      ]
+    }
+  ],
+  "name": "ReceiptCollectionDetail",
+  "size": "AutoFill",
+  "text": "Receipt Collection Detail",
+  "width": 325,
+  "height": 126,
+  "child": true,
+  "type": "Tile"
+}
+
+

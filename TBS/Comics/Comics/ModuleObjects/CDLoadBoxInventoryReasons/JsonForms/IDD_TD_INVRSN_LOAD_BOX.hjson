@@ -1,0 +1,4 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+
+#define IDD_TD_INVRSN_LOAD_BOX	GET_IDD(IDD_TD_INVRSN_LOAD_BOX, D.Comics.Comics.CDLoadBoxInventoryReasons)

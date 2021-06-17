@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AddOnDatabaseObjects>
+  <AdditionalColumns>
+    <Table namespace="ERP.Items.Dbl.MA_Items">
+      <AlterTable namespace="Comics.Comics.Dbl" release="3" createstep="1" />
+    </Table>
+    <Table namespace="ERP.Inventory.Dbl.MA_InventoryReasons">
+      <AlterTable namespace="Comics.Comics.Dbl" release="3" createstep="2" />
+    </Table>
+  </AdditionalColumns>
+</AddOnDatabaseObjects>

@@ -1,0 +1,4 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+
+#define IDC_ITM_COLLECTION	GET_IDC(IDC_ITM_COLLECTION)

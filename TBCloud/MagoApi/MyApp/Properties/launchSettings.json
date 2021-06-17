@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MyApp": {
+      "commandName": "Project",
+      "commandLineArgs": "https://myinstance.mago.cloud account@mymail.it pwd subscriptionkey"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+﻿{
+  "id": "IDC_TG_INVRSN_OTHERDATA",
+
+  "items": [
+    {
+      "id": "IDD_TD_INVRSN_LOAD_BOX",
+      "type": "Tile",
+      "name": "LoadBox",
+      "text": "Load Box",
+      "size": "Wide",
+      "collapsible": true,
+      "width": 654,
+      "height": 60,
+      "hasStaticArea": true ,
+      "items": [
+        {
+          "anchor": "COL1",
+          "binding": {
+            "datasource": "InventoryReasons.ComicsLoadBox"
+          },
+          "id": "IDC_LOAD_BOX",
+          "name": "LoadBox",
+          "text": "LoadBox   ",
+          "height": 12,
+          "controlClass": "CheckBox",
+          "textAlign": "Right",
+          "type": "Check",
+          "width": 100
+        }
+
+
+      ]
+
+    }
+
+  ]
+}   

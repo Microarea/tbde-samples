@@ -1,0 +1,13 @@
+﻿{
+  "type": "Frame",
+  "id": "IDD_RECEIPT_COLL",
+  "dockable": false,
+  "statusBar": false,
+  "systemMenu": true,
+  "slave": true,
+  "name": "ReceiptColl",
+  "items": [
+    { "href": "IDD_RECEIPT_COLL_TOOLBAR" },
+    { "href": "IDD_RECEIPT_COLL_VIEW" }
+  ]
+}

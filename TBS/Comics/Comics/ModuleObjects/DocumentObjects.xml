@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DocumentObjects>
+	<Documents>
+		<Document namespace="Comics.Comics.Documents.Collections" localize="Collections" classhierarchy="DCollections">
+			<InterfaceClass>ADMCollectionsObj</InterfaceClass>
+			<ViewModes>
+				<Mode name="Default" />
+				<Mode name="BackGround" />
+			</ViewModes>
+		</Document>
+		<Document namespace="Comics.Comics.Documents.Boxes" localize="Boxes" classhierarchy="DBoxes">
+			<InterfaceClass>ADMBoxesObj</InterfaceClass>
+			<ViewModes>
+				<Mode name="Default" />
+				<Mode name="BackGround" />
+			</ViewModes>
+		</Document>
+		<Document namespace="Comics.Comics.Documents.Boxes" localize="Boxes" classhierarchy="DBoxes">
+			<InterfaceClass>ADMBoxesObj</InterfaceClass>
+			<ViewModes>
+				<Mode name="Default" />
+				<Mode name="BackGround" />
+			</ViewModes>
+		</Document>
+		<Document namespace="Comics.Comics.Documents.CollectionsCopy" localize="Copy from Old to New Collection Code" classhierarchy="CActivityDocument.BDCollectionsCopy" >
+			<InterfaceClass>ADMCollectionsCopyObj</InterfaceClass>
+			<ViewModes>
+				<Mode name="Default" type="batch" />
+				<Mode name="BackGround" type="batch" />
+			</ViewModes>
+		</Document>
+	</Documents>
+</DocumentObjects>

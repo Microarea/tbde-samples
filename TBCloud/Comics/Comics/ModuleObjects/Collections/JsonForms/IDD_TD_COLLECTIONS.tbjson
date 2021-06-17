@@ -1,0 +1,78 @@
+{
+  "id": "IDD_TD_COLLECTIONS",
+  "type": "Tile",
+  "text": "COLLECTIONS",
+  "x": 0,
+  "y": 0,
+  "width": 428,
+  "height": 220,
+  "child": true,
+  "items": [
+    {
+      "id": "IDC_COLLECTIONS_COLLECTION",
+      "type": "Edit",
+      "x": 7,
+      "y": 19,
+      "width": 93,
+      "height": 12,
+      "anchor": "COL1",
+      "autoHScroll": true,
+      "controlClass": "StringEdit",
+      "controlCaption": "Collection",
+      "binding": {
+        "datasource": "DBTCollections.Collection"
+      }
+    },
+    {
+      "id": "IDC_COLLECTIONS_DESCRIPTION",
+      "type": "Edit",
+      "x": 108,
+      "y": 19,
+      "width": 141,
+      "height": 12,
+      "anchor": "COL1",
+      "autoHScroll": true,
+      "controlClass": "StringEdit",
+      "binding": {
+        "datasource": "DBTCollections.Description"
+      }
+    },
+    {
+      "id": "IDC_COLLECTIONS_NOTES",
+      "type": "Edit",
+      "x": 7,
+      "y": 66,
+      "width": 295,
+      "height": 23,
+      "anchor": "COL1",
+      "controlCaption": "Notes",
+      "vScroll": true,
+      "autoVScroll": true,
+      "wantReturn": true,
+      "multiline": true,
+      "controlClass": "StringEdit",
+      "binding": {
+        "datasource": "DBTCollections.Notes"
+      }
+    },
+    {
+      "id": "IDC_COLLECTIONS_DISABLED",
+      "type": "Check",
+      "x": 258,
+      "y": 21,
+      "width": 82,
+      "height": 8,
+      "anchor": "IDC_COLLECTIONS_COLLECTION",
+      "tabStop": false,
+      "auto": true,
+      "controlClass": "CheckBox",
+      "text": "Disabled  ",
+      "binding": {
+        "datasource": "DBTCollections.Disabled"
+      }
+    }
+  ],
+  "name": "Main",
+  "hasStaticArea": true,
+  "size": "Standard"
+}

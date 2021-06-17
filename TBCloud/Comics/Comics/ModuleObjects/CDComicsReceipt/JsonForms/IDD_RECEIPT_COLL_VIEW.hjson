@@ -1,0 +1,4 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+#define	IDD_RECEIPT_COLL_VIEW			GET_IDD(IDD_RECEIPT_COLL_VIEW, D.Comics.Comics.CDComicsReceipt)
+

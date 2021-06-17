@@ -1,0 +1,6 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+
+#define IDC_RECEIPT_COLL_OK			GET_ID(IDC_RECEIPT_COLL_OK)
+#define IDC_RECEIPT_COLL_UNDO		GET_ID(IDC_RECEIPT_COLL_UNDO)
+

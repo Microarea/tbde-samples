@@ -1,0 +1,10 @@
+﻿{
+  "href": "M.Framework.TbGes.TbGes.IDD_MASTER_FRAME",
+  "width": 438,
+  "height": 381,
+  "items": [
+    {
+      "href": "IDD_COLLECTIONS_VIEW"
+    }
+  ]
+}

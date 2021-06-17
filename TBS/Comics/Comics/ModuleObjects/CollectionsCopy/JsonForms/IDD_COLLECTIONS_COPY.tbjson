@@ -1,0 +1,12 @@
+﻿{
+  "href": "M.Framework.TbGes.TBActivityDocument.IDD_TB_ACTIVITY_FRAME",
+  "name": "CollectionsCopy",
+  "items": [
+    {
+      "href": "M.Framework.TbGes.TBActivityDocument.IDD_TB_ACTIVITY_NO_LOAD_DATA_FRAME"
+    },
+    {
+      "href": "IDD_COLLECTIONS_COPY_VIEW"
+    }
+  ]
+}

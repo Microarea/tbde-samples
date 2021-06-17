@@ -1,0 +1,15 @@
+﻿#pragma once
+#include	<TbNameSolver\TBResourcesMap.h>
+
+#define	IDD_COLLECTIONS_COPY_VIEW	GET_IDD(IDD_COLLECTIONS_COPY_VIEW,  D.Comics.Comics.CollectionsCopy)
+
+#include	<Comics\ModuleObjects\CollectionsCopy\JsonForms\IDD_TD_COLLECTIONS_COPY_ALSO_COPY.hjson>
+#include	<Comics\ModuleObjects\CollectionsCopy\JsonForms\IDD_TD_COLLECTIONS_COPY_NEW_CODE.hjson>
+#include	<Comics\ModuleObjects\CollectionsCopy\JsonForms\IDD_COLLECTIONS_COPY.hjson>
+
+//-----------------------------------------------------------------------------------------------------
+//Type:	IDC
+//-----------------------------------------------------------------------------------------------------
+#define IDC_CODE_OLD_COLLECTION					GET_IDC(IDC_CODE_OLD_COLLECTION)
+#define IDC_CODE_NEW_COLLECTION					GET_IDC(IDC_CODE_NEW_COLLECTION)
+

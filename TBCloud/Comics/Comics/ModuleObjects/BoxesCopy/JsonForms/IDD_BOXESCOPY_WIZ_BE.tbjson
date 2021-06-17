@@ -1,0 +1,25 @@
+﻿{
+  "id": "IDD_BOXESCOPY",
+  "text": "Selections",
+  "name": "BoxesCopyWizSelections",
+  "type": 90,
+  "items": [
+    {
+      "id": "IDC_TG_BOXESCOPY_SELECTIONS",
+      "type": 72,
+      "name": "WizardFilters",
+      "layoutType": 4, /*VBOX*/
+      "layoutAlign": 3, //STRETCH
+      "clipChildren": true,
+      "tileStyle": 5, //TDS_WIZARD
+      "items": [
+        {
+          "href": "M.Framework.TbGes.UITileDialog.IDD_TB_HEADER_TILE"
+        },
+        {
+          "href": "IDD_TD_BOXESCOPY_SELECTIONS_BE"
+        }
+      ]
+    }
+  ]
+}

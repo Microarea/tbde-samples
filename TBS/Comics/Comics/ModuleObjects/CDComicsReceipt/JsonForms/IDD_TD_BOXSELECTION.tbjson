@@ -1,0 +1,32 @@
+﻿{
+  "id": "IDD_TD_BOXSELECTION",
+  "type": "Tile",
+  "name": "BoxSelection",
+  "text": "Box Selection",
+  "size": "Standard",
+  "collapsible": false,
+  "width": 325,
+  "height": 60,
+  "hasStaticArea": true,
+  "items": [
+    {
+      "anchor": "COL1",
+      "autoHScroll": true,
+      "binding": {
+        "datasource": "Box",
+        "hotLink": {
+          "name": "HKLBoxes",
+          "namespace": "Comics.Comics.Dbl.Boxes"
+        }
+      },
+      "controlCaption": "Box",
+      "controlClass": "StringEdit",
+      "height": 12,
+      "id": "IDC_BOX_SELECTION",
+      "type": "Edit",
+      "width": 68
+    }
+  ]
+
+}
+

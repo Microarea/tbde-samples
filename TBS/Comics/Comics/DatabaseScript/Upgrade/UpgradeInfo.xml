@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UpgradeInfo>
+	<ModuleInfo name="Comics" />
+	<DBRel numrel="2">
+		<Level1>
+		  <Step numstep="1" script="CO_Boxes.sql" />
+		</Level1>
+	</DBRel>
+	<DBRel numrel="3">
+		<Level1>
+		  <Step numstep="1" script="Alter_MA_Items.sql" />
+		  <Step numstep="2" script="Alter_MA_InventoryReasons.sql" />
+		</Level1>
+	</DBRel>
+	<DBRel numrel="4">
+		<Level1>
+		  <Step numstep="1" script="CO_TmpLoadComics.sql" />
+		  <Step numstep="2" script="CO_TmpUnloadComics.sql" />
+		</Level1>
+	</DBRel>
+</UpgradeInfo>
+
+
+
+

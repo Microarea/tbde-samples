@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DatabaseObjects version="1">
+	<Signature>Comics</Signature>
+	<Release>4</Release>
+	<Tables>
+		<Table namespace="Comics.Comics.Dbl.CO_Collections" mastertable="true">
+			<Create release="1" createstep="1"></Create>
+			<DocumentationInfo localizable_1="true"></DocumentationInfo>
+			<Columns>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="20">Collection</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="32">Description</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="128">Notes</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Bool" defaultvalue="false" length="1">Disabled</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+			</Columns>
+			<PrimaryKey name="PK_Collections" type="NONCLUSTERED">
+				<Segments>Collection</Segments>
+			</PrimaryKey>
+		</Table>
+		<Table namespace="Comics.Comics.Dbl.CO_Boxes" mastertable="true">
+			<Create release="2" createstep="2"></Create>
+			<DocumentationInfo localizable_1="true"></DocumentationInfo>
+			<Columns>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="8">BoxNo</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Date" defaultvalue="1799-12-31T00:00:00" length="0">CreationDate</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Date" defaultvalue="1799-12-31T00:00:00" length="0">ClosingDate</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Bool" defaultvalue="false" length="1">IsClosed</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="64">LastName</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="32">Name</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="20">Telephone1</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="20">Telephone2</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="64">Mail</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Percent" defaultvalue="0.00" length="0">Discount</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="128">Notes</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+			</Columns>
+			<PrimaryKey name="PK_Boxes" type="NONCLUSTERED">
+				<Segments>BoxNo</Segments>
+			</PrimaryKey>
+		</Table>
+		<Table namespace="Comics.Comics.Dbl.CO_CollectionsBox">
+			<Create release="2" createstep="2"></Create>
+			<DocumentationInfo localizable_1="true"></DocumentationInfo>
+			<Columns>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="8">BoxNo</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="20">Collection</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Date" defaultvalue="1799-12-31T00:00:00" length="0">CreationDate</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="3">FromNumber</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="3">LastReceiptNumber</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="3">LastIssuedNumber</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Date" defaultvalue="1799-12-31T00:00:00" length="0">LastReceiptDate</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Date" defaultvalue="1799-12-31T00:00:00" length="0">LastIssuedDate</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Date" defaultvalue="1799-12-31T00:00:00" length="0">ClosingDate</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Bool" defaultvalue="false" length="1">IsClosed</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="128">Notes</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+			</Columns>
+			<PrimaryKey name="PK_CollectionsBox" type="NONCLUSTERED">
+				<Segments>BoxNo, Collection</Segments>
+			</PrimaryKey>
+			<ForeignKeys>
+				<ForeignKey name="FK_CollectionsBox_00" on="CO_Boxes" onns="Table.Comics.Comics.Dbl.CO_Boxes">
+					<FKSegments>BoxNo</FKSegments>
+					<PKSegments>BoxNo</PKSegments>
+				</ForeignKey>
+			</ForeignKeys>
+		</Table>
+		<Table namespace="Comics.Comics.Dbl.CO_ReceiptsBox">
+			<Create release="2" createstep="2"></Create>
+			<DocumentationInfo localizable_1="true"></DocumentationInfo>
+			<Columns>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="8">BoxNo</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="21">Item</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Date" defaultvalue="1799-12-31T00:00:00" length="0">ReceiptDate</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+			</Columns>
+			<PrimaryKey name="PK_ReceiptsBox" type="NONCLUSTERED">
+				<Segments>BoxNo, Item</Segments>
+			</PrimaryKey>
+			<ForeignKeys>
+				<ForeignKey name="FK_ReceiptsBox_00" on="CO_Boxes" onns="Table.Comics.Comics.Dbl.CO_Boxes">
+					<FKSegments>BoxNo</FKSegments>
+					<PKSegments>BoxNo</PKSegments>
+				</ForeignKey>
+			</ForeignKeys>
+		</Table>
+		<Table namespace="Comics.Comics.Dbl.CO_TmpLoadComics" mastertable="true">
+			<Create release="4" createstep="1"></Create>
+			<DocumentationInfo localizable_1="true"></DocumentationInfo>
+			<Columns>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Long" defaultvalue="0" length="0">EntryId</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Long" defaultvalue="0" length="0">SubId</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="8">BoxNo</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="21">Item</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="128">Description</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="20">Collection</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Date" defaultvalue="1799-12-31T00:00:00" length="0">InvEntryDate</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+			</Columns>
+			<PrimaryKey name="PK_TmpLoadComics" type="NONCLUSTERED">
+				<Segments>EntryId, SubId, BoxNo</Segments>
+			</PrimaryKey>
+		</Table>
+		<Table namespace="Comics.Comics.Dbl.CO_TmpUnloadComics" mastertable="true">
+			<Create release="4" createstep="2"></Create>
+			<DocumentationInfo localizable_1="true"></DocumentationInfo>
+			<Columns>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Long" defaultvalue="0" length="0">SaleDocId</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Integer" defaultvalue="0" length="0">Line</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="8">BoxNo</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Long" defaultvalue="0" length="0">SubId</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="64">LastName</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="32">Name</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="21">Item</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="String" defaultvalue="" length="20">Collection</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+				<Column>
+					<SchemaInfo localizable_1="true" type="Date" defaultvalue="1799-12-31T00:00:00" length="0">ReceiptDate</SchemaInfo>
+					<DocumentationInfo localizable_1="true"></DocumentationInfo>
+				</Column>
+			</Columns>
+			<PrimaryKey name="PK_TmpUnloadComics" type="NONCLUSTERED">
+				<Segments>SaleDocId, BoxNo, Item</Segments>
+			</PrimaryKey>
+		</Table>
+	</Tables>
+</DatabaseObjects>
