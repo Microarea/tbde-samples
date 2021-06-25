@@ -35,6 +35,7 @@ namespace MyBLService.Controllers
             {
                 ValidateResponse response = new ValidateResponse();
                 response.ReturnValue = true;
+                response.Success = true;
                 if (request.DocMode == 2 /*FormModeType.New*/ || request.DocMode == 3/*FormModeType.Edit*/)
                 {
                     if (request.Code != null && request.Code.StartsWith("A"))

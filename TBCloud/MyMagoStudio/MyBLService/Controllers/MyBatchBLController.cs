@@ -39,7 +39,7 @@ namespace MyBLService.Controllers
         }
 
         [HttpPost("BatchExecute")]
-        public ActionResult<ExtractDataResponse> BatchExecute([FromBody] ExtractDataRequest request)
+        public ActionResult<BatchExecuteRequestResponse> BatchExecute([FromBody] BatchExecuteRequest request)
         {
 
             try
@@ -47,7 +47,7 @@ namespace MyBLService.Controllers
                 // to do: batch business logic code. At the end,
                 // response return value will contain if batch ended succesfully or with errors
                 // ErrorMessage and diagnostic elements will pupulate batch Diagnostic compononent
-                ExtractDataResponse response = new ExtractDataResponse();
+                BatchExecuteRequestResponse response = new BatchExecuteRequestResponse();
                 response.ReturnValue = true;
                 // variable to return batch error
                 // response.ErrorMessage = null;
