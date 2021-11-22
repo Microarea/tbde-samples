@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MyBLService.BaseModel;
 using MyBLService.ParametersModel;
 using System;
 
@@ -13,10 +14,107 @@ namespace MyBLService.Controllers
     {
         private readonly ILogger<MyDocBLController> _logger;
 
+
         //-----------------------------------------------------------------------------	
         public MyBatchBLController(ILogger<MyDocBLController> logger)
         {
             _logger = logger;
+        }
+
+        //-------------------------------------------------------------------------------
+        [HttpPost("ControlsEnabled")]
+        public ActionResult<BaseResponse> ControlsEnabled([FromBody] FiltersEnabledRequest request)
+        {
+
+            try
+            {
+                // to do: data preparation to populate model of results grid
+                // returned via json into return value
+                BaseResponse response = new BaseResponse();
+                FilterBOM outFilter = new FilterBOM();
+
+                if (request != null && request.All != null && request.Select != null &&
+                        request.FromBOM != null && request.ToBOM != null)
+                {
+                    outFilter.All = request.All;
+                    outFilter.Select = request.Select;
+                    outFilter.FromBOM = request.FromBOM;
+                    outFilter.ToBOM = request.ToBOM;
+                    outFilter.Select.value = !outFilter.All.value;
+                    if (outFilter.All.value)
+                    {
+                        outFilter.FromBOM.value = string.Empty;
+                        outFilter.ToBOM.value = string.Empty;
+                    }
+                    outFilter.FromBOM.IsReadOnly = request.All.value;
+                    outFilter.ToBOM.IsReadOnly = request.All.value;
+                    response.ReturnValue = outFilter;
+                }
+
+                // variable to return result
+                return new OkObjectResult(response);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("MyBatchBLController ControlsEnabled exception  ", e);
+            }
+        }
+
+        //-----------------------------------------------------------------------------
+        [HttpPost("ValidateFilterDates")]
+        public ActionResult<BaseResponse> ValidateFilterDates([FromBody] ValidateRequest request)
+        {
+
+            try
+            {
+                // to do: data preparation to populate model of results grid
+                // returned via json into return value
+                BaseResponse response = new BaseResponse();
+                if (request != null)
+                    response.ReturnValue = request.FromDate < request.ToDate;
+                return new OkObjectResult(response);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("MyBatchBLController ValidateFilterDates exception  ", e);
+            }
+        }
+
+        //-----------------------------------------------------------------------------
+        [HttpPost("AllBOM_ValueChanged")]
+        public ActionResult<BaseResponse> AllBOM_ValueChanged([FromBody] FiltersEnabledRequest request)
+        {
+
+            try
+            {
+                // to do: data preparation to populate model of results grid
+                // returned via json into return value
+                BaseResponse response = new BaseResponse();
+                FilterBOM outFilter = new FilterBOM();
+
+                if (request != null && request.All != null && request.Select != null &&
+                        request.FromBOM != null && request.ToBOM != null)
+                {
+                    outFilter.All = request.All;
+                    outFilter.Select = request.Select;
+                    outFilter.FromBOM = request.FromBOM;
+                    outFilter.ToBOM = request.ToBOM;
+                    outFilter.Select.value = !outFilter.All.value;
+                    if (outFilter.All.value)
+                    {
+                        outFilter.FromBOM.value = string.Empty;
+                        outFilter.ToBOM.value = string.Empty;
+                    }
+                    outFilter.FromBOM.IsReadOnly = request.All.value;
+                    outFilter.ToBOM.IsReadOnly = request.All.value;
+                    response.ReturnValue = outFilter;
+                }
+                return new OkObjectResult(response);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("MyBatchBLController AllBOM_ValueChanged exception  ", e);
+            }
         }
 
         [HttpPost("ExtractData")]

@@ -3,20 +3,9 @@ using System;
 
 namespace MyBLService.ParametersModel
 {
-    public class ValidateRequest
+    public class ValidateRequest: BaseRequest
     {
         /// <summary>
-        /// RequestId
-        /// </summary>
-        [JsonProperty("requestId")]
-        public object RequestId { get; set; }
-        /// <summary>
-        /// OperationDate
-        /// </summary>
-        [JsonProperty("operationDate")]
-        public DateTime OperationDate { get; set; }
-
-         /// <summary>
         /// Document Mode
         /// </summary>
         [JsonProperty("docMode")]
@@ -24,5 +13,16 @@ namespace MyBLService.ParametersModel
 
         [JsonProperty("code")]
         public string Code { get; set; }
+        /// <summary>
+        /// FromDate
+        /// </summary>
+        [JsonProperty("FromDate")]
+        public DateTime FromDate { get; set; }
+
+        /// <summary>
+        /// ToDate
+        /// </summary>
+        [JsonProperty("ToDate")]
+        public DateTime ToDate { get; set; }
     }
 }
