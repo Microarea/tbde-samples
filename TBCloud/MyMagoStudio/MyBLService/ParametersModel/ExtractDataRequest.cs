@@ -3,18 +3,9 @@ using System;
 
 namespace MyBLService.ParametersModel
 {
-    public class ExtractDataRequest
+    public class ExtractDataRequest: BaseRequest
     {
-        /// <summary>
-        /// RequestId
-        /// </summary>
-        [JsonProperty("requestId")]
-        public object RequestId { get; set; }
-        /// <summary>
-        /// OperationDate
-        /// </summary>
-        [JsonProperty("operationDate")]
-        public DateTime OperationDate { get; set; }
+        //add your filters here
 
     }
 }

@@ -17,7 +17,7 @@ namespace MyBLService.ParametersModel
         /// Success
         /// </summary>
         [JsonProperty("success")]
-        public bool Success { get; set; } = false;
+        public bool Success { get; set; } = true;
         /// <summary>
         /// ErrorMessage
         /// </summary>
