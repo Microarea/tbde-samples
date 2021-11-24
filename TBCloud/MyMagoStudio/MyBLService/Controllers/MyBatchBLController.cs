@@ -27,7 +27,7 @@ namespace MyBLService.Controllers
 
         //-------------------------------------------------------------------------------
         [HttpPost("ControlsEnabled")]
-        public ActionResult<BaseResponse> ControlsEnabled([FromBody] FiltersEnabledRequest request)
+        public ActionResult<BaseResponse> ControlsEnabled([FromBody] ControlsEnabledRequest request)
         {
 
             try
@@ -93,7 +93,7 @@ namespace MyBLService.Controllers
 
         //-----------------------------------------------------------------------------
         [HttpPost("AllBOM_ValueChanged")]
-        public ActionResult<BaseResponse> AllBOM_ValueChanged([FromBody] FiltersEnabledRequest request)
+        public ActionResult<BaseResponse> AllBOM_ValueChanged([FromBody] ControlsEnabledRequest request)
         {
 
             try
@@ -109,7 +109,7 @@ namespace MyBLService.Controllers
                     return new OkObjectResult(response);
                 }
 
-                //in this example we immagine to manage a filter all/select/from/to
+                //in this example we imagine to manage a filter all/select/from/to
                 //if all = true, then select = false and from/to must be readonly and containing empty values
                 //if select = true, then all = false and from/to must be editable and containing empty values
                 FilterBOM outFilter = new FilterBOM();
@@ -174,7 +174,7 @@ namespace MyBLService.Controllers
                 //rowExt.Selected = false;
                 //outRows.Add(row);
 
-                //example - immagine on ExtractData you have to populate the grid with the extraction data
+                //example - imagine that ExtractData you have to populate the grid with the extraction data
                 //after you have queried your db applying the filters that you receveid in the request
                 //and then you have to make the key readOnly
                 //in our example the key is composed by BOM field
@@ -228,7 +228,7 @@ namespace MyBLService.Controllers
                 // to do: batch business logic code. At the end,
                 // response return value will contain if batch ended succesfully or with errors
                 // ErrorMessage and diagnostic elements will pupulate batch Diagnostic compononent
-                //example - immagine on BatchExecute you have to populate the grid with the extraction data
+                //example - imagine that BatchExecute you have to populate the grid with the extraction data
                 //after you have queried your db and then you have to make readOnly all fields
                 BatchExecuteRequestResponse response = new BatchExecuteRequestResponse();
                 if (request == null || request.MyParamIn == null || request.MyParamIn.Count == 0)
@@ -273,7 +273,7 @@ namespace MyBLService.Controllers
                 // to do: batch business logic code. At the end,
                 // response return value will contain if batch ended succesfully or with errors
                 // ErrorMessage and diagnostic elements will pupulate batch Diagnostic compononent
-                //example - immagine on RowChanged you have to compile automatically the Notes field
+                //example - imagine that RowChanged you have to compile automatically the Notes field
                 BaseResponse response = new BaseResponse();
                 if (request == null)
                 {
@@ -310,7 +310,7 @@ namespace MyBLService.Controllers
                 // to do: batch business logic code. At the end,
                 // response return value will contain if batch ended succesfully or with errors
                 // ErrorMessage and diagnostic elements will pupulate batch Diagnostic compononent
-                //example - immagine on description changed you modify Notes field and UoM field becomes readonly
+                //example - imagine that description changed you modify Notes field and UoM field becomes readonly
                 BaseResponse response = new BaseResponse();
                 if (request == null)
                 {

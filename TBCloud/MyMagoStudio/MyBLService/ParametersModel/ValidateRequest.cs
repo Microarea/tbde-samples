@@ -6,7 +6,7 @@ namespace MyBLService.ParametersModel
     public class ValidateRequest: BaseRequest
     {
         /// <summary>
-        /// Document Mode
+        /// Document FormMode
         /// </summary>
         [JsonProperty("docMode")]
         public int DocMode { get; set; }
