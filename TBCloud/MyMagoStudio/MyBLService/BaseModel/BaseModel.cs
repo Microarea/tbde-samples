@@ -19,5 +19,7 @@ namespace MyBLService.BaseModel
         public bool IsReadOnly { get; set; } = false;
         [JsonProperty("isHide")]
         public bool IsHide { get; set; } = false;
+        [JsonProperty("mandatory")]
+        public bool Mandatory { get; set; } = false;
     }
 }

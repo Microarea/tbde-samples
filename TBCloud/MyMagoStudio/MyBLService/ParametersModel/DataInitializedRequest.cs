@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace MyBLService.ParametersModel
 {
-    public class CodeValueChangedRequest: BaseRequest
+    public class DataInitializedRequest : BaseRequest
     {
-        [JsonProperty("ContractCode")]
-        public BaseModel<string> ContractCode { get; set; }
-        public BaseModel<string> Notes { get; set; }
+        //add your properties needed here
+
     }
 }

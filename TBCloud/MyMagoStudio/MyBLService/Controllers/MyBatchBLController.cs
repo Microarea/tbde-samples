@@ -281,7 +281,7 @@ namespace MyBLService.Controllers
                     response.ErrorMessage = new ErrorMessage("Request is bad formatted");
                     return new OkObjectResult(response);
                 }
-                if (request.MyParamIn.Count != 1)
+                if (request.MyParamIn == null || request.MyParamIn.Count != 1)
                 {
                     response.Success = false;
                     response.ErrorMessage = new ErrorMessage("The request must contains only one row");
@@ -318,7 +318,7 @@ namespace MyBLService.Controllers
                     response.ErrorMessage = new ErrorMessage("Request is bad formatted");
                     return new OkObjectResult(response);
                 }
-                if (request.MyParamIn.Count != 1)
+                if (request.MyParamIn == null || request.MyParamIn.Count != 1)
                 {
                     response.Success = false;
                     response.ErrorMessage = new ErrorMessage("The request must contains only one row");

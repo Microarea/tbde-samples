@@ -21,5 +21,13 @@ namespace MyBLService.BaseModel
         public BaseModel<string> Notes { get; set; }
         [JsonProperty("Disabled", NullValueHandling = NullValueHandling.Ignore)]
         public BaseModel<bool> Disabled { get; set; }
+        [JsonProperty("LocalAuxNotes", NullValueHandling = NullValueHandling.Ignore)]
+        public BaseModel<string> LocalAuxNotes { get; set; }
+    }
+
+    public class TMasterLight
+    {
+        [JsonProperty("LocalAuxNotes")]
+        public string LocalAuxNotes { get; set; }
     }
 }
