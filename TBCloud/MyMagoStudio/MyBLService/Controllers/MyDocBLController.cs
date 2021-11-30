@@ -28,38 +28,15 @@ namespace MyBLService.Controllers
             return Content("Welcome to MyMagoStudio Data Entry Sample Controller");
         }
 
-        //[HttpPost("Validate")]
-        //public ActionResult<ValidateResponse> Validate([FromBody] ValidateRequest request)
-        //{
-
-        //    try
-        //    {
-        //        ValidateResponse response = new ValidateResponse();
-        //        response.ReturnValue = true;
-        //        response.Success = true;
-        //        if (request.DocMode == 2 /*FormModeType.New*/ || request.DocMode == 3/*FormModeType.Edit*/)
-        //        {
-        //            if (request.Code != null && request.Code.StartsWith("A"))
-        //            {
-        //                response.ErrorMessage = new ErrorMessage($"Code {request.Code} cannot start with A!!!");
-        //                response.ReturnValue = false;
-        //            }
-        //        }
-
-        //        return new OkObjectResult(response);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception("MyDocBL Validating exception  ", e);
-        //    }
-        //}
-
-        
+        /// <summary>
+        /// In this example I do not consider any input parameter,
+        /// but I'm going to compile the 'LocalAuxNotes' filed always automatically
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("DataInitialized")]
         public ActionResult<BaseResponse> DataInitialized([FromBody] DataInitializedRequest request)
         {
-            //in this example I do not consider any input parameter
-            //but I'm going to value the AuxNotes always automatically
             try
             {
                 ValidateResponse response = new ValidateResponse();
@@ -81,6 +58,12 @@ namespace MyBLService.Controllers
             }
         }
         
+        /// <summary>
+        /// This example shows you how to prepare your data. Here, the 'Description'
+        /// field will be made mandatory
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("DataLoaded")]
         public ActionResult<BaseResponse> DataLoaded([FromBody] DataLoadedRequest request)
         {
@@ -107,6 +90,12 @@ namespace MyBLService.Controllers
             }
         }
 
+        /// <summary>
+        /// This example shows you how to enable/disable your data
+        /// in base of corrisponding status of your document. 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("ControlsEnabled")]
         public ActionResult<BaseResponse> ControlsEnabled([FromBody] ControlsEnabledRequest request)
         {
@@ -155,6 +144,14 @@ namespace MyBLService.Controllers
             }
         }
 
+        /// <summary>
+        /// In this example, your data will be checked before save. In our case,
+        /// when the value of the 'Description' field starts with 'p' and the value of the
+        /// field 'Disabled' is true, the value false will be returned and 
+        /// the saving will not be carried out
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("TransactionValidation")]
         public ActionResult<BaseResponse> TransactionValidation([FromBody] TransactionValidationRequest request)
         {
@@ -180,10 +177,17 @@ namespace MyBLService.Controllers
             }
             catch (Exception e)
             {
-                throw new Exception("MyDocBL ControlsEnabled exception  ", e);
+                throw new Exception("MyDocBL TransactionValidation exception  ", e);
             }
         }
 
+        /// <summary>
+        /// This example shows you to manipuloate your data. For example, when 
+        /// 'ContractCode' field has on of these values ('0000' or '9999') you have to
+        /// put TRUE on 'Disable' field 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("Code_ValueChanged")]
         public ActionResult<BaseResponse> Code_ValueChanged([FromBody] CodeValueChangedRequest request)
         {
@@ -201,8 +205,6 @@ namespace MyBLService.Controllers
                 //init tMaster from Request
                 tMaster.ContractCode = request.ContractCode;
                 
-                //imagine that when ContractCode = '0000' or '9999' you have to
-                //disable it
                 if 
                     (
                         tMaster.ContractCode.value.CompareTo("0000") == 0 ||
@@ -221,6 +223,14 @@ namespace MyBLService.Controllers
             }
         }
         
+        /// <summary>
+        /// This example for button click
+        /// shows you how to work with your data. In this case, 
+        /// when the field 'ContractCode' is empty then the field 'Notes'
+        /// will be automatically compiled and will be made editable
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("Btn_Clicked")]
         public ActionResult<BaseResponse> Btn_Clicked([FromBody] CodeValueChangedRequest request)
         {
@@ -249,10 +259,17 @@ namespace MyBLService.Controllers
             }
             catch (Exception e)
             {
-                throw new Exception("MyDocBL Code_ValueChanged exception  ", e);
+                throw new Exception("MyDocBL Btn_Clicked exception  ", e);
             }
         }
 
+        /// <summary>
+        /// This example for extra transacting event, 
+        /// shows you how to test the status of your document and then
+        /// you will be able to work on save auxiliary data
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("ExtraTransacting")]
         public ActionResult<BaseResponse> ExtraTransacting([FromBody] ExtraTransactingRequest request)
         {
@@ -293,6 +310,14 @@ namespace MyBLService.Controllers
             }
         }
 
+        /// <summary>
+        /// In this example, on change of 'description' value in the details grid,
+        /// the local field 'AuxDescription' will be automatically compiled and
+        /// when the 'description' field starts with 'a' or 'A' then 
+        /// the 'valid' field will be disabled
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("BEDescriptionValueChanged")]
         public ActionResult<BaseResponse> BEDescriptionValueChanged([FromBody] BEDescriptionValueChangedRequest request)
         {
@@ -331,17 +356,18 @@ namespace MyBLService.Controllers
             }
         }
 
+        /// <summary>
+        /// In this example, in change of the row in the details grid, 
+        /// the local field 'AuxDescription' will be automatically compiled
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("BE_RowChanged")]
         public ActionResult<BaseResponse> BE_RowChanged([FromBody] DocBERowChangedRequest request)
         {
 
             try
             {
-                // to do: batch business logic code. At the end,
-                // response return value will contain if batch ended succesfully or with errors
-                // ErrorMessage and diagnostic elements will pupulate batch Diagnostic compononent
-                //example - imagine that on RowChanged event, 
-                //you have to compile automatically the AuxDescription local field
                 BaseResponse response = new BaseResponse();
                 if (request == null)
                 {

@@ -25,15 +25,18 @@ namespace MyBLService.Controllers
             _logger = logger;
         }
 
-        //-------------------------------------------------------------------------------
+        /// <summary>
+        /// This example shows you how to set the enabled/disabled status
+        /// of your data
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("ControlsEnabled")]
         public ActionResult<BaseResponse> ControlsEnabled([FromBody] ControlsEnabledRequest request)
         {
 
             try
             {
-                // to do: data preparation to populate model of results grid
-                // returned via json into return value
                 BaseResponse response = new BaseResponse();
                 FilterBOM outFilter = new FilterBOM();
 
@@ -64,6 +67,11 @@ namespace MyBLService.Controllers
             }
         }
 
+        /// <summary>
+        /// Validate your filter before ExtractData and send back true/false
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         //-----------------------------------------------------------------------------
         [HttpPost("ValidateFilterDates")]
         public ActionResult<BaseResponse> ValidateFilterDates([FromBody] ValidateRequest request)
@@ -71,8 +79,6 @@ namespace MyBLService.Controllers
 
             try
             {
-                // to do: data preparation to populate model of results grid
-                // returned via json into return value
                 BaseResponse response = new BaseResponse();
                 if (request == null)
                 {
@@ -91,6 +97,11 @@ namespace MyBLService.Controllers
             }
         }
 
+        /// <summary>
+        /// Manipulate a filter all/select/from/to
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         //-----------------------------------------------------------------------------
         [HttpPost("AllBOM_ValueChanged")]
         public ActionResult<BaseResponse> AllBOM_ValueChanged([FromBody] ControlsEnabledRequest request)
@@ -98,8 +109,6 @@ namespace MyBLService.Controllers
 
             try
             {
-                // to do: data preparation to populate model of results grid
-                // returned via json into return value
                 BaseResponse response = new BaseResponse();
                 if (request == null || request.All == null || request.Select == null ||
                     request.FromBOM == null || request.ToBOM == null)
@@ -134,16 +143,22 @@ namespace MyBLService.Controllers
             }
         }
 
+        /// <summary>
+        /// This example shows you how ExtractData populate the grid 
+        /// with data. After you have queried your db,
+        /// the data will be sent back.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("ExtractData")]
         public ActionResult<ExtractDataResponse> ExtractData([FromBody] ExtractDataRequest request)
         {
 
             try
             {
-                // to do: data preparation to populate model of results grid
-                // returned via json into return value
-                //manage your filters here and make a query that populate the outRows structure
-                //
+                //manage your filters here and make a query 
+                //that populate the outRows structure
+                //here is an example (commented) of serialization data in 'value' mode
                 ExtractDataResponse response = new ExtractDataResponse();
                 ////use this if you serialize data with value mode
                 //List<MABillOfMaterialsRow> outRows = new List<MABillOfMaterialsRow>();
@@ -174,11 +189,11 @@ namespace MyBLService.Controllers
                 //rowExt.Selected = false;
                 //outRows.Add(row);
 
-                //example - imagine that ExtractData you have to populate the grid with the extraction data
-                //after you have queried your db applying the filters that you receveid in the request
+                //after you have queried your db applying the filters 
+                //that you receveid in the request
                 //and then you have to make the key readOnly
                 //in our example the key is composed by BOM field
-                //use this if you serialize data with FullDataObj mode
+                //use this if you serialized data with FullDataObj mode
                 List<MABillOfMaterialsRowFullData> outRows = new List<MABillOfMaterialsRowFullData>();
                 //first row example
                 MABillOfMaterialsRowFullData row = new MABillOfMaterialsRowFullData();
@@ -219,17 +234,19 @@ namespace MyBLService.Controllers
             }
         }
 
+        /// <summary>
+        /// This example shows you how BatchExecute populate the grid 
+        /// with the elaborated data. After you have queried your db,
+        /// the data will be sent back in readonly status
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost("BatchExecute")]
         public ActionResult<BatchExecuteRequestResponse> BatchExecute([FromBody] BatchExecuteRequest request)
         {
 
             try
             {
-                // to do: batch business logic code. At the end,
-                // response return value will contain if batch ended succesfully or with errors
-                // ErrorMessage and diagnostic elements will pupulate batch Diagnostic compononent
-                //example - imagine that BatchExecute you have to populate the grid with the extraction data
-                //after you have queried your db and then you have to make readOnly all fields
                 BatchExecuteRequestResponse response = new BatchExecuteRequestResponse();
                 if (request == null || request.MyParamIn == null || request.MyParamIn.Count == 0)
                 {
@@ -264,16 +281,13 @@ namespace MyBLService.Controllers
             }
         }
 
+        ///This example shows you manipulate your data. For example,
+        ///in change of the row in the grid, the 'Notes' field will be automatically compiled
         [HttpPost("BE_RowChanged")]
         public ActionResult<BaseResponse> BE_RowChanged([FromBody] BEOneRowRequest request)
         {
-
             try
             {
-                // to do: batch business logic code. At the end,
-                // response return value will contain if batch ended succesfully or with errors
-                // ErrorMessage and diagnostic elements will pupulate batch Diagnostic compononent
-                //example - imagine that RowChanged you have to compile automatically the Notes field
                 BaseResponse response = new BaseResponse();
                 if (request == null)
                 {
@@ -301,16 +315,15 @@ namespace MyBLService.Controllers
             }
         }
 
+        ///This example shows you manipulate your data. For example,
+        ///on change of 'Description' value field, the 'Notes' field will be automatically 
+        ///compiled and 'UoM' field will be made readonly
         [HttpPost("Description_ValueChanged")]
         public ActionResult<BaseResponse> Description_ValueChanged([FromBody] BEOneRowRequest request)
         {
 
             try
             {
-                // to do: batch business logic code. At the end,
-                // response return value will contain if batch ended succesfully or with errors
-                // ErrorMessage and diagnostic elements will pupulate batch Diagnostic compononent
-                //example - imagine that description changed you modify Notes field and UoM field becomes readonly
                 BaseResponse response = new BaseResponse();
                 if (request == null)
                 {
