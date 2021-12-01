@@ -173,6 +173,8 @@ namespace MyBLService.Controllers
                 if (tMaster.Description.value.StartsWith("p") && tMaster.Disabled.value)
                     ok = false;               
                 response.ReturnValue = ok;
+                response.Success = false;
+                response.ErrorMessage = new ErrorMessage("Description starts with 'p' and field disabled is false");
                 return new OkObjectResult(response);
             }
             catch (Exception e)
@@ -204,16 +206,10 @@ namespace MyBLService.Controllers
                 TMaster tMaster = new TMaster();
                 //init tMaster from Request
                 tMaster.ContractCode = request.ContractCode;
-                
-                if 
-                    (
-                        tMaster.ContractCode.value.CompareTo("0000") == 0 ||
-                        tMaster.ContractCode.value.CompareTo("9999") == 0
-                    )
-                {
-                    tMaster.Disabled = new BaseModel<bool>();
-                    tMaster.Disabled.value = true;
-                }
+                tMaster.Disabled = new BaseModel<bool>();
+                bool disabled = tMaster.ContractCode.value.CompareTo("0000") == 0 ||
+                        tMaster.ContractCode.value.CompareTo("9999") == 0 ? true : false;
+                tMaster.Disabled.value = disabled;
                 response.ReturnValue = tMaster;
                 return new OkObjectResult(response);
             }
