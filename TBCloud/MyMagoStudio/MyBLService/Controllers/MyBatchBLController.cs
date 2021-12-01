@@ -167,7 +167,7 @@ namespace MyBLService.Controllers
                 //MABillOfMaterialsExt rowExt = new MABillOfMaterialsExt();
                 //row.MA_BillOfMaterials_Extended = rowExt;
                 //row.BOM = "BEVDIS";
-                //row.Description = "Bevanda dissetante (from ExtractData)";
+                //row.Description = "Thirst-quenching drink (from ExtractData)";
                 //row.UoM = "lt";
                 //row.Notes = "Inserted automatically (from ExtractData)";
                 //row.Disabled = "0";
@@ -180,7 +180,7 @@ namespace MyBLService.Controllers
                 //rowExt = new MABillOfMaterialsExt();
                 //row.MA_BillOfMaterials_Extended = rowExt;
                 //row.BOM = "BICICONF";
-                //row.Description = "Bicicletta (from ExtractData)";
+                //row.Description = "Bicycle (from ExtractData)";
                 //row.UoM = "nr";
                 //row.Notes = "Inserted automatically (from ExtractData)";
                 //row.Disabled = "1";
@@ -201,7 +201,7 @@ namespace MyBLService.Controllers
                 row.MA_BillOfMaterials_Extended = rowExt;
                 row.BOM.value = "BEVDIS";
                 row.BOM.IsReadOnly = true;
-                row.Description.value = "Bevanda dissetante (from ExtractData)";
+                row.Description.value = "Thirst-quenching drink (from ExtractData)";
                 row.UoM.value = "lt";
                 row.Notes.value = "Inserted automatically (from ExtractData)";
                 row.Disabled.value = false;
@@ -215,7 +215,7 @@ namespace MyBLService.Controllers
                 row.MA_BillOfMaterials_Extended = rowExt;
                 row.BOM.value = "BICICONF";
                 row.BOM.IsReadOnly = true;
-                row.Description.value = "Bicicletta (from ExtractData)";
+                row.Description.value = "Bicycle (from ExtractData)";
                 row.UoM.value = "nr";
                 row.Notes.value = "Inserted automatically (from ExtractData)";
                 row.Disabled.value = true;
