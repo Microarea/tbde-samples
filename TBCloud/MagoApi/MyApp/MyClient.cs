@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using System.Text;
 using Newtonsoft.Json.Linq;
 using System.Net;
+using System.Collections.Generic;
 
 namespace MyApp
 {
@@ -22,6 +23,7 @@ namespace MyApp
         {
             public object RequestId { get; set; }
             public DateTime OperationDate { get; set; }
+            public Dictionary<string, object> TbWebMethodArguments { get ; set; }
         }
 
         // response
@@ -30,6 +32,7 @@ namespace MyApp
             public object ReturnValue { get; set; }
             public bool Success { get; set; }
             public int StatusCode { get; set; }
+            public string PlainResult { get; set; }
         }
 
         public static bool Execute(string instance, string user, string pwd, string subkey)
@@ -74,45 +77,6 @@ namespace MyApp
 
 
                         /////////////////////////////////////////////////////////////////////////////////////////////////
-                        // ERPWEBAPI communication 
-                        // it invokes some get methods that allows to inspect table catalog used by microservices but
-                        // please use /swagger/index.html for available api list and details). In this example we will
-                        // call Currencies/CurrencyManager/IsPeriodBeforeEuro API
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        var schema = magocloudClient.ErpWebAPI.Schema(userData).Result;
-                        var tableSchema = magocloudClient.ErpWebAPI.SchemaTable(userData, "MA_Titles").Result;
-                        var colSchema = magocloudClient.ErpWebAPI.SchemaColumn(userData, "Item").Result;
-
-                        using (var msg = new HttpRequestMessage(HttpMethod.Post, new Uri(magocloudClient.ErpWebAPI.ServiceUrl + "Currencies/CurrencyManager/IsPeriodBeforeEuro")))
-                        {
-                            var funParam = JsonConvert.SerializeObject(new
-                            {
-                                operationDate = "2020-12-10T08:25:51.808Z",
-                                testconvertedcompany = false
-                             
-                            });
-                            msg.Content = new StringContent(content: funParam, encoding: Encoding.UTF8, "application/json");
-                            msg.Headers.AddMagoCloudBaseHeaders(userData.Token, userData.SubscriptionKey, magocloudClient.ProducerInfo);
-
-                            HttpClient httpClient = new HttpClient();
-
-                            using (var response =  httpClient.SendAsync(msg).Result)
-                            {
-                                string funResponse = response.Content.ReadAsStringAsync().Result;
-
-                                if (response.StatusCode == HttpStatusCode.OK && !string.IsNullOrEmpty(funResponse))
-                                {
-                                    JObject jResult = JsonConvert.DeserializeObject<JObject>(funResponse);
-                                    if (jResult != null)
-                                    {
-                                        JToken jretVal = jResult["retVal"];
-                                        bool retVal = jretVal == null ? false : jretVal.Value<bool>();
-                                        JToken jSucc = jResult["success"];
-                                        bool success = jSucc == null ? false : jSucc.Value<bool>();
-                                    }
-                                }
-                            }
-                        }
 
                         /////////////////////////////////////////////////////////////////////////////////////////////////
                         // DATA SERVICE communication
@@ -123,10 +87,10 @@ namespace MyApp
                         data = magocloudClient.DataService.GetData(userData, "ERP.Accounting.Dbl.AccountingReasons", "radar").Result;
 
                         /////////////////////////////////////////////////////////////////////////////////////////////////
-                        // MagoAPIClient class expose ESP backend url too, but for a detailed list of api please refer
-                        // esp development team
+                        // MagoAPIClient class expose Mago Service Hub backend url too, but for a detailed list of api please refer
+                        // Mago Service Hub development team
                         /////////////////////////////////////////////////////////////////////////////////////////////////
-                        string espUrl = magocloudClient.ESP.ServiceUrl;
+                        string espUrl = magocloudClient.MagoServicesHub.ServiceUrl;
 
                         // authentication end
                         if (magocloudClient.AccountManager.IsValid(result.UserData).Result.Success)
