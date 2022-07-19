@@ -19,8 +19,11 @@ namespace MyApp
             string user = args[1];
             string pwd = args[2];
             string subKey = args[3];
+            bool loginByAccountManager = false;
+            if (args.Length > 4)
+                loginByAccountManager = bool.Parse(args[4]);
 
-            bool b = MyClient.Execute(beInstance, user, pwd, subKey);
+            bool b = MyClient.Execute(beInstance, user, pwd, subKey, loginByAccountManager);
         }
     }
 }
