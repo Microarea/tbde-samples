@@ -19,11 +19,11 @@ namespace MyApp
         /// <summary>
         /// request implementation for parameters
         /// </summary>
-        public class MyReuqest : ITbRequest
+        public class MyRequest : ITbRequest
         {
             public object RequestId { get; set; }
             public DateTime OperationDate { get; set; }
-            public Dictionary<string, object> TbWebMethodArguments { get ; set; }
+            public Dictionary<string, object> TbWebMethodArguments { get; set; }
         }
 
         // response
@@ -43,6 +43,7 @@ namespace MyApp
             using (MagoAPIClient magocloudClient = new MagoAPIClient(instance, new ProducerInfo("MyProdKey", "MyAppID")))
             {
                 ITbUserData userData = null;
+
                 try
                 {
                     if (loginByAccountManager)
@@ -67,57 +68,20 @@ namespace MyApp
                         if (gwamResult.Success && gwamResult?.UserData != null && gwamResult.UserData.IsLogged)
                             userData = gwamResult.UserData;
                     }
-                    /////////////////////////////////////////////////////////////////////////////////////////////////
-                    // ACCUNTMANAGER: authentication process (Login/Logout/IsValid)
-                    /////////////////////////////////////////////////////////////////////////////////////////////////
-                    ///
-                    IAccountManagerResult result = magocloudClient.AccountManager?.Login(user, pwd, subkey).Result;
 
                     if (userData != null)
                     {
-                        //@@TODO SUBSTITUTE WITH PROJECT DIRECTORY OR MOVE DATA XMLS TO THE BIN FOLDER
-                        string dir = Environment.CurrentDirectory; 
-
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        // TBSERVER communication. It loads old magic link payload from file system and get and sets a
-                        // customer master. It invokes CurrentOpeningDate TBWebMethod.
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        XmlDocument doc = new XmlDocument();
-                        doc.Load(Path.Combine(dir, "Customers.xml"));
-                        ITbServerMagicLinkResult tbResult = magocloudClient.TbServer?.GetXmlData(userData, doc.InnerXml.ToString(), DateTime.Now).Result;
-                        doc.Load(Path.Combine(dir, "Customers1.xml"));
-                        tbResult = magocloudClient.TbServer?.SetXmlData(userData, doc.InnerXml.ToString(), 0, DateTime.Now).Result;
-                        bool imported = result.Success;
-                        doc = null;
-
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        // Mago TB WEB METHODS
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        MyReuqest parameters = new MyReuqest();
-                        parameters.OperationDate = DateTime.Now;
-                        MyResponse myResp = magocloudClient.TbServer?.InvokeTbMethod<MyResponse>(userData, "ERP.Company.Dbl.CurrentOpeningDate", parameters).Result;
-
-
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        // DATA SERVICE communication
-                        // In this sample we will get accounting reasons data using default hotlink query and in the second
-                        // call we will use radar query to get same data. 
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        var data = magocloudClient.DataService.GetData(userData, "ERP.Accounting.Dbl.AccountingReasons", "default").Result;
-                        data = magocloudClient.DataService.GetData(userData, "ERP.Accounting.Dbl.AccountingReasons", "radar").Result;
-
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        // MagoAPIClient class expose Mago Service Hub backend url too, but for a detailed list of api please refer
-                        // Mago Service Hub development team
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        string espUrl = magocloudClient.MagoServicesHub.GetServiceUrl(subkey);
+                        UseMagicLink(magocloudClient, userData);
+                        UseDataService(magocloudClient, userData);
+                        UseReportingServices(magocloudClient, userData);
+                        UseOthersMicroservices(magocloudClient, userData);
 
                         // authentication end
                         if (loginByAccountManager && magocloudClient.AccountManager.IsValid(userData).Result.Success)
                             return magocloudClient.AccountManager.Logout(userData).Result.Success;
 
                         else if (magocloudClient.GwamClient.IsValid(userData).Result.Success)
-                            return magocloudClient.GwamClient.Logout(userData).Result.Success; return result.Success;
+                            return magocloudClient.GwamClient.Logout(userData).Result.Success;
                     }
                 }
                 catch (Exception ex)
@@ -135,6 +99,83 @@ namespace MyApp
             }
             return true;
         }
-    }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        // DATA SERVICE communication
+        // In this sample we will get accounting reasons data using default hotlink query and in the second
+        // call we will use radar query to get same data. 
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        private static void UseDataService(MagoAPIClient magocloudClient, ITbUserData userData)
+        {
+            // getting microservice product version
+            ITbResponse versionResponse = magocloudClient.DataService?.GetVersion(userData).Result;
+
+            var data = magocloudClient.DataService.GetData(userData, "ERP.Accounting.Dbl.AccountingReasons", "default", true).Result;
+            data = magocloudClient.DataService.GetData(userData, "ERP.Accounting.Dbl.AccountingReasons", "radar").Result;
+
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        // TBSERVER communication. It loads old magic link payload from file system and get and sets a
+        // customer master. It invokes CurrentOpeningDate TBWebMethod.
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        private static void UseMagicLink(MagoAPIClient magocloudClient, ITbUserData userData)
+        {
+            // getting microservice product version
+            ITbResponse versionResponse = magocloudClient.TbServer?.GetVersion(userData).Result;
+
+            //@@TODO SUBSTITUTE WITH PROJECT DIRECTORY OR MOVE DATA XMLS TO THE BIN FOLDER
+            string dir = Environment.CurrentDirectory;
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(Path.Combine(dir, "Customers.xml"));
+            ITbServerMagicLinkResult tbResult = magocloudClient.TbServer?.GetXmlData(userData, doc.InnerXml.ToString(), DateTime.Now).Result;
+            doc.Load(Path.Combine(dir, "Customers1.xml"));
+            tbResult = magocloudClient.TbServer?.SetXmlData(userData, doc.InnerXml.ToString(), 0, DateTime.Now).Result;
+            bool imported = tbResult.Success;
+            doc = null;
+
+            // tbwebmethod
+            MyRequest parameters = new MyRequest();
+            parameters.OperationDate = DateTime.Now;
+            MyResponse myResp = magocloudClient.TbServer?.InvokeTbMethod<MyResponse>(userData, "ERP.Company.Dbl.CurrentOpeningDate", parameters).Result;
+
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        // REPORTING SERVICES communication. It executes a report with json payload and extracts its
+        // data in old MagicLink/EasyLook format
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        private static void UseReportingServices(MagoAPIClient magocloudClient, ITbUserData userData)
+        {
+            // getting microservice product version
+            ITbResponse versionResponse = magocloudClient.ReportingServices?.GetVersion(userData).Result;
+
+            // getting report data in xml format
+            List<ReportArg> repArgs = new List<ReportArg>();
+            repArgs.Add(new ReportArg("w_CodeStart", "A"));
+            repArgs.Add(new ReportArg("w_CodeEnd", "B"));
+
+            ReportRequest reportRequest = new ReportRequest(new ReportSelection("ERP.Items.Items.wrm", repArgs));
+
+            ITbResponse rsResult = magocloudClient.ReportingServices?.GetXmlData(userData, DateTime.Now, reportRequest).Result;
+        }
+
+        private static void UseOthersMicroservices(MagoAPIClient magocloudClient, ITbUserData userData)
+        {
+            /////////////////////////////////////////////////////////////////////////////////////////////////
+            // MagoAPIClient class expose Mago Service Hub backend url too, but for a detailed list of api please refer
+            // Mago Service Hub development team
+            /////////////////////////////////////////////////////////////////////////////////////////////////
+            string espUrl = magocloudClient.MagoServicesHub.GetServiceUrl(userData.SubscriptionKey);
+            ITbResponse versionResponse = magocloudClient.MagoServicesHub.GetVersion(userData).Result;
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////
+            // MyMagoStudio class expose MyMagoStudio backend url
+            /////////////////////////////////////////////////////////////////////////////////////////////////
+            string mmsUrl = magocloudClient.MyMagoStudio.GetServiceUrl(userData.SubscriptionKey);
+
+        }
+    }
 }
+
