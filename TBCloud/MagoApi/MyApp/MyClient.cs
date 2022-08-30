@@ -5,11 +5,6 @@ using System.Xml;
 using System.IO;
 using Microarea.Tbf.Model.API;
 using Microarea.Tbf.Model.Interfaces.API;
-using System.Net.Http;
-using Newtonsoft.Json;
-using System.Text;
-using Newtonsoft.Json.Linq;
-using System.Net;
 using System.Collections.Generic;
 
 namespace MyApp
@@ -49,7 +44,7 @@ namespace MyApp
                     if (loginByAccountManager)
                     {
                         /////////////////////////////////////////////////////////////////////////////////////////////////
-                        // ACCUNTMANAGER: authentication process (Login/Logout/IsValid)
+                        // ACCOUNTMANAGER: authentication process (Login/Logout/IsValid)
                         /////////////////////////////////////////////////////////////////////////////////////////////////
                         ///
                         IAccountManagerResult accManResult = magocloudClient.AccountManager?.Login(user, pwd, subkey).Result;
