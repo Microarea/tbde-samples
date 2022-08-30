@@ -62,11 +62,6 @@ namespace MyApp
                         if (gwamResult.Success && gwamResult?.UserData != null && gwamResult.UserData.IsLogged)
                             userData = gwamResult.UserData;
                     }
-                    /////////////////////////////////////////////////////////////////////////////////////////////////
-                    // ACCUNTMANAGER: authentication process (Login/Logout/IsValid)
-                    /////////////////////////////////////////////////////////////////////////////////////////////////
-                    ///
-                    IAccountManagerResult result = magocloudClient.AccountManager?.Login(user, pwd, subkey).Result;
 
                     if (userData != null)
                     {
