@@ -60,7 +60,7 @@ namespace WindowsFormsApp1
             this.buttonExitForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExitForm.ForeColor = System.Drawing.SystemColors.Control;
             this.buttonExitForm.Location = new System.Drawing.Point(517, 11);
-            this.buttonExitForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonExitForm.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExitForm.Name = "buttonExitForm";
             this.buttonExitForm.Size = new System.Drawing.Size(100, 52);
             this.buttonExitForm.TabIndex = 1;
@@ -74,7 +74,7 @@ namespace WindowsFormsApp1
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.buttonExitForm);
             this.panel1.Location = new System.Drawing.Point(-3, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(627, 65);
             this.panel1.TabIndex = 2;
@@ -98,25 +98,28 @@ namespace WindowsFormsApp1
             this.panelContent.Controls.Add(this.labelFormContent);
             this.panelContent.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelContent.Location = new System.Drawing.Point(8, 10);
-            this.panelContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelContent.Margin = new System.Windows.Forms.Padding(4);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(596, 420);
             this.panelContent.TabIndex = 3;
             // 
-            // Form1
+            // FormResult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(619, 439);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelContent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(550, 500);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "FormResult";
             this.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Result";
+            this.TopMost = true;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelContent.ResumeLayout(false);

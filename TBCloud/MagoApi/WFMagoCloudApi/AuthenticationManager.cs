@@ -53,6 +53,7 @@ namespace MagoCloudApi
                    userData. AppKey = appKey;
 
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://release-gwam.mago.cloud/gwam_login/api/login");
+                    MagoCloudApiManager.PrepareMagoAPIHeader(request, producerKey, appKey);
                     //// Request a credential ////
                     var credential = new JObject
                                 {
@@ -102,17 +103,12 @@ namespace MagoCloudApi
         {
             using (HttpClient client = new HttpClient())
             {
-                var valid = new JObject
-                        {
-                            {"ProducerKey",userData.Producer },
-                            {"AppKey", userData.AppKey }
-                        };
-                string validJsonInString = JsonConvert.SerializeObject(valid);
+               
                 try
                 {
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://release-gwam.mago.cloud/gwam_login/api/isvalidtoken");
-                    MagoCloudApiManager.PrepareHeaders(request, Token, userData.SubscriptionKey);
-                    request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
+                    MagoCloudApiManager.PrepareHeaders(request, userData);
+                     request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -147,17 +143,12 @@ namespace MagoCloudApi
         {
             using (HttpClient client = new HttpClient())
             {
-                var producer = new JObject
-                        {
-                            {"ProducerKey",userData.Producer },
-                            {"AppKey", userData.AppKey }
-                        };
-                string producerJsonInString = JsonConvert.SerializeObject(producer);
 
                 try
                 {
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://release-gwam.mago.cloud/gwam_login/api/logoff");
-                    MagoCloudApiManager.PrepareHeaders(request, Token, userData.SubscriptionKey);
+                    MagoCloudApiManager.PrepareHeaders(request, userData);
+                    
                     request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 

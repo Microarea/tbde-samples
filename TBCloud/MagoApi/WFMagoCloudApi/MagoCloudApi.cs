@@ -29,9 +29,11 @@ namespace MagoCloudApi
 
         public MagoCloudApi()
         {
-        InitializeComponent();
+             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            this.tabNavigation.TabPages.Remove(this.tabDMS);
+            this.tabNavigation.TabPages.Remove(this.tabMSH);
         }
        
                 private void button_Login_Click(object sender, System.EventArgs e)
@@ -74,8 +76,7 @@ namespace MagoCloudApi
                         if (cbxSelectionType.SelectedItem != null && string.Compare(cbxSelectionType.SelectedItem.ToString(), "radar", true) == 0)
                             selectionType = "radar";
                         string contentBody =  manager.dataServiceManager.GetData(manager.authenticationManager.userData, selectionType, labelNameSpace.Text);
-                        Form content = new WindowsFormsApp1.FormResult(contentBody);
-                        content.ShowDialog();
+                        ShowResult(contentBody);
                     }
                 }
 
@@ -102,30 +103,63 @@ namespace MagoCloudApi
             Application.Exit();
         }
 
-        private void buttonXmlTb_Click(object sender, EventArgs e)
+        private void ShowResult(string content)
         {
-                if (!manager.authenticationManager.IsLogged())
-                {
-                    MessageBox.Show("User is not logged, please Login!");
-                    return;
-                }
-                    
-                string contentBody = manager.tbServerManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now);
-                Form content = new WindowsFormsApp1.FormResult(contentBody);
-                content.ShowDialog();
+            Form form = new WindowsFormsApp1.FormResult(content);
+            form.ShowDialog(this);
         }
 
-        private void buttonSetTb_Click(object sender, EventArgs e)
+        private void buttonXmlTb_Click(object sender, EventArgs e)
         {
-           /* if (!manager.authenticationManager.IsLogged())
+            if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
 
-            string contentBody = manager.tbServerManager.SetXmlData(manager.authenticationManager.userData, DateTime.Now);
-            Form content = new WindowsFormsApp1.Form1(contentBody);
-            content.ShowDialog();*/
+            string fileName = Path.Combine(Application.StartupPath, "Customers.xml");
+
+            (bool loaded, string fileContent) = manager.tbServerManager.LoadMagicLinkFile(fileName);
+            if (!loaded)
+            {
+                MessageBox.Show(fileContent);
+                return;
+            }
+
+            string contentBody = manager.tbServerManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
+            ShowResult(contentBody);
+        }
+
+        private void buttonSetTb_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+
+            string fileName = Path.Combine(Application.StartupPath, "Customers1.xml");
+
+            (bool loaded, string fileContent) = manager.tbServerManager.LoadMagicLinkFile(fileName);
+            if (!loaded)
+            {
+                MessageBox.Show(fileContent);
+                return;
+            }
+
+            string contentBody = manager.tbServerManager.SetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
+            ShowResult(contentBody);
+        }
+
+        private void buttonDSVersion_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            string contentBody = manager.dataServiceManager.GetVersion(manager.authenticationManager.userData);
+            ShowResult(contentBody);
         }
     }
 }
