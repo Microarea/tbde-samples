@@ -29,111 +29,95 @@ namespace WindowsFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormResult));
             this.labelFormContent = new System.Windows.Forms.Label();
-            this.buttonExitForm = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.buttonExitForm = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelTitleResult = new System.Windows.Forms.Panel();
+            this.buttonResize = new System.Windows.Forms.Button();
             this.panelContent.SuspendLayout();
+            this.panelTitleResult.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelFormContent
             // 
-            this.labelFormContent.AutoSize = true;
-            this.labelFormContent.Enabled = false;
-            this.labelFormContent.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.labelFormContent.Location = new System.Drawing.Point(9, 57);
-            this.labelFormContent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            resources.ApplyResources(this.labelFormContent, "labelFormContent");
             this.labelFormContent.Name = "labelFormContent";
-            this.labelFormContent.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.labelFormContent.Size = new System.Drawing.Size(70, 37);
-            this.labelFormContent.TabIndex = 0;
-            this.labelFormContent.Text = "label1";
             this.labelFormContent.UseCompatibleTextRendering = true;
+            // 
+            // panelContent
+            // 
+            resources.ApplyResources(this.panelContent, "panelContent");
+            this.panelContent.Controls.Add(this.labelFormContent);
+            this.panelContent.Name = "panelContent";
             // 
             // buttonExitForm
             // 
             this.buttonExitForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            resources.ApplyResources(this.buttonExitForm, "buttonExitForm");
             this.buttonExitForm.FlatAppearance.BorderSize = 0;
-            this.buttonExitForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonExitForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonExitForm.ForeColor = System.Drawing.SystemColors.Control;
-            this.buttonExitForm.Location = new System.Drawing.Point(517, 11);
-            this.buttonExitForm.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonExitForm.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.buttonExitForm.Name = "buttonExitForm";
-            this.buttonExitForm.Size = new System.Drawing.Size(100, 52);
-            this.buttonExitForm.TabIndex = 1;
-            this.buttonExitForm.Text = "X";
             this.buttonExitForm.UseVisualStyleBackColor = false;
             this.buttonExitForm.Click += new System.EventHandler(this.buttonExitForm_Click);
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.buttonExitForm);
-            this.panel1.Location = new System.Drawing.Point(-3, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(627, 65);
-            this.panel1.TabIndex = 2;
-            // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(11, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 28);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Result";
             // 
-            // panelContent
+            // panelTitleResult
             // 
-            this.panelContent.AutoScroll = true;
-            this.panelContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panelContent.Controls.Add(this.labelFormContent);
-            this.panelContent.Font = new System.Drawing.Font("Century Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelContent.Location = new System.Drawing.Point(8, 10);
-            this.panelContent.Margin = new System.Windows.Forms.Padding(4);
-            this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(596, 420);
-            this.panelContent.TabIndex = 3;
+            resources.ApplyResources(this.panelTitleResult, "panelTitleResult");
+            this.panelTitleResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panelTitleResult.Controls.Add(this.buttonResize);
+            this.panelTitleResult.Controls.Add(this.label1);
+            this.panelTitleResult.Controls.Add(this.buttonExitForm);
+            this.panelTitleResult.Name = "panelTitleResult";
+            // 
+            // buttonResize
+            // 
+            this.buttonResize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            resources.ApplyResources(this.buttonResize, "buttonResize");
+            this.buttonResize.Cursor = System.Windows.Forms.Cursors.SizeNESW;
+            this.buttonResize.FlatAppearance.BorderSize = 0;
+            this.buttonResize.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.buttonResize.Name = "buttonResize";
+            this.buttonResize.UseVisualStyleBackColor = false;
+            this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
             // 
             // FormResult
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AllowDrop = true;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(619, 439);
-            this.Controls.Add(this.panel1);
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Controls.Add(this.panelTitleResult);
             this.Controls.Add(this.panelContent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(550, 500);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormResult";
-            this.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Result";
-            this.TopMost = true;
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.ShowIcon = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.panelContent.ResumeLayout(false);
             this.panelContent.PerformLayout();
+            this.panelTitleResult.ResumeLayout(false);
+            this.panelTitleResult.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label labelFormContent;
-        private System.Windows.Forms.Button buttonExitForm;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelContent;
+        private System.Windows.Forms.Button buttonExitForm;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panelTitleResult;
+        private System.Windows.Forms.Button buttonResize;
     }
 }

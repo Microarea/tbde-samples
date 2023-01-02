@@ -19,7 +19,7 @@ namespace MagoCloudApi
         {
             var credential = new JObject
                     {
-                        { "type", "jwt"},
+                        { "type", "JWT"},
                         { "AppId", "MagoAPI" },
                         { "securityValue", userData.Token }
                     };

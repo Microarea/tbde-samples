@@ -32,10 +32,41 @@ namespace MagoCloudApi
              InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            tabNavigation.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabNavigation.DrawItem += tabNavigation_DrawItem;
             this.tabNavigation.TabPages.Remove(this.tabDMS);
             this.tabNavigation.TabPages.Remove(this.tabMSH);
+
         }
        
+
+        private void tabNavigation_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            {
+                e.Graphics.FillRectangle(Brushes.CadetBlue, e.Bounds);
+                e.DrawFocusRectangle();
+                e.DrawBackground();
+                Color tabTextColor = Color.FromArgb(22, 118, 186);
+                var color = Color.FromArgb(255, 255, 255);
+
+                TextRenderer.DrawText(e.Graphics, tabNavigation.TabPages[e.Index].Text, e.Font, e.Bounds, color, tabTextColor);
+            }
+            else
+            {
+                // Draw the background for an unselected item.
+                e.Graphics.FillRectangle(Brushes.White, e.Bounds);
+                e.DrawFocusRectangle();
+                var color = Color.FromArgb(22, 118, 186);
+
+                TextRenderer.DrawText(e.Graphics, tabNavigation.TabPages[e.Index].Text, e.Font, e.Bounds, color);
+            }
+        }
+
+       
+
+
                 private void button_Login_Click(object sender, System.EventArgs e)
                 {
                     if (AreParametersOk())
@@ -82,7 +113,8 @@ namespace MagoCloudApi
 
         private bool AreParametersOk()
         {
-                if (
+                   if 
+                   (
                        string.IsNullOrEmpty(text_http.Text) ||
                        string.IsNullOrEmpty(text_user.Text) ||
                        string.IsNullOrEmpty(text_pwd.Text) ||
@@ -90,11 +122,12 @@ namespace MagoCloudApi
                        string.IsNullOrEmpty(text_producer.Text) ||
                        string.IsNullOrEmpty(text_app.Text)
                    )
-                {
+                 
+                   {
                     MessageBox.Show("Please enter your authority information to continue (user name, passowrd, subscription key, producer key and app key)");
                     text_user.Focus();
-                }
-                return true;
+                   }
+                   return true;
         }
 
         private void DoExit()
@@ -109,7 +142,7 @@ namespace MagoCloudApi
             form.ShowDialog(this);
         }
 
-        private void buttonXmlTb_Click(object sender, EventArgs e)
+        private async void buttonXmlTb_Click(object sender, EventArgs e)
         {
             if (!manager.authenticationManager.IsLogged())
             {
@@ -125,19 +158,17 @@ namespace MagoCloudApi
                 MessageBox.Show(fileContent);
                 return;
             }
-
-            string contentBody = manager.tbServerManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
+            string contentBody = await manager.tbServerManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
             ShowResult(contentBody);
         }
 
-        private void buttonSetTb_Click(object sender, EventArgs e)
+        private async void buttonSetTb_Click(object sender, EventArgs e)
         {
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-
             string fileName = Path.Combine(Application.StartupPath, "Customers1.xml");
 
             (bool loaded, string fileContent) = manager.tbServerManager.LoadMagicLinkFile(fileName);
@@ -146,10 +177,10 @@ namespace MagoCloudApi
                 MessageBox.Show(fileContent);
                 return;
             }
-
-            string contentBody = manager.tbServerManager.SetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
+            string contentBody = await manager.tbServerManager.SetXmlDataAsync(manager.authenticationManager.userData, DateTime.Now, fileContent);
             ShowResult(contentBody);
         }
+
 
         private void buttonDSVersion_Click(object sender, EventArgs e)
         {
@@ -160,6 +191,18 @@ namespace MagoCloudApi
             }
             string contentBody = manager.dataServiceManager.GetVersion(manager.authenticationManager.userData);
             ShowResult(contentBody);
+        }
+
+        private void buttonMicrHome_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            string contentBody = manager.dataServiceManager.GetHome(manager.authenticationManager.userData);
+            ShowResult(contentBody);
+
         }
     }
 }

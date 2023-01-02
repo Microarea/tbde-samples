@@ -81,7 +81,7 @@ namespace MagoCloudApi
                             if (resultVariable == "True" && resultCodeVariable == "0")
                             {
                                 userData.Token = jsonObject["JwtToken"]?.ToString();
-                                userData.UserName = jsonObject["NickName"]?.ToString();
+                                userData.UserName = jsonObject["AccountName"]?.ToString();
                                 userData.SubscriptionKey = subscriptionKey;
                                 MessageBox.Show("The login was successful.");
                             }

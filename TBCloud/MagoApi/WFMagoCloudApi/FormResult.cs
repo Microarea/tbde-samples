@@ -13,29 +13,33 @@ namespace WindowsFormsApp1
 {
     public partial class FormResult : Form
     {
-
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-
-        private static extern IntPtr CreateRoundRectRgn(
-           int nLeftRect,
-           int nTopRect,
-           int nRightRect,
-           int nBottomRect,
-           int nWhidthEllipse,
-           int nHeightEllipse
-           );
-
         public FormResult(string content)
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             labelFormContent.Text = content;
+            this.Height = 300;
+            this.Width = 500;
         }
+
 
         private void buttonExitForm_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+      private bool buttonClicked = false;
+
+        private void buttonResize_Click(object sender, EventArgs e)
+        {
+            if (buttonClicked) 
+            {
+                buttonClicked = true;
+            }
+            else
+            {
+                this.Height = 600;
+                this.Width = 684;
+            }
         }
 
        

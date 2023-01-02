@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -18,13 +19,14 @@ namespace MagoCloudApi
         {
             try
             {
-
                 if (!File.Exists(xmlFileName))
                     return (false, "File " + xmlFileName + " not found");
 
-                string fileName = Path.Combine(Application.StartupPath, "Customers.xml");
                 XmlDocument doc = new XmlDocument();
+                string fileName = Path.Combine(Application.StartupPath, xmlFileName);
                 doc.Load(fileName);
+                
+               
                 return (true, doc.InnerXml.ToString());
             }
             catch (HttpRequestException e)
@@ -34,7 +36,7 @@ namespace MagoCloudApi
         }
         /////////////////////////////
         /////// Get xml data ////////
-        public string GetXmlData(UserData userData, DateTime operationDate, string xmlContent)
+        public async Task<string> GetXmlData(UserData userData, DateTime operationDate, string xmlContent)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -57,7 +59,8 @@ namespace MagoCloudApi
                     string jsonInString = PrepareGetTb(request, xmlContent, userData.UserName);
                     request.Method = HttpMethod.Post;
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
-                    HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                    //HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                    var response = await client.SendAsync(request);
 
                     string responseBody = response.Content.ReadAsStringAsync().Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -75,8 +78,8 @@ namespace MagoCloudApi
                                 var bytes = Convert.FromBase64String(item.ToString());
                                 var decodedString = Encoding.UTF8.GetString(bytes);
                                 strings.AppendLine(decodedString.ToString());
-                                return strings.ToString();
                             }
+                            return strings.ToString();
                         }
                         else
                             return "GetXmlData error: unable to retrive the TbServer.";
@@ -142,11 +145,81 @@ namespace MagoCloudApi
         /////////////////////////////
         /////// Set xml data ////////
 
-        public string SetXmlData(UserData userData, DateTime operationDate, string xmlContent, int nAction = 0)
-         {
-          using (HttpClient client = new HttpClient())
-             {
+        public async Task<string> SetXmlDataAsync(UserData userData, DateTime operationDate, string xmlContent, int nAction = 0)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://beta.mago.cloud/13/be/tbserver/api/tb/document/runRestFunction/");
+                    MagoCloudApiManager.PrepareHeaders(request, userData);
+                    var server_info = JsonConvert.SerializeObject(new
+                    {
+                        subscription = userData.SubscriptionKey,
+                        gmtOffset = -60,
+                        date = new
+                        {
+                            day = operationDate.Day,
+                            month = operationDate.Month,
+                            year = operationDate.Year
+                        }
+                    });
 
+                    request.Headers.TryAddWithoutValidation("Server-Info", server_info);
+                    string jsonInString = PrepareSetTb(request, xmlContent, nAction, userData.UserName);
+                    request.Method = HttpMethod.Post;
+                    request.Content = new StringContent( jsonInString, System.Text.Encoding.UTF8, "application/json") ;
+                    object locker = new object();
+
+                            void DoHeaders()
+                            {
+                                lock (locker)
+                                {
+                                    
+                                }
+                            }
+                    DoHeaders();
+                    HttpResponseMessage response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None);
+                    //var response = await client.SendAsync(request);
+
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        string functionParams = await response.Content.ReadAsStringAsync();
+                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(functionParams);
+
+                        if (jsonObject != null)
+                        {
+                            string resultVariable = jsonObject["result"]?.ToString();
+                            JToken[] result = jsonObject["result"].ToArray();
+                            StringBuilder strings = new StringBuilder();
+                            foreach (JToken item in result)
+                            {
+                                var bytes = Convert.FromBase64String(item.ToString());
+                                var decodedString = Encoding.UTF8.GetString(bytes);
+                                strings.AppendLine(decodedString.ToString());
+                            }
+                            return strings.ToString();
+                        }
+                        else
+                            return "GetXmlData error: unable to retrive the TbServer.";
+                    }
+                    else
+                        return "GetXmlData error. Response message : " + responseBody;
+                }
+                catch (HttpRequestException e)
+                {
+                    return "GetXmlData exception Caught: Message: " + e.Message;
+                }
+                return string.Empty;
+            }
+        }
+
+        /*public string SetXmlData(UserData userData, DateTime operationDate, string xmlContent, int nAction = 0)
+        {
+          using (HttpClient client = new HttpClient())
+          {
                  try
                  {
                      HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://beta.mago.cloud/13/be/tbserver/api/tb/document/runRestFunction/");
@@ -164,10 +237,11 @@ namespace MagoCloudApi
                      });
                      request.Headers.TryAddWithoutValidation("Server-Info", server_info);
                      string jsonInString = PrepareSetTb(request, xmlContent, nAction, userData.UserName);
+                     request.Method = HttpMethod.Post;
                      request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
-                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                    // HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                    var response = client.SendAsync(request).Result;
 
-                  
                     string responseBody = response.Content.ReadAsStringAsync().Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -184,10 +258,9 @@ namespace MagoCloudApi
                                 var bytes = Convert.FromBase64String(item.ToString());
                                 var decodedString = Encoding.UTF8.GetString(bytes);
                                 strings.AppendLine(decodedString.ToString());
-                                return strings.ToString();
                             }
+                            return strings.ToString();
                         }
-                        
                         return "SetXmlData: Unable to retrive the TbServer.";
                      }
                     else
@@ -197,9 +270,10 @@ namespace MagoCloudApi
                  {
                     return "SetXmlData exception Caught: Message: " + e.Message;
                  }
-             }
-         }
-         public string PrepareSetTb(HttpRequestMessage request, string xmlData, int action, string userName)
+                return string.Empty;
+          }
+        }*/
+        public string PrepareSetTb(HttpRequestMessage request, string xmlData, int action, string userName)
          {
              var functionParams = JsonConvert.SerializeObject(new
              {
