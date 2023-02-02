@@ -40,10 +40,14 @@ namespace WindowsFormsApp1
             if (bOk)
             { panelTitleResult.BackColor = Color.Green;
                 this.labelSmile.Text = "😎";
+                this.buttonResize.BackColor = Color.Green;
+                this.buttonExitForm.BackColor = Color.Green;
             }
             else
             { panelTitleResult.BackColor = Color.Red;
                 this.labelSmile.Text = "🙁";
+                this.buttonResize.BackColor = Color.Red;
+                this.buttonExitForm.BackColor = Color.Red;
             }
            
         }

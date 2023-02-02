@@ -71,12 +71,20 @@ namespace MagoCloudApi
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        XDocument doc = XDocument.Parse(responseBody);
-                        return doc.ToString();
-                    }
-                    else
+                       
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        {
+                            if (!(responseBody.Length == 0))
+                            {
+                                XDocument doc = XDocument.Parse(responseBody);
+                                return doc.ToString();
+                            }
+                            else
+                            {
+                                return "Response body is empty.";
+                            }
+                        }
+                        else
                         return "ReportingService-GetXmlData error. Response message : " + responseBody;
                 }
                 catch (HttpRequestException e)

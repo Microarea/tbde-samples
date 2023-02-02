@@ -58,35 +58,19 @@ namespace MspzComponent
             {
                 using (Brush brush = new SolidBrush(Color.FromArgb(232, 159, 0)))
                 {
-                    g.FillPath(brush, GetRoundedRectanglePath(this.ClientRectangle, 15));
+                   
+                    GraphicsPath graphicsPath = new GraphicsPath();
+                    graphicsPath.AddArc(0, 0, 10, 10, 180, 90);
+                    graphicsPath.AddArc(Width - 11, 0, 10, 10, 270, 60);
+                    graphicsPath.AddArc(Width - 11, Height - 11, 10, 10, 0, 60);
+                    graphicsPath.AddArc(0, Height - 11, 10, 10, 90, 90);
+                    graphicsPath.CloseFigure();
+                    this.Region = new Region(graphicsPath);
+                    base.OnPaint(e);
                 }
             }
         }
 
-        private GraphicsPath GetRoundedRectanglePath(Rectangle rect, int radius)
-        {
-            int diameter = radius;
-            Rectangle arcRect = new Rectangle(rect.Location, new Size(diameter, diameter));
-            GraphicsPath path = new GraphicsPath();
-
-            // top left arc  
-            path.AddArc(arcRect, 180, 90);
-
-            // top right arc  
-            arcRect.X = rect.Right - diameter;
-            path.AddArc(arcRect, 270, 90);
-
-            // bottom right arc  
-            arcRect.Y = rect.Bottom - diameter;
-            path.AddArc(arcRect, 0, 90);
-
-            // bottom left arc 
-            arcRect.X = rect.Left;
-            path.AddArc(arcRect, 90, 90);
-
-            path.CloseFigure();
-            return path;
-        }
           
     }
 

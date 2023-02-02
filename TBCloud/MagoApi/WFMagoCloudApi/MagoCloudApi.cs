@@ -40,9 +40,12 @@ namespace MagoCloudApi
             
             this.FormBorderStyle = FormBorderStyle.None;
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            tabNavigation.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(4, 0, tabNavigation.Width, tabNavigation.Height, 0, 20));
             tabNavigation.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabNavigation.DrawItem += tabNavigation_DrawItem;
             this.tabNavigation.TabPages.Remove(this.tabMSH);
+
+            this.cbxSelectionType.SelectedIndex = 0;
           
             labelTbUrl.Text = "ServiceUrl:"; 
             labelDmsUrl.Text = "ServiceUrl:";
@@ -106,20 +109,30 @@ namespace MagoCloudApi
             stringFormat.LineAlignment = StringAlignment.Center;
             e.Graphics.FillRectangle(brush, e.Bounds);
             Rectangle paddedBounds = e.Bounds;
-            paddedBounds = new Rectangle(paddedBounds.X, paddedBounds.Y + 4, paddedBounds.Width, paddedBounds.Height - 4);
+            paddedBounds = new Rectangle(paddedBounds.X, paddedBounds.Y + 5, paddedBounds.Width, paddedBounds.Height - 4);
             Font tabFont = new Font("Century Gothic", 10, FontStyle.Bold);
             RectangleF tf =
                 new RectangleF(paddedBounds.X + paddedBounds.Width + 354,
-                paddedBounds.Y - 1, this.Width - (paddedBounds.X + paddedBounds.Width) - 1, paddedBounds.Height + 1);
+                paddedBounds.Y - 1, this.Width - (paddedBounds.X + paddedBounds.Width) -1 , paddedBounds.Height + 11);
             Brush b;
             b = new SolidBrush(Color.FromArgb(22, 118, 186));
             e.Graphics.DrawString(tabName, tabFont, tabBrush, paddedBounds, stringFormat);
             e.Graphics.FillRectangle(b, tf);
         }
 
-          ///////////////////////
-         ///// FORM BTN ////////
         ///////////////////////
+        ///// FORM BTN ////////
+        ///////////////////////
+
+        private void btnCloseForm_Click(object sender, EventArgs e)
+        {
+            DoExit();
+        }
+
+        private void btnReduceIcon_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
         private void button_Login_Click(object sender, System.EventArgs e)
         {
             if (AreParametersOk())
@@ -301,13 +314,17 @@ namespace MagoCloudApi
             long handle = defPriceHandle;
             bool contentBody = manager.webMethodsManager.DefaultSalesPricesDispose(manager.authenticationManager.userData, DateTime.Now, handle);
             string res = "Dispose successful: \n " + contentBody + "\nThe canceled sales price is: " + defPriceHandle.ToString();
+            if (handle == 0)
+            {
+                ShowResult("Impossible to cancel. No SalesPrices created.", false);
+            }else
             ShowResult(res, contentBody);
         }
 
-          ///////////////////////////////
-         ////// DATA SERVICE BTN ///////
         ///////////////////////////////
-
+        ////// DATA SERVICE BTN ///////
+        ///////////////////////////////
+       
         private void buttonDSGetData_Click(object sender, EventArgs e)
         {
             if (!manager.authenticationManager.IsLogged())

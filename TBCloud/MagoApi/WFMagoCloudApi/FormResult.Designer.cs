@@ -35,9 +35,9 @@ namespace WindowsFormsApp1
             this.buttonExitForm = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panelTitleResult = new System.Windows.Forms.Panel();
+            this.labelSmile = new System.Windows.Forms.Label();
             this.labelTitleResult = new System.Windows.Forms.Label();
             this.buttonResize = new System.Windows.Forms.Button();
-            this.labelSmile = new System.Windows.Forms.Label();
             this.panelContent.SuspendLayout();
             this.panelTitleResult.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +59,8 @@ namespace WindowsFormsApp1
             this.buttonExitForm.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.buttonExitForm, "buttonExitForm");
             this.buttonExitForm.FlatAppearance.BorderSize = 0;
+            this.buttonExitForm.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.buttonExitForm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.buttonExitForm.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.buttonExitForm.Name = "buttonExitForm";
             this.buttonExitForm.UseVisualStyleBackColor = false;
@@ -81,6 +83,12 @@ namespace WindowsFormsApp1
             this.panelTitleResult.Controls.Add(this.buttonExitForm);
             this.panelTitleResult.Name = "panelTitleResult";
             // 
+            // labelSmile
+            // 
+            resources.ApplyResources(this.labelSmile, "labelSmile");
+            this.labelSmile.ForeColor = System.Drawing.Color.White;
+            this.labelSmile.Name = "labelSmile";
+            // 
             // labelTitleResult
             // 
             resources.ApplyResources(this.labelTitleResult, "labelTitleResult");
@@ -89,7 +97,7 @@ namespace WindowsFormsApp1
             // 
             // buttonResize
             // 
-            this.buttonResize.BackColor = System.Drawing.Color.Transparent;
+            this.buttonResize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
             resources.ApplyResources(this.buttonResize, "buttonResize");
             this.buttonResize.Cursor = System.Windows.Forms.Cursors.SizeNESW;
             this.buttonResize.FlatAppearance.BorderSize = 0;
@@ -97,12 +105,6 @@ namespace WindowsFormsApp1
             this.buttonResize.Name = "buttonResize";
             this.buttonResize.UseVisualStyleBackColor = false;
             this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
-            // 
-            // labelSmile
-            // 
-            resources.ApplyResources(this.labelSmile, "labelSmile");
-            this.labelSmile.ForeColor = System.Drawing.Color.White;
-            this.labelSmile.Name = "labelSmile";
             // 
             // FormResult
             // 
