@@ -9,6 +9,11 @@ namespace MagoCloudApi
 {
     internal class UserData 
     {
+        internal string TbUrl = UrlSManager.TbServerUrl;
+        internal string DataUrl = UrlSManager.DataServiceUrl;
+        internal string DmsUrl = UrlSManager.DmsServiceUrl;
+
+        internal string GwamUrl { get; set; }
         internal string Token { get; set; }
         internal string UserName { get; set; }
         internal string SubscriptionKey { get;  set; }
@@ -17,6 +22,10 @@ namespace MagoCloudApi
 
         internal void Clear()
         {
+            TbUrl = string.Empty;
+            DataUrl = string.Empty;
+            DmsUrl = string.Empty;
+            GwamUrl = string.Empty;
             Token = string.Empty;
             UserName = string.Empty;
             SubscriptionKey = string.Empty;
@@ -29,7 +38,6 @@ namespace MagoCloudApi
         internal UserData userData = new UserData();
 
         internal string Token { get => userData.Token; }
-
         internal bool IsLogged()
         {
             return !string.IsNullOrEmpty(userData.Token) && !string.IsNullOrEmpty(userData.UserName);
@@ -43,7 +51,8 @@ namespace MagoCloudApi
             string requestBodyJsonInString = JsonConvert.SerializeObject(requestBody);
             return requestBodyJsonInString;
         }
-        internal void DoLogin(string userName, string pwd, string subscriptionKey, string producerKey, string appKey)
+        
+        internal void DoLogin(string gwamUrl,string userName, string pwd, string subscriptionKey, string producerKey, string appKey)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -52,11 +61,12 @@ namespace MagoCloudApi
                    userData. Producer = producerKey;
                    userData. AppKey = appKey;
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://release-gwam.mago.cloud/gwam_login/api/login");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
                     MagoCloudApiManager.PrepareMagoAPIHeader(request, producerKey, appKey);
                     //// Request a credential ////
                     var credential = new JObject
                                 {
+                                    { "GwamUrl", gwamUrl},
                                     { "AccountName", userName},
                                     { "Password", pwd},
                                     { "Token", "" },
@@ -80,11 +90,14 @@ namespace MagoCloudApi
                             string resultCodeVariable = jsonObject["ResultCode"]?.ToString();
                             if (resultVariable == "True" && resultCodeVariable == "0")
                             {
+                                userData.GwamUrl = gwamUrl;
                                 userData.Token = jsonObject["JwtToken"]?.ToString();
                                 userData.UserName = jsonObject["AccountName"]?.ToString();
                                 userData.SubscriptionKey = subscriptionKey;
                                 MessageBox.Show("The login was successful.");
                             }
+                            else
+                                MessageBox.Show("Login Failed");
                         }
                         else
                             MessageBox.Show("Login reported a invalid content.");
@@ -99,16 +112,15 @@ namespace MagoCloudApi
                 }
             }
         }
-        internal void ValidToken()
+        internal void ValidToken(string GwamUrl)
         {
             using (HttpClient client = new HttpClient())
             {
-               
                 try
                 {
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://release-gwam.mago.cloud/gwam_login/api/isvalidtoken");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/isvalidtoken");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
-                     request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
+                    request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -139,14 +151,13 @@ namespace MagoCloudApi
             }
         }
 
-        internal void DoLogout()
+        internal void DoLogout(string GwamUrl)
         {
             using (HttpClient client = new HttpClient())
             {
-
                 try
                 {
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://release-gwam.mago.cloud/gwam_login/api/logoff");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/logoff");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
                     
                     request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");

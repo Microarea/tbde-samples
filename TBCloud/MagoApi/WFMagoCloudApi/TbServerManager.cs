@@ -13,8 +13,33 @@ using System.Xml;
 
 namespace MagoCloudApi
 {
-    class TbServerManager
+    internal class TbServerManager
     {
+        //Uri RsUrl = new Uri("https://develop.mago.cloud/13/be");
+
+
+          ///////////////////////////////////
+         //////  RetriveTbServerUrl  ///////
+        ///////////////////////////////////
+        public string RetriveTbServerUrl(UserData userData, DateTime operationDate)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/REPORTSERVICE");
+                MagoCloudApiManager.PrepareHeaders(request, userData);
+
+                HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                string responseBody = response.Content.ReadAsStringAsync().Result;
+                JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
+               
+                string resultVariable = "";
+                if (jsonObject != null)
+                {
+                    resultVariable = jsonObject["Content"]?.ToString();
+                }
+                return UrlSManager.TbServerUrl = resultVariable;
+            }
+        }
         public (bool, string) LoadMagicLinkFile(string xmlFileName)
         {
             try
@@ -26,7 +51,6 @@ namespace MagoCloudApi
                 string fileName = Path.Combine(Application.StartupPath, xmlFileName);
                 doc.Load(fileName);
                 
-               
                 return (true, doc.InnerXml.ToString());
             }
             catch (HttpRequestException e)
@@ -34,6 +58,8 @@ namespace MagoCloudApi
                 return (false, "Exception loading " + xmlFileName + " : " + e.Message);
             }
         }
+
+       
         /////////////////////////////
         /////// Get xml data ////////
         public async Task<string> GetXmlData(UserData userData, DateTime operationDate, string xmlContent)
@@ -42,7 +68,10 @@ namespace MagoCloudApi
             {
                 try
                 {
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://beta.mago.cloud/13/be/tbserver/api/tb/document/runRestFunction/");
+                    if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveTbServerUrl(userData,DateTime.Now);
+                    //UrlSManager.TbServerUrl = RetriveTbServerUrl(userData, DateTime.Now);
+
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
                     var server_info = JsonConvert.SerializeObject(new
                     {
@@ -66,11 +95,10 @@ namespace MagoCloudApi
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         string functionParams = response.Content.ReadAsStringAsync().Result;
-                         JObject jsonObject = JsonConvert.DeserializeObject<JObject>(functionParams);
+                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(functionParams);
 
                         if (jsonObject != null)
                         {
-                            string resultVariable = jsonObject["result"]?.ToString();
                             JToken[] result = jsonObject["result"].ToArray();
                             StringBuilder strings = new StringBuilder();
                             foreach (JToken item in result)
@@ -91,7 +119,6 @@ namespace MagoCloudApi
                 {
                     return "GetXmlData exception Caught: Message: " + e.Message;
                 }
-                return string.Empty;
             }
         }
            public string PrepareGetTb(HttpRequestMessage request, string xmlParams, string userName)
@@ -113,10 +140,9 @@ namespace MagoCloudApi
            {
                 try
                 {
-                var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(xml);
-                string encoded = System.Convert.ToBase64String(plainTextBytes);
-                return encoded;
-               
+                    var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(xml);
+                    string encoded = System.Convert.ToBase64String(plainTextBytes);
+                    return encoded;
                 }
                 catch (Exception)
                 {
@@ -145,13 +171,14 @@ namespace MagoCloudApi
         /////////////////////////////
         /////// Set xml data ////////
 
-        public async Task<string> SetXmlDataAsync(UserData userData, DateTime operationDate, string xmlContent, int nAction = 0)
+        public string SetXmlData(UserData userData, DateTime operationDate, string xmlContent, int nAction = 0)
         {
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://beta.mago.cloud/13/be/tbserver/api/tb/document/runRestFunction/");
+                    if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveTbServerUrl(userData, DateTime.Now);
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
                     var server_info = JsonConvert.SerializeObject(new
                     {
@@ -167,126 +194,49 @@ namespace MagoCloudApi
 
                     request.Headers.TryAddWithoutValidation("Server-Info", server_info);
                     string jsonInString = PrepareSetTb(request, xmlContent, nAction, userData.UserName);
-                    request.Method = HttpMethod.Post;
-                    request.Content = new StringContent( jsonInString, System.Text.Encoding.UTF8, "application/json") ;
-                    object locker = new object();
-
-                            void DoHeaders()
-                            {
-                                lock (locker)
-                                {
-                                    
-                                }
-                            }
-                    DoHeaders();
-                    HttpResponseMessage response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None);
-                    //var response = await client.SendAsync(request);
-
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    
+                    request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                    string responseBody = response.Content.ReadAsStringAsync().Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        string functionParams = await response.Content.ReadAsStringAsync();
-                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(functionParams);
+                        string functionParams = response.Content.ReadAsStringAsync().Result;
+                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
 
                         if (jsonObject != null)
                         {
-                            string resultVariable = jsonObject["result"]?.ToString();
-                            JToken[] result = jsonObject["result"].ToArray();
-                            StringBuilder strings = new StringBuilder();
-                            foreach (JToken item in result)
-                            {
-                                var bytes = Convert.FromBase64String(item.ToString());
-                                var decodedString = Encoding.UTF8.GetString(bytes);
-                                strings.AppendLine(decodedString.ToString());
-                            }
-                            return strings.ToString();
+                                string resultVariable = jsonObject["result"]?.ToString();
+                                var bytes = Convert.FromBase64String(resultVariable.ToString());
+                                var decodedString= Encoding.UTF8.GetString(bytes);
+                            return decodedString;
                         }
                         else
                             return "GetXmlData error: unable to retrive the TbServer.";
                     }
                     else
-                        return "GetXmlData error. Response message : " + responseBody;
+                        return "SetXmlData error. Response message : " + responseBody;
                 }
                 catch (HttpRequestException e)
                 {
                     return "GetXmlData exception Caught: Message: " + e.Message;
                 }
-                return string.Empty;
+                
             }
         }
-
-        /*public string SetXmlData(UserData userData, DateTime operationDate, string xmlContent, int nAction = 0)
-        {
-          using (HttpClient client = new HttpClient())
-          {
-                 try
-                 {
-                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://beta.mago.cloud/13/be/tbserver/api/tb/document/runRestFunction/");
-                     MagoCloudApiManager.PrepareHeaders(request, userData);
-                     var server_info = JsonConvert.SerializeObject(new
-                     {
-                         subscription = userData.SubscriptionKey,
-                         gmtOffset = -60,
-                         date = new
-                         {
-                             day = operationDate.Day,
-                             month = operationDate.Month,
-                             year = operationDate.Year
-                         }
-                     });
-                     request.Headers.TryAddWithoutValidation("Server-Info", server_info);
-                     string jsonInString = PrepareSetTb(request, xmlContent, nAction, userData.UserName);
-                     request.Method = HttpMethod.Post;
-                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
-                    // HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-                    var response = client.SendAsync(request).Result;
-
-                    string responseBody = response.Content.ReadAsStringAsync().Result;
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        string functionParams = response.Content.ReadAsStringAsync().Result;
-                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(functionParams);
-
-                        if (jsonObject != null)
-                        {
-                            string resultVariable = jsonObject["result"]?.ToString();
-                            JToken[] result = jsonObject["result"].ToArray();
-                            StringBuilder strings = new StringBuilder();
-                            foreach (JToken item in result)
-                            {
-                                var bytes = Convert.FromBase64String(item.ToString());
-                                var decodedString = Encoding.UTF8.GetString(bytes);
-                                strings.AppendLine(decodedString.ToString());
-                            }
-                            return strings.ToString();
-                        }
-                        return "SetXmlData: Unable to retrive the TbServer.";
-                     }
-                    else
-                        return "SetXmlData error. Response message : " + responseBody;
-                 }
-                 catch (HttpRequestException e)
-                 {
-                    return "SetXmlData exception Caught: Message: " + e.Message;
-                 }
-                return string.Empty;
-          }
-        }*/
+        
         public string PrepareSetTb(HttpRequestMessage request, string xmlData, int action, string userName)
-         {
-             var functionParams = JsonConvert.SerializeObject(new
-             {
-                 ns = "Extensions.XEngine.TBXmlTransfer.SetDataRest",
-                 args = new
-                 {
-                     data = Base64Encoder(xmlData),
-                     saveAction = action, // insert or update
-                     loginName = userName,
-                     result = "data"
-                 }
-             });
-             return JsonConvert.SerializeObject(functionParams);
-         }
+        {
+            var functionParams = JsonConvert.SerializeObject(new
+            {
+                ns = "Extensions.XEngine.TBXmlTransfer.SetDataRest",
+                args = new
+                {
+                    data = Base64Encoder(xmlData),
+                    saveAction = action, // insert or update
+                    loginName = userName,
+                    result = "data"
+                }
+            });
+            return (functionParams);
+        }
     }
 }

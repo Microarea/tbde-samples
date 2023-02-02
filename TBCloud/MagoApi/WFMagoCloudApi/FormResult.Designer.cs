@@ -35,7 +35,9 @@ namespace WindowsFormsApp1
             this.buttonExitForm = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panelTitleResult = new System.Windows.Forms.Panel();
+            this.labelTitleResult = new System.Windows.Forms.Label();
             this.buttonResize = new System.Windows.Forms.Button();
+            this.labelSmile = new System.Windows.Forms.Label();
             this.panelContent.SuspendLayout();
             this.panelTitleResult.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +56,7 @@ namespace WindowsFormsApp1
             // 
             // buttonExitForm
             // 
-            this.buttonExitForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.buttonExitForm.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.buttonExitForm, "buttonExitForm");
             this.buttonExitForm.FlatAppearance.BorderSize = 0;
             this.buttonExitForm.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -64,22 +66,30 @@ namespace WindowsFormsApp1
             // 
             // label1
             // 
-            resources.ApplyResources(this.label1, "label1");
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
             // panelTitleResult
             // 
-            resources.ApplyResources(this.panelTitleResult, "panelTitleResult");
             this.panelTitleResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            resources.ApplyResources(this.panelTitleResult, "panelTitleResult");
+            this.panelTitleResult.Controls.Add(this.labelSmile);
+            this.panelTitleResult.Controls.Add(this.labelTitleResult);
             this.panelTitleResult.Controls.Add(this.buttonResize);
             this.panelTitleResult.Controls.Add(this.label1);
             this.panelTitleResult.Controls.Add(this.buttonExitForm);
             this.panelTitleResult.Name = "panelTitleResult";
             // 
+            // labelTitleResult
+            // 
+            resources.ApplyResources(this.labelTitleResult, "labelTitleResult");
+            this.labelTitleResult.ForeColor = System.Drawing.Color.White;
+            this.labelTitleResult.Name = "labelTitleResult";
+            // 
             // buttonResize
             // 
-            this.buttonResize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.buttonResize.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.buttonResize, "buttonResize");
             this.buttonResize.Cursor = System.Windows.Forms.Cursors.SizeNESW;
             this.buttonResize.FlatAppearance.BorderSize = 0;
@@ -87,6 +97,12 @@ namespace WindowsFormsApp1
             this.buttonResize.Name = "buttonResize";
             this.buttonResize.UseVisualStyleBackColor = false;
             this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
+            // 
+            // labelSmile
+            // 
+            resources.ApplyResources(this.labelSmile, "labelSmile");
+            this.labelSmile.ForeColor = System.Drawing.Color.White;
+            this.labelSmile.Name = "labelSmile";
             // 
             // FormResult
             // 
@@ -107,7 +123,6 @@ namespace WindowsFormsApp1
             this.panelTitleResult.ResumeLayout(false);
             this.panelTitleResult.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -119,5 +134,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelTitleResult;
         private System.Windows.Forms.Button buttonResize;
+        private System.Windows.Forms.Label labelTitleResult;
+        private System.Windows.Forms.Label labelSmile;
     }
 }
