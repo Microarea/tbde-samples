@@ -30,6 +30,15 @@ namespace MyApp
             public string PlainResult { get; set; }
         }
 
+
+        public class MA_CustSupp
+        {
+            public int CustSuppType { get; set; } = 3211264;
+            public string CustSupp { get; set; }
+            public string CompanyName { get; set; }
+            public string ISOCountryCode { get; set; }
+        }
+
         public static bool Execute(string instance, string user, string pwd, string subkey, bool loginByAccountManager)
         {
             /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,6 +77,7 @@ namespace MyApp
                         UseMagicLink(magocloudClient, userData);
                         UseDataService(magocloudClient, userData);
                         UseReportingServices(magocloudClient, userData);
+                        UseMyMagoStudioService(magocloudClient, userData);
                         UseOthersMicroservices(magocloudClient, userData);
 
                         // authentication end
@@ -163,13 +173,87 @@ namespace MyApp
             /////////////////////////////////////////////////////////////////////////////////////////////////
             string espUrl = magocloudClient.MagoServicesHub.GetServiceUrl(userData.SubscriptionKey);
             ITbResponse versionResponse = magocloudClient.MagoServicesHub.GetVersion(userData).Result;
+        }
 
+        private static void UseMyMagoStudioService(MagoAPIClient magocloudClient, ITbUserData userData)
+        {
             /////////////////////////////////////////////////////////////////////////////////////////////////
             // MyMagoStudio class expose MyMagoStudio backend url
             /////////////////////////////////////////////////////////////////////////////////////////////////
             string mmsUrl = magocloudClient.MyMagoStudio.GetServiceUrl(userData.SubscriptionKey);
 
+            // MyMagoStudioService Data Manager APIs
+            UseMMSDataManager(magocloudClient, userData);
         }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        // MYMAGOSTUDIO SERVICE communication. It executes some query in order to extract schema
+        // and data from database
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        private static void UseMMSDataManager(MagoAPIClient magocloudClient, ITbUserData userData)
+        {
+            // data manager version
+            ITbResponse versionResponse = magocloudClient.MyMagoStudio?.DataManagerVersion(userData).Result;
+            // sample table
+            string sampleTableName = "MA_CustSupp";
+
+            //////////////////////////////////////////////////////////////////////
+            /// TABLE SCHEMA APIs
+            // returns a table schema
+            ITbResponse schemaResponse = magocloudClient.MyMagoStudio?.Schema(userData, sampleTableName).Result;
+
+            // returns a record prototype as payload
+            ITbResponse protoResponse = magocloudClient.MyMagoStudio?.Prototype(userData, sampleTableName).Result;
+
+            //////////////////////////////////////////////////////////////////////
+            /// TABLE SELECT APIs
+            // it returns record count and then selects data
+            // it selects data by primary key 
+            MMSTableData tableData = new MMSTableData();
+            tableData.TableName = sampleTableName;
+            tableData.Keys = new object[] { 3211264, "0001" };
+
+            ITbResponse selectByKeyResponse = magocloudClient.MyMagoStudio?.SelectAllByKey(userData, tableData).Result;
+
+            MMSQuery query = new MMSQuery();
+            query.TableName = sampleTableName;
+            query.SelectedFields = new string[] { "*" };
+
+            ITbResponse countResponse = magocloudClient.MyMagoStudio?.Count(userData, query).Result;
+            ITbResponse selectResponse = magocloudClient.MyMagoStudio?.Select(userData, query).Result;
+
+
+            //////////////////////////////////////////////////////////////////////
+            /// TABLE UPDATE APIs
+            /// 
+            MA_CustSupp custSupp = new MA_CustSupp();
+            custSupp.CustSupp = "NEWC";
+            custSupp.CompanyName = "NEWC SRL";
+            custSupp.ISOCountryCode = "IT";
+
+            // insert data
+            MMSTableData crudData = new MMSTableData();
+            crudData.TableName = sampleTableName;
+            crudData.Keys = new object[] { };
+            crudData.Data = custSupp;
+            ITbResponse addResponse = magocloudClient.MyMagoStudio?.Add(userData, crudData).Result;
+
+            // updates data
+            custSupp.CompanyName = "NEWC S.R.L";
+            custSupp.ISOCountryCode = "ES";
+            crudData.Keys = new object[] { 3211264, "NEWC" };
+            crudData.Data = custSupp;
+            ITbResponse updateResponse = magocloudClient.MyMagoStudio?.Update(userData, crudData).Result;
+
+
+            // delete operation
+            crudData.Data = null;
+            bool? bDeleted = magocloudClient.MyMagoStudio?.Delete(userData, crudData).Result;
+
+
+
+        }
+
 
     }
 
