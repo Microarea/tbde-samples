@@ -33,6 +33,8 @@ namespace MyApp
 
         public class MA_CustSupp
         {
+            public static string TableName = "MA_CustSupp";
+
             public int CustSuppType { get; set; } = 3211264;
             public string CustSupp { get; set; }
             public string CompanyName { get; set; }
@@ -195,7 +197,7 @@ namespace MyApp
             // data manager version
             ITbResponse versionResponse = magocloudClient.MyMagoStudio?.DataManagerVersion(userData).Result;
             // sample table
-            string sampleTableName = "MA_CustSupp";
+            string sampleTableName = MA_CustSupp.TableName;
 
             //////////////////////////////////////////////////////////////////////
             /// TABLE SCHEMA APIs
