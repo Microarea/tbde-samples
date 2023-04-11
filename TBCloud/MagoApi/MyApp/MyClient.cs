@@ -6,6 +6,7 @@ using System.IO;
 using Microarea.Tbf.Model.API;
 using Microarea.Tbf.Model.Interfaces.API;
 using System.Collections.Generic;
+using Tbf.Model.Interfaces.DataManager;
 
 namespace MyApp
 {
@@ -211,13 +212,13 @@ namespace MyApp
             /// TABLE SELECT APIs
             // it returns record count and then selects data
             // it selects data by primary key 
-            MMSTableData tableData = new MMSTableData();
+            TableData tableData = new TableData();
             tableData.TableName = sampleTableName;
             tableData.Keys = new object[] { 3211264, "0001" };
 
             ITbResponse selectByKeyResponse = magocloudClient.MyMagoStudio?.SelectAllByKey(userData, tableData).Result;
 
-            MMSQuery query = new MMSQuery();
+            Query query = new Query();
             query.TableName = sampleTableName;
             query.SelectedFields = new string[] { "*" };
 
@@ -234,7 +235,7 @@ namespace MyApp
             custSupp.ISOCountryCode = "IT";
 
             // insert data
-            MMSTableData crudData = new MMSTableData();
+            TableData crudData = new TableData();
             crudData.TableName = sampleTableName;
             crudData.Keys = new object[] { };
             crudData.Data = custSupp;
