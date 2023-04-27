@@ -16,9 +16,10 @@ namespace MagoCloudApi
         //Uri RsUrl = new Uri("https://develop.mago.cloud/13/be");
         public string RetriveWebMethodsUrl(UserData userData, DateTime operationDate)
         {
+           
             using (HttpClient client = new HttpClient())
             {
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/REPORTSERVICE");
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/TBSERVER");
                 MagoCloudApiManager.PrepareHeaders(request, userData);
 
                 HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -42,8 +43,9 @@ namespace MagoCloudApi
             {
                 try
                 {
-                    if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
-                    UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
+                    //UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
                     var server_info = JsonConvert.SerializeObject(new

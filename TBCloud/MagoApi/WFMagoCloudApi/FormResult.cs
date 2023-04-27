@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using static MspzComponent.OrangePanel;
+using MagoCloudApi;
+using System.Drawing.Drawing2D;
 
-namespace WindowsFormsApp1
+namespace WindowsFormsResult
 {
     public partial class FormResult : Form
     {
@@ -23,43 +25,105 @@ namespace WindowsFormsApp1
            int nWhidthEllipse,
            int nHeightEllipse
            );
-       
+        
 
-        public FormResult(string content,  bool bOk = false)
+        public FormResult(string content,  bool bOk = false, bool bBlue = true, Image image = null)
         {
+
             InitializeComponent();
-            
-            this.FormBorderStyle = FormBorderStyle.None;
+
+            this.SetStyle(ControlStyles.ResizeRedraw, true); // this is to avoid visual artifacts
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-           
             labelFormContent.Text = content;
-            this.Height = 300;
-          
+            richTextBoxCode.AppendText(content);
+            richTextBoxCode.Dock = DockStyle.Fill;
+            richTextBoxCode.ScrollBars = (RichTextBoxScrollBars)ScrollBars.Both;
+            richTextBoxCode.SelectionColor = Color.Red;
+            richTextBoxCode.BackColor= Color.FromArgb(28, 28, 28);
+            richTextBoxCode.Multiline = true;
+            richTextBoxCode.WordWrap = false;
+            richTextBoxCode.Padding = new Padding(15, 5, 55, 5); 
+
             this.content = content;
-           
+            
+
             if (bOk)
-            { panelTitleResult.BackColor = Color.Green;
+            {
+                image = null;
+                this.btnCopyCode.Hide();
+                panelTitleResult.BackColor = Color.Green;
+                this.richTextBoxCode.Hide();
+                this.pictureBox3Req.Hide();
+                this.pictureBoxHea.Hide();
+                this.labelTitleResult.Text = "Result";
                 this.labelSmile.Text = "😎";
                 this.buttonResize.BackColor = Color.Green;
                 this.buttonExitForm.BackColor = Color.Green;
             }
+            else if (bBlue)
+            {
+                
+                    this.pictureBox3Req.Image = image;
+                    this.pictureBox3Req.SizeMode = PictureBoxSizeMode.Zoom;
+                panelTitleResult.BackColor = Color.FromArgb(28, 28, 28);
+                this.panelContent.BackColor = Color.FromArgb(28, 28, 28);
+                this.labelFormContent.Hide();
+                this.richTextBoxCode.Font = new System.Drawing.Font("Consolas", 10);
+                this.labelTitleResult.Text = "SourceCode";
+                this.buttonResize.BackColor = Color.FromArgb(28, 28, 28);
+                this.buttonExitForm.BackColor = Color.FromArgb(28, 28, 28);
+                
+            }
             else
-            { panelTitleResult.BackColor = Color.Red;
+            {
+                this.btnCopyCode.Hide();
+                panelTitleResult.BackColor = Color.Red;
+                this.richTextBoxCode.Hide();
+                this.pictureBox3Req.Hide();
+                this.pictureBoxHea.Hide();
+                this.labelTitleResult.Text = "Result";
                 this.labelSmile.Text = "🙁";
                 this.buttonResize.BackColor = Color.Red;
                 this.buttonExitForm.BackColor = Color.Red;
             }
-           
         }
 
+        //////////// customize draggable
+        private void panelTitleResult_MouseUp(object sender, MouseEventArgs e)
+        {
+            mousedown = false;
+        }
+
+        private void panelTitleResult_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mousedown)
+            {
+                int mousex = MousePosition.X - 250;
+                int mousey = MousePosition.Y - 20;
+                this.SetDesktopLocation(mousex, mousey);
+            }
+        }
+        private void panelTitleResult_MouseDown(object sender, MouseEventArgs e)
+        {
+            mousedown = true;
+        }
+
+        
         private void buttonExitForm_Click(object sender, EventArgs e)
         {
             Close();
         }
-
         private bool buttonClicked = false;
         private string content;
-      
+        bool mousedown;
+
+        private void btnCopyCode_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(richTextBoxCode.Text);
+            btnCopyCode.Text = "✔ copied";
+            btnCopyCode.Font = new Font("Arial", 8, FontStyle.Bold);
+            btnCopyCode.ForeColor = Color.FromArgb(65, 192, 146);
+        }
 
         private void buttonResize_Click(object sender, EventArgs e)
         {
@@ -67,19 +131,18 @@ namespace WindowsFormsApp1
             
             if(buttonClicked)
             {
-                this.FormBorderStyle = FormBorderStyle.None;
-                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 704, 600, 20, 20));
-                this.Height = 600;
+                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 704, 560, 20, 20));
+                this.Height = 560;
                 this.Width = 704;
             }
             else
             {
-                this.FormBorderStyle = FormBorderStyle.None;
                 this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 587, 300, 20, 20));
                 this.Height = 300;
                 this.Width = 384;
             }
         }
 
+       
     }
 }

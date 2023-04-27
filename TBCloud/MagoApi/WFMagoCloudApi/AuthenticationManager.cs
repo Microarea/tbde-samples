@@ -60,8 +60,16 @@ namespace MagoCloudApi
                 {
                    userData. Producer = producerKey;
                    userData. AppKey = appKey;
+                    // @@mmf
+                    string localLogin = "http://localhost:5000/account-manager/login";
+                    HttpRequestMessage request;
+                    if (gwamUrl == string.Empty)
+                        request = new HttpRequestMessage(HttpMethod.Post, localLogin);
+                    else
+                        request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
+                    //@@mmf end
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
+                    //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
                     MagoCloudApiManager.PrepareMagoAPIHeader(request, producerKey, appKey);
                     //// Request a credential ////
                     var credential = new JObject
@@ -118,7 +126,15 @@ namespace MagoCloudApi
             {
                 try
                 {
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/isvalidtoken");
+                    //@@mmf
+                    string localLogoff = "http://localhost:5000/account-manager/isvalidtoken";
+                    HttpRequestMessage request;
+                    if (GwamUrl == string.Empty)
+                        request = new HttpRequestMessage(HttpMethod.Post, localLogoff);
+                    else
+                        request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/isvalidtoken");
+                    //@@mmf end
+                    //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/isvalidtoken");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
                     request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -157,7 +173,15 @@ namespace MagoCloudApi
             {
                 try
                 {
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/logoff");
+                    //@@mmf
+                    string localLogoff = "http://localhost:5000/account-manager/logoff";
+                    HttpRequestMessage request;
+                    if (GwamUrl == string.Empty)
+                        request = new HttpRequestMessage(HttpMethod.Post, localLogoff);
+                    else
+                        request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/logoff");
+                    //@@mmf end
+                    //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/logoff");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
                     
                     request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");

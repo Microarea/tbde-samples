@@ -14,14 +14,16 @@ using System.Xml.Linq;
 using System.Drawing.Drawing2D;
 using static MspzComponent.RoundedPanel;
 using static MspzComponent.OrangePanel;
-
+using System.Diagnostics;
+using System.Security.Policy;
+using System.Reflection;
 
 namespace MagoCloudApi
 {
     public partial class MagoCloudApi : Form 
     {
         MagoCloudApiManager manager = new MagoCloudApiManager();
-      
+
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
@@ -32,12 +34,12 @@ namespace MagoCloudApi
            int nWhidthEllipse,
            int nHeightEllipse
            );
-       
+
 
         public MagoCloudApi()
         {
             InitializeComponent();
-            
+           
             this.FormBorderStyle = FormBorderStyle.None;
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             tabNavigation.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(4, 0, tabNavigation.Width, tabNavigation.Height, 0, 20));
@@ -84,10 +86,33 @@ namespace MagoCloudApi
             labelDms.Text = "The DMS (Document Management System) it allows for storing, sharing,\n" +
                             "and managing electronic documents.\n" +
                             "Is a solution for digital document management.";
+
+        }
+        bool  mousedown;
+        public long defPriceHandle = 0;
+        public Process p = null;
+
+        //////////// customize draggable
+
+        private void panelTitleForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            mousedown = true;
+        }
+        private void panelTitleForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mousedown)
+            {
+                int mousex = MousePosition.X - 500;
+                int mousey = MousePosition.Y - 20;
+                this.SetDesktopLocation(mousex, mousey);
+            }
         }
 
+        private void panelTitleForm_MouseUp(object sender, MouseEventArgs e)
+        {
+            mousedown = false;
+        }
 
-        public long defPriceHandle = 0;
         //////////// customize tabControl
         private void tabNavigation_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -120,6 +145,28 @@ namespace MagoCloudApi
             e.Graphics.FillRectangle(b, tf);
         }
 
+        private void OpenVisualStudio(string solutionPath, string filePath)
+        {
+            // string vsPath = @"C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe";
+            string args = $"\"{solutionPath}\" \"{filePath}\"";
+            //Process.Start(vsPath, "/edit " + args);  
+            //Process p = new Process();
+            /* p.StartInfo.FileName = solutionPath;*/
+           
+            if (p == null)
+            {
+                p = Process.Start(solutionPath, filePath);
+                Thread.Sleep(2000);
+                p.StartInfo.FileName = filePath;
+                p.Start();
+            }
+            else
+            {
+                p.StartInfo.FileName = filePath;
+                bool id = p.Start();
+            }
+
+        }
         ///////////////////////
         ///// FORM BTN ////////
         ///////////////////////
@@ -137,7 +184,6 @@ namespace MagoCloudApi
         {
             if (AreParametersOk())
                 manager.authenticationManager.DoLogin(text_http.Text, text_user.Text, text_pwd.Text, text_subscription.Text, text_producer.Text, text_app.Text);
-         
         }
         private void button_Token_Click(object sender, EventArgs e)
         {
@@ -163,26 +209,61 @@ namespace MagoCloudApi
             Application.Exit();
         }
 
-          ////////////////////////
-         ///// RESULT WINDOW ////
         ////////////////////////
-        private void ShowResult(string content, bool bOk = true)
+        ///// RESULT WINDOW ////
+        ////////////////////////
+        private void ShowResult(string content, bool bOk = true, bool bBlue=false)
         {
-            Form form = new WindowsFormsApp1.FormResult(content, bOk);
+            Form form = new WindowsFormsResult.FormResult(content, bOk, bBlue);
+            form.ShowDialog(this);
+            Cursor = Cursors.Default;
+        }
+
+        //////////////////////
+        ///// CODE WINDOW ////
+        //////////////////////
+        private void ShowCode(string content, bool bOk = false, bool bBlue = true, Image image =null)
+        {
+            Form form = new WindowsFormsResult.FormResult(content, bOk, bBlue, image);
             form.ShowDialog(this);
         }
 
-          ////////////////////////
-         ///// TBSERVER BTN /////
         ////////////////////////
-        private async void buttonXmlTb_Click(object sender, EventArgs e)
+        ///// TBSERVER BTN /////
+        ////////////////////////
+
+        private async void BtnGetParams_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            string fileName = Path.Combine(Application.StartupPath, "Customers.xml");
+            //string fileName = Path.Combine(Application.StartupPath, "CustomersGetParams.xml");
+            string fileName = Path.Combine(Application.StartupPath, "NewCurrGetParams.xml");
+
+            (bool loaded, string fileContent) = manager.tbServerManager.LoadMagicLinkFile(fileName);
+            if (!loaded)
+            {
+                MessageBox.Show(fileContent);
+                return;
+            }
+            string contentBody = await manager.tbServerManager.GetXmlParams(manager.authenticationManager.userData, DateTime.Now, fileContent);
+            labelTbUrl.Text = UrlSManager.TbServerUrl;
+            ShowResult(contentBody != null ? "GetXMLParams\n" + contentBody : "Unable to retrieve GetXMLParams\n" + contentBody, contentBody != null);
+        }
+        private async void buttonGetTb_Click(object sender, EventArgs e)
+        {
+            Cursor= Cursors.WaitCursor;
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            //string fileName = Path.Combine(Application.StartupPath, "CustomersGet.xml");
+            string fileName = Path.Combine(Application.StartupPath, "NewCurrGet.xml");
+
 
             (bool loaded, string fileContent) = manager.tbServerManager.LoadMagicLinkFile(fileName);
             if (!loaded)
@@ -191,13 +272,14 @@ namespace MagoCloudApi
                 return;
             }
             string contentBody = await manager.tbServerManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
+            
             ShowResult(contentBody != null ? "Get XML:\n" + contentBody : "Unable to retrieve Get XML\n" + contentBody, contentBody != null);
             labelTbUrl.Text = UrlSManager.TbServerUrl;
         }
 
         private void LabelbuttonGetParam_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string fileName = Path.Combine(Application.StartupPath, "Customers.xml");
+            string fileName = Path.Combine(Application.StartupPath, "CustomersSet.xml");
 
             (bool loaded, string fileContent) = manager.tbServerManager.LoadMagicLinkFile(fileName);
 
@@ -213,12 +295,15 @@ namespace MagoCloudApi
 
         private void buttonSetTb_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            string fileName = Path.Combine(Application.StartupPath, "Customers1.xml");
+            //string fileName = Path.Combine(Application.StartupPath, "Customers1.xml");
+            string fileName = Path.Combine(Application.StartupPath, "NewCurrSet.xml");
+
 
             (bool loaded, string fileContent) = manager.tbServerManager.LoadMagicLinkFile(fileName);
             if (!loaded)
@@ -227,8 +312,8 @@ namespace MagoCloudApi
                 return;
             }
             string contentBody = manager.tbServerManager.SetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
+            labelTbUrl.Text = UrlSManager.TbServerUrl;
             ShowResult(contentBody != null ? "Set XML\n" + contentBody : "Unable to retrieve Set XML\n" + contentBody, contentBody != null);
-
         }
 
         private void LabelbuttonSetParam_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -246,13 +331,14 @@ namespace MagoCloudApi
             ShowResult(doc != null ? "SetParam:\n" + doc : "Unable to retrieve SetParam\n" + doc, doc != null);
         }
        
-          //////////////////////////
-         ///// WEBMETHODS BTN /////
         //////////////////////////
-        
-       /////// DATE BTN ////////
+        ///// WEBMETHODS BTN /////
+        //////////////////////////
+
+        /////// DATE BTN ////////
         private void btnCurrOpeningDate_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
@@ -261,24 +347,28 @@ namespace MagoCloudApi
             labelWbUrl.Text = manager.authenticationManager.userData.TbUrl.ToString();
             DateTime now = new DateTime(2022,12,31);
             string contentBody = manager.webMethodsManager.CurrentOpeningDate(manager.authenticationManager.userData, now);
+           
             ShowResult(contentBody != null ? "CurrentOpeningDate\n" + contentBody : "Unable to retrieve ClosingDate\n" + contentBody, contentBody != null);
             labelWbUrl.Text = UrlSManager.TbServerUrl;
         }
 
         private void btnClosingDate_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
             string contentBody = manager.webMethodsManager.ClosingDateFiscalYear(manager.authenticationManager.userData,DateTime.Now);
+           
             ShowResult(contentBody != null ? "ClosingDate\n"+ contentBody : "Unable to retrieve ClosingDate\n" + contentBody, contentBody != null);
         }
          
         ///// DEFPRICE BTN ///////
         private void btnCreatePx_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
@@ -286,10 +376,12 @@ namespace MagoCloudApi
             }
             defPriceHandle = manager.webMethodsManager.DefaultSalesPricesCreate(manager.authenticationManager.userData, DateTime.Now);
             ShowResult(defPriceHandle < 1 ? "The creation is not successful : \n" + defPriceHandle.ToString() : "Successful \n" 
-                + "You have created the frame number : \n" + defPriceHandle.ToString(), defPriceHandle >= 1); if (defPriceHandle < 1);
+                + "You have created the handle number : \n" + defPriceHandle.ToString(), defPriceHandle >= 1); if (defPriceHandle < 1);
         }     
+
         private void btnGetDefPrice_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
@@ -306,6 +398,7 @@ namespace MagoCloudApi
 
         private void btnDispose_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
@@ -327,6 +420,7 @@ namespace MagoCloudApi
        
         private void buttonDSGetData_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
@@ -345,11 +439,12 @@ namespace MagoCloudApi
                 labelDataUrl.Text = UrlSManager.DataServiceUrl;
             }
         }
+
         private bool AreParametersOk()
         {
             if
             (
-                string.IsNullOrEmpty(text_http.Text) ||
+                //string.IsNullOrEmpty(text_http.Text) ||
                 string.IsNullOrEmpty(text_user.Text) ||
                 string.IsNullOrEmpty(text_pwd.Text) ||
                 string.IsNullOrEmpty(text_subscription.Text) ||
@@ -365,6 +460,7 @@ namespace MagoCloudApi
         }
         private void buttonDSVersion_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
@@ -374,25 +470,27 @@ namespace MagoCloudApi
             ShowResult(contentBody != null ? "Get Version Xml:\n" + contentBody : "Unable to retrieve Get Version\n" + contentBody, contentBody != null);
         }
 
+
           ////////////////////////////////
          ///// REPORTINGSERVICE BTN /////
         ////////////////////////////////
-
         private void btnGetRsItems_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            manager.rsManager.RetriveRsUrl(manager.authenticationManager.userData, DateTime.Now);
+            //manager.rsManager.RetriveRsUrl(manager.authenticationManager.userData, DateTime.Now);
             string contentBody= manager.rsManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, 0);
             ShowResult(contentBody != null && contentBody != "" ? contentBody : "Unable to retrieve items\n" + contentBody, contentBody != null && contentBody != "");
-            labelRsUrl.Text = UrlSManager.DataServiceUrl;
+            labelRsUrl.Text = UrlSManager.ReportingServiceUrl;
         }
 
         private void btnGetRsCustomers_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
@@ -402,9 +500,9 @@ namespace MagoCloudApi
             ShowResult(contentBody != null && contentBody != "" ? "GetRsCustomer\n" + contentBody : "Unable to retrieve customer\n" + contentBody, contentBody != null && contentBody != "");
         }
 
-          ///////////////////////
-         /////   DMS BTN  //////
-        ///////////////////////
+        //////////////////////
+        /////  DMS BTN  //////
+        //////////////////////
         private void buttonMicrHome_Click(object sender, EventArgs e)
         {
             if (!manager.authenticationManager.IsLogged())
@@ -428,11 +526,37 @@ namespace MagoCloudApi
             ShowResult(contentBody != null ? "DmsSetting: \n "+ contentBody : "Error retrieving DmsSetting", contentBody != null);
         }
 
-        private void cbxSelectionType_SelectedIndexChanged(object sender, EventArgs e)
+        ///////////////////////
+        //// BTN SOURCECODE  //
+        //////////////////////
+        private void linkHelpTb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            string contentBody = manager.exampleManager.ExampleTb();
+            OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\TbServerManager.cs");
+            ////ShowCode(contentBody);
+        }
 
+        private void linkCodeSourceWb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WebMethodsManager.cs");
+        }
+
+        private void linkHelpDataService_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\DataServiceManager.cs");
+        }
+
+        private void linkHelpReportingService_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\RsManager.cs");
+        }
+
+        private void linkHelpDMS_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\DmsManager.cs");
         }
 
        
     }
+
 }

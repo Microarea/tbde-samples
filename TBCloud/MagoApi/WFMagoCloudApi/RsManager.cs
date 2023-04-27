@@ -47,8 +47,10 @@ namespace MagoCloudApi
             {
                 try
                 {
-                    if (UrlSManager.DataServiceUrl == "") UrlSManager.DataServiceUrl = RetriveRsUrl(userData, DateTime.Now);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DataServiceUrl + "/rs/xmldata");
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.ReportingServiceUrl == "") UrlSManager.ReportingServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/REPORTSERVICE");
+                    //if (UrlSManager.ReportingServiceUrl == "") UrlSManager.ReportingServiceUrl = RetriveRsUrl(userData, DateTime.Now);
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.ReportingServiceUrl + "/rs/xmldata");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
                     var server_info = JsonConvert.SerializeObject(new
                     {

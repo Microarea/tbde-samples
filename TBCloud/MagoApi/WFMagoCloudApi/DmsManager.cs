@@ -36,7 +36,6 @@ namespace MagoCloudApi
                     
                 }
                 return UrlSManager.DataServiceUrl = resultVariable;
-
             }
         }
         internal string GetHome(UserData userData)
@@ -45,9 +44,10 @@ namespace MagoCloudApi
             {
                 try
                 {
-                    if (UrlSManager.DmsServiceUrl == "") UrlSManager.DmsServiceUrl = RetriveDmsUrl(userData, DateTime.Now);
-                    UrlSManager.DmsServiceUrl = RetriveDmsUrl(userData, DateTime.Now);
-                    
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.DmsServiceUrl == "") UrlSManager.DmsServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MICRODMS");
+                    //if (UrlSManager.DmsServiceUrl == "") UrlSManager.DmsServiceUrl = RetriveDmsUrl(userData, DateTime.Now);
+
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DmsServiceUrl + "/dms/api/");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -79,6 +79,7 @@ namespace MagoCloudApi
             {
                 try
                 {
+                    UrlSManager.DmsServiceUrl = RetriveDmsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmsServiceUrl + "/dms/api/dmssettings/get/");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;

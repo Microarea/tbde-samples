@@ -17,10 +17,9 @@ namespace MagoCloudApi
         ////////////////////////////////////
         public string RetriveDataServiceUrl(UserData userData, DateTime operationDate)
         {
-
             using (HttpClient client = new HttpClient())
             {
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/REPORTSERVICE");
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/DATASERVICE");
                 MagoCloudApiManager.PrepareHeaders(request, userData);
                 HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                 string responseBody = response.Content.ReadAsStringAsync().Result;
@@ -29,7 +28,6 @@ namespace MagoCloudApi
                 if (jsonObject != null)
                 {
                     resultVariable = jsonObject["Content"]?.ToString();
-                   
                 }
                 return UrlSManager.DataServiceUrl = resultVariable;
             }
@@ -48,8 +46,9 @@ namespace MagoCloudApi
             {
                 try
                 {
-                    if (UrlSManager.DataServiceUrl == "") UrlSManager.DataServiceUrl = RetriveDataServiceUrl(userData, DateTime.Now);
-                    UrlSManager.DataServiceUrl = RetriveDataServiceUrl(userData, DateTime.Now);
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.DataServiceUrl == "") UrlSManager.DataServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/DATASERVICE");
+                    //if (UrlSManager.DataServiceUrl == "") UrlSManager.DataServiceUrl = RetriveDataServiceUrl(userData, DateTime.Now);
                     StringBuilder builder = new StringBuilder();
                     string GetUrl = UrlSManager.DataServiceUrl + "/data-service/getdata/" + nameSpace + '/' + selectionType;
                     //if (reloadCaches)
@@ -87,36 +86,37 @@ namespace MagoCloudApi
         }
        
         internal string GetVersion(UserData userData)
+        {
+            using (HttpClient client = new HttpClient())
             {
-                using (HttpClient client = new HttpClient())
+                try
                 {
-                    try
-                    {
-                        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DataServiceUrl + "/data-service/api/assemblyversion");
-                        MagoCloudApiManager.PrepareHeaders(request, userData);
-                        HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                    UrlSManager.DataServiceUrl = RetriveDataServiceUrl(userData, DateTime.Now);
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DataServiceUrl + "/data-service/api/assemblyversion");
+                    MagoCloudApiManager.PrepareHeaders(request, userData);
+                    HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
-                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        string responseBody = response.Content.ReadAsStringAsync().Result;
+                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
+                        if (jsonObject != null)
                         {
-                            string responseBody = response.Content.ReadAsStringAsync().Result;
-                            JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
-                            if (jsonObject != null)
-                            {
-                                return jsonObject.ToString();
-                            }
-                            else
-                                MessageBox.Show("data is no longer valid.");
+                            return jsonObject.ToString();
                         }
                         else
-                            MessageBox.Show("Unable to retrive the data.");
+                            MessageBox.Show("data is no longer valid.");
                     }
-                    catch (HttpRequestException e)
-                    {
-                        Console.WriteLine("\nException Caught!");
-                        Console.WriteLine("Message :{0} ", e.Message);
-                    }
-                    return string.Empty;
+                    else
+                        MessageBox.Show("Unable to retrive the data.");
                 }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("\nException Caught!");
+                    Console.WriteLine("Message :{0} ", e.Message);
+                }
+                return string.Empty;
             }
+        }
     }
 }
