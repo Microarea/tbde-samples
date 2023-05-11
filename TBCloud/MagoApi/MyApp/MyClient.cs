@@ -225,6 +225,12 @@ namespace MyApp
             ITbResponse countResponse = magocloudClient.MyMagoStudio?.Count(userData, query).Result;
             ITbResponse selectResponse = magocloudClient.MyMagoStudio?.Select(userData, query).Result;
 
+            //////////////////////////////////////////////////////////////////////
+            /// NUMBERER APIs
+            /// get next id on inventory entries, but it does not consume
+            ITbResponse idResponse = magocloudClient.MyMagoStudio?.GetNextID(userData, "3801093").Result;
+            //idResponse = magocloudClient.MyMagoStudio?.GetNextID(userData, "MyMagoStudio.Tools.DynamicDocuments.MyDoc.Id").Result;
+
 
             //////////////////////////////////////////////////////////////////////
             /// TABLE UPDATE APIs
@@ -252,9 +258,6 @@ namespace MyApp
             // delete operation
             crudData.Data = null;
             bool? bDeleted = magocloudClient.MyMagoStudio?.Delete(userData, crudData).Result;
-
-
-
         }
 
 
