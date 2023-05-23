@@ -17,10 +17,22 @@ using static MspzComponent.OrangePanel;
 using System.Diagnostics;
 using System.Security.Policy;
 using System.Reflection;
+using System.Web.UI.WebControls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Runtime.Remoting.Contexts;
+using Microsoft.VisualStudio.TextManager.Interop;
+using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+using Application = System.Net.Mime.MediaTypeNames.Application;
+using EnvDTE;
+using Microsoft.VisualStudio.OLE.Interop;
+using EnvDTE90;
+using System.Web.Caching;
+using System.Linq;
 
 namespace MagoCloudApi
 {
-    public partial class MagoCloudApi : Form 
+    public partial class MagoCloudApi : Form
     {
         MagoCloudApiManager manager = new MagoCloudApiManager();
 
@@ -35,21 +47,31 @@ namespace MagoCloudApi
            int nHeightEllipse
            );
 
+        internal string FileName { get; set; }
+        public object docinfo { get; private set; }
 
+        bool mousedown;
+        public long defPriceHandle = 0;
+        public System.Diagnostics.Process p = null;
+        private string folderPath = @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\Docs";
+        private string inFileName;
+        private string outFileName;
         public MagoCloudApi()
         {
             InitializeComponent();
-           
+
+            manager.tbServerManager.folderPath = folderPath;
+
+
             this.FormBorderStyle = FormBorderStyle.None;
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             tabNavigation.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(4, 0, tabNavigation.Width, tabNavigation.Height, 0, 20));
             tabNavigation.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabNavigation.DrawItem += tabNavigation_DrawItem;
             this.tabNavigation.TabPages.Remove(this.tabMSH);
-
             this.cbxSelectionType.SelectedIndex = 0;
-          
-            labelTbUrl.Text = "ServiceUrl:"; 
+
+            labelTbUrl.Text = "ServiceUrl:";
             labelDmsUrl.Text = "ServiceUrl:";
             labelDataUrl.Text = "ServiceUrl:";
             labelWbUrl.Text = "ServiceUrl:";
@@ -66,12 +88,11 @@ namespace MagoCloudApi
                                  "the current version of the micro-service to be returned.";
 
             //////////// Label descriptive MAGIC LINK GETXMLDATA (TbServerManager)
-            labelMagicLinkGet.Text = "The TbServerGate microservice exposes the possibility to menage\n" +
-                                     "business objects based on MagicLink desktop technology.\n" +
-                                     "GetXmlData: retrives the entire business object data defined in the\n" +
-                                     "export profile.\n" +
-                                     "SetXmlData: allows the data of a business object to be\n" +
-                                     "written to MagoCloud using the Xml payload.";
+            labelMagicLinkGet.Text = "The TbServerGate microservice exposes the possibility to menage business objects\n" +
+                                     "based on MagicLink desktop technology.";
+            //"- GetXmlData: retrives the entire business object data defined in the export profile.\n" +
+            //"- SetXmlData: allows the data of a business object to be written to MagoCloud\n" +
+            //"using the Xml payload.";
 
             //////////// Label descriptive REPORTING SERVICE (RsManager)
             labelRS.Text = "The ReportingServices microservice exposes the possibility\n" +
@@ -88,12 +109,29 @@ namespace MagoCloudApi
                             "Is a solution for digital document management.";
 
         }
-        bool  mousedown;
-        public long defPriceHandle = 0;
-        public Process p = null;
+        private void MagoCloudApi_Load(object sender, EventArgs e)
+        {
+            // Assegna il testo del tooltip al controllo Tooltip
+            System.Windows.Forms.ToolTip myToolTip = new System.Windows.Forms.ToolTip();
+            myToolTip.SetToolTip(BtnRefDoc, "Refresh folder");
+            myToolTip.SetToolTip(BtnOpenFolder, "Open folder");
+            myToolTip.SetToolTip(BtnQuestionCall, "Questions about calls?");
+
+            cbxApplication.Items.Add("Application");
+            cbxApplication.SelectedIndex = 0;
+
+            cbxModule.Items.Add("Module");
+            cbxModule.SelectedIndex = 0;
+
+            cbxDocReport.Items.Add("Document");
+            cbxDocReport.SelectedIndex = 0;
+
+            cbxProfile.Items.Add("Profile");
+            cbxProfile.SelectedIndex = 0;
+            //PopulateComboBox();
+        }
 
         //////////// customize draggable
-
         private void panelTitleForm_MouseDown(object sender, MouseEventArgs e)
         {
             mousedown = true;
@@ -135,10 +173,10 @@ namespace MagoCloudApi
             e.Graphics.FillRectangle(brush, e.Bounds);
             Rectangle paddedBounds = e.Bounds;
             paddedBounds = new Rectangle(paddedBounds.X, paddedBounds.Y + 5, paddedBounds.Width, paddedBounds.Height - 4);
-            Font tabFont = new Font("Century Gothic", 10, FontStyle.Bold);
+            Font tabFont = new Font("Century Gothic", 9, FontStyle.Bold);
             RectangleF tf =
-                new RectangleF(paddedBounds.X + paddedBounds.Width + 354,
-                paddedBounds.Y - 1, this.Width - (paddedBounds.X + paddedBounds.Width) -1 , paddedBounds.Height + 11);
+                new RectangleF(paddedBounds.X + paddedBounds.Width + 428,
+                paddedBounds.Y - 1, this.Width - (paddedBounds.X + paddedBounds.Width) - 1, paddedBounds.Height + 11);
             Brush b;
             b = new SolidBrush(Color.FromArgb(22, 118, 186));
             e.Graphics.DrawString(tabName, tabFont, tabBrush, paddedBounds, stringFormat);
@@ -152,11 +190,11 @@ namespace MagoCloudApi
             //Process.Start(vsPath, "/edit " + args);  
             //Process p = new Process();
             /* p.StartInfo.FileName = solutionPath;*/
-           
+
             if (p == null)
             {
-                p = Process.Start(solutionPath, filePath);
-                Thread.Sleep(2000);
+                p = System.Diagnostics.Process.Start(solutionPath, filePath);
+                System.Threading.Thread.Sleep(2000);
                 p.StartInfo.FileName = filePath;
                 p.Start();
             }
@@ -180,11 +218,107 @@ namespace MagoCloudApi
         {
             this.WindowState = FormWindowState.Minimized;
         }
+        private async Task FillApplications()
+        {
+            try
+            {
+                List<string> applications = await manager.tbFsServiceManager.GetApplications(manager.authenticationManager.userData, DateTime.Now);
+                if (applications == null)
+                    return;
+
+                cbxApplication.DataSource = applications;
+                if (applications.Count > 0)
+
+                    cbxApplication.SelectedIndex = 0;
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private async Task FillModules(string application)
+        {
+
+            List<string> modules = await manager.tbFsServiceManager.GetModules(manager.authenticationManager.userData, DateTime.Now, application);
+            if (modules == null)
+                return;
+
+            cbxModule.DataSource = modules;
+            if (modules.Count > 0)
+                cbxModule.SelectedIndex = 0;
+        }
+
+        private async Task FillDocuments(string application, string module)
+        {
+            (List<string> folderNames, List<string> folderObjectsNS) = await manager.tbFsServiceManager.GetDocumentsFolders(manager.authenticationManager.userData, DateTime.Now, application, module);
+
+            if (folderNames == null)
+                return;
+
+            cbxDocReport.DataSource = folderNames; // Remove the DataSource before editing the collection of items
+            manager.tbFsServiceManager.DocumentNamespace = folderObjectsNS;
+            if (folderNames.Count > 0)
+                cbxDocReport.SelectedIndex = 0;
+        }
+
+        private async Task FillProfiles(string application, string module, string folderName)
+        {
+            List<string> profile = await manager.tbFsServiceManager.GetProfiles(manager.authenticationManager.userData, DateTime.Now, application, module, folderName);
+            if (profile == null)
+                return;
+            cbxProfile.DataSource = profile; // Rimuovi il DataSource prima di modificare la raccolta degli elementi
+
+            if (profile.Count > 0)
+                cbxProfile.SelectedIndex = 0;
+        }
+        //private void SetDocumentNamespace()
+        //{
+        //    if (cbxDocReport.SelectedItem == manager.tbFsServiceManager.DocumentNamespace)
+        //        return;
+
+        //    string profile = manager.tbFsServiceManager.selProfile;
+        //    string docNS = manager.tbFsServiceManager.CurrentDocNS;
+
+        //    //verifico che non ci sia già document. davanti al namespace, così posso aggiungerlo
+        //    if (manager.tbFsServiceManager.CurrentDocNS.IndexOf(string.Format("Document.{0}", manager.tbFsServiceManager.selApp), StringComparison.InvariantCultureIgnoreCase) < 0) ;
+        //    docNS = string.Format("Document.{0}", manager.tbFsServiceManager.CurrentDocNS);
+        //}
+        
+
+        private string WriteParameters()
+        {
+            string maxs = string.Empty;
+            maxs = string.Format("{0}{1}/{2}/{3}/{4}/{5}.xsd",
+                   manager.tbFsServiceManager.DefaultUri,
+                   manager.tbFsServiceManager.selApp,
+                   manager.tbFsServiceManager.selMod,
+                   manager.tbFsServiceManager.selDoc,
+                   manager.tbFsServiceManager.DefaultUser,
+                   manager.tbFsServiceManager.selProfile);
+
+            string application = manager.tbFsServiceManager.selApp;
+            string module = manager.tbFsServiceManager.selMod;
+            string docName = manager.tbFsServiceManager.selDoc;
+            string profile = manager.tbFsServiceManager.selProfile;
+            string docNS = manager.tbFsServiceManager.CurrentDocNS;
+            string defDocParam = manager.tbFsServiceManager.DefaultDocumentParameters;
+            string Doc = "Document.";
+            
+            string content = string.Empty;
+            if (profile != null) 
+            content = string.Format(defDocParam, docName, Doc+docNS, profile, maxs).Replace("><", ">\r\n<");
+            return content;
+        }
+
+
         private void button_Login_Click(object sender, System.EventArgs e)
         {
+            bool bok = false;
             if (AreParametersOk())
-                manager.authenticationManager.DoLogin(text_http.Text, text_user.Text, text_pwd.Text, text_subscription.Text, text_producer.Text, text_app.Text);
+                bok = manager.authenticationManager.DoLogin(text_http.Text, text_user.Text, text_pwd.Text, text_subscription.Text, text_producer.Text, text_app.Text);
+            if (bok) _ = FillApplications();
         }
+
         private void button_Token_Click(object sender, EventArgs e)
         {
             if (manager.authenticationManager.IsLogged())
@@ -206,15 +340,15 @@ namespace MagoCloudApi
         private void DoExit()
         {
             manager.authenticationManager.DoLogout(text_http.Text);
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         ////////////////////////
         ///// RESULT WINDOW ////
         ////////////////////////
-        private void ShowResult(string content, bool bOk = true, bool bBlue=false)
+        private void ShowResult(string content, bool bOk = true, bool bBlue = false, bool bHelp = false)
         {
-            Form form = new WindowsFormsResult.FormResult(content, bOk, bBlue);
+            Form form = new WindowsFormsResult.FormResult(content, bOk, bBlue, bHelp);
             form.ShowDialog(this);
             Cursor = Cursors.Default;
         }
@@ -222,15 +356,143 @@ namespace MagoCloudApi
         //////////////////////
         ///// CODE WINDOW ////
         //////////////////////
-        private void ShowCode(string content, bool bOk = false, bool bBlue = true, Image image =null)
+        private void ShowCode(string content, bool bOk = false, bool bBlue = true)
         {
-            Form form = new WindowsFormsResult.FormResult(content, bOk, bBlue, image);
+            Form form = new WindowsFormsResult.FormResult(content, bOk, bBlue);
             form.ShowDialog(this);
         }
 
         ////////////////////////
         ///// TBSERVER BTN /////
         ////////////////////////
+        private void BtnQuestionCall_Click(object sender, EventArgs e)
+        {
+            string content =
+            "- GetXmlParams: retrieves the whole list of parameters useful for performing the GetXmlData\n" +
+            "- GetXmlData: retrives the entire business object data defined in the export profile.\n" +
+            "- SetXmlData: allows the data of a business object to be written to MagoCloud using the Xml payload.";
+            ShowResult(content, false, true, true);
+        }
+        private void BtnOpenFolder_Click(object sender, EventArgs e)
+        {
+
+            System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName(folderPath);
+            foreach (System.Diagnostics.Process process in processes)
+            {
+                if (process.MainWindowTitle.Contains(folderPath))
+                {
+                    MessageBox.Show("La cartella è già aperta", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            System.Diagnostics.Process.Start(folderPath);
+        }
+
+        //___________________________________________________________
+        private async void cbxApplication_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            manager.tbFsServiceManager.selApp = (cbxApplication.SelectedItem == null) ? string.Empty : cbxApplication.SelectedItem.ToString();
+
+            cbxModule.DataSource = null;
+            cbxDocReport.DataSource = null;
+            cbxProfile.DataSource = null;
+            if (manager.tbFsServiceManager.selApp != "Application")
+                await FillModules(manager.tbFsServiceManager.selApp);
+
+        }
+
+        private async void cbxModule_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            manager.tbFsServiceManager.selMod = (cbxModule.SelectedItem == null) ? string.Empty : cbxModule.SelectedItem.ToString();
+            cbxDocReport.DataSource = null;
+            cbxProfile.DataSource = null;
+
+            if (manager.tbFsServiceManager.selMod != "Module")
+            {
+                string application = manager.tbFsServiceManager.selApp;
+                string module = manager.tbFsServiceManager.selMod;
+
+                await FillDocuments(application, module);
+
+            }
+        }
+
+        private async void cbxDocReport_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            manager.tbFsServiceManager.selDoc = (cbxDocReport.SelectedItem == null) ? string.Empty : cbxDocReport.SelectedItem.ToString();
+            cbxProfile.DataSource = null;
+
+            if (manager.tbFsServiceManager.selDoc != "Document")
+            {
+                string application = manager.tbFsServiceManager.selApp;
+                string module = manager.tbFsServiceManager.selMod;
+                string folderName = manager.tbFsServiceManager.selDoc;
+                if (manager.tbFsServiceManager.DocumentNamespace.Count > 0 && cbxDocReport.SelectedIndex > -1)
+                {
+                    manager.tbFsServiceManager.CurrentDocNS = manager.tbFsServiceManager.DocumentNamespace[cbxDocReport.SelectedIndex];
+                }
+                await FillProfiles(application, module, folderName);
+            }
+        }
+
+        private void cbxProfile_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            manager.tbFsServiceManager.selProfile = (cbxProfile.SelectedItem == null) ? string.Empty : cbxProfile.SelectedItem.ToString();
+
+            if (manager.tbFsServiceManager.selProfile != "Profile")
+            {
+                manager.tbFsServiceManager.selProfile = (cbxProfile.SelectedItem == null) ? string.Empty : cbxProfile.SelectedItem.ToString();
+            }
+        }
+
+
+        private void BtnRefDoc_Click(object sender, EventArgs e)
+        {
+            BtnRefDoc.ForeColor = Color.FromArgb(65, 192, 146);
+        }
+        //private void PopulateComboBox()
+        //{
+
+        //    DirectoryInfo directoryInfo = new DirectoryInfo(folderPath);
+
+        //    // Crea una lista di file che contengono "GetParams" nel nome
+        //    FileInfo[] files1 = directoryInfo.GetFiles("*GetParams*");
+
+        //    // Pulisci la combobox
+        //    cbxChooseParamsProfile.Items.Clear();
+
+        //    // Aggiungi i nomi dei file alla prima combobox
+        //    foreach (FileInfo file in files1)
+        //    {
+        //        cbxChooseParamsProfile.Items.Add(file.Name);
+        //    }
+
+        //    // Crea una lista di file che finiscano con "Get." 
+        //    FileInfo[] files2 = directoryInfo.GetFiles("*Get.*");
+
+        //    // Pulisci la combobox
+        //    cbxChooseGetProfile.Items.Clear();
+
+        //    // Aggiungi i nomi dei file alla seconda combobox
+        //    foreach (FileInfo file in files2)
+        //    {
+        //        cbxChooseGetProfile.Items.Add(file.Name);
+        //    }
+
+        //    // Crea una lista di file che contengono "Set" nel nome
+        //    FileInfo[] files3 = directoryInfo.GetFiles("*Set*");
+
+        //    // Pulisci la combobox
+        //    cbxChooseSetProfile.Items.Clear();
+
+        //    // Aggiungi i nomi dei file alla terza combobox
+        //    foreach (FileInfo file in files3)
+        //    {
+        //        cbxChooseSetProfile.Items.Add(file.Name);
+        //    }
+
+        //}
 
         private async void BtnGetParams_Click(object sender, EventArgs e)
         {
@@ -240,46 +502,57 @@ namespace MagoCloudApi
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            //string fileName = Path.Combine(Application.StartupPath, "CustomersGetParams.xml");
-            string fileName = Path.Combine(Application.StartupPath, "NewCurrGetParams.xml");
-
-            (bool loaded, string fileContent) = manager.tbServerManager.LoadMagicLinkFile(fileName);
-            if (!loaded)
+            //Check if a file is selected in the ComboBox
+            if (cbxProfile.SelectedItem == null)
             {
-                MessageBox.Show(fileContent);
+                MessageBox.Show("Please select a file from the list!");
                 return;
             }
+            string fileContent = WriteParameters();
+            if (fileContent == string.Empty)
+                return;
+
             string contentBody = await manager.tbServerManager.GetXmlParams(manager.authenticationManager.userData, DateTime.Now, fileContent);
+            labelCallTbResult.Text = "Result GetXmlParams:";
+
+            TextBoxDocument.Text = contentBody;
+            Cursor = Cursors.Default;
             labelTbUrl.Text = UrlSManager.TbServerUrl;
-            ShowResult(contentBody != null ? "GetXMLParams\n" + contentBody : "Unable to retrieve GetXMLParams\n" + contentBody, contentBody != null);
         }
-        private async void buttonGetTb_Click(object sender, EventArgs e)
+
+        private void buttonGetTb_Click(object sender, EventArgs e)
         {
-            Cursor= Cursors.WaitCursor;
+            Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            //string fileName = Path.Combine(Application.StartupPath, "CustomersGet.xml");
-            string fileName = Path.Combine(Application.StartupPath, "NewCurrGet.xml");
-
-
-            (bool loaded, string fileContent) = manager.tbServerManager.LoadMagicLinkFile(fileName);
-            if (!loaded)
+            // Check if a file is selected in the ComboBox
+            if (cbxProfile.SelectedItem == null)
             {
-                MessageBox.Show(fileContent);
+                MessageBox.Show("Please select a file from the list!");
                 return;
             }
-            string contentBody = await manager.tbServerManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
-            
-            ShowResult(contentBody != null ? "Get XML:\n" + contentBody : "Unable to retrieve Get XML\n" + contentBody, contentBody != null);
+            string fileContent = TextBoxDocument.Text;
+            if (fileContent == string.Empty)
+                return;
+          
+            TextBoxDocument.Text = fileContent;
+            string modifiedXml = TextBoxDocument.Text;
+
+            string contentBody = manager.tbServerManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, modifiedXml);
+            labelCallTbResult.Text = "Result GetXmlData:";
+            TextBoxDocument.Text = contentBody;
+            Cursor = Cursors.Default;
             labelTbUrl.Text = UrlSManager.TbServerUrl;
         }
 
+
+
         private void LabelbuttonGetParam_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string fileName = Path.Combine(Application.StartupPath, "CustomersSet.xml");
+            string fileName = Path.Combine(System.Windows.Forms.Application.StartupPath, "CustomersSet.xml");
 
             (bool loaded, string fileContent) = manager.tbServerManager.LoadMagicLinkFile(fileName);
 
@@ -293,7 +566,8 @@ namespace MagoCloudApi
             ShowResult(doc != null ? "GetParam:\n" + doc : "Unable to retrieve SetParam\n" + doc, doc != null);
         }
 
-        private void buttonSetTb_Click(object sender, EventArgs e)
+
+        private  void buttonSetTb_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
@@ -301,24 +575,29 @@ namespace MagoCloudApi
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            //string fileName = Path.Combine(Application.StartupPath, "Customers1.xml");
-            string fileName = Path.Combine(Application.StartupPath, "NewCurrSet.xml");
-
-
-            (bool loaded, string fileContent) = manager.tbServerManager.LoadMagicLinkFile(fileName);
-            if (!loaded)
+            // Check if a file is selected in the ComboBox
+            if (cbxProfile.SelectedItem == null)
             {
-                MessageBox.Show(fileContent);
+                MessageBox.Show("Please select a file from the list!");
                 return;
             }
-            string contentBody = manager.tbServerManager.SetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
-            labelTbUrl.Text = UrlSManager.TbServerUrl;
-            ShowResult(contentBody != null ? "Set XML\n" + contentBody : "Unable to retrieve Set XML\n" + contentBody, contentBody != null);
-        }
+           
+            string fileContent = TextBoxDocument.Text;
+            if (fileContent == string.Empty)
+                return;
+          
+            TextBoxDocument.Text = fileContent;
+            string modifiedXml = TextBoxDocument.Text; // Ottieni il contenuto modificato dalla RichTextBox
+            string contentBody = manager.tbServerManager.SetXmlData(manager.authenticationManager.userData, DateTime.Now, modifiedXml);
+            labelCallTbResult.Text = "Result SetXmlData:";
 
+            TextBoxDocument.Text = contentBody;
+            Cursor = Cursors.Default;
+            labelTbUrl.Text = UrlSManager.TbServerUrl;
+        }
         private void LabelbuttonSetParam_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string fileName = Path.Combine(Application.StartupPath, "Customers1.xml");
+            string fileName = Path.Combine(System.Windows.Forms.Application.StartupPath, "Customers1.xml");
 
             (bool loaded, string fileContent) = manager.tbServerManager.LoadMagicLinkFile(fileName);
 
@@ -330,7 +609,7 @@ namespace MagoCloudApi
             XDocument doc = XDocument.Parse(fileContent);
             ShowResult(doc != null ? "SetParam:\n" + doc : "Unable to retrieve SetParam\n" + doc, doc != null);
         }
-       
+
         //////////////////////////
         ///// WEBMETHODS BTN /////
         //////////////////////////
@@ -345,9 +624,9 @@ namespace MagoCloudApi
                 return;
             }
             labelWbUrl.Text = manager.authenticationManager.userData.TbUrl.ToString();
-            DateTime now = new DateTime(2022,12,31);
+            DateTime now = new DateTime(2022, 12, 31);
             string contentBody = manager.webMethodsManager.CurrentOpeningDate(manager.authenticationManager.userData, now);
-           
+
             ShowResult(contentBody != null ? "CurrentOpeningDate\n" + contentBody : "Unable to retrieve ClosingDate\n" + contentBody, contentBody != null);
             labelWbUrl.Text = UrlSManager.TbServerUrl;
         }
@@ -360,12 +639,11 @@ namespace MagoCloudApi
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            string contentBody = manager.webMethodsManager.ClosingDateFiscalYear(manager.authenticationManager.userData,DateTime.Now);
-           
-            ShowResult(contentBody != null ? "ClosingDate\n"+ contentBody : "Unable to retrieve ClosingDate\n" + contentBody, contentBody != null);
+            string contentBody = manager.webMethodsManager.ClosingDateFiscalYear(manager.authenticationManager.userData, DateTime.Now);
+
+            ShowResult(contentBody != null ? "ClosingDate\n" + contentBody : "Unable to retrieve ClosingDate\n" + contentBody, contentBody != null);
         }
-         
-        ///// DEFPRICE BTN ///////
+        
         private void btnCreatePx_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
@@ -375,9 +653,9 @@ namespace MagoCloudApi
                 return;
             }
             defPriceHandle = manager.webMethodsManager.DefaultSalesPricesCreate(manager.authenticationManager.userData, DateTime.Now);
-            ShowResult(defPriceHandle < 1 ? "The creation is not successful : \n" + defPriceHandle.ToString() : "Successful \n" 
-                + "You have created the handle number : \n" + defPriceHandle.ToString(), defPriceHandle >= 1); if (defPriceHandle < 1);
-        }     
+            ShowResult(defPriceHandle < 1 ? "The creation is not successful : \n" + defPriceHandle.ToString() : "Successful \n"
+                + "You have created the handle number : \n" + defPriceHandle.ToString(), defPriceHandle >= 1); if (defPriceHandle < 1) ;
+        }
 
         private void btnGetDefPrice_Click(object sender, EventArgs e)
         {
@@ -410,14 +688,15 @@ namespace MagoCloudApi
             if (handle == 0)
             {
                 ShowResult("Impossible to cancel. No SalesPrices created.", false);
-            }else
-            ShowResult(res, contentBody);
+            }
+            else
+                ShowResult(res, contentBody);
         }
 
+        ////////////////////////////////
+        /////  DATA SERVICE BTN   /////
         ///////////////////////////////
-        ////// DATA SERVICE BTN ///////
-        ///////////////////////////////
-       
+
         private void buttonDSGetData_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
@@ -434,8 +713,8 @@ namespace MagoCloudApi
                 else if (cbxSelectionType.SelectedItem != null && string.Compare(cbxSelectionType.SelectedItem.ToString(), "MyQry", true) == 0)
                     selectionType = "MyQry";
                 bool bOk = false;
-                string contentBody = "DataServiceGetData: " + selectionType +"\n"+ manager.dataServiceManager.GetData(manager.authenticationManager.userData, selectionType, textBoxNameSpace.Text, ref bOk);
-                ShowResult(contentBody,bOk);
+                string contentBody = "DataServiceGetData: " + selectionType + "\n" + manager.dataServiceManager.GetData(manager.authenticationManager.userData, selectionType, textBoxNameSpace.Text, ref bOk);
+                ShowResult(contentBody, bOk);
                 labelDataUrl.Text = UrlSManager.DataServiceUrl;
             }
         }
@@ -449,7 +728,7 @@ namespace MagoCloudApi
                 string.IsNullOrEmpty(text_pwd.Text) ||
                 string.IsNullOrEmpty(text_subscription.Text) ||
                 string.IsNullOrEmpty(text_producer.Text) ||
-                string.IsNullOrEmpty(text_app.Text)||
+                string.IsNullOrEmpty(text_app.Text) ||
                 string.IsNullOrEmpty(textBoxNameSpace.Text)
             )
             {
@@ -471,8 +750,8 @@ namespace MagoCloudApi
         }
 
 
-          ////////////////////////////////
-         ///// REPORTINGSERVICE BTN /////
+        ////////////////////////////////
+        ///// REPORTINGSERVICE BTN /////
         ////////////////////////////////
         private void btnGetRsItems_Click(object sender, EventArgs e)
         {
@@ -482,8 +761,7 @@ namespace MagoCloudApi
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            //manager.rsManager.RetriveRsUrl(manager.authenticationManager.userData, DateTime.Now);
-            string contentBody= manager.rsManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, 0);
+            string contentBody = manager.rsManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, 0);
             ShowResult(contentBody != null && contentBody != "" ? contentBody : "Unable to retrieve items\n" + contentBody, contentBody != null && contentBody != "");
             labelRsUrl.Text = UrlSManager.ReportingServiceUrl;
         }
@@ -523,17 +801,16 @@ namespace MagoCloudApi
                 return;
             }
             string contentBody = manager.dmsManager.PostDmsSetting(manager.authenticationManager.userData);
-            ShowResult(contentBody != null ? "DmsSetting: \n "+ contentBody : "Error retrieving DmsSetting", contentBody != null);
+            ShowResult(contentBody != null ? "DmsSetting: \n " + contentBody : "Error retrieving DmsSetting", contentBody != null);
         }
 
         ///////////////////////
-        //// BTN SOURCECODE  //
-        //////////////////////
+        //// BTN SOURCECODE ///
+        ///////////////////////
         private void linkHelpTb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string contentBody = manager.exampleManager.ExampleTb();
             OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\TbServerManager.cs");
-            ////ShowCode(contentBody);
         }
 
         private void linkCodeSourceWb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -556,7 +833,9 @@ namespace MagoCloudApi
             OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\DmsManager.cs");
         }
 
+        private bool isFolderOpened = false;
+
+      
        
     }
-
 }

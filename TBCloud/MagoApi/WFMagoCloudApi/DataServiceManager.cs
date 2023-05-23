@@ -11,27 +11,29 @@ namespace MagoCloudApi
 {
     class DataServiceManager
     {
+        ////// RetriveDataServiceUrl ///////
+
         //Uri RsUrl = new Uri("https://develop.mago.cloud/13/be");
         ////////////////////////////////////
         ////// RetriveDataServiceUrl ///////
         ////////////////////////////////////
-        public string RetriveDataServiceUrl(UserData userData, DateTime operationDate)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/DATASERVICE");
-                MagoCloudApiManager.PrepareHeaders(request, userData);
-                HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-                string responseBody = response.Content.ReadAsStringAsync().Result;
-                JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
-                string resultVariable = "";
-                if (jsonObject != null)
-                {
-                    resultVariable = jsonObject["Content"]?.ToString();
-                }
-                return UrlSManager.DataServiceUrl = resultVariable;
-            }
-        }
+        //public string RetriveDataServiceUrl(UserData userData, DateTime operationDate)
+        //{
+        //     using (HttpClient client = new HttpClient())
+        //     {
+        //         HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/DATASERVICE");
+        //         MagoCloudApiManager.PrepareHeaders(request, userData);
+        //         HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+        //         string responseBody = response.Content.ReadAsStringAsync().Result;
+        //         JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
+        //         string resultVariable = "";
+        //         if (jsonObject != null)
+        //         {
+        //             resultVariable = jsonObject["Content"]?.ToString();
+        //         }
+        //         return UrlSManager.DataServiceUrl = resultVariable;
+        //     }
+        //}
         public string PrepareDSParam(HttpRequestMessage request)
         {
             var functionParams = JsonConvert.SerializeObject(new
@@ -91,7 +93,8 @@ namespace MagoCloudApi
             {
                 try
                 {
-                    UrlSManager.DataServiceUrl = RetriveDataServiceUrl(userData, DateTime.Now);
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.DataServiceUrl == "") UrlSManager.DataServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/DATASERVICE");
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DataServiceUrl + "/data-service/api/assemblyversion");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;

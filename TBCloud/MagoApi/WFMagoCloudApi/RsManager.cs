@@ -16,31 +16,33 @@ namespace MagoCloudApi
 {
     internal class RsManager
     {
-        //Uri RsUrl = new Uri("https://develop.mago.cloud/13/be");
 
+        ////////     RetriveRsUr      ////////
 
-          ////////////////////////////////////
-         //////     RetriveRsUr      ////////
-        ////////////////////////////////////
-        public string RetriveRsUrl(UserData userData, DateTime operationDate)
-        {
+        ////Uri RsUrl = new Uri("https://develop.mago.cloud/13/be");
 
-            using (HttpClient client = new HttpClient())
-            {
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/REPORTSERVICE");
-                MagoCloudApiManager.PrepareHeaders(request, userData);
+        //////////////////////////////////////
+        ////////     RetriveRsUr      ////////
+        //////////////////////////////////////
+        //public string RetriveRsUrl(UserData userData, DateTime operationDate)
+        //{
+
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/REPORTSERVICE");
+        //        MagoCloudApiManager.PrepareHeaders(request, userData);
                
-                HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-                string responseBody = response.Content.ReadAsStringAsync().Result;
-                JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
-                string resultVariable = "";
-                if (jsonObject != null)
-                {
-                    resultVariable = jsonObject["Content"]?.ToString();
-                }
-                return UrlSManager.DmsServiceUrl = resultVariable;
-            }
-        }
+        //        HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+        //        string responseBody = response.Content.ReadAsStringAsync().Result;
+        //        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
+        //        string resultVariable = "";
+        //        if (jsonObject != null)
+        //        {
+        //            resultVariable = jsonObject["Content"]?.ToString();
+        //        }
+        //        return UrlSManager.DmsServiceUrl = resultVariable;
+        //    }
+        //}
         public string GetXmlData( UserData userData, DateTime operationDate, int btn =0)
         {
             using (HttpClient client = new HttpClient())

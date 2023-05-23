@@ -12,6 +12,8 @@ namespace MagoCloudApi
         internal string TbUrl = UrlSManager.TbServerUrl;
         internal string DataUrl = UrlSManager.DataServiceUrl;
         internal string DmsUrl = UrlSManager.DmsServiceUrl;
+        internal string TbFsUrl = UrlSManager.TbFsServiceUrl;
+
 
         internal string GwamUrl { get; set; }
         internal string Token { get; set; }
@@ -25,6 +27,7 @@ namespace MagoCloudApi
             TbUrl = string.Empty;
             DataUrl = string.Empty;
             DmsUrl = string.Empty;
+            TbFsUrl = string.Empty;
             GwamUrl = string.Empty;
             Token = string.Empty;
             UserName = string.Empty;
@@ -52,7 +55,7 @@ namespace MagoCloudApi
             return requestBodyJsonInString;
         }
         
-        internal void DoLogin(string gwamUrl,string userName, string pwd, string subscriptionKey, string producerKey, string appKey)
+        internal bool DoLogin(string gwamUrl,string userName, string pwd, string subscriptionKey, string producerKey, string appKey)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -102,7 +105,9 @@ namespace MagoCloudApi
                                 userData.Token = jsonObject["JwtToken"]?.ToString();
                                 userData.UserName = jsonObject["AccountName"]?.ToString();
                                 userData.SubscriptionKey = subscriptionKey;
+
                                 MessageBox.Show("The login was successful.");
+                                return true;
                             }
                             else
                                 MessageBox.Show("Login Failed");
@@ -117,8 +122,10 @@ namespace MagoCloudApi
                 {
                     Console.WriteLine("\nException Caught!");
                     Console.WriteLine("Message :{0} ", e.Message);
+                    return false;
                 }
             }
+            return false;
         }
         internal void ValidToken(string GwamUrl)
         {
@@ -141,7 +148,7 @@ namespace MagoCloudApi
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        // recupero il mio token di autenticazione
+                        //// recovery autentication token ////
                         string responseBody = response.Content.ReadAsStringAsync().Result;
                         JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
                         if (jsonObject != null)
@@ -189,7 +196,7 @@ namespace MagoCloudApi
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        // recupero il mio token di autenticazione
+                        //// recovery autentication token ////
                         string responseBody = response.Content.ReadAsStringAsync().Result;
                         JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
                         if (jsonObject != null)
@@ -215,5 +222,6 @@ namespace MagoCloudApi
                 }
             }
         }
+
     }
 }

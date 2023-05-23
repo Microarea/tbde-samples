@@ -16,40 +16,50 @@ namespace MagoCloudApi
 {
     internal class TbServerManager
     {
-          ///////////////////////////////////
-         //////  RetriveTbServerUrl  ///////
-        ///////////////////////////////////
-        public string RetriveTbServerUrl(UserData userData, DateTime operationDate)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/TBSERVER");
-                MagoCloudApiManager.PrepareHeaders(request, userData);
+        public string folderPath { get; set; }
+        public string outFileName { get; set; }
 
-                HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-                string responseBody = response.Content.ReadAsStringAsync().Result;
-                JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
-               
-                string resultVariable = "";
-                if (jsonObject != null)
-                {
-                    resultVariable = jsonObject["Content"]?.ToString();
-                }
-                return UrlSManager.TbServerUrl = resultVariable;
-            }
-        }
+        //////  RetriveTbServerUrl  ///////
+
+        ///////////////////////////////////
+        //////  RetriveTbServerUrl  ///////
+        ///////////////////////////////////
+        //public string RetriveTbServerUrl(UserData userData, DateTime operationDate)
+        //{
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/TBSERVER");
+        //        MagoCloudApiManager.PrepareHeaders(request, userData);
+
+        //        HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+        //        string responseBody = response.Content.ReadAsStringAsync().Result;
+        //        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
+
+        //        string resultVariable = "";
+        //        if (jsonObject != null)
+        //        {
+        //            resultVariable = jsonObject["Content"]?.ToString();
+        //        }
+        //        return UrlSManager.TbServerUrl = resultVariable;
+        //    }
+        //}
         public (bool, string) LoadMagicLinkFile(string xmlFileName)
         {
+            DirectoryInfo folder = new DirectoryInfo(folderPath);
+            folder.Refresh();
             try
             {
+                xmlFileName = folderPath + "\\" + xmlFileName;
                 if (!File.Exists(xmlFileName))
                     return (false, "File " + xmlFileName + " not found");
 
-                XmlDocument doc = new XmlDocument();
-                string fileName = Path.Combine(Application.StartupPath, xmlFileName);
-                doc.Load(fileName);
-                
-                return (true, doc.InnerXml.ToString());
+                using (XmlTextReader reader = new XmlTextReader(xmlFileName))
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(reader);
+
+                    return (true, doc.InnerXml.ToString());
+                }
             }
             catch (HttpRequestException e)
             {
@@ -57,6 +67,21 @@ namespace MagoCloudApi
             }
         }
 
+        public bool SaveFile(string content)
+        {
+            DirectoryInfo folder = new DirectoryInfo(folderPath);
+            folder.Refresh();
+            try
+            {
+                File.AppendAllText(outFileName, content);
+                return true;
+            }
+            catch (HttpRequestException e)
+            {
+                MessageBox.Show("SaveFile: " + e.Message);
+                return false;
+            }
+        }
         /////////////////////////////
         /////// Get xml Params ////////
         public async Task<string> GetXmlParams(UserData userData, DateTime operationDate, string xmlContent)
@@ -98,6 +123,8 @@ namespace MagoCloudApi
                             string resultVariable = jsonObject["result"]?.ToString();
                             var bytes = Convert.FromBase64String(resultVariable.ToString());
                             var decodedString = Encoding.UTF8.GetString(bytes);
+                            outFileName = folderPath + "\\GetFull.xml";
+                            SaveFile(decodedString);
                             return decodedString;
                         }
                         else
@@ -130,7 +157,7 @@ namespace MagoCloudApi
 
         /////////////////////////////
         /////// Get xml data ////////
-        public async Task<string> GetXmlData(UserData userData, DateTime operationDate, string xmlContent)
+        public string GetXmlData(UserData userData, DateTime operationDate, string xmlContent)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -156,7 +183,7 @@ namespace MagoCloudApi
                     string jsonInString = PrepareGetTb(request, xmlContent, userData.UserName);
                     request.Method = HttpMethod.Post;
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
-                    var response = await client.SendAsync(request);
+                    var response = client.SendAsync(request).Result;
 
                     string responseBody = response.Content.ReadAsStringAsync().Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -168,16 +195,20 @@ namespace MagoCloudApi
                         {
                             JToken[] result = jsonObject["result"].ToArray();
                             StringBuilder strings = new StringBuilder();
+                            short idx = 0;
                             foreach (JToken item in result)
                             {
+                                idx++;
                                 var bytes = Convert.FromBase64String(item.ToString());
                                 var decodedString = Encoding.UTF8.GetString(bytes);
                                 strings.AppendLine(decodedString.ToString());
+                                outFileName = folderPath + "\\InvRsnSet" + idx.ToString() + ".xml";
+                                SaveFile(decodedString);
                             }
                             return strings.ToString();
                         }
                         else
-                            return "GetXmlData error: unable to retrive the TbServer.";
+                            return "GetXmlData error: unable to retrieve the TbServer.";
                     }
                     else
                         return "GetXmlData error. Response message : " + responseBody;
@@ -188,7 +219,7 @@ namespace MagoCloudApi
                 }
             }
         }
-      
+
         public string PrepareGetTb(HttpRequestMessage request, string xmlParams, string userName)
            {
                 var functionParams = JsonConvert.SerializeObject(new
@@ -245,7 +276,8 @@ namespace MagoCloudApi
             {
                 try
                 {
-                    if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveTbServerUrl(userData, DateTime.Now);
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
                     var server_info = JsonConvert.SerializeObject(new
@@ -272,9 +304,9 @@ namespace MagoCloudApi
 
                         if (jsonObject != null)
                         {
-                                string resultVariable = jsonObject["result"]?.ToString();
-                                var bytes = Convert.FromBase64String(resultVariable.ToString());
-                                var decodedString= Encoding.UTF8.GetString(bytes);
+                            string resultVariable = jsonObject["result"]?.ToString();
+                            var bytes = Convert.FromBase64String(resultVariable.ToString());
+                            var decodedString = Encoding.UTF8.GetString(bytes);
                             return decodedString;
                         }
                         else
@@ -287,10 +319,11 @@ namespace MagoCloudApi
                 {
                     return "SetXmlData exception Caught: Message: " + e.Message;
                 }
-                
+
             }
         }
-        
+
+
         public string PrepareSetTb(HttpRequestMessage request, string xmlData, int action, string userName)
         {
             var functionParams = JsonConvert.SerializeObject(new

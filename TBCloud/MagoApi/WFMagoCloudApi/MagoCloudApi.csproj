@@ -103,6 +103,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RsManager.cs" />
+    <Compile Include="TbFsServiceManager.cs" />
     <Compile Include="TbServerManager.cs" />
     <Compile Include="UrlSManager.cs" />
     <Compile Include="WebMethodsManager.cs" />
@@ -148,6 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="img\retrivetb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Docs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

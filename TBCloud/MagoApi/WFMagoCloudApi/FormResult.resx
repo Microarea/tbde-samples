@@ -1460,7 +1460,7 @@
     <value>NoControl</value>
   </data>
   <data name="pictureBoxHea.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 150</value>
+    <value>0, 149</value>
   </data>
   <data name="pictureBoxHea.Size" type="System.Drawing.Size, System.Drawing">
     <value>833, 510</value>
@@ -1988,30 +1988,6 @@
     <value>panelTitleResult</value>
   </data>
   <data name="&gt;&gt;buttonExitForm.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>panelTitleResult</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="panelTitleResult.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
@@ -2063,16 +2039,19 @@
     <value>NoControl</value>
   </data>
   <data name="labelSmile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 2</value>
+    <value>120, 3</value>
   </data>
   <data name="labelSmile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="labelSmile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 45</value>
+    <value>107, 45</value>
   </data>
   <data name="labelSmile.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
+  </data>
+  <data name="labelSmile.Text" xml:space="preserve">
+    <value>emo</value>
   </data>
   <data name="&gt;&gt;labelSmile.Name" xml:space="preserve">
     <value>labelSmile</value>
@@ -2096,7 +2075,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelTitleResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 15</value>
+    <value>12, 14</value>
   </data>
   <data name="labelTitleResult.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 25</value>
@@ -2106,6 +2085,9 @@
   </data>
   <data name="labelTitleResult.Text" xml:space="preserve">
     <value>Result</value>
+  </data>
+  <data name="labelTitleResult.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;labelTitleResult.Name" xml:space="preserve">
     <value>labelTitleResult</value>
@@ -2201,7 +2183,7 @@
     <value>584, 300</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>704, 560</value>
+    <value>784, 560</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>584, 300</value>

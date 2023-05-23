@@ -27,11 +27,11 @@ namespace WindowsFormsResult
            );
         
 
-        public FormResult(string content,  bool bOk = false, bool bBlue = true, Image image = null)
+        public FormResult(string content,  bool bOk = false, bool bBlue = true, bool bHelp = false)
         {
 
             InitializeComponent();
-
+           
             this.SetStyle(ControlStyles.ResizeRedraw, true); // this is to avoid visual artifacts
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             labelFormContent.Text = content;
@@ -45,11 +45,27 @@ namespace WindowsFormsResult
             richTextBoxCode.Padding = new Padding(15, 5, 55, 5); 
 
             this.content = content;
-            
+            if(bHelp)
+            {
+                
+                this.btnCopyCode.Hide();
+                panelTitleResult.BackColor = Color.LightSteelBlue;
+                this.richTextBoxCode.Hide();
+                this.pictureBox3Req.Hide();
+                this.pictureBoxHea.Hide();
+                this.buttonResize.Hide();
+                this.labelSmile.Text = "?";
+                this.labelTitleResult.Text = "Calls Info";
+                this.buttonExitForm.BackColor = Color.LightSteelBlue;
+                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 750, 300, 20, 20));
+                this.Height = 280;
+                this.Width = 750;
+                return;
+            }
+
 
             if (bOk)
             {
-                image = null;
                 this.btnCopyCode.Hide();
                 panelTitleResult.BackColor = Color.Green;
                 this.richTextBoxCode.Hide();
@@ -59,20 +75,6 @@ namespace WindowsFormsResult
                 this.labelSmile.Text = "😎";
                 this.buttonResize.BackColor = Color.Green;
                 this.buttonExitForm.BackColor = Color.Green;
-            }
-            else if (bBlue)
-            {
-                
-                    this.pictureBox3Req.Image = image;
-                    this.pictureBox3Req.SizeMode = PictureBoxSizeMode.Zoom;
-                panelTitleResult.BackColor = Color.FromArgb(28, 28, 28);
-                this.panelContent.BackColor = Color.FromArgb(28, 28, 28);
-                this.labelFormContent.Hide();
-                this.richTextBoxCode.Font = new System.Drawing.Font("Consolas", 10);
-                this.labelTitleResult.Text = "SourceCode";
-                this.buttonResize.BackColor = Color.FromArgb(28, 28, 28);
-                this.buttonExitForm.BackColor = Color.FromArgb(28, 28, 28);
-                
             }
             else
             {
@@ -85,6 +87,21 @@ namespace WindowsFormsResult
                 this.labelSmile.Text = "🙁";
                 this.buttonResize.BackColor = Color.Red;
                 this.buttonExitForm.BackColor = Color.Red;
+            }
+            if (bBlue)
+            {
+
+                this.pictureBox3Req.Hide();/* = image;*/
+                this.pictureBox3Req.Hide();/* = image;SizeMode = PictureBoxSizeMode.Zoom;*/
+                panelTitleResult.BackColor = Color.FromArgb(28, 28, 28);
+                this.panelContent.BackColor = Color.FromArgb(28, 28, 28);
+                this.labelFormContent.Hide();
+                this.richTextBoxCode.Font = new System.Drawing.Font("Consolas", 10);
+                this.labelTitleResult.Text = "Question";
+                this.labelSmile.Text = "🤔";
+                this.buttonResize.BackColor = Color.FromArgb(28, 28, 28);
+                this.buttonExitForm.BackColor = Color.FromArgb(28, 28, 28);
+
             }
         }
 

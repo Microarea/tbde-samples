@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MagoCloudAPI;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Drawing;
@@ -18,8 +19,9 @@ namespace MagoCloudApi
         internal RsManager rsManager = new RsManager();
         internal DmsManager dmsManager = new DmsManager();
         internal UrlSManager urlsManager = new UrlSManager();
+        internal TbFsServiceManager tbFsServiceManager = new TbFsServiceManager();
         internal ExampleManager exampleManager = new ExampleManager();
-
+        
         public MagoCloudApiManager()
         {
             

@@ -14,30 +14,31 @@ namespace MagoCloudApi
 {
     class DmsManager
     {
+        ////// RetriveDataServiceUrl ///////
         //Uri RsUrl = new Uri("https://develop.mago.cloud/13/dms/be");
 
         ////////////////////////////////////
         ////// RetriveDataServiceUrl ///////
         ////////////////////////////////////
-        public string RetriveDmsUrl(UserData userData, DateTime operationDate)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/MICRODMS");
-                MagoCloudApiManager.PrepareHeaders(request, userData);
+        //public string RetriveDmsUrl(UserData userData, DateTime operationDate)
+        //{
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/MICRODMS");
+        //        MagoCloudApiManager.PrepareHeaders(request, userData);
 
-                HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-                string responseBody = response.Content.ReadAsStringAsync().Result;
-                JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
-                string resultVariable = "";
-                if (jsonObject != null)
-                {
-                    resultVariable = jsonObject["Content"]?.ToString();
+        //        HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+        //        string responseBody = response.Content.ReadAsStringAsync().Result;
+        //        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
+        //        string resultVariable = "";
+        //        if (jsonObject != null)
+        //        {
+        //            resultVariable = jsonObject["Content"]?.ToString();
                     
-                }
-                return UrlSManager.DataServiceUrl = resultVariable;
-            }
-        }
+        //        }
+        //        return UrlSManager.DataServiceUrl = resultVariable;
+        //    }
+        //}
         internal string GetHome(UserData userData)
         {
             using (HttpClient client = new HttpClient())
@@ -79,7 +80,9 @@ namespace MagoCloudApi
             {
                 try
                 {
-                    UrlSManager.DmsServiceUrl = RetriveDmsUrl(userData, DateTime.Now);
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MICRODMS/");
+                    //UrlSManager.DmsServiceUrl = RetriveDmsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmsServiceUrl + "/dms/api/dmssettings/get/");
                     MagoCloudApiManager.PrepareHeaders(request, userData);
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;

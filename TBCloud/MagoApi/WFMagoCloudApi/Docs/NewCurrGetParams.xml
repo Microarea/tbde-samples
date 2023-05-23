@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<maxs:Currencies tbNamespace="Document.ERP.Company.Documents.Currencies" xTechProfile="NewCurrProfile" 
+xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Company/Currencies/AllUsers/NewCurrProfile.xsd">
+	<maxs:Parameters>
+	</maxs:Parameters>
+</maxs:Currencies>

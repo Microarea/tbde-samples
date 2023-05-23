@@ -40,7 +40,6 @@ namespace WindowsFormsResult
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBoxCode = new System.Windows.Forms.TextBox();
             this.buttonExitForm = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelTitleResult = new System.Windows.Forms.Panel();
             this.btnCopyCode = new System.Windows.Forms.Button();
             this.labelSmile = new System.Windows.Forms.Label();
@@ -130,12 +129,6 @@ namespace WindowsFormsResult
             this.buttonExitForm.UseVisualStyleBackColor = false;
             this.buttonExitForm.Click += new System.EventHandler(this.buttonExitForm_Click);
             // 
-            // label1
-            // 
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
             // panelTitleResult
             // 
             this.panelTitleResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
@@ -144,7 +137,6 @@ namespace WindowsFormsResult
             this.panelTitleResult.Controls.Add(this.labelSmile);
             this.panelTitleResult.Controls.Add(this.labelTitleResult);
             this.panelTitleResult.Controls.Add(this.buttonResize);
-            this.panelTitleResult.Controls.Add(this.label1);
             this.panelTitleResult.Controls.Add(this.buttonExitForm);
             this.panelTitleResult.Name = "panelTitleResult";
             this.panelTitleResult.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleResult_MouseDown);
@@ -218,7 +210,6 @@ namespace WindowsFormsResult
         private System.Windows.Forms.Label labelFormContent;
         private System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.Button buttonExitForm;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelTitleResult;
         private System.Windows.Forms.Button buttonResize;
         private System.Windows.Forms.Label labelTitleResult;

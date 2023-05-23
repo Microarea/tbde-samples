@@ -42,6 +42,7 @@ namespace MagoCloudApi
         public static string DataServiceUrl = System.String.Empty;
         public static string ReportingServiceUrl = System.String.Empty;
         public static string DmsServiceUrl = System.String.Empty;
+        public static string TbFsServiceUrl = System.String.Empty;
     }
-    
+
 }
