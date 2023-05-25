@@ -113,6 +113,9 @@
     <EmbeddedResource Include="MagoCloudApi.resx">
       <DependentUpon>MagoCloudApi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MspzComponent.resx">
+      <DependentUpon>MspzComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>

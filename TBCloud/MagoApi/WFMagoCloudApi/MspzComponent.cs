@@ -44,6 +44,17 @@ namespace MspzComponent
             path.CloseFigure();
             return path;
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // RoundedPanel
+            // 
+            this.Size = new System.Drawing.Size(0, 0);
+            this.ResumeLayout(false);
+
+        }
     }
 
     public class OrangePanel : Panel

@@ -130,7 +130,7 @@ namespace WindowsFormsResult
         {
             Close();
         }
-        private bool buttonClicked = false;
+       
         private string content;
         bool mousedown;
 
@@ -141,7 +141,7 @@ namespace WindowsFormsResult
             btnCopyCode.Font = new Font("Arial", 8, FontStyle.Bold);
             btnCopyCode.ForeColor = Color.FromArgb(65, 192, 146);
         }
-
+        private bool buttonClicked = false;
         private void buttonResize_Click(object sender, EventArgs e)
         {
             buttonClicked = !buttonClicked;
