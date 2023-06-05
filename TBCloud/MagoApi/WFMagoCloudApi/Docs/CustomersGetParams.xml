@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<maxs:Customers
+xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/erp/customerssuppliers/Customers/Standard/DefaultLight.xsd" 
+xTechProfile="DefaultLight" 
+tbNamespace="Document.ERP.CustomersSuppliers.documents.Customers">
+<maxs:Parameters></maxs:Parameters>
+</maxs:Customers>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:InventoryReasons tbNamespace="Document.ERP.Inventory.Documents.InventoryReasons" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Inventory/InventoryReasons/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:ShippingReason type="String"></maxs:ShippingReason>
+				<maxs:FiscalNumbering type="Boolean">false</maxs:FiscalNumbering>
+				<maxs:StubBook type="String"></maxs:StubBook>
+				<maxs:ProposedValue type="DataEnum">3932160</maxs:ProposedValue>
+				<maxs:UseGoodsData type="Boolean">true</maxs:UseGoodsData>
+				<maxs:UseItemCustomers type="Boolean">false</maxs:UseItemCustomers>
+				<maxs:UseItemSuppliers type="Boolean">false</maxs:UseItemSuppliers>
+				<maxs:UseCommCtgCustomers type="Boolean">false</maxs:UseCommCtgCustomers>
+				<maxs:UseCommCtgSuppliers type="Boolean">false</maxs:UseCommCtgSuppliers>
+				<maxs:UseStorage1 type="Boolean">true</maxs:UseStorage1>
+				<maxs:StoragePhase1 type="String"></maxs:StoragePhase1>
+				<maxs:UseSpecificator1 type="Boolean">false</maxs:UseSpecificator1>
+				<maxs:Specificator1Type type="DataEnum">6750211</maxs:Specificator1Type>
+				<maxs:SpecificatorPhase1 type="String"></maxs:SpecificatorPhase1>
+				<maxs:Specificator1IsMand type="Boolean">false</maxs:Specificator1IsMand>
+				<maxs:UsePhase2 type="Boolean">true</maxs:UsePhase2>
+				<maxs:UseStorage2 type="Boolean">true</maxs:UseStorage2>
+				<maxs:StoragePhase2 type="String"></maxs:StoragePhase2>
+				<maxs:UseSpecificator2 type="Boolean">false</maxs:UseSpecificator2>
+				<maxs:Specificator2Type type="DataEnum">6750211</maxs:Specificator2Type>
+				<maxs:SpecificatorPhase2 type="String"></maxs:SpecificatorPhase2>
+				<maxs:Specificator2IsMand type="Boolean">false</maxs:Specificator2IsMand>
+				<maxs:NonFiscal type="Boolean">false</maxs:NonFiscal>
+				<maxs:CustSuppType type="DataEnum">3866624</maxs:CustSuppType>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:CostAccounting type="DataEnum">8519683</maxs:CostAccounting>
+				<maxs:DebitCreditSign type="DataEnum">4980736</maxs:DebitCreditSign>
+				<maxs:GenerateSerialNo type="Boolean">false</maxs:GenerateSerialNo>
+				<maxs:InvoiceFollows type="Boolean">false</maxs:InvoiceFollows>
+				<maxs:SearchForBarCode type="Boolean">false</maxs:SearchForBarCode>
+				<maxs:AlignSpecificator type="Boolean">false</maxs:AlignSpecificator>
+				<maxs:NoChangeExigibility type="Boolean">false</maxs:NoChangeExigibility>
+				<maxs:LineCostOrigin type="DataEnum">11993091</maxs:LineCostOrigin>
+				<maxs:NeedCIGCorrection type="Boolean">false</maxs:NeedCIGCorrection>
+				<maxs:CIGCorrInvReason type="String"></maxs:CIGCorrInvReason>
+				<maxs:UseFIFOAction type="Boolean">false</maxs:UseFIFOAction>
+				<maxs:UseLIFOAction type="Boolean">false</maxs:UseLIFOAction>
+				<maxs:InBaseCurrency type="Boolean">false</maxs:InBaseCurrency>
+				<maxs:IsInventoryAdjustement type="Boolean">false</maxs:IsInventoryAdjustement>
+				<maxs:IsStorageTransfer type="Boolean">false</maxs:IsStorageTransfer>
+				<maxs:EditableUnitValue type="Boolean">false</maxs:EditableUnitValue>
+				<maxs:EditableStubBook type="Boolean">false</maxs:EditableStubBook>
+				<maxs:UsedEverywhere type="Boolean">false</maxs:UsedEverywhere>
+				<maxs:UsedInSales type="Boolean">false</maxs:UsedInSales>
+				<maxs:UsedInPurchases type="Boolean">false</maxs:UsedInPurchases>
+				<maxs:UsedInInventory type="Boolean">false</maxs:UsedInInventory>
+				<maxs:UsedInManufacturing type="Boolean">false</maxs:UsedInManufacturing>
+				<maxs:DefaultReason type="Boolean">false</maxs:DefaultReason>
+				<maxs:ActionOnLifoFifo type="DataEnum">26411008</maxs:ActionOnLifoFifo>
+				<maxs:LifoFifo_LineSource type="DataEnum">26476544</maxs:LifoFifo_LineSource>
+				<maxs:ExplodeBOMComponents type="Boolean">false</maxs:ExplodeBOMComponents>
+				<maxs:UsedInInStore type="Boolean">false</maxs:UsedInInStore>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:InventoryReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.erp.customerssuppliers.documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/erp/customerssuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:CustSuppType type="DataEnum">3211264</maxs:CustSuppType>
+				<maxs:CustSupp type="String"></maxs:CustSupp>
+				<maxs:CompanyName type="String"></maxs:CompanyName>
+				<maxs:ISOCountryCode type="String"></maxs:ISOCountryCode>
+				<maxs:TaxIdNumber type="String"></maxs:TaxIdNumber>
+				<maxs:FiscalCode type="String"></maxs:FiscalCode>
+				<maxs:Address type="String"></maxs:Address>
+				<maxs:ZIPCode type="String"></maxs:ZIPCode>
+				<maxs:City type="String"></maxs:City>
+				<maxs:County type="String"></maxs:County>
+				<maxs:Country type="String"></maxs:Country>
+				<maxs:Telephone1 type="String"></maxs:Telephone1>
+				<maxs:Telephone2 type="String"></maxs:Telephone2>
+				<maxs:Fax type="String"></maxs:Fax>
+				<maxs:EMail type="String"></maxs:EMail>
+				<maxs:ContactPerson type="String"></maxs:ContactPerson>
+				<maxs:NaturalPerson type="Boolean">false</maxs:NaturalPerson>
+				<maxs:Payment type="String"></maxs:Payment>
+				<maxs:Currency type="String"></maxs:Currency>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:ExternalCode type="String"></maxs:ExternalCode>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Customers>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:InventoryReasons tbNamespace="Document.ERP.Inventory.Documents.InventoryReasons" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Inventory/InventoryReasons/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:ShippingReason type="String"></maxs:ShippingReason>
+				<maxs:FiscalNumbering type="Boolean">false</maxs:FiscalNumbering>
+				<maxs:StubBook type="String"></maxs:StubBook>
+				<maxs:ProposedValue type="DataEnum">3932160</maxs:ProposedValue>
+				<maxs:UseGoodsData type="Boolean">true</maxs:UseGoodsData>
+				<maxs:UseItemCustomers type="Boolean">false</maxs:UseItemCustomers>
+				<maxs:UseItemSuppliers type="Boolean">false</maxs:UseItemSuppliers>
+				<maxs:UseCommCtgCustomers type="Boolean">false</maxs:UseCommCtgCustomers>
+				<maxs:UseCommCtgSuppliers type="Boolean">false</maxs:UseCommCtgSuppliers>
+				<maxs:UseStorage1 type="Boolean">true</maxs:UseStorage1>
+				<maxs:StoragePhase1 type="String"></maxs:StoragePhase1>
+				<maxs:UseSpecificator1 type="Boolean">false</maxs:UseSpecificator1>
+				<maxs:Specificator1Type type="DataEnum">6750211</maxs:Specificator1Type>
+				<maxs:SpecificatorPhase1 type="String"></maxs:SpecificatorPhase1>
+				<maxs:Specificator1IsMand type="Boolean">false</maxs:Specificator1IsMand>
+				<maxs:UsePhase2 type="Boolean">true</maxs:UsePhase2>
+				<maxs:UseStorage2 type="Boolean">true</maxs:UseStorage2>
+				<maxs:StoragePhase2 type="String"></maxs:StoragePhase2>
+				<maxs:UseSpecificator2 type="Boolean">false</maxs:UseSpecificator2>
+				<maxs:Specificator2Type type="DataEnum">6750211</maxs:Specificator2Type>
+				<maxs:SpecificatorPhase2 type="String"></maxs:SpecificatorPhase2>
+				<maxs:Specificator2IsMand type="Boolean">false</maxs:Specificator2IsMand>
+				<maxs:NonFiscal type="Boolean">false</maxs:NonFiscal>
+				<maxs:CustSuppType type="DataEnum">3866624</maxs:CustSuppType>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:CostAccounting type="DataEnum">8519683</maxs:CostAccounting>
+				<maxs:DebitCreditSign type="DataEnum">4980736</maxs:DebitCreditSign>
+				<maxs:GenerateSerialNo type="Boolean">false</maxs:GenerateSerialNo>
+				<maxs:InvoiceFollows type="Boolean">false</maxs:InvoiceFollows>
+				<maxs:SearchForBarCode type="Boolean">false</maxs:SearchForBarCode>
+				<maxs:AlignSpecificator type="Boolean">false</maxs:AlignSpecificator>
+				<maxs:NoChangeExigibility type="Boolean">false</maxs:NoChangeExigibility>
+				<maxs:LineCostOrigin type="DataEnum">11993091</maxs:LineCostOrigin>
+				<maxs:NeedCIGCorrection type="Boolean">false</maxs:NeedCIGCorrection>
+				<maxs:CIGCorrInvReason type="String"></maxs:CIGCorrInvReason>
+				<maxs:UseFIFOAction type="Boolean">false</maxs:UseFIFOAction>
+				<maxs:UseLIFOAction type="Boolean">false</maxs:UseLIFOAction>
+				<maxs:InBaseCurrency type="Boolean">false</maxs:InBaseCurrency>
+				<maxs:IsInventoryAdjustement type="Boolean">false</maxs:IsInventoryAdjustement>
+				<maxs:IsStorageTransfer type="Boolean">false</maxs:IsStorageTransfer>
+				<maxs:EditableUnitValue type="Boolean">false</maxs:EditableUnitValue>
+				<maxs:EditableStubBook type="Boolean">false</maxs:EditableStubBook>
+				<maxs:UsedEverywhere type="Boolean">false</maxs:UsedEverywhere>
+				<maxs:UsedInSales type="Boolean">false</maxs:UsedInSales>
+				<maxs:UsedInPurchases type="Boolean">false</maxs:UsedInPurchases>
+				<maxs:UsedInInventory type="Boolean">false</maxs:UsedInInventory>
+				<maxs:UsedInManufacturing type="Boolean">false</maxs:UsedInManufacturing>
+				<maxs:DefaultReason type="Boolean">false</maxs:DefaultReason>
+				<maxs:ActionOnLifoFifo type="DataEnum">26411008</maxs:ActionOnLifoFifo>
+				<maxs:LifoFifo_LineSource type="DataEnum">26476544</maxs:LifoFifo_LineSource>
+				<maxs:ExplodeBOMComponents type="Boolean">false</maxs:ExplodeBOMComponents>
+				<maxs:UsedInInStore type="Boolean">false</maxs:UsedInInStore>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:InventoryReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.erp.customerssuppliers.documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/erp/customerssuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:CustSuppType type="DataEnum">3211264</maxs:CustSuppType>
+				<maxs:CustSupp type="String"></maxs:CustSupp>
+				<maxs:CompanyName type="String"></maxs:CompanyName>
+				<maxs:ISOCountryCode type="String"></maxs:ISOCountryCode>
+				<maxs:TaxIdNumber type="String"></maxs:TaxIdNumber>
+				<maxs:FiscalCode type="String"></maxs:FiscalCode>
+				<maxs:Address type="String"></maxs:Address>
+				<maxs:ZIPCode type="String"></maxs:ZIPCode>
+				<maxs:City type="String"></maxs:City>
+				<maxs:County type="String"></maxs:County>
+				<maxs:Country type="String"></maxs:Country>
+				<maxs:Telephone1 type="String"></maxs:Telephone1>
+				<maxs:Telephone2 type="String"></maxs:Telephone2>
+				<maxs:Fax type="String"></maxs:Fax>
+				<maxs:EMail type="String"></maxs:EMail>
+				<maxs:ContactPerson type="String"></maxs:ContactPerson>
+				<maxs:NaturalPerson type="Boolean">false</maxs:NaturalPerson>
+				<maxs:Payment type="String"></maxs:Payment>
+				<maxs:Currency type="String"></maxs:Currency>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:ExternalCode type="String"></maxs:ExternalCode>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Customers>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.erp.customerssuppliers.documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/erp/customerssuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:CustSuppType type="DataEnum">3211264</maxs:CustSuppType>
+				<maxs:CustSupp type="String"></maxs:CustSupp>
+				<maxs:CompanyName type="String"></maxs:CompanyName>
+				<maxs:ISOCountryCode type="String"></maxs:ISOCountryCode>
+				<maxs:TaxIdNumber type="String"></maxs:TaxIdNumber>
+				<maxs:FiscalCode type="String"></maxs:FiscalCode>
+				<maxs:Address type="String"></maxs:Address>
+				<maxs:ZIPCode type="String"></maxs:ZIPCode>
+				<maxs:City type="String"></maxs:City>
+				<maxs:County type="String"></maxs:County>
+				<maxs:Country type="String"></maxs:Country>
+				<maxs:Telephone1 type="String"></maxs:Telephone1>
+				<maxs:Telephone2 type="String"></maxs:Telephone2>
+				<maxs:Fax type="String"></maxs:Fax>
+				<maxs:EMail type="String"></maxs:EMail>
+				<maxs:ContactPerson type="String"></maxs:ContactPerson>
+				<maxs:NaturalPerson type="Boolean">false</maxs:NaturalPerson>
+				<maxs:Payment type="String"></maxs:Payment>
+				<maxs:Currency type="String"></maxs:Currency>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:ExternalCode type="String"></maxs:ExternalCode>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Customers>
+<maxs:Document xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/" xTechProfile="Profile"><maxs:Diagnostic><maxs:Errors><maxs:Error><maxs:Code>1</maxs:Code><maxs:Source>XTech-SoapFunctions</maxs:Source><maxs:Message>Invalid namespace. Impossibile to open the document,</maxs:Message></maxs:Error></maxs:Errors></maxs:Diagnostic></maxs:Document><maxs:AccountingReasons xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/" tbNamespace="ERP.Accounting.documents.SaleDocJE" xTechProfile="accreasons"><maxs:Diagnostic><maxs:Errors><maxs:Error><maxs:Code>2</maxs:Code><maxs:Source>XTech-DataManager</maxs:Source><maxs:Message>TBNamespace is not equal to istanziated document namespace. Impossible to provide requested data</maxs:Message></maxs:Error></maxs:Errors></maxs:Diagnostic></maxs:AccountingReasons><maxs:AccountingReasons xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/" tbNamespace="ERP.Accounting.documents.SaleDocJE" xTechProfile="DefaultFull"><maxs:Diagnostic><maxs:Errors><maxs:Error><maxs:Code>2</maxs:Code><maxs:Source>XTech-DataManager</maxs:Source><maxs:Message>TBNamespace is not equal to istanziated document namespace. Impossible to provide requested data</maxs:Message></maxs:Error></maxs:Errors></maxs:Diagnostic></maxs:AccountingReasons><maxs:AccountingReasons xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/" tbNamespace="ERP.Accounting.documents.SaleDocJE" xTechProfile="DefaultFull"><maxs:Diagnostic><maxs:Errors><maxs:Error><maxs:Code>2</maxs:Code><maxs:Source>XTech-DataManager</maxs:Source><maxs:Message>TBNamespace is not equal to istanziated document namespace. Impossible to provide requested data</maxs:Message></maxs:Error></maxs:Errors></maxs:Diagnostic></maxs:AccountingReasons><maxs:PurchaseDocJE xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/" tbNamespace="ERP.Accounting.documents.SaleDocJE" xTechProfile="Basic"><maxs:Diagnostic><maxs:Errors><maxs:Error><maxs:Code>2</maxs:Code><maxs:Source>XTech-DataManager</maxs:Source><maxs:Message>TBNamespace is not equal to istanziated document namespace. Impossible to provide requested data</maxs:Message></maxs:Error></maxs:Errors></maxs:Diagnostic></maxs:PurchaseDocJE>

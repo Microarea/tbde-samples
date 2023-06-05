@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<maxs:Currencies tbNamespace="Document.ERP.Company.Documents.Currencies" xTechProfile="NewCurrProfile" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Company/Currencies/AllUsers/NewCurrProfile.xsd">
+    <maxs:Parameters>
+        <maxs:DefaultDialog title="Fields search">
+            <maxs:DefaultGroup title="Search group">
+                <maxs:Currency type="String">all</maxs:Currency>
+            </maxs:DefaultGroup>
+        </maxs:DefaultDialog>
+    </maxs:Parameters>
+</maxs:Currencies>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<maxs:Invoice xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Sales/Invoice/Standard/DefaultLight.xsd" tbNamespace="Document.ERP.Sales.Documents.Invoice" xTechProfile="DefaultLight">
+    <maxs:Data>
+        <maxs:SaleDocument master="true">
+            <maxs:CustSupp>0025</maxs:CustSupp>
+            <maxs:Payment>RD</maxs:Payment>
+            <maxs:Currency>EUR</maxs:Currency>
+        </maxs:SaleDocument>
+        <maxs:Detail>
+            <maxs:DetailRow>
+                <maxs:LineType>3538947</maxs:LineType>
+                <maxs:Description>Bicicletta da bambino</maxs:Description>
+                <maxs:Item>BBA</maxs:Item>
+                <maxs:UoM>NR</maxs:UoM>
+                <maxs:Qty>50.000000000000000</maxs:Qty>
+                <maxs:UnitValue>163.849999999999994</maxs:UnitValue>
+            </maxs:DetailRow>
+        </maxs:Detail>
+    </maxs:Data>
+</maxs:Invoice>
