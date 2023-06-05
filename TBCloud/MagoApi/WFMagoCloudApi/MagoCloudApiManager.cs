@@ -1,8 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using MagoCloudAPI;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Net.Http;
 using System.Text;
+using System.Web.UI.WebControls;
 
 namespace MagoCloudApi
 {
@@ -11,9 +15,16 @@ namespace MagoCloudApi
         internal AuthenticationManager authenticationManager = new AuthenticationManager();
         internal DataServiceManager dataServiceManager = new DataServiceManager();
         internal TbServerManager tbServerManager = new TbServerManager();
-
+        internal WebMethodsManager webMethodsManager = new WebMethodsManager();
+        internal RsManager rsManager = new RsManager();
+        internal DmsManager dmsManager = new DmsManager();
+        internal UrlSManager urlsManager = new UrlSManager();
+        internal TbFsServiceManager tbFsServiceManager = new TbFsServiceManager();
+        internal ExampleManager exampleManager = new ExampleManager();
+        
         public MagoCloudApiManager()
         {
+            
         }
         internal static void PrepareHeaders(HttpRequestMessage request, UserData userData)
         {
@@ -46,7 +57,6 @@ namespace MagoCloudApi
                 };
             string dJsonInString = JsonConvert.SerializeObject(producerData);
             request.Headers.TryAddWithoutValidation("MagoAPI", dJsonInString);
-
         }
     }
 }

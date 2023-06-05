@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<maxs:Customers xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/erp/customerssuppliers/Customers/Standard/DefaultLight.xsd" tbNamespace="Document.erp.customerssuppliers.documents.Customers" xTechProfile="DefaultLight">
+				<maxs:Data>
+					<CustomersSuppliers master="true">
+						<CustSuppType>3211264</CustSuppType>
+						<CompanyName>Prova 2</CompanyName>
+						<Address>Via di prova 1</Address>
+						<TaxIdNumber>12345678911</TaxIdNumber>
+						<ZIPCode>16152</ZIPCode>
+						<City>Genova</City>
+						<County>GE</County>
+						<Country></Country>
+						<Telephone1>010-123456</Telephone1>
+						<ISOCountryCode>IT</ISOCountryCode>
+						<NaturalPerson>false</NaturalPerson>
+						<Payment>RD</Payment>
+						<Currency>EUR</Currency>
+						<Disabled>false</Disabled>
+					</CustomersSuppliers>
+				</maxs:Data>
+			</maxs:Customers>
