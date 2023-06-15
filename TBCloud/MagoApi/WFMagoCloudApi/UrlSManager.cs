@@ -7,19 +7,23 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace MagoCloudApi
 {
     internal class UrlSManager
-    {
-        public string RetriveUrl(UserData userData, DateTime operationDate, string urlName)
+    {   
+        public string LocalUrl = string.Empty;
+        public string MMSlocalUrl = "http://localhost:5000/mymagostudio-service/";
+        //public string MMSlocalUrl = "http://localhost:5058/mymagostudio-service/";
+        public string RetriveUrl(UserData userData, DateTime operationDate, string urlName, bool isMMS = false)
         {
             using (HttpClient client = new HttpClient())
             {
                 //@@mmf
-                string localUrl = "http://localhost:5000";
+                LocalUrl = (isMMS)? MMSlocalUrl : "http://localhost:5000/mymagostudio-service/";
                 if (userData.GwamUrl == string.Empty || userData.GwamUrl == "https://test-gwam.mago.cloud")
-                    return localUrl;
+                    return LocalUrl;
                 //@@mmf end
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + urlName);
                 //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/TBSERVER");
@@ -33,16 +37,18 @@ namespace MagoCloudApi
                 {
                     resultVariable = jsonObject["Content"]?.ToString();
                 }
-                return  resultVariable;
+                return resultVariable;
             }
         }
-       
+
         public static string TbServerUrl = System.String.Empty;
         // WebMethodsUrl = TbServerUrl (use the same service)
         public static string DataServiceUrl = System.String.Empty;
         public static string ReportingServiceUrl = System.String.Empty;
         public static string DmsServiceUrl = System.String.Empty;
         public static string TbFsServiceUrl = System.String.Empty;
+        public static string DmMMSUrl = System.String.Empty;
+
     }
 
 }

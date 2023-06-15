@@ -29,9 +29,13 @@ using Microsoft.VisualStudio.OLE.Interop;
 using EnvDTE90;
 using System.Web.Caching;
 using System.Linq;
+using MagoCloudApi;
+using System.Net;
+using System.Collections;
 
 namespace MagoCloudApi
 {
+    
     public partial class MagoCloudApi : Form
     {
         MagoCloudApiManager manager = new MagoCloudApiManager();
@@ -58,6 +62,9 @@ namespace MagoCloudApi
         private string outFileName;
         private bool isFolderOpened = false;
         private bool isFullScreen = false;
+        private string tableName;
+        
+
         public MagoCloudApi()
         {
             InitializeComponent();
@@ -87,7 +94,7 @@ namespace MagoCloudApi
             //////////// Label descriptive MAGIC LINK GETXMLDATA (TbServerManager)
             labelMagicLinkGet.Text = "The TbServerGate microservice exposes the possibility to menage business objects\n" +
                                      "based on MagicLink desktop technology.";
-           
+
 
             //////////// Label descriptive REPORTING SERVICE (RsManager)
             labelRS.Text = "The ReportingServices microservice exposes the possibility\n" +
@@ -104,6 +111,7 @@ namespace MagoCloudApi
                             "Is a solution for digital document management.";
 
         }
+        
         private void MagoCloudApi_Load(object sender, EventArgs e)
         {
             // Assegna il testo del tooltip al controllo Tooltip
@@ -126,7 +134,7 @@ namespace MagoCloudApi
             cbxProfile.SelectedIndex = 0;
             //PopulateComboBox();
         }
-
+       
         //////////// customize draggable
         private void panelTitleForm_MouseDown(object sender, MouseEventArgs e)
         {
@@ -570,7 +578,7 @@ namespace MagoCloudApi
             List<string> profile = await manager.tbFsServiceManager.GetProfiles(manager.authenticationManager.userData, DateTime.Now, application, module, folderName);
             if (profile == null)
                 return;
-            cbxProfile.DataSource = profile; // Rimuovi il DataSource prima di modificare la raccolta degli elementi
+            cbxProfile.DataSource = profile; // Remove the DataSource before editing the collection of items
 
             if (profile.Count > 0)
                 cbxProfile.SelectedIndex = 0;
@@ -644,7 +652,7 @@ namespace MagoCloudApi
             }
             defPriceHandle = manager.webMethodsManager.DefaultSalesPricesCreate(manager.authenticationManager.userData, DateTime.Now);
             ShowResult(defPriceHandle < 1 ? "The creation is not successful : \n" + defPriceHandle.ToString() : "Successful \n"
-                + "You have created the handle number : \n" + defPriceHandle.ToString(), defPriceHandle >= 1); if (defPriceHandle < 1) ;
+                + "You have created the handle number : \n" + defPriceHandle.ToString(), defPriceHandle >= 1); if (defPriceHandle < 1);
         }
 
         private void btnGetDefPrice_Click(object sender, EventArgs e)
@@ -794,7 +802,7 @@ namespace MagoCloudApi
             ShowResult(contentBody != null ? "DmsSetting: \n " + contentBody : "Error retrieving DmsSetting", contentBody != null);
         }
 
-        ///////////////////////
+        
         //// BTN SOURCECODE ///
         ///////////////////////
         private void linkHelpTb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -823,7 +831,125 @@ namespace MagoCloudApi
             OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\DmsManager.cs");
         }
 
-       
+        ////////////////////////
+        ////DATA MANAGER MMS////
+        ////////////////////////
+        
+        private void btnGetMMSVersion_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            string contentBody = manager.dmMMSManager.GetDmMMSServiceVersion(manager.authenticationManager.userData);
+            ShowResult(contentBody != null ? contentBody : "Error retrieving Data Manager MMS", contentBody != null);
+            DmMMSUrl.Text = UrlSManager.DmMMSUrl;
+        }
+
+        private void btnTableSchema_Click(object sender, EventArgs e)
+        {
+            TbResponse responseS = manager.dmMMSManager.Schema(manager.authenticationManager.userData, MA_CustSupp.TableName).Result;
+            string schemaContentBody = responseS.PlainResult;
+            //TbResponse responseP = manager.dmMMSManager.Prototype(manager.authenticationManager.userData, sampleTableName).Result;
+            //string prototypeContentBody = responseP.PlainResult;
+            string contentBody = MA_CustSupp.TableName;
+            ShowResult(responseS.Success  ? "TableSchema " + MA_CustSupp.TableName + " OK": "Error retrieving TableSchema " + MA_CustSupp.TableName);
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            Query query = new Query();
+            query.TableName = MA_CustSupp.TableName;
+            query.SelectedFields = new string[] {"CustSuppType","CustSupp","CompanyName"};
+            //query.SelectedFields = new string[] { "*" };
+            TbResponse SelectResponse = manager.dmMMSManager.Select(manager.authenticationManager.userData, query).Result;
+            string contentBody =(string)SelectResponse.ReturnValue;
+        }
+
+        private void btnCount_Click(object sender, EventArgs e)
+        {
+            Query query = new Query();
+            query.TableName = MA_CustSupp.TableName; ;
+            query.SelectedFields = new string[] { "*" };
+            TbResponse CountResponse = manager.dmMMSManager.Count(manager.authenticationManager.userData, query).Result;
+            string CountContentBody = (string)CountResponse.ReturnValue;
+            string contentBody = CountContentBody;
+            labelCount.Text = "Count " + MA_CustSupp.TableName +" = "+ contentBody;
+        }
+
+        private void btnSelectAllByKey_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            TableData tableData = new TableData();
+            tableData.TableName = MA_CustSupp.TableName; ;
+            tableData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
+            TbResponse selectByKeyResponse = manager.dmMMSManager.SelectAllByKey(manager.authenticationManager.userData, tableData).Result;
+
+            string selectByKeyContentBody = (string)selectByKeyResponse.ReturnValue;
+        }
+
+        private void btnGetNextId_Click(object sender, EventArgs e)
+        {
+            //tipo archivio Inventory Entry = 3801093
+            TbResponse getIdResponse = manager.dmMMSManager.GetNextID(manager.authenticationManager.userData, "3801093", false).Result;
+        }
+
+        private void btnExists_Click(object sender, EventArgs e)
+        {
+            
+            TableData crudData = new TableData();
+            crudData.TableName = MA_CustSupp.TableName;
+            crudData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
+            crudData.Data = new MA_CustSupp();
+            Task<bool> existsTask = manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData);
+            bool existsResult = existsTask.Result;
+            if (existsTask.Result == false)
+            {
+                MessageBox.Show("non esiste");
+                return;
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            MA_CustSupp custSupp = new MA_CustSupp();
+
+            custSupp.CustSuppType = Int32.Parse(textBoxCustSuppType.Text);
+            custSupp.CustSupp = textBoxCustSupp.Text;
+            custSupp.CompanyName = textBoxCompanyName.Text;
+            custSupp.ISOCountryCode = textBoxIsoCountryCode.Text;
+            // insert data
+            TableData crudData = new TableData();
+            crudData.TableName = MA_CustSupp.TableName;
+            crudData.Data = custSupp;
+            crudData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
+            if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
+            {
+                TbResponse updateResponse = manager.dmMMSManager.Update(manager.authenticationManager.userData, crudData).Result;
+            }
+            else
+            {
+                TbResponse addResponse = manager.dmMMSManager.Add(manager.authenticationManager.userData, crudData).Result;
+            }
+        }
+
+        private void btnDeleteTable_Click(object sender, EventArgs e)
+        {
+            TableData crudData = new TableData();
+            crudData.TableName = MA_CustSupp.TableName;
+            crudData.Data = null;
+            crudData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
+
+            bool? bDeleted = manager.dmMMSManager?.Delete(manager.authenticationManager.userData, crudData).Result;
+        }
+
+      
     }
 }
+
 

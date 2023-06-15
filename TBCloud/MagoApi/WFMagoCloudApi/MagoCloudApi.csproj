@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="AuthenticationManager.cs" />
     <Compile Include="DataServiceManager.cs" />
+    <Compile Include="DmMMSManager.cs" />
     <Compile Include="DmsManager.cs" />
     <Compile Include="ExampleManager.cs" />
     <Compile Include="FormResult.cs">
@@ -104,6 +105,7 @@
     </Compile>
     <Compile Include="RsManager.cs" />
     <Compile Include="TbFsServiceManager.cs" />
+    <Compile Include="TbResponse.cs" />
     <Compile Include="TbServerManager.cs" />
     <Compile Include="UrlSManager.cs" />
     <Compile Include="WebMethodsManager.cs" />

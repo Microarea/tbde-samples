@@ -110,7 +110,7 @@ namespace MagoCloudApi
                                 return true;
                             }
                             else
-                                MessageBox.Show("Login Failed");
+                                MessageBox.Show("Login Failed ERROR 407");
                         }
                         else
                             MessageBox.Show("Login reported a invalid content.");

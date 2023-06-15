@@ -18,8 +18,10 @@ namespace MagoCloudApi
         internal WebMethodsManager webMethodsManager = new WebMethodsManager();
         internal RsManager rsManager = new RsManager();
         internal DmsManager dmsManager = new DmsManager();
+        internal DmMMSManager dmMMSManager = new DmMMSManager();
         internal UrlSManager urlsManager = new UrlSManager();
         internal TbFsServiceManager tbFsServiceManager = new TbFsServiceManager();
+        internal TbResponse tbResponse = new TbResponse();
         internal ExampleManager exampleManager = new ExampleManager();
         
         public MagoCloudApiManager()
@@ -53,7 +55,7 @@ namespace MagoCloudApi
             var producerData = new JObject
                 {
                     {"ProducerKey",producerKey},
-                    {"AppKey",appKey }
+                    {"AppKey",appKey },
                 };
             string dJsonInString = JsonConvert.SerializeObject(producerData);
             request.Headers.TryAddWithoutValidation("MagoAPI", dJsonInString);
