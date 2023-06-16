@@ -258,6 +258,26 @@ namespace MyApp
             // delete operation
             crudData.Data = null;
             bool? bDeleted = magocloudClient.MyMagoStudio?.Delete(userData, crudData).Result;
+
+            //////////////////////////////////////////////////////////////////////
+            /// BUSINESS OBJECT DATA APIs
+            // returns a business object 
+            BusinessObjectData boData = new BusinessObjectData();
+            boData.BONamespace = "ERP.CustomersSuppliers.Documents.Customers";
+            // search by primary key
+            boData.FindFields.Add("CustSuppType", 3211264);
+            boData.FindFields.Add("CustSupp", "0001");
+            // search by company name or by other master table fields
+            //boData.FindFields.Add("CompanyName", "Giani Srl");
+
+            boData.RequestedTables = new List<RequestedTable>();
+            boData.RequestedTables.Add(new RequestedTable("MA_CustSupp"));
+            boData.RequestedTables.Add(new RequestedTable("MA_CustSuppCustomerOptions", new string[] { "CustSuppType", "Customer", "CommissionCtg", "Area", "Salesperson", "AreaManager" }));
+            boData.RequestedTables.Add(new RequestedTable("MA_CustSuppBalances"));
+
+            ITbResponse boResponse = magocloudClient.MyMagoStudio?.GetBusinessObject(userData, boData).Result;
+
+
         }
 
 
