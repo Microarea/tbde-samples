@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microarea.Tbf.Model.Library" Version="2.2.0.62" />
+    <PackageReference Include="Microarea.Tbf.Model.Library" Version="2.2.0.63" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 

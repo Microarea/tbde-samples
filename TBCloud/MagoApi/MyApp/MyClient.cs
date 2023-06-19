@@ -267,8 +267,8 @@ namespace MyApp
             // search by primary key
             boData.FindFields.Add("CustSuppType", 3211264);
             boData.FindFields.Add("CustSupp", "0001");
-            // search by company name or by other master table fields
-            //boData.FindFields.Add("CompanyName", "Giani Srl");
+            // search by company name or by other master table fields. % field enables like operator
+            //boData.FindFields.Add("CompanyName", "Gian%");
 
             boData.RequestedTables = new List<RequestedTable>();
             boData.RequestedTables.Add(new RequestedTable("MA_CustSupp"));
