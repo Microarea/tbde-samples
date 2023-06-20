@@ -266,9 +266,11 @@ namespace MyApp
             boData.BONamespace = "ERP.CustomersSuppliers.Documents.Customers";
             // search by primary key
             boData.FindFields.Add("CustSuppType", 3211264);
-            boData.FindFields.Add("CustSupp", "0001");
+            //boData.FindFields.Add("CustSupp", "0001");
             // search by company name or by other master table fields. % field enables like operator
-            //boData.FindFields.Add("CompanyName", "Gian%");
+            boData.FindFields.Add("CompanyName", "Bici%");
+            boData.OrderByFields = new string[] { "CompanyName" };
+
 
             boData.RequestedTables = new List<RequestedTable>();
             boData.RequestedTables.Add(new RequestedTable("MA_CustSupp"));
