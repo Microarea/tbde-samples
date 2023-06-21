@@ -21,7 +21,7 @@ namespace MagoCloudApi
             using (HttpClient client = new HttpClient())
             {
                 //@@mmf
-                LocalUrl = (isMMS)? MMSlocalUrl : "http://localhost:5000/mymagostudio-service/";
+                LocalUrl = (isMMS)? MMSlocalUrl : "http://localhost:5000";
                 if (userData.GwamUrl == string.Empty || userData.GwamUrl == "https://test-gwam.mago.cloud")
                     return LocalUrl;
                 //@@mmf end

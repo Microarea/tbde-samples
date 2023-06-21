@@ -2,7 +2,9 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -86,7 +88,10 @@ namespace MagoCloudApi
                 return nameSpace + "Unable to retrive the data.";
             }
         }
-       
+
+
+        //------- GetEnumsTable is implemented in DmMMsManager
+
         internal string GetVersion(UserData userData)
         {
             using (HttpClient client = new HttpClient())

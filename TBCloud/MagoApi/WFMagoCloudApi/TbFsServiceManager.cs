@@ -14,6 +14,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 //using System.Windows.Documents;
@@ -196,12 +197,14 @@ namespace MagoCloudApi
         /////// GET PROFILES ////////
         public async Task<List<string>> GetProfiles(UserData userData, DateTime operationDate, string application, string module, string folderName)
         {
+            
             List<string> profileslist = new List<string>();
           
             UrlSManager Urls = new UrlSManager();
             if (UrlSManager.TbFsServiceUrl == "") UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
             //msg.RequestUri = new Uri(new Uri(_tbfsServiceUrl), "tbfs-service/GettAllApplications");
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbFsServiceUrl + "/tbfs-service/getprofilefolders");
+
             request.Method = HttpMethod.Post;
 
             var server_info = JsonConvert.SerializeObject(new
@@ -217,8 +220,8 @@ namespace MagoCloudApi
             });
             MagoCloudApiManager.PrepareHeaders(request, userData);
             request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
-            request.Content = GetProfileParameters(application, module, folderName);
-
+            //request.Content = GetProfileParameters(application, module, folderName);
+            request.Content = GetTextFileParameters(application, module, folderName, "marco.spazian@zucchetti.com", "DT-0208BD", "it-IT");
             using (var resp = await _httpClient.SendAsync(request))
             {
                 if (resp.StatusCode != HttpStatusCode.OK)
@@ -240,10 +243,69 @@ namespace MagoCloudApi
             }
         }
 
+        public async Task<List<string>> GetTextFile(UserData userData, DateTime operationDate, string application, string module, string folderName)
+        {
+            //string path, string folderName
+            List<string> profileslist = new List<string>();
+
+            UrlSManager Urls = new UrlSManager();
+            if (UrlSManager.TbFsServiceUrl == "") UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
+            //msg.RequestUri = new Uri(new Uri(_tbfsServiceUrl), "tbfs-service/GettAllApplications");
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbFsServiceUrl + "/tbfs-service/gettextfile");
+            request.Method = HttpMethod.Post;
+
+            var server_info = JsonConvert.SerializeObject(new
+            {
+                subscription = userData.SubscriptionKey,
+                gmtOffset = -60,
+                date = new
+                {
+                    day = operationDate.Day,
+                    month = operationDate.Month,
+                    year = operationDate.Year
+                }
+            });
+            MagoCloudApiManager.PrepareHeaders(request, userData);
+            request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+            //request.Content = GetProfileParameters(application, module, folderName);
+            request.Content = GetTextFileParameters(application, module, folderName, "marco.spazian@zucchetti.com", "DT-0208BD", "it-IT");
+
+            using (var resp = await _httpClient.SendAsync(request))
+            {
+                if (resp.StatusCode != HttpStatusCode.OK)
+                    return profileslist;
+
+                string ret = await resp.Content.ReadAsStringAsync();
+                if (string.IsNullOrEmpty(ret))
+                    return profileslist;
+
+                JObject jRes = JObject.Parse(ret);
+
+                //JArray folders = jRes["objects"] as JArray;
+                //foreach (var item in folders)
+                //{
+                //    profileslist.Add(item["name"].ToString());
+                //}
+                //profileslist.Sort();
+                return profileslist;
+            }
+        }
+
         public static FormUrlEncodedContent GetProfileParameters(string application, string module, string folderName)
         {
             string parentPath = application + "." + module;
             return new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("path", parentPath), new KeyValuePair<string, string>("folderName", folderName) });
+        }
+        public static FormUrlEncodedContent GetTextFileParameters(string application, string module, string folderName, string user, string company, string culture)
+        {
+            //(string nameSpace, string user, string company, string culture
+            string ns = application + "." + module + ".ModuleObjects";
+            return new FormUrlEncodedContent(new[] { 
+                new KeyValuePair<string, string>("namespace", ns),
+                new KeyValuePair<string, string>("user", user),
+                new KeyValuePair<string, string>("company", company),
+                new KeyValuePair<string, string>("culture", culture)
+            });
         }
 
     }

@@ -32,10 +32,12 @@ using System.Linq;
 using MagoCloudApi;
 using System.Net;
 using System.Collections;
+using System.Net.NetworkInformation;
+using System.Text;
 
 namespace MagoCloudApi
 {
-    
+
     public partial class MagoCloudApi : Form
     {
         MagoCloudApiManager manager = new MagoCloudApiManager();
@@ -63,7 +65,7 @@ namespace MagoCloudApi
         private bool isFolderOpened = false;
         private bool isFullScreen = false;
         private string tableName;
-        
+
 
         public MagoCloudApi()
         {
@@ -111,7 +113,7 @@ namespace MagoCloudApi
                             "Is a solution for digital document management.";
 
         }
-        
+
         private void MagoCloudApi_Load(object sender, EventArgs e)
         {
             // Assegna il testo del tooltip al controllo Tooltip
@@ -134,7 +136,7 @@ namespace MagoCloudApi
             cbxProfile.SelectedIndex = 0;
             //PopulateComboBox();
         }
-       
+
         //////////// customize draggable
         private void panelTitleForm_MouseDown(object sender, MouseEventArgs e)
         {
@@ -276,7 +278,37 @@ namespace MagoCloudApi
             bool bok = false;
             if (AreParametersOk())
                 bok = manager.authenticationManager.DoLogin(text_http.Text, text_user.Text, text_pwd.Text, text_subscription.Text, text_producer.Text, text_app.Text);
-            if (bok) _ = FillApplications();
+            if (bok)
+            {
+                EnumsResult enumsResult = manager.dmMMSManager.GetEnumsTable(manager.authenticationManager.userData);
+
+                if (enumsResult != null)
+                {
+                    List<string> listStored = enumsResult.ListStored;
+                    List<string> listName = enumsResult.ListName;
+                    // Carica gli elementi nella ComboBox
+                    foreach (string item in listName)
+                    {
+                        cbxArchiveType.Items.Add(item);
+
+                        int index = listName.IndexOf(item);
+                        if (index == 0 && listStored.Count > 0)
+                        {
+                            string num = listStored[index];
+                            textBoxArchiveType.Text = num;
+                        }
+                    }
+                    if (cbxArchiveType.Items.Count > 0)
+                    {
+                        cbxArchiveType.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    textBoxArchiveType.Text = "ArchiveType not found";
+                }
+            }
+            _ = FillApplications();
         }
 
         private void button_Token_Click(object sender, EventArgs e)
@@ -348,7 +380,7 @@ namespace MagoCloudApi
 
             System.Diagnostics.Process.Start(folderPath);
         }
-         // COMBOBOX TBFSSERVICE MANAGER
+        // COMBOBOX TBFSSERVICE MANAGER
         //___________________________________________________________
         private async void cbxApplication_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -388,7 +420,7 @@ namespace MagoCloudApi
                 string application = manager.tbFsServiceManager.selApp;
                 string module = manager.tbFsServiceManager.selMod;
                 string folderName = manager.tbFsServiceManager.selDoc;
-                if (manager.tbFsServiceManager.DocumentNamespace.Count > 0 && cbxDocReport.SelectedIndex > -1)
+                if (manager.tbFsServiceManager.DocumentNamespace != null && manager.tbFsServiceManager.DocumentNamespace.Count > 0 && cbxDocReport != null && cbxDocReport.SelectedIndex > -1)
                 {
                     manager.tbFsServiceManager.CurrentDocNS = manager.tbFsServiceManager.DocumentNamespace[cbxDocReport.SelectedIndex];
                 }
@@ -411,7 +443,7 @@ namespace MagoCloudApi
         {
             BtnRefDoc.ForeColor = Color.FromArgb(65, 192, 146);
         }
-        
+
 
         private async void BtnGetParams_Click(object sender, EventArgs e)
         {
@@ -543,8 +575,9 @@ namespace MagoCloudApi
 
                     cbxApplication.SelectedIndex = 0;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                MessageBox.Show(e.Message);
             }
         }
 
@@ -576,12 +609,15 @@ namespace MagoCloudApi
         private async Task FillProfiles(string application, string module, string folderName)
         {
             List<string> profile = await manager.tbFsServiceManager.GetProfiles(manager.authenticationManager.userData, DateTime.Now, application, module, folderName);
+            //List<string> textFile = await manager.tbFsServiceManager.GetTextFile(manager.authenticationManager.userData, DateTime.Now, application, module, folderName);
+
             if (profile == null)
                 return;
             cbxProfile.DataSource = profile; // Remove the DataSource before editing the collection of items
 
             if (profile.Count > 0)
                 cbxProfile.SelectedIndex = 0;
+
         }
         private string WriteParameters()
         {
@@ -652,7 +688,7 @@ namespace MagoCloudApi
             }
             defPriceHandle = manager.webMethodsManager.DefaultSalesPricesCreate(manager.authenticationManager.userData, DateTime.Now);
             ShowResult(defPriceHandle < 1 ? "The creation is not successful : \n" + defPriceHandle.ToString() : "Successful \n"
-                + "You have created the handle number : \n" + defPriceHandle.ToString(), defPriceHandle >= 1); if (defPriceHandle < 1);
+                + "You have created the handle number : \n" + defPriceHandle.ToString(), defPriceHandle >= 1); if (defPriceHandle < 1) ;
         }
 
         private void btnGetDefPrice_Click(object sender, EventArgs e)
@@ -735,6 +771,7 @@ namespace MagoCloudApi
             }
             return true;
         }
+
         private void buttonDSVersion_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
@@ -746,6 +783,10 @@ namespace MagoCloudApi
             string contentBody = manager.dataServiceManager.GetVersion(manager.authenticationManager.userData);
             ShowResult(contentBody != null ? "Get Version Xml:\n" + contentBody : "Unable to retrieve Get Version\n" + contentBody, contentBody != null);
         }
+
+
+
+
 
 
         ////////////////////////////////
@@ -802,7 +843,7 @@ namespace MagoCloudApi
             ShowResult(contentBody != null ? "DmsSetting: \n " + contentBody : "Error retrieving DmsSetting", contentBody != null);
         }
 
-        
+
         //// BTN SOURCECODE ///
         ///////////////////////
         private void linkHelpTb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -820,7 +861,7 @@ namespace MagoCloudApi
         {
             OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\DataServiceManager.cs");
         }
-        
+
         private void linkHelpReportingService_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\RsManager.cs");
@@ -834,7 +875,7 @@ namespace MagoCloudApi
         ////////////////////////
         ////DATA MANAGER MMS////
         ////////////////////////
-        
+
         private void btnGetMMSVersion_Click(object sender, EventArgs e)
         {
             if (!manager.authenticationManager.IsLogged())
@@ -854,17 +895,33 @@ namespace MagoCloudApi
             //TbResponse responseP = manager.dmMMSManager.Prototype(manager.authenticationManager.userData, sampleTableName).Result;
             //string prototypeContentBody = responseP.PlainResult;
             string contentBody = MA_CustSupp.TableName;
-            ShowResult(responseS.Success  ? "TableSchema " + MA_CustSupp.TableName + " OK": "Error retrieving TableSchema " + MA_CustSupp.TableName);
+            ShowResult(responseS.Success ? "TableSchema " + MA_CustSupp.TableName + " OK" : "Error retrieving TableSchema " + MA_CustSupp.TableName);
         }
 
-        private void btnSelect_Click(object sender, EventArgs e)
+        private async void btnSelect_Click(object sender, EventArgs e)
         {
-            Query query = new Query();
-            query.TableName = MA_CustSupp.TableName;
-            query.SelectedFields = new string[] {"CustSuppType","CustSupp","CompanyName"};
-            //query.SelectedFields = new string[] { "*" };
-            TbResponse SelectResponse = manager.dmMMSManager.Select(manager.authenticationManager.userData, query).Result;
-            string contentBody =(string)SelectResponse.ReturnValue;
+            Query query = new Query
+            {
+                TableName = MA_CustSupp.TableName,
+                SelectedFields = new string[] { "CustSuppType", "CustSupp", "CompanyName" }
+            };
+
+            TbResponse SelectResponse = await manager.dmMMSManager.Select(manager.authenticationManager.userData, query);
+            JArray dataArray = JArray.Parse((string)SelectResponse.ReturnValue);
+            StringBuilder contentBody = new StringBuilder();
+
+            foreach (JObject dataObject in dataArray)
+            {
+                string custSuppType = dataObject.GetValue("CustSuppType")?.ToString();
+                string custSupp = dataObject.GetValue("CustSupp")?.ToString();
+                string companyName = dataObject.GetValue("CompanyName")?.ToString();
+
+                contentBody.AppendLine($"CustSuppType:\n{custSuppType}");
+                contentBody.AppendLine($"CustSupp:\n{custSupp}");
+                contentBody.AppendLine($"CompanyName:\n{companyName}");
+                contentBody.AppendLine("------------");
+            }
+            ShowResult(contentBody.ToString(), true);
         }
 
         private void btnCount_Click(object sender, EventArgs e)
@@ -875,7 +932,7 @@ namespace MagoCloudApi
             TbResponse CountResponse = manager.dmMMSManager.Count(manager.authenticationManager.userData, query).Result;
             string CountContentBody = (string)CountResponse.ReturnValue;
             string contentBody = CountContentBody;
-            labelCount.Text = "Count " + MA_CustSupp.TableName +" = "+ contentBody;
+            labelCount.Text = "Count " + MA_CustSupp.TableName + " = " + contentBody;
         }
 
         private void btnSelectAllByKey_Click(object sender, EventArgs e)
@@ -889,19 +946,35 @@ namespace MagoCloudApi
             tableData.TableName = MA_CustSupp.TableName; ;
             tableData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
             TbResponse selectByKeyResponse = manager.dmMMSManager.SelectAllByKey(manager.authenticationManager.userData, tableData).Result;
-
             string selectByKeyContentBody = (string)selectByKeyResponse.ReturnValue;
-        }
 
-        private void btnGetNextId_Click(object sender, EventArgs e)
-        {
-            //tipo archivio Inventory Entry = 3801093
-            TbResponse getIdResponse = manager.dmMMSManager.GetNextID(manager.authenticationManager.userData, "3801093", false).Result;
+            if (selectByKeyContentBody != null && selectByKeyContentBody.ToLower() != "null")
+            {
+                JObject dataObject = JObject.Parse(selectByKeyContentBody);
+                string contentBody = "";
+                foreach (var property in dataObject.Properties())
+                {
+                    // uncommenting the if only fields without an empty string are displayed
+                    //if (property.Value.Type != JTokenType.Null && property.Value.ToString() != "")
+                    contentBody += $"{property.Name}: {property.Value}\n";
+                }
+                if (!string.IsNullOrEmpty(contentBody))
+                {
+                    ShowResult(contentBody);
+                }
+                else
+                {
+                    ShowResult("No valid data found.", false);
+                }
+            }
+            else
+            {
+                ShowResult("Error retrieving SelectAllByKey: Null response.\nCheck that the entered parameters are correct.", false);
+            }
         }
 
         private void btnExists_Click(object sender, EventArgs e)
         {
-            
             TableData crudData = new TableData();
             crudData.TableName = MA_CustSupp.TableName;
             crudData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
@@ -910,9 +983,10 @@ namespace MagoCloudApi
             bool existsResult = existsTask.Result;
             if (existsTask.Result == false)
             {
-                MessageBox.Show("non esiste");
+                MessageBox.Show("Does not exist");
                 return;
             }
+            labelExists.Text = "Exists = "+ existsTask.Result;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -948,7 +1022,36 @@ namespace MagoCloudApi
             bool? bDeleted = manager.dmMMSManager?.Delete(manager.authenticationManager.userData, crudData).Result;
         }
 
-      
+        private void cbxArchiveType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EnumsResult enumsResult = manager.dmMMSManager.GetEnumsTable(manager.authenticationManager.userData);
+            if (enumsResult != null)
+            {
+                List<string> listStored = enumsResult.ListStored;
+                if (manager.tbFsServiceManager.selMod != "Module")
+                {
+                    string application = manager.tbFsServiceManager.selApp;
+                    string module = manager.tbFsServiceManager.selMod;
+
+                }
+                int selectedIndex = cbxArchiveType.SelectedIndex;
+
+                if (selectedIndex >= 0 && selectedIndex < listStored.Count)
+                {
+                    string num = listStored[selectedIndex];
+                    textBoxArchiveType.Text = num;
+                }
+            }
+        }
+
+        private void btnGetNextId_Click(object sender, EventArgs e)
+        {
+            //tipo archivio Inventory Entry = 3801093
+            TbResponse getIdResponse = manager.dmMMSManager.GetNextID(manager.authenticationManager.userData, textBoxArchiveType.Text, false).Result;
+            string contentBody = (string)getIdResponse.ReturnValue;
+            labelNextIdN.BackColor = Color.Green; // Imposta lo sfondo a rosso
+            labelNextIdN.Text = cbxArchiveType.Text+" Next id n° : " + contentBody;
+        }
     }
 }
 

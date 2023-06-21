@@ -60,5 +60,18 @@ namespace MagoCloudApi
             string dJsonInString = JsonConvert.SerializeObject(producerData);
             request.Headers.TryAddWithoutValidation("MagoAPI", dJsonInString);
         }
+
+        internal static void PrepareAutorization(HttpRequestMessage request, UserData userData)
+        {
+            var credential = new JObject
+                    {
+                        { "type", "JWT"},
+                        { "AppId", "MagoAPI" },
+                        { "securityValue", userData.Token }
+                    };
+            string credentialJsonInString = JsonConvert.SerializeObject(credential);
+            request.Headers.TryAddWithoutValidation("Authorization", credentialJsonInString);
+        }
+
     }
 }

@@ -32,6 +32,11 @@ namespace MagoCloudApi
         public object[] Keys { get; internal set; }
         public object Data { get; set; } = null;
     }
+    public class EnumsResult
+    {
+        public List<string> ListName { get; set; }
+        public List<string> ListStored { get; set; }
+    }
 
     class DmMMSManager
     {
@@ -324,6 +329,79 @@ namespace MagoCloudApi
                 tbResponse.ReturnValue = data["data"]?.ToString();
                 tbResponse.PlainResult = funResponse;
                 tbResponse.Success = true;
+            }
+        }
+
+        internal EnumsResult GetEnumsTable(UserData userData)
+        {
+            EnumsResult result = new EnumsResult();
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.DataServiceUrl == "") UrlSManager.DataServiceUrl = "http://localhost:5000/enums-service/";
+                    StringBuilder builder = new StringBuilder();
+                    string GetUrl = UrlSManager.DataServiceUrl + "getEnumsTable/";
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl);
+                    MagoCloudApiManager.PrepareAutorization(request, userData);
+                    HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        string responseBody = response.Content.ReadAsStringAsync().Result;
+                        StringBuilder strings = new StringBuilder();
+                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
+                        if (jsonObject != null)
+                        {
+                            string resultVariable = jsonObject["enums"]["tags"]?.ToString();
+                            var jArchive = jsonObject["enums"]["tags"];
+
+                            strings.AppendLine(jsonObject.ToString());
+
+                            string pageData = responseBody;
+                            System.Collections.Generic.List<JToken> listValue = JObject
+                             .Parse(pageData)
+                             .Descendants()
+                             .Where(x => x is JObject)
+                             .Where(x => x["name"] != null && (string)x["name"] == "Archive Type")
+                             //.Select(x => new { value1 = (string)x["name"] , value2 = x["items"].ToArray() })
+                             .ToList()
+                            ;
+                            JToken jt = listValue[0];
+                            string st = jt.ToString();
+                            JObject jOb = JsonConvert.DeserializeObject<JObject>(st);
+                            var listName = JObject
+                             .Parse(jOb.ToString())
+                             .Descendants()
+                             .Where(x => x is JObject)
+                             .Where(x => x["name"] != null)
+                             .Select(x => new { val = (string)x["name"] });
+                            ;
+                            var listStored = JObject
+                             .Parse(jOb.ToString())
+                             .Descendants()
+                             .Where(x => x is JObject)
+                             .Where(x => x["stored"] != null)
+                             .Select(x => new { val = (string)x["stored"] });
+                            ;
+                            result.ListName = listName.Select(x => x.val).ToList();
+                            result.ListStored = listStored.Select(x => x.val).ToList();
+
+                            return result;
+                        }
+                        else
+                            return null;
+                    }
+                    else
+                        return null;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("\nException Caught!");
+                    Console.WriteLine("Message :{0} ", e.Message);
+                }
+                return null;
             }
         }
     }
