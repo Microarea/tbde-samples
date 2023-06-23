@@ -276,41 +276,19 @@ namespace MagoCloudApi
         private void button_Login_Click(object sender, System.EventArgs e)
         {
             bool bok = false;
+
             if (AreParametersOk())
-                bok = manager.authenticationManager.DoLogin(text_http.Text, text_user.Text, text_pwd.Text, text_subscription.Text, text_producer.Text, text_app.Text);
-            if (bok)
             {
-                EnumsResult enumsResult = manager.dmMMSManager.GetEnumsTable(manager.authenticationManager.userData);
-
-                if (enumsResult != null)
+                bok = manager.authenticationManager.DoLogin(text_http.Text, text_user.Text, text_pwd.Text, text_subscription.Text, text_producer.Text, text_app.Text);
+                if (bok)
                 {
-                    List<string> listStored = enumsResult.ListStored;
-                    List<string> listName = enumsResult.ListName;
-                    // Carica gli elementi nella ComboBox
-                    foreach (string item in listName)
-                    {
-                        cbxArchiveType.Items.Add(item);
-
-                        int index = listName.IndexOf(item);
-                        if (index == 0 && listStored.Count > 0)
-                        {
-                            string num = listStored[index];
-                            textBoxArchiveType.Text = num;
-                        }
-                    }
-                    if (cbxArchiveType.Items.Count > 0)
-                    {
-                        cbxArchiveType.SelectedIndex = 0;
-                    }
+                    LoadEnumsTable();
                 }
-                else
-                {
-                    textBoxArchiveType.Text = "ArchiveType not found";
-                }
+                 FillApplications();
+                
             }
-            _ = FillApplications();
         }
-
+      
         private void button_Token_Click(object sender, EventArgs e)
         {
             if (manager.authenticationManager.IsLogged())
@@ -324,8 +302,10 @@ namespace MagoCloudApi
         }
         private void button_Logout_Click(object sender, EventArgs e)
         {
+
             if (manager.authenticationManager.IsLogged())
                 manager.authenticationManager.DoLogout(text_http.Text);
+
             else
                 MessageBox.Show("User is not logged, please Login!");
         }
@@ -661,7 +641,7 @@ namespace MagoCloudApi
             DateTime now = new DateTime(2022, 12, 31);
             string contentBody = manager.webMethodsManager.CurrentOpeningDate(manager.authenticationManager.userData, now);
 
-            ShowResult(contentBody != null ? "CurrentOpeningDate\n" + contentBody : "Unable to retrieve ClosingDate\n" + contentBody, contentBody != null);
+            ShowResult(contentBody != null ? "CurrentOpeningDate\n" + contentBody : "Unable to retrieve OpeningDate\n" + contentBody, contentBody != null);
             labelWbUrl.Text = UrlSManager.TbServerUrl;
         }
 
@@ -890,22 +870,35 @@ namespace MagoCloudApi
 
         private void btnTableSchema_Click(object sender, EventArgs e)
         {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
             TbResponse responseS = manager.dmMMSManager.Schema(manager.authenticationManager.userData, MA_CustSupp.TableName).Result;
             string schemaContentBody = responseS.PlainResult;
             //TbResponse responseP = manager.dmMMSManager.Prototype(manager.authenticationManager.userData, sampleTableName).Result;
             //string prototypeContentBody = responseP.PlainResult;
             string contentBody = MA_CustSupp.TableName;
             ShowResult(responseS.Success ? "TableSchema " + MA_CustSupp.TableName + " OK" : "Error retrieving TableSchema " + MA_CustSupp.TableName);
+            DmMMSUrl.Text = UrlSManager.DmMMSUrl;
         }
 
         private async void btnSelect_Click(object sender, EventArgs e)
         {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
             Query query = new Query
             {
                 TableName = MA_CustSupp.TableName,
-                SelectedFields = new string[] { "CustSuppType", "CustSupp", "CompanyName" }
-            };
+                SelectedFields = new string[] { "CustSuppType", "CustSupp", "CompanyName" },
+                //JoinClause = new string[] { "CustSuppType", "CustSupp", "CompanyName", "Branch" }
 
+            };
+            
             TbResponse SelectResponse = await manager.dmMMSManager.Select(manager.authenticationManager.userData, query);
             JArray dataArray = JArray.Parse((string)SelectResponse.ReturnValue);
             StringBuilder contentBody = new StringBuilder();
@@ -926,6 +919,11 @@ namespace MagoCloudApi
 
         private void btnCount_Click(object sender, EventArgs e)
         {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
             Query query = new Query();
             query.TableName = MA_CustSupp.TableName; ;
             query.SelectedFields = new string[] { "*" };
@@ -975,6 +973,11 @@ namespace MagoCloudApi
 
         private void btnExists_Click(object sender, EventArgs e)
         {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
             TableData crudData = new TableData();
             crudData.TableName = MA_CustSupp.TableName;
             crudData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
@@ -983,14 +986,20 @@ namespace MagoCloudApi
             bool existsResult = existsTask.Result;
             if (existsTask.Result == false)
             {
-                MessageBox.Show("Does not exist");
+                MessageBox.Show(textBoxCustSupp.Text + " not Exist");
                 return;
             }
-            labelExists.Text = "Exists = "+ existsTask.Result;
+            MessageBox.Show( textBoxCustSupp.Text + " Already Exist");
+            return;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
             MA_CustSupp custSupp = new MA_CustSupp();
 
             custSupp.CustSuppType = Int32.Parse(textBoxCustSuppType.Text);
@@ -1005,21 +1014,76 @@ namespace MagoCloudApi
             if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
             {
                 TbResponse updateResponse = manager.dmMMSManager.Update(manager.authenticationManager.userData, crudData).Result;
+                MessageBox.Show("Table Updated successfully");
+                return;
             }
             else
             {
                 TbResponse addResponse = manager.dmMMSManager.Add(manager.authenticationManager.userData, crudData).Result;
+                MessageBox.Show("Table Added successfully");
+                return;
             }
         }
 
         private void btnDeleteTable_Click(object sender, EventArgs e)
         {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
             TableData crudData = new TableData();
             crudData.TableName = MA_CustSupp.TableName;
             crudData.Data = null;
             crudData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
+            if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
+            {
+                bool? bDeleted = manager.dmMMSManager?.Delete(manager.authenticationManager.userData, crudData).Result;
+                MessageBox.Show(textBoxCustSupp.Text + " Table cleared successfully");
+                return;
+            }
+            else
+            {
+                MessageBox.Show(textBoxCustSupp.Text + " Table not found, unable to delete ");
+                return;
+            }
+           
+        }
 
-            bool? bDeleted = manager.dmMMSManager?.Delete(manager.authenticationManager.userData, crudData).Result;
+        private void LoadEnumsTable()
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            EnumsResult enumsResult = manager.dmMMSManager.GetEnumsTable(manager.authenticationManager.userData);
+
+            if (enumsResult != null)
+            {
+                List<string> listStored = enumsResult.ListStored;
+                List<string> listName = enumsResult.ListName;
+                // Carica gli elementi nella ComboBox
+                foreach (string item in listName)
+                {
+                    cbxArchiveType.Items.Add(item);
+
+                    int index = listName.IndexOf(item);
+                    if (index == 0 && listStored.Count > 0)
+                    {
+                        string num = listStored[index];
+                        textBoxArchiveType.Text = num;
+                    }
+                }
+                if (cbxArchiveType.Items.Count > 0)
+                {
+                    cbxArchiveType.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                textBoxArchiveType.Text = "ArchiveType not found";
+            }
         }
 
         private void cbxArchiveType_SelectedIndexChanged(object sender, EventArgs e)
@@ -1046,11 +1110,25 @@ namespace MagoCloudApi
 
         private void btnGetNextId_Click(object sender, EventArgs e)
         {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
             //tipo archivio Inventory Entry = 3801093
             TbResponse getIdResponse = manager.dmMMSManager.GetNextID(manager.authenticationManager.userData, textBoxArchiveType.Text, false).Result;
-            string contentBody = (string)getIdResponse.ReturnValue;
-            labelNextIdN.BackColor = Color.Green; // Imposta lo sfondo a rosso
-            labelNextIdN.Text = cbxArchiveType.Text+" Next id n° : " + contentBody;
+            if (getIdResponse.Success == true) 
+            {
+                string contentBody = (string)getIdResponse.ReturnValue;
+                labelNextIdN.BackColor = Color.Green; 
+                labelNextIdN.Text = cbxArchiveType.Text + " Next id n° : " + contentBody;
+            }
+            else 
+            {
+                labelNextIdN.BackColor = Color.Red; 
+                labelNextIdN.Text = cbxArchiveType.Text + " ArchiveType not present ";
+            }
+
         }
     }
 }

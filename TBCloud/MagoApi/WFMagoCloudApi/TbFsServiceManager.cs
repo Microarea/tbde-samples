@@ -25,13 +25,13 @@ namespace MagoCloudApi
     //=======================================================================================================================
     internal class TbFsServiceManager
     {
-        internal string selApp { get; set; }
-        internal string selMod { get; set; }
-        internal string selDoc { get; set; }
-        internal string selProfile { get; set; }
-        internal string DefaultDocumentParameters { get; set; }="<?xml version=\"1.0\" encoding=\"utf-8\"?><maxs:{0} tbNamespace=\"{1}\" xTechProfile=\"{2}\" xmlns:maxs=\"{3}\"><maxs:Parameters></maxs:Parameters></maxs:{0}>";
-        internal string DefaultUri { get; set; }= "http://www.microarea.it/Schema/2004/Smart";
-        internal string DefaultUser { get; set; } = "Standard";
+        public string selApp { get; set; }
+        public string selMod { get; set; }
+        public string selDoc { get; set; }
+        public string selProfile { get; set; }
+        public string DefaultDocumentParameters { get; set; }="<?xml version=\"1.0\" encoding=\"utf-8\"?><maxs:{0} tbNamespace=\"{1}\" xTechProfile=\"{2}\" xmlns:maxs=\"{3}\"><maxs:Parameters></maxs:Parameters></maxs:{0}>";
+        public string DefaultUri { get; set; }= "http://www.microarea.it/Schema/2004/Smart";
+        public string DefaultUser { get; set; } = "Standard";
 
         public List<string> DocumentNamespace { get; set; }
         public List<string> DocumentPath { get; set; }
@@ -52,19 +52,7 @@ namespace MagoCloudApi
             if (UrlSManager.TbFsServiceUrl == "") UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbFsServiceUrl + "/tbfs-service/GettAllApplications");
             request.Method = HttpMethod.Post;
-
-            var server_info = JsonConvert.SerializeObject(new
-            {
-                subscription = userData.SubscriptionKey,
-                gmtOffset = -60,
-                date = new
-                {
-                    day = operationDate.Day,
-                    month = operationDate.Month,
-                    year = operationDate.Year
-                }
-            });
-            MagoCloudApiManager.PrepareHeaders(request, userData);
+            MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
             request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 
             using (var resp = await _httpClient.SendAsync(request))
@@ -98,19 +86,7 @@ namespace MagoCloudApi
             if (UrlSManager.TbFsServiceUrl == "") UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbFsServiceUrl + "/tbfs-service/GetAllModulesByApplication");
             request.Method = HttpMethod.Post;
-
-            var server_info = JsonConvert.SerializeObject(new
-            {
-                subscription = userData.SubscriptionKey,
-                gmtOffset = -60,
-                date = new
-                {
-                    day = operationDate.Day,
-                    month = operationDate.Month,
-                    year = operationDate.Year
-                }
-            });
-            MagoCloudApiManager.PrepareHeaders(request, userData);
+            MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
             request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
             request.Content = GetModulesParameters(application);
 
@@ -150,8 +126,7 @@ namespace MagoCloudApi
             UrlSManager Urls = new UrlSManager();
             if (UrlSManager.TbFsServiceUrl == "") UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbFsServiceUrl + "/tbfs-service/GetSubFolders");
-
-            MagoCloudApiManager.PrepareHeaders(request, userData);
+            MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
             request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
             request.Content = GetModulesParameters(application);
             request.Content = GetDocumentObjectsParameters(application, module);
@@ -204,24 +179,11 @@ namespace MagoCloudApi
             if (UrlSManager.TbFsServiceUrl == "") UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
             //msg.RequestUri = new Uri(new Uri(_tbfsServiceUrl), "tbfs-service/GettAllApplications");
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbFsServiceUrl + "/tbfs-service/getprofilefolders");
-
             request.Method = HttpMethod.Post;
-
-            var server_info = JsonConvert.SerializeObject(new
-            {
-                subscription = userData.SubscriptionKey,
-                gmtOffset = -60,
-                date = new
-                {
-                    day = operationDate.Day,
-                    month = operationDate.Month,
-                    year = operationDate.Year
-                }
-            });
-            MagoCloudApiManager.PrepareHeaders(request, userData);
+            MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
             request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
-            //request.Content = GetProfileParameters(application, module, folderName);
-            request.Content = GetTextFileParameters(application, module, folderName, "marco.spazian@zucchetti.com", "DT-0208BD", "it-IT");
+            request.Content = GetProfileParameters(application, module, folderName);
+            //request.Content = GetTextFileParameters(application, module, folderName, "marco.spazian@zucchetti.com", "DT-0208BD", "it-IT");
             using (var resp = await _httpClient.SendAsync(request))
             {
                 if (resp.StatusCode != HttpStatusCode.OK)
@@ -253,19 +215,7 @@ namespace MagoCloudApi
             //msg.RequestUri = new Uri(new Uri(_tbfsServiceUrl), "tbfs-service/GettAllApplications");
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbFsServiceUrl + "/tbfs-service/gettextfile");
             request.Method = HttpMethod.Post;
-
-            var server_info = JsonConvert.SerializeObject(new
-            {
-                subscription = userData.SubscriptionKey,
-                gmtOffset = -60,
-                date = new
-                {
-                    day = operationDate.Day,
-                    month = operationDate.Month,
-                    year = operationDate.Year
-                }
-            });
-            MagoCloudApiManager.PrepareHeaders(request, userData);
+            MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
             request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
             //request.Content = GetProfileParameters(application, module, folderName);
             request.Content = GetTextFileParameters(application, module, folderName, "marco.spazian@zucchetti.com", "DT-0208BD", "it-IT");

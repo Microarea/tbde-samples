@@ -50,7 +50,8 @@ namespace MagoCloudApi
                     //if (UrlSManager.DmsServiceUrl == "") UrlSManager.DmsServiceUrl = RetriveDmsUrl(userData, DateTime.Now);
 
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DmsServiceUrl + "/dms/api/");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
+                    //MagoCloudApiManager.PrepareHeaders(request, userData, DateTime.Now);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -84,7 +85,8 @@ namespace MagoCloudApi
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MICRODMS/");
                     //UrlSManager.DmsServiceUrl = RetriveDmsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmsServiceUrl + "/dms/api/dmssettings/get/");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
+                    //MagoCloudApiManager.PrepareHeaders(request, userData,DateTime.Now);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)

@@ -45,7 +45,7 @@ namespace MagoCloudApi
         /// <summary>
         /// Join Clause
         /// </summary>
-        public string JoinClause { get; set; }
+        public string[] JoinClause { get; set; } = null;
 
         /// <summary>
         /// Where Clause

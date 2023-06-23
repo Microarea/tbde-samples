@@ -58,7 +58,8 @@ namespace MagoCloudApi
                     //if (reloadCaches)
                     GetUrl += "?forcedRefresh=true";
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl );
-                    MagoCloudApiManager.PrepareHeaders(request,userData);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -101,7 +102,8 @@ namespace MagoCloudApi
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DataServiceUrl == "") UrlSManager.DataServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/DATASERVICE");
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DataServiceUrl + "/data-service/api/assemblyversion");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)

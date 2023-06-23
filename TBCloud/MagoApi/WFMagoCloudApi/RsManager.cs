@@ -53,19 +53,8 @@ namespace MagoCloudApi
                     if (UrlSManager.ReportingServiceUrl == "") UrlSManager.ReportingServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/REPORTSERVICE");
                     //if (UrlSManager.ReportingServiceUrl == "") UrlSManager.ReportingServiceUrl = RetriveRsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.ReportingServiceUrl + "/rs/xmldata");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
-                    var server_info = JsonConvert.SerializeObject(new
-                    {
-                        subscription = userData.SubscriptionKey,
-                        gmtOffset = -60,
-                        date = new
-                        {
-                            day = operationDate.Day,
-                            month = operationDate.Month,
-                            year = operationDate.Year
-                        }
-                    });
-                    request.Headers.TryAddWithoutValidation("Server-Info", server_info);
+                    MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
+
                     string jsonInString = "";
                     if (btn == 0)
                         jsonInString = PrepareItems(request);

@@ -50,7 +50,9 @@ namespace MagoCloudApi
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + "DataManager/version");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                    request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
@@ -84,7 +86,8 @@ namespace MagoCloudApi
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"DataManager/{call}?tableName={tableName}");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
 
                     TbResponse tbResponse = new TbResponse();
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -129,8 +132,9 @@ namespace MagoCloudApi
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"DataManager/{call}");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
-                  
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+
                     var queryParam = JsonConvert.SerializeObject(query);
                     request.Content = new StringContent(content: queryParam, encoding: Encoding.UTF8, mediaType: "application/json");
                     TbResponse tbResponse = new TbResponse();
@@ -257,7 +261,9 @@ namespace MagoCloudApi
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"DataManager/getNextId");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                    request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 
                     var nrData = JsonConvert.SerializeObject(new
                     {
@@ -308,8 +314,9 @@ namespace MagoCloudApi
             {
                 var param = JsonConvert.SerializeObject(tableData);
                 request.Content = new StringContent(content: param, encoding: Encoding.UTF8, mediaType: "application/json");
-                MagoCloudApiManager.PrepareHeaders(request, userData);
-
+                MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                
                 TbResponse tbResponse = new TbResponse();
                 HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
@@ -340,11 +347,13 @@ namespace MagoCloudApi
                 try
                 {
                     UrlSManager Urls = new UrlSManager();
-                    if (UrlSManager.DataServiceUrl == "") UrlSManager.DataServiceUrl = "http://localhost:5000/enums-service/";
+                    if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = "http://localhost:5000/enums-service/";
                     StringBuilder builder = new StringBuilder();
-                    string GetUrl = UrlSManager.DataServiceUrl + "getEnumsTable/";
+                    string GetUrl = UrlSManager.EnumsTableUrl + "getEnumsTable/";
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl);
-                    MagoCloudApiManager.PrepareAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                   
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)

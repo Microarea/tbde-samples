@@ -47,19 +47,10 @@ namespace MagoCloudApi
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
-                    var server_info = JsonConvert.SerializeObject(new
-                    {
-                        subscription = userData.SubscriptionKey,
-                        gmtOffset = -60,
-                        date = new
-                        {
-                            day = operationDate.Day,
-                            month = operationDate.Month,
-                            year = operationDate.Year
-                        }
-                    });
-                    request.Headers.TryAddWithoutValidation("Server-Info", server_info);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                    MagoCloudApiManager.PrepareHeaderServerInfo(request, userData, operationDate);
+
                     string jsonInString = PrepareOpeningDate(request);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -111,19 +102,10 @@ namespace MagoCloudApi
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
-                    var server_info = JsonConvert.SerializeObject(new
-                    {
-                        subscription = userData.SubscriptionKey,
-                        gmtOffset = -60,
-                        date = new
-                        {
-                            day = operationDate.Day,
-                            month = operationDate.Month,
-                            year = operationDate.Year
-                        }
-                    });
-                    request.Headers.TryAddWithoutValidation("Server-Info", server_info);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                    MagoCloudApiManager.PrepareHeaderServerInfo(request, userData, operationDate);
+
                     string jsonInString = PrepareCloseDate(request);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -178,19 +160,10 @@ namespace MagoCloudApi
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
-                    var server_info = JsonConvert.SerializeObject(new
-                    {
-                        subscription = userData.SubscriptionKey,
-                        gmtOffset = -60,
-                        date = new
-                        {
-                            day = operationDate.Day,
-                            month = operationDate.Month,
-                            year = operationDate.Year
-                        }
-                    });
-                    request.Headers.TryAddWithoutValidation("Server-Info", server_info);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                    MagoCloudApiManager.PrepareHeaderServerInfo(request, userData, operationDate);
+
                     string jsonInString = PrepareDefSPCreate(request);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -243,19 +216,11 @@ namespace MagoCloudApi
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
-                    var server_info = JsonConvert.SerializeObject(new
-                    {
-                        subscription = userData.SubscriptionKey,
-                        gmtOffset = -60,
-                        date = new
-                        {
-                            day = operationDate.Day,
-                            month = operationDate.Month,
-                            year = operationDate.Year
-                        }
-                    });
-                    request.Headers.TryAddWithoutValidation("Server-Info", server_info);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                    MagoCloudApiManager.PrepareHeaderServerInfo(request, userData, operationDate);
+
+
                     string jsonInString = PrepareGetDefaultPx(request, handle, customer, item, uom, quantity);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -313,19 +278,10 @@ namespace MagoCloudApi
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
-                    var server_info = JsonConvert.SerializeObject(new
-                    {
-                        subscription = userData.SubscriptionKey,
-                        gmtOffset = -60,
-                        date = new
-                        {
-                            day = operationDate.Day,
-                            month = operationDate.Month,
-                            year = operationDate.Year
-                        }
-                    });
-                    request.Headers.TryAddWithoutValidation("Server-Info", server_info);
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                    MagoCloudApiManager.PrepareHeaderServerInfo(request, userData, operationDate);
+
                     string jsonInString = PrepareDefSPDispose(request, handle);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;

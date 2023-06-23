@@ -27,7 +27,7 @@ namespace MagoCloudApi
                 //@@mmf end
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + urlName);
                 //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/TBSERVER");
-                MagoCloudApiManager.PrepareHeaders(request, userData);
+                MagoCloudApiManager.PrepareHeaders(request, userData, DateTime.Now);
 
                 HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                 string responseBody = response.Content.ReadAsStringAsync().Result;
@@ -48,6 +48,7 @@ namespace MagoCloudApi
         public static string DmsServiceUrl = System.String.Empty;
         public static string TbFsServiceUrl = System.String.Empty;
         public static string DmMMSUrl = System.String.Empty;
+        public static string EnumsTableUrl = System.String.Empty;
 
     }
 

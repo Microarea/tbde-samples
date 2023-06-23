@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
+using System.Security.Policy;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -13,6 +14,10 @@ namespace MagoCloudApi
         internal string DataUrl = UrlSManager.DataServiceUrl;
         internal string DmsUrl = UrlSManager.DmsServiceUrl;
         internal string TbFsUrl = UrlSManager.TbFsServiceUrl;
+        internal string WmUrl = UrlSManager.TbServerUrl;
+        internal string RsUrl = UrlSManager.ReportingServiceUrl;
+        internal string DmMMsUrl = UrlSManager.DmMMSUrl;
+        internal string EnumsUrl = UrlSManager.EnumsTableUrl;
 
 
         internal string GwamUrl { get; set; }
@@ -28,6 +33,10 @@ namespace MagoCloudApi
             DataUrl = string.Empty;
             DmsUrl = string.Empty;
             TbFsUrl = string.Empty;
+            WmUrl = string.Empty;
+            RsUrl = string.Empty;
+            DmMMsUrl = string.Empty;
+            EnumsUrl = string.Empty;
             GwamUrl = string.Empty;
             Token = string.Empty;
             UserName = string.Empty;
@@ -73,7 +82,7 @@ namespace MagoCloudApi
                     //@@mmf end
 
                     //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
-                    MagoCloudApiManager.PrepareMagoAPIHeader(request, producerKey, appKey);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, producerKey, appKey);
                     //// Request a credential ////
                     var credential = new JObject
                                 {
@@ -142,7 +151,7 @@ namespace MagoCloudApi
                         request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/isvalidtoken");
                     //@@mmf end
                     //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/isvalidtoken");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
+                    MagoCloudApiManager.PrepareHeaders(request, userData, DateTime.Now);
                     request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
@@ -189,8 +198,9 @@ namespace MagoCloudApi
                         request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/logoff");
                     //@@mmf end
                     //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/logoff");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
-                    
+                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+
                     request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 

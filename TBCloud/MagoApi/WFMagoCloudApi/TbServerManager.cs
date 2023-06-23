@@ -94,19 +94,7 @@ namespace MagoCloudApi
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveTbServerUrl(userData,DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
-                    var server_info = JsonConvert.SerializeObject(new
-                    {
-                        subscription = userData.SubscriptionKey,
-                        gmtOffset = -60,
-                        date = new
-                        {
-                            day = operationDate.Day,
-                            month = operationDate.Month,
-                            year = operationDate.Year
-                        }
-                    });
-                    request.Headers.TryAddWithoutValidation("Server-Info", server_info);
+                    MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
                     string jsonInString = PrepareGetParams(request, xmlContent, userData.UserName);
                     request.Method = HttpMethod.Post;
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
@@ -167,19 +155,8 @@ namespace MagoCloudApi
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveTbServerUrl(userData,DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
-                    var server_info = JsonConvert.SerializeObject(new
-                    {
-                        subscription = userData.SubscriptionKey,
-                        gmtOffset = -60,
-                        date = new
-                        {
-                            day = operationDate.Day,
-                            month = operationDate.Month,
-                            year = operationDate.Year
-                        }
-                    });
-                    request.Headers.TryAddWithoutValidation("Server-Info", server_info);
+                    MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
+
                     string jsonInString = PrepareGetTb(request, xmlContent, userData.UserName);
                     request.Method = HttpMethod.Post;
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
@@ -279,20 +256,8 @@ namespace MagoCloudApi
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
-                    MagoCloudApiManager.PrepareHeaders(request, userData);
-                    var server_info = JsonConvert.SerializeObject(new
-                    {
-                        subscription = userData.SubscriptionKey,
-                        gmtOffset = -60,
-                        date = new
-                        {
-                            day = operationDate.Day,
-                            month = operationDate.Month,
-                            year = operationDate.Year
-                        }
-                    });
+                    MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
 
-                    request.Headers.TryAddWithoutValidation("Server-Info", server_info);
                     string jsonInString = PrepareSetTb(request, xmlContent, nAction, userData.UserName);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
