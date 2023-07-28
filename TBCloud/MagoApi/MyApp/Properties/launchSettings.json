@@ -2,7 +2,7 @@
   "profiles": {
     "MyApp": {
       "commandName": "Project",
-      "commandLineArgs": "https://myinstance.mago.cloud account@mymail.it pwd subscriptionkey"
+      "commandLineArgs": "https://localhost:5000/ marco.spazian@zucchetti.com Microarea.. DEV-23-0208BD true"
     }
   }
 }

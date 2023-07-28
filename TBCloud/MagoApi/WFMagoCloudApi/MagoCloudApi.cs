@@ -34,6 +34,7 @@ using System.Net;
 using System.Collections;
 using System.Net.NetworkInformation;
 using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MagoCloudApi
 {
@@ -41,7 +42,7 @@ namespace MagoCloudApi
     public partial class MagoCloudApi : Form
     {
         MagoCloudApiManager manager = new MagoCloudApiManager();
-
+       
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
@@ -65,6 +66,8 @@ namespace MagoCloudApi
         private bool isFolderOpened = false;
         private bool isFullScreen = false;
         private string tableName;
+        TbResponse m_GetBoResponse;
+        TbResponse m_UpdateBoResponse;
 
 
         public MagoCloudApi()
@@ -76,6 +79,8 @@ namespace MagoCloudApi
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             this.tabNavigation.TabPages.Remove(this.tabMSH);
             this.cbxSelectionType.SelectedIndex = 0;
+            
+
 
             labelTbUrl.Text = "ServiceUrl:";
             labelDmsUrl.Text = "ServiceUrl:";
@@ -276,7 +281,7 @@ namespace MagoCloudApi
         private void button_Login_Click(object sender, System.EventArgs e)
         {
             bool bok = false;
-
+            
             if (AreParametersOk())
             {
                 bok = manager.authenticationManager.DoLogin(text_http.Text, text_user.Text, text_pwd.Text, text_subscription.Text, text_producer.Text, text_app.Text);
@@ -284,11 +289,10 @@ namespace MagoCloudApi
                 {
                     LoadEnumsTable();
                 }
-                 FillApplications();
-                
+                _ = FillApplications();
             }
         }
-      
+
         private void button_Token_Click(object sender, EventArgs e)
         {
             if (manager.authenticationManager.IsLogged())
@@ -302,12 +306,14 @@ namespace MagoCloudApi
         }
         private void button_Logout_Click(object sender, EventArgs e)
         {
-
             if (manager.authenticationManager.IsLogged())
+            {
                 manager.authenticationManager.DoLogout(text_http.Text);
-
+            }
             else
+            {
                 MessageBox.Show("User is not logged, please Login!");
+            }
         }
         private void DoExit()
         {
@@ -366,9 +372,7 @@ namespace MagoCloudApi
         {
             manager.tbFsServiceManager.selApp = (cbxApplication.SelectedItem == null) ? string.Empty : cbxApplication.SelectedItem.ToString();
 
-            cbxModule.DataSource = null;
-            cbxDocReport.DataSource = null;
-            cbxProfile.DataSource = null;
+           
             if (manager.tbFsServiceManager.selApp != "Application")
                 await FillModules(manager.tbFsServiceManager.selApp);
 
@@ -377,14 +381,16 @@ namespace MagoCloudApi
         private async void cbxModule_SelectedIndexChanged(object sender, EventArgs e)
         {
             manager.tbFsServiceManager.selMod = (cbxModule.SelectedItem == null) ? string.Empty : cbxModule.SelectedItem.ToString();
-            cbxDocReport.DataSource = null;
-            cbxProfile.DataSource = null;
+           
 
             if (manager.tbFsServiceManager.selMod != "Module")
             {
                 string application = manager.tbFsServiceManager.selApp;
                 string module = manager.tbFsServiceManager.selMod;
-
+                if (manager.tbFsServiceManager.DocumentPath != null && manager.tbFsServiceManager.DocumentPath.Count > 0 && cbxModule != null && cbxModule.SelectedIndex > -1)
+                {
+                    manager.tbFsServiceManager.CurrentDocNS = manager.tbFsServiceManager.DocumentNamespace[cbxDocReport.SelectedIndex];
+                }
                 await FillDocuments(application, module);
 
             }
@@ -393,7 +399,7 @@ namespace MagoCloudApi
         private async void cbxDocReport_SelectedIndexChanged(object sender, EventArgs e)
         {
             manager.tbFsServiceManager.selDoc = (cbxDocReport.SelectedItem == null) ? string.Empty : cbxDocReport.SelectedItem.ToString();
-            cbxProfile.DataSource = null;
+           
 
             if (manager.tbFsServiceManager.selDoc != "Document")
             {
@@ -546,14 +552,20 @@ namespace MagoCloudApi
         {
             try
             {
+                cbxApplication.DataSource = null;
                 List<string> applications = await manager.tbFsServiceManager.GetApplications(manager.authenticationManager.userData, DateTime.Now);
                 if (applications == null)
                     return;
 
+                if (!applications.Contains("Application"))
+                {
+                    applications.Insert(0, "Application");
+                }
                 cbxApplication.DataSource = applications;
                 if (applications.Count > 0)
-
+                {
                     cbxApplication.SelectedIndex = 0;
+                }
             }
             catch (Exception e)
             {
@@ -563,11 +575,14 @@ namespace MagoCloudApi
 
         private async Task FillModules(string application)
         {
-
+            cbxModule.DataSource = null;
             List<string> modules = await manager.tbFsServiceManager.GetModules(manager.authenticationManager.userData, DateTime.Now, application);
             if (modules == null)
                 return;
-
+            if (!modules.Contains("Module"))
+            {
+                modules.Insert(0, "Module");
+            }
             cbxModule.DataSource = modules;
             if (modules.Count > 0)
                 cbxModule.SelectedIndex = 0;
@@ -575,11 +590,15 @@ namespace MagoCloudApi
 
         private async Task FillDocuments(string application, string module)
         {
+            cbxDocReport.DataSource= null;
             (List<string> folderNames, List<string> folderObjectsNS) = await manager.tbFsServiceManager.GetDocumentsFolders(manager.authenticationManager.userData, DateTime.Now, application, module);
 
             if (folderNames == null)
                 return;
-
+            if (!folderNames.Contains("Document"))
+            {
+                folderNames.Insert(0, "Document");
+            }
             cbxDocReport.DataSource = folderNames; // Remove the DataSource before editing the collection of items
             manager.tbFsServiceManager.DocumentNamespace = folderObjectsNS;
             if (folderNames.Count > 0)
@@ -588,11 +607,16 @@ namespace MagoCloudApi
 
         private async Task FillProfiles(string application, string module, string folderName)
         {
+            cbxProfile.DataSource= null;
             List<string> profile = await manager.tbFsServiceManager.GetProfiles(manager.authenticationManager.userData, DateTime.Now, application, module, folderName);
             //List<string> textFile = await manager.tbFsServiceManager.GetTextFile(manager.authenticationManager.userData, DateTime.Now, application, module, folderName);
 
             if (profile == null)
                 return;
+            if (!profile.Contains("Profile"))
+            {
+                profile.Insert(0, "Profile");
+            }
             cbxProfile.DataSource = profile; // Remove the DataSource before editing the collection of items
 
             if (profile.Count > 0)
@@ -898,7 +922,7 @@ namespace MagoCloudApi
                 //JoinClause = new string[] { "CustSuppType", "CustSupp", "CompanyName", "Branch" }
 
             };
-            
+
             TbResponse SelectResponse = await manager.dmMMSManager.Select(manager.authenticationManager.userData, query);
             JArray dataArray = JArray.Parse((string)SelectResponse.ReturnValue);
             StringBuilder contentBody = new StringBuilder();
@@ -953,7 +977,7 @@ namespace MagoCloudApi
                 foreach (var property in dataObject.Properties())
                 {
                     // uncommenting the if only fields without an empty string are displayed
-                    //if (property.Value.Type != JTokenType.Null && property.Value.ToString() != "")
+                    if (property.Value.Type != JTokenType.Null && property.Value.ToString() != "")
                     contentBody += $"{property.Name}: {property.Value}\n";
                 }
                 if (!string.IsNullOrEmpty(contentBody))
@@ -989,7 +1013,7 @@ namespace MagoCloudApi
                 MessageBox.Show(textBoxCustSupp.Text + " not Exist");
                 return;
             }
-            MessageBox.Show( textBoxCustSupp.Text + " Already Exist");
+            MessageBox.Show(textBoxCustSupp.Text + " Already Exist");
             return;
         }
 
@@ -1039,15 +1063,22 @@ namespace MagoCloudApi
             if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
             {
                 bool? bDeleted = manager.dmMMSManager?.Delete(manager.authenticationManager.userData, crudData).Result;
-                MessageBox.Show(textBoxCustSupp.Text + " Table cleared successfully");
-                return;
+                if(bDeleted == true)
+                {
+                    MessageBox.Show(textBoxCustSupp.Text + " Table cleared successfully");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show(textBoxCustSupp.Text + " Unable to delete");
+                    return;
+                }
             }
             else
             {
                 MessageBox.Show(textBoxCustSupp.Text + " Table not found, unable to delete ");
                 return;
             }
-           
         }
 
         private void LoadEnumsTable()
@@ -1117,18 +1148,172 @@ namespace MagoCloudApi
             }
             //tipo archivio Inventory Entry = 3801093
             TbResponse getIdResponse = manager.dmMMSManager.GetNextID(manager.authenticationManager.userData, textBoxArchiveType.Text, false).Result;
-            if (getIdResponse.Success == true) 
+            if (getIdResponse.Success == true)
             {
                 string contentBody = (string)getIdResponse.ReturnValue;
-                labelNextIdN.BackColor = Color.Green; 
+                labelNextIdN.BackColor = Color.Green;
                 labelNextIdN.Text = cbxArchiveType.Text + " Next id n° : " + contentBody;
             }
-            else 
+            else
             {
-                labelNextIdN.BackColor = Color.Red; 
+                labelNextIdN.BackColor = Color.Red;
                 labelNextIdN.Text = cbxArchiveType.Text + " ArchiveType not present ";
             }
 
+        }
+
+        private void btnBObjectData_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            BusinessObjectData boData = new BusinessObjectData();
+            boData.BONamespace = "ERP.CustomersSuppliers.Documents.Customers";
+            // search by primary key
+            boData.FindFields.Add("CustSuppType", textBoxBoCustSType.Text);
+            if (!string.IsNullOrEmpty(textBoxBoCustSupp.Text))
+            {
+                boData.FindFields.Add("CustSupp", textBoxBoCustSupp.Text);
+            }
+            // search by company name or by other master table fields. % field enables like operator
+            boData.FindFields.Add("CompanyName", textBoxBoCompanyName.Text);
+            boData.OrderByFields = new string[] {"CompanyName"};
+            boData.RequestedTables = new List<RequestedTable>();
+            boData.RequestedTables.Add(new RequestedTable(textBoxBoTabName.Text, new string[] { "CustSuppType", "CustSupp", "CompanyName"  }));
+            boData.RequestedTables.Add(new RequestedTable(textBoxCustSCOptions.Text, new string[] { "CustSuppType", "Customer", "Category", "CommissionCtg", "Area", "Salesperson", "AreaManager" }));
+            boData.RequestedTables.Add(new RequestedTable(textBoxCustSuppNotes.Text, new string[] { "CustSuppType", "CustSupp", "Line", "Notes", "TBCreated" }));
+
+            m_GetBoResponse = manager.dmMMSManager.GetBOByFindKeys(manager.authenticationManager.userData, boData).Result;
+            string BoResponseContentBody = (string)m_GetBoResponse.ReturnValue;
+
+            if (BoResponseContentBody != null && BoResponseContentBody.ToLower() != "null")
+            {
+                JObject dataObject = JObject.Parse(BoResponseContentBody);
+                string contentBody = "";
+
+                foreach (var property in dataObject)
+                {
+                    if (property.Key == textBoxBoTabName.Text)
+                    {
+                        var maCustSuppArray = (JArray)property.Value;
+                        foreach (var maCustSuppItem in maCustSuppArray)
+                        {
+                            // Ma_CustSupp
+                            var maCustSuppData = maCustSuppItem["data"].ToString();
+                            maCustSuppData = maCustSuppData.Replace("\r\n","");
+                            contentBody += $"{property.Key} data: \n{maCustSuppData}\n";
+
+                            // Ma_CustSuppCustomerOptions
+                            var maCustSuppCustomerOptions = maCustSuppItem[textBoxCustSCOptions.Text];
+                            contentBody += $"{textBoxCustSCOptions.Text}: {maCustSuppCustomerOptions}\n";
+
+                            // Ma_CustSuppNotes
+                            var maCustSuppNotes = maCustSuppItem[textBoxCustSuppNotes.Text];
+                            contentBody += $"{textBoxCustSuppNotes.Text}: {maCustSuppNotes}\n";
+                        }
+                    }
+                }
+                ShowResult(contentBody);
+            }
+            else
+            {
+                ShowResult("Error retrieving GetBOByFindKeys: Null response.\nCheck that the entered parameters are correct.", false);
+            }
+        }
+
+        private void btnUpdateBusinessObject_Click(object sender, EventArgs e)
+        {
+
+            BusinessObjectData boData = new BusinessObjectData();
+            boData.BONamespace = "ERP.CustomersSuppliers.Documents.Customers";
+            boData.FindFields.Add("CustSuppType", textBoxBoCustSType.Text);
+            
+            // search by company name or by other master table fields. % field enables like operator
+            boData.FindFields.Add("CompanyName", "");
+            boData.OrderByFields = new string[] { };
+            JObject dataBOVal = JObject.Parse((string)m_GetBoResponse.ReturnValue);
+            ValObjectData valObjectData = new ValObjectData();
+            valObjectData.BONamespace = boData.BONamespace;
+            valObjectData.FindFields = boData.FindFields;
+            valObjectData.Name = "CompanyName";
+            valObjectData.Value = "AggNuovoBici";
+            boData.RequestedTables = new List<RequestedTable>();
+            boData.RequestedTables.Add(new RequestedTable(textBoxBoTabName.Text, new string[] { "CustSuppType", "CustSupp", "CompanyName" }));
+            boData.RequestedTables.Add(new RequestedTable(textBoxCustSCOptions.Text, new string[] { "CustSuppType", "Customer", "Category", "CommissionCtg", "Area", "Salesperson", "AreaManager" }));
+            boData.RequestedTables.Add(new RequestedTable(textBoxCustSuppNotes.Text, new string[] { "CustSuppType", "CustSupp", "Line", "Notes", "TBCreated" }));
+            JObject propVal = null;
+
+            string sarData = dataBOVal["MA_CustSupp"]?.ToString();
+            JArray jarData = JsonConvert.DeserializeObject<JArray>(sarData);
+            JObject updatedData = new JObject();
+            JArray jArrayData = new JArray(jarData);
+            updatedData.Add("MA_CustSupp", jarData);
+
+            for (int i = 0; i < jarData.Count; i++)
+            {
+                JObject jData = (JObject)jarData[i];
+                foreach (var property in jData.Properties())
+                {
+                    if (property.Name == "data")
+                    {
+                        if (property.Value.Type == JTokenType.Object)
+                        {
+                            JObject jVal = (JObject)property.Value;
+                            foreach (var pv in jVal.Properties())
+                            {
+                                if (pv.Name == "CompanyName")
+                                {
+                                    pv.Value = valObjectData.Value;
+                                }
+                            }
+                        }
+                        else if (property.Value.Type == JTokenType.String)
+                        {
+                            JObject jVal = new JObject();
+                            jVal.Add("CompanyName", valObjectData.Value);
+                            property.Value = jVal;
+                        }
+                    }
+                }
+            }
+
+
+            string dataUpdate = updatedData.ToString(); // Converti la struttura aggiornata in una stringa JSON
+
+
+            boData.Data = updatedData;
+            JObject masterJson = JObject.Parse(boData.Data.ToString());
+            m_UpdateBoResponse = manager.dmMMSManager.UpdateBusinessObject(manager.authenticationManager.userData, boData).Result;
+
+            string boResponseContentBody = (string)m_GetBoResponse.ReturnValue;
+            if (boResponseContentBody != null)
+            {
+                JObject dataObject = JObject.Parse(boData.Data.ToString());
+                string contentBody = "";
+
+                foreach (var property in dataObject.Properties())
+                {
+                    if (property.Value.Type != JTokenType.Null && property.Value.ToString() != "")
+                    {
+                        string cleanedValue = property.Value.ToString().Trim();
+                        contentBody += $"{(property.Name == "Data" ? "Data" : property.Name)}: {cleanedValue}\n";
+                    }
+                }
+                if (!string.IsNullOrEmpty(contentBody))
+                {
+                    ShowResult(contentBody);
+                }
+                else
+                {
+                    ShowResult("No valid BObjectData found.", false);
+                }
+            }
+            else
+            {
+                ShowResult("Error retrieving BObjectData: Null response.\nCheck that the entered parameters are correct.", false);
+            }
         }
     }
 }

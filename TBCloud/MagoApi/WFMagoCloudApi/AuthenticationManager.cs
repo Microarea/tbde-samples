@@ -18,21 +18,20 @@ namespace MagoCloudApi
         internal string RsUrl = UrlSManager.ReportingServiceUrl;
         internal string DmMMsUrl = UrlSManager.DmMMSUrl;
         internal string EnumsUrl = UrlSManager.EnumsTableUrl;
-
-
+        
         internal string GwamUrl { get; set; }
         internal string Token { get; set; }
         internal string UserName { get; set; }
         internal string SubscriptionKey { get;  set; }
         internal string Producer { get; set; }
         internal string AppKey { get; set; }
-
+       
         internal void Clear()
         {
-            TbUrl = string.Empty;
+            UrlSManager.TbFsServiceUrl = string.Empty;
             DataUrl = string.Empty;
             DmsUrl = string.Empty;
-            TbFsUrl = string.Empty;
+            TbFsUrl = null;
             WmUrl = string.Empty;
             RsUrl = string.Empty;
             DmMMsUrl = string.Empty;

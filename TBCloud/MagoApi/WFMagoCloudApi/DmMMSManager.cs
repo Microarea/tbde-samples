@@ -38,6 +38,60 @@ namespace MagoCloudApi
         public List<string> ListStored { get; set; }
     }
 
+    public class RequestedTable
+    {
+        /// <summary>
+        /// table name
+        /// </summary>
+        public string tableName { get; set; }
+        /// <summary>
+        /// requested columns
+        /// </summary>
+        public string[] columns { get; set; }
+        /// <summary>
+        /// It construct a new requested tables
+        /// </summary>
+        /// <param name="tableName">table name</param>
+        /// <param name="columns">table columns</param>
+        public RequestedTable(string tableName, string[] columns = null)
+        {
+            this.tableName = tableName;
+            this.columns = columns;
+        }
+    }
+
+    /// <summary>
+    /// Query descriptor
+    /// </summary>
+    public class BusinessObjectData
+    {
+
+        public List<RequestedTable> RequestedTables;
+
+        public string BONamespace { get; set; } = string.Empty;
+
+
+        public Dictionary<string, object> FindFields { get; set; } = new Dictionary<string, object>();
+
+
+        public string[] OrderByFields { get; set; }
+
+        public string[] GroupByFields { get; set; }
+
+        public string Having { get; set; }
+
+        public object Data { get; set; }
+    }
+    public class ValObjectData
+    {
+        public List<RequestedTable> RequestedTables;
+        public string BONamespace { get; set; } = string.Empty;
+        public object Data { get; set; }
+        public string Name { get; set; }
+        public string Value { get; set; }
+        public Dictionary<string, object> FindFields { get; set; } = new Dictionary<string, object>();
+    }
+
     class DmMMSManager
     {
         internal string GetDmMMSServiceVersion(UserData userData)
@@ -250,6 +304,95 @@ namespace MagoCloudApi
             }
 
         }
+       
+        //// It deletes a record from table______________________________________________________________________________________________
+        public async Task<bool> Delete(UserData userData, TableData tableData)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.DmMMSUrl == "")
+                        UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"DataManager/delete");
+                    TbResponse response = await CallWithTableData(userData, tableData, request);
+                    return response.Success == true && (response.ReturnValue.ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase));
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("\nException Caught!");
+                    Console.WriteLine("Message: {0}", e.Message);
+                }
+                return false;
+            }
+        }
+
+
+        /// It gets data of specified business object
+        public async Task<TbResponse> GetBOByFindKeys(UserData userData, BusinessObjectData boData)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.DmMMSUrl == "")
+                        UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
+
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"DataManager/businessOjectByFindKeys");
+
+                    var jsonData = JsonConvert.SerializeObject(boData);
+                    request.Content = new StringContent(content: jsonData, encoding: Encoding.UTF8, mediaType: "application/json");
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+
+                    TbResponse tbResponse = new TbResponse();
+                    HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                    await AssignTbResponse(response, tbResponse);
+
+                    return tbResponse;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("\nException Caught!");
+                    Console.WriteLine("Message: {0}", e.Message);
+                }
+                return null;
+            }
+
+        }
+        public async Task<TbResponse> UpdateBusinessObject(UserData userData, BusinessObjectData boData)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.DmMMSUrl == "")
+                        UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
+
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"DataManager/updateBusinessObject");
+                    var jsonData = JsonConvert.SerializeObject(boData);
+                    request.Content = new StringContent(content: jsonData, encoding: Encoding.UTF8, mediaType: "application/json");
+                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+
+                    TbResponse tbResponse = new TbResponse();
+                    HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                    await AssignTbResponse(response, tbResponse);
+
+                    return tbResponse;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("\nException Caught!");
+                    Console.WriteLine("Message: {0}", e.Message);
+                }
+                return null;
+            }
+        }
+
         //// It gets next id and returns it___________________________________________________________________________________________
         public async Task<TbResponse> GetNextID(UserData userData, string numbererKey, bool consumeIt = false)
         {
@@ -282,29 +425,6 @@ namespace MagoCloudApi
                     Console.WriteLine("Message: {0}", e.Message);
                 }
                 return null;
-            }
-        }
-
-        //// It deletes a record from table______________________________________________________________________________________________
-        public async Task<bool> Delete(UserData userData, TableData tableData)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                try
-                {
-                    UrlSManager Urls = new UrlSManager();
-                    if (UrlSManager.DmMMSUrl == "")
-                        UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"DataManager/delete");
-                    TbResponse response = await CallWithTableData(userData, tableData, request);
-                    return response.Success == true && (response.ReturnValue.ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase));
-                }
-                catch (HttpRequestException e)
-                {
-                    Console.WriteLine("\nException Caught!");
-                    Console.WriteLine("Message: {0}", e.Message);
-                }
-                return false;
             }
         }
 

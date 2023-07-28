@@ -48,7 +48,7 @@ namespace MyApp
             /////////////////////////////////////////////////////////////////////////////////////////////////
             // it constructs a new Mago API Client identifying instance to connect and customization author
             /////////////////////////////////////////////////////////////////////////////////////////////////
-            using (MagoAPIClient magocloudClient = new MagoAPIClient(instance, new ProducerInfo("MyProdKey", "MyAppID")))
+            using (MagoAPIClient magocloudClient = new MagoAPIClient(instance, new ProducerInfo("MyProdKey", "MagoApi")))
             {
                 ITbUserData userData = null;
                 try
@@ -78,11 +78,11 @@ namespace MyApp
 
                     if (userData != null)
                     {
-                        UseMagicLink(magocloudClient, userData);
-                        UseDataService(magocloudClient, userData);
-                        UseReportingServices(magocloudClient, userData);
+                        //UseMagicLink(magocloudClient, userData);
+                        //UseDataService(magocloudClient, userData);
+                        //UseReportingServices(magocloudClient, userData);
                         UseMyMagoStudioService(magocloudClient, userData);
-                        UseOthersMicroservices(magocloudClient, userData);
+                        //UseOthersMicroservices(magocloudClient, userData);
 
                         // authentication end
                         if (loginByAccountManager && magocloudClient.AccountManager.IsValid(userData).Result.Success)
@@ -147,7 +147,6 @@ namespace MyApp
             MyRequest parameters = new MyRequest();
             parameters.OperationDate = DateTime.Now;
             MyResponse myResp = magocloudClient.TbServer?.InvokeTbMethod<MyResponse>(userData, "ERP.Company.Dbl.CurrentOpeningDate", parameters).Result;
-
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -267,6 +266,7 @@ namespace MyApp
             string boUpdated = "{ \"MA_CustSupp\": [{ \"data\": \"{\\\"CustSuppType\\\": 3211264, \\\"CustSupp\\\": \\\"0001\\\",\\\"Draft\\\": false,  \\\"CompanyName\\\": \\\"Biciclette Colombo Srl 111\\\", \\\"ISOCountryCode\\\": \\\"IT\\\", \\\"TaxIdNumber\\\": \\\"03099170109\\\", \\\"FiscalCode\\\": \\\"03099170109\\\",  \\\"CustSuppKind\\\": 7733248,  \\\"Account\\\": \\\"01011000\\\",  \\\"Address\\\": \\\"Via Pierino Negrotto Cambiaso 8\\\",  \\\"ZIPCode\\\": \\\"16159\\\",  \\\"City\\\": \\\"Genova\\\",  \\\"County\\\": \\\"GE\\\",  \\\"Country\\\": \\\"\\\",  \\\"Telephone1\\\": \\\"010-659.12.35\\\",  \\\"Telephone2\\\": \\\"\\\",  \\\"Telex\\\": \\\"\\\",  \\\"Fax\\\": \\\"010-650.12.40\\\",  \\\"Internet\\\": \\\"\\\",  \\\"EMail\\\": \\\"\\\",  \\\"SIACode\\\": \\\"\\\",  \\\"ContactPerson\\\": \\\"\\\",  \\\"TitleCode\\\": \\\"\\\",  \\\"NaturalPerson\\\": false,  \\\"IsAnEUCustSupp\\\": false,  \\\"Language\\\": \\\"\\\",  \\\"PriceList\\\": \\\"OFF\\\",  \\\"CustSuppBank\\\": \\\"BCRL01GE\\\",  \\\"Payment\\\": \\\"RD\\\",  \\\"CACheck\\\": \\\"\\\",  \\\"IBAN\\\": \\\"\\\",  \\\"IBANIsManual\\\": false,  \\\"CA\\\": \\\"\\\",  \\\"CIN\\\": \\\"\\\",  \\\"Currency\\\": \\\"EUR\\\",  \\\"SendDocumentsTo\\\": \\\"\\\",  \\\"PaymentAddress\\\": \\\"\\\",  \\\"ShipToAddress\\\": \\\"\\\",  \\\"Disabled\\\": false,  \\\"Notes\\\": \\\"\\\",  \\\"WorkingTime\\\": \\\"\\\",  \\\"CompanyBank\\\": \\\"\\\",  \\\"Discount1\\\": 0,  \\\"Discount2\\\": 0,  \\\"DiscountFormula\\\": \\\"\\\",  \\\"ExternalCode\\\": \\\"\\\",  \\\"CompanyCA\\\": \\\"\\\",  \\\"Presentation\\\": 1376256,  \\\"CustomerCompanyCA\\\": \\\"\\\",  \\\"DDCustSupp\\\": \\\"\\\",  \\\"PrivacyStatement\\\": false,  \\\"LinkedCustSupp\\\": \\\"0023\\\",  \\\"DocumentSendingType\\\": 11337728,  \\\"IsDummy\\\": false,  \\\"InTaxLists\\\": false,  \\\"ChambOfCommRegistrNo\\\": \\\"\\\",  \\\"WorkingPosition\\\": \\\"\\\",  \\\"TaxOffice\\\": \\\"\\\",  \\\"Storage\\\": \\\"\\\",  \\\"CostCenter\\\": \\\"\\\",  \\\"Job\\\": \\\"\\\",  \\\"InsertionDate\\\": \\\"1799-12-30T23:00:00.000Z\\\",  \\\"PrivacyStatementPrintDate\\\": \\\"2021-12-30T23:00:00.000Z\\\",  \\\"Region\\\": \\\"Liguria\\\",  \\\"MailSendingType\\\": 12451840,  \\\"OldCustSupp\\\": \\\"\\\",  \\\"CompanyRegistrNo\\\": \\\"\\\",  \\\"FactoringCA\\\": \\\"\\\",  \\\"InCurrency\\\": false,  \\\"NoBlackList\\\": false,  \\\"BlackListCustSupp\\\": \\\"\\\",  \\\"SkypeID\\\": \\\"\\\",  \\\"CBICode\\\": \\\"\\\",  \\\"InvoiceAccTpl\\\": \\\"\\\",  \\\"CreditNoteAccTpl\\\": \\\"\\\",  \\\"Latitude\\\": \\\"\\\",  \\\"Longitude\\\": \\\"\\\",  \\\"IsCustoms\\\": false,  \\\"CertifiedEMail\\\": \\\"\\\",  \\\"NoTaxComm\\\": false,  \\\"NoSendPostaLite\\\": false,  \\\"GenRegNo\\\": \\\"\\\",  \\\"GenRegEntity\\\": \\\"\\\",  \\\"FedStateReg\\\": \\\"\\\",  \\\"TaxpayerType\\\": 30212096,  \\\"MunicipalityReg\\\": \\\"\\\",  \\\"SUFRAMA\\\": \\\"\\\",  \\\"Address2\\\": \\\"\\\",  \\\"StreetNo\\\": \\\"\\\",  \\\"District\\\": \\\"\\\",  \\\"FederalState\\\": \\\"\\\",  \\\"PaymentPeriShablesWithin60\\\": \\\"\\\",  \\\"PaymentPeriShablesOver60\\\": \\\"\\\",  \\\"FiscalCtg\\\": \\\"\\\",  \\\"ActivityCode\\\": \\\"\\\",  \\\"FantasyName\\\": \\\"\\\",  \\\"PymtAccount\\\": \\\"\\\",  \\\"UsedForSummaryDocuments\\\": false,  \\\"LeasingLetter\\\": \\\"\\\",  \\\"ChambOfCommCounty\\\": \\\"\\\",  \\\"SplitTax\\\": false,  \\\"FiscalName\\\": \\\"\\\",  \\\"TaxIdType\\\": 33226752,  \\\"PrivacyAgreed\\\": false,  \\\"MarketingAgreed\\\": false,  \\\"SplitTaxIBAN\\\": \\\"\\\",  \\\"GLN\\\": \\\"\\\",  \\\"GLNDataExchange\\\": \\\"\\\",  \\\"GroupTaxIdNumber\\\": \\\"\\\",  \\\"EUTaxIdNumber\\\": \\\"\\\",  \\\"SubsidizedCustomer\\\": false,  \\\"InLiquidation\\\": false,  \\\"VSLCode\\\": 0,  \\\"TbCreated\\\": \\\"2023-04-26T13:38:31.193Z\\\",  \\\"TbModified\\\": \\\"2023-04-26T13:38:31.193Z\\\",  \\\"TbCreatedId\\\": 0,  \\\"TbModifiedId\\\": 0,  \\\"OMNIASubAccount\\\": \\\"\\\",  \\\"ProductLine\\\": \\\"\\\"}\", \"MA_CustSuppCustomerOptions\": [ {  \"CustSuppType\": 3211264,   \"Customer\": \"0001\",  \"CommissionCtg\": \"\",   \"Area\": \"UK\",   \"Salesperson\": \"CD\",\r\n    \"AreaManager\": \"CD\"\r\n  }\r\n],\r\n      \"MA_CustSuppBalances\": [\r\n {\r\n    \"CustSuppType\": 3211264,\r\n    \"CustSupp\": \"0001\",\r\n    \"FiscalYear\": 2018,\r\n    \"BalanceYear\": 2019,\r\n    \"BalanceType\": 3145730,\r\n    \"BalanceMonth\": 1,\r\n    \"Nature\": 9306112,\r\n    \"Currency\": \"EUR\",\r\n    \"TBCompanyID\": 0,\r\n    \"Debit\": 13609.71,\r\n    \"Credit\": 0,   \"TbCreated\": \"2023-04-26T13:38:48.436Z\",   \"TbModified\": \"2023-04-26T13:38:48.436Z\",    \"TbCreatedId\": 0,    \"TbModifiedId\": 0  }]  } ]}";
             boData.BONamespace = "ERP.CustomersSuppliers.Documents.Customers";
             boData.FindFields.Add("CustSuppType", 3211264);
+
             boData.FindFields.Add("CustSupp", "0001");
             boData.Data = JsonConvert.DeserializeObject(boUpdated);
             ITbResponse boUpdtResponse = magocloudClient.MyMagoStudio?.UpdateBusinessObject(userData, boData).Result;
@@ -274,6 +274,10 @@ namespace MyApp
             boData.FindFields.Clear();
             boData.FindFields.Add("CustSuppType", 3211264);
             boData.FindFields.Add("CompanyName", "Bici%");
+           
+            // search by company name or by other master table fields. % field enables like operator
+           
+
             boData.OrderByFields = new string[] { "CompanyName" };
 
             boData.RequestedTables = new List<RequestedTable>();
@@ -282,9 +286,8 @@ namespace MyApp
             boData.RequestedTables.Add(new RequestedTable("MA_CustSuppBalances"));
 
             ITbResponse boResponse = magocloudClient.MyMagoStudio?.GetBusinessObject(userData, boData).Result;
+
         }
-
-
     }
 
 }
