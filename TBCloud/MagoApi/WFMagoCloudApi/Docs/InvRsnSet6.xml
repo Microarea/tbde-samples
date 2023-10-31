@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0006</maxs:CustSupp>
+			<maxs:CompanyName>At.ml. Spa</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>03098170108</maxs:TaxIdNumber>
+			<maxs:FiscalCode>03098170108</maxs:FiscalCode>
+			<maxs:Address>Via Legrari 12</maxs:Address>
+			<maxs:ZIPCode>20100</maxs:ZIPCode>
+			<maxs:City>Legnano</maxs:City>
+			<maxs:County>MI</maxs:County>
+			<maxs:Country></maxs:Country>
+			<maxs:Telephone1>2345678</maxs:Telephone1>
+			<maxs:Telephone2>45678978</maxs:Telephone2>
+			<maxs:Fax>123456787</maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson></maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RBDF3</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode></maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches updateType="InsertUpdate">
+			<maxs:OtherBranchesRow>
+				<maxs:CustSuppType>3211264</maxs:CustSuppType>
+				<maxs:CustSupp>0006</maxs:CustSupp>
+				<maxs:Branch>001</maxs:Branch>
+				<maxs:CompanyName></maxs:CompanyName>
+				<maxs:Address>Via Senamo 22</maxs:Address>
+			</maxs:OtherBranchesRow>
+		</maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0006</maxs:CustSupp>
+			<maxs:CompanyName>At.ml. Spa</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>03098170108</maxs:TaxIdNumber>
+			<maxs:FiscalCode>03098170108</maxs:FiscalCode>
+			<maxs:Address>Via Legrari 12</maxs:Address>
+			<maxs:ZIPCode>20100</maxs:ZIPCode>
+			<maxs:City>Legnano</maxs:City>
+			<maxs:County>MI</maxs:County>
+			<maxs:Country></maxs:Country>
+			<maxs:Telephone1>2345678</maxs:Telephone1>
+			<maxs:Telephone2>45678978</maxs:Telephone2>
+			<maxs:Fax>123456787</maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson></maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RBDF3</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode></maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches updateType="InsertUpdate">
+			<maxs:OtherBranchesRow>
+				<maxs:CustSuppType>3211264</maxs:CustSuppType>
+				<maxs:CustSupp>0006</maxs:CustSupp>
+				<maxs:Branch>001</maxs:Branch>
+				<maxs:CompanyName></maxs:CompanyName>
+				<maxs:Address>Via Senamo 22</maxs:Address>
+			</maxs:OtherBranchesRow>
+		</maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0006</maxs:CustSupp>
+			<maxs:CompanyName>At.ml. Spa</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>03098170108</maxs:TaxIdNumber>
+			<maxs:FiscalCode>03098170108</maxs:FiscalCode>
+			<maxs:Address>Via Legrari 12</maxs:Address>
+			<maxs:ZIPCode>20100</maxs:ZIPCode>
+			<maxs:City>Legnano</maxs:City>
+			<maxs:County>MI</maxs:County>
+			<maxs:Country></maxs:Country>
+			<maxs:Telephone1>2345678</maxs:Telephone1>
+			<maxs:Telephone2>45678978</maxs:Telephone2>
+			<maxs:Fax>123456787</maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson></maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RBDF3</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode></maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches updateType="InsertUpdate">
+			<maxs:OtherBranchesRow>
+				<maxs:CustSuppType>3211264</maxs:CustSuppType>
+				<maxs:CustSupp>0006</maxs:CustSupp>
+				<maxs:Branch>001</maxs:Branch>
+				<maxs:CompanyName></maxs:CompanyName>
+				<maxs:Address>Via Senamo 22</maxs:Address>
+			</maxs:OtherBranchesRow>
+		</maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0006</maxs:CustSupp>
+			<maxs:CompanyName>At.ml. Spa</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>03098170108</maxs:TaxIdNumber>
+			<maxs:FiscalCode>03098170108</maxs:FiscalCode>
+			<maxs:Address>Via Legrari 12</maxs:Address>
+			<maxs:ZIPCode>20100</maxs:ZIPCode>
+			<maxs:City>Legnano</maxs:City>
+			<maxs:County>MI</maxs:County>
+			<maxs:Country></maxs:Country>
+			<maxs:Telephone1>2345678</maxs:Telephone1>
+			<maxs:Telephone2>45678978</maxs:Telephone2>
+			<maxs:Fax>123456787</maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson></maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RBDF3</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode></maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches updateType="InsertUpdate">
+			<maxs:OtherBranchesRow>
+				<maxs:CustSuppType>3211264</maxs:CustSuppType>
+				<maxs:CustSupp>0006</maxs:CustSupp>
+				<maxs:Branch>001</maxs:Branch>
+				<maxs:CompanyName></maxs:CompanyName>
+				<maxs:Address>Via Senamo 22</maxs:Address>
+			</maxs:OtherBranchesRow>
+		</maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>

@@ -1,0 +1,116 @@
+<maxs:AccountingReasons xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd" tbNamespace="Document.ERP.Accounting.documents.AccountingTemplates" xTechProfile="DefaultFull"><maxs:Diagnostic><maxs:Warnings><maxs:Warning><maxs:Code>3</maxs:Code><maxs:Source>XTech-DataManager</maxs:Source><maxs:Message>No record matches the set export criteria</maxs:Message></maxs:Warning></maxs:Warnings></maxs:Diagnostic></maxs:AccountingReasons><?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0001</maxs:CustSupp>
+			<maxs:CompanyName>Biciclette Colombo Srl</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>03099170109</maxs:TaxIdNumber>
+			<maxs:FiscalCode>03099170109</maxs:FiscalCode>
+			<maxs:Address>Via Pierino Negrotto Cambiaso 8</maxs:Address>
+			<maxs:ZIPCode>16159</maxs:ZIPCode>
+			<maxs:City>Genova</maxs:City>
+			<maxs:County>GE</maxs:County>
+			<maxs:Country></maxs:Country>
+			<maxs:Telephone1>010-659.12.35</maxs:Telephone1>
+			<maxs:Telephone2></maxs:Telephone2>
+			<maxs:Fax>010-650.12.40</maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson></maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RD</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode></maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches></maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>
+<maxs:BillOfMaterials xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/BillOfMaterials/BillOfMaterials/Standard/DefaultLight.xsd" tbNamespace="Document.ERP.BillOfMaterials.documents.BillOfMaterials" xTechProfile="DefaultLight"><maxs:Diagnostic><maxs:Warnings><maxs:Warning><maxs:Code>3</maxs:Code><maxs:Source>XTech-DataManager</maxs:Source><maxs:Message>No record matches the set export criteria</maxs:Message></maxs:Warning></maxs:Warnings></maxs:Diagnostic></maxs:BillOfMaterials><?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0001</maxs:CustSupp>
+			<maxs:CompanyName></maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>03099170109</maxs:TaxIdNumber>
+			<maxs:FiscalCode>03099170109</maxs:FiscalCode>
+			<maxs:Address>Via Pierino Negrotto Cambiaso 8</maxs:Address>
+			<maxs:ZIPCode>16159</maxs:ZIPCode>
+			<maxs:City>Genova</maxs:City>
+			<maxs:County>GE</maxs:County>
+			<maxs:Country></maxs:Country>
+			<maxs:Telephone1>010-659.12.35</maxs:Telephone1>
+			<maxs:Telephone2></maxs:Telephone2>
+			<maxs:Fax>010-650.12.40</maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson></maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RD</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode></maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches></maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>
+<maxs:AccountingReasons xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd" tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull"><maxs:Diagnostic><maxs:Warnings><maxs:Warning><maxs:Code>3</maxs:Code><maxs:Source>XTech-DataManager</maxs:Source><maxs:Message>No record matches the set export criteria</maxs:Message></maxs:Warning></maxs:Warnings></maxs:Diagnostic></maxs:AccountingReasons><?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0001</maxs:CustSupp>
+			<maxs:CompanyName>Company</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>03099170109</maxs:TaxIdNumber>
+			<maxs:FiscalCode>03099170109</maxs:FiscalCode>
+			<maxs:Address>Via Pierino Negrotto Cambiaso 8</maxs:Address>
+			<maxs:ZIPCode>16159</maxs:ZIPCode>
+			<maxs:City>Genova</maxs:City>
+			<maxs:County>GE</maxs:County>
+			<maxs:Country></maxs:Country>
+			<maxs:Telephone1>010-659.12.35</maxs:Telephone1>
+			<maxs:Telephone2></maxs:Telephone2>
+			<maxs:Fax>010-650.12.40</maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson></maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RD</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode></maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches></maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0001</maxs:CustSupp>
+			<maxs:CompanyName>Company</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>03099170109</maxs:TaxIdNumber>
+			<maxs:FiscalCode>03099170109</maxs:FiscalCode>
+			<maxs:Address>Via Pierino Negrotto Cambiaso 8</maxs:Address>
+			<maxs:ZIPCode>16159</maxs:ZIPCode>
+			<maxs:City>Genova</maxs:City>
+			<maxs:County>GE</maxs:County>
+			<maxs:Country></maxs:Country>
+			<maxs:Telephone1>010-659.12.35</maxs:Telephone1>
+			<maxs:Telephone2></maxs:Telephone2>
+			<maxs:Fax>010-650.12.40</maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson></maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RD</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode></maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches></maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>

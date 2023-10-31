@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0002</maxs:CustSupp>
+			<maxs:CompanyName>Bici Sport Spa</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>000024041978</maxs:TaxIdNumber>
+			<maxs:FiscalCode>000024041978</maxs:FiscalCode>
+			<maxs:Address>Via dei Mille 12</maxs:Address>
+			<maxs:ZIPCode>16100</maxs:ZIPCode>
+			<maxs:City>Genova</maxs:City>
+			<maxs:County>GE</maxs:County>
+			<maxs:Country>Italy</maxs:Country>
+			<maxs:Telephone1>010-6677788</maxs:Telephone1>
+			<maxs:Telephone2>010-990099</maxs:Telephone2>
+			<maxs:Fax>010-8765544</maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson>Giani</maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RBDF3</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode>1122334</maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches updateType="InsertUpdate">
+			<maxs:OtherBranchesRow>
+				<maxs:CustSuppType>3211264</maxs:CustSuppType>
+				<maxs:CustSupp>0002</maxs:CustSupp>
+				<maxs:Branch>001</maxs:Branch>
+				<maxs:CompanyName></maxs:CompanyName>
+				<maxs:Address>Via M.L.King 13</maxs:Address>
+			</maxs:OtherBranchesRow>
+		</maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0002</maxs:CustSupp>
+			<maxs:CompanyName>Bici Sport Spa</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>000024041978</maxs:TaxIdNumber>
+			<maxs:FiscalCode>000024041978</maxs:FiscalCode>
+			<maxs:Address>Via dei Mille 12</maxs:Address>
+			<maxs:ZIPCode>16100</maxs:ZIPCode>
+			<maxs:City>Genova</maxs:City>
+			<maxs:County>GE</maxs:County>
+			<maxs:Country>Italy</maxs:Country>
+			<maxs:Telephone1>010-6677788</maxs:Telephone1>
+			<maxs:Telephone2>010-990099</maxs:Telephone2>
+			<maxs:Fax>010-8765544</maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson>Giani</maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RBDF3</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode>1122334</maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches updateType="InsertUpdate">
+			<maxs:OtherBranchesRow>
+				<maxs:CustSuppType>3211264</maxs:CustSuppType>
+				<maxs:CustSupp>0002</maxs:CustSupp>
+				<maxs:Branch>001</maxs:Branch>
+				<maxs:CompanyName></maxs:CompanyName>
+				<maxs:Address>Via M.L.King 13</maxs:Address>
+			</maxs:OtherBranchesRow>
+		</maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0002</maxs:CustSupp>
+			<maxs:CompanyName>Bici Sport Spa</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>000024041978</maxs:TaxIdNumber>
+			<maxs:FiscalCode>000024041978</maxs:FiscalCode>
+			<maxs:Address>Via dei Mille 12</maxs:Address>
+			<maxs:ZIPCode>16100</maxs:ZIPCode>
+			<maxs:City>Genova</maxs:City>
+			<maxs:County>GE</maxs:County>
+			<maxs:Country>Italy</maxs:Country>
+			<maxs:Telephone1>010-6677788</maxs:Telephone1>
+			<maxs:Telephone2>010-990099</maxs:Telephone2>
+			<maxs:Fax>010-8765544</maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson>Giani</maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RBDF3</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode>1122334</maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches updateType="InsertUpdate">
+			<maxs:OtherBranchesRow>
+				<maxs:CustSuppType>3211264</maxs:CustSuppType>
+				<maxs:CustSupp>0002</maxs:CustSupp>
+				<maxs:Branch>001</maxs:Branch>
+				<maxs:CompanyName></maxs:CompanyName>
+				<maxs:Address>Via M.L.King 13</maxs:Address>
+			</maxs:OtherBranchesRow>
+		</maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0002</maxs:CustSupp>
+			<maxs:CompanyName>Bici Sport Spa</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>000024041978</maxs:TaxIdNumber>
+			<maxs:FiscalCode>000024041978</maxs:FiscalCode>
+			<maxs:Address>Via dei Mille 12</maxs:Address>
+			<maxs:ZIPCode>16100</maxs:ZIPCode>
+			<maxs:City>Genova</maxs:City>
+			<maxs:County>GE</maxs:County>
+			<maxs:Country>Italy</maxs:Country>
+			<maxs:Telephone1>010-6677788</maxs:Telephone1>
+			<maxs:Telephone2>010-990099</maxs:Telephone2>
+			<maxs:Fax>010-8765544</maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson>Giani</maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RBDF3</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode>1122334</maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches updateType="InsertUpdate">
+			<maxs:OtherBranchesRow>
+				<maxs:CustSuppType>3211264</maxs:CustSuppType>
+				<maxs:CustSupp>0002</maxs:CustSupp>
+				<maxs:Branch>001</maxs:Branch>
+				<maxs:CompanyName></maxs:CompanyName>
+				<maxs:Address>Via M.L.King 13</maxs:Address>
+			</maxs:OtherBranchesRow>
+		</maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>

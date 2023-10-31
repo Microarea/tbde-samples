@@ -408,7 +408,7 @@ namespace MagoCloudApi
                 string folderName = manager.tbFsServiceManager.selDoc;
                 if (manager.tbFsServiceManager.DocumentNamespace != null && manager.tbFsServiceManager.DocumentNamespace.Count > 0 && cbxDocReport != null && cbxDocReport.SelectedIndex > -1)
                 {
-                    manager.tbFsServiceManager.CurrentDocNS = manager.tbFsServiceManager.DocumentNamespace[cbxDocReport.SelectedIndex];
+                    manager.tbFsServiceManager.CurrentDocNS = manager.tbFsServiceManager.DocumentNamespace[cbxDocReport.SelectedIndex -1];
                 }
                 await FillProfiles(application, module, folderName);
             }
@@ -1238,7 +1238,7 @@ namespace MagoCloudApi
             valObjectData.BONamespace = boData.BONamespace;
             valObjectData.FindFields = boData.FindFields;
             valObjectData.Name = "CompanyName";
-            valObjectData.Value = "AggNuovoBici";
+            valObjectData.Value = "NuovoBici";
             boData.RequestedTables = new List<RequestedTable>();
             boData.RequestedTables.Add(new RequestedTable(textBoxBoTabName.Text, new string[] { "CustSuppType", "CustSupp", "CompanyName" }));
             boData.RequestedTables.Add(new RequestedTable(textBoxCustSCOptions.Text, new string[] { "CustSuppType", "Customer", "Category", "CommissionCtg", "Area", "Salesperson", "AreaManager" }));

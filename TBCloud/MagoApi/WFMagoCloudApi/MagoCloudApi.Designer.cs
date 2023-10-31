@@ -437,7 +437,7 @@ namespace MagoCloudApi
             linkHelpTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             linkHelpTb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             linkHelpTb.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            linkHelpTb.Location = new System.Drawing.Point(571, 276);
+            linkHelpTb.Location = new System.Drawing.Point(571, 272);
             linkHelpTb.Name = "linkHelpTb";
             linkHelpTb.Size = new System.Drawing.Size(110, 16);
             linkHelpTb.TabIndex = 92;
@@ -512,7 +512,7 @@ namespace MagoCloudApi
             this.panelTbTextContainer.Location = new System.Drawing.Point(15, 202);
             this.panelTbTextContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelTbTextContainer.Name = "panelTbTextContainer";
-            this.panelTbTextContainer.Size = new System.Drawing.Size(685, 297);
+            this.panelTbTextContainer.Size = new System.Drawing.Size(685, 293);
             this.panelTbTextContainer.TabIndex = 115;
             // 
             // TextBoxDocument
@@ -526,7 +526,7 @@ namespace MagoCloudApi
             this.TextBoxDocument.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.TextBoxDocument.Location = new System.Drawing.Point(12, 39);
             this.TextBoxDocument.Name = "TextBoxDocument";
-            this.TextBoxDocument.Size = new System.Drawing.Size(658, 234);
+            this.TextBoxDocument.Size = new System.Drawing.Size(658, 230);
             this.TextBoxDocument.TabIndex = 109;
             this.TextBoxDocument.Text = "";
             this.TextBoxDocument.WordWrap = false;
@@ -542,7 +542,7 @@ namespace MagoCloudApi
             this.BtnFillContent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFillContent.Font = new System.Drawing.Font("Century Gothic", 16.75F, System.Drawing.FontStyle.Bold);
             this.BtnFillContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.BtnFillContent.Location = new System.Drawing.Point(3, 264);
+            this.BtnFillContent.Location = new System.Drawing.Point(3, 260);
             this.BtnFillContent.Name = "BtnFillContent";
             this.BtnFillContent.Size = new System.Drawing.Size(38, 28);
             this.BtnFillContent.TabIndex = 115;
@@ -3936,7 +3936,6 @@ namespace MagoCloudApi
             this.text_subscription.Name = "text_subscription";
             this.text_subscription.Size = new System.Drawing.Size(216, 16);
             this.text_subscription.TabIndex = 33;
-            this.text_subscription.Text = "DEV-23-0208BD";
             // 
             // Pwd_label
             // 
@@ -3958,7 +3957,6 @@ namespace MagoCloudApi
             this.text_user.Name = "text_user";
             this.text_user.Size = new System.Drawing.Size(216, 16);
             this.text_user.TabIndex = 26;
-            this.text_user.Text = "marco.spazian@zucchetti.com";
             this.text_user.WordWrap = false;
             // 
             // text_pwd
@@ -3970,7 +3968,6 @@ namespace MagoCloudApi
             this.text_pwd.PasswordChar = '*';
             this.text_pwd.Size = new System.Drawing.Size(216, 13);
             this.text_pwd.TabIndex = 27;
-            this.text_pwd.Text = "Microarea..";
             // 
             // Sub_lable
             // 
@@ -3992,7 +3989,7 @@ namespace MagoCloudApi
             this.text_http.Name = "text_http";
             this.text_http.Size = new System.Drawing.Size(216, 16);
             this.text_http.TabIndex = 31;
-            this.text_http.Text = "https://test-gwam.mago.cloud";
+            this.text_http.Text = "https://";
             // 
             // Http_label
             // 

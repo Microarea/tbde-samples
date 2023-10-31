@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0008</maxs:CustSupp>
+			<maxs:CompanyName>Nuova Alpa Srl</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>001970091010</maxs:TaxIdNumber>
+			<maxs:FiscalCode>001970091010</maxs:FiscalCode>
+			<maxs:Address>Via Secca 45</maxs:Address>
+			<maxs:ZIPCode>16100</maxs:ZIPCode>
+			<maxs:City>Genova</maxs:City>
+			<maxs:County>GE</maxs:County>
+			<maxs:Country></maxs:Country>
+			<maxs:Telephone1></maxs:Telephone1>
+			<maxs:Telephone2></maxs:Telephone2>
+			<maxs:Fax></maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson></maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RBFM3</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode></maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches></maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0008</maxs:CustSupp>
+			<maxs:CompanyName>Nuova Alpa Srl</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>001970091010</maxs:TaxIdNumber>
+			<maxs:FiscalCode>001970091010</maxs:FiscalCode>
+			<maxs:Address>Via Secca 45</maxs:Address>
+			<maxs:ZIPCode>16100</maxs:ZIPCode>
+			<maxs:City>Genova</maxs:City>
+			<maxs:County>GE</maxs:County>
+			<maxs:Country></maxs:Country>
+			<maxs:Telephone1></maxs:Telephone1>
+			<maxs:Telephone2></maxs:Telephone2>
+			<maxs:Fax></maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson></maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RBFM3</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode></maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches></maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0008</maxs:CustSupp>
+			<maxs:CompanyName>Nuova Alpa Srl</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>001970091010</maxs:TaxIdNumber>
+			<maxs:FiscalCode>001970091010</maxs:FiscalCode>
+			<maxs:Address>Via Secca 45</maxs:Address>
+			<maxs:ZIPCode>16100</maxs:ZIPCode>
+			<maxs:City>Genova</maxs:City>
+			<maxs:County>GE</maxs:County>
+			<maxs:Country></maxs:Country>
+			<maxs:Telephone1></maxs:Telephone1>
+			<maxs:Telephone2></maxs:Telephone2>
+			<maxs:Fax></maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson></maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RBFM3</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode></maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches></maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Customers tbNamespace="Document.ERP.CustomersSuppliers.Documents.Customers" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:CustomersSuppliers master="true">
+			<maxs:CustSuppType>3211264</maxs:CustSuppType>
+			<maxs:CustSupp>0008</maxs:CustSupp>
+			<maxs:CompanyName>Nuova Alpa Srl</maxs:CompanyName>
+			<maxs:ISOCountryCode>IT</maxs:ISOCountryCode>
+			<maxs:TaxIdNumber>001970091010</maxs:TaxIdNumber>
+			<maxs:FiscalCode>001970091010</maxs:FiscalCode>
+			<maxs:Address>Via Secca 45</maxs:Address>
+			<maxs:ZIPCode>16100</maxs:ZIPCode>
+			<maxs:City>Genova</maxs:City>
+			<maxs:County>GE</maxs:County>
+			<maxs:Country></maxs:Country>
+			<maxs:Telephone1></maxs:Telephone1>
+			<maxs:Telephone2></maxs:Telephone2>
+			<maxs:Fax></maxs:Fax>
+			<maxs:EMail></maxs:EMail>
+			<maxs:ContactPerson></maxs:ContactPerson>
+			<maxs:NaturalPerson>false</maxs:NaturalPerson>
+			<maxs:Payment>RBFM3</maxs:Payment>
+			<maxs:Currency>EUR</maxs:Currency>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:ExternalCode></maxs:ExternalCode>
+		</maxs:CustomersSuppliers>
+		<maxs:OtherBranches></maxs:OtherBranches>
+	</maxs:Data>
+</maxs:Customers>

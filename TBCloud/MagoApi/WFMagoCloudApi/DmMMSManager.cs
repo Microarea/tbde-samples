@@ -103,7 +103,7 @@ namespace MagoCloudApi
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + "DataManager/version");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DmMMSUrl + "DataManager/version");
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
@@ -467,13 +467,18 @@ namespace MagoCloudApi
                 try
                 {
                     UrlSManager Urls = new UrlSManager();
+                    //if (UrlSManager.EnumsTableUrl == "")
+                    //    UrlSManager.EnumsTableUrl = Urls.RetriveUrl(userData, DateTime.Now, "/enums-service", false);
+                    //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + $"/getEnumsTable/");
+                    ////UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = "http://localhost:5000/enums-service/";
                     StringBuilder builder = new StringBuilder();
                     string GetUrl = UrlSManager.EnumsTableUrl + "getEnumsTable/";
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl);
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                   
+
+
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
