@@ -2,7 +2,7 @@
   "profiles": {
     "MyApp": {
       "commandName": "Project",
-      "commandLineArgs": "https://localhost:5000/ marco.spazian@zucchetti.com Microarea.. DEV-23-0208BD true"
+      "commandLineArgs": "https://gwam.mago.cloud;localhost:5000 user password subscriptionKey"
     }
   }
 }
