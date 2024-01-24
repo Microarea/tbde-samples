@@ -1,0 +1,2984 @@
+{
+	"info": {
+		"_postman_id": "18d9b531-9f81-4ae0-a9dc-84e66cd422d4",
+		"name": "TaskBuilderCloudAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23716229"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "pre Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"prelogin-jwt-token\", res[\"JwtToken\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MCloudPreLogin\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gwam-url}}gwam_login/api/login",
+							"host": [
+								"{{gwam-url}}gwam_login"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gwam-url}}gwam_login/api/login",
+							"host": [
+								"{{gwam-url}}gwam_login"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login localhost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/account-manager/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"account-manager",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login localhost MagoWeb",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://SPAMAC-NB:81/account-manager/login",
+							"protocol": "http",
+							"host": [
+								"SPAMAC-NB"
+							],
+							"port": "81",
+							"path": [
+								"account-manager",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subscriptions per account",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"Type\": \"JWT\", \"SecurityValue\": \"{{prelogin-jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gwam-url}}gwam_login/api/subscriptionskeysforaccount/{{account-name}}",
+							"host": [
+								"{{gwam-url}}gwam_login"
+							],
+							"path": [
+								"api",
+								"subscriptionskeysforaccount",
+								"{{account-name}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Snapshot container",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gwam-url}}gwam_mapper/api/snapshotcontainer?subscriptionKey={{subscription-key}}",
+							"host": [
+								"{{gwam-url}}gwam_mapper"
+							],
+							"path": [
+								"api",
+								"snapshotcontainer"
+							],
+							"query": [
+								{
+									"key": "subscriptionKey",
+									"value": "{{subscription-key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Is Valid Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"token\":\"{{jwt-token}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gwam-url}}gwam_login/api/isvalidtoken",
+							"host": [
+								"{{gwam-url}}gwam_login"
+							],
+							"path": [
+								"api",
+								"isvalidtoken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logoff",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"jwt-token\", \"\");\r",
+									"console.log(res[\"Message\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"token\":\"{{jwt-token}}\"}"
+						},
+						"url": {
+							"raw": "{{gwam-url}}gwam_login/api/logoff",
+							"host": [
+								"{{gwam-url}}gwam_login"
+							],
+							"path": [
+								"api",
+								"logoff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logoff localhost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"jwt-token\", \"\");\r",
+									"console.log(res[\"Message\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"token\":\"{{jwt-token}}\"}"
+						},
+						"url": {
+							"raw": "{{local-url}}account-manager/logoff",
+							"host": [
+								"{{local-url}}account-manager"
+							],
+							"path": [
+								"logoff"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Retrieve url",
+			"item": [
+				{
+					"name": "Retrieve TB Server URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"tbserver-url\", res[\"Content\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"Type\": \"JWT\", \"appId\": \"MagoAPI\", \"SecurityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gwam-url}}gwam_mapper/api/services/url/{{subscription-key}}/TBSERVER",
+							"host": [
+								"{{gwam-url}}gwam_mapper"
+							],
+							"path": [
+								"api",
+								"services",
+								"url",
+								"{{subscription-key}}",
+								"TBSERVER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve TB Server URL local",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"tbserver-url\", res[\"Content\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"Type\": \"JWT\", \"appId\": \"MagoAPI\", \"SecurityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local-url}}api/services/url/{{subscription-key}}/TBSERVER",
+							"host": [
+								"{{local-url}}api"
+							],
+							"path": [
+								"services",
+								"url",
+								"{{subscription-key}}",
+								"TBSERVER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve MMSDataManager Service URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"mms-url\", res[\"Content\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"Type\": \"JWT\", \"appId\": \"MagoAPI\", \"SecurityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gwam-url}}gwam_mapper/api/services/url/{{subscription-key}}/MYMAGOSTUDIO",
+							"host": [
+								"{{gwam-url}}gwam_mapper"
+							],
+							"path": [
+								"api",
+								"services",
+								"url",
+								"{{subscription-key}}",
+								"MYMAGOSTUDIO"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve TBFS Service URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"tbfsservice-url\", res[\"Content\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"Type\": \"JWT\", \"appId\": \"MagoAPI\", \"SecurityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gwam-url}}gwam_mapper/api/services/url/{{subscription-key}}/TBFSSERVICE",
+							"host": [
+								"{{gwam-url}}gwam_mapper"
+							],
+							"path": [
+								"api",
+								"services",
+								"url",
+								"{{subscription-key}}",
+								"TBFSSERVICE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve DataService URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"data-service-url\", res[\"Content\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gwam-url}}gwam_mapper/api/services/url/{{subscription-key}}/DATASERVICE",
+							"host": [
+								"{{gwam-url}}gwam_mapper"
+							],
+							"path": [
+								"api",
+								"services",
+								"url",
+								"{{subscription-key}}",
+								"DATASERVICE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve DMSService URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"dmsservice-url\", res[\"Content\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"Type\": \"JWT\", \"appId\": \"MagoAPI\", \"SecurityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gwam-url}}gwam_mapper/api/services/url/{{subscription-key}}/MICRODMS",
+							"host": [
+								"{{gwam-url}}gwam_mapper"
+							],
+							"path": [
+								"api",
+								"services",
+								"url",
+								"{{subscription-key}}",
+								"MICRODMS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve ReportingService URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"reportingservice-url\", res[\"Content\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"Type\": \"JWT\", \"appId\": \"MagoAPI\", \"SecurityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gwam-url}}gwam_mapper/api/services/url/{{subscription-key}}/REPORTSERVICE",
+							"host": [
+								"{{gwam-url}}gwam_mapper"
+							],
+							"path": [
+								"api",
+								"services",
+								"url",
+								"{{subscription-key}}",
+								"REPORTSERVICE"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TbServer",
+			"item": [
+				{
+					"name": "GetXMLParameters - via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"require(\"btoa\")\r",
+									"const profileName = \"DefaultLight\";\r",
+									"const profileType = \"Standard\";\r",
+									"var params = `<?xml version=\"1.0\" encoding=\"utf-8\"?> \r",
+									"                <maxs:Contacts tbNamespace=\"Document.ERP.Contacts.Documents.Contacts\" xTechProfile=\"${profileName}\" xmlns:maxs=\"http://www.microarea.it/Schema/2004/Smart/ERP/Contacts/Contacts/${profileType}/${profileName}.xsd\">\r",
+									"                    <maxs:Parameters>\r",
+									"                    </maxs:Parameters>\r",
+									"                </maxs:Contacts>`\r",
+									"\r",
+									"const paramsBase64 = btoa(params);\r",
+									"pm.collectionVariables.set('paramsBase64', paramsBase64);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"atob\")\r",
+									"var res = JSON.parse(responseBody);\r",
+									"var params = atob(res[\"result\"]);\r",
+									"console.log(params);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"Extensions.XEngine.TBXmlTransfer.GetXMLParametersRest\",\r\n    \"args\": {\r\n                \"param\": \"{{paramsBase64}}\",\r\n                \"useApproximation\": true,\r\n                \"loginName\": \"{{account-name}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{local-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetExportProfileList- via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"Extensions.XEngine.TBXmlTransfer.GetExportProfileList\",\r\n    \"args\": {\r\n                \"nameSpace\": \"Document.ERP.Contacts.Documents.Contacts\",\r\n                \"posType\": 0,\r\n                \"userName\": \"\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetDocumentSchemaRest- via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"atob\")\r",
+									"var res = JSON.parse(responseBody);\r",
+									"var params = atob(res[\"retVal\"]);\r",
+									"console.log(params);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"Extensions.XEngine.TBXmlTransfer.GetDocumentSchemaRest\",\r\n    \"args\": {\r\n                \"documentNamespace\": \"Document.ERP.Contacts.Documents.Contacts\",\r\n                \"profileName\": \"DefaultLight\",\r\n                \"forUser\": \"\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetData - via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"require(\"btoa\")\r",
+									"const profileName = \"DefaultLight\";\r",
+									"const profileType = \"Standard\";\r",
+									"var params = `<?xml version=\"1.0\" encoding=\"utf-8\"?> \r",
+									"                <maxs:Contacts tbNamespace=\"Document.ERP.Contacts.Documents.Contacts\" xTechProfile=\"${profileName}\" xmlns:maxs=\"http://www.microarea.it/Schema/2004/Smart/ERP/Contacts/Contacts/${profileType}/${profileName}.xsd\">\r",
+									"                    <maxs:Parameters>\r",
+									"                       <maxs:DefaultDialog>\r",
+									"\t\t\t                <maxs:DefaultGroup>\r",
+									"\t\t\t\t                <maxs:CompanyName type=\"String\">C%</maxs:CompanyName>\r",
+									"\t\t\t                </maxs:DefaultGroup>\r",
+									"                       </maxs:DefaultDialog>\r",
+									"                    </maxs:Parameters>\r",
+									"                </maxs:Contacts>`\r",
+									"\r",
+									"const paramsBase64 = btoa(params);\r",
+									"pm.collectionVariables.set('paramsBase64', paramsBase64);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"atob\")\r",
+									"var res = JSON.parse(responseBody);\r",
+									"if (res[\"result\"].length) {\r",
+									"    for (i = 0; i < Math.min(res[\"result\"].length, 10); i++) {\r",
+									"        var data = atob(res[\"result\"][i]);\r",
+									"        console.log(data);\r",
+									"    }\r",
+									"} else {\r",
+									"     var message = atob(res[\"result\"]);\r",
+									"     console.log(message);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"Extensions.XEngine.TBXmlTransfer.GetDataRest\",\r\n    \"args\": {\r\n                \"param\": \"{{paramsBase64}}\",\r\n                \"useApproximation\": true,\r\n                \"loginName\": \"{{account-name}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SetData - via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"require(\"btoa\")\r",
+									"const profileName = \"DefaultLight\";\r",
+									"const profileType = \"Standard\";\r",
+									"\r",
+									"const company = \"ABC\";\r",
+									"const address = \"12, Main Street\";\r",
+									"const phone = \"123-4567\";\r",
+									"const contactName = \"John Doe\";\r",
+									"\r",
+									"var params = `<?xml version=\"1.0\" encoding=\"utf-8\"?> \r",
+									"                <maxs:Contacts tbNamespace=\"Document.ERP.Contacts.Documents.Contacts\" xTechProfile=\"${profileName}\" xmlns:maxs=\"http://www.microarea.it/Schema/2004/Smart/ERP/Contacts/Contacts/${profileType}/${profileName}.xsd\">\r",
+									"                    <maxs:Data>\r",
+									"                        <maxs:Contacts master='true'>\r",
+									"                            <maxs:CompanyName>${company}</maxs:CompanyName>\r",
+									"                            <maxs:Address>${address}</maxs:Address>\r",
+									"                            <maxs:Telephone1>${phone}</maxs:Telephone1>\r",
+									"                            <maxs:ContactPerson>${contactName}</maxs:ContactPerson>\r",
+									"                        </maxs:Contacts>\r",
+									"                    </maxs:Data>\r",
+									"                </maxs:Contacts>`\r",
+									"\r",
+									"const paramsBase64 = btoa(params);\r",
+									"pm.collectionVariables.set('paramsBase64', paramsBase64);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"atob\")\r",
+									"var res = JSON.parse(responseBody);\r",
+									"var data = atob(res[\"result\"]);\r",
+									"console.log(data);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"Extensions.XEngine.TBXmlTransfer.SetDataRest\",\r\n    \"args\": {\r\n                \"data\": \"{{paramsBase64}}\",\r\n                \"saveAction\": 0,\r\n                \"loginName\": \"{{account-name}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "WebMethods",
+			"item": [
+				{
+					"name": "releaseLoginContext - via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"console.log(res);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/releaseLoginContext/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"releaseLoginContext",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "useLoginContext - via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"console.log(res);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/useLoginContext/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"useLoginContext",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CurrentOpeningDate - via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"ERP.Company.Dbl.CurrentOpeningDate\",\r\n    \"args\": {}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ItemsBalances_Create - via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"current-handle\", res[\"retVal\"]);\r",
+									"\r",
+									"var data = res[\"retVal\"];\r",
+									"console.log(data);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"ERP.Inventory.Components.ItemsBalances_Create\",\r\n    \"args\": {}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ItemsBalances_Dispose - via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"var data = res[\"result\"];\r",
+									"console.log(data);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"ERP.Inventory.Components.ItemsBalances_Dispose\",\r\n     \"args\": {\"handle\":{{current-handle}}}\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ClosingDateOfFiscalYear - via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"atob\")\r",
+									"var res = JSON.parse(responseBody);\r",
+									"var data = atob(res[\"result\"]);\r",
+									"console.log(data);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"ERP.Company.Dbl.ClosingDateOfFiscalYear\",\r\n    \"args\": {\"fiscalyear\":\"2021\"}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DefaultSalePrices_Create - via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"current-handle\", res[\"retVal\"]);\r",
+									"\r",
+									"var data = res[\"retVal\"];\r",
+									"console.log(data);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"ERP.PricePolicies.Components.DefaultSalePrices_Create\",\r\n    \"args\": {}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DefaultSalePrices_GetDefaultPrice - via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"var data = res[\"message\"];\r",
+									"console.log(data);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"ERP.PricePolicies.Components.DefaultSalePrices_GetDefaultPrice\",\r\n    \"args\": \r\n    {\r\n        \"handle\":{{current-handle}},\r\n        \"Customer\":\"0001\",\r\n        \"Item\":\"ZUCH\",\r\n        \"UoM\":\"KG\",\r\n        \"Quantity\":10.0 \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DefaultSalePrices_Dispose - via TBServer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"var data = res[\"retVal\"];\r",
+									"console.log(data);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"ERP.PricePolicies.Components.DefaultSalePrices_Dispose\",\r\n    \"args\": {\"handle\":{{current-handle}}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DataService",
+			"item": [
+				{
+					"name": "ContactsHKL",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"Type\": \"JWT\", \"appId\": \"MagoAPI\", \"SecurityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{data-service-url}}data-service/getdata/ERP.Contacts.Dbl.ContactsByType/default?filter=\"80\"&ContactCustomer=2&Attivi=2",
+							"host": [
+								"{{data-service-url}}data-service"
+							],
+							"path": [
+								"getdata",
+								"ERP.Contacts.Dbl.ContactsByType",
+								"default"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "\"80\""
+								},
+								{
+									"key": "ContactCustomer",
+									"value": "2"
+								},
+								{
+									"key": "Attivi",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CompanyBanksHKL",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"Type\": \"JWT\", \"appId\": \"MagoAPI\", \"SecurityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{data-service-url}}data-service/getdata/ERP.Banks.Dbl.CompanyBanks/default?Azienda=1&Attive=2&filter=\"8\"",
+							"host": [
+								"{{data-service-url}}data-service"
+							],
+							"path": [
+								"getdata",
+								"ERP.Banks.Dbl.CompanyBanks",
+								"default"
+							],
+							"query": [
+								{
+									"key": "Azienda",
+									"value": "1"
+								},
+								{
+									"key": "Attive",
+									"value": "2"
+								},
+								{
+									"key": "filter",
+									"value": "\"8\""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ItemsHKL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"Type\": \"JWT\", \"appId\": \"MagoAPI\", \"SecurityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Item\": \"zuch\",\r\n    \"description\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{data-service-url}}data-service/getdata/ERP.Items.Dbl.Items/default?filter=\"zuc\"&attivi=0",
+							"host": [
+								"{{data-service-url}}data-service"
+							],
+							"path": [
+								"getdata",
+								"ERP.Items.Dbl.Items",
+								"default"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "\"zuc\""
+								},
+								{
+									"key": "attivi",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ItemPriceList_QPrice",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"Type\": \"JWT\", \"appId\": \"MagoAPI\", \"SecurityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Item\": \"zuch\",\r\n    \"description\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{data-service-url}}data-service/getdata/ERP.Items.Components.ItemPriceList/QPrice",
+							"host": [
+								"{{data-service-url}}data-service"
+							],
+							"path": [
+								"getdata",
+								"ERP.Items.Components.ItemPriceList",
+								"QPrice"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ItemsRadar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"Type\": \"JWT\", \"appId\": \"MagoAPI\", \"SecurityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{data-service-url}}data-service/getdata/ERP.Items.Dbl.Items/radar",
+							"host": [
+								"{{data-service-url}}data-service"
+							],
+							"path": [
+								"getdata",
+								"ERP.Items.Dbl.Items",
+								"radar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TbfsService",
+			"item": [
+				{
+					"name": "GetImage",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"stream\")\r",
+									"var res = (responseBody);\r",
+									"//var data = atob(res[\"result\"]);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbfsservice-url}}tbfs-service/GetImage/?namespace={{nsImage}}&user={{account-name}}&company={{subscription-key}}&culture=en-US",
+							"host": [
+								"{{tbfsservice-url}}tbfs-service"
+							],
+							"path": [
+								"GetImage",
+								""
+							],
+							"query": [
+								{
+									"key": "namespace",
+									"value": "{{nsImage}}"
+								},
+								{
+									"key": "user",
+									"value": "{{account-name}}"
+								},
+								{
+									"key": "company",
+									"value": "{{subscription-key}}"
+								},
+								{
+									"key": "culture",
+									"value": "en-US"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DMSService",
+			"item": [
+				{
+					"name": "Home",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dmsservice-url}}dms/api/",
+							"host": [
+								"{{dmsservice-url}}dms"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllExtensions",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dmsservice-url}}dms/api/getallextensions/",
+							"host": [
+								"{{dmsservice-url}}dms"
+							],
+							"path": [
+								"api",
+								"getallextensions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAttachments",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*require(\"atob\")\r",
+									"var res = JSON.parse(responseBody);\r",
+									"if (res[\"result\"].length) {\r",
+									"    for (i = 0; i < Math.min(res[\"result\"].length, 10); i++) {\r",
+									"        var data = atob(res[\"result\"][i]);\r",
+									"        console.log(data);\r",
+									"    }\r",
+									"} else {\r",
+									"     var message = atob(res[\"result\"]);\r",
+									"     console.log(message);\r",
+									"}\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"docnamespace\": \"Document.ERP.CustomerQuotations.Documents.CustQuota\",\r\n    \"strdockey\": \"CustQuotaId:20;\",\r\n    \"filterType\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dmsservice-url}}dms/api/attach/getattachments",
+							"host": [
+								"{{dmsservice-url}}dms"
+							],
+							"path": [
+								"api",
+								"attach",
+								"getattachments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DataManagerMMSService",
+			"item": [
+				{
+					"name": "MSSVersion",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mms-url}}mymagostudio-service/",
+							"host": [
+								"{{mms-url}}mymagostudio-service"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SelectAllByKey",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "MagoApi",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":23\"month\":1,\"year\":2024}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"TableName\":\"MA_CustSupp\",\"Keys\":[\"3211264\",\"0001\"],\"Data\":null}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mms-url}}mymagostudio-service/DataManager/selectAllByKey",
+							"host": [
+								"{{mms-url}}mymagostudio-service"
+							],
+							"path": [
+								"DataManager",
+								"selectAllByKey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SelectAllByKey local",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "MagoApi",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"TableName\":\"MA_CustSupp\",\"Keys\":[\"3211264\",\"0001\"],\"Data\":null}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mmsLocal-url}}mymagostudio-service/DataManager/selectAllByKey",
+							"host": [
+								"{{mmsLocal-url}}mymagostudio-service"
+							],
+							"path": [
+								"DataManager",
+								"selectAllByKey"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ReportingService",
+			"item": [
+				{
+					"name": "Version RS",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reportingservice-url}}rs/version/",
+							"host": [
+								"{{reportingservice-url}}rs"
+							],
+							"path": [
+								"version",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetData(Items List)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"namespaces\":[\"ERP.Items.Items.wrm\"],\"arguments\":[{\"name\":\"w_CodeStart\",\"value\":\"A\"},{\"name\":\"w_CodeEnd\",\"value\":\"B\"}]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reportingservice-url}}rs/xmldata",
+							"host": [
+								"{{reportingservice-url}}rs"
+							],
+							"path": [
+								"xmldata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetData(Customers Address Book)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"namespaces\":[\"ERP.CustomersSuppliers.CustomersAddressBook.wrm\"],\"arguments\":[{\"name\":\"w_FromCustomer\",\"value\":\"0001\"},{\"name\":\"w_ToCustomer\",\"value\":\"0009\"}]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reportingservice-url}}rs/xmldata",
+							"host": [
+								"{{reportingservice-url}}rs"
+							],
+							"path": [
+								"xmldata"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "gwam-url",
+			"value": "https://release-gwam.mago.cloud/"
+		},
+		{
+			"key": "account-name",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "subscription-key",
+			"value": ""
+		},
+		{
+			"key": "producer-key",
+			"value": ""
+		},
+		{
+			"key": "app-key",
+			"value": "MagoAPI"
+		},
+		{
+			"key": "data-service-url",
+			"value": ""
+		},
+		{
+			"key": "msh-url",
+			"value": ""
+		},
+		{
+			"key": "tbserver-url",
+			"value": ""
+		},
+		{
+			"key": "paramsBase64",
+			"value": ""
+		},
+		{
+			"key": "prelogin-jwt-token",
+			"value": ""
+		},
+		{
+			"key": "current-handle",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "local-url",
+			"value": "http://localhost:60000/",
+			"type": "string"
+		},
+		{
+			"key": "tbfsservice-url",
+			"value": "https://beta.mago.cloud/13/be/",
+			"type": "string"
+		},
+		{
+			"key": "nsImage",
+			"value": "Image.erp.items.images.daria0.bmp",
+			"type": "string"
+		},
+		{
+			"key": "dmsservice-url",
+			"value": "http://localhost:5020/",
+			"type": "string"
+		},
+		{
+			"key": "reportingservice-url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "mms-url",
+			"value": ""
+		},
+		{
+			"key": "jwt-token",
+			"value": ""
+		},
+		{
+			"key": "mmsLocal-url",
+			"value": "http://localhost:5058/",
+			"type": "string"
+		}
+	]
+}
