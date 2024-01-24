@@ -43,7 +43,7 @@ namespace MyApp
             public string ISOCountryCode { get; set; }
         }
 
-        public static bool Execute(string instance, string user, string pwd, string subkey, bool loginByAccountManager)
+        public static bool Execute(string instance, string user, string pwd, string subkey)
         {
             /////////////////////////////////////////////////////////////////////////////////////////////////
             // it constructs a new Mago API Client identifying instance to connect and customization author
@@ -53,42 +53,25 @@ namespace MyApp
                 ITbUserData userData = null;
                 try
                 {
-                    if (loginByAccountManager)
-                    {
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        // ACCUNTMANAGER: authentication process (Login/Logout/IsValid)
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        ///
-                        IAccountManagerResult accManResult = magocloudClient.AccountManager?.Login(user, pwd, subkey).Result;
+                    /////////////////////////////////////////////////////////////////////////////////////////////////
+                    // GWAM LOGIN: authentication process by Gwam(Login/Logout/IsValid)
+                    /////////////////////////////////////////////////////////////////////////////////////////////////
+                    ///
+                    IGwamResult gwamResult = magocloudClient.GwamClient?.Login(user, pwd, subkey).Result;
 
-                        if (accManResult.Success && accManResult?.UserData != null && accManResult.UserData.IsLogged)
-                            userData = accManResult.UserData;
-                    }
-                    else
-                    {
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        // GWAM LOGIN: authentication process by Gwam(Login/Logout/IsValid)
-                        /////////////////////////////////////////////////////////////////////////////////////////////////
-                        ///
-                        IGwamResult gwamResult = magocloudClient.GwamClient?.Login(user, pwd, subkey).Result;
-
-                        if (gwamResult.Success && gwamResult?.UserData != null && gwamResult.UserData.IsLogged)
-                            userData = gwamResult.UserData;
-                    }
+                    if (gwamResult.Success && gwamResult?.UserData != null && gwamResult.UserData.IsLogged)
+                        userData = gwamResult.UserData;
 
                     if (userData != null)
                     {
-                        //UseMagicLink(magocloudClient, userData);
-                        //UseDataService(magocloudClient, userData);
-                        //UseReportingServices(magocloudClient, userData);
+                        UseMagicLink(magocloudClient, userData);
+                        UseDataService(magocloudClient, userData);
+                        UseReportingServices(magocloudClient, userData);
                         UseMyMagoStudioService(magocloudClient, userData);
-                        //UseOthersMicroservices(magocloudClient, userData);
+                        UseOthersMicroservices(magocloudClient, userData);
 
                         // authentication end
-                        if (loginByAccountManager && magocloudClient.AccountManager.IsValid(userData).Result.Success)
-                            return magocloudClient.AccountManager.Logout(userData).Result.Success;
-
-                        else if (magocloudClient.GwamClient.IsValid(userData).Result.Success)
+                        if (magocloudClient.GwamClient.IsValid(userData).Result.Success)
                             return magocloudClient.GwamClient.Logout(userData).Result.Success;
                     }
                 }
@@ -97,10 +80,7 @@ namespace MyApp
                     Console.WriteLine(ex);
                     if (userData != null && userData.IsLogged)
                     {
-                        if (loginByAccountManager && magocloudClient.AccountManager.IsValid(userData).Result.Success)
-                            return magocloudClient.AccountManager.Logout(userData).Result.Success;
-
-                        else if (magocloudClient.GwamClient.IsValid(userData).Result.Success)
+                        if (magocloudClient.GwamClient.IsValid(userData).Result.Success)
                             return magocloudClient.GwamClient.Logout(userData).Result.Success;
                     }
                 }
@@ -174,7 +154,7 @@ namespace MyApp
             // MagoAPIClient class expose Mago Service Hub backend url too, but for a detailed list of api please refer
             // Mago Service Hub development team
             /////////////////////////////////////////////////////////////////////////////////////////////////
-            string espUrl = magocloudClient.MagoServicesHub.GetServiceUrl(userData.SubscriptionKey);
+            string espUrl = magocloudClient.MagoServicesHub.GetServiceUrl(userData);
             ITbResponse versionResponse = magocloudClient.MagoServicesHub.GetVersion(userData).Result;
         }
 
@@ -183,7 +163,7 @@ namespace MyApp
             /////////////////////////////////////////////////////////////////////////////////////////////////
             // MyMagoStudio class expose MyMagoStudio backend url
             /////////////////////////////////////////////////////////////////////////////////////////////////
-            string mmsUrl = magocloudClient.MyMagoStudio.GetServiceUrl(userData.SubscriptionKey);
+            string mmsUrl = magocloudClient.MyMagoStudio.GetServiceUrl(userData);
 
             // MyMagoStudioService Data Manager APIs
             UseMMSDataManager(magocloudClient, userData);
