@@ -3,8 +3,10 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
 using System.Security.Policy;
+using System.Security.Principal;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
 
 namespace MagoCloudApi
 {
@@ -73,9 +75,14 @@ namespace MagoCloudApi
                    userData. AppKey = appKey;
                     // @@mmf
                     string localLogin = "http://localhost:5000/account-manager/login";
+                    //string localLogin = "http://localhost:81/account-manager/login";
+
+                    // the URL to access MagoWeb is the following
+                    //string magoWebLogin = "http://localhost:60000/account-manager/login";
+
                     HttpRequestMessage request;
                     if (gwamUrl == string.Empty)
-                        request = new HttpRequestMessage(HttpMethod.Post, localLogin);
+                        request = new HttpRequestMessage(HttpMethod.Post, localLogin);//magoWebLogin
                     else
                         request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
                     //@@mmf end
@@ -143,9 +150,10 @@ namespace MagoCloudApi
                 {
                     //@@mmf
                     string localLogoff = "http://localhost:5000/account-manager/isvalidtoken";
+                    //string WebLogoff = "http://localhost:60000/account-manager/isvalidtoken";
                     HttpRequestMessage request;
                     if (GwamUrl == string.Empty)
-                        request = new HttpRequestMessage(HttpMethod.Post, localLogoff);
+                        request = new HttpRequestMessage(HttpMethod.Post, localLogoff);//WebLogoff
                     else
                         request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/isvalidtoken");
                     //@@mmf end
@@ -190,9 +198,10 @@ namespace MagoCloudApi
                 {
                     //@@mmf
                     string localLogoff = "http://localhost:5000/account-manager/logoff";
+                    //string WebLogoff = "http://localhost:60000/account-manager/logoff";
                     HttpRequestMessage request;
                     if (GwamUrl == string.Empty)
-                        request = new HttpRequestMessage(HttpMethod.Post, localLogoff);
+                        request = new HttpRequestMessage(HttpMethod.Post, localLogoff);//WebLogoff
                     else
                         request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/logoff");
                     //@@mmf end

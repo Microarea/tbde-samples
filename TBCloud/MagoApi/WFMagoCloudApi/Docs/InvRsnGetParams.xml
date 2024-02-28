@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?> 
-<maxs:InventoryReasons tbNamespace="Document.ERP.Inventory.Documents.InventoryReasons" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Inventory/InventoryReasons/Standard/DefaultLight.xsd">
-	<maxs:Parameters>
-	</maxs:Parameters>
-</maxs:InventoryReasons>

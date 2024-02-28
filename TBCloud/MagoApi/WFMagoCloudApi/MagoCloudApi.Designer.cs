@@ -35,6 +35,7 @@ namespace MagoCloudApi
             this.tabNavigation = new System.Windows.Forms.TabControl();
             this.tabTbServer = new System.Windows.Forms.TabPage();
             this.panelTbTextContainer = new System.Windows.Forms.Panel();
+            this.btnClearText = new System.Windows.Forms.Button();
             this.TextBoxDocument = new System.Windows.Forms.RichTextBox();
             this.BtnFillContent = new System.Windows.Forms.Button();
             this.labelCallTbResult = new System.Windows.Forms.Label();
@@ -56,6 +57,16 @@ namespace MagoCloudApi
             this.orangePanel5 = new MspzComponent.OrangePanel();
             this.buttonSetTb = new System.Windows.Forms.Button();
             this.tabWebMethods = new System.Windows.Forms.TabPage();
+            this.lblCaseSensitive = new System.Windows.Forms.Label();
+            this.WebMethodList = new System.Windows.Forms.Button();
+            this.panel102 = new System.Windows.Forms.Panel();
+            this.panel111 = new System.Windows.Forms.Panel();
+            this.panel92 = new System.Windows.Forms.Panel();
+            this.panel101 = new System.Windows.Forms.Panel();
+            this.panel82 = new System.Windows.Forms.Panel();
+            this.panel91 = new System.Windows.Forms.Panel();
+            this.WebMetodLbl = new System.Windows.Forms.Label();
+            this.SearchMethod = new System.Windows.Forms.TextBox();
             this.linkCodeSourceWb = new System.Windows.Forms.LinkLabel();
             this.btnCurrOpeningDate = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
@@ -301,6 +312,7 @@ namespace MagoCloudApi
             this.textBoxCategory = new System.Windows.Forms.TextBox();
             this.panelTitleForm = new System.Windows.Forms.Panel();
             this.btnReduceIcon = new System.Windows.Forms.Button();
+            this.cbxServicesWeb = new System.Windows.Forms.ComboBox();
             this.btnWindowMax = new System.Windows.Forms.Button();
             this.labelTitle = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -346,6 +358,9 @@ namespace MagoCloudApi
             this.orangePanel4.SuspendLayout();
             this.orangePanel5.SuspendLayout();
             this.tabWebMethods.SuspendLayout();
+            this.panel102.SuspendLayout();
+            this.panel92.SuspendLayout();
+            this.panel82.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelLineDefSalePxWM.SuspendLayout();
             this.panelLineClosingDateWM.SuspendLayout();
@@ -437,7 +452,7 @@ namespace MagoCloudApi
             linkHelpTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             linkHelpTb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             linkHelpTb.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            linkHelpTb.Location = new System.Drawing.Point(571, 272);
+            linkHelpTb.Location = new System.Drawing.Point(571, 305);
             linkHelpTb.Name = "linkHelpTb";
             linkHelpTb.Size = new System.Drawing.Size(110, 16);
             linkHelpTb.TabIndex = 92;
@@ -492,7 +507,7 @@ namespace MagoCloudApi
             this.tabTbServer.ForeColor = System.Drawing.Color.White;
             this.tabTbServer.Location = new System.Drawing.Point(4, 46);
             this.tabTbServer.Name = "tabTbServer";
-            this.tabTbServer.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabTbServer.Padding = new System.Windows.Forms.Padding(3);
             this.tabTbServer.Size = new System.Drawing.Size(713, 533);
             this.tabTbServer.TabIndex = 1;
             this.tabTbServer.Text = "TbServer-MagicLink";
@@ -503,6 +518,7 @@ namespace MagoCloudApi
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTbTextContainer.BackColor = System.Drawing.Color.White;
+            this.panelTbTextContainer.Controls.Add(this.btnClearText);
             this.panelTbTextContainer.Controls.Add(this.TextBoxDocument);
             this.panelTbTextContainer.Controls.Add(this.BtnFillContent);
             this.panelTbTextContainer.Controls.Add(linkHelpTb);
@@ -510,10 +526,31 @@ namespace MagoCloudApi
             this.panelTbTextContainer.Controls.Add(this.BtnRefDoc);
             this.panelTbTextContainer.Controls.Add(this.BtnOpenFolder);
             this.panelTbTextContainer.Location = new System.Drawing.Point(15, 202);
-            this.panelTbTextContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTbTextContainer.Margin = new System.Windows.Forms.Padding(2);
             this.panelTbTextContainer.Name = "panelTbTextContainer";
-            this.panelTbTextContainer.Size = new System.Drawing.Size(685, 293);
+            this.panelTbTextContainer.Size = new System.Drawing.Size(685, 326);
             this.panelTbTextContainer.TabIndex = 115;
+            // 
+            // btnClearText
+            // 
+            this.btnClearText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearText.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnClearText.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClearText.FlatAppearance.BorderSize = 0;
+            this.btnClearText.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
+            this.btnClearText.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
+            this.btnClearText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearText.Font = new System.Drawing.Font("Century Gothic", 22.75F);
+            this.btnClearText.ForeColor = System.Drawing.Color.IndianRed;
+            this.btnClearText.Location = new System.Drawing.Point(588, 232);
+            this.btnClearText.Name = "btnClearText";
+            this.btnClearText.Size = new System.Drawing.Size(59, 49);
+            this.btnClearText.TabIndex = 116;
+            this.btnClearText.Text = "🧹";
+            this.btnClearText.UseVisualStyleBackColor = false;
+            this.btnClearText.Click += new System.EventHandler(this.btnClearText_Click);
+            this.btnClearText.MouseLeave += new System.EventHandler(this.btnClearText_MouseLeave);
+            this.btnClearText.MouseHover += new System.EventHandler(this.btnClearText_MouseHover);
             // 
             // TextBoxDocument
             // 
@@ -526,10 +563,11 @@ namespace MagoCloudApi
             this.TextBoxDocument.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.TextBoxDocument.Location = new System.Drawing.Point(12, 39);
             this.TextBoxDocument.Name = "TextBoxDocument";
-            this.TextBoxDocument.Size = new System.Drawing.Size(658, 230);
+            this.TextBoxDocument.Size = new System.Drawing.Size(658, 262);
             this.TextBoxDocument.TabIndex = 109;
             this.TextBoxDocument.Text = "";
             this.TextBoxDocument.WordWrap = false;
+            this.TextBoxDocument.TextChanged += new System.EventHandler(this.TextBoxDocument_TextChanged);
             // 
             // BtnFillContent
             // 
@@ -542,7 +580,7 @@ namespace MagoCloudApi
             this.BtnFillContent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFillContent.Font = new System.Drawing.Font("Century Gothic", 16.75F, System.Drawing.FontStyle.Bold);
             this.BtnFillContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.BtnFillContent.Location = new System.Drawing.Point(3, 260);
+            this.BtnFillContent.Location = new System.Drawing.Point(3, 293);
             this.BtnFillContent.Name = "BtnFillContent";
             this.BtnFillContent.Size = new System.Drawing.Size(38, 28);
             this.BtnFillContent.TabIndex = 115;
@@ -796,6 +834,13 @@ namespace MagoCloudApi
             // tabWebMethods
             // 
             this.tabWebMethods.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.tabWebMethods.Controls.Add(this.lblCaseSensitive);
+            this.tabWebMethods.Controls.Add(this.WebMethodList);
+            this.tabWebMethods.Controls.Add(this.panel102);
+            this.tabWebMethods.Controls.Add(this.panel92);
+            this.tabWebMethods.Controls.Add(this.panel82);
+            this.tabWebMethods.Controls.Add(this.WebMetodLbl);
+            this.tabWebMethods.Controls.Add(this.SearchMethod);
             this.tabWebMethods.Controls.Add(this.linkCodeSourceWb);
             this.tabWebMethods.Controls.Add(this.btnCurrOpeningDate);
             this.tabWebMethods.Controls.Add(this.label13);
@@ -811,11 +856,106 @@ namespace MagoCloudApi
             this.tabWebMethods.Controls.Add(this.roundedPanel3);
             this.tabWebMethods.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabWebMethods.ForeColor = System.Drawing.SystemColors.Control;
-            this.tabWebMethods.Location = new System.Drawing.Point(4, 25);
+            this.tabWebMethods.Location = new System.Drawing.Point(4, 46);
+            this.tabWebMethods.Margin = new System.Windows.Forms.Padding(0);
             this.tabWebMethods.Name = "tabWebMethods";
-            this.tabWebMethods.Size = new System.Drawing.Size(713, 554);
+            this.tabWebMethods.Size = new System.Drawing.Size(713, 533);
             this.tabWebMethods.TabIndex = 4;
             this.tabWebMethods.Text = "WebMethods-MagicLink";
+            this.tabWebMethods.Click += new System.EventHandler(this.tabWebMethods_Click);
+            // 
+            // lblCaseSensitive
+            // 
+            this.lblCaseSensitive.AutoSize = true;
+            this.lblCaseSensitive.Font = new System.Drawing.Font("Century Gothic", 7F);
+            this.lblCaseSensitive.Location = new System.Drawing.Point(599, 239);
+            this.lblCaseSensitive.Name = "lblCaseSensitive";
+            this.lblCaseSensitive.Size = new System.Drawing.Size(90, 15);
+            this.lblCaseSensitive.TabIndex = 100;
+            this.lblCaseSensitive.Text = "( case sensitive )";
+            // 
+            // WebMethodList
+            // 
+            this.WebMethodList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.WebMethodList.FlatAppearance.BorderSize = 0;
+            this.WebMethodList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WebMethodList.Location = new System.Drawing.Point(507, 161);
+            this.WebMethodList.Name = "WebMethodList";
+            this.WebMethodList.Size = new System.Drawing.Size(178, 39);
+            this.WebMethodList.TabIndex = 94;
+            this.WebMethodList.Text = "WebMethodList 🔍";
+            this.WebMethodList.UseVisualStyleBackColor = false;
+            this.WebMethodList.Click += new System.EventHandler(this.WebMethodList_Click);
+            // 
+            // panel102
+            // 
+            this.panel102.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel102.Controls.Add(this.panel111);
+            this.panel102.Location = new System.Drawing.Point(655, 179);
+            this.panel102.Name = "panel102";
+            this.panel102.Size = new System.Drawing.Size(42, 1);
+            this.panel102.TabIndex = 99;
+            // 
+            // panel111
+            // 
+            this.panel111.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel111.Location = new System.Drawing.Point(0, 2);
+            this.panel111.Name = "panel111";
+            this.panel111.Size = new System.Drawing.Size(344, 1);
+            this.panel111.TabIndex = 63;
+            // 
+            // panel92
+            // 
+            this.panel92.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel92.Controls.Add(this.panel101);
+            this.panel92.Location = new System.Drawing.Point(697, 179);
+            this.panel92.Name = "panel92";
+            this.panel92.Size = new System.Drawing.Size(1, 68);
+            this.panel92.TabIndex = 98;
+            // 
+            // panel101
+            // 
+            this.panel101.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel101.Location = new System.Drawing.Point(0, 2);
+            this.panel101.Name = "panel101";
+            this.panel101.Size = new System.Drawing.Size(344, 1);
+            this.panel101.TabIndex = 63;
+            // 
+            // panel82
+            // 
+            this.panel82.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel82.Controls.Add(this.panel91);
+            this.panel82.Location = new System.Drawing.Point(476, 247);
+            this.panel82.Name = "panel82";
+            this.panel82.Size = new System.Drawing.Size(222, 1);
+            this.panel82.TabIndex = 97;
+            // 
+            // panel91
+            // 
+            this.panel91.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel91.Location = new System.Drawing.Point(0, 2);
+            this.panel91.Name = "panel91";
+            this.panel91.Size = new System.Drawing.Size(344, 1);
+            this.panel91.TabIndex = 63;
+            // 
+            // WebMetodLbl
+            // 
+            this.WebMetodLbl.AutoSize = true;
+            this.WebMetodLbl.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
+            this.WebMetodLbl.Location = new System.Drawing.Point(473, 223);
+            this.WebMetodLbl.Name = "WebMetodLbl";
+            this.WebMetodLbl.Size = new System.Drawing.Size(36, 15);
+            this.WebMetodLbl.TabIndex = 96;
+            this.WebMetodLbl.Text = "*NS:  ";
+            // 
+            // SearchMethod
+            // 
+            this.SearchMethod.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
+            this.SearchMethod.Location = new System.Drawing.Point(507, 219);
+            this.SearchMethod.Name = "SearchMethod";
+            this.SearchMethod.Size = new System.Drawing.Size(178, 21);
+            this.SearchMethod.TabIndex = 95;
+            this.SearchMethod.Text = "ERP.";
             // 
             // linkCodeSourceWb
             // 
@@ -826,7 +966,7 @@ namespace MagoCloudApi
             this.linkCodeSourceWb.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.linkCodeSourceWb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkCodeSourceWb.LinkColor = System.Drawing.Color.White;
-            this.linkCodeSourceWb.Location = new System.Drawing.Point(632, 774);
+            this.linkCodeSourceWb.Location = new System.Drawing.Point(632, 1068);
             this.linkCodeSourceWb.Name = "linkCodeSourceWb";
             this.linkCodeSourceWb.Size = new System.Drawing.Size(110, 16);
             this.linkCodeSourceWb.TabIndex = 93;
@@ -844,7 +984,7 @@ namespace MagoCloudApi
             this.btnCurrOpeningDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCurrOpeningDate.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCurrOpeningDate.ForeColor = System.Drawing.Color.White;
-            this.btnCurrOpeningDate.Location = new System.Drawing.Point(111, 180);
+            this.btnCurrOpeningDate.Location = new System.Drawing.Point(40, 166);
             this.btnCurrOpeningDate.Name = "btnCurrOpeningDate";
             this.btnCurrOpeningDate.Size = new System.Drawing.Size(120, 34);
             this.btnCurrOpeningDate.TabIndex = 65;
@@ -856,7 +996,7 @@ namespace MagoCloudApi
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
-            this.label13.Location = new System.Drawing.Point(233, 239);
+            this.label13.Location = new System.Drawing.Point(162, 226);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(267, 15);
             this.label13.TabIndex = 85;
@@ -866,7 +1006,7 @@ namespace MagoCloudApi
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(234, 190);
+            this.label11.Location = new System.Drawing.Point(163, 176);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(246, 15);
             this.label11.TabIndex = 84;
@@ -876,7 +1016,7 @@ namespace MagoCloudApi
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.panel10);
-            this.panel4.Location = new System.Drawing.Point(110, 168);
+            this.panel4.Location = new System.Drawing.Point(39, 154);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(378, 1);
             this.panel4.TabIndex = 73;
@@ -892,11 +1032,11 @@ namespace MagoCloudApi
             // labelWmDescription
             // 
             this.labelWmDescription.AutoSize = true;
-            this.labelWmDescription.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.labelWmDescription.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.labelWmDescription.ForeColor = System.Drawing.Color.White;
-            this.labelWmDescription.Location = new System.Drawing.Point(71, 34);
+            this.labelWmDescription.Location = new System.Drawing.Point(19, 23);
             this.labelWmDescription.Name = "labelWmDescription";
-            this.labelWmDescription.Size = new System.Drawing.Size(134, 20);
+            this.labelWmDescription.Size = new System.Drawing.Size(109, 16);
             this.labelWmDescription.TabIndex = 80;
             this.labelWmDescription.Text = "labelPlaceholder";
             // 
@@ -904,7 +1044,7 @@ namespace MagoCloudApi
             // 
             this.panelLineDefSalePxWM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.panelLineDefSalePxWM.Controls.Add(this.panel1);
-            this.panelLineDefSalePxWM.Location = new System.Drawing.Point(114, 334);
+            this.panelLineDefSalePxWM.Location = new System.Drawing.Point(46, 334);
             this.panelLineDefSalePxWM.Name = "panelLineDefSalePxWM";
             this.panelLineDefSalePxWM.Size = new System.Drawing.Size(378, 1);
             this.panelLineDefSalePxWM.TabIndex = 71;
@@ -921,7 +1061,7 @@ namespace MagoCloudApi
             // 
             this.panelLineClosingDateWM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
             this.panelLineClosingDateWM.Controls.Add(this.panel16);
-            this.panelLineClosingDateWM.Location = new System.Drawing.Point(226, 261);
+            this.panelLineClosingDateWM.Location = new System.Drawing.Point(155, 248);
             this.panelLineClosingDateWM.Name = "panelLineClosingDateWM";
             this.panelLineClosingDateWM.Size = new System.Drawing.Size(262, 1);
             this.panelLineClosingDateWM.TabIndex = 67;
@@ -943,7 +1083,7 @@ namespace MagoCloudApi
             this.btnClosingDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClosingDate.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClosingDate.ForeColor = System.Drawing.Color.White;
-            this.btnClosingDate.Location = new System.Drawing.Point(110, 228);
+            this.btnClosingDate.Location = new System.Drawing.Point(39, 215);
             this.btnClosingDate.Name = "btnClosingDate";
             this.btnClosingDate.Size = new System.Drawing.Size(121, 34);
             this.btnClosingDate.TabIndex = 68;
@@ -955,7 +1095,7 @@ namespace MagoCloudApi
             // 
             this.panelLineOpenDateWM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
             this.panelLineOpenDateWM.Controls.Add(this.panel12);
-            this.panelLineOpenDateWM.Location = new System.Drawing.Point(226, 213);
+            this.panelLineOpenDateWM.Location = new System.Drawing.Point(155, 199);
             this.panelLineOpenDateWM.Name = "panelLineOpenDateWM";
             this.panelLineOpenDateWM.Size = new System.Drawing.Size(262, 1);
             this.panelLineOpenDateWM.TabIndex = 64;
@@ -973,7 +1113,7 @@ namespace MagoCloudApi
             this.labelTitleDate.AutoSize = true;
             this.labelTitleDate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.labelTitleDate.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelTitleDate.Location = new System.Drawing.Point(110, 142);
+            this.labelTitleDate.Location = new System.Drawing.Point(39, 128);
             this.labelTitleDate.Name = "labelTitleDate";
             this.labelTitleDate.Size = new System.Drawing.Size(121, 23);
             this.labelTitleDate.TabIndex = 53;
@@ -995,7 +1135,7 @@ namespace MagoCloudApi
             this.roundedPanel1.Controls.Add(this.panelLineGetPxWM);
             this.roundedPanel1.Controls.Add(this.panelLineCreateWM);
             this.roundedPanel1.ForeColor = System.Drawing.Color.White;
-            this.roundedPanel1.Location = new System.Drawing.Point(61, 294);
+            this.roundedPanel1.Location = new System.Drawing.Point(27, 294);
             this.roundedPanel1.Name = "roundedPanel1";
             this.roundedPanel1.Size = new System.Drawing.Size(1046, 216);
             this.roundedPanel1.TabIndex = 90;
@@ -1009,7 +1149,7 @@ namespace MagoCloudApi
             this.btnCreatePx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreatePx.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreatePx.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCreatePx.Location = new System.Drawing.Point(25, 52);
+            this.btnCreatePx.Location = new System.Drawing.Point(25, 55);
             this.btnCreatePx.Name = "btnCreatePx";
             this.btnCreatePx.Size = new System.Drawing.Size(117, 34);
             this.btnCreatePx.TabIndex = 72;
@@ -1023,7 +1163,7 @@ namespace MagoCloudApi
             this.labelNsCreate.BackColor = System.Drawing.Color.Transparent;
             this.labelNsCreate.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.labelNsCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelNsCreate.Location = new System.Drawing.Point(145, 62);
+            this.labelNsCreate.Location = new System.Drawing.Point(145, 65);
             this.labelNsCreate.Name = "labelNsCreate";
             this.labelNsCreate.Size = new System.Drawing.Size(338, 15);
             this.labelNsCreate.TabIndex = 81;
@@ -1067,7 +1207,7 @@ namespace MagoCloudApi
             this.btnDispose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDispose.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDispose.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnDispose.Location = new System.Drawing.Point(25, 169);
+            this.btnDispose.Location = new System.Drawing.Point(25, 166);
             this.btnDispose.Name = "btnDispose";
             this.btnDispose.Size = new System.Drawing.Size(117, 34);
             this.btnDispose.TabIndex = 74;
@@ -1081,7 +1221,7 @@ namespace MagoCloudApi
             this.labelNSDispose.BackColor = System.Drawing.Color.Transparent;
             this.labelNSDispose.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.labelNSDispose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelNSDispose.Location = new System.Drawing.Point(148, 180);
+            this.labelNSDispose.Location = new System.Drawing.Point(148, 177);
             this.labelNSDispose.Name = "labelNSDispose";
             this.labelNSDispose.Size = new System.Drawing.Size(344, 15);
             this.labelNSDispose.TabIndex = 83;
@@ -1091,7 +1231,7 @@ namespace MagoCloudApi
             // 
             this.panelLineDisposeWM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
             this.panelLineDisposeWM.Controls.Add(this.panel43);
-            this.panelLineDisposeWM.Location = new System.Drawing.Point(139, 202);
+            this.panelLineDisposeWM.Location = new System.Drawing.Point(139, 199);
             this.panelLineDisposeWM.Name = "panelLineDisposeWM";
             this.panelLineDisposeWM.Size = new System.Drawing.Size(380, 1);
             this.panelLineDisposeWM.TabIndex = 68;
@@ -1111,7 +1251,7 @@ namespace MagoCloudApi
             this.labelTitleDefSalePx.Cursor = System.Windows.Forms.Cursors.Default;
             this.labelTitleDefSalePx.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.labelTitleDefSalePx.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelTitleDefSalePx.Location = new System.Drawing.Point(52, 15);
+            this.labelTitleDefSalePx.Location = new System.Drawing.Point(17, 15);
             this.labelTitleDefSalePx.Name = "labelTitleDefSalePx";
             this.labelTitleDefSalePx.Size = new System.Drawing.Size(179, 23);
             this.labelTitleDefSalePx.TabIndex = 70;
@@ -1142,7 +1282,7 @@ namespace MagoCloudApi
             this.panelLineCreateWM.Controls.Add(this.panel28);
             this.panelLineCreateWM.Controls.Add(this.panel26);
             this.panelLineCreateWM.Controls.Add(this.panel25);
-            this.panelLineCreateWM.Location = new System.Drawing.Point(139, 85);
+            this.panelLineCreateWM.Location = new System.Drawing.Point(139, 88);
             this.panelLineCreateWM.Name = "panelLineCreateWM";
             this.panelLineCreateWM.Size = new System.Drawing.Size(380, 1);
             this.panelLineCreateWM.TabIndex = 68;
@@ -1283,20 +1423,20 @@ namespace MagoCloudApi
             this.roundedPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.roundedPanel3.Controls.Add(this.labelWbUrl);
-            this.roundedPanel3.Location = new System.Drawing.Point(66, 90);
+            this.roundedPanel3.Location = new System.Drawing.Point(275, 73);
             this.roundedPanel3.Name = "roundedPanel3";
-            this.roundedPanel3.Size = new System.Drawing.Size(685, 43);
+            this.roundedPanel3.Size = new System.Drawing.Size(492, 27);
             this.roundedPanel3.TabIndex = 91;
             // 
             // labelWbUrl
             // 
             this.labelWbUrl.AutoSize = true;
             this.labelWbUrl.BackColor = System.Drawing.Color.Transparent;
-            this.labelWbUrl.Font = new System.Drawing.Font("Century Gothic", 10.75F, System.Drawing.FontStyle.Bold);
+            this.labelWbUrl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.labelWbUrl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelWbUrl.Location = new System.Drawing.Point(11, 13);
+            this.labelWbUrl.Location = new System.Drawing.Point(8, 6);
             this.labelWbUrl.Name = "labelWbUrl";
-            this.labelWbUrl.Size = new System.Drawing.Size(31, 18);
+            this.labelWbUrl.Size = new System.Drawing.Size(25, 16);
             this.labelWbUrl.TabIndex = 89;
             this.labelWbUrl.Text = "Url:";
             // 
@@ -1323,10 +1463,10 @@ namespace MagoCloudApi
             this.tabDataService.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabDataService.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
             this.tabDataService.ForeColor = System.Drawing.Color.White;
-            this.tabDataService.Location = new System.Drawing.Point(4, 25);
+            this.tabDataService.Location = new System.Drawing.Point(4, 46);
             this.tabDataService.Name = "tabDataService";
-            this.tabDataService.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabDataService.Size = new System.Drawing.Size(713, 554);
+            this.tabDataService.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDataService.Size = new System.Drawing.Size(713, 533);
             this.tabDataService.TabIndex = 0;
             this.tabDataService.Text = "DataService";
             // 
@@ -1339,7 +1479,7 @@ namespace MagoCloudApi
             this.linkHelpDataService.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.linkHelpDataService.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkHelpDataService.LinkColor = System.Drawing.Color.White;
-            this.linkHelpDataService.Location = new System.Drawing.Point(632, 774);
+            this.linkHelpDataService.Location = new System.Drawing.Point(632, 1068);
             this.linkHelpDataService.Name = "linkHelpDataService";
             this.linkHelpDataService.Size = new System.Drawing.Size(110, 16);
             this.linkHelpDataService.TabIndex = 94;
@@ -1586,9 +1726,9 @@ namespace MagoCloudApi
             this.tabRs.Controls.Add(this.btnGetRsItems);
             this.tabRs.Controls.Add(this.panel18);
             this.tabRs.Controls.Add(this.roundedPanel5);
-            this.tabRs.Location = new System.Drawing.Point(4, 25);
+            this.tabRs.Location = new System.Drawing.Point(4, 46);
             this.tabRs.Name = "tabRs";
-            this.tabRs.Size = new System.Drawing.Size(713, 554);
+            this.tabRs.Size = new System.Drawing.Size(713, 533);
             this.tabRs.TabIndex = 5;
             this.tabRs.Text = "ReportingService";
             // 
@@ -1601,7 +1741,7 @@ namespace MagoCloudApi
             this.linkHelpReportingService.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.linkHelpReportingService.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkHelpReportingService.LinkColor = System.Drawing.Color.White;
-            this.linkHelpReportingService.Location = new System.Drawing.Point(632, 774);
+            this.linkHelpReportingService.Location = new System.Drawing.Point(632, 1068);
             this.linkHelpReportingService.Name = "linkHelpReportingService";
             this.linkHelpReportingService.Size = new System.Drawing.Size(110, 16);
             this.linkHelpReportingService.TabIndex = 95;
@@ -1810,10 +1950,10 @@ namespace MagoCloudApi
             this.tabDMS.Controls.Add(this.buttonMicrHome);
             this.tabDMS.Controls.Add(this.roundedPanel6);
             this.tabDMS.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold);
-            this.tabDMS.Location = new System.Drawing.Point(4, 25);
+            this.tabDMS.Location = new System.Drawing.Point(4, 46);
             this.tabDMS.Name = "tabDMS";
-            this.tabDMS.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabDMS.Size = new System.Drawing.Size(713, 554);
+            this.tabDMS.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDMS.Size = new System.Drawing.Size(713, 533);
             this.tabDMS.TabIndex = 2;
             this.tabDMS.Text = "DMS";
             // 
@@ -1826,7 +1966,7 @@ namespace MagoCloudApi
             this.linkHelpDMS.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.linkHelpDMS.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkHelpDMS.LinkColor = System.Drawing.Color.White;
-            this.linkHelpDMS.Location = new System.Drawing.Point(632, 774);
+            this.linkHelpDMS.Location = new System.Drawing.Point(632, 1068);
             this.linkHelpDMS.Name = "linkHelpDMS";
             this.linkHelpDMS.Size = new System.Drawing.Size(110, 16);
             this.linkHelpDMS.TabIndex = 95;
@@ -1981,9 +2121,9 @@ namespace MagoCloudApi
             // 
             this.tabMSH.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.tabMSH.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold);
-            this.tabMSH.Location = new System.Drawing.Point(4, 25);
+            this.tabMSH.Location = new System.Drawing.Point(4, 46);
             this.tabMSH.Name = "tabMSH";
-            this.tabMSH.Size = new System.Drawing.Size(713, 554);
+            this.tabMSH.Size = new System.Drawing.Size(713, 533);
             this.tabMSH.TabIndex = 3;
             this.tabMSH.Text = "MSH";
             // 
@@ -1998,10 +2138,10 @@ namespace MagoCloudApi
             this.DataManager.Controls.Add(this.labelGetService);
             this.DataManager.Controls.Add(this.panel2);
             this.DataManager.Controls.Add(this.rndPanelUrl);
-            this.DataManager.Location = new System.Drawing.Point(4, 25);
-            this.DataManager.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DataManager.Location = new System.Drawing.Point(4, 46);
+            this.DataManager.Margin = new System.Windows.Forms.Padding(2);
             this.DataManager.Name = "DataManager";
-            this.DataManager.Size = new System.Drawing.Size(713, 554);
+            this.DataManager.Size = new System.Drawing.Size(713, 533);
             this.DataManager.TabIndex = 6;
             this.DataManager.Text = "DataManager";
             // 
@@ -2050,7 +2190,7 @@ namespace MagoCloudApi
             this.labelNextIdN.ForeColor = System.Drawing.Color.White;
             this.labelNextIdN.Location = new System.Drawing.Point(8, 52);
             this.labelNextIdN.Name = "labelNextIdN";
-            this.labelNextIdN.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.labelNextIdN.Padding = new System.Windows.Forms.Padding(3);
             this.labelNextIdN.Size = new System.Drawing.Size(284, 22);
             this.labelNextIdN.TabIndex = 111;
             this.labelNextIdN.Text = "Make the call GetNextId to see id number";
@@ -2727,7 +2867,8 @@ namespace MagoCloudApi
             // 
             // rndPanelUrl
             // 
-            this.rndPanelUrl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rndPanelUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rndPanelUrl.Controls.Add(this.DmMMSUrl);
             this.rndPanelUrl.Location = new System.Drawing.Point(309, 20);
             this.rndPanelUrl.Name = "rndPanelUrl";
@@ -2760,9 +2901,9 @@ namespace MagoCloudApi
             this.BusinessObject.Controls.Add(this.panelTableCustSuppNotes);
             this.BusinessObject.Controls.Add(this.panelCustSuppOptions);
             this.BusinessObject.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.BusinessObject.Location = new System.Drawing.Point(4, 25);
+            this.BusinessObject.Location = new System.Drawing.Point(4, 46);
             this.BusinessObject.Name = "BusinessObject";
-            this.BusinessObject.Size = new System.Drawing.Size(713, 554);
+            this.BusinessObject.Size = new System.Drawing.Size(713, 533);
             this.BusinessObject.TabIndex = 7;
             this.BusinessObject.Text = "BusinessObject";
             // 
@@ -3195,9 +3336,9 @@ namespace MagoCloudApi
             // 
             this.panel89.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
             this.panel89.Controls.Add(this.panel90);
-            this.panel89.Location = new System.Drawing.Point(3, 56);
+            this.panel89.Location = new System.Drawing.Point(1, 56);
             this.panel89.Name = "panel89";
-            this.panel89.Size = new System.Drawing.Size(272, 1);
+            this.panel89.Size = new System.Drawing.Size(270, 1);
             this.panel89.TabIndex = 98;
             // 
             // panel90
@@ -3501,9 +3642,9 @@ namespace MagoCloudApi
             // 
             this.panel78.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
             this.panel78.Controls.Add(this.panel79);
-            this.panel78.Location = new System.Drawing.Point(3, 56);
+            this.panel78.Location = new System.Drawing.Point(1, 56);
             this.panel78.Name = "panel78";
-            this.panel78.Size = new System.Drawing.Size(272, 1);
+            this.panel78.Size = new System.Drawing.Size(270, 1);
             this.panel78.TabIndex = 98;
             // 
             // panel79
@@ -3564,6 +3705,7 @@ namespace MagoCloudApi
             this.panelTitleForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.panelTitleForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panelTitleForm.Controls.Add(this.btnReduceIcon);
+            this.panelTitleForm.Controls.Add(this.cbxServicesWeb);
             this.panelTitleForm.Controls.Add(this.btnWindowMax);
             this.panelTitleForm.Controls.Add(this.labelTitle);
             this.panelTitleForm.Controls.Add(this.label15);
@@ -3598,6 +3740,16 @@ namespace MagoCloudApi
             this.btnReduceIcon.Text = "_";
             this.btnReduceIcon.UseVisualStyleBackColor = false;
             this.btnReduceIcon.Click += new System.EventHandler(this.btnReduceIcon_Click);
+            // 
+            // cbxServicesWeb
+            // 
+            this.cbxServicesWeb.FormattingEnabled = true;
+            this.cbxServicesWeb.Location = new System.Drawing.Point(435, 19);
+            this.cbxServicesWeb.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxServicesWeb.Name = "cbxServicesWeb";
+            this.cbxServicesWeb.Size = new System.Drawing.Size(195, 21);
+            this.cbxServicesWeb.TabIndex = 49;
+            this.cbxServicesWeb.DropDown += new System.EventHandler(this.cbxServicesWeb_DropDown);
             // 
             // btnWindowMax
             // 
@@ -3664,7 +3816,7 @@ namespace MagoCloudApi
             this.panelMarginLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.panelMarginLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMarginLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelMarginLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelMarginLeft.Margin = new System.Windows.Forms.Padding(2);
             this.panelMarginLeft.Name = "panelMarginLeft";
             this.panelMarginLeft.Size = new System.Drawing.Size(8, 643);
             this.panelMarginLeft.TabIndex = 48;
@@ -3673,7 +3825,7 @@ namespace MagoCloudApi
             // 
             this.panelMarginBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelMarginBottom.Location = new System.Drawing.Point(0, 643);
-            this.panelMarginBottom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelMarginBottom.Margin = new System.Windows.Forms.Padding(2);
             this.panelMarginBottom.Name = "panelMarginBottom";
             this.panelMarginBottom.Size = new System.Drawing.Size(1120, 8);
             this.panelMarginBottom.TabIndex = 93;
@@ -3936,6 +4088,7 @@ namespace MagoCloudApi
             this.text_subscription.Name = "text_subscription";
             this.text_subscription.Size = new System.Drawing.Size(216, 16);
             this.text_subscription.TabIndex = 33;
+            this.text_subscription.Text = "DEV-23-EB28E9";
             // 
             // Pwd_label
             // 
@@ -3957,6 +4110,7 @@ namespace MagoCloudApi
             this.text_user.Name = "text_user";
             this.text_user.Size = new System.Drawing.Size(216, 16);
             this.text_user.TabIndex = 26;
+            this.text_user.Text = "marco.spazian@zucchetti.com";
             this.text_user.WordWrap = false;
             // 
             // text_pwd
@@ -3989,7 +4143,7 @@ namespace MagoCloudApi
             this.text_http.Name = "text_http";
             this.text_http.Size = new System.Drawing.Size(216, 16);
             this.text_http.TabIndex = 31;
-            this.text_http.Text = "https://";
+            this.text_http.Text = "https://test-gwam.mago.cloud";
             // 
             // Http_label
             // 
@@ -4071,6 +4225,9 @@ namespace MagoCloudApi
             this.orangePanel5.ResumeLayout(false);
             this.tabWebMethods.ResumeLayout(false);
             this.tabWebMethods.PerformLayout();
+            this.panel102.ResumeLayout(false);
+            this.panel92.ResumeLayout(false);
+            this.panel82.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panelLineDefSalePxWM.ResumeLayout(false);
             this.panelLineClosingDateWM.ResumeLayout(false);
@@ -4479,6 +4636,18 @@ namespace MagoCloudApi
         private System.Windows.Forms.Panel panel80;
         private System.Windows.Forms.Panel panel81;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbxServicesWeb;
+        private System.Windows.Forms.Button WebMethodList;
+        private System.Windows.Forms.TextBox SearchMethod;
+        private System.Windows.Forms.Button btnClearText;
+        private System.Windows.Forms.Label WebMetodLbl;
+        private System.Windows.Forms.Panel panel82;
+        private System.Windows.Forms.Panel panel91;
+        private System.Windows.Forms.Panel panel102;
+        private System.Windows.Forms.Panel panel111;
+        private System.Windows.Forms.Panel panel92;
+        private System.Windows.Forms.Panel panel101;
+        private System.Windows.Forms.Label lblCaseSensitive;
     }
 }
 

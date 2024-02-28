@@ -433,7 +433,10 @@ namespace MagoCloudApi
             using (HttpClient client = new HttpClient())
             {
                 var param = JsonConvert.SerializeObject(tableData);
-                request.Content = new StringContent(content: param, encoding: Encoding.UTF8, mediaType: "application/json");
+                //request.Content = new StringContent(content: param, encoding: Encoding.UTF8, mediaType: "application/json");
+                request.Content = new StringContent(param, System.Text.Encoding.UTF8, "application/json");
+                //reporting
+                //request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                 MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                 MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                 
@@ -466,12 +469,12 @@ namespace MagoCloudApi
             {
                 try
                 {
-                    UrlSManager Urls = new UrlSManager();
+                    //UrlSManager Urls = new UrlSManager();
                     //if (UrlSManager.EnumsTableUrl == "")
-                    //    UrlSManager.EnumsTableUrl = Urls.RetriveUrl(userData, DateTime.Now, "/enums-service", false);
-                    //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + $"/getEnumsTable/");
-                    ////UrlSManager Urls = new UrlSManager();
-                    if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = "http://localhost:5000/enums-service/";
+                    //    UrlSManager.EnumsTableUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
+                    //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + $"getEnumsTable/");
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = "http://localhost:5000/enums-service/"; //Magoweb"http://localhost:81/enums-service/"
                     StringBuilder builder = new StringBuilder();
                     string GetUrl = UrlSManager.EnumsTableUrl + "getEnumsTable/";
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl);

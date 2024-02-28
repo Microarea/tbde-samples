@@ -35,6 +35,9 @@ using System.Collections;
 using System.Net.NetworkInformation;
 using System.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.ServiceProcess;
+using static MagoCloudApi.MagoCloudApi;
+using System.Text.RegularExpressions;
 
 namespace MagoCloudApi
 {
@@ -42,7 +45,7 @@ namespace MagoCloudApi
     public partial class MagoCloudApi : Form
     {
         MagoCloudApiManager manager = new MagoCloudApiManager();
-       
+
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
@@ -73,13 +76,19 @@ namespace MagoCloudApi
         public MagoCloudApi()
         {
             InitializeComponent();
-
+            btnClearText.Visible = false;
             manager.tbServerManager.folderPath = folderPath;
             this.FormBorderStyle = FormBorderStyle.None;
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             this.tabNavigation.TabPages.Remove(this.tabMSH);
             this.cbxSelectionType.SelectedIndex = 0;
-            
+            this.cbxServicesWeb.Visible = false;
+            this.WebMetodLbl.Visible = false;
+            this.SearchMethod.Visible = false;
+            this.lblCaseSensitive.Visible = false;
+
+
+
 
 
             labelTbUrl.Text = "ServiceUrl:";
@@ -127,6 +136,10 @@ namespace MagoCloudApi
             myToolTip.SetToolTip(BtnOpenFolder, "Open folder");
             myToolTip.SetToolTip(BtnQuestionCall, "Questions about calls?");
             myToolTip.SetToolTip(BtnFillContent, "Resize TabControl");
+            myToolTip.SetToolTip(btnClearText, "Clear Result Window");
+
+            cbxServicesWeb.Items.Add("MagoWebServices");
+            cbxServicesWeb.SelectedIndex = 0;
 
             cbxApplication.Items.Add("Application");
             cbxApplication.SelectedIndex = 0;
@@ -281,13 +294,14 @@ namespace MagoCloudApi
         private void button_Login_Click(object sender, System.EventArgs e)
         {
             bool bok = false;
-            
+
             if (AreParametersOk())
             {
                 bok = manager.authenticationManager.DoLogin(text_http.Text, text_user.Text, text_pwd.Text, text_subscription.Text, text_producer.Text, text_app.Text);
                 if (bok)
                 {
                     LoadEnumsTable();
+                    //PopulateServicesComboBox();//____Service List MagoWeb
                 }
                 _ = FillApplications();
             }
@@ -326,20 +340,13 @@ namespace MagoCloudApi
         ////////////////////////
         private void ShowResult(string content, bool bOk = true, bool bBlue = false, bool bHelp = false)
         {
+
             Form form = new WindowsFormsResult.FormResult(content, bOk, bBlue, bHelp);
             form.ShowDialog(this);
             Cursor = Cursors.Default;
         }
 
-        //////////////////////
-        ///// CODE WINDOW ////
-        //////////////////////
-        //private void ShowCode(string content, bool bOk = false, bool bBlue = true)
-        //{
-        //    Form form = new WindowsFormsResult.FormResult(content, bOk, bBlue);
-        //    form.ShowDialog(this);
-        //}
-
+        
         ////////////////////////
         ///// TBSERVER BTN /////
         ////////////////////////
@@ -372,7 +379,7 @@ namespace MagoCloudApi
         {
             manager.tbFsServiceManager.selApp = (cbxApplication.SelectedItem == null) ? string.Empty : cbxApplication.SelectedItem.ToString();
 
-           
+
             if (manager.tbFsServiceManager.selApp != "Application")
                 await FillModules(manager.tbFsServiceManager.selApp);
 
@@ -381,7 +388,7 @@ namespace MagoCloudApi
         private async void cbxModule_SelectedIndexChanged(object sender, EventArgs e)
         {
             manager.tbFsServiceManager.selMod = (cbxModule.SelectedItem == null) ? string.Empty : cbxModule.SelectedItem.ToString();
-           
+
 
             if (manager.tbFsServiceManager.selMod != "Module")
             {
@@ -399,7 +406,7 @@ namespace MagoCloudApi
         private async void cbxDocReport_SelectedIndexChanged(object sender, EventArgs e)
         {
             manager.tbFsServiceManager.selDoc = (cbxDocReport.SelectedItem == null) ? string.Empty : cbxDocReport.SelectedItem.ToString();
-           
+
 
             if (manager.tbFsServiceManager.selDoc != "Document")
             {
@@ -408,7 +415,7 @@ namespace MagoCloudApi
                 string folderName = manager.tbFsServiceManager.selDoc;
                 if (manager.tbFsServiceManager.DocumentNamespace != null && manager.tbFsServiceManager.DocumentNamespace.Count > 0 && cbxDocReport != null && cbxDocReport.SelectedIndex > -1)
                 {
-                    manager.tbFsServiceManager.CurrentDocNS = manager.tbFsServiceManager.DocumentNamespace[cbxDocReport.SelectedIndex -1];
+                    manager.tbFsServiceManager.CurrentDocNS = manager.tbFsServiceManager.DocumentNamespace[cbxDocReport.SelectedIndex - 1];
                 }
                 await FillProfiles(application, module, folderName);
             }
@@ -416,11 +423,17 @@ namespace MagoCloudApi
         //___________________________________________________________
         private void cbxProfile_SelectedIndexChanged(object sender, EventArgs e)
         {
-            manager.tbFsServiceManager.selProfile = (cbxProfile.SelectedItem == null) ? string.Empty : cbxProfile.SelectedItem.ToString();
+            string userProfile = (cbxProfile.SelectedItem == null) ? string.Empty : cbxProfile.SelectedItem.ToString();
+
+            string[] subs = userProfile.Split(',');
+
+            manager.tbFsServiceManager.selProfile = (subs[0] == null) ? string.Empty : subs[0];
+            manager.tbFsServiceManager.DefaultUser = (subs.Count() == 1) ? string.Empty : subs[1];
+            //manager.tbFsServiceManager.selProfile = (cbxProfile.SelectedItem == null) ? string.Empty : cbxProfile.SelectedItem.ToString();
 
             if (manager.tbFsServiceManager.selProfile != "Profile")
             {
-                manager.tbFsServiceManager.selProfile = (cbxProfile.SelectedItem == null) ? string.Empty : cbxProfile.SelectedItem.ToString();
+                //manager.tbFsServiceManager.selProfile = (cbxProfile.SelectedItem == null) ? string.Empty : cbxProfile.SelectedItem.ToString();
             }
         }
 
@@ -545,6 +558,26 @@ namespace MagoCloudApi
             ShowResult(doc != null ? "SetParam:\n" + doc : "Unable to retrieve SetParam\n" + doc, doc != null);
         }
 
+        private void btnClearText_Click(object sender, EventArgs e)
+        {
+            TextBoxDocument.Text = string.Empty;
+        }
+
+        private void TextBoxDocument_TextChanged(object sender, EventArgs e)
+        {
+            btnClearText.Visible = !string.IsNullOrEmpty(TextBoxDocument.Text);
+        }
+
+        private void btnClearText_MouseHover(object sender, EventArgs e)
+        {
+            TextBoxDocument.BackColor = Color.FromArgb(245, 227, 227);
+        }
+
+        private void btnClearText_MouseLeave(object sender, EventArgs e)
+        {
+            TextBoxDocument.BackColor = Color.AliceBlue;
+        }
+
         //////////////////////////////
         ///// TBFSSERVICE MANAGER ////
         //////////////////////////////
@@ -590,7 +623,7 @@ namespace MagoCloudApi
 
         private async Task FillDocuments(string application, string module)
         {
-            cbxDocReport.DataSource= null;
+            cbxDocReport.DataSource = null;
             (List<string> folderNames, List<string> folderObjectsNS) = await manager.tbFsServiceManager.GetDocumentsFolders(manager.authenticationManager.userData, DateTime.Now, application, module);
 
             if (folderNames == null)
@@ -607,7 +640,7 @@ namespace MagoCloudApi
 
         private async Task FillProfiles(string application, string module, string folderName)
         {
-            cbxProfile.DataSource= null;
+            cbxProfile.DataSource = null;
             List<string> profile = await manager.tbFsServiceManager.GetProfiles(manager.authenticationManager.userData, DateTime.Now, application, module, folderName);
             //List<string> textFile = await manager.tbFsServiceManager.GetTextFile(manager.authenticationManager.userData, DateTime.Now, application, module, folderName);
 
@@ -978,7 +1011,7 @@ namespace MagoCloudApi
                 {
                     // uncommenting the if only fields without an empty string are displayed
                     if (property.Value.Type != JTokenType.Null && property.Value.ToString() != "")
-                    contentBody += $"{property.Name}: {property.Value}\n";
+                        contentBody += $"{property.Name}: {property.Value}\n";
                 }
                 if (!string.IsNullOrEmpty(contentBody))
                 {
@@ -1038,13 +1071,19 @@ namespace MagoCloudApi
             if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
             {
                 TbResponse updateResponse = manager.dmMMSManager.Update(manager.authenticationManager.userData, crudData).Result;
-                MessageBox.Show("Table Updated successfully");
+                if (updateResponse.Success != true)
+                    MessageBox.Show($"Table not Updated ({updateResponse.StatusCode})");
+                else
+                    MessageBox.Show($"Table Updated Successfully ({updateResponse.StatusCode})");
                 return;
             }
             else
             {
                 TbResponse addResponse = manager.dmMMSManager.Add(manager.authenticationManager.userData, crudData).Result;
-                MessageBox.Show("Table Added successfully");
+                if (addResponse.Success != true)
+                MessageBox.Show($"Table not Added ({addResponse.StatusCode})");
+                else
+                    MessageBox.Show($"Table Added Successfully ({addResponse.StatusCode})");
                 return;
             }
         }
@@ -1063,7 +1102,7 @@ namespace MagoCloudApi
             if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
             {
                 bool? bDeleted = manager.dmMMSManager?.Delete(manager.authenticationManager.userData, crudData).Result;
-                if(bDeleted == true)
+                if (bDeleted == true)
                 {
                     MessageBox.Show(textBoxCustSupp.Text + " Table cleared successfully");
                     return;
@@ -1178,10 +1217,10 @@ namespace MagoCloudApi
                 boData.FindFields.Add("CustSupp", textBoxBoCustSupp.Text);
             }
             // search by company name or by other master table fields. % field enables like operator
-            boData.FindFields.Add("CompanyName", textBoxBoCompanyName.Text);
-            boData.OrderByFields = new string[] {"CompanyName"};
+            //boData.FindFields.Add("CompanyName", textBoxBoCompanyName.Text);
+            boData.OrderByFields = new string[] { "CompanyName" };
             boData.RequestedTables = new List<RequestedTable>();
-            boData.RequestedTables.Add(new RequestedTable(textBoxBoTabName.Text, new string[] { "CustSuppType", "CustSupp", "CompanyName"  }));
+            boData.RequestedTables.Add(new RequestedTable(textBoxBoTabName.Text, new string[] { "CustSuppType", "CustSupp", "CompanyName" }));
             boData.RequestedTables.Add(new RequestedTable(textBoxCustSCOptions.Text, new string[] { "CustSuppType", "Customer", "Category", "CommissionCtg", "Area", "Salesperson", "AreaManager" }));
             boData.RequestedTables.Add(new RequestedTable(textBoxCustSuppNotes.Text, new string[] { "CustSuppType", "CustSupp", "Line", "Notes", "TBCreated" }));
 
@@ -1202,7 +1241,7 @@ namespace MagoCloudApi
                         {
                             // Ma_CustSupp
                             var maCustSuppData = maCustSuppItem["data"].ToString();
-                            maCustSuppData = maCustSuppData.Replace("\r\n","");
+                            maCustSuppData = maCustSuppData.Replace("\r\n", "");
                             contentBody += $"{property.Key} data: \n{maCustSuppData}\n";
 
                             // Ma_CustSuppCustomerOptions
@@ -1229,7 +1268,7 @@ namespace MagoCloudApi
             BusinessObjectData boData = new BusinessObjectData();
             boData.BONamespace = "ERP.CustomersSuppliers.Documents.Customers";
             boData.FindFields.Add("CustSuppType", textBoxBoCustSType.Text);
-            
+
             // search by company name or by other master table fields. % field enables like operator
             boData.FindFields.Add("CompanyName", "");
             boData.OrderByFields = new string[] { };
@@ -1238,7 +1277,7 @@ namespace MagoCloudApi
             valObjectData.BONamespace = boData.BONamespace;
             valObjectData.FindFields = boData.FindFields;
             valObjectData.Name = "CompanyName";
-            valObjectData.Value = "NuovoBici";
+            valObjectData.Value = "NuovoFittizio";
             boData.RequestedTables = new List<RequestedTable>();
             boData.RequestedTables.Add(new RequestedTable(textBoxBoTabName.Text, new string[] { "CustSuppType", "CustSupp", "CompanyName" }));
             boData.RequestedTables.Add(new RequestedTable(textBoxCustSCOptions.Text, new string[] { "CustSuppType", "Customer", "Category", "CommissionCtg", "Area", "Salesperson", "AreaManager" }));
@@ -1248,8 +1287,8 @@ namespace MagoCloudApi
             string sarData = dataBOVal["MA_CustSupp"]?.ToString();
             JArray jarData = JsonConvert.DeserializeObject<JArray>(sarData);
             JObject updatedData = new JObject();
-            JArray jArrayData = new JArray(jarData);
             updatedData.Add("MA_CustSupp", jarData);
+            //JArray jArrayData = new JArray(jarData);
 
             for (int i = 0; i < jarData.Count; i++)
             {
@@ -1263,16 +1302,35 @@ namespace MagoCloudApi
                             JObject jVal = (JObject)property.Value;
                             foreach (var pv in jVal.Properties())
                             {
+                              
                                 if (pv.Name == "CompanyName")
                                 {
                                     pv.Value = valObjectData.Value;
+                                    pv.Value = "NuovaRoba";
                                 }
                             }
                         }
+                        //else if (property.Value.Type == JTokenType.String)
+                        //{
+                        //    JObject jVal = JObject.Parse(property.Value.ToString());
+                        //    foreach (var pv in jVal.Properties())
+                        //    {
+                        //        if (pv.Name == "CustSupp")
+                        //        {
+                        //            pv.Value = "Fittizio2";
+                        //        }
+                        //        if (pv.Name == "CompanyName")
+                        //        {
+                        //            pv.Value = "NuovoFittizio";
+                        //        }
+                        //    }
+                        //}
                         else if (property.Value.Type == JTokenType.String)
                         {
                             JObject jVal = new JObject();
-                            jVal.Add("CompanyName", valObjectData.Value);
+                            //jVal.Add("CompanyName", valObjectData.Value);
+                            jVal.Add("CompanyName", "NuovaRoba");
+                            jVal.Add("CustSupp", "Fittizio2");
                             property.Value = jVal;
                         }
                     }
@@ -1315,7 +1373,129 @@ namespace MagoCloudApi
                 ShowResult("Error retrieving BObjectData: Null response.\nCheck that the entered parameters are correct.", false);
             }
         }
+
+        private void cbxServicesWeb_DropDown(object sender, EventArgs e)
+        {
+            PopulateServicesComboBox();
+        }
+        private void PopulateServicesComboBox()
+        {
+            ServiceManager serviceManager = new ServiceManager();
+            var servicesStatus = serviceManager.GetServicesStatus();
+
+            cbxServicesWeb.Items.Clear(); // Pulisci gli elementi esistenti
+
+            foreach (var (serviceName, status) in servicesStatus)
+            {
+                string displayText = $"{serviceName} - {status}";
+
+                // Imposta il colore del testo in base allo stato del servizio per ogni elemento
+                Color textColor = (status == "✅") ? Color.Green : Color.Red;
+                cbxServicesWeb.Items.Add(new ComboBoxItem(displayText, textColor));
+            }
+
+            cbxServicesWeb.DrawMode = DrawMode.OwnerDrawFixed;
+            cbxServicesWeb.DrawItem += cbxServicesWeb_DrawItem;
+
+            cbxServicesWeb.Visible = servicesStatus.Count > 0;
+        }
+
+        private void cbxServicesWeb_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index >= 0)
+            {
+                ComboBoxItem item = (ComboBoxItem)cbxServicesWeb.Items[e.Index];
+                e.DrawBackground();
+
+                using (SolidBrush brush = new SolidBrush(item.TextColor))
+                {
+                    e.Graphics.DrawString(item.Text, e.Font, brush, e.Bounds);
+                }
+
+                e.DrawFocusRectangle();
+            }
+        }
+
+        public class ComboBoxItem
+        {
+            public string Text { get; set; }
+            public Color TextColor { get; set; }
+
+            public ComboBoxItem(string text, Color textColor)
+            {
+                Text = text;
+                TextColor = textColor;
+            }
+
+            public override string ToString()
+            {
+                return Text;
+            }
+        }
+
+        private void WebMethodList_Click(object sender, EventArgs e)
+        {
+            string searchTerm = SearchMethod.Text.Trim();
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string fileName = "Functions.json";
+            string fullPath = Path.Combine(baseDirectory, fileName);
+            StringBuilder resultBuilder = new StringBuilder();
+            try
+            {
+                string fileContent = File.ReadAllText(fullPath);
+                // Utilizza una regex per trovare oggetti JSON
+                var matches = Regex.Matches(fileContent, @"\{.*?\}(?=\s*\{|\s*$)", RegexOptions.Singleline);
+
+                foreach (Match match in matches)
+                {
+                    try
+                    {
+                        Function function = JsonConvert.DeserializeObject<Function>(match.Value);
+                        // Se searchTextBox è vuoto o il termine di ricerca è presente in Ns
+                        if (string.IsNullOrEmpty(searchTerm) || function.Ns.Contains(searchTerm))
+                        {
+                            resultBuilder.AppendLine($"Ns: {function.Ns}\n Type: {function.Type}");
+                            this.WebMetodLbl.Visible = true;
+                            this.SearchMethod.Visible = true;
+                            this.lblCaseSensitive.Visible = true;
+                        }
+                    }
+                    catch (JsonReaderException ex)
+                    {
+                        resultBuilder.AppendLine("Errore durante la deserializzazione di un oggetto JSON: " + ex.Message);
+                    }
+                }
+
+                ShowResult(resultBuilder.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Errore generale: " + ex.Message);
+            }
+
+        }
+
+
+        public class Function
+        {
+            public string Ns { get; set; }
+            public string Type { get; set; }
+            public List<Argument> Args { get; set; }
+        }
+
+        public class Argument
+        {
+            public string Name { get; set; }
+            public string Type { get; set; }
+        }
+
+        private void tabWebMethods_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+
+
 
 

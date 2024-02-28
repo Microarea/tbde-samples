@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?> 
-<maxs:#DocName tbNamespace="Document.#App.#Module.Documents.#DocName" xTechProfile="#Profile" 
-xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/#App/#Module/#DocName/Standard/#Profile.xsd">
-	<maxs:Parameters>
-	</maxs:Parameters>
-</maxs:#DocName>

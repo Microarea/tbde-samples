@@ -12,7 +12,9 @@ using Microsoft.VisualStudio.TextManager.Interop;
 namespace MagoCloudApi
 {
     internal class UrlSManager
-    {   
+    {
+
+        public string WebUrl = string.Empty;
         public string LocalUrl = string.Empty;
         public string MMSlocalUrl = "http://localhost:5058/mymagostudio-service/";
         //public string MMSlocalUrl = "http://localhost:5058/mymagostudio-service/";
@@ -21,7 +23,7 @@ namespace MagoCloudApi
             using (HttpClient client = new HttpClient())
             {
                 //@@mmf
-                LocalUrl = (isMMS)? MMSlocalUrl : "http://localhost:5000";
+                LocalUrl = (isMMS) ? MMSlocalUrl : "http://localhost:5000";
                 if (userData.GwamUrl == string.Empty || userData.GwamUrl == "https://test-gwam.mago.cloud")
                     return LocalUrl;
                 //@@mmf end

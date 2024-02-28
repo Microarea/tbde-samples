@@ -24,7 +24,8 @@ namespace MagoCloudApi
         internal TbFsServiceManager tbFsServiceManager = new TbFsServiceManager();
         internal TbResponse tbResponse = new TbResponse();
         internal ExampleManager exampleManager = new ExampleManager();
-        
+        internal ServiceManager serviceManager = new ServiceManager();
+
         public MagoCloudApiManager()
         {
 

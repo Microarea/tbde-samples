@@ -32,6 +32,7 @@ namespace MagoCloudApi
         public string DefaultDocumentParameters { get; set; }="<?xml version=\"1.0\" encoding=\"utf-8\"?><maxs:{0} tbNamespace=\"{1}\" xTechProfile=\"{2}\" xmlns:maxs=\"{3}\"><maxs:Parameters></maxs:Parameters></maxs:{0}>";
         public string DefaultUri { get; set; }= "http://www.microarea.it/Schema/2004/Smart";
         public string DefaultUser { get; set; } = "Standard";
+        public string AllUser { get; set; } = "AllUsers";
 
         public List<string> DocumentNamespace { get; set; }
         public List<string> DocumentPath { get; set; }
@@ -196,12 +197,17 @@ namespace MagoCloudApi
                 JObject jRes = JObject.Parse(ret);
 
                 JArray folders = jRes["objects"] as JArray;
+                
                 foreach (var item in folders)
                 {
-                    profileslist.Add(item["name"].ToString());
+                    string elem = elem = item["name"].ToString() + "," + item["customizationType"].ToString();
+                    if (item["customizationType"].ToString().CompareTo("Standard") != 0)
+                        elem += "s";
+                    profileslist.Add(elem);
                 }
                 profileslist.Sort();
                 return profileslist;
+
             }
         }
 
