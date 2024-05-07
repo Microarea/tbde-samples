@@ -17,7 +17,7 @@ namespace MagoCloudApi
         public string WebUrl = string.Empty;
         public string LocalUrl = string.Empty;
         public string MMSlocalUrl = "http://localhost:5058/mymagostudio-service/";
-        //public string MMSlocalUrl = "http://localhost:5058/mymagostudio-service/";
+        //public string MMSlocalUrl = "http://localhost:60106/mymagostudio-service/";
         public string RetriveUrl(UserData userData, DateTime operationDate, string urlName, bool isMMS = false)
         {
             using (HttpClient client = new HttpClient())

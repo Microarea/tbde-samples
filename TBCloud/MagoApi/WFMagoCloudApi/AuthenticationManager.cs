@@ -74,15 +74,14 @@ namespace MagoCloudApi
                    userData. Producer = producerKey;
                    userData. AppKey = appKey;
                     // @@mmf
-                    string localLogin = "http://localhost:5000/account-manager/login";
-                    //string localLogin = "http://localhost:81/account-manager/login";
+                    //string localLogin = "http://localhost:5000/account-manager/login";
 
                     // the URL to access MagoWeb is the following
-                    //string magoWebLogin = "http://localhost:60000/account-manager/login";
+                    string magoWebLogin = "https://gwam.mago.cloud/gwam_login/api/login";
 
                     HttpRequestMessage request;
                     if (gwamUrl == string.Empty)
-                        request = new HttpRequestMessage(HttpMethod.Post, localLogin);//magoWebLogin
+                        request = new HttpRequestMessage(HttpMethod.Post, magoWebLogin);//magoWebLogin
                     else
                         request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
                     //@@mmf end

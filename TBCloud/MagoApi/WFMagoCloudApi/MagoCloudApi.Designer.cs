@@ -452,7 +452,7 @@ namespace MagoCloudApi
             linkHelpTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             linkHelpTb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             linkHelpTb.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            linkHelpTb.Location = new System.Drawing.Point(571, 305);
+            linkHelpTb.Location = new System.Drawing.Point(571, 280);
             linkHelpTb.Name = "linkHelpTb";
             linkHelpTb.Size = new System.Drawing.Size(110, 16);
             linkHelpTb.TabIndex = 92;
@@ -528,7 +528,7 @@ namespace MagoCloudApi
             this.panelTbTextContainer.Location = new System.Drawing.Point(15, 202);
             this.panelTbTextContainer.Margin = new System.Windows.Forms.Padding(2);
             this.panelTbTextContainer.Name = "panelTbTextContainer";
-            this.panelTbTextContainer.Size = new System.Drawing.Size(685, 326);
+            this.panelTbTextContainer.Size = new System.Drawing.Size(685, 301);
             this.panelTbTextContainer.TabIndex = 115;
             // 
             // btnClearText
@@ -542,7 +542,7 @@ namespace MagoCloudApi
             this.btnClearText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearText.Font = new System.Drawing.Font("Century Gothic", 22.75F);
             this.btnClearText.ForeColor = System.Drawing.Color.IndianRed;
-            this.btnClearText.Location = new System.Drawing.Point(588, 232);
+            this.btnClearText.Location = new System.Drawing.Point(588, 207);
             this.btnClearText.Name = "btnClearText";
             this.btnClearText.Size = new System.Drawing.Size(59, 49);
             this.btnClearText.TabIndex = 116;
@@ -563,7 +563,7 @@ namespace MagoCloudApi
             this.TextBoxDocument.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.TextBoxDocument.Location = new System.Drawing.Point(12, 39);
             this.TextBoxDocument.Name = "TextBoxDocument";
-            this.TextBoxDocument.Size = new System.Drawing.Size(658, 262);
+            this.TextBoxDocument.Size = new System.Drawing.Size(658, 237);
             this.TextBoxDocument.TabIndex = 109;
             this.TextBoxDocument.Text = "";
             this.TextBoxDocument.WordWrap = false;
@@ -580,7 +580,7 @@ namespace MagoCloudApi
             this.BtnFillContent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFillContent.Font = new System.Drawing.Font("Century Gothic", 16.75F, System.Drawing.FontStyle.Bold);
             this.BtnFillContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.BtnFillContent.Location = new System.Drawing.Point(3, 293);
+            this.BtnFillContent.Location = new System.Drawing.Point(3, 268);
             this.BtnFillContent.Name = "BtnFillContent";
             this.BtnFillContent.Size = new System.Drawing.Size(38, 28);
             this.BtnFillContent.TabIndex = 115;
@@ -862,7 +862,6 @@ namespace MagoCloudApi
             this.tabWebMethods.Size = new System.Drawing.Size(713, 533);
             this.tabWebMethods.TabIndex = 4;
             this.tabWebMethods.Text = "WebMethods-MagicLink";
-            this.tabWebMethods.Click += new System.EventHandler(this.tabWebMethods_Click);
             // 
             // lblCaseSensitive
             // 
@@ -966,7 +965,7 @@ namespace MagoCloudApi
             this.linkCodeSourceWb.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.linkCodeSourceWb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkCodeSourceWb.LinkColor = System.Drawing.Color.White;
-            this.linkCodeSourceWb.Location = new System.Drawing.Point(632, 1068);
+            this.linkCodeSourceWb.Location = new System.Drawing.Point(632, 1089);
             this.linkCodeSourceWb.Name = "linkCodeSourceWb";
             this.linkCodeSourceWb.Size = new System.Drawing.Size(110, 16);
             this.linkCodeSourceWb.TabIndex = 93;
@@ -1479,7 +1478,7 @@ namespace MagoCloudApi
             this.linkHelpDataService.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.linkHelpDataService.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkHelpDataService.LinkColor = System.Drawing.Color.White;
-            this.linkHelpDataService.Location = new System.Drawing.Point(632, 1068);
+            this.linkHelpDataService.Location = new System.Drawing.Point(632, 1089);
             this.linkHelpDataService.Name = "linkHelpDataService";
             this.linkHelpDataService.Size = new System.Drawing.Size(110, 16);
             this.linkHelpDataService.TabIndex = 94;
@@ -1741,7 +1740,7 @@ namespace MagoCloudApi
             this.linkHelpReportingService.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.linkHelpReportingService.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkHelpReportingService.LinkColor = System.Drawing.Color.White;
-            this.linkHelpReportingService.Location = new System.Drawing.Point(632, 1068);
+            this.linkHelpReportingService.Location = new System.Drawing.Point(632, 1089);
             this.linkHelpReportingService.Name = "linkHelpReportingService";
             this.linkHelpReportingService.Size = new System.Drawing.Size(110, 16);
             this.linkHelpReportingService.TabIndex = 95;
@@ -1966,7 +1965,7 @@ namespace MagoCloudApi
             this.linkHelpDMS.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.linkHelpDMS.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkHelpDMS.LinkColor = System.Drawing.Color.White;
-            this.linkHelpDMS.Location = new System.Drawing.Point(632, 1068);
+            this.linkHelpDMS.Location = new System.Drawing.Point(632, 1089);
             this.linkHelpDMS.Name = "linkHelpDMS";
             this.linkHelpDMS.Size = new System.Drawing.Size(110, 16);
             this.linkHelpDMS.TabIndex = 95;
@@ -4088,7 +4087,6 @@ namespace MagoCloudApi
             this.text_subscription.Name = "text_subscription";
             this.text_subscription.Size = new System.Drawing.Size(216, 16);
             this.text_subscription.TabIndex = 33;
-            this.text_subscription.Text = "DEV-23-EB28E9";
             // 
             // Pwd_label
             // 
@@ -4110,7 +4108,6 @@ namespace MagoCloudApi
             this.text_user.Name = "text_user";
             this.text_user.Size = new System.Drawing.Size(216, 16);
             this.text_user.TabIndex = 26;
-            this.text_user.Text = "marco.spazian@zucchetti.com";
             this.text_user.WordWrap = false;
             // 
             // text_pwd

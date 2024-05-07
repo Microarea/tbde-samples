@@ -301,7 +301,7 @@ namespace MagoCloudApi
                 if (bok)
                 {
                     LoadEnumsTable();
-                    //PopulateServicesComboBox();//____Service List MagoWeb
+                    PopulateServicesComboBox();//____Service List MagoWeb
                 }
                 _ = FillApplications();
             }
@@ -821,11 +821,6 @@ namespace MagoCloudApi
             ShowResult(contentBody != null ? "Get Version Xml:\n" + contentBody : "Unable to retrieve Get Version\n" + contentBody, contentBody != null);
         }
 
-
-
-
-
-
         ////////////////////////////////
         ///// REPORTINGSERVICE BTN /////
         ////////////////////////////////
@@ -1052,40 +1047,41 @@ namespace MagoCloudApi
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (!manager.authenticationManager.IsLogged())
-            {
-                MessageBox.Show("User is not logged, please Login!");
-                return;
-            }
-            MA_CustSupp custSupp = new MA_CustSupp();
+            //if (!manager.authenticationManager.IsLogged())
+            //{
+            //    MessageBox.Show("User is not logged, please Login!");
+            //    return;
+            //}
+            //MA_CustSupp custSupp = new MA_CustSupp();
 
-            custSupp.CustSuppType = Int32.Parse(textBoxCustSuppType.Text);
-            custSupp.CustSupp = textBoxCustSupp.Text;
-            custSupp.CompanyName = textBoxCompanyName.Text;
-            custSupp.ISOCountryCode = textBoxIsoCountryCode.Text;
-            // insert data
-            TableData crudData = new TableData();
-            crudData.TableName = MA_CustSupp.TableName;
-            crudData.Data = custSupp;
-            crudData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
-            if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
-            {
-                TbResponse updateResponse = manager.dmMMSManager.Update(manager.authenticationManager.userData, crudData).Result;
-                if (updateResponse.Success != true)
-                    MessageBox.Show($"Table not Updated ({updateResponse.StatusCode})");
-                else
-                    MessageBox.Show($"Table Updated Successfully ({updateResponse.StatusCode})");
-                return;
-            }
-            else
-            {
-                TbResponse addResponse = manager.dmMMSManager.Add(manager.authenticationManager.userData, crudData).Result;
-                if (addResponse.Success != true)
-                MessageBox.Show($"Table not Added ({addResponse.StatusCode})");
-                else
-                    MessageBox.Show($"Table Added Successfully ({addResponse.StatusCode})");
-                return;
-            }
+            //custSupp.CustSuppType = Int32.Parse(textBoxCustSuppType.Text);
+            //custSupp.CustSupp = textBoxCustSupp.Text;
+            //custSupp.CompanyName = textBoxCompanyName.Text;
+            //custSupp.ISOCountryCode = textBoxIsoCountryCode.Text;
+            //// insert data
+            //TableData crudData = new TableData();
+            //crudData.TableName = MA_CustSupp.TableName;
+            //crudData.Data = custSupp;
+            //crudData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
+            //if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
+            //{
+            //    TbResponse updateResponse = manager.dmMMSManager.Update(manager.authenticationManager.userData, crudData).Result;
+            //    if (updateResponse.Success != true)
+            //        MessageBox.Show($"Table not Updated ({updateResponse.StatusCode})");
+            //    else
+            //        MessageBox.Show($"Table Updated Successfully ({updateResponse.StatusCode})");
+            //    return;
+            //}
+            //else
+            //{
+            //    TbResponse addResponse = manager.dmMMSManager.Add(manager.authenticationManager.userData, crudData).Result;
+            //    if (addResponse.Success != true)
+            //    MessageBox.Show($"Table not Added ({addResponse.StatusCode})");
+            //    else
+            //        MessageBox.Show($"Table Added Successfully ({addResponse.StatusCode})");
+            //    return;
+            //}
+           
         }
 
         private void btnDeleteTable_Click(object sender, EventArgs e)
@@ -1264,114 +1260,121 @@ namespace MagoCloudApi
 
         private void btnUpdateBusinessObject_Click(object sender, EventArgs e)
         {
-
             BusinessObjectData boData = new BusinessObjectData();
+            string boUpdated = "{ \"MA_CustSupp\": [{ \"data\": \"{\\\"CustSuppType\\\": 3211264, \\\"CustSupp\\\": \\\"0001\\\",\\\"Draft\\\": false,  \\\"CompanyName\\\": \\\"Biciclette Colombo Srl 111\\\", \\\"ISOCountryCode\\\": \\\"IT\\\", \\\"TaxIdNumber\\\": \\\"03099170109\\\", \\\"FiscalCode\\\": \\\"03099170109\\\",  \\\"CustSuppKind\\\": 7733248,  \\\"Account\\\": \\\"01011000\\\",  \\\"Address\\\": \\\"Via Pierino Negrotto Cambiaso 8\\\",  \\\"ZIPCode\\\": \\\"16159\\\",  \\\"City\\\": \\\"Genova\\\",  \\\"County\\\": \\\"GE\\\",  \\\"Country\\\": \\\"\\\",  \\\"Telephone1\\\": \\\"010-659.12.35\\\",  \\\"Telephone2\\\": \\\"\\\",  \\\"Telex\\\": \\\"\\\",  \\\"Fax\\\": \\\"010-650.12.40\\\",  \\\"Internet\\\": \\\"\\\",  \\\"EMail\\\": \\\"\\\",  \\\"SIACode\\\": \\\"\\\",  \\\"ContactPerson\\\": \\\"\\\",  \\\"TitleCode\\\": \\\"\\\",  \\\"NaturalPerson\\\": false,  \\\"IsAnEUCustSupp\\\": false,  \\\"Language\\\": \\\"\\\",  \\\"PriceList\\\": \\\"OFF\\\",  \\\"CustSuppBank\\\": \\\"BCRL01GE\\\",  \\\"Payment\\\": \\\"RD\\\",  \\\"CACheck\\\": \\\"\\\",  \\\"IBAN\\\": \\\"\\\",  \\\"IBANIsManual\\\": false,  \\\"CA\\\": \\\"\\\",  \\\"CIN\\\": \\\"\\\",  \\\"Currency\\\": \\\"EUR\\\",  \\\"SendDocumentsTo\\\": \\\"\\\",  \\\"PaymentAddress\\\": \\\"\\\",  \\\"ShipToAddress\\\": \\\"\\\",  \\\"Disabled\\\": false,  \\\"Notes\\\": \\\"\\\",  \\\"WorkingTime\\\": \\\"\\\",  \\\"CompanyBank\\\": \\\"\\\",  \\\"Discount1\\\": 0,  \\\"Discount2\\\": 0,  \\\"DiscountFormula\\\": \\\"\\\",  \\\"ExternalCode\\\": \\\"\\\",  \\\"CompanyCA\\\": \\\"\\\",  \\\"Presentation\\\": 1376256,  \\\"CustomerCompanyCA\\\": \\\"\\\",  \\\"DDCustSupp\\\": \\\"\\\",  \\\"PrivacyStatement\\\": false,  \\\"LinkedCustSupp\\\": \\\"0023\\\",  \\\"DocumentSendingType\\\": 11337728,  \\\"IsDummy\\\": false,  \\\"InTaxLists\\\": false,  \\\"ChambOfCommRegistrNo\\\": \\\"\\\",  \\\"WorkingPosition\\\": \\\"\\\",  \\\"TaxOffice\\\": \\\"\\\",  \\\"Storage\\\": \\\"\\\",  \\\"CostCenter\\\": \\\"\\\",  \\\"Job\\\": \\\"\\\",  \\\"InsertionDate\\\": \\\"1799-12-30T23:00:00.000Z\\\",  \\\"PrivacyStatementPrintDate\\\": \\\"2021-12-30T23:00:00.000Z\\\",  \\\"Region\\\": \\\"Liguria\\\",  \\\"MailSendingType\\\": 12451840,  \\\"OldCustSupp\\\": \\\"\\\",  \\\"CompanyRegistrNo\\\": \\\"\\\",  \\\"FactoringCA\\\": \\\"\\\",  \\\"InCurrency\\\": false,  \\\"NoBlackList\\\": false,  \\\"BlackListCustSupp\\\": \\\"\\\",  \\\"SkypeID\\\": \\\"\\\",  \\\"CBICode\\\": \\\"\\\",  \\\"InvoiceAccTpl\\\": \\\"\\\",  \\\"CreditNoteAccTpl\\\": \\\"\\\",  \\\"Latitude\\\": \\\"\\\",  \\\"Longitude\\\": \\\"\\\",  \\\"IsCustoms\\\": false,  \\\"CertifiedEMail\\\": \\\"\\\",  \\\"NoTaxComm\\\": false,  \\\"NoSendPostaLite\\\": false,  \\\"GenRegNo\\\": \\\"\\\",  \\\"GenRegEntity\\\": \\\"\\\",  \\\"FedStateReg\\\": \\\"\\\",  \\\"TaxpayerType\\\": 30212096,  \\\"MunicipalityReg\\\": \\\"\\\",  \\\"SUFRAMA\\\": \\\"\\\",  \\\"Address2\\\": \\\"\\\",  \\\"StreetNo\\\": \\\"\\\",  \\\"District\\\": \\\"\\\",  \\\"FederalState\\\": \\\"\\\",  \\\"PaymentPeriShablesWithin60\\\": \\\"\\\",  \\\"PaymentPeriShablesOver60\\\": \\\"\\\",  \\\"FiscalCtg\\\": \\\"\\\",  \\\"ActivityCode\\\": \\\"\\\",  \\\"FantasyName\\\": \\\"\\\",  \\\"PymtAccount\\\": \\\"\\\",  \\\"UsedForSummaryDocuments\\\": false,  \\\"LeasingLetter\\\": \\\"\\\",  \\\"ChambOfCommCounty\\\": \\\"\\\",  \\\"SplitTax\\\": false,  \\\"FiscalName\\\": \\\"\\\",  \\\"TaxIdType\\\": 33226752,  \\\"PrivacyAgreed\\\": false,  \\\"MarketingAgreed\\\": false,  \\\"SplitTaxIBAN\\\": \\\"\\\",  \\\"GLN\\\": \\\"\\\",  \\\"GLNDataExchange\\\": \\\"\\\",  \\\"GroupTaxIdNumber\\\": \\\"\\\",  \\\"EUTaxIdNumber\\\": \\\"\\\",  \\\"SubsidizedCustomer\\\": false,  \\\"InLiquidation\\\": false,  \\\"VSLCode\\\": 0,  \\\"TbCreated\\\": \\\"2023-04-26T13:38:31.193Z\\\",  \\\"TbModified\\\": \\\"2023-04-26T13:38:31.193Z\\\",  \\\"TbCreatedId\\\": 0,  \\\"TbModifiedId\\\": 0,  \\\"OMNIASubAccount\\\": \\\"\\\",  \\\"ProductLine\\\": \\\"\\\"}\", \"MA_CustSuppCustomerOptions\": [ {  \"CustSuppType\": 3211264,   \"Customer\": \"0001\",  \"CommissionCtg\": \"\",   \"Area\": \"UK\",   \"Salesperson\": \"CD\",\r\n    \"AreaManager\": \"CD\"\r\n  }\r\n],\r\n      \"MA_CustSuppBalances\": [\r\n {\r\n    \"CustSuppType\": 3211264,\r\n    \"CustSupp\": \"0001\",\r\n    \"FiscalYear\": 2018,\r\n    \"BalanceYear\": 2019,\r\n    \"BalanceType\": 3145730,\r\n    \"BalanceMonth\": 1,\r\n    \"Nature\": 9306112,\r\n    \"Currency\": \"EUR\",\r\n    \"TBCompanyID\": 0,\r\n    \"Debit\": 13609.71,\r\n    \"Credit\": 0,   \"TbCreated\": \"2023-04-26T13:38:48.436Z\",   \"TbModified\": \"2023-04-26T13:38:48.436Z\",    \"TbCreatedId\": 0,    \"TbModifiedId\": 0  }]  } ]}";
             boData.BONamespace = "ERP.CustomersSuppliers.Documents.Customers";
-            boData.FindFields.Add("CustSuppType", textBoxBoCustSType.Text);
+            boData.FindFields.Add("CustSuppType", 3211264);
+            boData.FindFields.Add("CompanyName", "Fittizio33");
+            boData.FindFields.Add("CustSupp", "0001");
+            boData.Data = JsonConvert.DeserializeObject(boUpdated);
+            //m_GetBoResponse = manager.dmMMSManager.UpdateBusinessObject(manager.authenticationManager.userData, boData).Result;
+            TbResponse boUpdtResponse = manager.dmMMSManager.UpdateBusinessObject(manager.authenticationManager.userData, boData).Result;
+            string boResponseContentBody = (string)boUpdtResponse.ReturnValue;
+            //BusinessObjectData boData = new BusinessObjectData();
+            //boData.BONamespace = "ERP.CustomersSuppliers.Documents.Customers";
+            //boData.FindFields.Add("CustSuppType", textBoxBoCustSType.Text);
 
-            // search by company name or by other master table fields. % field enables like operator
-            boData.FindFields.Add("CompanyName", "");
-            boData.OrderByFields = new string[] { };
-            JObject dataBOVal = JObject.Parse((string)m_GetBoResponse.ReturnValue);
-            ValObjectData valObjectData = new ValObjectData();
-            valObjectData.BONamespace = boData.BONamespace;
-            valObjectData.FindFields = boData.FindFields;
-            valObjectData.Name = "CompanyName";
-            valObjectData.Value = "NuovoFittizio";
-            boData.RequestedTables = new List<RequestedTable>();
-            boData.RequestedTables.Add(new RequestedTable(textBoxBoTabName.Text, new string[] { "CustSuppType", "CustSupp", "CompanyName" }));
-            boData.RequestedTables.Add(new RequestedTable(textBoxCustSCOptions.Text, new string[] { "CustSuppType", "Customer", "Category", "CommissionCtg", "Area", "Salesperson", "AreaManager" }));
-            boData.RequestedTables.Add(new RequestedTable(textBoxCustSuppNotes.Text, new string[] { "CustSuppType", "CustSupp", "Line", "Notes", "TBCreated" }));
-            JObject propVal = null;
+            //// search by company name or by other master table fields. % field enables like operator
+            //boData.FindFields.Add("CompanyName", "");
+            //boData.OrderByFields = new string[] { };
+            //JObject dataBOVal = JObject.Parse((string)m_GetBoResponse.ReturnValue);
+            //ValObjectData valObjectData = new ValObjectData();
+            //valObjectData.BONamespace = boData.BONamespace;
+            //valObjectData.FindFields = boData.FindFields;
+            //valObjectData.Name = "CompanyName";
+            //valObjectData.Value = "NuovoFittizio";
+            //boData.RequestedTables = new List<RequestedTable>();
+            //boData.RequestedTables.Add(new RequestedTable(textBoxBoTabName.Text, new string[] { "CustSuppType", "CustSupp", "CompanyName" }));
+            //boData.RequestedTables.Add(new RequestedTable(textBoxCustSCOptions.Text, new string[] { "CustSuppType", "Customer", "Category", "CommissionCtg", "Area", "Salesperson", "AreaManager" }));
+            //boData.RequestedTables.Add(new RequestedTable(textBoxCustSuppNotes.Text, new string[] { "CustSuppType", "CustSupp", "Line", "Notes", "TBCreated" }));
+            //JObject propVal = null;
 
-            string sarData = dataBOVal["MA_CustSupp"]?.ToString();
-            JArray jarData = JsonConvert.DeserializeObject<JArray>(sarData);
-            JObject updatedData = new JObject();
-            updatedData.Add("MA_CustSupp", jarData);
-            //JArray jArrayData = new JArray(jarData);
+            //string sarData = dataBOVal["MA_CustSupp"]?.ToString();
+            //JArray jarData = JsonConvert.DeserializeObject<JArray>(sarData);
+            //JObject updatedData = new JObject();
+            //updatedData.Add("MA_CustSupp", jarData);
+            ////JArray jArrayData = new JArray(jarData);
 
-            for (int i = 0; i < jarData.Count; i++)
-            {
-                JObject jData = (JObject)jarData[i];
-                foreach (var property in jData.Properties())
-                {
-                    if (property.Name == "data")
-                    {
-                        if (property.Value.Type == JTokenType.Object)
-                        {
-                            JObject jVal = (JObject)property.Value;
-                            foreach (var pv in jVal.Properties())
-                            {
-                              
-                                if (pv.Name == "CompanyName")
-                                {
-                                    pv.Value = valObjectData.Value;
-                                    pv.Value = "NuovaRoba";
-                                }
-                            }
-                        }
-                        //else if (property.Value.Type == JTokenType.String)
-                        //{
-                        //    JObject jVal = JObject.Parse(property.Value.ToString());
-                        //    foreach (var pv in jVal.Properties())
-                        //    {
-                        //        if (pv.Name == "CustSupp")
-                        //        {
-                        //            pv.Value = "Fittizio2";
-                        //        }
-                        //        if (pv.Name == "CompanyName")
-                        //        {
-                        //            pv.Value = "NuovoFittizio";
-                        //        }
-                        //    }
-                        //}
-                        else if (property.Value.Type == JTokenType.String)
-                        {
-                            JObject jVal = new JObject();
-                            //jVal.Add("CompanyName", valObjectData.Value);
-                            jVal.Add("CompanyName", "NuovaRoba");
-                            jVal.Add("CustSupp", "Fittizio2");
-                            property.Value = jVal;
-                        }
-                    }
-                }
-            }
+            //for (int i = 0; i < jarData.Count; i++)
+            //{
+            //    JObject jData = (JObject)jarData[i];
+            //    foreach (var property in jData.Properties())
+            //    {
+            //        if (property.Name == "data")
+            //        {
+            //            if (property.Value.Type == JTokenType.Object)
+            //            {
+            //                JObject jVal = (JObject)property.Value;
+            //                foreach (var pv in jVal.Properties())
+            //                {
 
+            //                    if (pv.Name == "CompanyName")
+            //                    {
+            //                        pv.Value = valObjectData.Value;
+            //                        pv.Value = "NuovaRoba";
+            //                    }
+            //                }
+            //            }
+            //            //else if (property.Value.Type == JTokenType.String)
+            //            //{
+            //            //    JObject jVal = JObject.Parse(property.Value.ToString());
+            //            //    foreach (var pv in jVal.Properties())
+            //            //    {
+            //            //        if (pv.Name == "CustSupp")
+            //            //        {
+            //            //            pv.Value = "Fittizio2";
+            //            //        }
+            //            //        if (pv.Name == "CompanyName")
+            //            //        {
+            //            //            pv.Value = "NuovoFittizio";
+            //            //        }
+            //            //    }
+            //            //}
+            //            else if (property.Value.Type == JTokenType.String)
+            //            {
+            //                JObject jVal = new JObject();
+            //                //jVal.Add("CompanyName", valObjectData.Value);
+            //                jVal.Add("CompanyName", "NuovaRoba");
+            //                jVal.Add("CustSupp", "NuovoFittizio");
+            //                property.Value = jVal;
+            //            }
+            //        }
+            //    }
+            //}
 
-            string dataUpdate = updatedData.ToString(); // Converti la struttura aggiornata in una stringa JSON
+            //string dataUpdate = updatedData.ToString(); // Converti la struttura aggiornata in una stringa JSON
 
+            //boData.Data = updatedData;
+            //JObject masterJson = JObject.Parse(boData.Data.ToString());
+            //m_GetBoResponse = manager.dmMMSManager.UpdateBusinessObject(manager.authenticationManager.userData, boData).Result;
 
-            boData.Data = updatedData;
-            JObject masterJson = JObject.Parse(boData.Data.ToString());
-            m_UpdateBoResponse = manager.dmMMSManager.UpdateBusinessObject(manager.authenticationManager.userData, boData).Result;
+            //string boResponseContentBody = (string)m_GetBoResponse.ReturnValue;
+            //if (boResponseContentBody != null)
+            //{
+            //    JObject dataObject = JObject.Parse(boData.Data.ToString());
+            //    string contentBody = "";
 
-            string boResponseContentBody = (string)m_GetBoResponse.ReturnValue;
-            if (boResponseContentBody != null)
-            {
-                JObject dataObject = JObject.Parse(boData.Data.ToString());
-                string contentBody = "";
-
-                foreach (var property in dataObject.Properties())
-                {
-                    if (property.Value.Type != JTokenType.Null && property.Value.ToString() != "")
-                    {
-                        string cleanedValue = property.Value.ToString().Trim();
-                        contentBody += $"{(property.Name == "Data" ? "Data" : property.Name)}: {cleanedValue}\n";
-                    }
-                }
-                if (!string.IsNullOrEmpty(contentBody))
-                {
-                    ShowResult(contentBody);
-                }
-                else
-                {
-                    ShowResult("No valid BObjectData found.", false);
-                }
-            }
-            else
-            {
-                ShowResult("Error retrieving BObjectData: Null response.\nCheck that the entered parameters are correct.", false);
-            }
+            //    foreach (var property in dataObject.Properties())
+            //    {
+            //        if (property.Value.Type != JTokenType.Null && property.Value.ToString() != "")
+            //        {
+            //            string cleanedValue = property.Value.ToString().Trim();
+            //            contentBody += $"{(property.Name == "Data" ? "Data" : property.Name)}: {cleanedValue}\n";
+            //        }
+            //    }
+            //    if (!string.IsNullOrEmpty(contentBody))
+            //    {
+            //        ShowResult(contentBody);
+            //    }
+            //    else
+            //    {
+            //        ShowResult("No valid BObjectData found.", false);
+            //    }
+            //}
+            //else
+            //{
+            //    ShowResult("Error retrieving BObjectData: Null response.\nCheck that the entered parameters are correct.", false);
+            //}
         }
 
         private void cbxServicesWeb_DropDown(object sender, EventArgs e)
@@ -1489,7 +1492,7 @@ namespace MagoCloudApi
             public string Type { get; set; }
         }
 
-        private void tabWebMethods_Click(object sender, EventArgs e)
+        private void text_subscription_TextChanged(object sender, EventArgs e)
         {
 
         }
