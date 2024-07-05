@@ -38,6 +38,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.ServiceProcess;
 using static MagoCloudApi.MagoCloudApi;
 using System.Text.RegularExpressions;
+using System.Drawing.Text;
 
 namespace MagoCloudApi
 {
@@ -1045,44 +1046,121 @@ namespace MagoCloudApi
             return;
         }
 
+        private void SingleAdd()
+        {
+            MA_CustSupp custSupp = new MA_CustSupp();
+
+            custSupp.CustSuppType = Int32.Parse(textBoxCustSuppType.Text);
+            custSupp.CustSupp = textBoxCustSupp.Text;
+            custSupp.CompanyName = textBoxCompanyName.Text;
+            custSupp.ISOCountryCode = textBoxIsoCountryCode.Text;
+            // insert data
+            TableData crudData = new TableData();
+            crudData.TableName = MA_CustSupp.TableName;
+            crudData.Data = custSupp;
+            crudData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
+            if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
+            {
+                TbResponse updateResponse = manager.dmMMSManager.Update(manager.authenticationManager.userData, crudData).Result;
+                if (updateResponse.Success != true)
+                    MessageBox.Show($"Table not Updated ({updateResponse.StatusCode})");
+                else
+                    MessageBox.Show($"Table Updated Successfully ({updateResponse.StatusCode})");
+                return;
+            }
+            else
+            {
+                TbResponse addResponse = manager.dmMMSManager.Add(manager.authenticationManager.userData, crudData).Result;
+                if (addResponse.Success != true)
+                    MessageBox.Show($"Table not Added ({addResponse.StatusCode})");
+                else
+                    MessageBox.Show($"Table Added Successfully ({addResponse.StatusCode})");
+                return;
+            }
+        }
+
+        private void MultipleAdd()
+        {
+            for (int i = 0; i < 400; i++)
+            {
+                MA_CustSupp custSupp = new MA_CustSupp();
+                custSupp.CustSuppType = Int32.Parse(textBoxCustSuppType.Text);
+                custSupp.CustSupp = $"{textBoxCustSupp.Text}-{i}"; // Aggiunta del numero progressivo al testo del textBoxCustSupp.Text
+                custSupp.CompanyName = $"{textBoxCompanyName.Text}-{i}"; // Aggiunta del numero progressivo al testo del textBoxCompanyName.Text
+                custSupp.ISOCountryCode = textBoxIsoCountryCode.Text;
+                // insert data
+                TableData crudData = new TableData();
+                crudData.TableName = MA_CustSupp.TableName;
+                crudData.Data = custSupp;
+                crudData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
+                if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
+                {
+                    TbResponse updateResponse = manager.dmMMSManager.Update(manager.authenticationManager.userData, crudData).Result;
+                    //if (updateResponse.Success != true)
+                    //    MessageBox.Show($"Table not Updated ({updateResponse.StatusCode})");
+                    //else
+                    //    MessageBox.Show($"Table Updated Successfully ({updateResponse.StatusCode})");
+                }
+                else
+                {
+                    TbResponse addResponse = manager.dmMMSManager.Add(manager.authenticationManager.userData, crudData).Result;
+                    //if (addResponse.Success != true)
+                    //    MessageBox.Show($"Table not Added ({addResponse.StatusCode})");
+                    //else
+                    //    MessageBox.Show($"Table Added Successfully ({addResponse.StatusCode})");
+                }
+            }
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //if (!manager.authenticationManager.IsLogged())
-            //{
-            //    MessageBox.Show("User is not logged, please Login!");
-            //    return;
-            //}
-            //MA_CustSupp custSupp = new MA_CustSupp();
-
-            //custSupp.CustSuppType = Int32.Parse(textBoxCustSuppType.Text);
-            //custSupp.CustSupp = textBoxCustSupp.Text;
-            //custSupp.CompanyName = textBoxCompanyName.Text;
-            //custSupp.ISOCountryCode = textBoxIsoCountryCode.Text;
-            //// insert data
-            //TableData crudData = new TableData();
-            //crudData.TableName = MA_CustSupp.TableName;
-            //crudData.Data = custSupp;
-            //crudData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
-            //if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
-            //{
-            //    TbResponse updateResponse = manager.dmMMSManager.Update(manager.authenticationManager.userData, crudData).Result;
-            //    if (updateResponse.Success != true)
-            //        MessageBox.Show($"Table not Updated ({updateResponse.StatusCode})");
-            //    else
-            //        MessageBox.Show($"Table Updated Successfully ({updateResponse.StatusCode})");
-            //    return;
-            //}
-            //else
-            //{
-            //    TbResponse addResponse = manager.dmMMSManager.Add(manager.authenticationManager.userData, crudData).Result;
-            //    if (addResponse.Success != true)
-            //    MessageBox.Show($"Table not Added ({addResponse.StatusCode})");
-            //    else
-            //        MessageBox.Show($"Table Added Successfully ({addResponse.StatusCode})");
-            //    return;
-            //}
-           
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            SingleAdd();
+            //MultipleAdd();
         }
+        //UpdateSlave
+        //private async void btnAdd_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        PVDModelHeader pvdDocHeader = new PVDModelHeader()
+        //        {
+        //            Code = "0001",
+        //            Line = 1,
+        //            Item = "ZUCH",
+        //            Lot = "ZuchCl1",
+        //            Plate = "AS456YU", 
+        //        };
+
+        //        TableData tableData = new TableData()
+        //        {
+        //            TableName = PVDModelHeader.TableName,
+        //            Data = pvdDocHeader,
+        //            Keys = new object[] { pvdDocHeader.Code, pvdDocHeader.Line }
+        //        };
+
+        //        TbResponse updateResponse = await manager.dmMMSManager.Update(manager.authenticationManager.userData, tableData);
+
+        //        bool success = updateResponse.Success;
+
+        //        if (success)
+        //        {
+        //            MessageBox.Show("Aggiornamento riuscito");
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Aggiornamento fallito");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+               
+        //        MessageBox.Show($"Si è verificato un errore: {ex.Message}");
+        //    }
+        //}
 
         private void btnDeleteTable_Click(object sender, EventArgs e)
         {
@@ -1496,6 +1574,7 @@ namespace MagoCloudApi
         {
 
         }
+
     }
 }
 

@@ -405,3 +405,57 @@
 		</maxs:FiscalData>
 	</maxs:Data>
 </maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.Documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:Items master="true">
+			<maxs:Item>ZUCH2</maxs:Item>
+			<maxs:Description></maxs:Description>
+			<maxs:IsGood>true</maxs:IsGood>
+			<maxs:TaxCode>22</maxs:TaxCode>
+			<maxs:BaseUoM>NR</maxs:BaseUoM>
+			<maxs:BasePrice>-0.0000000</maxs:BasePrice>
+			<maxs:Discount1>-0.0000000</maxs:Discount1>
+			<maxs:ItemType></maxs:ItemType>
+			<maxs:CommodityCtg></maxs:CommodityCtg>
+			<maxs:HomogeneousCtg></maxs:HomogeneousCtg>
+			<maxs:CommissionCtg></maxs:CommissionCtg>
+			<maxs:SaleOffset></maxs:SaleOffset>
+			<maxs:PurchaseOffset></maxs:PurchaseOffset>
+			<maxs:UseSerialNo>false</maxs:UseSerialNo>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:Nature>22413314</maxs:Nature>
+			<maxs:ConsuptionOffset></maxs:ConsuptionOffset>
+			<maxs:CostCenter></maxs:CostCenter>
+			<maxs:Job></maxs:Job>
+		</maxs:Items>
+		<maxs:PriceLists></maxs:PriceLists>
+	</maxs:Data>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.Documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Data>
+		<maxs:Items master="true">
+			<maxs:Item>ZUCH2</maxs:Item>
+			<maxs:Description>Zucchero2</maxs:Description>
+			<maxs:IsGood>true</maxs:IsGood>
+			<maxs:TaxCode>22</maxs:TaxCode>
+			<maxs:BaseUoM>NR</maxs:BaseUoM>
+			<maxs:BasePrice>-0.0000000</maxs:BasePrice>
+			<maxs:Discount1>-0.0000000</maxs:Discount1>
+			<maxs:ItemType></maxs:ItemType>
+			<maxs:CommodityCtg></maxs:CommodityCtg>
+			<maxs:HomogeneousCtg></maxs:HomogeneousCtg>
+			<maxs:CommissionCtg></maxs:CommissionCtg>
+			<maxs:SaleOffset></maxs:SaleOffset>
+			<maxs:PurchaseOffset></maxs:PurchaseOffset>
+			<maxs:UseSerialNo>false</maxs:UseSerialNo>
+			<maxs:Disabled>false</maxs:Disabled>
+			<maxs:Nature>22413314</maxs:Nature>
+			<maxs:ConsuptionOffset></maxs:ConsuptionOffset>
+			<maxs:CostCenter></maxs:CostCenter>
+			<maxs:Job></maxs:Job>
+		</maxs:Items>
+		<maxs:PriceLists></maxs:PriceLists>
+	</maxs:Data>
+</maxs:Items>

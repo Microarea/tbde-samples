@@ -77,7 +77,7 @@ namespace MagoCloudApi
                     //string localLogin = "http://localhost:5000/account-manager/login";
 
                     // the URL to access MagoWeb is the following
-                    string magoWebLogin = "https://gwam.mago.cloud/gwam_login/api/login";
+                    string magoWebLogin = "https://gwam.mago.cloud";
 
                     HttpRequestMessage request;
                     if (gwamUrl == string.Empty)

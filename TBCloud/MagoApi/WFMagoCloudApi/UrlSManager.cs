@@ -16,15 +16,15 @@ namespace MagoCloudApi
 
         public string WebUrl = string.Empty;
         public string LocalUrl = string.Empty;
-        public string MMSlocalUrl = "http://localhost:5058/mymagostudio-service/";
-        //public string MMSlocalUrl = "http://localhost:60106/mymagostudio-service/";
+        public string MMSlocalUrl = "http://localhost:60000/mymagostudio-service/";
+        //public string MMSlocalUrl = "http://localhost:60000/mymagostudio-service/";
         public string RetriveUrl(UserData userData, DateTime operationDate, string urlName, bool isMMS = false)
         {
             using (HttpClient client = new HttpClient())
             {
                 //@@mmf
-                LocalUrl = (isMMS) ? MMSlocalUrl : "http://localhost:5000";
-                if (userData.GwamUrl == string.Empty || userData.GwamUrl == "https://test-gwam.mago.cloud")
+                LocalUrl = (isMMS) ? MMSlocalUrl : "http://localhost:60000";
+                if (userData.GwamUrl == string.Empty || userData.GwamUrl == "https://gwam.mago.cloud")
                     return LocalUrl;
                 //@@mmf end
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + urlName);

@@ -26,12 +26,24 @@ namespace MagoCloudApi
         public string ISOCountryCode { get; set; }
     }
 
+    public class PVDModelHeader
+    {
+        public static string TableName = "CST6422FCB3_00001_TableTrucksline";
+        public string Code { get; set; }
+        public int Line { get; set; }
+        public string Description { get; set; }
+        public string Item { get; set; }
+        public string Lot { get; set; }
+        public string Plate { get; set; }
+    }
+
     public class TableData
     {
         public string TableName { get; set; } = string.Empty;
         public object[] Keys { get; internal set; }
         public object Data { get; set; } = null;
     }
+
     public class EnumsResult
     {
         public List<string> ListName { get; set; }
@@ -292,7 +304,7 @@ namespace MagoCloudApi
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"DataManager/update");
-                    
+
                     return await CallWithTableData(userData, tableData, request);
                 }
                 catch (HttpRequestException e)
@@ -304,7 +316,8 @@ namespace MagoCloudApi
             }
 
         }
-       
+
+
         //// It deletes a record from table______________________________________________________________________________________________
         public async Task<bool> Delete(UserData userData, TableData tableData)
         {
@@ -474,7 +487,7 @@ namespace MagoCloudApi
                     //    UrlSManager.EnumsTableUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + $"getEnumsTable/");
                     UrlSManager Urls = new UrlSManager();
-                    if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = "http://localhost:5000/enums-service/"; //Magoweb"http://localhost:81/enums-service/"
+                    if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = "http://localhost:60000/enums-service/"; //Magoweb
                     StringBuilder builder = new StringBuilder();
                     string GetUrl = UrlSManager.EnumsTableUrl + "getEnumsTable/";
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl);
