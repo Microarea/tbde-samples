@@ -8,21 +8,12 @@ using Microarea.Tbf.Model.Interfaces.API;
 using System.Collections.Generic;
 using Microarea.Tbf.Model.Interfaces.DataManager;
 using Newtonsoft.Json;
+using Microarea.Tbf.Model.API.TbServer;
 
 namespace MyApp
 {
     public class MyClient
     {
-        /// <summary>
-        /// request implementation for parameters
-        /// </summary>
-        public class MyRequest : ITbRequest
-        {
-            public object RequestId { get; set; }
-            public DateTime OperationDate { get; set; }
-            public Dictionary<string, object> TbWebMethodArguments { get ; set; }
-        }
-
         // response
         public class MyResponse : ITbResponse
         {
@@ -124,8 +115,7 @@ namespace MyApp
             doc = null;
 
             // tbwebmethod
-            MyRequest parameters = new MyRequest();
-            parameters.OperationDate = DateTime.Now;
+            TbServerWMRequest parameters = new TbServerWMRequest(DateTime.Now);
             MyResponse myResp = magocloudClient.TbServer?.InvokeTbMethod<MyResponse>(userData, "ERP.Company.Dbl.CurrentOpeningDate", parameters).Result;
         }
 
@@ -143,9 +133,10 @@ namespace MyApp
             repArgs.Add(new ReportArg("w_CodeStart", "A"));
             repArgs.Add(new ReportArg("w_CodeEnd", "B"));
 
-            ReportRequest reportRequest = new ReportRequest(new ReportSelection("ERP.Items.Items.wrm", repArgs));
+            ReportRequest reportRequest = new ReportRequest(DateTime.Now, new ReportSelection("ERP.Items.Items.wrm", repArgs));
 
-            ITbResponse rsResult = magocloudClient.ReportingServices?.GetXmlData(userData, DateTime.Now, reportRequest).Result;
+            ITbResponse rsResult = magocloudClient.ReportingServices?.GetXmlData(userData, reportRequest).Result;
+            ITbResponse rsPdfResult = magocloudClient.ReportingServices?.GetReportPdf(userData, reportRequest).Result;
         }
 
         private static void UseOthersMicroservices(MagoAPIClient magocloudClient, ITbUserData userData)
