@@ -47,6 +47,8 @@ namespace MagoCloudApi
         /////// GET APPLICATIONS ////////
         public async Task<List<string>> GetApplications(UserData userData, DateTime operationDate)
         {
+            selApp = string.Empty;
+            UrlSManager.TbFsServiceUrl = string.Empty;
             List<string> applist = new List<string>();
 
             UrlSManager Urls = new UrlSManager();
@@ -81,6 +83,7 @@ namespace MagoCloudApi
         /////// GET MODULES ////////
         public async Task<List<string>> GetModules(UserData userData, DateTime operationDate, string application)
         {
+            selMod = string.Empty;
             List<string> modulelist = new List<string>();
             
             UrlSManager Urls = new UrlSManager();
@@ -118,6 +121,7 @@ namespace MagoCloudApi
         /////// GET DOCUMENT FOLDERS ////////
         public async Task<(List<string>, List<string>)> GetDocumentsFolders(UserData userData, DateTime operationDate, string application, string module)
         {
+            selDoc = string.Empty;
             List<string> folderObjects = new List<string>();
             List<string> folderObjectsNS = new List<string>();
 
@@ -173,7 +177,7 @@ namespace MagoCloudApi
         /////// GET PROFILES ////////
         public async Task<List<string>> GetProfiles(UserData userData, DateTime operationDate, string application, string module, string folderName)
         {
-            
+            selProfile = string.Empty;
             List<string> profileslist = new List<string>();
           
             UrlSManager Urls = new UrlSManager();

@@ -39,15 +39,18 @@ using System.ServiceProcess;
 using static MagoCloudApi.MagoCloudApi;
 using System.Text.RegularExpressions;
 using System.Drawing.Text;
+using static System.Windows.Forms.LinkLabel;
+using System.Messaging;
 
 namespace MagoCloudApi
 {
 
     public partial class MagoCloudApi : Form
     {
+        //UrlSManager isCloud = new UrlSManager();
         MagoCloudApiManager manager = new MagoCloudApiManager();
-
-
+        public bool IsCloudButtonClicked { get; set; }
+       
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
            int nLeftRect,
@@ -72,11 +75,32 @@ namespace MagoCloudApi
         private string tableName;
         TbResponse m_GetBoResponse;
         TbResponse m_UpdateBoResponse;
+        private string isClickedStart;
 
-
-        public MagoCloudApi()
+        public MagoCloudApi(bool isCloudButtonClicked)
         {
             InitializeComponent();
+            var buttonState = GlobalSettings.CurrentButtonState;
+            switch (buttonState)
+            {
+                case GlobalSettings.ButtonState.DevEnv:
+                    text_http.Text = "https://test-gwam.mago.cloud";
+                    pictureBoxLogo.Image = Properties.Resources.DevEnvBtn;
+                    break;
+
+                case GlobalSettings.ButtonState.Web:
+                    text_http.Text = "https://gwam.mago.cloud";
+                    pictureBoxLogo.Image = Properties.Resources.MagoWeb;
+                    PopulateServicesComboBox();//____Service List MagoWeb
+                    break;
+
+                case GlobalSettings.ButtonState.Cloud:
+                    text_http.Text = "https://gwam.mago.cloud";
+                    pictureBoxLogo.Image = Properties.Resources.MagoCloud;
+                    break;
+            }
+
+            IsCloudButtonClicked = isCloudButtonClicked;
             btnClearText.Visible = false;
             manager.tbServerManager.folderPath = folderPath;
             this.FormBorderStyle = FormBorderStyle.None;
@@ -87,10 +111,8 @@ namespace MagoCloudApi
             this.WebMetodLbl.Visible = false;
             this.SearchMethod.Visible = false;
             this.lblCaseSensitive.Visible = false;
-
-
-
-
+            this.IsCloudButtonClicked = this.IsCloudButtonClicked;
+            btnAccount.Hide();
 
             labelTbUrl.Text = "ServiceUrl:";
             labelDmsUrl.Text = "ServiceUrl:";
@@ -129,6 +151,11 @@ namespace MagoCloudApi
 
         }
 
+        public void UpdatePictureBoxImage(System.Drawing.Image newImage)
+        {
+            pictureBoxLogo.Image = newImage;
+        }
+
         private void MagoCloudApi_Load(object sender, EventArgs e)
         {
             // Assegna il testo del tooltip al controllo Tooltip
@@ -138,6 +165,7 @@ namespace MagoCloudApi
             myToolTip.SetToolTip(BtnQuestionCall, "Questions about calls?");
             myToolTip.SetToolTip(BtnFillContent, "Resize TabControl");
             myToolTip.SetToolTip(btnClearText, "Clear Result Window");
+            myToolTip.SetToolTip(btnAccount, "Account Info");
 
             cbxServicesWeb.Items.Add("MagoWebServices");
             cbxServicesWeb.SelectedIndex = 0;
@@ -153,7 +181,6 @@ namespace MagoCloudApi
 
             cbxProfile.Items.Add("Profile");
             cbxProfile.SelectedIndex = 0;
-            //PopulateComboBox();
         }
 
         //////////// customize draggable
@@ -292,6 +319,7 @@ namespace MagoCloudApi
         ///////////////////////////////
         ///// AUTHENTUCATION BTN //////
         ///////////////////////////////
+
         private void button_Login_Click(object sender, System.EventArgs e)
         {
             bool bok = false;
@@ -302,9 +330,26 @@ namespace MagoCloudApi
                 if (bok)
                 {
                     LoadEnumsTable();
-                    PopulateServicesComboBox();//____Service List MagoWeb
+                    _ = FillApplications();
+                    button_Login.ForeColor = Color.White;
+                    button_Login.BackColor = Color.Green;
+                    btnAccount.Visible = true;
+                    labelMessage.Text = string.Empty;
                 }
-                _ = FillApplications();
+                else
+                {
+                    string responseContent = manager.authenticationManager._responseBody.ToString();
+                    JObject jsonObject = JObject.Parse(responseContent);
+                    string message = jsonObject["Message"]?.ToString();
+                    if (!string.IsNullOrEmpty(message))
+                    {
+                        message = message.Replace(":", ":\n");
+                    }
+                    labelMessage.Text = message;
+                    button_Login.BackColor = Color.Red;
+                    labelMessage.ForeColor = Color.Red;
+                }
+               
             }
         }
 
@@ -324,18 +369,57 @@ namespace MagoCloudApi
             if (manager.authenticationManager.IsLogged())
             {
                 manager.authenticationManager.DoLogout(text_http.Text);
+                this.Hide(); // Nascondi il form attuale
+                //MagoCloudApi magoAPI = null;
+                StartMagoApi startForm = new StartMagoApi();
+                startForm.ShowDialog();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("User is not logged, please Login!");
             }
+            button_Login.Enabled = true;
+            button_Login.BackColor = Color.FromArgb(22, 118, 186);
         }
         private void DoExit()
         {
             manager.authenticationManager.DoLogout(text_http.Text);
             System.Windows.Forms.Application.Exit();
         }
+        private void btnAccount_Click(object sender, EventArgs e)
+        {
+            string responseContent = manager.authenticationManager._responseBody.ToString();
+            JObject jsonObject = JObject.Parse(responseContent);
+            JToken rolesToken = jsonObject["Roles"];
+            string accountName = jsonObject["AccountName"]?.ToString();
+            string subscriptionKey = jsonObject["SubscriptionKey"]?.ToString();
+            string fullName = jsonObject["FullName"]?.ToString();
+            bool isAdmin = jsonObject["IsAdmin"]?.Value<bool>() ?? false;
+            if (rolesToken == null || rolesToken.Type != JTokenType.Array)
+            {
 
+                // Se "Roles" è null o non è un array, non fare nulla o gestisci come necessario
+                ShowResult($"Account Name: {accountName}\nSubscriptionKey: {subscriptionKey}\nFull Name: {fullName}\nIs Admin: {isAdmin}\n\nRole = Null\n you are in DevEnv");
+                return;
+            }
+           
+
+            JArray rolesArray = (JArray)jsonObject["Roles"];
+
+            // Estrai e visualizza i nomi dei ruoli
+            List<string> roleNames = new List<string>();
+            foreach (var role in rolesArray)
+            {
+                string roleName = role["RoleName"]?.ToString();
+                if (roleName != null)
+                {
+                    roleNames.Add(roleName);
+                }
+            }
+            string rolesDisplay = string.Join(Environment.NewLine, roleNames);
+            ShowResult($"Account Name: {accountName}\nSubscriptionKey: {subscriptionKey}\nFull Name: {fullName}\nIs Admin: {isAdmin}\n\nRole Names:\n{rolesDisplay}");
+        }
         ////////////////////////
         ///// RESULT WINDOW ////
         ////////////////////////
@@ -1575,6 +1659,7 @@ namespace MagoCloudApi
 
         }
 
+       
     }
 }
 

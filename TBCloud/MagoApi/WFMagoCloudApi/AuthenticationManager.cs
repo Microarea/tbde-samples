@@ -31,6 +31,7 @@ namespace MagoCloudApi
         internal void Clear()
         {
             UrlSManager.TbFsServiceUrl = string.Empty;
+            UrlSManager.DmMMSUrl = string.Empty;
             DataUrl = string.Empty;
             DmsUrl = string.Empty;
             TbFsUrl = null;
@@ -49,6 +50,7 @@ namespace MagoCloudApi
     internal class AuthenticationManager
     {
         internal UserData userData = new UserData();
+        public string _responseBody;
 
         internal string Token { get => userData.Token; }
         internal bool IsLogged()
@@ -74,14 +76,14 @@ namespace MagoCloudApi
                    userData. Producer = producerKey;
                    userData. AppKey = appKey;
                     // @@mmf
-                    //string localLogin = "http://localhost:5000/account-manager/login";
+                    string localLogin = "http://localhost:5000/account-manager/login";
 
                     // the URL to access MagoWeb is the following
                     string magoWebLogin = "https://gwam.mago.cloud";
 
                     HttpRequestMessage request;
                     if (gwamUrl == string.Empty)
-                        request = new HttpRequestMessage(HttpMethod.Post, magoWebLogin);//magoWebLogin
+                        request = new HttpRequestMessage(HttpMethod.Post, localLogin);
                     else
                         request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
                     //@@mmf end
@@ -107,8 +109,8 @@ namespace MagoCloudApi
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         //// recovery autentication token ////
-                        string responseBody = response.Content.ReadAsStringAsync().Result;
-                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
+                        _responseBody = response.Content.ReadAsStringAsync().Result;
+                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(_responseBody);
                         if (jsonObject != null)
                         {
                             string resultVariable = jsonObject["Result"]?.ToString();

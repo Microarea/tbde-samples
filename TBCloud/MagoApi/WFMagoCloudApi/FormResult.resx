@@ -2033,7 +2033,7 @@
     <value>True</value>
   </data>
   <data name="labelSmile.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Century Gothic, 29.25pt, style=Bold</value>
+    <value>Century Gothic, 27.25pt, style=Bold</value>
   </data>
   <data name="labelSmile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2045,7 +2045,7 @@
     <value>2, 0, 2, 0</value>
   </data>
   <data name="labelSmile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 45</value>
+    <value>102, 44</value>
   </data>
   <data name="labelSmile.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MagoCloudAPI.Properties {
+namespace MagoCloudApi.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MagoCloudAPI.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MagoCloudAPI.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MagoCloudApi.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,6 +63,16 @@ namespace MagoCloudAPI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DevEnvBtn {
+            get {
+                object obj = ResourceManager.GetObject("DevEnvBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MagoCloud {
             get {
                 object obj = ResourceManager.GetObject("MagoCloud", resourceCulture);
@@ -73,9 +83,9 @@ namespace MagoCloudAPI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MagoCloud1 {
+        internal static System.Drawing.Bitmap MagoWeb {
             get {
-                object obj = ResourceManager.GetObject("MagoCloud1", resourceCulture);
+                object obj = ResourceManager.GetObject("MagoWeb", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

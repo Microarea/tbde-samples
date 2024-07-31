@@ -16,7 +16,7 @@ namespace MagoCloudApi
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MagoCloudApi());
+            Application.Run(new StartMagoApi());
         }
     }
 }

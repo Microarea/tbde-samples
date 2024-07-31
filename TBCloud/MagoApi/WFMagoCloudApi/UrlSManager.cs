@@ -1,57 +1,89 @@
 ﻿using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TextManager.Interop;
+using static System.Windows.Forms.LinkLabel;
+
 
 namespace MagoCloudApi
 {
+    internal class ClassEnv
+    {
+        public bool m_IsCloud;
+    }
     internal class UrlSManager
     {
+        public string WebUrl { get; set; } = string.Empty;
+        public string DevEnvUrl { get; set; } = string.Empty;
+        public string MMSWebUrl { get; set; } = "http://localhost:60000/";
+        public string MMSDevUrl { get; set; } = "http://localhost:5058/";
 
-        public string WebUrl = string.Empty;
-        public string LocalUrl = string.Empty;
-        public string MMSlocalUrl = "http://localhost:60000/mymagostudio-service/";
-        //public string MMSlocalUrl = "http://localhost:60000/mymagostudio-service/";
+        //public UrlSManager(bool isCloud)
+        //{
+        //    m_IsCloud = isCloud;
+        //}
         public string RetriveUrl(UserData userData, DateTime operationDate, string urlName, bool isMMS = false)
         {
+            var buttonState = GlobalSettings.CurrentButtonState;
+
             using (HttpClient client = new HttpClient())
             {
-                //@@mmf
-                LocalUrl = (isMMS) ? MMSlocalUrl : "http://localhost:60000";
-                if (userData.GwamUrl == string.Empty || userData.GwamUrl == "https://gwam.mago.cloud")
-                    return LocalUrl;
-                //@@mmf end
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + urlName);
-                //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/TBSERVER");
-                MagoCloudApiManager.PrepareHeaders(request, userData, DateTime.Now);
-
-                HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-                string responseBody = response.Content.ReadAsStringAsync().Result;
-                JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
-                string resultVariable = "";
-                if (jsonObject != null)
+                DevEnvUrl = isMMS ? MMSDevUrl : "http://localhost:5000";
+                WebUrl = isMMS ? MMSWebUrl : "http://localhost:60000";
+                switch (buttonState)
                 {
-                    resultVariable = jsonObject["Content"]?.ToString();
+                    case GlobalSettings.ButtonState.DevEnv:
+                        // Caso DevEnv: verifica GwamUrl e ritorna LocalUrl se necessario
+                        if (userData.GwamUrl == string.Empty || userData.GwamUrl == "https://test-gwam.mago.cloud")
+                        {
+                            return DevEnvUrl;
+                        }
+                        break;
+
+                    case GlobalSettings.ButtonState.Web:
+                        // Caso Cloud: ritorna WebUrl se GwamUrl è uguale a "https://gwam.mago.cloud"
+                        if (userData.GwamUrl == "https://gwam.mago.cloud")
+                        {
+                            return WebUrl;
+                        }
+                        break;
+
+                    case GlobalSettings.ButtonState.Cloud:
+                        if (userData.GwamUrl == "https://gwam.mago.cloud")
+                        {
+                            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + urlName);
+                            MagoCloudApiManager.PrepareHeaders(request, userData, DateTime.Now);
+
+                            HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                            string responseBody = response.Content.ReadAsStringAsync().Result;
+                            JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
+                            string resultVariable = "";
+                            if (jsonObject != null)
+                            {
+                                resultVariable = jsonObject["Content"]?.ToString();
+                            }
+                            return resultVariable;
+                        }
+                        break;
+
+                    default:
+                        return "Stato del bottone non riconosciuto";
                 }
-                return resultVariable;
+
+                return "Stato del bottone non gestito";
             }
         }
 
-        public static string TbServerUrl = System.String.Empty;
-        // WebMethodsUrl = TbServerUrl (use the same service)
-        public static string DataServiceUrl = System.String.Empty;
-        public static string ReportingServiceUrl = System.String.Empty;
-        public static string DmsServiceUrl = System.String.Empty;
-        public static string TbFsServiceUrl = System.String.Empty;
-        public static string DmMMSUrl = System.String.Empty;
-        public static string EnumsTableUrl = System.String.Empty;
-
+        // Proprietà statiche
+        public static string TbServerUrl { get; set; } = string.Empty;
+        public static string DataServiceUrl { get; set; } = string.Empty;
+        public static string ReportingServiceUrl { get; set; } = string.Empty;
+        public static string DmsServiceUrl { get; set; } = string.Empty;
+        public static string TbFsServiceUrl { get; set; } = string.Empty;
+        public static string DmMMSUrl { get; set; } = string.Empty;
+        public static string EnumsTableUrl { get; set; } = string.Empty;
+        public static string CurrentButtonState { get; set; }
     }
-
 }

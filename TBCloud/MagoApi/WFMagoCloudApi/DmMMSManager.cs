@@ -115,7 +115,7 @@ namespace MagoCloudApi
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DmMMSUrl + "DataManager/version");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DmMMSUrl + "mymagostudio-service/DataManager/version");
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
@@ -151,7 +151,7 @@ namespace MagoCloudApi
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"DataManager/{call}?tableName={tableName}");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/{call}?tableName={tableName}");
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
 
@@ -197,7 +197,7 @@ namespace MagoCloudApi
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"DataManager/{call}");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/{call}");
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
 
@@ -229,7 +229,7 @@ namespace MagoCloudApi
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"DataManager/selectAllByKey");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/selectAllByKey");
 
                     return await CallWithTableData(userData, tableData, request);
                 }
@@ -251,7 +251,7 @@ namespace MagoCloudApi
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"DataManager/exists");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/exists");
 
                     TbResponse response = await CallWithTableData(userData, tableData, request);
                     return response.Success == true && (response.ReturnValue.ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase));
@@ -276,7 +276,7 @@ namespace MagoCloudApi
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"DataManager/add");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/add");
 
                     TbResponse response = await CallWithTableData(userData, tableData, request);
 
@@ -303,7 +303,7 @@ namespace MagoCloudApi
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"DataManager/update");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/update");
 
                     return await CallWithTableData(userData, tableData, request);
                 }
@@ -328,7 +328,7 @@ namespace MagoCloudApi
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"DataManager/delete");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/delete");
                     TbResponse response = await CallWithTableData(userData, tableData, request);
                     return response.Success == true && (response.ReturnValue.ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase));
                 }
@@ -353,7 +353,7 @@ namespace MagoCloudApi
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"DataManager/businessOjectByFindKeys");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/businessOjectByFindKeys");
 
                     var jsonData = JsonConvert.SerializeObject(boData);
                     request.Content = new StringContent(content: jsonData, encoding: Encoding.UTF8, mediaType: "application/json");
@@ -385,7 +385,7 @@ namespace MagoCloudApi
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"DataManager/updateBusinessObject");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/updateBusinessObject");
                     var jsonData = JsonConvert.SerializeObject(boData);
                     request.Content = new StringContent(content: jsonData, encoding: Encoding.UTF8, mediaType: "application/json");
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
@@ -416,7 +416,7 @@ namespace MagoCloudApi
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"DataManager/getNextId");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/getNextId");
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
@@ -482,15 +482,18 @@ namespace MagoCloudApi
             {
                 try
                 {
+                    UrlSManager.EnumsTableUrl = string.Empty;
                     //UrlSManager Urls = new UrlSManager();
                     //if (UrlSManager.EnumsTableUrl == "")
                     //    UrlSManager.EnumsTableUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + $"getEnumsTable/");
                     UrlSManager Urls = new UrlSManager();
-                    if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = "http://localhost:60000/enums-service/"; //Magoweb
-                    StringBuilder builder = new StringBuilder();
-                    string GetUrl = UrlSManager.EnumsTableUrl + "getEnumsTable/";
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl);
+                    if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + "/enums-service/getEnumsTable/");
+                    //if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = "http://localhost:60000/enums-service/"; //Magoweb
+                    //StringBuilder builder = new StringBuilder();
+                    //string GetUrl = UrlSManager.EnumsTableUrl + "getEnumsTable/";
+                    //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl);
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
 

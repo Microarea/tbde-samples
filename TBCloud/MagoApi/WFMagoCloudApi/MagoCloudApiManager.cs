@@ -1,4 +1,4 @@
-﻿using MagoCloudAPI;
+﻿using MagoCloudApi;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
