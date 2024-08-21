@@ -79,7 +79,7 @@ namespace MagoCloudApi
                     string localLogin = "http://localhost:5000/account-manager/login";
 
                     // the URL to access MagoWeb is the following
-                    string magoWebLogin = "https://gwam.mago.cloud";
+                    //string magoWebLogin = "https://gwam.mago.cloud";
 
                     HttpRequestMessage request;
                     if (gwamUrl == string.Empty)
@@ -105,6 +105,7 @@ namespace MagoCloudApi
                     string requestJsonInString = JsonConvert.SerializeObject(credential);
                     request.Content = new StringContent(requestJsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                   
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -121,7 +122,7 @@ namespace MagoCloudApi
                                 userData.Token = jsonObject["JwtToken"]?.ToString();
                                 userData.UserName = jsonObject["AccountName"]?.ToString();
                                 userData.SubscriptionKey = subscriptionKey;
-
+                                
                                 MessageBox.Show("The login was successful.");
                                 return true;
                             }

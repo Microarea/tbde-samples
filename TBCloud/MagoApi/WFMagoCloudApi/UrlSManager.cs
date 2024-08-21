@@ -9,10 +9,7 @@ using static System.Windows.Forms.LinkLabel;
 
 namespace MagoCloudApi
 {
-    internal class ClassEnv
-    {
-        public bool m_IsCloud;
-    }
+   
     internal class UrlSManager
     {
         public string WebUrl { get; set; } = string.Empty;

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices;
@@ -13,6 +14,8 @@ namespace MagoCloudApi
 {
     class DataServiceManager
     {
+        public string requestDs { get; set; }
+        private List<string> requestDsList = new List<string>();
         ////// RetriveDataServiceUrl ///////
 
         //Uri RsUrl = new Uri("https://develop.mago.cloud/13/be");
@@ -59,7 +62,8 @@ namespace MagoCloudApi
                     GetUrl += "?forcedRefresh=true";
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl );
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
-                    
+                    requestDs = request.ToString();
+                    requestDsList.Add(requestDs);
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -103,7 +107,8 @@ namespace MagoCloudApi
                     if (UrlSManager.DataServiceUrl == "") UrlSManager.DataServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/DATASERVICE");
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DataServiceUrl + "/data-service/api/assemblyversion");
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
-                    
+                    requestDs = request.ToString();
+                    requestDsList.Add(requestDs);
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -127,6 +132,10 @@ namespace MagoCloudApi
                 }
                 return string.Empty;
             }
+        }
+        public List<string> GetRequestDsList()
+        {
+            return requestDsList;
         }
     }
 }

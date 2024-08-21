@@ -44,13 +44,16 @@ using System.Messaging;
 
 namespace MagoCloudApi
 {
-
     public partial class MagoCloudApi : Form
     {
         //UrlSManager isCloud = new UrlSManager();
         MagoCloudApiManager manager = new MagoCloudApiManager();
+        UiManagerApi uiManager = new UiManagerApi();
+        private CbxUi cbxUi;
         public bool IsCloudButtonClicked { get; set; }
-       
+        private bool isLoggedIn = false;
+
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
            int nLeftRect,
@@ -62,6 +65,7 @@ namespace MagoCloudApi
            );
 
         internal string FileName { get; set; }
+        private List<string> Request { get; set; }
         public object docinfo { get; private set; }
 
         bool mousedown;
@@ -80,16 +84,24 @@ namespace MagoCloudApi
         public MagoCloudApi(bool isCloudButtonClicked)
         {
             InitializeComponent();
+            uiManager.SetControls(this.Controls);
+            cbxUi = new CbxUi(cbxApplication, cbxModule, cbxDocReport, cbxProfile);
+            btnTbfs.MouseHover += new EventHandler(cbxUi.BtnTbfs_MouseHover);
+            btnTbfs.MouseLeave += new EventHandler(cbxUi.BtnTbfs_MouseLeave);
+            this.cbxServicesWeb.Visible = false;
             var buttonState = GlobalSettings.CurrentButtonState;
             switch (buttonState)
             {
                 case GlobalSettings.ButtonState.DevEnv:
                     text_http.Text = "https://test-gwam.mago.cloud";
+                    uiManager.ReplaceColor(Color.FromArgb(232, 159, 0), Color.FromArgb(173, 92, 174));
                     pictureBoxLogo.Image = Properties.Resources.DevEnvBtn;
                     break;
 
                 case GlobalSettings.ButtonState.Web:
                     text_http.Text = "https://gwam.mago.cloud";
+                    uiManager.ReplaceColor(Color.FromArgb(232, 159, 0), Color.FromArgb(176, 205, 66));
+                    this.cbxServicesWeb.Visible = true;
                     pictureBoxLogo.Image = Properties.Resources.MagoWeb;
                     PopulateServicesComboBox();//____Service List MagoWeb
                     break;
@@ -107,12 +119,15 @@ namespace MagoCloudApi
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             this.tabNavigation.TabPages.Remove(this.tabMSH);
             this.cbxSelectionType.SelectedIndex = 0;
-            this.cbxServicesWeb.Visible = false;
             this.WebMetodLbl.Visible = false;
             this.SearchMethod.Visible = false;
             this.lblCaseSensitive.Visible = false;
             this.IsCloudButtonClicked = this.IsCloudButtonClicked;
             btnAccount.Hide();
+            btnDataSerRequest.Hide();
+            btnDManagerRequest.Hide();
+            btnWMethRequest.Hide();
+            btnTbRequest.Hide();
 
             labelTbUrl.Text = "ServiceUrl:";
             labelDmsUrl.Text = "ServiceUrl:";
@@ -151,6 +166,7 @@ namespace MagoCloudApi
 
         }
 
+        
         public void UpdatePictureBoxImage(System.Drawing.Image newImage)
         {
             pictureBoxLogo.Image = newImage;
@@ -166,7 +182,8 @@ namespace MagoCloudApi
             myToolTip.SetToolTip(BtnFillContent, "Resize TabControl");
             myToolTip.SetToolTip(btnClearText, "Clear Result Window");
             myToolTip.SetToolTip(btnAccount, "Account Info");
-
+            myToolTip.SetToolTip(button_exit, "MagoCloud / MagoWeb / Development Environment"); 
+            myToolTip.SetToolTip(btnTbfs, "TBFSSERVICE");
             cbxServicesWeb.Items.Add("MagoWebServices");
             cbxServicesWeb.SelectedIndex = 0;
 
@@ -264,6 +281,7 @@ namespace MagoCloudApi
         private void btnCloseForm_Click(object sender, EventArgs e)
         {
             DoExit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void btnReduceIcon_Click(object sender, EventArgs e)
@@ -302,7 +320,7 @@ namespace MagoCloudApi
 
         private void FillContent_Click(object sender, EventArgs e)
         {
-            if (BtnFillContent.Text == "⬅")//chiude LoginPanel
+            if (BtnFillContent.Text == "⬅")//close LoginPanel
             {
                 BtnFillContent.Text = "➡";
                 tabNavigation.Dock = DockStyle.Fill;
@@ -322,6 +340,7 @@ namespace MagoCloudApi
 
         private void button_Login_Click(object sender, System.EventArgs e)
         {
+
             bool bok = false;
 
             if (AreParametersOk())
@@ -333,6 +352,7 @@ namespace MagoCloudApi
                     _ = FillApplications();
                     button_Login.ForeColor = Color.White;
                     button_Login.BackColor = Color.Green;
+                    button_Login.Text = "Ok";
                     btnAccount.Visible = true;
                     labelMessage.Text = string.Empty;
                 }
@@ -346,10 +366,9 @@ namespace MagoCloudApi
                         message = message.Replace(":", ":\n");
                     }
                     labelMessage.Text = message;
-                    button_Login.BackColor = Color.Red;
-                    labelMessage.ForeColor = Color.Red;
+                    button_Login.BackColor = Color.Firebrick;
+                    btnAccount.Visible = false;
                 }
-               
             }
         }
 
@@ -363,29 +382,28 @@ namespace MagoCloudApi
         private void button_exit_Click(object sender, EventArgs e)
         {
             DoExit();
+            this.Hide(); 
+            StartMagoApi startForm = new StartMagoApi();
+            startForm.ShowDialog();
+            this.Close();
         }
         private void button_Logout_Click(object sender, EventArgs e)
         {
             if (manager.authenticationManager.IsLogged())
             {
                 manager.authenticationManager.DoLogout(text_http.Text);
-                this.Hide(); // Nascondi il form attuale
-                //MagoCloudApi magoAPI = null;
-                StartMagoApi startForm = new StartMagoApi();
-                startForm.ShowDialog();
-                this.Close();
+                button_Login.Text = "Login";
+                button_Login.BackColor = Color.FromArgb(22, 118, 186);
+                btnAccount.Visible = false;
             }
             else
             {
                 MessageBox.Show("User is not logged, please Login!");
             }
-            button_Login.Enabled = true;
-            button_Login.BackColor = Color.FromArgb(22, 118, 186);
         }
         private void DoExit()
         {
             manager.authenticationManager.DoLogout(text_http.Text);
-            System.Windows.Forms.Application.Exit();
         }
         private void btnAccount_Click(object sender, EventArgs e)
         {
@@ -398,16 +416,11 @@ namespace MagoCloudApi
             bool isAdmin = jsonObject["IsAdmin"]?.Value<bool>() ?? false;
             if (rolesToken == null || rolesToken.Type != JTokenType.Array)
             {
-
-                // Se "Roles" è null o non è un array, non fare nulla o gestisci come necessario
                 ShowResult($"Account Name: {accountName}\nSubscriptionKey: {subscriptionKey}\nFull Name: {fullName}\nIs Admin: {isAdmin}\n\nRole = Null\n you are in DevEnv");
                 return;
             }
-           
-
             JArray rolesArray = (JArray)jsonObject["Roles"];
 
-            // Estrai e visualizza i nomi dei ruoli
             List<string> roleNames = new List<string>();
             foreach (var role in rolesArray)
             {
@@ -549,10 +562,11 @@ namespace MagoCloudApi
 
             string contentBody = await manager.tbServerManager.GetXmlParams(manager.authenticationManager.userData, DateTime.Now, fileContent);
             labelCallTbResult.Text = "Result GetXmlParams:";
-
-            TextBoxDocument.Text = contentBody;
-            Cursor = Cursors.Default;
             labelTbUrl.Text = UrlSManager.TbServerUrl;
+            TextBoxDocument.Text = contentBody;
+            // Controlla la richiesta per btnTbRequest
+            btnTbRequest.Visible = manager.tbServerManager.requestTb != null;
+            Cursor = Cursors.Default;
         }
 
         private void buttonGetTb_Click(object sender, EventArgs e)
@@ -581,6 +595,7 @@ namespace MagoCloudApi
             TextBoxDocument.Text = contentBody;
             Cursor = Cursors.Default;
             labelTbUrl.Text = UrlSManager.TbServerUrl;
+           
         }
 
         private void LabelbuttonGetParam_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -655,12 +670,14 @@ namespace MagoCloudApi
 
         private void btnClearText_MouseHover(object sender, EventArgs e)
         {
-            TextBoxDocument.BackColor = Color.FromArgb(245, 227, 227);
+            TextBoxDocument.BackColor = Color.Linen;
+           
         }
 
         private void btnClearText_MouseLeave(object sender, EventArgs e)
         {
             TextBoxDocument.BackColor = Color.AliceBlue;
+            btnClearText.BackColor = Color.AliceBlue;
         }
 
         //////////////////////////////
@@ -683,6 +700,10 @@ namespace MagoCloudApi
                 if (applications.Count > 0)
                 {
                     cbxApplication.SelectedIndex = 0;
+                }
+                else 
+                { 
+                 cbxApplication.ForeColor = Color.Red;
                 }
             }
             catch (Exception e)
@@ -785,6 +806,8 @@ namespace MagoCloudApi
 
             ShowResult(contentBody != null ? "CurrentOpeningDate\n" + contentBody : "Unable to retrieve OpeningDate\n" + contentBody, contentBody != null);
             labelWbUrl.Text = UrlSManager.TbServerUrl;
+            // Controlla la richiesta per btnWMethRequest
+            btnWMethRequest.Visible = manager.tbServerManager.requestTb != null;
         }
 
         private void btnClosingDate_Click(object sender, EventArgs e)
@@ -872,6 +895,9 @@ namespace MagoCloudApi
                 string contentBody = "DataServiceGetData: " + selectionType + "\n" + manager.dataServiceManager.GetData(manager.authenticationManager.userData, selectionType, textBoxNameSpace.Text, ref bOk);
                 ShowResult(contentBody, bOk);
                 labelDataUrl.Text = UrlSManager.DataServiceUrl;
+
+                // Controlla la richiesta per btnDataSerRequest
+                btnDataSerRequest.Visible = manager.dataServiceManager.requestDs != null;
             }
         }
 
@@ -1003,6 +1029,8 @@ namespace MagoCloudApi
             string contentBody = manager.dmMMSManager.GetDmMMSServiceVersion(manager.authenticationManager.userData);
             ShowResult(contentBody != null ? contentBody : "Error retrieving Data Manager MMS", contentBody != null);
             DmMMSUrl.Text = UrlSManager.DmMMSUrl;
+            // Controlla la richiesta per btnDManagerRequest
+            btnDManagerRequest.Visible = manager.dmMMSManager.requestDMMS != null;
         }
 
         private void btnTableSchema_Click(object sender, EventArgs e)
@@ -1356,7 +1384,6 @@ namespace MagoCloudApi
                 labelNextIdN.BackColor = Color.Red;
                 labelNextIdN.Text = cbxArchiveType.Text + " ArchiveType not present ";
             }
-
         }
 
         private void btnBObjectData_Click(object sender, EventArgs e)
@@ -1543,6 +1570,7 @@ namespace MagoCloudApi
         {
             PopulateServicesComboBox();
         }
+
         private void PopulateServicesComboBox()
         {
             ServiceManager serviceManager = new ServiceManager();
@@ -1558,10 +1586,8 @@ namespace MagoCloudApi
                 Color textColor = (status == "✅") ? Color.Green : Color.Red;
                 cbxServicesWeb.Items.Add(new ComboBoxItem(displayText, textColor));
             }
-
             cbxServicesWeb.DrawMode = DrawMode.OwnerDrawFixed;
             cbxServicesWeb.DrawItem += cbxServicesWeb_DrawItem;
-
             cbxServicesWeb.Visible = servicesStatus.Count > 0;
         }
 
@@ -1654,12 +1680,80 @@ namespace MagoCloudApi
             public string Type { get; set; }
         }
 
-        private void text_subscription_TextChanged(object sender, EventArgs e)
+        private void btnTbRequest_Click(object sender, EventArgs e)
         {
-
+            Request = manager.tbServerManager.GetRequestTbList();
+            if (Request != null)
+            {
+                formattedRequest();
+            }
+            else
+            {
+                MessageBox.Show("Make a tb server call first\r\nYou will always be able to see the last call made");
+                return;
+            }
         }
 
-       
+        private void btnWMethRequest_Click(object sender, EventArgs e)
+        {
+            Request = manager.tbServerManager.GetRequestTbList();
+            if (Request != null)
+            {
+                formattedRequest();
+            }
+            else
+            {
+                MessageBox.Show("Make a tb server call first\r\nYou will always be able to see the last call made");
+                return;
+            }
+        }
+
+        private void btnDataSerRequest_Click(object sender, EventArgs e)
+        {
+            Request = manager.dataServiceManager.GetRequestDsList();
+            if (Request != null)
+            {
+                formattedRequest();
+            }
+            else
+            {
+                MessageBox.Show("Make a Data Service call first\r\nYou will always be able to see the last call made");
+                return;
+            }
+        }
+
+        private void btnDManagerRequest_Click(object sender, EventArgs e)
+        {
+            Request = manager.dmMMSManager.GetRequestDMMSList();
+            if (Request != null)
+            {
+                formattedRequest();
+            }
+            else
+            {
+                MessageBox.Show("Make a Data Manager call first\r\nYou will always be able to see the last call made");
+                return;
+            }
+        }
+      
+        private void formattedRequest()
+        {
+            var formattedRequests = Request.Select(r => r.Replace("{", "").Replace("}", "")).ToList();
+            string separator = Environment.NewLine + new string('*', 50) + Environment.NewLine;
+            ShowResult(string.Join(separator, formattedRequests));
+        }
+
+        private void btnTbfs_Click(object sender, EventArgs e)
+        {
+            string content = 
+           $"The service that makes this call is the TBFSSERVICE :\n" +
+           $"\n- GettAllApplications: {UrlSManager.TbFsServiceUrl} /tbfs-service/GettAllApplications.\n" +
+           $"\n- GetAllModulesByApplication: {UrlSManager.TbFsServiceUrl} /tbfs-service/GetAllModulesByApplication.\n" +
+           $"\n- GetSubFolders: {UrlSManager.TbFsServiceUrl} /tbfs-service/GetSubFolders.\n" +
+           $"\n- getprofilefolders: {UrlSManager.TbFsServiceUrl} /tbfs-service/getprofilefolders";
+            ShowResult(content, false, true, true);
+        }
+
     }
 }
 

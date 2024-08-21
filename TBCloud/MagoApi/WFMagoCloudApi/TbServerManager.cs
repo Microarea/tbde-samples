@@ -18,6 +18,8 @@ namespace MagoCloudApi
     {
         public string folderPath { get; set; }
         public string outFileName { get; set; }
+        public string requestTb { get; set; }
+        private List<string> requestTbList = new List<string>();
 
         //////  RetriveTbServerUrl  ///////
 
@@ -99,7 +101,8 @@ namespace MagoCloudApi
                     request.Method = HttpMethod.Post;
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     var response = await client.SendAsync(request);
-
+                    requestTb = request.ToString();
+                    requestTbList.Add(requestTb);
                     string responseBody = response.Content.ReadAsStringAsync().Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -156,11 +159,12 @@ namespace MagoCloudApi
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveTbServerUrl(userData,DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
-
                     string jsonInString = PrepareGetTb(request, xmlContent, userData.UserName);
                     request.Method = HttpMethod.Post;
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     var response = client.SendAsync(request).Result;
+                    requestTb = request.ToString();
+                    requestTbList.Add(requestTb);
 
                     string responseBody = response.Content.ReadAsStringAsync().Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -198,51 +202,51 @@ namespace MagoCloudApi
         }
 
         public string PrepareGetTb(HttpRequestMessage request, string xmlParams, string userName)
-           {
-                var functionParams = JsonConvert.SerializeObject(new
+        {
+            var functionParams = JsonConvert.SerializeObject(new
+            {
+                ns = "Extensions.XEngine.TBXmlTransfer.GetDataRest",
+                args = new
                 {
-                    ns = "Extensions.XEngine.TBXmlTransfer.GetDataRest",
-                    args = new
-                    {
-                        param = Base64Encoder(xmlParams),
-                        useApproximation = true,
-                        loginName = userName,
-                        result = "data"
-                    }
-                });
-                return (functionParams);
-           }
-           private object Base64Encoder(string xml)
-           {
-                try
-                {
-                    var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(xml);
-                    string encoded = System.Convert.ToBase64String(plainTextBytes);
-                    return encoded;
+                    param = Base64Encoder(xmlParams),
+                    useApproximation = true,
+                    loginName = userName,
+                    result = "data"
                 }
-                catch (Exception)
-                {
-                    return string.Empty;
-                }
-           }
+            });
+            return (functionParams);
+        }
+        private object Base64Encoder(string xml)
+        {
+            try
+            {
+                var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(xml);
+                string encoded = System.Convert.ToBase64String(plainTextBytes);
+                return encoded;
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
         /// <summary>
         /// base decoder for xml strings
         /// </summary>
         /// <param name="base64String">data to decode</param>
         /// <returns></returns>
         /// 
-            private string Base64Decoder(string base64String)
+        private string Base64Decoder(string base64String)
+        {
+            try
             {
-                try
-                {
-                    byte[] data = Convert.FromBase64String(base64String);
-                    return Encoding.UTF8.GetString(data);
-                }
-                catch (Exception)
-                {
-                    return base64String;
-                }
+                byte[] data = Convert.FromBase64String(base64String);
+                return Encoding.UTF8.GetString(data);
             }
+            catch (Exception)
+            {
+                return base64String;
+            }
+        }
 
         /////////////////////////////
         /////// Set xml data ////////
@@ -257,10 +261,11 @@ namespace MagoCloudApi
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
-
                     string jsonInString = PrepareSetTb(request, xmlContent, nAction, userData.UserName);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                    requestTb = request.ToString();
+                    requestTbList.Add(requestTb);
                     string responseBody = response.Content.ReadAsStringAsync().Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -303,6 +308,11 @@ namespace MagoCloudApi
                 }
             });
             return (functionParams);
+        }
+
+        public List<string> GetRequestTbList()
+        {
+            return requestTbList;
         }
     }
 }

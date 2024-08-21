@@ -106,6 +106,8 @@ namespace MagoCloudApi
 
     class DmMMSManager
     {
+        public string requestDMMS { get; set; }
+        private List<string> requestDMMSList = new List<string>();
         internal string GetDmMMSServiceVersion(UserData userData)
         {
             using (HttpClient client = new HttpClient())
@@ -119,7 +121,7 @@ namespace MagoCloudApi
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
-
+                    requestDMMS = request.ToString();
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
                     TbResponse tbResponse = new TbResponse();
@@ -154,7 +156,8 @@ namespace MagoCloudApi
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/{call}?tableName={tableName}");
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-
+                    requestDMMS = request.ToString();
+                    requestDMMSList.Add(requestDMMS);
                     TbResponse tbResponse = new TbResponse();
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string funResponse = await response.Content.ReadAsStringAsync();
@@ -200,7 +203,8 @@ namespace MagoCloudApi
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/{call}");
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-
+                    requestDMMS = request.ToString();
+                    requestDMMSList.Add(requestDMMS);
                     var queryParam = JsonConvert.SerializeObject(query);
                     request.Content = new StringContent(content: queryParam, encoding: Encoding.UTF8, mediaType: "application/json");
                     TbResponse tbResponse = new TbResponse();
@@ -230,7 +234,8 @@ namespace MagoCloudApi
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/selectAllByKey");
-
+                    requestDMMS = request.ToString();
+                    requestDMMSList.Add(requestDMMS);
                     return await CallWithTableData(userData, tableData, request);
                 }
                 catch (HttpRequestException e)
@@ -252,7 +257,8 @@ namespace MagoCloudApi
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/exists");
-
+                    requestDMMS = request.ToString();
+                    requestDMMSList.Add(requestDMMS);
                     TbResponse response = await CallWithTableData(userData, tableData, request);
                     return response.Success == true && (response.ReturnValue.ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase));
                 }
@@ -277,7 +283,8 @@ namespace MagoCloudApi
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
 
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/add");
-
+                    requestDMMS = request.ToString();
+                    requestDMMSList.Add(requestDMMS);
                     TbResponse response = await CallWithTableData(userData, tableData, request);
 
                     return response;
@@ -304,7 +311,8 @@ namespace MagoCloudApi
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/update");
-
+                    requestDMMS = request.ToString();
+                    requestDMMSList.Add(requestDMMS);
                     return await CallWithTableData(userData, tableData, request);
                 }
                 catch (HttpRequestException e)
@@ -329,6 +337,8 @@ namespace MagoCloudApi
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/delete");
+                    requestDMMS = request.ToString();
+                    requestDMMSList.Add(requestDMMS); 
                     TbResponse response = await CallWithTableData(userData, tableData, request);
                     return response.Success == true && (response.ReturnValue.ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase));
                 }
@@ -354,9 +364,10 @@ namespace MagoCloudApi
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
 
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/businessOjectByFindKeys");
-
                     var jsonData = JsonConvert.SerializeObject(boData);
                     request.Content = new StringContent(content: jsonData, encoding: Encoding.UTF8, mediaType: "application/json");
+                    requestDMMS = request.ToString();
+                    requestDMMSList.Add(requestDMMS);
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
 
@@ -390,7 +401,8 @@ namespace MagoCloudApi
                     request.Content = new StringContent(content: jsonData, encoding: Encoding.UTF8, mediaType: "application/json");
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-
+                    requestDMMS = request.ToString();
+                    requestDMMSList.Add(requestDMMS);
                     TbResponse tbResponse = new TbResponse();
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     await AssignTbResponse(response, tbResponse);
@@ -420,6 +432,8 @@ namespace MagoCloudApi
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+                    requestDMMS = request.ToString();
+                    requestDMMSList.Add(requestDMMS);
 
                     var nrData = JsonConvert.SerializeObject(new
                     {
@@ -452,7 +466,9 @@ namespace MagoCloudApi
                 //request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                 MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                 MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                
+                requestDMMS = request.ToString();
+                requestDMMSList.Add(requestDMMS);
+
                 TbResponse tbResponse = new TbResponse();
                 HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
@@ -496,7 +512,8 @@ namespace MagoCloudApi
                     //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl);
                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-
+                    requestDMMS = request.ToString();
+                    requestDMMSList.Add(requestDMMS);
 
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
@@ -556,6 +573,11 @@ namespace MagoCloudApi
                 }
                 return null;
             }
+
+        }
+        public List<string> GetRequestDMMSList()
+        {
+            return requestDMMSList;
         }
     }
 }

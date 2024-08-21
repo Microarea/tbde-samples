@@ -10,23 +10,11 @@ using System.Windows.Forms;
 
 namespace MagoCloudApi
 {
-    public static class GlobalSettings
-    {
-        public static ButtonState CurrentButtonState { get; set; }
 
-        public enum ButtonState
-        {
-            None,
-            Cloud,
-            Web,
-            DevEnv
-        }
-    }
     public partial class StartMagoApi : Form
     {
-        //private MagoCloudApi magoAPIForm;
         public static bool IsCloudButtonClicked { get; set; }
-
+        
         public StartMagoApi()
         {
             InitializeComponent();
@@ -34,7 +22,7 @@ namespace MagoCloudApi
 
         private void btnCloud_Click(object sender, EventArgs e)
         {
-           
+
             ClickBtn(GlobalSettings.ButtonState.Cloud);
         }
 
@@ -53,8 +41,21 @@ namespace MagoCloudApi
             this.Hide(); // Nascondi il form attuale
             GlobalSettings.CurrentButtonState = click;
             MagoCloudApi mainForm = new MagoCloudApi(IsCloudButtonClicked);
-            mainForm.ShowDialog(); 
-            this.Close();      
+            mainForm.ShowDialog();
+            this.Close();
+        }
+
+    }
+    public static class GlobalSettings
+    {
+        public static ButtonState CurrentButtonState { get; set; }
+
+        public enum ButtonState
+        {
+            None,
+            Cloud,
+            Web,
+            DevEnv
         }
     }
 }
