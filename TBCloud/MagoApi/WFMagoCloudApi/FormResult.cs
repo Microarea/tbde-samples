@@ -42,7 +42,7 @@ namespace WindowsFormsResult
             richTextBoxCode.BackColor= Color.FromArgb(28, 28, 28);
             richTextBoxCode.Multiline = true;
             richTextBoxCode.WordWrap = false;
-            richTextBoxCode.Padding = new Padding(15, 5, 55, 5); 
+            richTextBoxCode.Padding = new Padding(15, 5, 55, 5);
 
             this.content = content;
             if(bHelp)

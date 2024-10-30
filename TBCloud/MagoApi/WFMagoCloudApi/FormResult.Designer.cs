@@ -42,9 +42,9 @@ namespace WindowsFormsResult
             this.buttonExitForm = new System.Windows.Forms.Button();
             this.panelTitleResult = new System.Windows.Forms.Panel();
             this.btnCopyCode = new System.Windows.Forms.Button();
+            this.labelSmile = new System.Windows.Forms.Label();
             this.labelTitleResult = new System.Windows.Forms.Label();
             this.buttonResize = new System.Windows.Forms.Button();
-            this.labelSmile = new System.Windows.Forms.Label();
             this.panelContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3Req)).BeginInit();
@@ -154,6 +154,12 @@ namespace WindowsFormsResult
             this.btnCopyCode.UseVisualStyleBackColor = false;
             this.btnCopyCode.Click += new System.EventHandler(this.btnCopyCode_Click);
             // 
+            // labelSmile
+            // 
+            resources.ApplyResources(this.labelSmile, "labelSmile");
+            this.labelSmile.ForeColor = System.Drawing.Color.White;
+            this.labelSmile.Name = "labelSmile";
+            // 
             // labelTitleResult
             // 
             resources.ApplyResources(this.labelTitleResult, "labelTitleResult");
@@ -170,12 +176,6 @@ namespace WindowsFormsResult
             this.buttonResize.Name = "buttonResize";
             this.buttonResize.UseVisualStyleBackColor = false;
             this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
-            // 
-            // labelSmile
-            // 
-            resources.ApplyResources(this.labelSmile, "labelSmile");
-            this.labelSmile.ForeColor = System.Drawing.Color.White;
-            this.labelSmile.Name = "labelSmile";
             // 
             // FormResult
             // 

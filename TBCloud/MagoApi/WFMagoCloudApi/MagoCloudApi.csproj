@@ -87,6 +87,7 @@
     <Compile Include="FormResult.Designer.cs">
       <DependentUpon>FormResult.cs</DependentUpon>
     </Compile>
+    <Compile Include="LabelManager.cs" />
     <Compile Include="MagoCloudApiManager.cs" />
     <Compile Include="MagoCloudApi.cs">
       <SubType>Form</SubType>
@@ -167,17 +168,17 @@
   <ItemGroup>
     <None Include="img\retrivetb.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Docs\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="img\magoweb-logo.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="img\DevEnvBtn.ico" />
     <None Include="img\Api.ico" />
+    <EmbeddedResource Include="Docs\IsExample.xml" />
     <Content Include="img\MagoWeb.png" />
     <Content Include="img\DevEnvBtn.png" />
+    <Content Include="Docs\OrdsLists.xml" />
     <Content Include="Resources\DevEnvBtn.png" />
     <Content Include="Resources\MagoWeb.png" />
     <None Include="Resources\MagoCloud.png" />

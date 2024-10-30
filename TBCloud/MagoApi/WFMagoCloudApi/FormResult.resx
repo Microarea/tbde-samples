@@ -133,13 +133,16 @@
     <value>NoControl</value>
   </data>
   <data name="labelFormContent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 76</value>
+    <value>33, 94</value>
+  </data>
+  <data name="labelFormContent.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="labelFormContent.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>7, 6, 7, 6</value>
   </data>
   <data name="labelFormContent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 32</value>
+    <value>154, 38</value>
   </data>
   <data name="labelFormContent.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1460,10 +1463,13 @@
     <value>NoControl</value>
   </data>
   <data name="pictureBoxHea.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 149</value>
+    <value>0, 183</value>
+  </data>
+  <data name="pictureBoxHea.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pictureBoxHea.Size" type="System.Drawing.Size, System.Drawing">
-    <value>833, 510</value>
+    <value>1111, 628</value>
   </data>
   <data name="pictureBoxHea.TabIndex" type="System.Int32, mscorlib">
     <value>51</value>
@@ -1790,10 +1796,13 @@
     <value>NoControl</value>
   </data>
   <data name="pictureBox3Req.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 73</value>
+    <value>0, 90</value>
+  </data>
+  <data name="pictureBox3Req.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pictureBox3Req.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1147, 40</value>
+    <value>1529, 49</value>
   </data>
   <data name="pictureBox3Req.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
@@ -1813,8 +1822,11 @@
   <data name="pictureBoxRequest.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="pictureBoxRequest.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="pictureBoxRequest.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 50</value>
+    <value>133, 62</value>
   </data>
   <data name="pictureBoxRequest.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1834,8 +1846,11 @@
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="pictureBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 50</value>
+    <value>133, 62</value>
   </data>
   <data name="pictureBox2.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
@@ -1853,10 +1868,13 @@
     <value>3</value>
   </data>
   <data name="richTextBoxCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 152</value>
+    <value>43, 187</value>
+  </data>
+  <data name="richTextBoxCode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="richTextBoxCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>529, 96</value>
+    <value>705, 118</value>
   </data>
   <data name="richTextBoxCode.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1882,8 +1900,11 @@
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 50</value>
+    <value>133, 62</value>
   </data>
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1903,8 +1924,11 @@
   <data name="textBoxCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="textBoxCode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="textBoxCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 21</value>
+    <value>132, 24</value>
   </data>
   <data name="textBoxCode.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1931,13 +1955,13 @@
     <value>0, 0</value>
   </data>
   <data name="panelContent.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 30, 3, 0</value>
+    <value>4, 37, 4, 0</value>
   </data>
   <data name="panelContent.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>13, 40, 0, 0</value>
+    <value>17, 49, 0, 0</value>
   </data>
   <data name="panelContent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>584, 300</value>
+    <value>779, 369</value>
   </data>
   <data name="panelContent.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1967,10 +1991,13 @@
     <value>NoControl</value>
   </data>
   <data name="buttonExitForm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>509, 0</value>
+    <value>679, 0</value>
+  </data>
+  <data name="buttonExitForm.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="buttonExitForm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 54</value>
+    <value>100, 66</value>
   </data>
   <data name="buttonExitForm.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -2006,10 +2033,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnCopyCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>322, 0</value>
+    <value>429, 0</value>
+  </data>
+  <data name="btnCopyCode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnCopyCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 54</value>
+    <value>83, 66</value>
   </data>
   <data name="btnCopyCode.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -2039,13 +2069,10 @@
     <value>NoControl</value>
   </data>
   <data name="labelSmile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>120, 3</value>
-  </data>
-  <data name="labelSmile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
+    <value>160, 4</value>
   </data>
   <data name="labelSmile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 44</value>
+    <value>125, 55</value>
   </data>
   <data name="labelSmile.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -2075,10 +2102,13 @@
     <value>NoControl</value>
   </data>
   <data name="labelTitleResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 14</value>
+    <value>16, 17</value>
+  </data>
+  <data name="labelTitleResult.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="labelTitleResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 25</value>
+    <value>86, 30</value>
   </data>
   <data name="labelTitleResult.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -2117,13 +2147,16 @@
     <value>NoControl</value>
   </data>
   <data name="buttonResize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>384, 0</value>
+    <value>512, 0</value>
+  </data>
+  <data name="buttonResize.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="buttonResize.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
   <data name="buttonResize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 54</value>
+    <value>167, 66</value>
   </data>
   <data name="buttonResize.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -2149,11 +2182,14 @@
   <data name="panelTitleResult.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="panelTitleResult.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="panelTitleResult.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
   </data>
   <data name="panelTitleResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>584, 54</value>
+    <value>779, 66</value>
   </data>
   <data name="panelTitleResult.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2174,19 +2210,22 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 16</value>
   </data>
   <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>584, 300</value>
+    <value>779, 369</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>784, 560</value>
+    <value>1045, 689</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>584, 300</value>
+    <value>779, 369</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>

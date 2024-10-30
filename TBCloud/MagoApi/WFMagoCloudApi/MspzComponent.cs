@@ -13,7 +13,7 @@ namespace MspzComponent
 
             using (Graphics g = e.Graphics)
             {
-                using (Brush brush = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(255, 255, 255), Color.FromArgb(22, 118, 186), 25f))
+                using (Brush brush = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(255, 255, 255), Color.FromArgb(22, 118, 186), 20f))
                 {
                     g.FillPath(brush, GetRoundedRectanglePath(this.ClientRectangle, 15));
                 }

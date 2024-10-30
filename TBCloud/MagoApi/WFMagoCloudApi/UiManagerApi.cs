@@ -47,13 +47,15 @@ namespace MagoCloudApi
         private ComboBox cbxModule;
         private ComboBox cbxDocReport;
         private ComboBox cbxProfile;
+        private ComboBox cbxArchiveType;
 
-        public CbxUi(ComboBox cbxApplication, ComboBox cbxModule, ComboBox cbxDocReport, ComboBox cbxProfile)
+        public CbxUi(ComboBox cbxApplication, ComboBox cbxModule, ComboBox cbxDocReport, ComboBox cbxProfile,ComboBox cbxArchiveType)
         {
             this.cbxApplication = cbxApplication;
             this.cbxModule = cbxModule;
             this.cbxDocReport = cbxDocReport;
             this.cbxProfile = cbxProfile;
+            this.cbxArchiveType = cbxArchiveType;
         }
 
         public void BtnTbfs_MouseHover(object sender, EventArgs e)
@@ -72,6 +74,16 @@ namespace MagoCloudApi
             cbxModule.ForeColor = color;
             cbxDocReport.ForeColor = color;
             cbxProfile.ForeColor = color;
+            cbxArchiveType.ForeColor = color;
+        }
+        private void textBoxArchiveType_MouseLeave(object sender, EventArgs e)
+        {
+            SetComboBoxForeColor(Color.White);
+        }
+
+        private void textBoxArchiveType_MouseHover(object sender, EventArgs e)
+        {
+            SetComboBoxForeColor(Color.FromArgb(232, 159, 0));
         }
     }
 }

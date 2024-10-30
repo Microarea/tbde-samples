@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<HotKeyLink>
+	<Function localize="OrdsLists" namespace="ERP.SaleOrders.Dbl.OrdsLists" type="string" report="False" published="False" >
+		<Param name="orderDate" type="date" localize="order date" />
+		<Param name="Customer" type="string" localize="Customer" />
+		<Param name="Payment" type="string" localize="Payment" />
+	</Function>
+	<DbField name="MA_SaleOrd.InternalOrdNo" />
+	<DbTable name="MA_SaleOrd"  loadFullRecord="true" />
+	<DbFieldDescription name="MA_SaleOrd.ExternalOrdNo" />
+	<ComboBox datafile="" maxDisplayedFields="4" />
+	<SelectionTypes>
+		<Selection name="Radar" type="radar" localize="" />
+		<Selection name="Q1" type="Q1" localize="" />
+		<Selection name="Q2" type="Q2" localize="" />
+	</SelectionTypes>
+	<SelectionModes>
+		<Mode name="Radar" type="query">
+			<![CDATA[SELECT
+						MA_SaleOrd.InternalOrdNo {COL MA_SaleOrd.InternalOrdNo TITLE "InternalOrdNo"},
+						MA_SaleOrd.OrderDate  {COL MA_SaleOrd.OrderDate TITLE "OrderDate"},
+						MA_SaleOrd.ExternalOrdNo  {COL MA_SaleOrd.ExternalOrdNo TITLE "ExternalOrdNo"},
+						MA_SaleOrd.Customer  {COL MA_SaleOrd.Customer TITLE "Customer"}
+					FROM MA_SaleOrd
+					WHERE MA_SaleOrd.TBCreated>=convert(date,GETDATE())
+			]]>
+		</Mode>
+		<Mode name="Q1" type="query">
+			<![CDATA[SELECT
+						MA_SaleOrd.InternalOrdNo {COL MA_SaleOrd.InternalOrdNo TITLE "InternalOrdNo"},
+						MA_SaleOrd.OrderDate  {COL MA_SaleOrd.OrderDate TITLE "OrderDate"},
+						MA_SaleOrd.ExternalOrdNo  {COL MA_SaleOrd.ExternalOrdNo TITLE "ExternalOrdNo"},
+						MA_SaleOrd.Customer  {COL MA_SaleOrd.Customer TITLE "Customer"}
+					FROM MA_SaleOrd
+					WHERE 
+						MA_SaleOrd.ExternalOrdNo LIKE { IN filter_value } and
+						MA_SaleOrd.OrderDate >= { IN orderDate }  
+						{ WHEN NOT IsEmpty(Customer)  EXPAND { AND MA_SaleOrd.Customer = { IN Customer } } }
+			]]>
+		</Mode>
+		<Mode name="Q2" type="query">
+			<![CDATA[SELECT
+						MA_SaleOrd.InternalOrdNo {COL MA_SaleOrd.InternalOrdNo TITLE "InternalOrdNo"},
+						MA_SaleOrd.OrderDate  {COL MA_SaleOrd.OrderDate TITLE "OrderDate"},
+						MA_SaleOrd.ExternalOrdNo  {COL MA_SaleOrd.ExternalOrdNo TITLE "ExternalOrdNo"},
+						MA_SaleOrd.Customer  {COL MA_SaleOrd.Customer TITLE "Customer"},
+						MA_SaleOrd.Payment  {COL MA_SaleOrd.Payment TITLE "Payment"}
+					FROM MA_SaleOrd
+					WHERE 
+						 MA_SaleOrd.CustSuppType = { 49 : 0 }
+						{ WHEN NOT IsEmpty(Customer)  EXPAND { AND MA_SaleOrd.Customer = { IN Customer } } }
+						{ WHEN NOT IsEmpty(Payment)  EXPAND { AND MA_SaleOrd.Payment LIKE { IN Payment } } }
+			]]>
+		</Mode>		
+	</SelectionModes>
+</HotKeyLink>

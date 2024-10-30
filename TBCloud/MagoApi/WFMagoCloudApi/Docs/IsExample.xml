@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<HotKeyLink>
+	<Function namespace="ERP.Accounting.Dbl.AccountingReasons_ms" localize="Accounting Reasons" type="string" />
+	<DbField name="MA_AccountingReasons.Reason" />
+	<ComboBox />
+	<ClassName>HKLAccountingReasons</ClassName>
+	<CallLink namespace="ERP.Accounting.Documents.AccountingGroups"/>
+
+	<SelectionTypes>
+		<Selection type="radar" name="Radar"/>
+		<Selection type="default" name="WebCombo" />
+		<Selection type="MyQry" name="MyQry" />
+	</SelectionTypes>
+
+	<SelectionModes>
+		<Mode name="Radar" type="query">
+			<![CDATA[  
+	    SELECT
+		    MA_AccountingReasons.Reason 	    {COL MA_AccountingReasons.Reason KEY},
+		    MA_AccountingReasons.Description  {COL MA_AccountingReasons.Description }
+
+	    FROM MA_AccountingReasons
+		  ORDER BY MA_AccountingReasons.Reason
+        ]]>
+		</Mode>
+
+		<Mode name="WebCombo" type="query">
+			<![CDATA[  
+	    SELECT
+		    MA_AccountingReasons.Reason 	    {COL MA_AccountingReasons.Reason KEY},
+		    MA_AccountingReasons.Description  {COL MA_AccountingReasons.Description }
+
+	    FROM MA_AccountingReasons
+	    WHERE
+		    (MA_AccountingReasons.Reason    LIKE { IN filter_value } OR
+        MA_AccountingReasons.Description    LIKE { IN filter_value })
+  
+		    ORDER BY MA_AccountingReasons.Reason
+        ]]>
+		</Mode>
+
+		<Mode name="MyQry" type="query">
+			<![CDATA[  
+	    SELECT
+		    MA_AccountingReasons.Reason 	  {COL MA_AccountingReasons.Reason KEY},
+		    MA_AccountingReasons.Description  {COL MA_AccountingReasons.Description }
+
+	    FROM MA_AccountingReasons
+	       ORDER BY MA_AccountingReasons.Reason
+        ]]>
+		</Mode>
+
+
+	</SelectionModes>
+
+	<ColumnTitles>
+		<Column name="MA_AccountingReasons.Reason" 		        localize="Code"/>
+		<Column name="MA_AccountingReasons.Description" 		  localize="Description"/>
+	</ColumnTitles>
+</HotKeyLink>

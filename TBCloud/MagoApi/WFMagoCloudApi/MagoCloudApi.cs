@@ -41,6 +41,9 @@ using System.Text.RegularExpressions;
 using System.Drawing.Text;
 using static System.Windows.Forms.LinkLabel;
 using System.Messaging;
+using System.ComponentModel.Design;
+using System.Security.Principal;
+
 
 namespace MagoCloudApi
 {
@@ -52,7 +55,7 @@ namespace MagoCloudApi
         private CbxUi cbxUi;
         public bool IsCloudButtonClicked { get; set; }
         private bool isLoggedIn = false;
-
+        private readonly LabelManager labelManager;
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
@@ -81,13 +84,18 @@ namespace MagoCloudApi
         TbResponse m_UpdateBoResponse;
         private string isClickedStart;
 
+
         public MagoCloudApi(bool isCloudButtonClicked)
         {
             InitializeComponent();
             uiManager.SetControls(this.Controls);
-            cbxUi = new CbxUi(cbxApplication, cbxModule, cbxDocReport, cbxProfile);
+            labelManager = new LabelManager(this);
+            labelManager.InitializeLabels();
+            cbxUi = new CbxUi(cbxApplication, cbxModule, cbxDocReport, cbxProfile, cbxArchiveType);
             btnTbfs.MouseHover += new EventHandler(cbxUi.BtnTbfs_MouseHover);
             btnTbfs.MouseLeave += new EventHandler(cbxUi.BtnTbfs_MouseLeave);
+            textBoxArchiveType.MouseHover += new EventHandler(cbxUi.BtnTbfs_MouseHover);
+            textBoxArchiveType.MouseLeave += new EventHandler(cbxUi.BtnTbfs_MouseLeave);
             this.cbxServicesWeb.Visible = false;
             var buttonState = GlobalSettings.CurrentButtonState;
             switch (buttonState)
@@ -118,52 +126,17 @@ namespace MagoCloudApi
             this.FormBorderStyle = FormBorderStyle.None;
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             this.tabNavigation.TabPages.Remove(this.tabMSH);
+            this.tabNavigation.TabPages.Remove(this.TabBusinessObject);
             this.cbxSelectionType.SelectedIndex = 0;
+            this.comboBoxQuery.SelectedIndex = 0; // Seleziona l'opzione predefinita
             this.WebMetodLbl.Visible = false;
             this.SearchMethod.Visible = false;
             this.lblCaseSensitive.Visible = false;
             this.IsCloudButtonClicked = this.IsCloudButtonClicked;
+            btnExploreReport.Hide();
+            DynamicQueriesPanel.Hide();
             btnAccount.Hide();
-            btnDataSerRequest.Hide();
-            btnDManagerRequest.Hide();
-            btnWMethRequest.Hide();
-            btnTbRequest.Hide();
-
-            labelTbUrl.Text = "ServiceUrl:";
-            labelDmsUrl.Text = "ServiceUrl:";
-            labelDataUrl.Text = "ServiceUrl:";
-            labelWbUrl.Text = "ServiceUrl:";
-            labelRsUrl.Text = "ServiceUrl:";
-
-            //////////// Label descriptive GET DATA SERVICE (DataServiceManager)
-            labelDataService.Text = "The DataService microservice exposes the possibility of extracting \n" +
-                                    "data that are defined through standard and custom xml contained \n" +
-                                    "in the reference objects folder. It then allows you to extract\n" +
-                                    "the data defined by a hotlink or radar query.";
-
-            //////////// Label descriptive Microservice (Assembly-version)
-            labelAVersion.Text = "Micro-service exposes an API called assemblyVersion that allows\n" +
-                                 "the current version of the micro-service to be returned.";
-
-            //////////// Label descriptive MAGIC LINK GETXMLDATA (TbServerManager)
-            labelMagicLinkGet.Text = "The TbServerGate microservice exposes the possibility to menage business objects\n" +
-                                     "based on MagicLink desktop technology.";
-
-
-            //////////// Label descriptive REPORTING SERVICE (RsManager)
-            labelRS.Text = "The ReportingServices microservice exposes the possibility\n" +
-                           "of launching a report and obtaining the extracted data.\n" +
-                           "The microservice supports both Xml and Json format.\n";
-
-            //////////// Label descriptive  (WebMethod)
-            labelWmDescription.Text = "The TbServerGate microservice exposes the possibility to access\n" +
-                                      "TbWebMethods (previously SOAP/WCF) via Rest.";
-
-            //////////// Label descriptive  (DMS)
-            labelDms.Text = "The DMS (Document Management System) it allows for storing, sharing,\n" +
-                            "and managing electronic documents.\n" +
-                            "Is a solution for digital document management.";
-
+            
         }
 
         
@@ -182,8 +155,9 @@ namespace MagoCloudApi
             myToolTip.SetToolTip(BtnFillContent, "Resize TabControl");
             myToolTip.SetToolTip(btnClearText, "Clear Result Window");
             myToolTip.SetToolTip(btnAccount, "Account Info");
-            myToolTip.SetToolTip(button_exit, "MagoCloud / MagoWeb / Development Environment"); 
+            myToolTip.SetToolTip(button_exit, "MagoCloud / MagoWeb / Development Environment");
             myToolTip.SetToolTip(btnTbfs, "TBFSSERVICE");
+            myToolTip.SetToolTip(btnExploreReport, "Open Report Pdf folder ");
             cbxServicesWeb.Items.Add("MagoWebServices");
             cbxServicesWeb.SelectedIndex = 0;
 
@@ -562,10 +536,8 @@ namespace MagoCloudApi
 
             string contentBody = await manager.tbServerManager.GetXmlParams(manager.authenticationManager.userData, DateTime.Now, fileContent);
             labelCallTbResult.Text = "Result GetXmlParams:";
-            labelTbUrl.Text = UrlSManager.TbServerUrl;
+            labelTbUrl.Text = manager.tbServerManager.requestTb;
             TextBoxDocument.Text = contentBody;
-            // Controlla la richiesta per btnTbRequest
-            btnTbRequest.Visible = manager.tbServerManager.requestTb != null;
             Cursor = Cursors.Default;
         }
 
@@ -594,8 +566,8 @@ namespace MagoCloudApi
             labelCallTbResult.Text = "Result GetXmlData:";
             TextBoxDocument.Text = contentBody;
             Cursor = Cursors.Default;
-            labelTbUrl.Text = UrlSManager.TbServerUrl;
-           
+            labelTbUrl.Text = manager.tbServerManager.requestTb;
+
         }
 
         private void LabelbuttonGetParam_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -640,7 +612,7 @@ namespace MagoCloudApi
 
             TextBoxDocument.Text = contentBody;
             Cursor = Cursors.Default;
-            labelTbUrl.Text = UrlSManager.TbServerUrl;
+            labelTbUrl.Text = manager.tbServerManager.requestTb;
         }
 
         private void LabelbuttonSetParam_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -807,7 +779,7 @@ namespace MagoCloudApi
             ShowResult(contentBody != null ? "CurrentOpeningDate\n" + contentBody : "Unable to retrieve OpeningDate\n" + contentBody, contentBody != null);
             labelWbUrl.Text = UrlSManager.TbServerUrl;
             // Controlla la richiesta per btnWMethRequest
-            btnWMethRequest.Visible = manager.tbServerManager.requestTb != null;
+           
         }
 
         private void btnClosingDate_Click(object sender, EventArgs e)
@@ -894,11 +866,9 @@ namespace MagoCloudApi
                 bool bOk = false;
                 string contentBody = "DataServiceGetData: " + selectionType + "\n" + manager.dataServiceManager.GetData(manager.authenticationManager.userData, selectionType, textBoxNameSpace.Text, ref bOk);
                 ShowResult(contentBody, bOk);
-                labelDataUrl.Text = UrlSManager.DataServiceUrl;
-
-                // Controlla la richiesta per btnDataSerRequest
-                btnDataSerRequest.Visible = manager.dataServiceManager.requestDs != null;
+                labelDataUrl.Text = manager.dataServiceManager.requestDs;
             }
+
         }
 
         private bool AreParametersOk()
@@ -920,6 +890,113 @@ namespace MagoCloudApi
             return true;
         }
 
+
+
+        //// Dynamic parameter queries 
+
+        private void btnQryDynamicInfto_Click(object sender, EventArgs e)
+        {
+            string content =
+           "The OrderLists is not a Mago document.\r\nIt was created for this example you can find it in the Docs folder in this project\n" +
+            "You can use it by adding it to your environment at the following path:\n" +
+            "YourEnvironment\\Standard\\Applications\\ERP\\SaleOrders\\ReferenceObjects";
+            ShowResult(content, false, true, true);
+        }
+        private void btnGetDataQry_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            bool bOk = false;
+            string ExtNo = "111";
+            DateTime ordDate = DateTime.Today;
+            string yesterday = "05/06/2022";
+            string filter_valQ1 = ExtNo;
+            string filter_valQ2 = "";
+            string Customer = "0001";
+            string Payment = "%RB%";
+
+            // Args Q1
+            JObject joQ1 = new JObject();
+            try
+            {
+                joQ1.Add("orderDate", yesterday);
+                joQ1.Add("Customer", Customer);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Errore nella costruzione di joQ1: " + ex.Message);
+            }
+            string args_valQ1 = joQ1.ToString();
+
+            // Args JSON per Q2
+            JObject joQ2 = new JObject();
+            try
+            {
+                joQ2.Add("Customer", Customer);
+                joQ2.Add("Payment", Payment);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Errore nella costruzione di joQ2: " + ex.Message);
+            }
+            string args_valQ2 = joQ2.ToString();
+
+            // Leggi la selezione della ComboBox
+            string selectedQuery = comboBoxQuery.SelectedItem?.ToString() ?? "";
+
+            string result = ""; // Variabile per memorizzare il risultato della query
+            switch (selectedQuery)
+            {
+                case "Radar":
+                    // Esegui la query iniziale senza `filterVal` e `argsVal`
+                    result = manager.dataServiceManager.GetData(
+                        manager.authenticationManager.userData,
+                        "radar",
+                        "ERP.SaleOrders.Dbl.OrdsLists",
+                        ref bOk
+                    );
+                    labelQuery.Text = $"Query: {selectedQuery}\nData: {ordDate.ToShortDateString()}";
+                    break;
+
+                case "Q1":
+                    // Esegui la query Q1
+                    result = manager.dataServiceManager.GetData(
+                        manager.authenticationManager.userData,
+                        "Q1",
+                        "ERP.SaleOrders.Dbl.OrdsLists",
+                        ref bOk,
+                        filter_valQ1,  // filterVal
+                        args_valQ1     // argsVal (JSON)
+                    );
+                    labelQuery.Text = $"Query: {selectedQuery}\nExtNo: {ExtNo}\nOrder Date: {yesterday}\nCustomer: {Customer}";
+                    break;
+
+                case "Q2":
+                    // Esegui la query Q2
+                    result = manager.dataServiceManager.GetData(
+                        manager.authenticationManager.userData,
+                        "Q2",
+                        "ERP.SaleOrders.Dbl.OrdsLists",
+                        ref bOk,
+                        filter_valQ2,  // filterVal
+                        args_valQ2     // argsVal (JSON)
+                    );
+                    labelQuery.Text = $"Query: {selectedQuery}\nCustomer: {Customer}\nPayment: {Payment}";
+                    break;
+
+                default:
+                    MessageBox.Show("Per favore, seleziona una query dalla lista.");
+                    return;
+            }
+
+            ShowResult($"Risultato {selectedQuery}:\n{result}");
+            labelDataUrl.Text = manager.dataServiceManager.requestDs;
+        }
+
+
         private void buttonDSVersion_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
@@ -930,6 +1007,7 @@ namespace MagoCloudApi
             }
             string contentBody = manager.dataServiceManager.GetVersion(manager.authenticationManager.userData);
             ShowResult(contentBody != null ? "Get Version Xml:\n" + contentBody : "Unable to retrieve Get Version\n" + contentBody, contentBody != null);
+            labelDataUrl.Text = manager.dataServiceManager.requestDs;
         }
 
         ////////////////////////////////
@@ -945,7 +1023,7 @@ namespace MagoCloudApi
             }
             string contentBody = manager.rsManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, 0);
             ShowResult(contentBody != null && contentBody != "" ? contentBody : "Unable to retrieve items\n" + contentBody, contentBody != null && contentBody != "");
-            labelRsUrl.Text = UrlSManager.ReportingServiceUrl;
+            labelRsUrl.Text = manager.rsManager.requestRs;
         }
 
         private void btnGetRsCustomers_Click(object sender, EventArgs e)
@@ -958,6 +1036,41 @@ namespace MagoCloudApi
             }
             string contentBody = manager.rsManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, 1);
             ShowResult(contentBody != null && contentBody != "" ? "GetRsCustomer\n" + contentBody : "Unable to retrieve customer\n" + contentBody, contentBody != null && contentBody != "");
+            labelRsUrl.Text = manager.rsManager.requestRs;
+        }
+
+        private void btnGetReportPdf_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            string contentBody = manager.rsManager.GetReportPdf(manager.authenticationManager.userData, DateTime.Now, 0);
+            ShowResult(contentBody != null && contentBody != "" ? contentBody : "Unable to retrieve Pdf\n" + contentBody, contentBody != null && contentBody != "");
+            btnExploreReport.Visible = true;
+            labelRsUrl.Text = manager.rsManager.requestRs;
+        }
+
+        private void btnExploreReport_Click(object sender, EventArgs e)
+        {
+            // Usa la variabile globale per ottenere il percorso della cartella
+            var pdfDirectory = RsManager.PdfDirectory;
+
+            // Controlla che la cartella esista prima di aprirla
+            if (Directory.Exists(pdfDirectory))
+            {
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = pdfDirectory,
+                    UseShellExecute = true
+                });
+            }
+            else
+            {
+                MessageBox.Show("The PDF directory does not exist yet.");
+            }
         }
 
         //////////////////////
@@ -1029,8 +1142,7 @@ namespace MagoCloudApi
             string contentBody = manager.dmMMSManager.GetDmMMSServiceVersion(manager.authenticationManager.userData);
             ShowResult(contentBody != null ? contentBody : "Error retrieving Data Manager MMS", contentBody != null);
             DmMMSUrl.Text = UrlSManager.DmMMSUrl;
-            // Controlla la richiesta per btnDManagerRequest
-            btnDManagerRequest.Visible = manager.dmMMSManager.requestDMMS != null;
+            
         }
 
         private void btnTableSchema_Click(object sender, EventArgs e)
@@ -1680,80 +1792,33 @@ namespace MagoCloudApi
             public string Type { get; set; }
         }
 
-        private void btnTbRequest_Click(object sender, EventArgs e)
-        {
-            Request = manager.tbServerManager.GetRequestTbList();
-            if (Request != null)
-            {
-                formattedRequest();
-            }
-            else
-            {
-                MessageBox.Show("Make a tb server call first\r\nYou will always be able to see the last call made");
-                return;
-            }
-        }
-
-        private void btnWMethRequest_Click(object sender, EventArgs e)
-        {
-            Request = manager.tbServerManager.GetRequestTbList();
-            if (Request != null)
-            {
-                formattedRequest();
-            }
-            else
-            {
-                MessageBox.Show("Make a tb server call first\r\nYou will always be able to see the last call made");
-                return;
-            }
-        }
-
-        private void btnDataSerRequest_Click(object sender, EventArgs e)
-        {
-            Request = manager.dataServiceManager.GetRequestDsList();
-            if (Request != null)
-            {
-                formattedRequest();
-            }
-            else
-            {
-                MessageBox.Show("Make a Data Service call first\r\nYou will always be able to see the last call made");
-                return;
-            }
-        }
-
-        private void btnDManagerRequest_Click(object sender, EventArgs e)
-        {
-            Request = manager.dmMMSManager.GetRequestDMMSList();
-            if (Request != null)
-            {
-                formattedRequest();
-            }
-            else
-            {
-                MessageBox.Show("Make a Data Manager call first\r\nYou will always be able to see the last call made");
-                return;
-            }
-        }
-      
-        private void formattedRequest()
-        {
-            var formattedRequests = Request.Select(r => r.Replace("{", "").Replace("}", "")).ToList();
-            string separator = Environment.NewLine + new string('*', 50) + Environment.NewLine;
-            ShowResult(string.Join(separator, formattedRequests));
-        }
 
         private void btnTbfs_Click(object sender, EventArgs e)
         {
-            string content = 
+            string content =
            $"The service that makes this call is the TBFSSERVICE :\n" +
-           $"\n- GettAllApplications: {UrlSManager.TbFsServiceUrl} /tbfs-service/GettAllApplications.\n" +
-           $"\n- GetAllModulesByApplication: {UrlSManager.TbFsServiceUrl} /tbfs-service/GetAllModulesByApplication.\n" +
-           $"\n- GetSubFolders: {UrlSManager.TbFsServiceUrl} /tbfs-service/GetSubFolders.\n" +
-           $"\n- getprofilefolders: {UrlSManager.TbFsServiceUrl} /tbfs-service/getprofilefolders";
+           $"\n- GettAllApplications: {UrlSManager.TbFsServiceUrl}/tbfs-service/GettAllApplications.\n" +
+           $"\n- GetAllModulesByApplication: {UrlSManager.TbFsServiceUrl}/tbfs-service/GetAllModulesByApplication.\n" +
+           $"\n- GetSubFolders: {UrlSManager.TbFsServiceUrl}/tbfs-service/GetSubFolders.\n" +
+           $"\n- getprofilefolders: {UrlSManager.TbFsServiceUrl}/tbfs-service/getprofilefolders";
             ShowResult(content, false, true, true);
         }
 
+        private void btnExpandDynamicQueries_Click(object sender, EventArgs e)
+        {
+            if (btnExpandDynamicQueries.Text == "Try") // Mostra il panel
+            {
+                btnExpandDynamicQueries.Text = "Close";
+                DynamicQueriesPanel.Dock = DockStyle.None;
+                DynamicQueriesPanel.Visible = true; // Rende il panel visibile
+            }
+            else // Nasconde il panel
+            {
+                btnExpandDynamicQueries.Text = "Try";
+                DynamicQueriesPanel.Dock = DockStyle.None;
+                DynamicQueriesPanel.Visible = false; // Nasconde il panel
+            }
+        }
     }
 }
 

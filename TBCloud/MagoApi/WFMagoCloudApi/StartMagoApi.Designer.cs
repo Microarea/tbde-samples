@@ -132,7 +132,7 @@
             this.Controls.Add(this.panelWeb);
             this.Controls.Add(this.panelCloud);
             this.Controls.Add(this.panelDevEnv);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "StartMagoApi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PlatformMagoApi";

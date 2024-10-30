@@ -101,8 +101,6 @@ namespace MagoCloudApi
                     request.Method = HttpMethod.Post;
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     var response = await client.SendAsync(request);
-                    requestTb = request.ToString();
-                    requestTbList.Add(requestTb);
                     string responseBody = response.Content.ReadAsStringAsync().Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -116,6 +114,8 @@ namespace MagoCloudApi
                             var decodedString = Encoding.UTF8.GetString(bytes);
                             outFileName = folderPath + "\\GetFull.xml";
                             SaveFile(decodedString);
+
+                            requestTb = UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/";
                             return decodedString;
                         }
                         else
@@ -163,8 +163,7 @@ namespace MagoCloudApi
                     request.Method = HttpMethod.Post;
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     var response = client.SendAsync(request).Result;
-                    requestTb = request.ToString();
-                    requestTbList.Add(requestTb);
+                   
 
                     string responseBody = response.Content.ReadAsStringAsync().Result;
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -184,6 +183,7 @@ namespace MagoCloudApi
                                 var decodedString = Encoding.UTF8.GetString(bytes);
                                 strings.AppendLine(decodedString.ToString());
                                 outFileName = folderPath + "\\InvRsnSet" + idx.ToString() + ".xml";
+                                requestTb = UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/";
                                 SaveFile(decodedString);
                             }
                             return strings.ToString();
@@ -277,6 +277,7 @@ namespace MagoCloudApi
                             string resultVariable = jsonObject["result"]?.ToString();
                             var bytes = Convert.FromBase64String(resultVariable.ToString());
                             var decodedString = Encoding.UTF8.GetString(bytes);
+                            requestTb = UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/";
                             return decodedString;
                         }
                         else
