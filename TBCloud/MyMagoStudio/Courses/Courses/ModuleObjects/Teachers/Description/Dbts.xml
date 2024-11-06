@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DBTs xmlns:sl="urn:TBStringLoader">
+	<Master namespace="Courses.Courses.DynamicDocuments.Teachers.MMS_Teachers">
+		<Title localizable="true">MMS_Teachers</Title>
+		<Table namespace="Courses.Courses.codeless.MMS_Teachers">MMS_Teachers</Table>
+		<ChooseUpdate>0</ChooseUpdate>
+	</Master>
+</DBTs>
