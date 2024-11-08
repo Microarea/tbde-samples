@@ -1,5 +1,0 @@
-<Applications localize="Courses" producer="Cori" productId="MW">
-  <Application container="Applications" name="Courses">
-    <Module name="Courses" />
-  </Application>
-</Applications>
