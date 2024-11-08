@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SalesModule localize="Courses" edition="Professional" internalcode="Cori">
+  <ShortNames>
+    <ShortName name="COUR" />
+  </ShortNames>
+  <Application container="Applications" name="Courses">
+    <Module name="Courses" />
+  </Application>
+</SalesModule>

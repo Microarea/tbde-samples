@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DatabaseObjects>
+  <Signature>Courses</Signature>
+  <Release>1</Release>
+  <Tables>
+    <Table namespace="Courses.Courses.codeless.MMS_Courses" mastertable="true" dynamic="true">
+      <Create release="1" createstep="1" />
+      <Columns>
+        <Column name="CourseId" localize="CourseId" type="Long" defaultvalue="0" />
+        <Column name="StartDate" localize="StartDate" type="Date" defaultvalue="1799-12-31T00:00:00" />
+        <Column name="Description" localize="Description" type="String" length="32" defaultvalue="" />
+        <Column name="Notes" localize="Notes" type="Text" defaultvalue="" />
+        <Column name="CourseLevel" localize="CourseLevel" type="Enum" basetype="8110" defaultvalue="531496960" />
+      </Columns>
+      <Variables>
+        <Variable name="TotalDays" localize="TotalDays" type="Integer" defaultvalue="0" />
+      </Variables>
+    </Table>
+    <Table namespace="Courses.Courses.codeless.MMS_CoursesInfo" dynamic="true">
+      <Create release="1" createstep="2" />
+      <Columns>
+        <Column name="CourseId" localize="CourseId" type="Long" defaultvalue="0" />
+        <Column name="Days" localize="Days" type="Integer" defaultvalue="0" />
+        <Column name="Teacher" localize="Teacher" type="String" length="10" defaultvalue="" />
+        <Column name="Notes" localize="Notes" type="Text" defaultvalue="" />
+        <Column name="PriceADay" localize="PriceADay" type="Money" defaultvalue="0.0" />
+      </Columns>
+      <Variables>
+        <Variable name="TeacherName" localize="TeacherName" type="String" length="128" defaultvalue="" />
+        <Variable name="TeacherCompleteName" localize="TeacherCompleteName" type="String" length="128" defaultvalue="" />
+      </Variables>
+    </Table>
+    <Table namespace="Courses.Courses.codeless.MMS_CoursesDetails" dynamic="true">
+      <Create release="1" createstep="3" />
+      <Columns>
+        <Column name="CourseId" localize="CourseId" type="Long" defaultvalue="0" />
+        <Column name="Line" localize="Line" type="Integer" defaultvalue="0" />
+        <Column name="CustSuppType" localize="CustSuppType" type="Enum" basetype="49" defaultvalue="3211264" />
+        <Column name="CustSupp" localize="CustSupp" type="String" length="12" defaultvalue="" />
+        <Column name="Invoiced" localize="Invoiced" type="Boolean" defaultvalue="false" />
+        <Column name="Days" localize="Days" type="Integer" defaultvalue="0" />
+        <Column name="Notes" localize="Notes" type="Text" defaultvalue="" />
+      </Columns>
+      <Variables>
+        <Variable name="CustSuppTypeToInt" localize="CustSuppTypeToInt" type="Integer" defaultvalue="0" />
+        <Variable name="CompanyName" localize="CompanyName" type="String" length="128" defaultvalue="" />
+      </Variables>
+    </Table>
+    <Table namespace="Courses.Courses.codeless.MMS_Teachers" mastertable="true" dynamic="true">
+      <Create release="1" createstep="4" />
+      <Columns>
+        <Column name="Teacher" localize="Teacher" type="String" length="10" defaultvalue="" />
+        <Column name="Description" localize="Description" type="String" length="64" defaultvalue="" />
+        <Column name="Disabled" localize="Disabled" type="Boolean" defaultvalue="false" />
+      </Columns>
+      <Variables />
+    </Table>
+  </Tables>
+  <VirtualTables>
+    <VirtualTable namespace="Courses.Courses.codeless.MMS_Courses_Virtual" mastertable="true" dynamic="true">
+      <Create release="0" createstep="0" />
+      <Variables>
+        <Variable name="CourseId" localize="CourseId" type="Long" defaultvalue="0" />
+        <Variable name="Description" localize="Description" type="String" length="32" defaultvalue="" />
+        <Variable name="CourseLevel" localize="CourseLevel" type="Enum" basetype="8110" defaultvalue="531496960" />
+        <Variable name="Teacher" localize="Teacher" type="String" length="10" defaultvalue="" />
+        <Variable name="TeacherName" localize="TeacherName" type="String" length="64" defaultvalue="" />
+        <Variable name="PriceADay" localize="PriceADay" type="Money" defaultvalue="0.0" />
+        <Variable name="Selected" localize="Selected" type="Boolean" defaultvalue="false" />
+      </Variables>
+    </VirtualTable>
+    <VirtualTable namespace="Courses.Courses.codeless.MMS_Courses_Filter" mastertable="true" dynamic="true">
+      <Create release="0" createstep="0" />
+      <Variables>
+	<Variable name="All" localize="All" type="Boolean" defaultvalue="true" />
+	<Variable name="Select" localize="Select" type="Boolean" defaultvalue="false" />
+        <Variable name="FromTeacher" localize="FromTeacher" type="String" length="10" defaultvalue="" />
+	<Variable name="ToTeacher" localize="ToTeacher" type="String" length="10" defaultvalue="" />
+      </Variables>
+    </VirtualTable>
+  </VirtualTables>
+</DatabaseObjects>
