@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DBTs xmlns:sl="urn:TBStringLoader">
+	<Master namespace="Courses.Courses.DynamicDocuments.Courses.MMS_Courses">
+		<Title localizable="true">MMS_Courses</Title>
+		<Table namespace="Courses.Courses.codeless.MMS_Courses">MMS_Courses</Table>
+		<ChooseUpdate>0</ChooseUpdate>
+		<Slaves>
+			<Slave namespace="Courses.Courses.DynamicDocuments.Courses.MMS_CoursesInfo">
+				<Title localizable="true">MMS_CoursesInfo</Title>
+				<Table namespace="Courses.Courses.codeless.MMS_CoursesInfo">MMS_CoursesInfo</Table>
+				<ChooseUpdate>0</ChooseUpdate>
+			</Slave>
+			<SlaveBuffered namespace="Courses.Courses.DynamicDocuments.Courses.MMS_CoursesDetails">
+				<Title localizable="true">MMS_CoursesDetails</Title>
+				<Table namespace="Courses.Courses.codeless.MMS_CoursesDetails">MMS_CoursesDetails</Table>
+				<ChooseUpdate>0</ChooseUpdate>
+			</SlaveBuffered>
+		</Slaves>
+	</Master>
+</DBTs>

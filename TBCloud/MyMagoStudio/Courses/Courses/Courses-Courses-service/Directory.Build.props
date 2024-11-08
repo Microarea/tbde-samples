@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <MicroserviceVersion>2.5.*</MicroserviceVersion>
+  </PropertyGroup>
+</Project>

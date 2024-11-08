@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Courses-Courses-service</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.*" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.4.*" />
+    <PackageReference Include="Microarea.Tbf.Model.Library" Version="$(MicroserviceVersion)" />
+    <PackageReference Include="taskbuilder-netcore-base" Version="$(MicroserviceVersion)" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <ProjectReference Include="..\..\..\..\tbf-model\tbf-model\tbf-model.csproj" />
+  </ItemGroup>-->
+
+</Project>
