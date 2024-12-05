@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MagoCloudApi.Properties {
+namespace TbApiTester.Properties {
     using System;
     
     

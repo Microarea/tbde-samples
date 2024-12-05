@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using static System.Windows.Forms.LinkLabel;
 
 
-namespace MagoCloudApi
+namespace TbApiTester
 {
    
     internal class UrlSManager
@@ -51,7 +51,7 @@ namespace MagoCloudApi
                         if (userData.GwamUrl == "https://gwam.mago.cloud")
                         {
                             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + urlName);
-                            MagoCloudApiManager.PrepareHeaders(request, userData, DateTime.Now);
+                            TbApiTesterManager.PrepareHeaders(request, userData, DateTime.Now);   
 
                             HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                             string responseBody = response.Content.ReadAsStringAsync().Result;

@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using static MspzComponent.OrangePanel;
-using MagoCloudApi;
 using System.Drawing.Drawing2D;
 
 namespace WindowsFormsResult

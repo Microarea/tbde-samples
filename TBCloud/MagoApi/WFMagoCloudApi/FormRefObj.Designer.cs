@@ -1,4 +1,4 @@
-﻿namespace MagoCloudApi
+﻿namespace TbApiTester
 {
     partial class FormRefObj
     {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MagoCloudApi;
+using TbApiTester;
 using System.Drawing;
 using static System.Net.Mime.MediaTypeNames;
 using System.Web.UI;
@@ -16,7 +16,7 @@ using Image = System.Drawing.Image;
 using System.IO;
 using System.ServiceProcess;
 
-namespace MagoCloudApi
+namespace TbApiTester
 {
     public class ServiceManager
     {

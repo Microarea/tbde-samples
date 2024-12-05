@@ -1,4 +1,4 @@
-﻿namespace MagoCloudApi
+﻿namespace TbApiTester
 {
     partial class StartMagoApi
     {
@@ -69,7 +69,7 @@
             this.btnWeb.BackColor = System.Drawing.Color.White;
             this.btnWeb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnWeb.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWeb.Image = global::MagoCloudApi.Properties.Resources.MagoWeb;
+            this.btnWeb.Image = global::TbApiTester.Properties.Resources.MagoWeb;
             this.btnWeb.Location = new System.Drawing.Point(5, 6);
             this.btnWeb.Name = "btnWeb";
             this.btnWeb.Padding = new System.Windows.Forms.Padding(5, 5, 5, 30);
@@ -92,7 +92,7 @@
             // 
             this.btnCloud.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCloud.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCloud.Image = global::MagoCloudApi.Properties.Resources.MagoCloud;
+            this.btnCloud.Image = global::TbApiTester.Properties.Resources.MagoCloud;
             this.btnCloud.Location = new System.Drawing.Point(2, 3);
             this.btnCloud.Name = "btnCloud";
             this.btnCloud.Size = new System.Drawing.Size(159, 85);
@@ -115,7 +115,7 @@
             this.btnDevEnv.BackColor = System.Drawing.Color.White;
             this.btnDevEnv.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDevEnv.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDevEnv.Image = global::MagoCloudApi.Properties.Resources.DevEnvBtn;
+            this.btnDevEnv.Image = global::TbApiTester.Properties.Resources.DevEnvBtn;
             this.btnDevEnv.Location = new System.Drawing.Point(3, 3);
             this.btnDevEnv.Name = "btnDevEnv";
             this.btnDevEnv.Size = new System.Drawing.Size(158, 88);
@@ -135,7 +135,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "StartMagoApi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PlatformMagoApi";
+            this.Text = "TbApi-Tester";
             this.panelWeb.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnWeb)).EndInit();
             this.panelCloud.ResumeLayout(false);
@@ -148,7 +148,7 @@
         }
 
         #endregion
-       
+
         private MspzComponent.OrangePanel orangePanel3;
         private MspzComponent.OrangePanel panelDevEnv;
         private MspzComponent.OrangePanel panelCloud;

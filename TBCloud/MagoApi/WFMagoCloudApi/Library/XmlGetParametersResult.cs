@@ -1,4 +1,4 @@
-﻿namespace MagoCloudApi.Libraries
+﻿namespace TbApiTester.Libraries
 {
     //==========================================================================================================================================
     public class XmlGetParametersResult

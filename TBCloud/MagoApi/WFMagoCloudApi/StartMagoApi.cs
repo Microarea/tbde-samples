@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MagoCloudApi
+namespace TbApiTester
 {
 
     public partial class StartMagoApi : Form
@@ -41,7 +41,7 @@ namespace MagoCloudApi
         {
             this.Hide(); // Nascondi il form attuale
             GlobalSettings.CurrentButtonState = click;
-            MagoCloudApi mainForm = new MagoCloudApi(IsCloudButtonClicked);
+            TbApiTester mainForm = new TbApiTester(IsCloudButtonClicked);
             mainForm.ShowDialog();
             this.Close();
         }

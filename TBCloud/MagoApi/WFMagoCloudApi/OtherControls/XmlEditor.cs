@@ -9,11 +9,11 @@ using ICSharpCode.AvalonEdit.Utils;
 using ICSharpCode.AvalonEdit.Folding;
 using System.Windows.Threading;
 using System.Web.UI.WebControls;
-using MagoCloudApi.Libraries;
+using TbApiTester.Libraries;
 
 
 
-namespace MagoCloudApi.OtherControls
+namespace TbApiTester.OtherControls
 {
     //===================================================================================
     public partial class XmlEditor : UserControl

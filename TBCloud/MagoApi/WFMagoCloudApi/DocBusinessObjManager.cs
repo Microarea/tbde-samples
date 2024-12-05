@@ -15,7 +15,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace MagoCloudApi
+namespace TbApiTester
 {
     public class MMS_CoursesMaster ///MasterTable
     {
@@ -88,8 +88,8 @@ namespace MagoCloudApi
             {
                 // Imposta il contenuto e le intestazioni della richiesta
                 request.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
-                MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
-                MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                TbApiTesterManager.PrepareHeaderAutorization(request, userData);
+                TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                 request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
                 try
                 {

@@ -1,5 +1,4 @@
-﻿using MagoCloudApi;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MagoCloudApi
+namespace TbApiTester
 {
     class DmsManager
     {
@@ -25,7 +24,7 @@ namespace MagoCloudApi
         //    using (HttpClient client = new HttpClient())
         //    {
         //        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/MICRODMS");
-        //        MagoCloudApiManager.PrepareHeaders(request, userData);
+        //        TbApiTesterManager.PrepareHeaders(request, userData);
 
         //        HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
         //        string responseBody = response.Content.ReadAsStringAsync().Result;
@@ -50,8 +49,8 @@ namespace MagoCloudApi
                     //if (UrlSManager.DmsServiceUrl == "") UrlSManager.DmsServiceUrl = RetriveDmsUrl(userData, DateTime.Now);
 
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DmsServiceUrl + "/dms/api/");
-                    //MagoCloudApiManager.PrepareHeaders(request, userData, DateTime.Now);
-                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    //TbApiTesterManager.PrepareHeaders(request, userData, DateTime.Now);
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -85,8 +84,8 @@ namespace MagoCloudApi
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MICRODMS/");
                     //UrlSManager.DmsServiceUrl = RetriveDmsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmsServiceUrl + "/dms/api/dmssettings/get/");
-                    //MagoCloudApiManager.PrepareHeaders(request, userData,DateTime.Now);
-                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    //TbApiTesterManager.PrepareHeaders(request, userData,DateTime.Now);
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)

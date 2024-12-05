@@ -2,7 +2,7 @@
 using System.Text;
 using System.Xml;
 
-namespace MagoCloudApi.Libraries
+namespace TbApiTester.Libraries
 {
     //===================================================================================
     class XmlFormattingStrategy

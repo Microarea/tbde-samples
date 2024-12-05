@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
-namespace MagoCloudApi.Libraries
+namespace TbApiTester.Libraries
 {
     public enum OperationType { None, GetData, SetData, GetFirstDocument, StressTest, GetSchema, GetParameters, ExistData };
     public enum CloudStatusType { None, EnvironmentSelected, PreLogin, Logged, Connected }

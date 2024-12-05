@@ -1,9 +1,9 @@
-﻿using MagoCloudApi.Libraries;
+﻿using TbApiTester.Libraries;
 using System.ComponentModel;
 using System.Windows.Markup;
 
 
-namespace MagoCloudApi.OtherControls
+namespace TbApiTester.OtherControls
 {
     partial class XmlEditor
     {

@@ -1,7 +1,9 @@
 ﻿using System.Windows.Controls;
+using TbApiTester.OtherControls;
+using TbApiTester.Libraries;
 
 
-namespace MagoCloudApi
+namespace TbApiTester
 {
     /// <summary>
     /// Interaction logic for XmlEditorWpf.xaml

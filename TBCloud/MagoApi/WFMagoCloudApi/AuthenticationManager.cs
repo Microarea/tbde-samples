@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.WebRequestMethods;
 
-namespace MagoCloudApi
+namespace TbApiTester
 {
     internal class UserData 
     {
@@ -90,7 +90,7 @@ namespace MagoCloudApi
                     //@@mmf end
 
                     //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
-                    MagoCloudApiManager.PrepareHeaderMagoAPI(request, producerKey, appKey);
+                    TbApiTesterManager.PrepareHeaderMagoAPI(request, producerKey, appKey);
                     //// Request a credential ////
                     var credential = new JObject
                                 {
@@ -161,7 +161,7 @@ namespace MagoCloudApi
                         request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/isvalidtoken");
                     //@@mmf end
                     //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/isvalidtoken");
-                    MagoCloudApiManager.PrepareHeaders(request, userData, DateTime.Now);
+                    TbApiTesterManager.PrepareHeaders(request, userData, DateTime.Now);
                     request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
@@ -209,8 +209,8 @@ namespace MagoCloudApi
                         request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/logoff");
                     //@@mmf end
                     //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/logoff");
-                     MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                     MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
 
                     request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;

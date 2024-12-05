@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using WinFormsLabel = System.Windows.Forms.Label;
 
-namespace MagoCloudApi
+namespace TbApiTester
 {
     public class LabelManager
     {
-        private readonly MagoCloudApi form;
+        private readonly TbApiTester form;
 
-        public LabelManager(MagoCloudApi form)
+        public LabelManager(TbApiTester form)
         {
             this.form = form;
         }

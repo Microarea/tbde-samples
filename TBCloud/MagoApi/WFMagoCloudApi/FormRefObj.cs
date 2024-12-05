@@ -13,20 +13,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
-using static MagoCloudApi.MagoCloudApi;
+using static TbApiTester.TbApiTester;
 
 
-
-
-
-namespace MagoCloudApi
+namespace TbApiTester
 {
     public partial class FormRefObj : Form
     {
         private string modifiedXml;
-        MagoCloudApiManager manager = new MagoCloudApiManager();
+        TbApiTesterManager manager = new TbApiTesterManager();
 
-        public FormRefObj(string content, MagoCloudApiManager man)
+        public FormRefObj(string content, TbApiTesterManager man)
         {
             InitializeComponent();
             this.xmlEditorWpfRef.textEditor.AppendText(content);
@@ -97,7 +94,7 @@ namespace MagoCloudApi
                 request.Content = form;
 
                 // Aggiunta autorizzazioni all'header
-                MagoCloudApiManager.PrepareHeaderAutorization(request, manager.authenticationManager.userData);
+                TbApiTesterManager.PrepareHeaderAutorization(request, manager.authenticationManager.userData);
 
                 using (HttpClient httpClient = new HttpClient())
                 {

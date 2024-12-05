@@ -1,4 +1,4 @@
-﻿using MagoCloudApi;
+﻿
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -15,7 +15,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace MagoCloudApi
+namespace TbApiTester
 {
     internal class RsManager
     {
@@ -34,7 +34,7 @@ namespace MagoCloudApi
         //    using (HttpClient client = new HttpClient())
         //    {
         //        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/REPORTSERVICE");
-        //        MagoCloudApiManager.PrepareHeaders(request, userData);
+        //        TbApiTesterManager.PrepareHeaders(request, userData);
 
         //        HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
         //        string responseBody = response.Content.ReadAsStringAsync().Result;
@@ -57,7 +57,7 @@ namespace MagoCloudApi
                     if (UrlSManager.ReportingServiceUrl == "") UrlSManager.ReportingServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/REPORTSERVICE");
                     //if (UrlSManager.ReportingServiceUrl == "") UrlSManager.ReportingServiceUrl = RetriveRsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.ReportingServiceUrl + "/rs/xmldata");
-                    MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
+                    TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
 
                     string jsonInString = "";
                     if (btn == 0)
@@ -105,7 +105,7 @@ namespace MagoCloudApi
                     if (UrlSManager.ReportingServiceUrl == "") UrlSManager.ReportingServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/REPORTSERVICE");
                     //if (UrlSManager.ReportingServiceUrl == "") UrlSManager.ReportingServiceUrl = RetriveRsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.ReportingServiceUrl + "/rs/getReportPdf");
-                    MagoCloudApiManager.PrepareHeaders(request, userData, operationDate);
+                    TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
 
                     string jsonInString = "";
                     if (btn == 0)

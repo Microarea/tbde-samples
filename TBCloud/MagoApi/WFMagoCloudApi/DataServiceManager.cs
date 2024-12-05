@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace MagoCloudApi
+namespace TbApiTester
 {
     class DataServiceManager
     {
@@ -28,7 +28,7 @@ namespace MagoCloudApi
         //     using (HttpClient client = new HttpClient())
         //     {
         //         HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/DATASERVICE");
-        //         MagoCloudApiManager.PrepareHeaders(request, userData);
+        //         TbApiTesterManager.PrepareHeaders(request, userData);
         //         HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
         //         string responseBody = response.Content.ReadAsStringAsync().Result;
         //         JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
@@ -83,7 +83,7 @@ namespace MagoCloudApi
                     // Configura la richiesta HTTP
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl.ToString());
 
-                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     requestDs = UrlSManager.DataServiceUrl + "/data-service/getdata/" + nameSpace + '/' + selectionType;
                    
 
@@ -133,7 +133,7 @@ namespace MagoCloudApi
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DataServiceUrl == "") UrlSManager.DataServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/DATASERVICE");
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DataServiceUrl + "/data-service/api/assemblyversion");
-                    MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     requestDs = UrlSManager.DataServiceUrl + "/data-service/api/assemblyversion";
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
