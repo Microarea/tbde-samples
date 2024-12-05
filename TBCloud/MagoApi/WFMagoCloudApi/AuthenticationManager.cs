@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Security.Policy;
 using System.Security.Principal;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.WebRequestMethods;
 
@@ -219,6 +220,7 @@ namespace MagoCloudApi
                         //// recovery autentication token ////
                         string responseBody = response.Content.ReadAsStringAsync().Result;
                         JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
+
                         if (jsonObject != null)
                         {
                             string resultVariable = jsonObject["Result"]?.ToString();
@@ -230,15 +232,22 @@ namespace MagoCloudApi
                             }
                         }
                         else
+                        {
                             MessageBox.Show("Logout reported invalid content.");
+                        }
                     }
                     else
+                    {
                         MessageBox.Show("We were unable to logout from MagoCloud.");
+                    }
                 }
                 catch (HttpRequestException e)
                 {
-                    Console.WriteLine("\nException Caught!");
-                    Console.WriteLine("Message :{0} ", e.Message);
+                    MessageBox.Show($"HTTP Request Exception: {e.Message}");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Unexpected error: {ex.Message}");
                 }
             }
         }

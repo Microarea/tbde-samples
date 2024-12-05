@@ -25,7 +25,8 @@ namespace MagoCloudApi
         internal TbResponse tbResponse = new TbResponse();
         internal ExampleManager exampleManager = new ExampleManager();
         internal ServiceManager serviceManager = new ServiceManager();
-       
+        internal DocBusinessObjManager docBusinessObjManager = new DocBusinessObjManager();
+
 
         public MagoCloudApiManager()
         {
@@ -33,7 +34,6 @@ namespace MagoCloudApi
         }
         internal static void PrepareHeaders(HttpRequestMessage request, UserData userData, DateTime operationDate)
         {
-
             PrepareHeaderAutorization(request, userData);
             PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
             PrepareHeaderServerInfo(request, userData, operationDate);

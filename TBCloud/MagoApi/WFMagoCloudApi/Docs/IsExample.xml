@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <HotKeyLink>
-	<Function namespace="ERP.Accounting.Dbl.AccountingReasons_ms" localize="Accounting Reasons" type="string" />
+	<Function namespace="ERP.Accounting.Dbl.AccountingReasons" localize="Accounting Reasons" type="string" />
 	<DbField name="MA_AccountingReasons.Reason" />
 	<ComboBox />
 	<ClassName>HKLAccountingReasons</ClassName>

@@ -3543,3 +3543,1468 @@ The Allocation Management must be enabled in the Sales Order Parameters
 		</maxs:DefaultDialog>
 	</maxs:Parameters>
 </maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:SaleBarCode type="String"></maxs:SaleBarCode>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:DiscountFormula type="String"></maxs:DiscountFormula>
+				<maxs:Markup type="Double">0.000000000000000</maxs:Markup>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:AvailabilityDate type="DateTime"></maxs:AvailabilityDate>
+				<maxs:SaleType type="DataEnum">3670020</maxs:SaleType>
+				<maxs:HasCustomers type="Boolean">false</maxs:HasCustomers>
+				<maxs:HasSuppliers type="Boolean">false</maxs:HasSuppliers>
+				<maxs:InternalNote type="String"></maxs:InternalNote>
+				<maxs:PublicNote type="String"></maxs:PublicNote>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:OldItem type="String"></maxs:OldItem>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:ProductCtg type="String"></maxs:ProductCtg>
+				<maxs:ProductSubCtg type="String"></maxs:ProductSubCtg>
+				<maxs:Picture type="String"></maxs:Picture>
+				<maxs:StandardCostDate type="DateTime"></maxs:StandardCostDate>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:PurchaseType type="DataEnum">3670020</maxs:PurchaseType>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:NotPostable type="Boolean">false</maxs:NotPostable>
+				<maxs:SalespersonComm type="Double">0.000000000000000</maxs:SalespersonComm>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:NoUoMSearch type="Boolean">false</maxs:NoUoMSearch>
+				<maxs:Job type="String"></maxs:Job>
+				<maxs:DescriptionText type="String"></maxs:DescriptionText>
+				<maxs:ProductLine type="String"></maxs:ProductLine>
+				<maxs:BasePriceWithTax type="Boolean">false</maxs:BasePriceWithTax>
+				<maxs:CreationDate type="DateTime"></maxs:CreationDate>
+				<maxs:ModificationDate type="DateTime"></maxs:ModificationDate>
+				<maxs:NoAddDiscountInSaleDoc type="Boolean">false</maxs:NoAddDiscountInSaleDoc>
+				<maxs:BarcodeSegment type="String"></maxs:BarcodeSegment>
+				<maxs:ReverseCharge type="Boolean">false</maxs:ReverseCharge>
+				<maxs:RCTaxCode type="String"></maxs:RCTaxCode>
+				<maxs:Draft type="Boolean">false</maxs:Draft>
+				<maxs:Valorize type="Boolean">false</maxs:Valorize>
+				<maxs:ItemLongDescription type="String"></maxs:ItemLongDescription>
+				<maxs:SalesForecast type="DataEnum">43188224</maxs:SalesForecast>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<maxs:Document xmlns:maxs="http://www.microarea.it/Schema/2004/SmartApplication/Module/Document//Profile.xsd" tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="Profile"><maxs:Diagnostic><maxs:Errors><maxs:Error><maxs:Code>2</maxs:Code><maxs:Source>XTech-DataManager</maxs:Source><maxs:Message>Export profile Profile not present in the current installation.</maxs:Message></maxs:Error></maxs:Errors></maxs:Diagnostic></maxs:Document><maxs:Document xmlns:maxs="http://www.microarea.it/Schema/2004/SmartApplication/Module/Document//Profile.xsd" tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="Profile"><maxs:Diagnostic><maxs:Errors><maxs:Error><maxs:Code>2</maxs:Code><maxs:Source>XTech-DataManager</maxs:Source><maxs:Message>Export profile Profile not present in the current installation.</maxs:Message></maxs:Error></maxs:Errors></maxs:Diagnostic></maxs:Document><?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="Default" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/Default.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:SaleBarCode type="String"></maxs:SaleBarCode>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:DiscountFormula type="String"></maxs:DiscountFormula>
+				<maxs:Markup type="Double">0.000000000000000</maxs:Markup>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:AvailabilityDate type="DateTime"></maxs:AvailabilityDate>
+				<maxs:SaleType type="DataEnum">3670020</maxs:SaleType>
+				<maxs:HasCustomers type="Boolean">false</maxs:HasCustomers>
+				<maxs:HasSuppliers type="Boolean">false</maxs:HasSuppliers>
+				<maxs:InternalNote type="String"></maxs:InternalNote>
+				<maxs:PublicNote type="String"></maxs:PublicNote>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:OldItem type="String"></maxs:OldItem>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:ProductSubCtg type="String"></maxs:ProductSubCtg>
+				<maxs:Picture type="String"></maxs:Picture>
+				<maxs:StandardCostDate type="DateTime"></maxs:StandardCostDate>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:PurchaseType type="DataEnum">3670020</maxs:PurchaseType>
+				<maxs:NotPostable type="Boolean">false</maxs:NotPostable>
+				<maxs:SalespersonComm type="Double">0.000000000000000</maxs:SalespersonComm>
+				<maxs:NoUoMSearch type="Boolean">false</maxs:NoUoMSearch>
+				<maxs:DescriptionText type="String"></maxs:DescriptionText>
+				<maxs:ProductLine type="String"></maxs:ProductLine>
+				<maxs:BasePriceWithTax type="Boolean">false</maxs:BasePriceWithTax>
+				<maxs:CreationDate type="DateTime"></maxs:CreationDate>
+				<maxs:ModificationDate type="DateTime"></maxs:ModificationDate>
+				<maxs:NoAddDiscountInSaleDoc type="Boolean">false</maxs:NoAddDiscountInSaleDoc>
+				<maxs:BarcodeSegment type="String"></maxs:BarcodeSegment>
+				<maxs:ReverseCharge type="Boolean">false</maxs:ReverseCharge>
+				<maxs:RCTaxCode type="String"></maxs:RCTaxCode>
+				<maxs:Draft type="Boolean">false</maxs:Draft>
+				<maxs:Valorize type="Boolean">false</maxs:Valorize>
+				<maxs:ItemLongDescription type="String"></maxs:ItemLongDescription>
+				<maxs:SalesForecast type="DataEnum">43188224</maxs:SalesForecast>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:ConsuptionOffset type="String"></maxs:ConsuptionOffset>
+				<maxs:CostCenter type="String"></maxs:CostCenter>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>

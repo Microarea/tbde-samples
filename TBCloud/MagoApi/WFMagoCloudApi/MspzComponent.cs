@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using MagoCloudApi.Libraries;
+using MagoCloudApi.OtherControls;
 
 namespace MspzComponent
 {

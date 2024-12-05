@@ -14,7 +14,6 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Web.UI;
 using Image = System.Drawing.Image;
 using System.IO;
-using System.Collections.Generic;
 using System.ServiceProcess;
 
 namespace MagoCloudApi

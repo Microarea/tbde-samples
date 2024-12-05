@@ -32,22 +32,18 @@ namespace WindowsFormsResult
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormResult));
             this.labelFormContent = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
-            this.pictureBoxHea = new System.Windows.Forms.PictureBox();
-            this.pictureBox3Req = new System.Windows.Forms.PictureBox();
             this.pictureBoxRequest = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.richTextBoxCode = new System.Windows.Forms.RichTextBox();
+            this.richXmlTextBox = new System.Windows.Forms.RichTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBoxCode = new System.Windows.Forms.TextBox();
             this.buttonExitForm = new System.Windows.Forms.Button();
             this.panelTitleResult = new System.Windows.Forms.Panel();
-            this.btnCopyCode = new System.Windows.Forms.Button();
+            this.btnUploadXml = new System.Windows.Forms.Button();
             this.labelSmile = new System.Windows.Forms.Label();
             this.labelTitleResult = new System.Windows.Forms.Label();
             this.buttonResize = new System.Windows.Forms.Button();
             this.panelContent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHea)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3Req)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRequest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -63,29 +59,13 @@ namespace WindowsFormsResult
             // panelContent
             // 
             resources.ApplyResources(this.panelContent, "panelContent");
-            this.panelContent.Controls.Add(this.pictureBoxHea);
-            this.panelContent.Controls.Add(this.pictureBox3Req);
             this.panelContent.Controls.Add(this.pictureBoxRequest);
             this.panelContent.Controls.Add(this.pictureBox2);
-            this.panelContent.Controls.Add(this.richTextBoxCode);
+            this.panelContent.Controls.Add(this.richXmlTextBox);
             this.panelContent.Controls.Add(this.pictureBox1);
             this.panelContent.Controls.Add(this.textBoxCode);
             this.panelContent.Controls.Add(this.labelFormContent);
             this.panelContent.Name = "panelContent";
-            // 
-            // pictureBoxHea
-            // 
-            this.pictureBoxHea.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.pictureBoxHea, "pictureBoxHea");
-            this.pictureBoxHea.Name = "pictureBoxHea";
-            this.pictureBoxHea.TabStop = false;
-            // 
-            // pictureBox3Req
-            // 
-            this.pictureBox3Req.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.pictureBox3Req, "pictureBox3Req");
-            this.pictureBox3Req.Name = "pictureBox3Req";
-            this.pictureBox3Req.TabStop = false;
             // 
             // pictureBoxRequest
             // 
@@ -99,12 +79,12 @@ namespace WindowsFormsResult
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.TabStop = false;
             // 
-            // richTextBoxCode
+            // richXmlTextBox
             // 
-            this.richTextBoxCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            resources.ApplyResources(this.richTextBoxCode, "richTextBoxCode");
-            this.richTextBoxCode.Name = "richTextBoxCode";
+            this.richXmlTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richXmlTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            resources.ApplyResources(this.richXmlTextBox, "richXmlTextBox");
+            this.richXmlTextBox.Name = "richXmlTextBox";
             // 
             // pictureBox1
             // 
@@ -133,7 +113,7 @@ namespace WindowsFormsResult
             // 
             this.panelTitleResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
             resources.ApplyResources(this.panelTitleResult, "panelTitleResult");
-            this.panelTitleResult.Controls.Add(this.btnCopyCode);
+            this.panelTitleResult.Controls.Add(this.btnUploadXml);
             this.panelTitleResult.Controls.Add(this.labelSmile);
             this.panelTitleResult.Controls.Add(this.labelTitleResult);
             this.panelTitleResult.Controls.Add(this.buttonResize);
@@ -143,16 +123,16 @@ namespace WindowsFormsResult
             this.panelTitleResult.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitleResult_MouseMove);
             this.panelTitleResult.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelTitleResult_MouseUp);
             // 
-            // btnCopyCode
+            // btnUploadXml
             // 
-            this.btnCopyCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            resources.ApplyResources(this.btnCopyCode, "btnCopyCode");
-            this.btnCopyCode.FlatAppearance.BorderSize = 0;
-            this.btnCopyCode.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(192)))), ((int)(((byte)(146)))));
-            this.btnCopyCode.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCopyCode.Name = "btnCopyCode";
-            this.btnCopyCode.UseVisualStyleBackColor = false;
-            this.btnCopyCode.Click += new System.EventHandler(this.btnCopyCode_Click);
+            this.btnUploadXml.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            resources.ApplyResources(this.btnUploadXml, "btnUploadXml");
+            this.btnUploadXml.FlatAppearance.BorderSize = 0;
+            this.btnUploadXml.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(192)))), ((int)(((byte)(146)))));
+            this.btnUploadXml.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnUploadXml.Name = "btnUploadXml";
+            this.btnUploadXml.UseVisualStyleBackColor = false;
+            this.btnUploadXml.Click += new System.EventHandler(this.btnUploadXml_Click);
             // 
             // labelSmile
             // 
@@ -191,11 +171,9 @@ namespace WindowsFormsResult
             this.MinimizeBox = false;
             this.Name = "FormResult";
             this.ShowIcon = false;
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.panelContent.ResumeLayout(false);
             this.panelContent.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHea)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3Req)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRequest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -215,12 +193,10 @@ namespace WindowsFormsResult
         private System.Windows.Forms.Label labelTitleResult;
         private System.Windows.Forms.TextBox textBoxCode;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.RichTextBox richTextBoxCode;
+        private System.Windows.Forms.RichTextBox richXmlTextBox;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBoxRequest;
-        private System.Windows.Forms.PictureBox pictureBox3Req;
-        private System.Windows.Forms.PictureBox pictureBoxHea;
-        private System.Windows.Forms.Button btnCopyCode;
+        private System.Windows.Forms.Button btnUploadXml;
         private System.Windows.Forms.Label labelSmile;
     }
 }

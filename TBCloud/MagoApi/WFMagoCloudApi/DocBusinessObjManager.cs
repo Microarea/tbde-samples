@@ -1,0 +1,141 @@
+﻿using EnvDTE;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlTypes;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Security.Policy;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
+
+namespace MagoCloudApi
+{
+    public class MMS_CoursesMaster ///MasterTable
+    {
+        public static string MMS_Courses = "MMS_Courses";
+
+        public long CoursesId { get; set; }
+        public DateTime StartDate { get; set; }
+        public string Description { get; set; }
+        public string Note { get; set; }
+        public Enum CourseLevel { get; set; }
+        public int TotalDay { get; set; }
+    }
+
+    public class MMS_CoursesInfoSlave ///1-1
+    {
+        public static string MMS_CoursesInfo = "MMS_CoursesInfo";
+
+        public long CourseId { get; set; }
+        public int Days { get; set; }
+        public string Teacher { get; set; }
+        public string Notes { get; set; }
+        public SqlMoney PriceADay { get; set; }
+        public string TeacherName { get; set; }
+        public string TeacherCompleteName { get; set; }
+    }
+
+    public class MMS_CoursesDetailsSlave ///1-n
+    {
+        public static string MMS_CoursesDetails = "MMS_CoursesDetails";
+
+        public long CourseId { get; set; }
+        public int Days { get; set; }
+        public string Teacher { get; set; }
+        public string Notes { get; set; }
+        public SqlMoney PriceADay { get; set; }
+        public string TeacherName { get; set; }
+        public string TeacherCompleteName { get; set; }
+    }
+
+    public enum CourseLevelEnum
+    {
+        Beginner,
+        Intermediate,
+        Expert
+    }
+
+    public class DocBusinessObjManager
+    {
+        public bool unattended = true;
+        public string BONamespace = "Courses.Courses.DynamicDocuments.Courses";
+
+        internal async Task<TClass> RunDocumentAsync<TClass>(UserData userData, string nameSpace, bool unattended, string callerId) where TClass : class, new()
+        {
+            JObject jObject = new JObject
+            {
+                ["ns"] = nameSpace,
+                ["viewMode"] = unattended ? "BackGround" : "Foreground"
+            };
+
+            // Recupera l'URL del server
+            if (string.IsNullOrEmpty(UrlSManager.TbServerUrl))
+            {
+                UrlSManager urls = new UrlSManager();
+                UrlSManager.TbServerUrl = urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER", true);
+            }
+
+            string requestUrl = "http://localhost:5000" + "/tbserver/api/tb/document/runDocument/";
+            using (HttpClient client = new HttpClient())
+            using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestUrl))
+            {
+                // Imposta il contenuto e le intestazioni della richiesta
+                request.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
+                MagoCloudApiManager.PrepareHeaderAutorization(request, userData);
+                MagoCloudApiManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+                request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+                try
+                {
+                    // Esegui la richiesta in modo asincrono
+                    HttpResponseMessage response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        JObject responseObject = JObject.Parse(responseBody);
+
+                        // Verifica il campo "success" e analizza il contenuto del componente
+                        if (responseObject["success"]?.Value<bool>() == true && responseObject["component"] is JObject componentObj)
+                        {
+                            TClass val = new TClass();
+
+                            dynamic dynamicVal = val; 
+                            dynamicVal.NameSpace = nameSpace;
+                            dynamicVal.Authorization = userData.Token;
+                            dynamicVal.ServerInfo = "fvef";
+                            dynamicVal.Id = componentObj["id"]?.ToString();
+                            dynamicVal.Url = requestUrl;
+                            dynamicVal.CallerId = callerId;
+                            dynamicVal.Unattended = unattended;
+
+                            dynamicVal.OnInitDocument();
+                            dynamicVal.StartListening();
+                            await dynamicVal.Ready; 
+
+                            return val;
+                        }
+                    }
+                    else
+                    {
+                        string errorResponse = await response.Content.ReadAsStringAsync();
+                        throw new HttpRequestException($"Errore HTTP: {response.StatusCode}, Contenuto: {errorResponse}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException("Errore durante l'esecuzione della richiesta HTTP.", ex);
+                }
+            }
+            return null;
+        }
+    }
+}
+    
+

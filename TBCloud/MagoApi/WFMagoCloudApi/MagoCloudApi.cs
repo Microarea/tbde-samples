@@ -1,48 +1,21 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Net.Http;
-using System.Web;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System.Threading;
-using System.Runtime.InteropServices;
-using System.Xml;
 using System.IO;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using System.Drawing.Drawing2D;
-using static MspzComponent.RoundedPanel;
-using static MspzComponent.OrangePanel;
 using System.Diagnostics;
-using System.Security.Policy;
-using System.Reflection;
-using System.Web.UI.WebControls;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Runtime.Remoting.Contexts;
-using Microsoft.VisualStudio.TextManager.Interop;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-using Application = System.Net.Mime.MediaTypeNames.Application;
-using EnvDTE;
-using Microsoft.VisualStudio.OLE.Interop;
-using EnvDTE90;
-using System.Web.Caching;
 using System.Linq;
-using MagoCloudApi;
-using System.Net;
-using System.Collections;
-using System.Net.NetworkInformation;
+
 using System.Text;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.ServiceProcess;
-using static MagoCloudApi.MagoCloudApi;
 using System.Text.RegularExpressions;
-using System.Drawing.Text;
-using static System.Windows.Forms.LinkLabel;
-using System.Messaging;
-using System.ComponentModel.Design;
-using System.Security.Principal;
+using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
 
 
 namespace MagoCloudApi
@@ -83,7 +56,8 @@ namespace MagoCloudApi
         TbResponse m_GetBoResponse;
         TbResponse m_UpdateBoResponse;
         private string isClickedStart;
-
+        private XDocument loadedXmlDocument;
+        public string CurrentPath { get; set; }
 
         public MagoCloudApi(bool isCloudButtonClicked)
         {
@@ -120,26 +94,28 @@ namespace MagoCloudApi
                     break;
             }
 
+
             IsCloudButtonClicked = isCloudButtonClicked;
             btnClearText.Visible = false;
             manager.tbServerManager.folderPath = folderPath;
+            cbxSelectionType.Items.Add("AddQueryHere");
             this.FormBorderStyle = FormBorderStyle.None;
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             this.tabNavigation.TabPages.Remove(this.tabMSH);
             this.tabNavigation.TabPages.Remove(this.TabBusinessObject);
             this.cbxSelectionType.SelectedIndex = 0;
-            this.comboBoxQuery.SelectedIndex = 0; // Seleziona l'opzione predefinita
-            this.WebMetodLbl.Visible = false;
+            cbxSelectionType.DropDownStyle = ComboBoxStyle.DropDown;
+            this.comboBoxQuery.SelectedIndex = 0; 
             this.SearchMethod.Visible = false;
             this.lblCaseSensitive.Visible = false;
             this.IsCloudButtonClicked = this.IsCloudButtonClicked;
             btnExploreReport.Hide();
             DynamicQueriesPanel.Hide();
             btnAccount.Hide();
-            
+
         }
 
-        
+
         public void UpdatePictureBoxImage(System.Drawing.Image newImage)
         {
             pictureBoxLogo.Image = newImage;
@@ -147,7 +123,7 @@ namespace MagoCloudApi
 
         private void MagoCloudApi_Load(object sender, EventArgs e)
         {
-            // Assegna il testo del tooltip al controllo Tooltip
+            // Text Tooltip
             System.Windows.Forms.ToolTip myToolTip = new System.Windows.Forms.ToolTip();
             myToolTip.SetToolTip(BtnRefDoc, "Refresh folder");
             myToolTip.SetToolTip(BtnOpenFolder, "Open folder");
@@ -158,6 +134,7 @@ namespace MagoCloudApi
             myToolTip.SetToolTip(button_exit, "MagoCloud / MagoWeb / Development Environment");
             myToolTip.SetToolTip(btnTbfs, "TBFSSERVICE");
             myToolTip.SetToolTip(btnExploreReport, "Open Report Pdf folder ");
+
             cbxServicesWeb.Items.Add("MagoWebServices");
             cbxServicesWeb.SelectedIndex = 0;
 
@@ -267,7 +244,7 @@ namespace MagoCloudApi
             if (isFullScreen)
             {
                 this.WindowState = FormWindowState.Normal;
-                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+                //this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
                 isFullScreen = false;
             }
             else
@@ -314,7 +291,6 @@ namespace MagoCloudApi
 
         private void button_Login_Click(object sender, System.EventArgs e)
         {
-
             bool bok = false;
 
             if (AreParametersOk())
@@ -323,7 +299,9 @@ namespace MagoCloudApi
                 if (bok)
                 {
                     LoadEnumsTable();
-                    _ = FillApplications();
+                       _= FillApplications();
+                        FillApplicationsRObj();
+
                     button_Login.ForeColor = Color.White;
                     button_Login.BackColor = Color.Green;
                     button_Login.Text = "Ok";
@@ -356,7 +334,7 @@ namespace MagoCloudApi
         private void button_exit_Click(object sender, EventArgs e)
         {
             DoExit();
-            this.Hide(); 
+            this.Hide();
             StartMagoApi startForm = new StartMagoApi();
             startForm.ShowDialog();
             this.Close();
@@ -418,7 +396,7 @@ namespace MagoCloudApi
             Cursor = Cursors.Default;
         }
 
-        
+
         ////////////////////////
         ///// TBSERVER BTN /////
         ////////////////////////
@@ -516,20 +494,35 @@ namespace MagoCloudApi
         }
 
 
+        private string GetXmlContent()
+        {
+            // Restituisci il contenuto attuale dell'editor
+            return xmlEditorWpfTb.textEditor.Text;
+        }
+
+        private void SetXmlContent(string content)
+        {
+            // Aggiungi contenuto all'editor
+            xmlEditorWpfTb.textEditor.Clear(); // Pulisci il contenuto precedente se necessario
+            xmlEditorWpfTb.textEditor.AppendText(content);
+        }
+
         private async void BtnGetParams_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            //Check if a file is selected in the ComboBox
+
             if (cbxProfile.SelectedItem == null)
             {
                 MessageBox.Show("Please select a file from the list!");
                 return;
             }
+
             string fileContent = WriteParameters();
             if (fileContent == string.Empty)
                 return;
@@ -537,37 +530,41 @@ namespace MagoCloudApi
             string contentBody = await manager.tbServerManager.GetXmlParams(manager.authenticationManager.userData, DateTime.Now, fileContent);
             labelCallTbResult.Text = "Result GetXmlParams:";
             labelTbUrl.Text = manager.tbServerManager.requestTb;
-            TextBoxDocument.Text = contentBody;
+
+            // Imposta il contenuto nell'editor
+            SetXmlContent(contentBody);
+
             Cursor = Cursors.Default;
         }
-
         private void buttonGetTb_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            // Check if a file is selected in the ComboBox
+
             if (cbxProfile.SelectedItem == null)
             {
                 MessageBox.Show("Please select a file from the list!");
                 return;
             }
-            string fileContent = TextBoxDocument.Text;
+
+            // Recupera il contenuto dall'editor
+            string fileContent = GetXmlContent();
             if (fileContent == string.Empty)
                 return;
 
-            TextBoxDocument.Text = fileContent;
-            string modifiedXml = TextBoxDocument.Text;
-
-            string contentBody = manager.tbServerManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, modifiedXml);
+            string contentBody = manager.tbServerManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
             labelCallTbResult.Text = "Result GetXmlData:";
-            TextBoxDocument.Text = contentBody;
+
+            // Aggiorna il contenuto dell'editor con il risultato
+            SetXmlContent(contentBody);
+
             Cursor = Cursors.Default;
             labelTbUrl.Text = manager.tbServerManager.requestTb;
-
         }
 
         private void LabelbuttonGetParam_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -589,30 +586,53 @@ namespace MagoCloudApi
         private void buttonSetTb_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+
+            // Verifica se l'utente è autenticato
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
+                Cursor = Cursors.Default; // Ripristina il cursore
                 return;
             }
-            // Check if a file is selected in the ComboBox
+
+            // Verifica se è stato selezionato un file
             if (cbxProfile.SelectedItem == null)
             {
                 MessageBox.Show("Please select a file from the list!");
+                Cursor = Cursors.Default; // Ripristina il cursore
                 return;
             }
 
-            string fileContent = TextBoxDocument.Text;
-            if (fileContent == string.Empty)
+            // Ottieni il contenuto dall'editor
+            string fileContent = GetXmlContent();
+            if (string.IsNullOrWhiteSpace(fileContent))
+            {
+                MessageBox.Show("The XML content is empty. Please provide valid XML data.");
+                Cursor = Cursors.Default; // Ripristina il cursore
                 return;
+            }
 
-            TextBoxDocument.Text = fileContent;
-            string modifiedXml = TextBoxDocument.Text; // Ottieni il contenuto modificato dalla RichTextBox
-            string contentBody = manager.tbServerManager.SetXmlData(manager.authenticationManager.userData, DateTime.Now, modifiedXml);
-            labelCallTbResult.Text = "Result SetXmlData:";
+            try
+            {
+                // Invia i dati modificati al server
+                string contentBody = manager.tbServerManager.SetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
 
-            TextBoxDocument.Text = contentBody;
-            Cursor = Cursors.Default;
-            labelTbUrl.Text = manager.tbServerManager.requestTb;
+                // Aggiorna il contenuto dell'editor con il risultato
+                SetXmlContent(contentBody);
+
+                // Aggiorna le etichette per mostrare il risultato
+                labelCallTbResult.Text = "Result SetXmlData:";
+                labelTbUrl.Text = manager.tbServerManager.requestTb;
+            }
+            catch (Exception ex)
+            {
+                // Gestione degli errori
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default; // Ripristina il cursore
+            }
         }
 
         private void LabelbuttonSetParam_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -632,38 +652,39 @@ namespace MagoCloudApi
 
         private void btnClearText_Click(object sender, EventArgs e)
         {
-            TextBoxDocument.Text = string.Empty;
+            xmlEditorWpfTb.textEditor.Text = string.Empty;
         }
 
-        private void TextBoxDocument_TextChanged(object sender, EventArgs e)
-        {
-            btnClearText.Visible = !string.IsNullOrEmpty(TextBoxDocument.Text);
-        }
-
-        private void btnClearText_MouseHover(object sender, EventArgs e)
-        {
-            TextBoxDocument.BackColor = Color.Linen;
-           
-        }
-
-        private void btnClearText_MouseLeave(object sender, EventArgs e)
-        {
-            TextBoxDocument.BackColor = Color.AliceBlue;
-            btnClearText.BackColor = Color.AliceBlue;
-        }
 
         //////////////////////////////
         ///// TBFSSERVICE MANAGER ////
         //////////////////////////////
+
+        //private Task<List<string>> FillApplications()
+        //{
+        //    try
+        //    {
+        //        List<string> applications = manager.tbFsServiceManager.GetApplications(manager.authenticationManager.userData, DateTime.Now);
+
+        //            return applications;
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MessageBox.Show(e.Message);
+        //    }
+        //}
+
+
         private async Task FillApplications()
         {
             try
             {
-                cbxApplication.DataSource = null;
                 List<string> applications = await manager.tbFsServiceManager.GetApplications(manager.authenticationManager.userData, DateTime.Now);
                 if (applications == null)
                     return;
 
+                cbxApplication.DataSource = null;
                 if (!applications.Contains("Application"))
                 {
                     applications.Insert(0, "Application");
@@ -673,9 +694,9 @@ namespace MagoCloudApi
                 {
                     cbxApplication.SelectedIndex = 0;
                 }
-                else 
-                { 
-                 cbxApplication.ForeColor = Color.Red;
+                else
+                {
+                    cbxApplication.ForeColor = Color.Red;
                 }
             }
             catch (Exception e)
@@ -759,6 +780,66 @@ namespace MagoCloudApi
             return content;
         }
 
+
+        private async Task FillApplicationsRObj()
+        {
+            try
+            {
+                List<string> applications = await manager.tbFsServiceManager.GetApplications(manager.authenticationManager.userData, DateTime.Now);
+                if (applications == null)
+                    return;
+
+                cbxAppRObj.DataSource = null;
+                if (!applications.Contains("Application"))
+                {
+                    applications.Insert(0, "Application");
+                }
+                cbxAppRObj.DataSource = applications;
+                if (applications.Count > 0)
+                {
+                    cbxAppRObj.SelectedIndex = 0;
+                }
+                else
+                {
+                    cbxAppRObj.ForeColor = Color.Red;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+        }
+
+        private async Task FillModulesRObj(string application)
+        {
+            cbxModRObj.DataSource = null;
+            List<string> modules = await manager.tbFsServiceManager.GetModules(manager.authenticationManager.userData, DateTime.Now, application);
+            if (modules == null)
+                return;
+            if (!modules.Contains("Module"))
+            {
+                modules.Insert(0, "Module");
+            }
+            cbxModRObj.DataSource = modules;
+            if (modules.Count > 0)
+                cbxModRObj.SelectedIndex = 0;
+        }
+
+
+        private void PopulateFileList(string path)
+        {
+            cbxDocRObj.DataSource = null;
+
+            if (!Directory.Exists(path))
+                throw new DirectoryNotFoundException($"The directory '{path}' does not exist.");
+
+            string[] files = Directory.GetFiles(path);
+            List<string> fileNames = files.Select(f => Path.GetFileName(f)).ToList();
+
+            cbxDocRObj.DataSource = fileNames;
+        }
+
         //////////////////////////
         ///// WEBMETHODS BTN /////
         //////////////////////////
@@ -779,7 +860,7 @@ namespace MagoCloudApi
             ShowResult(contentBody != null ? "CurrentOpeningDate\n" + contentBody : "Unable to retrieve OpeningDate\n" + contentBody, contentBody != null);
             labelWbUrl.Text = UrlSManager.TbServerUrl;
             // Controlla la richiesta per btnWMethRequest
-           
+
         }
 
         private void btnClosingDate_Click(object sender, EventArgs e)
@@ -848,27 +929,53 @@ namespace MagoCloudApi
         /////  DATA SERVICE BTN   /////
         ///////////////////////////////
 
+        //private void buttonDSGetData_Click(object sender, EventArgs e)
+        //{
+        //    Cursor = Cursors.WaitCursor;
+        //    if (!manager.authenticationManager.IsLogged())
+        //    {
+        //        MessageBox.Show("User is not logged, please Login!");
+        //        return;
+        //    }
+        //    else if (textBoxNameSpace.Text != null && textBoxNameSpace.Text != "")
+        //    {
+        //        string selectionType = "default";
+        //        if (cbxSelectionType.SelectedItem != null && string.Compare(cbxSelectionType.SelectedItem.ToString(), "radar", true) == 0)
+        //            selectionType = "radar";
+        //        else if (cbxSelectionType.SelectedItem != null && string.Compare(cbxSelectionType.SelectedItem.ToString(), "MyQry", true) == 0)
+        //            selectionType = "MyQry";
+        //        bool bOk = false;
+        //        string contentBody = "DataServiceGetData: " + selectionType + "\n" + manager.dataServiceManager.GetData(manager.authenticationManager.userData, selectionType, textBoxNameSpace.Text, ref bOk);
+        //        ShowResult(contentBody, bOk);
+        //        labelDataUrl.Text = manager.dataServiceManager.requestDs;
+        //    }
+
+        //}
         private void buttonDSGetData_Click(object sender, EventArgs e)
         {
+
             Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            else if (textBoxNameSpace.Text != null && textBoxNameSpace.Text != "")
+            else if (!string.IsNullOrEmpty(textBoxNameSpace.Text))
             {
                 string selectionType = "default";
-                if (cbxSelectionType.SelectedItem != null && string.Compare(cbxSelectionType.SelectedItem.ToString(), "radar", true) == 0)
-                    selectionType = "radar";
-                else if (cbxSelectionType.SelectedItem != null && string.Compare(cbxSelectionType.SelectedItem.ToString(), "MyQry", true) == 0)
-                    selectionType = "MyQry";
+
+                // Legge il valore dalla ComboBox
+                if (cbxSelectionType.SelectedItem != null || !string.IsNullOrWhiteSpace(cbxSelectionType.Text))
+                {
+                    selectionType = cbxSelectionType.Text; // Usa il testo inserito
+                }
+
                 bool bOk = false;
-                string contentBody = "DataServiceGetData: " + selectionType + "\n" + manager.dataServiceManager.GetData(manager.authenticationManager.userData, selectionType, textBoxNameSpace.Text, ref bOk);
+                string contentBody = "DataServiceGetData: " + selectionType + "\n" +
+                                     manager.dataServiceManager.GetData(manager.authenticationManager.userData, selectionType, textBoxNameSpace.Text, ref bOk);
                 ShowResult(contentBody, bOk);
                 labelDataUrl.Text = manager.dataServiceManager.requestDs;
             }
-
         }
 
         private bool AreParametersOk()
@@ -991,8 +1098,7 @@ namespace MagoCloudApi
                     MessageBox.Show("Per favore, seleziona una query dalla lista.");
                     return;
             }
-
-            ShowResult($"Risultato {selectedQuery}:\n{result}");
+            ShowResult($"Risultato {selectedQuery}:\n{result}", bOk);
             labelDataUrl.Text = manager.dataServiceManager.requestDs;
         }
 
@@ -1142,7 +1248,7 @@ namespace MagoCloudApi
             string contentBody = manager.dmMMSManager.GetDmMMSServiceVersion(manager.authenticationManager.userData);
             ShowResult(contentBody != null ? contentBody : "Error retrieving Data Manager MMS", contentBody != null);
             DmMMSUrl.Text = UrlSManager.DmMMSUrl;
-            
+
         }
 
         private void btnTableSchema_Click(object sender, EventArgs e)
@@ -1381,7 +1487,7 @@ namespace MagoCloudApi
         //    }
         //    catch (Exception ex)
         //    {
-               
+
         //        MessageBox.Show($"Si è verificato un errore: {ex.Message}");
         //    }
         //}
@@ -1559,124 +1665,7 @@ namespace MagoCloudApi
             }
         }
 
-        private void btnUpdateBusinessObject_Click(object sender, EventArgs e)
-        {
-            BusinessObjectData boData = new BusinessObjectData();
-            string boUpdated = "{ \"MA_CustSupp\": [{ \"data\": \"{\\\"CustSuppType\\\": 3211264, \\\"CustSupp\\\": \\\"0001\\\",\\\"Draft\\\": false,  \\\"CompanyName\\\": \\\"Biciclette Colombo Srl 111\\\", \\\"ISOCountryCode\\\": \\\"IT\\\", \\\"TaxIdNumber\\\": \\\"03099170109\\\", \\\"FiscalCode\\\": \\\"03099170109\\\",  \\\"CustSuppKind\\\": 7733248,  \\\"Account\\\": \\\"01011000\\\",  \\\"Address\\\": \\\"Via Pierino Negrotto Cambiaso 8\\\",  \\\"ZIPCode\\\": \\\"16159\\\",  \\\"City\\\": \\\"Genova\\\",  \\\"County\\\": \\\"GE\\\",  \\\"Country\\\": \\\"\\\",  \\\"Telephone1\\\": \\\"010-659.12.35\\\",  \\\"Telephone2\\\": \\\"\\\",  \\\"Telex\\\": \\\"\\\",  \\\"Fax\\\": \\\"010-650.12.40\\\",  \\\"Internet\\\": \\\"\\\",  \\\"EMail\\\": \\\"\\\",  \\\"SIACode\\\": \\\"\\\",  \\\"ContactPerson\\\": \\\"\\\",  \\\"TitleCode\\\": \\\"\\\",  \\\"NaturalPerson\\\": false,  \\\"IsAnEUCustSupp\\\": false,  \\\"Language\\\": \\\"\\\",  \\\"PriceList\\\": \\\"OFF\\\",  \\\"CustSuppBank\\\": \\\"BCRL01GE\\\",  \\\"Payment\\\": \\\"RD\\\",  \\\"CACheck\\\": \\\"\\\",  \\\"IBAN\\\": \\\"\\\",  \\\"IBANIsManual\\\": false,  \\\"CA\\\": \\\"\\\",  \\\"CIN\\\": \\\"\\\",  \\\"Currency\\\": \\\"EUR\\\",  \\\"SendDocumentsTo\\\": \\\"\\\",  \\\"PaymentAddress\\\": \\\"\\\",  \\\"ShipToAddress\\\": \\\"\\\",  \\\"Disabled\\\": false,  \\\"Notes\\\": \\\"\\\",  \\\"WorkingTime\\\": \\\"\\\",  \\\"CompanyBank\\\": \\\"\\\",  \\\"Discount1\\\": 0,  \\\"Discount2\\\": 0,  \\\"DiscountFormula\\\": \\\"\\\",  \\\"ExternalCode\\\": \\\"\\\",  \\\"CompanyCA\\\": \\\"\\\",  \\\"Presentation\\\": 1376256,  \\\"CustomerCompanyCA\\\": \\\"\\\",  \\\"DDCustSupp\\\": \\\"\\\",  \\\"PrivacyStatement\\\": false,  \\\"LinkedCustSupp\\\": \\\"0023\\\",  \\\"DocumentSendingType\\\": 11337728,  \\\"IsDummy\\\": false,  \\\"InTaxLists\\\": false,  \\\"ChambOfCommRegistrNo\\\": \\\"\\\",  \\\"WorkingPosition\\\": \\\"\\\",  \\\"TaxOffice\\\": \\\"\\\",  \\\"Storage\\\": \\\"\\\",  \\\"CostCenter\\\": \\\"\\\",  \\\"Job\\\": \\\"\\\",  \\\"InsertionDate\\\": \\\"1799-12-30T23:00:00.000Z\\\",  \\\"PrivacyStatementPrintDate\\\": \\\"2021-12-30T23:00:00.000Z\\\",  \\\"Region\\\": \\\"Liguria\\\",  \\\"MailSendingType\\\": 12451840,  \\\"OldCustSupp\\\": \\\"\\\",  \\\"CompanyRegistrNo\\\": \\\"\\\",  \\\"FactoringCA\\\": \\\"\\\",  \\\"InCurrency\\\": false,  \\\"NoBlackList\\\": false,  \\\"BlackListCustSupp\\\": \\\"\\\",  \\\"SkypeID\\\": \\\"\\\",  \\\"CBICode\\\": \\\"\\\",  \\\"InvoiceAccTpl\\\": \\\"\\\",  \\\"CreditNoteAccTpl\\\": \\\"\\\",  \\\"Latitude\\\": \\\"\\\",  \\\"Longitude\\\": \\\"\\\",  \\\"IsCustoms\\\": false,  \\\"CertifiedEMail\\\": \\\"\\\",  \\\"NoTaxComm\\\": false,  \\\"NoSendPostaLite\\\": false,  \\\"GenRegNo\\\": \\\"\\\",  \\\"GenRegEntity\\\": \\\"\\\",  \\\"FedStateReg\\\": \\\"\\\",  \\\"TaxpayerType\\\": 30212096,  \\\"MunicipalityReg\\\": \\\"\\\",  \\\"SUFRAMA\\\": \\\"\\\",  \\\"Address2\\\": \\\"\\\",  \\\"StreetNo\\\": \\\"\\\",  \\\"District\\\": \\\"\\\",  \\\"FederalState\\\": \\\"\\\",  \\\"PaymentPeriShablesWithin60\\\": \\\"\\\",  \\\"PaymentPeriShablesOver60\\\": \\\"\\\",  \\\"FiscalCtg\\\": \\\"\\\",  \\\"ActivityCode\\\": \\\"\\\",  \\\"FantasyName\\\": \\\"\\\",  \\\"PymtAccount\\\": \\\"\\\",  \\\"UsedForSummaryDocuments\\\": false,  \\\"LeasingLetter\\\": \\\"\\\",  \\\"ChambOfCommCounty\\\": \\\"\\\",  \\\"SplitTax\\\": false,  \\\"FiscalName\\\": \\\"\\\",  \\\"TaxIdType\\\": 33226752,  \\\"PrivacyAgreed\\\": false,  \\\"MarketingAgreed\\\": false,  \\\"SplitTaxIBAN\\\": \\\"\\\",  \\\"GLN\\\": \\\"\\\",  \\\"GLNDataExchange\\\": \\\"\\\",  \\\"GroupTaxIdNumber\\\": \\\"\\\",  \\\"EUTaxIdNumber\\\": \\\"\\\",  \\\"SubsidizedCustomer\\\": false,  \\\"InLiquidation\\\": false,  \\\"VSLCode\\\": 0,  \\\"TbCreated\\\": \\\"2023-04-26T13:38:31.193Z\\\",  \\\"TbModified\\\": \\\"2023-04-26T13:38:31.193Z\\\",  \\\"TbCreatedId\\\": 0,  \\\"TbModifiedId\\\": 0,  \\\"OMNIASubAccount\\\": \\\"\\\",  \\\"ProductLine\\\": \\\"\\\"}\", \"MA_CustSuppCustomerOptions\": [ {  \"CustSuppType\": 3211264,   \"Customer\": \"0001\",  \"CommissionCtg\": \"\",   \"Area\": \"UK\",   \"Salesperson\": \"CD\",\r\n    \"AreaManager\": \"CD\"\r\n  }\r\n],\r\n      \"MA_CustSuppBalances\": [\r\n {\r\n    \"CustSuppType\": 3211264,\r\n    \"CustSupp\": \"0001\",\r\n    \"FiscalYear\": 2018,\r\n    \"BalanceYear\": 2019,\r\n    \"BalanceType\": 3145730,\r\n    \"BalanceMonth\": 1,\r\n    \"Nature\": 9306112,\r\n    \"Currency\": \"EUR\",\r\n    \"TBCompanyID\": 0,\r\n    \"Debit\": 13609.71,\r\n    \"Credit\": 0,   \"TbCreated\": \"2023-04-26T13:38:48.436Z\",   \"TbModified\": \"2023-04-26T13:38:48.436Z\",    \"TbCreatedId\": 0,    \"TbModifiedId\": 0  }]  } ]}";
-            boData.BONamespace = "ERP.CustomersSuppliers.Documents.Customers";
-            boData.FindFields.Add("CustSuppType", 3211264);
-            boData.FindFields.Add("CompanyName", "Fittizio33");
-            boData.FindFields.Add("CustSupp", "0001");
-            boData.Data = JsonConvert.DeserializeObject(boUpdated);
-            //m_GetBoResponse = manager.dmMMSManager.UpdateBusinessObject(manager.authenticationManager.userData, boData).Result;
-            TbResponse boUpdtResponse = manager.dmMMSManager.UpdateBusinessObject(manager.authenticationManager.userData, boData).Result;
-            string boResponseContentBody = (string)boUpdtResponse.ReturnValue;
-            //BusinessObjectData boData = new BusinessObjectData();
-            //boData.BONamespace = "ERP.CustomersSuppliers.Documents.Customers";
-            //boData.FindFields.Add("CustSuppType", textBoxBoCustSType.Text);
-
-            //// search by company name or by other master table fields. % field enables like operator
-            //boData.FindFields.Add("CompanyName", "");
-            //boData.OrderByFields = new string[] { };
-            //JObject dataBOVal = JObject.Parse((string)m_GetBoResponse.ReturnValue);
-            //ValObjectData valObjectData = new ValObjectData();
-            //valObjectData.BONamespace = boData.BONamespace;
-            //valObjectData.FindFields = boData.FindFields;
-            //valObjectData.Name = "CompanyName";
-            //valObjectData.Value = "NuovoFittizio";
-            //boData.RequestedTables = new List<RequestedTable>();
-            //boData.RequestedTables.Add(new RequestedTable(textBoxBoTabName.Text, new string[] { "CustSuppType", "CustSupp", "CompanyName" }));
-            //boData.RequestedTables.Add(new RequestedTable(textBoxCustSCOptions.Text, new string[] { "CustSuppType", "Customer", "Category", "CommissionCtg", "Area", "Salesperson", "AreaManager" }));
-            //boData.RequestedTables.Add(new RequestedTable(textBoxCustSuppNotes.Text, new string[] { "CustSuppType", "CustSupp", "Line", "Notes", "TBCreated" }));
-            //JObject propVal = null;
-
-            //string sarData = dataBOVal["MA_CustSupp"]?.ToString();
-            //JArray jarData = JsonConvert.DeserializeObject<JArray>(sarData);
-            //JObject updatedData = new JObject();
-            //updatedData.Add("MA_CustSupp", jarData);
-            ////JArray jArrayData = new JArray(jarData);
-
-            //for (int i = 0; i < jarData.Count; i++)
-            //{
-            //    JObject jData = (JObject)jarData[i];
-            //    foreach (var property in jData.Properties())
-            //    {
-            //        if (property.Name == "data")
-            //        {
-            //            if (property.Value.Type == JTokenType.Object)
-            //            {
-            //                JObject jVal = (JObject)property.Value;
-            //                foreach (var pv in jVal.Properties())
-            //                {
-
-            //                    if (pv.Name == "CompanyName")
-            //                    {
-            //                        pv.Value = valObjectData.Value;
-            //                        pv.Value = "NuovaRoba";
-            //                    }
-            //                }
-            //            }
-            //            //else if (property.Value.Type == JTokenType.String)
-            //            //{
-            //            //    JObject jVal = JObject.Parse(property.Value.ToString());
-            //            //    foreach (var pv in jVal.Properties())
-            //            //    {
-            //            //        if (pv.Name == "CustSupp")
-            //            //        {
-            //            //            pv.Value = "Fittizio2";
-            //            //        }
-            //            //        if (pv.Name == "CompanyName")
-            //            //        {
-            //            //            pv.Value = "NuovoFittizio";
-            //            //        }
-            //            //    }
-            //            //}
-            //            else if (property.Value.Type == JTokenType.String)
-            //            {
-            //                JObject jVal = new JObject();
-            //                //jVal.Add("CompanyName", valObjectData.Value);
-            //                jVal.Add("CompanyName", "NuovaRoba");
-            //                jVal.Add("CustSupp", "NuovoFittizio");
-            //                property.Value = jVal;
-            //            }
-            //        }
-            //    }
-            //}
-
-            //string dataUpdate = updatedData.ToString(); // Converti la struttura aggiornata in una stringa JSON
-
-            //boData.Data = updatedData;
-            //JObject masterJson = JObject.Parse(boData.Data.ToString());
-            //m_GetBoResponse = manager.dmMMSManager.UpdateBusinessObject(manager.authenticationManager.userData, boData).Result;
-
-            //string boResponseContentBody = (string)m_GetBoResponse.ReturnValue;
-            //if (boResponseContentBody != null)
-            //{
-            //    JObject dataObject = JObject.Parse(boData.Data.ToString());
-            //    string contentBody = "";
-
-            //    foreach (var property in dataObject.Properties())
-            //    {
-            //        if (property.Value.Type != JTokenType.Null && property.Value.ToString() != "")
-            //        {
-            //            string cleanedValue = property.Value.ToString().Trim();
-            //            contentBody += $"{(property.Name == "Data" ? "Data" : property.Name)}: {cleanedValue}\n";
-            //        }
-            //    }
-            //    if (!string.IsNullOrEmpty(contentBody))
-            //    {
-            //        ShowResult(contentBody);
-            //    }
-            //    else
-            //    {
-            //        ShowResult("No valid BObjectData found.", false);
-            //    }
-            //}
-            //else
-            //{
-            //    ShowResult("Error retrieving BObjectData: Null response.\nCheck that the entered parameters are correct.", false);
-            //}
-        }
+      
 
         private void cbxServicesWeb_DropDown(object sender, EventArgs e)
         {
@@ -1817,6 +1806,238 @@ namespace MagoCloudApi
                 btnExpandDynamicQueries.Text = "Try";
                 DynamicQueriesPanel.Dock = DockStyle.None;
                 DynamicQueriesPanel.Visible = false; // Nasconde il panel
+            }
+        }
+
+        private void btnBusinessObj_Click(object sender, EventArgs e)
+        {
+
+
+            // Imposta i parametri per RunDocumentAsync
+            string nameSpace = "Courses.Courses.DynamicDocuments.Courses"; // Adatta al tuo contesto
+            bool unattended = true;
+            string callerId = "caller123"; // Un identificatore qualsiasi per il chiamante
+
+
+
+            // Richiama il metodo RunDocumentAsync e attendi il risultato
+            var result = manager.docBusinessObjManager.RunDocumentAsync<object>(manager.authenticationManager.userData, nameSpace, unattended, callerId);
+
+            // Gestisci il risultato (opzionale)
+            if (result != null)
+            {
+                MessageBox.Show("RunDocumentAsync completato con successo.");
+            }
+            else
+            {
+                MessageBox.Show("RunDocumentAsync ha restituito null.");
+            }
+        }
+
+        private void cbxSelectionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSelectionType.SelectedItem != null)
+            {
+                // Controlla se l'utente ha selezionato "AddQueryHere"
+                if (cbxSelectionType.SelectedItem.ToString() == "AddQueryHere")
+                {
+                    // Permetti l'editing del testo
+                    cbxSelectionType.Text = "";
+                }
+                else
+                {
+                    // Impedisci l'editing e forza il testo a essere l'elemento selezionato
+                    cbxSelectionType.Text = cbxSelectionType.SelectedItem.ToString();
+                }
+            }
+        }
+
+
+        private async void cbxAppRObj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            manager.tbFsServiceManager.selApp = (cbxAppRObj.SelectedItem == null) ? string.Empty : cbxAppRObj.SelectedItem.ToString();
+
+
+            if (manager.tbFsServiceManager.selApp != "Applications")
+                await FillModulesRObj(manager.tbFsServiceManager.selApp);
+
+        }
+
+        private async void cbxModRObj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            manager.tbFsServiceManager.selMod = (cbxModRObj.SelectedItem == null) ? string.Empty : cbxModRObj.SelectedItem.ToString();
+
+            if (manager.tbFsServiceManager.selMod != "Module" && manager.tbFsServiceManager.selMod != string.Empty)
+            {
+                string application = manager.tbFsServiceManager.selApp;
+                string module = manager.tbFsServiceManager.selMod;
+
+                string basePath = await manager.tbFsServiceManager.GetReferenceObjBasePath(manager.authenticationManager.userData, application, module);
+                manager.tbFsServiceManager.CurrentPath = basePath;
+                PopulateFileList(basePath);
+            }
+        }
+
+        private void cbxDocRObj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxDocRObj.SelectedItem == null)
+            {
+                textBoxNameSpace.Clear();
+                cbxSelectionType.DataSource = null; // Reset combobox
+                loadedXmlDocument = null; // Reset XML
+                return;
+            }
+
+            string selectedFile = cbxDocRObj.SelectedItem.ToString();
+            manager.tbFsServiceManager.selDocObj = selectedFile;
+            string fullPath = Path.Combine(manager.tbFsServiceManager.CurrentPath, selectedFile);
+
+            if (File.Exists(fullPath))
+            {
+                try
+                {
+                    // Carica l'XML e salva l'oggetto
+                    loadedXmlDocument = XDocument.Load(fullPath);
+
+                    // 1. Extract namespace
+                    XElement functionElement = loadedXmlDocument.Descendants("Function").FirstOrDefault();
+                    if (functionElement != null && functionElement.Attribute("namespace") != null)
+                    {
+                        string namespaceValue = functionElement.Attribute("namespace").Value;
+                        textBoxNameSpace.Text = namespaceValue;
+                    }
+                    else
+                    {
+                        textBoxNameSpace.Text = "Namespace not found.";
+                    }
+
+                    // 2. Populated combobox "name" tag <Selection>
+                    IEnumerable<string> selectionNames = loadedXmlDocument
+                        .Descendants("SelectionTypes")
+                        .Descendants("Selection")
+                        .Attributes("name")
+                        .Select(attr => attr.Value);
+
+                    if (selectionNames.Any())
+                    {
+                        cbxSelectionType.DataSource = selectionNames.ToList(); // Populated  combobox
+                    }
+                    else
+                    {
+                        cbxSelectionType.DataSource = null; // Reset
+                        MessageBox.Show("No Selection Types found.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error reading XML: {ex.Message}");
+                    textBoxNameSpace.Clear();
+                    cbxSelectionType.DataSource = null;
+                    loadedXmlDocument = null; // Reset error
+                }
+            }
+            else
+            {
+                textBoxNameSpace.Clear();
+                cbxSelectionType.DataSource = null;
+                loadedXmlDocument = null; // Reset not exist file 
+                MessageBox.Show($"The file '{selectedFile}' does not exist.");
+            }
+        }
+
+        private void BtnViewModifyXml_Click(object sender, EventArgs e)
+        {
+            if (loadedXmlDocument == null)
+            {
+                MessageBox.Show("Nessun documento XML è stato caricato.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string content = loadedXmlDocument.ToString();
+            FormRefObj formRefObj = new FormRefObj(content, manager);
+            formRefObj.ShowDialog();
+        }
+
+
+        /// <summary>
+        /// BOTTONE MASCHERA PRINCIPALE
+        
+        public enum ObjectType { Document, Report, File, Image, Text, Folder, CreateFolder, CurrentModuleRoot, Setting, Profile, ProfileFile, ReportDescription, ReferenceObject, FormatFont, Pdf, Rtf }
+
+
+
+        private async void BtnUploadRefObj_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                int statusCode = await UploadObject();
+
+                MessageBox.Show($"Upload esegito: {statusCode}");
+                BtnUploadRefObj.ForeColor = Color.Green;
+            }
+            catch (Exception ex)
+            {
+                // Gestione degli errori
+                MessageBox.Show($"Errore durante l'upload: {ex.Message}");
+                BtnUploadRefObj.ForeColor = Color.Red;
+            }
+        }
+
+        private async Task<int> UploadObject()
+        {
+            string startPath = "";
+            string filePath = $@"{manager.tbFsServiceManager.CurrentPath}\{manager.tbFsServiceManager.selDocObj}";
+            string currNamespace = manager.tbFsServiceManager.selApp + "." + manager.tbFsServiceManager.selMod;
+            string user = "AllUsers";
+
+            // Creazione del contenuto per MultipartFormData
+            var form = new MultipartFormDataContent();
+            var fileContent = new ByteArrayContent(File.ReadAllBytes(filePath));
+            fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+
+            // Aggiunta dei contenuti al form
+            form.Add(fileContent, "files", Path.GetFileName(filePath));
+            form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(ObjectType.ReferenceObject.ToString())), "objectType");
+            form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(currNamespace)), "currentNamespace");
+            form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(user)), "user");
+            form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(startPath)), "startPath");
+
+            // Preparazione URL
+            UrlSManager Urls = new UrlSManager();
+            if (UrlSManager.TbFsServiceUrl == "")
+                UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(manager.authenticationManager.userData, DateTime.Now, "/TBFSSERVICE");
+
+            string urltbfs = UrlSManager.TbFsServiceUrl + "/tbfs-service/UploadObject/";
+
+            // Invio della richiesta HTTP
+            using (var request = new HttpRequestMessage(HttpMethod.Post, new Uri(urltbfs)))
+            {
+                request.Content = form;
+
+                // Aggiunta autorizzazioni all'header
+                MagoCloudApiManager.PrepareHeaderAutorization(request, manager.authenticationManager.userData);
+
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    TbResponse opResult = null;
+
+                    using (var response = await httpClient.SendAsync(request))
+                    {
+                        // Creazione della risposta
+                        opResult = new TbResponse
+                        {
+                            StatusCode = (int)response.StatusCode
+                        };
+
+                        string result = await response.Content.ReadAsStringAsync();
+
+                        // Log o altre operazioni con il risultato
+                        Console.WriteLine($"Risultato dell'upload: {result}");
+
+                        return opResult.StatusCode; // Ritorna il codice di stato
+                    }
+                }
             }
         }
     }

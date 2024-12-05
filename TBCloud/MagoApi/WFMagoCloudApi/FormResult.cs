@@ -27,32 +27,38 @@ namespace WindowsFormsResult
            );
         
 
-        public FormResult(string content,  bool bOk = false, bool bBlue = true, bool bHelp = false)
+        public FormResult(string content,  bool bOk = false, bool bBlue = false, bool bHelp = false)
         {
 
             InitializeComponent();
-           
+            
             this.SetStyle(ControlStyles.ResizeRedraw, true); // this is to avoid visual artifacts
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            this.btnUploadXml.Hide();
+            this.richXmlTextBox.Hide();
             labelFormContent.Text = content;
-            richTextBoxCode.AppendText(content);
-            richTextBoxCode.Dock = DockStyle.Fill;
-            richTextBoxCode.ScrollBars = (RichTextBoxScrollBars)ScrollBars.Both;
-            richTextBoxCode.SelectionColor = Color.Red;
-            richTextBoxCode.BackColor= Color.FromArgb(28, 28, 28);
-            richTextBoxCode.Multiline = true;
-            richTextBoxCode.WordWrap = false;
-            richTextBoxCode.Padding = new Padding(15, 5, 55, 5);
+            //this.xmlEditorWpf1.textEditor.AppendText(content);
+            richXmlTextBox.AppendText(content);
+            
+            //xmlViewer = new XmlEditor
+            //{
+            //    ContextMenuStrip = optionsContextMenu,
+            //    Dock = DockStyle.Fill
+            //};
+
+            //tabPage = new TabPage
+            //{
+            //    Text = "Output"
+            //};
+            //tabResults.TabPages.Add(tabPage);
+            //UpdateButtons();
+
 
             this.content = content;
             if(bHelp)
             {
-                
-                this.btnCopyCode.Hide();
+                this.btnUploadXml.Hide();
                 panelTitleResult.BackColor = Color.LightSteelBlue;
-                this.richTextBoxCode.Hide();
-                this.pictureBox3Req.Hide();
-                this.pictureBoxHea.Hide();
                 this.buttonResize.Hide();
                 this.labelSmile.Text = "?";
                 this.labelTitleResult.Text = "Calls Info";
@@ -66,11 +72,8 @@ namespace WindowsFormsResult
 
             if (bOk)
             {
-                this.btnCopyCode.Hide();
                 panelTitleResult.BackColor = Color.Green;
-                this.richTextBoxCode.Hide();
-                this.pictureBox3Req.Hide();
-                this.pictureBoxHea.Hide();
+                this.richXmlTextBox.BackColor = Color.White;
                 this.labelTitleResult.Text = "Result";
                 this.labelSmile.Text = "😎";
                 this.buttonResize.BackColor = Color.Green;
@@ -78,11 +81,7 @@ namespace WindowsFormsResult
             }
             else
             {
-                this.btnCopyCode.Hide();
                 panelTitleResult.BackColor = Color.Red;
-                this.richTextBoxCode.Hide();
-                this.pictureBox3Req.Hide();
-                this.pictureBoxHea.Hide();
                 this.labelTitleResult.Text = "Result";
                 this.labelSmile.Text = "🙁";
                 this.buttonResize.BackColor = Color.Red;
@@ -90,14 +89,13 @@ namespace WindowsFormsResult
             }
             if (bBlue)
             {
-
-                this.pictureBox3Req.Hide();/* = image;*/
-                this.pictureBox3Req.Hide();/* = image;SizeMode = PictureBoxSizeMode.Zoom;*/
+                this.btnUploadXml.Visible = true;
+                this.richXmlTextBox.Visible = true;
                 panelTitleResult.BackColor = Color.FromArgb(28, 28, 28);
-                this.panelContent.BackColor = Color.FromArgb(28, 28, 28);
                 this.labelFormContent.Hide();
-                this.richTextBoxCode.Font = new System.Drawing.Font("Consolas", 10);
-                this.labelTitleResult.Text = "Question";
+                this.richXmlTextBox.ForeColor = Color.Blue;
+               
+                this.labelTitleResult.Text = "Xml";
                 this.labelSmile.Text = "🤔";
                 this.buttonResize.BackColor = Color.FromArgb(28, 28, 28);
                 this.buttonExitForm.BackColor = Color.FromArgb(28, 28, 28);
@@ -134,19 +132,19 @@ namespace WindowsFormsResult
         private string content;
         bool mousedown;
 
-        private void btnCopyCode_Click(object sender, EventArgs e)
+        private void btnUploadXml_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(richTextBoxCode.Text);
-            btnCopyCode.Text = "✔ copied";
-            btnCopyCode.Font = new Font("Arial", 8, FontStyle.Bold);
-            btnCopyCode.ForeColor = Color.FromArgb(65, 192, 146);
+            Clipboard.SetText(richXmlTextBox.Text);
+            btnUploadXml.Text = "✔ copied";
+            btnUploadXml.Font = new Font("Arial", 8, FontStyle.Bold);
+            btnUploadXml.ForeColor = Color.FromArgb(65, 192, 146);
         }
         private bool buttonClicked = false;
         private void buttonResize_Click(object sender, EventArgs e)
         {
             buttonClicked = !buttonClicked;
-            
-            if(buttonClicked)
+
+            if (buttonClicked)
             {
                 this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 704, 560, 20, 20));
                 this.Height = 560;
@@ -160,6 +158,5 @@ namespace WindowsFormsResult
             }
         }
 
-       
     }
 }
