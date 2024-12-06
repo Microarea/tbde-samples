@@ -274,6 +274,17 @@ namespace TbApiTester.OtherControls
             }
             return tempIndex;
         }
+
+        private void InitializeComponent2()
+        {
+            this.SuspendLayout();
+            // 
+            // XmlEditor
+            // 
+            this.Name = "XmlEditor";
+            this.ResumeLayout(false);
+
+        }
     }
 
     public static class KeyEventExts

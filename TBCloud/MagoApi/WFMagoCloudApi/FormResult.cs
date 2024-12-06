@@ -1,15 +1,7 @@
 ﻿ using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using static MspzComponent.OrangePanel;
-using System.Drawing.Drawing2D;
 
 namespace WindowsFormsResult
 {
@@ -30,28 +22,14 @@ namespace WindowsFormsResult
         {
 
             InitializeComponent();
-            
+            this.AutoScaleMode = AutoScaleMode.Dpi;
             this.SetStyle(ControlStyles.ResizeRedraw, true); // this is to avoid visual artifacts
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             this.btnUploadXml.Hide();
             this.richXmlTextBox.Hide();
             labelFormContent.Text = content;
-            //this.xmlEditorWpf1.textEditor.AppendText(content);
             richXmlTextBox.AppendText(content);
             
-            //xmlViewer = new XmlEditor
-            //{
-            //    ContextMenuStrip = optionsContextMenu,
-            //    Dock = DockStyle.Fill
-            //};
-
-            //tabPage = new TabPage
-            //{
-            //    Text = "Output"
-            //};
-            //tabResults.TabPages.Add(tabPage);
-            //UpdateButtons();
-
 
             this.content = content;
             if(bHelp)
@@ -62,9 +40,9 @@ namespace WindowsFormsResult
                 this.labelSmile.Text = "?";
                 this.labelTitleResult.Text = "Calls Info";
                 this.buttonExitForm.BackColor = Color.LightSteelBlue;
-                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 750, 300, 20, 20));
-                this.Height = 280;
-                this.Width = 750;
+                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 1000, 300, 20, 20));
+                this.Height = 300;
+                this.Width = 1000;
                 return;
             }
 
@@ -143,17 +121,19 @@ namespace WindowsFormsResult
         {
             buttonClicked = !buttonClicked;
 
+            float scaleFactor = this.DeviceDpi / 96f; // 96 DPI è lo standard
+
             if (buttonClicked)
             {
-                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 704, 560, 20, 20));
-                this.Height = 560;
-                this.Width = 704;
+                this.Width = (int)(1000 * scaleFactor);
+                this.Height = (int)(560 * scaleFactor);
+                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, (int)(20 * scaleFactor), (int)(20 * scaleFactor)));
             }
             else
             {
-                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 587, 300, 20, 20));
-                this.Height = 300;
-                this.Width = 384;
+                this.Width = (int)(704 * scaleFactor);
+                this.Height = (int)(300 * scaleFactor);
+                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, (int)(20 * scaleFactor), (int)(20 * scaleFactor)));
             }
         }
 

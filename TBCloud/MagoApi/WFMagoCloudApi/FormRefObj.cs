@@ -1,19 +1,11 @@
-﻿//using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
-using static TbApiTester.TbApiTester;
 
 
 namespace TbApiTester
@@ -26,6 +18,7 @@ namespace TbApiTester
         public FormRefObj(string content, TbApiTesterManager man)
         {
             InitializeComponent();
+            this.ContainerBtnUpload.Hide();
             this.xmlEditorWpfRef.textEditor.AppendText(content);
             this.modifiedXml = xmlEditorWpfRef.textEditor.Text;
             manager = man;
