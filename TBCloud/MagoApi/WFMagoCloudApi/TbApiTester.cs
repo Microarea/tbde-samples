@@ -1914,16 +1914,16 @@ namespace TbApiTester
                         textBoxNameSpace.Text = "Namespace not found.";
                     }
 
-                    // 2. Populated combobox "name" tag <Selection>
-                    IEnumerable<string> selectionNames = loadedXmlDocument
+                    // 2. Populated combobox "Types" tag <Selection>
+                    IEnumerable<string> selectionTypes = loadedXmlDocument
                         .Descendants("SelectionTypes")
                         .Descendants("Selection")
-                        .Attributes("name")
+                        .Attributes("type")
                         .Select(attr => attr.Value);
 
-                    if (selectionNames.Any())
+                    if (selectionTypes.Any())
                     {
-                        cbxSelectionType.DataSource = selectionNames.ToList(); // Populated  combobox
+                        cbxSelectionType.DataSource = selectionTypes.ToList(); // Populated  combobox
                     }
                     else
                     {
@@ -1959,12 +1959,13 @@ namespace TbApiTester
             string content = loadedXmlDocument.ToString();
             FormRefObj formRefObj = new FormRefObj(content, manager);
             formRefObj.ShowDialog();
+            labelDataUrl.Text = UrlSManager.TbFsServiceUrl + "/tbfs-service/UploadObject/";
         }
 
 
         /// <summary>
         /// BOTTONE MASCHERA PRINCIPALE
-        
+
         public enum ObjectType { Document, Report, File, Image, Text, Folder, CreateFolder, CurrentModuleRoot, Setting, Profile, ProfileFile, ReportDescription, ReferenceObject, FormatFont, Pdf, Rtf }
 
 
