@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows.Markup;
 
 
-namespace TbApiTester.OtherControls
+namespace TbApiTester
 {
     partial class XmlEditor
     {
@@ -65,6 +65,7 @@ namespace TbApiTester.OtherControls
             // 
             // toolStripContainer1.ContentPanel
             // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.elementHost1);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(418, 163);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
@@ -147,7 +148,20 @@ namespace TbApiTester.OtherControls
             this.toolStripButton1.Text = "Save xml as..";
             this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
             // 
+            // elementHost1
+            // 
+            this.elementHost1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+           | System.Windows.Forms.AnchorStyles.Right)));
+            this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.elementHost1.Location = new System.Drawing.Point(0, 0);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(418, 163);
+            this.elementHost1.TabIndex = 1;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Child = null;
+            // 
             // optionsContextMenu
+            //
             this.optionsContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSelectAll,
             this.toolStripCopy,
@@ -165,23 +179,24 @@ namespace TbApiTester.OtherControls
             this.toolStripSelectAll.Click += new System.EventHandler(this.ToolStripSelectAll_Click);
             // 
             // toolStripCopy
-            // 
-            this.toolStripCopy.Image = ((System.Drawing.Image)(resources.GetObject("toolStripCopy.Image")));
-            this.toolStripCopy.Name = "toolStripCopy";
-            this.toolStripCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.toolStripCopy.Size = new System.Drawing.Size(164, 22);
-            this.toolStripCopy.Text = "Copy";
-            this.toolStripCopy.Click += new System.EventHandler(this.ToolStripCopy_Click);
+            //// 
+            //this.toolStripCopy.Image = ((System.Drawing.Image)(resources.GetObject("toolStripCopy.Image")));
+            //this.toolStripCopy.Name = "toolStripCopy";
+            //this.toolStripCopy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            //this.toolStripCopy.Size = new System.Drawing.Size(164, 22);
+            //this.toolStripCopy.Text = "Copy";
+            //this.toolStripCopy.Click += new System.EventHandler(this.ToolStripCopy_Click);
             //
             //toolStripPaste
             //
-            this.toolStripPaste.Image = ((System.Drawing.Image)(resources.GetObject("toolStripPaste.Image")));
-            this.toolStripPaste.Name = "toolStripPaste";
-            this.toolStripPaste.ShortcutKeyDisplayString = "Ctrl+V";
-            this.toolStripPaste.Size = new System.Drawing.Size(164, 22);
-            this.toolStripPaste.Text = "Paste";
-            this.toolStripPaste.Click += new System.EventHandler(this.ToolStripPaste_Click);
-            // 
+            //this.toolStripPaste.Image = ((System.Drawing.Image)(resources.GetObject("toolStripPaste.Image")));
+            //this.toolStripPaste.Name = "toolStripPaste";
+            //this.toolStripPaste.ShortcutKeyDisplayString = "Ctrl+V";
+            //this.toolStripPaste.Size = new System.Drawing.Size(164, 22);
+            //this.toolStripPaste.Text = "Paste";
+            //this.toolStripPaste.Click += new System.EventHandler(this.ToolStripPaste_Click);
+
+            //
             // XmlEditor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;

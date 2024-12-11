@@ -2,10 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
-using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Editing;
-using ICSharpCode.AvalonEdit.Rendering;
-using ICSharpCode.AvalonEdit.Utils;
 using ICSharpCode.AvalonEdit.Folding;
 using System.Windows.Threading;
 using System.Web.UI.WebControls;
@@ -13,7 +10,7 @@ using TbApiTester.Libraries;
 
 
 
-namespace TbApiTester.OtherControls
+namespace TbApiTester
 {
     //===================================================================================
     public partial class XmlEditor : UserControl
@@ -275,16 +272,7 @@ namespace TbApiTester.OtherControls
             return tempIndex;
         }
 
-        private void InitializeComponent2()
-        {
-            this.SuspendLayout();
-            // 
-            // XmlEditor
-            // 
-            this.Name = "XmlEditor";
-            this.ResumeLayout(false);
-
-        }
+       
     }
 
     public static class KeyEventExts

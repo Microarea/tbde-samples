@@ -11,11 +11,11 @@ using System.Drawing.Drawing2D;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Linq;
-
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
+
 
 
 namespace TbApiTester
@@ -48,14 +48,9 @@ namespace TbApiTester
         public long defPriceHandle = 0;
         public System.Diagnostics.Process p = null;
         private string folderPath = @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\Docs";
-        private string inFileName;
-        private string outFileName;
-        private bool isFolderOpened = false;
         private bool isFullScreen = false;
         private string tableName;
         TbResponse m_GetBoResponse;
-        TbResponse m_UpdateBoResponse;
-        private string isClickedStart;
         private XDocument loadedXmlDocument;
         public string CurrentPath { get; set; }
 
@@ -303,8 +298,11 @@ namespace TbApiTester
                 {
                     LoadEnumsTable();
                        _= FillApplications();
-                        FillApplicationsRObj();
+                    _ = FillApplicationsRObj();
+                    List<SubscriptionInfo> subscriptionInfos = new List<SubscriptionInfo>();
+                    Task<bool> task = manager.authenticationManager.GetSubscriptionsForAccount(text_http.Text, text_user.Text, subscriptionInfos);
 
+                   
                     button_Login.ForeColor = Color.White;
                     button_Login.BackColor = Color.Green;
                     button_Login.Text = "Ok";
@@ -362,6 +360,10 @@ namespace TbApiTester
         }
         private void btnAccount_Click(object sender, EventArgs e)
         {
+            List<SubscriptionInfo> subscriptionInfos = new List<SubscriptionInfo>();
+
+            Task<bool> task = manager.authenticationManager.GetSubscriptionsForAccount(text_http.Text, text_user.Text, subscriptionInfos);
+           
             string responseContent = manager.authenticationManager._responseBody.ToString();
             JObject jsonObject = JObject.Parse(responseContent);
             JToken rolesToken = jsonObject["Roles"];
@@ -369,11 +371,7 @@ namespace TbApiTester
             string subscriptionKey = jsonObject["SubscriptionKey"]?.ToString();
             string fullName = jsonObject["FullName"]?.ToString();
             bool isAdmin = jsonObject["IsAdmin"]?.Value<bool>() ?? false;
-            if (rolesToken == null || rolesToken.Type != JTokenType.Array)
-            {
-                ShowResult($"Account Name: {accountName}\nSubscriptionKey: {subscriptionKey}\nFull Name: {fullName}\nIs Admin: {isAdmin}\n\nRole = Null\n you are in DevEnv");
-                return;
-            }
+           
             JArray rolesArray = (JArray)jsonObject["Roles"];
 
             List<string> roleNames = new List<string>();
@@ -386,7 +384,12 @@ namespace TbApiTester
                 }
             }
             string rolesDisplay = string.Join(Environment.NewLine, roleNames);
-            ShowResult($"Account Name: {accountName}\nSubscriptionKey: {subscriptionKey}\nFull Name: {fullName}\nIs Admin: {isAdmin}\n\nRole Names:\n{rolesDisplay}");
+            StringBuilder sb = new StringBuilder();
+            foreach (var subscription in subscriptionInfos)
+            {
+                sb.AppendLine($"Key: {subscription.SubscriptionKey}, Description: {subscription.Description}");
+            }
+            text_subscription.Text = sb.ToString();
         }
         ////////////////////////
         ///// RESULT WINDOW ////
@@ -499,15 +502,14 @@ namespace TbApiTester
 
         private string GetXmlContent()
         {
-            // Restituisci il contenuto attuale dell'editor
             return xmlEditorWpfTb.textEditor.Text;
         }
 
         private void SetXmlContent(string content)
         {
-            // Aggiungi contenuto all'editor
-            xmlEditorWpfTb.textEditor.Clear(); // Pulisci il contenuto precedente se necessario
+            xmlEditorWpfTb.textEditor.Clear();
             xmlEditorWpfTb.textEditor.AppendText(content);
+            //xmlResult.textEditor.AppendText(content);
         }
 
         private async void BtnGetParams_Click(object sender, EventArgs e)
@@ -534,7 +536,6 @@ namespace TbApiTester
             labelCallTbResult.Text = "Result GetXmlParams:";
             labelTbUrl.Text = manager.tbServerManager.requestTb;
 
-            // Imposta il contenuto nell'editor
             SetXmlContent(contentBody);
 
             Cursor = Cursors.Default;
@@ -555,7 +556,6 @@ namespace TbApiTester
                 return;
             }
 
-            // Recupera il contenuto dall'editor
             string fileContent = GetXmlContent();
             if (fileContent == string.Empty)
                 return;
@@ -563,7 +563,6 @@ namespace TbApiTester
             string contentBody = manager.tbServerManager.GetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
             labelCallTbResult.Text = "Result GetXmlData:";
 
-            // Aggiorna il contenuto dell'editor con il risultato
             SetXmlContent(contentBody);
 
             Cursor = Cursors.Default;
@@ -590,19 +589,17 @@ namespace TbApiTester
         {
             Cursor = Cursors.WaitCursor;
 
-            // Verifica se l'utente è autenticato
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
-                Cursor = Cursors.Default; // Ripristina il cursore
+                Cursor = Cursors.Default; 
                 return;
             }
 
-            // Verifica se è stato selezionato un file
             if (cbxProfile.SelectedItem == null)
             {
                 MessageBox.Show("Please select a file from the list!");
-                Cursor = Cursors.Default; // Ripristina il cursore
+                Cursor = Cursors.Default; 
                 return;
             }
 
@@ -611,30 +608,25 @@ namespace TbApiTester
             if (string.IsNullOrWhiteSpace(fileContent))
             {
                 MessageBox.Show("The XML content is empty. Please provide valid XML data.");
-                Cursor = Cursors.Default; // Ripristina il cursore
+                Cursor = Cursors.Default;
                 return;
             }
 
             try
             {
-                // Invia i dati modificati al server
                 string contentBody = manager.tbServerManager.SetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
-
-                // Aggiorna il contenuto dell'editor con il risultato
                 SetXmlContent(contentBody);
 
-                // Aggiorna le etichette per mostrare il risultato
                 labelCallTbResult.Text = "Result SetXmlData:";
                 labelTbUrl.Text = manager.tbServerManager.requestTb;
             }
             catch (Exception ex)
             {
-                // Gestione degli errori
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                Cursor = Cursors.Default; // Ripristina il cursore
+                Cursor = Cursors.Default; 
             }
         }
 
@@ -662,21 +654,6 @@ namespace TbApiTester
         //////////////////////////////
         ///// TBFSSERVICE MANAGER ////
         //////////////////////////////
-
-        //private Task<List<string>> FillApplications()
-        //{
-        //    try
-        //    {
-        //        List<string> applications = manager.tbFsServiceManager.GetApplications(manager.authenticationManager.userData, DateTime.Now);
-
-        //            return applications;
-
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        MessageBox.Show(e.Message);
-        //    }
-        //}
 
 
         private async Task FillApplications()
@@ -862,7 +839,6 @@ namespace TbApiTester
 
             ShowResult(contentBody != null ? "CurrentOpeningDate\n" + contentBody : "Unable to retrieve OpeningDate\n" + contentBody, contentBody != null);
             labelWbUrl.Text = UrlSManager.TbServerUrl;
-            // Controlla la richiesta per btnWMethRequest
 
         }
 
@@ -932,28 +908,7 @@ namespace TbApiTester
         /////  DATA SERVICE BTN   /////
         ///////////////////////////////
 
-        //private void buttonDSGetData_Click(object sender, EventArgs e)
-        //{
-        //    Cursor = Cursors.WaitCursor;
-        //    if (!manager.authenticationManager.IsLogged())
-        //    {
-        //        MessageBox.Show("User is not logged, please Login!");
-        //        return;
-        //    }
-        //    else if (textBoxNameSpace.Text != null && textBoxNameSpace.Text != "")
-        //    {
-        //        string selectionType = "default";
-        //        if (cbxSelectionType.SelectedItem != null && string.Compare(cbxSelectionType.SelectedItem.ToString(), "radar", true) == 0)
-        //            selectionType = "radar";
-        //        else if (cbxSelectionType.SelectedItem != null && string.Compare(cbxSelectionType.SelectedItem.ToString(), "MyQry", true) == 0)
-        //            selectionType = "MyQry";
-        //        bool bOk = false;
-        //        string contentBody = "DataServiceGetData: " + selectionType + "\n" + manager.dataServiceManager.GetData(manager.authenticationManager.userData, selectionType, textBoxNameSpace.Text, ref bOk);
-        //        ShowResult(contentBody, bOk);
-        //        labelDataUrl.Text = manager.dataServiceManager.requestDs;
-        //    }
-
-        //}
+        
         private void buttonDSGetData_Click(object sender, EventArgs e)
         {
 
@@ -967,10 +922,9 @@ namespace TbApiTester
             {
                 string selectionType = "default";
 
-                // Legge il valore dalla ComboBox
                 if (cbxSelectionType.SelectedItem != null || !string.IsNullOrWhiteSpace(cbxSelectionType.Text))
                 {
-                    selectionType = cbxSelectionType.Text; // Usa il testo inserito
+                    selectionType = cbxSelectionType.Text; 
                 }
 
                 bool bOk = false;
@@ -1061,7 +1015,6 @@ namespace TbApiTester
             switch (selectedQuery)
             {
                 case "Radar":
-                    // Esegui la query iniziale senza `filterVal` e `argsVal`
                     result = manager.dataServiceManager.GetData(
                         manager.authenticationManager.userData,
                         "radar",
@@ -1072,7 +1025,6 @@ namespace TbApiTester
                     break;
 
                 case "Q1":
-                    // Esegui la query Q1
                     result = manager.dataServiceManager.GetData(
                         manager.authenticationManager.userData,
                         "Q1",
@@ -1085,7 +1037,6 @@ namespace TbApiTester
                     break;
 
                 case "Q2":
-                    // Esegui la query Q2
                     result = manager.dataServiceManager.GetData(
                         manager.authenticationManager.userData,
                         "Q2",
@@ -1164,10 +1115,8 @@ namespace TbApiTester
 
         private void btnExploreReport_Click(object sender, EventArgs e)
         {
-            // Usa la variabile globale per ottenere il percorso della cartella
             var pdfDirectory = RsManager.PdfDirectory;
 
-            // Controlla che la cartella esista prima di aprirla
             if (Directory.Exists(pdfDirectory))
             {
                 System.Diagnostics.Process.Start(new ProcessStartInfo
@@ -1208,7 +1157,7 @@ namespace TbApiTester
             ShowResult(contentBody != null ? "DmsSetting: \n " + contentBody : "Error retrieving DmsSetting", contentBody != null);
         }
 
-
+        //////////////////////
         //// BTN SOURCECODE ///
         ///////////////////////
         private void linkHelpTb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -1540,7 +1489,7 @@ namespace TbApiTester
             {
                 List<string> listStored = enumsResult.ListStored;
                 List<string> listName = enumsResult.ListName;
-                // Carica gli elementi nella ComboBox
+                // ComboBox element
                 foreach (string item in listName)
                 {
                     cbxArchiveType.Items.Add(item);
@@ -1592,7 +1541,7 @@ namespace TbApiTester
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            //tipo archivio Inventory Entry = 3801093
+            //Inventory Entry = 3801093
             TbResponse getIdResponse = manager.dmMMSManager.GetNextID(manager.authenticationManager.userData, textBoxArchiveType.Text, false).Result;
             if (getIdResponse.Success == true)
             {
@@ -1680,13 +1629,12 @@ namespace TbApiTester
             ServiceManager serviceManager = new ServiceManager();
             var servicesStatus = serviceManager.GetServicesStatus();
 
-            cbxServicesWeb.Items.Clear(); // Pulisci gli elementi esistenti
+            cbxServicesWeb.Items.Clear(); 
 
             foreach (var (serviceName, status) in servicesStatus)
             {
                 string displayText = $"{serviceName} - {status}";
 
-                // Imposta il colore del testo in base allo stato del servizio per ogni elemento
                 Color textColor = (status == "✅") ? Color.Green : Color.Red;
                 cbxServicesWeb.Items.Add(new ComboBoxItem(displayText, textColor));
             }
@@ -1738,7 +1686,7 @@ namespace TbApiTester
             try
             {
                 string fileContent = File.ReadAllText(fullPath);
-                // Utilizza una regex per trovare oggetti JSON
+                //  Regex  JSON
                 var matches = Regex.Matches(fileContent, @"\{.*?\}(?=\s*\{|\s*$)", RegexOptions.Singleline);
 
                 foreach (Match match in matches)
@@ -1746,7 +1694,7 @@ namespace TbApiTester
                     try
                     {
                         Function function = JsonConvert.DeserializeObject<Function>(match.Value);
-                        // Se searchTextBox è vuoto o il termine di ricerca è presente in Ns
+                       
                         if (string.IsNullOrEmpty(searchTerm) || function.Ns.Contains(searchTerm))
                         {
                             resultBuilder.AppendLine($"Ns: {function.Ns}\n Type: {function.Type}");
@@ -1798,35 +1746,29 @@ namespace TbApiTester
 
         private void btnExpandDynamicQueries_Click(object sender, EventArgs e)
         {
-            if (btnExpandDynamicQueries.Text == "Try") // Mostra il panel
+            if (btnExpandDynamicQueries.Text == "Try") 
             {
                 btnExpandDynamicQueries.Text = "Close";
                 DynamicQueriesPanel.Dock = DockStyle.None;
-                DynamicQueriesPanel.Visible = true; // Rende il panel visibile
+                DynamicQueriesPanel.Visible = true; 
             }
-            else // Nasconde il panel
+            else 
             {
                 btnExpandDynamicQueries.Text = "Try";
                 DynamicQueriesPanel.Dock = DockStyle.None;
-                DynamicQueriesPanel.Visible = false; // Nasconde il panel
+                DynamicQueriesPanel.Visible = false; 
             }
         }
 
         private void btnBusinessObj_Click(object sender, EventArgs e)
         {
-
-
-            // Imposta i parametri per RunDocumentAsync
-            string nameSpace = "Courses.Courses.DynamicDocuments.Courses"; // Adatta al tuo contesto
+            // RunDocumentAsync parameter
+            string nameSpace = "Courses.Courses.DynamicDocuments.Courses"; 
             bool unattended = true;
-            string callerId = "caller123"; // Un identificatore qualsiasi per il chiamante
+            string callerId = "caller123"; 
 
-
-
-            // Richiama il metodo RunDocumentAsync e attendi il risultato
             var result = manager.docBusinessObjManager.RunDocumentAsync<object>(manager.authenticationManager.userData, nameSpace, unattended, callerId);
 
-            // Gestisci il risultato (opzionale)
             if (result != null)
             {
                 MessageBox.Show("RunDocumentAsync completato con successo.");
@@ -1841,15 +1783,12 @@ namespace TbApiTester
         {
             if (cbxSelectionType.SelectedItem != null)
             {
-                // Controlla se l'utente ha selezionato "AddQueryHere"
                 if (cbxSelectionType.SelectedItem.ToString() == "AddQueryHere")
                 {
-                    // Permetti l'editing del testo
                     cbxSelectionType.Text = "";
                 }
                 else
                 {
-                    // Impedisci l'editing e forza il testo a essere l'elemento selezionato
                     cbxSelectionType.Text = cbxSelectionType.SelectedItem.ToString();
                 }
             }
@@ -1899,7 +1838,6 @@ namespace TbApiTester
             {
                 try
                 {
-                    // Carica l'XML e salva l'oggetto
                     loadedXmlDocument = XDocument.Load(fullPath);
 
                     // 1. Extract namespace
@@ -1963,9 +1901,6 @@ namespace TbApiTester
         }
 
 
-        /// <summary>
-        /// BOTTONE MASCHERA PRINCIPALE
-
         public enum ObjectType { Document, Report, File, Image, Text, Folder, CreateFolder, CurrentModuleRoot, Setting, Profile, ProfileFile, ReportDescription, ReferenceObject, FormatFont, Pdf, Rtf }
 
 
@@ -1982,7 +1917,6 @@ namespace TbApiTester
             }
             catch (Exception ex)
             {
-                // Gestione degli errori
                 MessageBox.Show($"Errore durante l'upload: {ex.Message}");
                 BtnUploadRefObj.ForeColor = Color.Red;
             }
@@ -1995,31 +1929,28 @@ namespace TbApiTester
             string currNamespace = manager.tbFsServiceManager.selApp + "." + manager.tbFsServiceManager.selMod;
             string user = "AllUsers";
 
-            // Creazione del contenuto per MultipartFormData
+            //  MultipartFormData
             var form = new MultipartFormDataContent();
             var fileContent = new ByteArrayContent(File.ReadAllBytes(filePath));
             fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
 
-            // Aggiunta dei contenuti al form
             form.Add(fileContent, "files", Path.GetFileName(filePath));
             form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(ObjectType.ReferenceObject.ToString())), "objectType");
             form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(currNamespace)), "currentNamespace");
             form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(user)), "user");
             form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(startPath)), "startPath");
 
-            // Preparazione URL
+            // URL Prepare
             UrlSManager Urls = new UrlSManager();
             if (UrlSManager.TbFsServiceUrl == "")
                 UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(manager.authenticationManager.userData, DateTime.Now, "/TBFSSERVICE");
 
             string urltbfs = UrlSManager.TbFsServiceUrl + "/tbfs-service/UploadObject/";
 
-            // Invio della richiesta HTTP
             using (var request = new HttpRequestMessage(HttpMethod.Post, new Uri(urltbfs)))
             {
                 request.Content = form;
 
-                // Aggiunta autorizzazioni all'header
                 TbApiTesterManager.PrepareHeaderAutorization(request, manager.authenticationManager.userData);
 
                 using (HttpClient httpClient = new HttpClient())
@@ -2028,18 +1959,15 @@ namespace TbApiTester
 
                     using (var response = await httpClient.SendAsync(request))
                     {
-                        // Creazione della risposta
                         opResult = new TbResponse
                         {
                             StatusCode = (int)response.StatusCode
                         };
 
                         string result = await response.Content.ReadAsStringAsync();
-
-                        // Log o altre operazioni con il risultato
                         Console.WriteLine($"Risultato dell'upload: {result}");
 
-                        return opResult.StatusCode; // Ritorna il codice di stato
+                        return opResult.StatusCode; 
                     }
                 }
             }

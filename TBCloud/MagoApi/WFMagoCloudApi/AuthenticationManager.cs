@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Policy;
 using System.Security.Principal;
@@ -47,6 +49,16 @@ namespace TbApiTester
             Producer = string.Empty;
             AppKey = string.Empty;
         }
+    }
+    public class SubscriptionInfo
+    {
+        public SubscriptionInfo(string subscriptionKey, string description)
+        {
+            SubscriptionKey = subscriptionKey;
+            Description = description;
+        }
+        public string Description { get; set; }
+        public string SubscriptionKey { get; set; }
     }
     internal class AuthenticationManager
     {
@@ -192,6 +204,89 @@ namespace TbApiTester
                 }
             }
         }
+
+        public async Task<bool> GetSubscriptionsForAccount(string GwamUrl, string account, List<SubscriptionInfo> subscriptionInfos)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.AccountManagerUrl == "") UrlSManager.AccountManagerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/gwam_login/api/");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.AccountManagerUrl + $"/account-manager/subscriptionskeysforaccount/{account}");
+                    
+                  
+                    TbApiTesterManager.PrepareHeaders(request, userData, DateTime.Now);
+
+                    // Configura gli header della richiesta
+                    PrepareHeaderMagoAPI(request);
+
+                    // Invia la richiesta e ottieni la risposta
+                    HttpResponseMessage response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead);
+
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        // Recupera il contenuto della risposta
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
+
+                        if (jsonObject != null)
+                        {
+                            string resultVariable = jsonObject["Result"]?.ToString();
+
+                            if (resultVariable == "True" )
+                            {
+                                JToken content = jsonObject["Content"];
+                                JToken[] subscriptions = content["subscriptions"].ToArray();
+
+                                subscriptionInfos.Clear(); // Pulisci la lista in ingresso
+                                foreach (JToken item in subscriptions)
+                                {
+                                    subscriptionInfos.Add(new SubscriptionInfo(
+                                        item["subscriptionkey"]?.ToString(),
+                                        item["description"]?.ToString()
+                                    ));
+                                }
+
+                                // Ordina i risultati
+                                subscriptionInfos.Sort((a, b) =>
+                                    string.Compare(a.Description, b.Description, StringComparison.InvariantCultureIgnoreCase));
+
+                                MessageBox.Show($"Subscriptions retrieved successfully.{subscriptionInfos[1]?.ToString()}");
+                                return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Error retrieving subscriptions: {jsonObject["Message"]?.ToString()}");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Invalid response content.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"HTTP Error: {response.StatusCode}");
+                    }
+                }
+                catch (HttpRequestException ex)
+                {
+                    Console.WriteLine($"Request exception: {ex.Message}");
+                    MessageBox.Show("Network error occurred while retrieving subscriptions.");
+                }
+            }
+            return false;
+        }
+
+        // Metodo di supporto per configurare gli header
+        private void PrepareHeaderMagoAPI(HttpRequestMessage request)
+        {
+            // Configura gli header personalizzati
+            request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+            request.Headers.TryAddWithoutValidation("Custom-Header", "HeaderValue"); // Esempio di header aggiuntivo
+        }
+
 
         internal void DoLogout(string GwamUrl)
         {

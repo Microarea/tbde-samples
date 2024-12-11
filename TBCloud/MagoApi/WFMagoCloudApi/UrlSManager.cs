@@ -79,6 +79,7 @@ namespace TbApiTester
         public static string ReportingServiceUrl { get; set; } = string.Empty;
         public static string DmsServiceUrl { get; set; } = string.Empty;
         public static string TbFsServiceUrl { get; set; } = string.Empty;
+        public static string AccountManagerUrl { get; set; } = string.Empty;
         public static string DmMMSUrl { get; set; } = string.Empty;
         public static string EnumsTableUrl { get; set; } = string.Empty;
         public static string CurrentButtonState { get; set; }

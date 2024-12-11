@@ -1,12 +1,11 @@
-﻿
-using System;
+﻿using System;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
-
 
 namespace TbApiTester
 {
@@ -18,9 +17,17 @@ namespace TbApiTester
         public FormRefObj(string content, TbApiTesterManager man)
         {
             InitializeComponent();
-            this.ContainerBtnUpload.Hide();
-            this.xmlEditorWpfRef.textEditor.AppendText(content);
-            this.modifiedXml = xmlEditorWpfRef.textEditor.Text;
+            //this.ContainerBtnUpload.Hide();
+            this.xmlEditorResult.TextContent = content;
+            this.xmlEditorResult.Update();
+            this.xmlEditorResult.Show();
+
+
+            //this.xmlEditorWpfRef.textEditor.Text = content;
+            //this.modifiedXml = xmlEditorWpfRef.textEditor.Text = content;
+
+            //this.xmlEditorRef.TextContent = content;
+            //this.modifiedXml = xmlEditorRef.TextContent = content; 
             manager = man;
         }
         public string GetModifiedXml()
@@ -30,7 +37,7 @@ namespace TbApiTester
 
         private void BtnSaveModifyXml_Click(object sender, EventArgs e)
         {
-            modifiedXml = xmlEditorWpfRef.textEditor.Text;  
+            //modifiedXml = xmlEditorRef.TextContent;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -112,9 +119,5 @@ namespace TbApiTester
             }
         }
 
-        private void btnModifyXml_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

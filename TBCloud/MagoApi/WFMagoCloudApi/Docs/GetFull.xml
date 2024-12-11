@@ -5008,3 +5008,343 @@ The Allocation Management must be enabled in the Sales Order Parameters
 		</maxs:DefaultDialog>
 	</maxs:Parameters>
 </maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Items tbNamespace="Document.ERP.Items.documents.Items" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Items/Items/Standard/DefaultLight.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Item type="String"></maxs:Item>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:IsGood type="Boolean">true</maxs:IsGood>
+				<maxs:TaxCode type="String">22</maxs:TaxCode>
+				<maxs:BaseUoM type="String"></maxs:BaseUoM>
+				<maxs:BasePrice type="Double">0.000000000000000</maxs:BasePrice>
+				<maxs:ItemType type="String"></maxs:ItemType>
+				<maxs:CommodityCtg type="String"></maxs:CommodityCtg>
+				<maxs:HomogeneousCtg type="String"></maxs:HomogeneousCtg>
+				<maxs:CommissionCtg type="String"></maxs:CommissionCtg>
+				<maxs:SaleOffset type="String"></maxs:SaleOffset>
+				<maxs:PurchaseOffset type="String"></maxs:PurchaseOffset>
+				<maxs:UseSerialNo type="Boolean">false</maxs:UseSerialNo>
+				<maxs:Disabled type="Boolean">false</maxs:Disabled>
+				<maxs:Nature type="DataEnum">22413314</maxs:Nature>
+				<maxs:Job type="String"></maxs:Job>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:Items>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
