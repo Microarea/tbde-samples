@@ -9,9 +9,9 @@
     <Grid>
 		<avalonEdit:TextEditor
 				Name="textEditor"
-				FontFamily="Consolas"
+				FontFamily="Century Gothic"
 				FontSize="10pt"
-				SyntaxHighlighting="XML"
+				SyntaxHighlighting="XML" Background="AliceBlue" Padding="0,5,0,0"
 			/>
 	</Grid>
 

@@ -42,10 +42,8 @@ namespace TbApiTester
             this.labelChooseProfile = new System.Windows.Forms.Label();
             this.btnTbfs = new System.Windows.Forms.Button();
             this.panelTbTextContainer = new System.Windows.Forms.Panel();
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.xmlEditorWpfTb = new XmlEditorWpf();
+            this.xmlEditorTbResult = new XmlEditor();
             this.btnClearText = new System.Windows.Forms.Button();
-            this.BtnFillContent = new System.Windows.Forms.Button();
             this.labelCallTbResult = new System.Windows.Forms.Label();
             this.BtnRefDoc = new System.Windows.Forms.Button();
             this.BtnOpenFolder = new System.Windows.Forms.Button();
@@ -359,6 +357,7 @@ namespace TbApiTester
             this.labelBusinessObj = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBoxWork = new System.Windows.Forms.TextBox();
+            this.BtnFillContent = new System.Windows.Forms.Button();
             this.panelTitleForm = new System.Windows.Forms.Panel();
             this.btnReduceIcon = new System.Windows.Forms.Button();
             this.cbxServicesWeb = new System.Windows.Forms.ComboBox();
@@ -372,7 +371,7 @@ namespace TbApiTester
             this.labelMessage = new System.Windows.Forms.Label();
             this.btnAccount = new System.Windows.Forms.Button();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelInfoAuthenticate = new System.Windows.Forms.Label();
             this.button_Token = new System.Windows.Forms.Button();
             this.panelLineAppBox = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -400,6 +399,8 @@ namespace TbApiTester
             this.Http_label = new System.Windows.Forms.Label();
             this.button_exit = new System.Windows.Forms.Button();
             this.button_Login = new System.Windows.Forms.Button();
+            this.orangePanel1 = new MspzComponent.OrangePanel();
+            this.panelmarginright = new System.Windows.Forms.Panel();
             linkHelpTb = new System.Windows.Forms.LinkLabel();
             this.tabNavigation.SuspendLayout();
             this.tabTbServer.SuspendLayout();
@@ -500,6 +501,8 @@ namespace TbApiTester
             this.panelLineSubBox.SuspendLayout();
             this.panelLinePwdBox.SuspendLayout();
             this.panelLineUserBox.SuspendLayout();
+            this.orangePanel1.SuspendLayout();
+            this.panelmarginright.SuspendLayout();
             this.SuspendLayout();
             // 
             // linkHelpTb
@@ -514,7 +517,7 @@ namespace TbApiTester
             linkHelpTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             linkHelpTb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             linkHelpTb.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            linkHelpTb.Location = new System.Drawing.Point(637, 291);
+            linkHelpTb.Location = new System.Drawing.Point(676, 293);
             linkHelpTb.Name = "linkHelpTb";
             linkHelpTb.Size = new System.Drawing.Size(110, 16);
             linkHelpTb.TabIndex = 92;
@@ -526,9 +529,6 @@ namespace TbApiTester
             // tabNavigation
             // 
             this.tabNavigation.AllowDrop = true;
-            this.tabNavigation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabNavigation.Controls.Add(this.tabTbServer);
             this.tabNavigation.Controls.Add(this.tabWebMethods);
             this.tabNavigation.Controls.Add(this.tabDataService);
@@ -543,12 +543,12 @@ namespace TbApiTester
             this.tabNavigation.HotTrack = true;
             this.tabNavigation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabNavigation.ItemSize = new System.Drawing.Size(85, 21);
-            this.tabNavigation.Location = new System.Drawing.Point(402, 55);
+            this.tabNavigation.Location = new System.Drawing.Point(398, 57);
             this.tabNavigation.Multiline = true;
             this.tabNavigation.Name = "tabNavigation";
             this.tabNavigation.Padding = new System.Drawing.Point(0, 0);
             this.tabNavigation.SelectedIndex = 0;
-            this.tabNavigation.Size = new System.Drawing.Size(793, 587);
+            this.tabNavigation.Size = new System.Drawing.Size(829, 586);
             this.tabNavigation.TabIndex = 23;
             // 
             // tabTbServer
@@ -573,8 +573,8 @@ namespace TbApiTester
             this.tabTbServer.ForeColor = System.Drawing.Color.White;
             this.tabTbServer.Location = new System.Drawing.Point(4, 46);
             this.tabTbServer.Name = "tabTbServer";
-            this.tabTbServer.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabTbServer.Size = new System.Drawing.Size(785, 537);
+            this.tabTbServer.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTbServer.Size = new System.Drawing.Size(821, 536);
             this.tabTbServer.TabIndex = 1;
             this.tabTbServer.Text = "TbServer-MagicLink";
             // 
@@ -660,33 +660,30 @@ namespace TbApiTester
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTbTextContainer.BackColor = System.Drawing.Color.White;
-            this.panelTbTextContainer.Controls.Add(this.elementHost1);
+            this.panelTbTextContainer.Controls.Add(this.xmlEditorTbResult);
             this.panelTbTextContainer.Controls.Add(this.btnClearText);
-            this.panelTbTextContainer.Controls.Add(this.BtnFillContent);
             this.panelTbTextContainer.Controls.Add(linkHelpTb);
             this.panelTbTextContainer.Controls.Add(this.labelCallTbResult);
             this.panelTbTextContainer.Controls.Add(this.BtnRefDoc);
             this.panelTbTextContainer.Controls.Add(this.BtnOpenFolder);
             this.panelTbTextContainer.Location = new System.Drawing.Point(15, 202);
-            this.panelTbTextContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTbTextContainer.Margin = new System.Windows.Forms.Padding(2);
             this.panelTbTextContainer.Name = "panelTbTextContainer";
-            this.panelTbTextContainer.Size = new System.Drawing.Size(751, 309);
+            this.panelTbTextContainer.Size = new System.Drawing.Size(789, 320);
             this.panelTbTextContainer.TabIndex = 115;
             // 
-            // elementHost1
+            // xmlEditorTbResult
             // 
-            this.elementHost1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.xmlEditorTbResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.elementHost1.BackColor = System.Drawing.Color.AliceBlue;
-            this.elementHost1.ForeColor = System.Drawing.Color.White;
-            this.elementHost1.Location = new System.Drawing.Point(3, 41);
-            this.elementHost1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(746, 249);
-            this.elementHost1.TabIndex = 117;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.xmlEditorWpfTb;
+            this.xmlEditorTbResult.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.xmlEditorTbResult.BackColor = System.Drawing.Color.AliceBlue;
+            this.xmlEditorTbResult.Location = new System.Drawing.Point(19, 43);
+            this.xmlEditorTbResult.Name = "xmlEditorTbResult";
+            this.xmlEditorTbResult.Size = new System.Drawing.Size(753, 247);
+            this.xmlEditorTbResult.TabIndex = 118;
+            this.xmlEditorTbResult.TextContent = "";
             // 
             // btnClearText
             // 
@@ -699,32 +696,13 @@ namespace TbApiTester
             this.btnClearText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearText.Font = new System.Drawing.Font("Century Gothic", 21.75F);
             this.btnClearText.ForeColor = System.Drawing.Color.IndianRed;
-            this.btnClearText.Location = new System.Drawing.Point(584, -3);
+            this.btnClearText.Location = new System.Drawing.Point(629, -4);
             this.btnClearText.Name = "btnClearText";
             this.btnClearText.Size = new System.Drawing.Size(59, 46);
             this.btnClearText.TabIndex = 116;
             this.btnClearText.Text = "🧹";
             this.btnClearText.UseVisualStyleBackColor = false;
             this.btnClearText.Click += new System.EventHandler(this.btnClearText_Click);
-            // 
-            // BtnFillContent
-            // 
-            this.BtnFillContent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnFillContent.BackColor = System.Drawing.Color.Transparent;
-            this.BtnFillContent.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.BtnFillContent.FlatAppearance.BorderSize = 0;
-            this.BtnFillContent.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.BtnFillContent.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.BtnFillContent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnFillContent.Font = new System.Drawing.Font("Century Gothic", 16.75F, System.Drawing.FontStyle.Bold);
-            this.BtnFillContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.BtnFillContent.Location = new System.Drawing.Point(3, 281);
-            this.BtnFillContent.Name = "BtnFillContent";
-            this.BtnFillContent.Size = new System.Drawing.Size(38, 28);
-            this.BtnFillContent.TabIndex = 115;
-            this.BtnFillContent.Text = "⬅";
-            this.BtnFillContent.UseVisualStyleBackColor = false;
-            this.BtnFillContent.Click += new System.EventHandler(this.FillContent_Click);
             // 
             // labelCallTbResult
             // 
@@ -749,7 +727,7 @@ namespace TbApiTester
             this.BtnRefDoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRefDoc.Font = new System.Drawing.Font("Century Gothic", 25.25F, System.Drawing.FontStyle.Bold);
             this.BtnRefDoc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.BtnRefDoc.Location = new System.Drawing.Point(694, -10);
+            this.BtnRefDoc.Location = new System.Drawing.Point(739, -10);
             this.BtnRefDoc.Name = "BtnRefDoc";
             this.BtnRefDoc.Size = new System.Drawing.Size(48, 54);
             this.BtnRefDoc.TabIndex = 108;
@@ -769,7 +747,7 @@ namespace TbApiTester
             this.BtnOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnOpenFolder.Font = new System.Drawing.Font("Century Gothic", 16.25F, System.Drawing.FontStyle.Bold);
             this.BtnOpenFolder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.BtnOpenFolder.Location = new System.Drawing.Point(649, 0);
+            this.BtnOpenFolder.Location = new System.Drawing.Point(694, 0);
             this.BtnOpenFolder.Name = "BtnOpenFolder";
             this.BtnOpenFolder.Size = new System.Drawing.Size(48, 33);
             this.BtnOpenFolder.TabIndex = 95;
@@ -852,7 +830,7 @@ namespace TbApiTester
             this.PanelUrlTbServer.Controls.Add(this.labelTbUrl);
             this.PanelUrlTbServer.Location = new System.Drawing.Point(163, 73);
             this.PanelUrlTbServer.Name = "PanelUrlTbServer";
-            this.PanelUrlTbServer.Size = new System.Drawing.Size(633, 27);
+            this.PanelUrlTbServer.Size = new System.Drawing.Size(682, 27);
             this.PanelUrlTbServer.TabIndex = 89;
             // 
             // labelTbUrl
@@ -971,10 +949,10 @@ namespace TbApiTester
             this.tabWebMethods.Controls.Add(this.roundedPanel3);
             this.tabWebMethods.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabWebMethods.ForeColor = System.Drawing.SystemColors.Control;
-            this.tabWebMethods.Location = new System.Drawing.Point(4, 25);
+            this.tabWebMethods.Location = new System.Drawing.Point(4, 46);
             this.tabWebMethods.Margin = new System.Windows.Forms.Padding(0);
             this.tabWebMethods.Name = "tabWebMethods";
-            this.tabWebMethods.Size = new System.Drawing.Size(785, 558);
+            this.tabWebMethods.Size = new System.Drawing.Size(821, 536);
             this.tabWebMethods.TabIndex = 4;
             this.tabWebMethods.Text = "WebMethods-MagicLink";
             // 
@@ -1080,7 +1058,7 @@ namespace TbApiTester
             this.linkCodeSourceWb.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.linkCodeSourceWb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkCodeSourceWb.LinkColor = System.Drawing.Color.White;
-            this.linkCodeSourceWb.Location = new System.Drawing.Point(602, 3018);
+            this.linkCodeSourceWb.Location = new System.Drawing.Point(1020, 3095);
             this.linkCodeSourceWb.Name = "linkCodeSourceWb";
             this.linkCodeSourceWb.Size = new System.Drawing.Size(110, 16);
             this.linkCodeSourceWb.TabIndex = 93;
@@ -1251,7 +1229,7 @@ namespace TbApiTester
             this.roundedPanel1.ForeColor = System.Drawing.Color.White;
             this.roundedPanel1.Location = new System.Drawing.Point(27, 294);
             this.roundedPanel1.Name = "roundedPanel1";
-            this.roundedPanel1.Size = new System.Drawing.Size(1016, 216);
+            this.roundedPanel1.Size = new System.Drawing.Size(1434, 216);
             this.roundedPanel1.TabIndex = 90;
             // 
             // btnCreatePx
@@ -1539,7 +1517,7 @@ namespace TbApiTester
             this.roundedPanel3.Controls.Add(this.labelWbUrl);
             this.roundedPanel3.Location = new System.Drawing.Point(155, 73);
             this.roundedPanel3.Name = "roundedPanel3";
-            this.roundedPanel3.Size = new System.Drawing.Size(710, 27);
+            this.roundedPanel3.Size = new System.Drawing.Size(1128, 27);
             this.roundedPanel3.TabIndex = 91;
             // 
             // labelWbUrl
@@ -1589,10 +1567,10 @@ namespace TbApiTester
             this.tabDataService.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabDataService.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
             this.tabDataService.ForeColor = System.Drawing.Color.White;
-            this.tabDataService.Location = new System.Drawing.Point(4, 25);
+            this.tabDataService.Location = new System.Drawing.Point(4, 46);
             this.tabDataService.Name = "tabDataService";
-            this.tabDataService.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabDataService.Size = new System.Drawing.Size(785, 558);
+            this.tabDataService.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDataService.Size = new System.Drawing.Size(821, 536);
             this.tabDataService.TabIndex = 0;
             this.tabDataService.Text = "DataService";
             // 
@@ -1774,7 +1752,7 @@ namespace TbApiTester
             this.linkHelpDataService.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.linkHelpDataService.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkHelpDataService.LinkColor = System.Drawing.Color.White;
-            this.linkHelpDataService.Location = new System.Drawing.Point(645, 3150);
+            this.linkHelpDataService.Location = new System.Drawing.Point(1063, 3227);
             this.linkHelpDataService.Name = "linkHelpDataService";
             this.linkHelpDataService.Size = new System.Drawing.Size(110, 16);
             this.linkHelpDataService.TabIndex = 94;
@@ -1984,7 +1962,7 @@ namespace TbApiTester
             this.roundedPanel4.Controls.Add(this.labelDataUrl);
             this.roundedPanel4.Location = new System.Drawing.Point(127, 87);
             this.roundedPanel4.Name = "roundedPanel4";
-            this.roundedPanel4.Size = new System.Drawing.Size(788, 27);
+            this.roundedPanel4.Size = new System.Drawing.Size(1206, 27);
             this.roundedPanel4.TabIndex = 92;
             // 
             // labelDataUrl
@@ -2169,9 +2147,9 @@ namespace TbApiTester
             this.tabRs.Controls.Add(this.btnGetRsItems);
             this.tabRs.Controls.Add(this.panel18);
             this.tabRs.Controls.Add(this.roundedPanel5);
-            this.tabRs.Location = new System.Drawing.Point(4, 25);
+            this.tabRs.Location = new System.Drawing.Point(4, 46);
             this.tabRs.Name = "tabRs";
-            this.tabRs.Size = new System.Drawing.Size(785, 558);
+            this.tabRs.Size = new System.Drawing.Size(821, 536);
             this.tabRs.TabIndex = 5;
             this.tabRs.Text = "ReportingService";
             // 
@@ -2207,7 +2185,7 @@ namespace TbApiTester
             this.btnExploreReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExploreReport.Font = new System.Drawing.Font("Century Gothic", 76.25F, System.Drawing.FontStyle.Bold);
             this.btnExploreReport.ForeColor = System.Drawing.Color.LightBlue;
-            this.btnExploreReport.Location = new System.Drawing.Point(537, 388);
+            this.btnExploreReport.Location = new System.Drawing.Point(955, 427);
             this.btnExploreReport.Name = "btnExploreReport";
             this.btnExploreReport.Size = new System.Drawing.Size(174, 145);
             this.btnExploreReport.TabIndex = 101;
@@ -2290,7 +2268,7 @@ namespace TbApiTester
             this.linkHelpReportingService.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.linkHelpReportingService.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkHelpReportingService.LinkColor = System.Drawing.Color.White;
-            this.linkHelpReportingService.Location = new System.Drawing.Point(602, 3022);
+            this.linkHelpReportingService.Location = new System.Drawing.Point(1020, 3099);
             this.linkHelpReportingService.Name = "linkHelpReportingService";
             this.linkHelpReportingService.Size = new System.Drawing.Size(110, 16);
             this.linkHelpReportingService.TabIndex = 95;
@@ -2469,7 +2447,7 @@ namespace TbApiTester
             this.roundedPanel5.Controls.Add(this.labelRsUrl);
             this.roundedPanel5.Location = new System.Drawing.Point(59, 83);
             this.roundedPanel5.Name = "roundedPanel5";
-            this.roundedPanel5.Size = new System.Drawing.Size(687, 27);
+            this.roundedPanel5.Size = new System.Drawing.Size(1105, 27);
             this.roundedPanel5.TabIndex = 93;
             // 
             // labelRsUrl
@@ -2499,10 +2477,10 @@ namespace TbApiTester
             this.tabDMS.Controls.Add(this.buttonMicrHome);
             this.tabDMS.Controls.Add(this.roundedPanel6);
             this.tabDMS.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold);
-            this.tabDMS.Location = new System.Drawing.Point(4, 25);
+            this.tabDMS.Location = new System.Drawing.Point(4, 46);
             this.tabDMS.Name = "tabDMS";
-            this.tabDMS.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabDMS.Size = new System.Drawing.Size(785, 558);
+            this.tabDMS.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDMS.Size = new System.Drawing.Size(821, 536);
             this.tabDMS.TabIndex = 2;
             this.tabDMS.Text = "DMS";
             // 
@@ -2515,7 +2493,7 @@ namespace TbApiTester
             this.linkHelpDMS.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
             this.linkHelpDMS.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkHelpDMS.LinkColor = System.Drawing.Color.White;
-            this.linkHelpDMS.Location = new System.Drawing.Point(602, 3044);
+            this.linkHelpDMS.Location = new System.Drawing.Point(1020, 3121);
             this.linkHelpDMS.Name = "linkHelpDMS";
             this.linkHelpDMS.Size = new System.Drawing.Size(110, 16);
             this.linkHelpDMS.TabIndex = 95;
@@ -2651,7 +2629,7 @@ namespace TbApiTester
             this.roundedPanel6.Controls.Add(this.labelDmsUrl);
             this.roundedPanel6.Location = new System.Drawing.Point(209, 109);
             this.roundedPanel6.Name = "roundedPanel6";
-            this.roundedPanel6.Size = new System.Drawing.Size(544, 43);
+            this.roundedPanel6.Size = new System.Drawing.Size(962, 43);
             this.roundedPanel6.TabIndex = 94;
             // 
             // labelDmsUrl
@@ -2670,9 +2648,9 @@ namespace TbApiTester
             // 
             this.tabMSH.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.tabMSH.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold);
-            this.tabMSH.Location = new System.Drawing.Point(4, 25);
+            this.tabMSH.Location = new System.Drawing.Point(4, 46);
             this.tabMSH.Name = "tabMSH";
-            this.tabMSH.Size = new System.Drawing.Size(785, 558);
+            this.tabMSH.Size = new System.Drawing.Size(821, 536);
             this.tabMSH.TabIndex = 3;
             this.tabMSH.Text = "MSH";
             // 
@@ -2687,10 +2665,10 @@ namespace TbApiTester
             this.DataManager.Controls.Add(this.btnGetMMSVersion);
             this.DataManager.Controls.Add(this.labelGetService);
             this.DataManager.Controls.Add(this.panel2);
-            this.DataManager.Location = new System.Drawing.Point(4, 25);
-            this.DataManager.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DataManager.Location = new System.Drawing.Point(4, 46);
+            this.DataManager.Margin = new System.Windows.Forms.Padding(2);
             this.DataManager.Name = "DataManager";
-            this.DataManager.Size = new System.Drawing.Size(785, 558);
+            this.DataManager.Size = new System.Drawing.Size(821, 536);
             this.DataManager.TabIndex = 6;
             this.DataManager.Text = "DataManager";
             // 
@@ -2701,7 +2679,7 @@ namespace TbApiTester
             this.rndPanelUrl.Controls.Add(this.DmMMSUrl);
             this.rndPanelUrl.Location = new System.Drawing.Point(257, 20);
             this.rndPanelUrl.Name = "rndPanelUrl";
-            this.rndPanelUrl.Size = new System.Drawing.Size(519, 27);
+            this.rndPanelUrl.Size = new System.Drawing.Size(937, 27);
             this.rndPanelUrl.TabIndex = 95;
             // 
             // DmMMSUrl
@@ -2761,7 +2739,7 @@ namespace TbApiTester
             this.labelNextIdN.ForeColor = System.Drawing.Color.White;
             this.labelNextIdN.Location = new System.Drawing.Point(8, 52);
             this.labelNextIdN.Name = "labelNextIdN";
-            this.labelNextIdN.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.labelNextIdN.Padding = new System.Windows.Forms.Padding(3);
             this.labelNextIdN.Size = new System.Drawing.Size(284, 22);
             this.labelNextIdN.TabIndex = 111;
             this.labelNextIdN.Text = "Make the call GetNextId to see id number";
@@ -3450,9 +3428,9 @@ namespace TbApiTester
             this.TabBusinessObject.Controls.Add(this.panelTableCustSuppNotes);
             this.TabBusinessObject.Controls.Add(this.panelCustSuppOptions);
             this.TabBusinessObject.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.TabBusinessObject.Location = new System.Drawing.Point(4, 25);
+            this.TabBusinessObject.Location = new System.Drawing.Point(4, 46);
             this.TabBusinessObject.Name = "TabBusinessObject";
-            this.TabBusinessObject.Size = new System.Drawing.Size(785, 558);
+            this.TabBusinessObject.Size = new System.Drawing.Size(821, 536);
             this.TabBusinessObject.TabIndex = 7;
             this.TabBusinessObject.Text = "BusinessObject";
             // 
@@ -4248,9 +4226,9 @@ namespace TbApiTester
             this.tabDocBusinessObject.Controls.Add(this.labelBusinessObj);
             this.tabDocBusinessObject.Controls.Add(this.textBox1);
             this.tabDocBusinessObject.Controls.Add(this.textBoxWork);
-            this.tabDocBusinessObject.Location = new System.Drawing.Point(4, 25);
+            this.tabDocBusinessObject.Location = new System.Drawing.Point(4, 46);
             this.tabDocBusinessObject.Name = "tabDocBusinessObject";
-            this.tabDocBusinessObject.Size = new System.Drawing.Size(785, 558);
+            this.tabDocBusinessObject.Size = new System.Drawing.Size(821, 536);
             this.tabDocBusinessObject.TabIndex = 8;
             this.tabDocBusinessObject.Text = "DocBusinessObject";
             // 
@@ -4261,7 +4239,7 @@ namespace TbApiTester
             this.roundedPanel2.Controls.Add(this.labelBObjUrl);
             this.roundedPanel2.Location = new System.Drawing.Point(108, 67);
             this.roundedPanel2.Name = "roundedPanel2";
-            this.roundedPanel2.Size = new System.Drawing.Size(633, 27);
+            this.roundedPanel2.Size = new System.Drawing.Size(1055, 27);
             this.roundedPanel2.TabIndex = 135;
             // 
             // labelBObjUrl
@@ -4349,6 +4327,25 @@ namespace TbApiTester
             this.textBoxWork.Text = "Works in progress";
             this.textBoxWork.WordWrap = false;
             // 
+            // BtnFillContent
+            // 
+            this.BtnFillContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.BtnFillContent.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.BtnFillContent.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnFillContent.FlatAppearance.BorderSize = 0;
+            this.BtnFillContent.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.BtnFillContent.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.BtnFillContent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFillContent.Font = new System.Drawing.Font("Century Gothic", 16.75F, System.Drawing.FontStyle.Bold);
+            this.BtnFillContent.ForeColor = System.Drawing.Color.White;
+            this.BtnFillContent.Location = new System.Drawing.Point(0, 0);
+            this.BtnFillContent.Name = "BtnFillContent";
+            this.BtnFillContent.Size = new System.Drawing.Size(40, 50);
+            this.BtnFillContent.TabIndex = 115;
+            this.BtnFillContent.Text = "❮";
+            this.BtnFillContent.UseVisualStyleBackColor = false;
+            this.BtnFillContent.Click += new System.EventHandler(this.FillContent_Click);
+            // 
             // panelTitleForm
             // 
             this.panelTitleForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
@@ -4361,10 +4358,10 @@ namespace TbApiTester
             this.panelTitleForm.Controls.Add(this.btnCloseForm);
             this.panelTitleForm.Cursor = System.Windows.Forms.Cursors.Default;
             this.panelTitleForm.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTitleForm.Location = new System.Drawing.Point(8, 0);
+            this.panelTitleForm.Location = new System.Drawing.Point(0, 0);
             this.panelTitleForm.Name = "panelTitleForm";
             this.panelTitleForm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panelTitleForm.Size = new System.Drawing.Size(1178, 57);
+            this.panelTitleForm.Size = new System.Drawing.Size(1272, 57);
             this.panelTitleForm.TabIndex = 24;
             this.panelTitleForm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleForm_MouseDown);
             this.panelTitleForm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitleForm_MouseMove);
@@ -4381,7 +4378,7 @@ namespace TbApiTester
             this.btnReduceIcon.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.btnReduceIcon.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnReduceIcon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnReduceIcon.Location = new System.Drawing.Point(921, 0);
+            this.btnReduceIcon.Location = new System.Drawing.Point(1015, 0);
             this.btnReduceIcon.Name = "btnReduceIcon";
             this.btnReduceIcon.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnReduceIcon.Size = new System.Drawing.Size(76, 57);
@@ -4394,7 +4391,7 @@ namespace TbApiTester
             // 
             this.cbxServicesWeb.FormattingEnabled = true;
             this.cbxServicesWeb.Location = new System.Drawing.Point(184, 19);
-            this.cbxServicesWeb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxServicesWeb.Margin = new System.Windows.Forms.Padding(2);
             this.cbxServicesWeb.Name = "cbxServicesWeb";
             this.cbxServicesWeb.Size = new System.Drawing.Size(195, 21);
             this.cbxServicesWeb.TabIndex = 49;
@@ -4411,7 +4408,7 @@ namespace TbApiTester
             this.btnWindowMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.btnWindowMax.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnWindowMax.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnWindowMax.Location = new System.Drawing.Point(997, 0);
+            this.btnWindowMax.Location = new System.Drawing.Point(1091, 0);
             this.btnWindowMax.Name = "btnWindowMax";
             this.btnWindowMax.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnWindowMax.Size = new System.Drawing.Size(112, 57);
@@ -4452,7 +4449,7 @@ namespace TbApiTester
             this.btnCloseForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnCloseForm.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCloseForm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCloseForm.Location = new System.Drawing.Point(1109, 0);
+            this.btnCloseForm.Location = new System.Drawing.Point(1203, 0);
             this.btnCloseForm.Name = "btnCloseForm";
             this.btnCloseForm.Size = new System.Drawing.Size(69, 57);
             this.btnCloseForm.TabIndex = 6;
@@ -4464,19 +4461,19 @@ namespace TbApiTester
             // 
             this.panelMarginLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.panelMarginLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelMarginLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelMarginLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelMarginLeft.Location = new System.Drawing.Point(0, 57);
+            this.panelMarginLeft.Margin = new System.Windows.Forms.Padding(2);
             this.panelMarginLeft.Name = "panelMarginLeft";
-            this.panelMarginLeft.Size = new System.Drawing.Size(8, 643);
+            this.panelMarginLeft.Size = new System.Drawing.Size(8, 594);
             this.panelMarginLeft.TabIndex = 48;
             // 
             // panelMarginBottom
             // 
             this.panelMarginBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelMarginBottom.Location = new System.Drawing.Point(0, 643);
-            this.panelMarginBottom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelMarginBottom.Location = new System.Drawing.Point(8, 643);
+            this.panelMarginBottom.Margin = new System.Windows.Forms.Padding(2);
             this.panelMarginBottom.Name = "panelMarginBottom";
-            this.panelMarginBottom.Size = new System.Drawing.Size(1186, 8);
+            this.panelMarginBottom.Size = new System.Drawing.Size(1264, 8);
             this.panelMarginBottom.TabIndex = 93;
             // 
             // LoginPanel
@@ -4485,7 +4482,7 @@ namespace TbApiTester
             this.LoginPanel.Controls.Add(this.labelMessage);
             this.LoginPanel.Controls.Add(this.btnAccount);
             this.LoginPanel.Controls.Add(this.pictureBoxLogo);
-            this.LoginPanel.Controls.Add(this.label3);
+            this.LoginPanel.Controls.Add(this.labelInfoAuthenticate);
             this.LoginPanel.Controls.Add(this.button_Token);
             this.LoginPanel.Controls.Add(this.panelLineAppBox);
             this.LoginPanel.Controls.Add(this.panelLineProdBox);
@@ -4510,7 +4507,7 @@ namespace TbApiTester
             this.LoginPanel.Controls.Add(this.button_Login);
             this.LoginPanel.Location = new System.Drawing.Point(10, 57);
             this.LoginPanel.Name = "LoginPanel";
-            this.LoginPanel.Size = new System.Drawing.Size(393, 586);
+            this.LoginPanel.Size = new System.Drawing.Size(389, 586);
             this.LoginPanel.TabIndex = 92;
             // 
             // labelMessage
@@ -4557,16 +4554,16 @@ namespace TbApiTester
             this.pictureBoxLogo.TabIndex = 47;
             this.pictureBoxLogo.TabStop = false;
             // 
-            // label3
+            // labelInfoAuthenticate
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.label3.Location = new System.Drawing.Point(37, 496);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(340, 16);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Enter the information to authenticate in MagoCloud";
+            this.labelInfoAuthenticate.AutoSize = true;
+            this.labelInfoAuthenticate.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelInfoAuthenticate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.labelInfoAuthenticate.Location = new System.Drawing.Point(38, 496);
+            this.labelInfoAuthenticate.Name = "labelInfoAuthenticate";
+            this.labelInfoAuthenticate.Size = new System.Drawing.Size(301, 16);
+            this.labelInfoAuthenticate.TabIndex = 23;
+            this.labelInfoAuthenticate.Text = "Enter the information to authenticate in Mago";
             // 
             // button_Token
             // 
@@ -4579,7 +4576,7 @@ namespace TbApiTester
             this.button_Token.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Token.Font = new System.Drawing.Font("Century Gothic", 6.75F, System.Drawing.FontStyle.Bold);
             this.button_Token.ForeColor = System.Drawing.SystemColors.Control;
-            this.button_Token.Location = new System.Drawing.Point(163, 395);
+            this.button_Token.Location = new System.Drawing.Point(159, 395);
             this.button_Token.Name = "button_Token";
             this.button_Token.Size = new System.Drawing.Size(63, 40);
             this.button_Token.TabIndex = 46;
@@ -4592,7 +4589,7 @@ namespace TbApiTester
             // 
             this.panelLineAppBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.panelLineAppBox.Controls.Add(this.panel13);
-            this.panelLineAppBox.Location = new System.Drawing.Point(90, 377);
+            this.panelLineAppBox.Location = new System.Drawing.Point(86, 377);
             this.panelLineAppBox.Name = "panelLineAppBox";
             this.panelLineAppBox.Size = new System.Drawing.Size(216, 1);
             this.panelLineAppBox.TabIndex = 42;
@@ -4610,7 +4607,7 @@ namespace TbApiTester
             // 
             this.panelLineProdBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.panelLineProdBox.Controls.Add(this.panel11);
-            this.panelLineProdBox.Location = new System.Drawing.Point(90, 330);
+            this.panelLineProdBox.Location = new System.Drawing.Point(86, 330);
             this.panelLineProdBox.Name = "panelLineProdBox";
             this.panelLineProdBox.Size = new System.Drawing.Size(216, 1);
             this.panelLineProdBox.TabIndex = 44;
@@ -4628,7 +4625,7 @@ namespace TbApiTester
             // 
             this.panelLineSubBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.panelLineSubBox.Controls.Add(this.panel9);
-            this.panelLineSubBox.Location = new System.Drawing.Point(90, 283);
+            this.panelLineSubBox.Location = new System.Drawing.Point(86, 283);
             this.panelLineSubBox.Name = "panelLineSubBox";
             this.panelLineSubBox.Size = new System.Drawing.Size(216, 1);
             this.panelLineSubBox.TabIndex = 43;
@@ -4646,7 +4643,7 @@ namespace TbApiTester
             // 
             this.panelLinePwdBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.panelLinePwdBox.Controls.Add(this.panel7);
-            this.panelLinePwdBox.Location = new System.Drawing.Point(90, 236);
+            this.panelLinePwdBox.Location = new System.Drawing.Point(86, 236);
             this.panelLinePwdBox.Name = "panelLinePwdBox";
             this.panelLinePwdBox.Size = new System.Drawing.Size(216, 1);
             this.panelLinePwdBox.TabIndex = 41;
@@ -4664,7 +4661,7 @@ namespace TbApiTester
             // 
             this.panelLineUserBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.panelLineUserBox.Controls.Add(this.panel5);
-            this.panelLineUserBox.Location = new System.Drawing.Point(90, 190);
+            this.panelLineUserBox.Location = new System.Drawing.Point(86, 190);
             this.panelLineUserBox.Name = "panelLineUserBox";
             this.panelLineUserBox.Size = new System.Drawing.Size(216, 1);
             this.panelLineUserBox.TabIndex = 40;
@@ -4681,7 +4678,7 @@ namespace TbApiTester
             // panelLineHttpbox
             // 
             this.panelLineHttpbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.panelLineHttpbox.Location = new System.Drawing.Point(90, 143);
+            this.panelLineHttpbox.Location = new System.Drawing.Point(86, 143);
             this.panelLineHttpbox.Name = "panelLineHttpbox";
             this.panelLineHttpbox.Size = new System.Drawing.Size(216, 1);
             this.panelLineHttpbox.TabIndex = 39;
@@ -4692,7 +4689,7 @@ namespace TbApiTester
             this.App_label.AutoSize = true;
             this.App_label.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
             this.App_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.App_label.Location = new System.Drawing.Point(70, 336);
+            this.App_label.Location = new System.Drawing.Point(66, 336);
             this.App_label.Name = "App_label";
             this.App_label.Size = new System.Drawing.Size(71, 18);
             this.App_label.TabIndex = 35;
@@ -4703,7 +4700,7 @@ namespace TbApiTester
             this.text_app.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.text_app.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.text_app.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.text_app.Location = new System.Drawing.Point(90, 358);
+            this.text_app.Location = new System.Drawing.Point(86, 358);
             this.text_app.Name = "text_app";
             this.text_app.Size = new System.Drawing.Size(216, 16);
             this.text_app.TabIndex = 36;
@@ -4714,7 +4711,7 @@ namespace TbApiTester
             this.text_producer.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.text_producer.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.text_producer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.text_producer.Location = new System.Drawing.Point(90, 311);
+            this.text_producer.Location = new System.Drawing.Point(86, 311);
             this.text_producer.Name = "text_producer";
             this.text_producer.Size = new System.Drawing.Size(216, 16);
             this.text_producer.TabIndex = 38;
@@ -4725,7 +4722,7 @@ namespace TbApiTester
             this.Prod_label.AutoSize = true;
             this.Prod_label.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
             this.Prod_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.Prod_label.Location = new System.Drawing.Point(70, 289);
+            this.Prod_label.Location = new System.Drawing.Point(66, 289);
             this.Prod_label.Name = "Prod_label";
             this.Prod_label.Size = new System.Drawing.Size(107, 18);
             this.Prod_label.TabIndex = 37;
@@ -4742,7 +4739,7 @@ namespace TbApiTester
             this.button_Logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Logout.Font = new System.Drawing.Font("Century Gothic", 8.75F, System.Drawing.FontStyle.Bold);
             this.button_Logout.ForeColor = System.Drawing.SystemColors.Control;
-            this.button_Logout.Location = new System.Drawing.Point(240, 395);
+            this.button_Logout.Location = new System.Drawing.Point(236, 395);
             this.button_Logout.Name = "button_Logout";
             this.button_Logout.Size = new System.Drawing.Size(62, 40);
             this.button_Logout.TabIndex = 34;
@@ -4755,7 +4752,7 @@ namespace TbApiTester
             this.User_label.AutoSize = true;
             this.User_label.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
             this.User_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.User_label.Location = new System.Drawing.Point(70, 150);
+            this.User_label.Location = new System.Drawing.Point(66, 150);
             this.User_label.Name = "User_label";
             this.User_label.Size = new System.Drawing.Size(82, 18);
             this.User_label.TabIndex = 24;
@@ -4766,7 +4763,7 @@ namespace TbApiTester
             this.text_subscription.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.text_subscription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.text_subscription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.text_subscription.Location = new System.Drawing.Point(90, 264);
+            this.text_subscription.Location = new System.Drawing.Point(86, 264);
             this.text_subscription.Name = "text_subscription";
             this.text_subscription.Size = new System.Drawing.Size(216, 16);
             this.text_subscription.TabIndex = 33;
@@ -4776,7 +4773,7 @@ namespace TbApiTester
             this.Pwd_label.AutoSize = true;
             this.Pwd_label.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
             this.Pwd_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.Pwd_label.Location = new System.Drawing.Point(70, 196);
+            this.Pwd_label.Location = new System.Drawing.Point(66, 196);
             this.Pwd_label.Name = "Pwd_label";
             this.Pwd_label.Size = new System.Drawing.Size(75, 18);
             this.Pwd_label.TabIndex = 25;
@@ -4787,7 +4784,7 @@ namespace TbApiTester
             this.text_user.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.text_user.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.text_user.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.text_user.Location = new System.Drawing.Point(90, 171);
+            this.text_user.Location = new System.Drawing.Point(86, 171);
             this.text_user.Name = "text_user";
             this.text_user.Size = new System.Drawing.Size(216, 16);
             this.text_user.TabIndex = 26;
@@ -4797,7 +4794,7 @@ namespace TbApiTester
             // 
             this.text_pwd.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.text_pwd.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.text_pwd.Location = new System.Drawing.Point(90, 218);
+            this.text_pwd.Location = new System.Drawing.Point(86, 218);
             this.text_pwd.Name = "text_pwd";
             this.text_pwd.PasswordChar = '*';
             this.text_pwd.Size = new System.Drawing.Size(216, 13);
@@ -4808,7 +4805,7 @@ namespace TbApiTester
             this.Sub_lable.AutoSize = true;
             this.Sub_lable.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
             this.Sub_lable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.Sub_lable.Location = new System.Drawing.Point(70, 242);
+            this.Sub_lable.Location = new System.Drawing.Point(66, 242);
             this.Sub_lable.Name = "Sub_lable";
             this.Sub_lable.Size = new System.Drawing.Size(97, 18);
             this.Sub_lable.TabIndex = 32;
@@ -4819,7 +4816,7 @@ namespace TbApiTester
             this.text_http.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.text_http.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.text_http.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.text_http.Location = new System.Drawing.Point(90, 124);
+            this.text_http.Location = new System.Drawing.Point(86, 124);
             this.text_http.Name = "text_http";
             this.text_http.Size = new System.Drawing.Size(216, 16);
             this.text_http.TabIndex = 31;
@@ -4829,7 +4826,7 @@ namespace TbApiTester
             this.Http_label.AutoSize = true;
             this.Http_label.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold);
             this.Http_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.Http_label.Location = new System.Drawing.Point(49, 99);
+            this.Http_label.Location = new System.Drawing.Point(45, 99);
             this.Http_label.Name = "Http_label";
             this.Http_label.Size = new System.Drawing.Size(305, 18);
             this.Http_label.TabIndex = 30;
@@ -4846,7 +4843,7 @@ namespace TbApiTester
             this.button_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_exit.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_exit.ForeColor = System.Drawing.SystemColors.Control;
-            this.button_exit.Location = new System.Drawing.Point(88, 444);
+            this.button_exit.Location = new System.Drawing.Point(84, 444);
             this.button_exit.Name = "button_exit";
             this.button_exit.Size = new System.Drawing.Size(216, 36);
             this.button_exit.TabIndex = 29;
@@ -4865,7 +4862,7 @@ namespace TbApiTester
             this.button_Login.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Login.Font = new System.Drawing.Font("Century Gothic", 8.75F, System.Drawing.FontStyle.Bold);
             this.button_Login.ForeColor = System.Drawing.SystemColors.Control;
-            this.button_Login.Location = new System.Drawing.Point(90, 395);
+            this.button_Login.Location = new System.Drawing.Point(86, 395);
             this.button_Login.Name = "button_Login";
             this.button_Login.Size = new System.Drawing.Size(61, 40);
             this.button_Login.TabIndex = 28;
@@ -4873,6 +4870,31 @@ namespace TbApiTester
             this.button_Login.UseVisualStyleBackColor = false;
             this.button_Login.EnabledChanged += new System.EventHandler(this.button_Login_Click);
             this.button_Login.Click += new System.EventHandler(this.button_Login_Click);
+            // 
+            // orangePanel1
+            // 
+            this.orangePanel1.AccessibleName = "ContainerBtnconsole";
+            this.orangePanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.orangePanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.orangePanel1.Controls.Add(this.BtnFillContent);
+            this.orangePanel1.Location = new System.Drawing.Point(3, 48);
+            this.orangePanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.orangePanel1.Name = "orangePanel1";
+            this.orangePanel1.Size = new System.Drawing.Size(40, 49);
+            this.orangePanel1.TabIndex = 94;
+            // 
+            // panelmarginright
+            // 
+            this.panelmarginright.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.panelmarginright.Controls.Add(this.orangePanel1);
+            this.panelmarginright.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelmarginright.Location = new System.Drawing.Point(1227, 57);
+            this.panelmarginright.Margin = new System.Windows.Forms.Padding(2);
+            this.panelmarginright.Name = "panelmarginright";
+            this.panelmarginright.Size = new System.Drawing.Size(45, 586);
+            this.panelmarginright.TabIndex = 50;
             // 
             // TbApiTester
             // 
@@ -4882,12 +4904,13 @@ namespace TbApiTester
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1186, 651);
+            this.ClientSize = new System.Drawing.Size(1272, 651);
             this.Controls.Add(this.tabNavigation);
+            this.Controls.Add(this.panelmarginright);
             this.Controls.Add(this.LoginPanel);
-            this.Controls.Add(this.panelTitleForm);
-            this.Controls.Add(this.panelMarginLeft);
             this.Controls.Add(this.panelMarginBottom);
+            this.Controls.Add(this.panelMarginLeft);
+            this.Controls.Add(this.panelTitleForm);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TbApiTester";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -5019,6 +5042,8 @@ namespace TbApiTester
             this.panelLineSubBox.ResumeLayout(false);
             this.panelLinePwdBox.ResumeLayout(false);
             this.panelLineUserBox.ResumeLayout(false);
+            this.orangePanel1.ResumeLayout(false);
+            this.panelmarginright.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -5134,7 +5159,7 @@ namespace TbApiTester
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnCloseForm;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelInfoAuthenticate;
         private System.Windows.Forms.Button button_Token;
         private System.Windows.Forms.Panel panelLineAppBox;
         private System.Windows.Forms.Panel panel13;
@@ -5326,7 +5351,6 @@ namespace TbApiTester
         private System.Windows.Forms.Label labelBObjectData;
         private System.Windows.Forms.Panel panel53;
         private System.Windows.Forms.Panel panel54;
-        private System.Windows.Forms.Button btnUpdateBusinessObject;
         private System.Windows.Forms.Panel panel80;
         private System.Windows.Forms.Panel panel81;
         private System.Windows.Forms.Label label2;
@@ -5391,9 +5415,11 @@ namespace TbApiTester
         private System.Windows.Forms.ComboBox cbxModRObj;
         private System.Windows.Forms.ComboBox cbxAppRObj;
         private System.Windows.Forms.Button BtnViewModifyXml;
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private XmlEditorWpf xmlEditorWpfTb;
         private System.Windows.Forms.Button BtnUploadRefObj;
+        private XmlEditor xmlEditorTbResult;
+        private System.Windows.Forms.Button btnUpdateBusinessObject;
+        private OrangePanel orangePanel1;
+        private System.Windows.Forms.Panel panelmarginright;
     }
 }
 

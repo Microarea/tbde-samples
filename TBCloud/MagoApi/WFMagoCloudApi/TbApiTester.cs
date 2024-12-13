@@ -15,6 +15,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
+using System.Web.UI.WebControls;
 
 
 
@@ -74,6 +75,7 @@ namespace TbApiTester
                     Http_label.Text = "MagoDevEnv authentication authority URL";
                     uiManager.ReplaceColor(Color.FromArgb(232, 159, 0), Color.FromArgb(173, 92, 174));
                     pictureBoxLogo.Image = Properties.Resources.DevEnvBtn;
+                    labelInfoAuthenticate.Text += "DevEnv";
                     break;
 
                 case GlobalSettings.ButtonState.Web:
@@ -110,7 +112,7 @@ namespace TbApiTester
             btnExploreReport.Hide();
             DynamicQueriesPanel.Hide();
             btnAccount.Hide();
-
+           
         }
 
 
@@ -147,6 +149,7 @@ namespace TbApiTester
 
             cbxProfile.Items.Add("Profile");
             cbxProfile.SelectedIndex = 0;
+
         }
 
         //////////// customize draggable
@@ -242,12 +245,12 @@ namespace TbApiTester
             if (isFullScreen)
             {
                 this.WindowState = FormWindowState.Normal;
-                //this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
                 isFullScreen = false;
             }
             else
             {
-                if (BtnFillContent.Text == "⬅")//chiude LoginPanel
+                if (BtnFillContent.Text == "⬅")//close LoginPanel
                 {
                     tabNavigation.Dock = DockStyle.Fill;
                     LoginPanel.Dock = DockStyle.Top | DockStyle.Bottom;
@@ -255,7 +258,7 @@ namespace TbApiTester
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.WindowState = FormWindowState.Maximized;
 
-                // Rendi gli angoli arrotondati
+                //  Rounded corner
                 int radius = 20;
                 GraphicsPath path = new GraphicsPath();
                 path.AddArc(0, 0, radius, radius, 180, 90);
@@ -269,16 +272,16 @@ namespace TbApiTester
 
         private void FillContent_Click(object sender, EventArgs e)
         {
-            if (BtnFillContent.Text == "⬅")//close LoginPanel
+            if (BtnFillContent.Text == "❮")//close LoginPanel
             {
-                BtnFillContent.Text = "➡";
+                BtnFillContent.Text = "❯";
                 tabNavigation.Dock = DockStyle.Fill;
                 LoginPanel.Dock = DockStyle.None;
 
             }
-            else//apre LoginPanel
+            else//open LoginPanel
             {
-                BtnFillContent.Text = "⬅";
+                BtnFillContent.Text = "❮";
                 LoginPanel.Dock = DockStyle.Top | DockStyle.Bottom;
             }
         }
@@ -363,33 +366,15 @@ namespace TbApiTester
             List<SubscriptionInfo> subscriptionInfos = new List<SubscriptionInfo>();
 
             Task<bool> task = manager.authenticationManager.GetSubscriptionsForAccount(text_http.Text, text_user.Text, subscriptionInfos);
-           
             string responseContent = manager.authenticationManager._responseBody.ToString();
             JObject jsonObject = JObject.Parse(responseContent);
-            JToken rolesToken = jsonObject["Roles"];
-            string accountName = jsonObject["AccountName"]?.ToString();
-            string subscriptionKey = jsonObject["SubscriptionKey"]?.ToString();
-            string fullName = jsonObject["FullName"]?.ToString();
-            bool isAdmin = jsonObject["IsAdmin"]?.Value<bool>() ?? false;
-           
-            JArray rolesArray = (JArray)jsonObject["Roles"];
 
-            List<string> roleNames = new List<string>();
-            foreach (var role in rolesArray)
-            {
-                string roleName = role["RoleName"]?.ToString();
-                if (roleName != null)
-                {
-                    roleNames.Add(roleName);
-                }
-            }
-            string rolesDisplay = string.Join(Environment.NewLine, roleNames);
-            StringBuilder sb = new StringBuilder();
-            foreach (var subscription in subscriptionInfos)
-            {
-                sb.AppendLine($"Key: {subscription.SubscriptionKey}, Description: {subscription.Description}");
-            }
-            text_subscription.Text = sb.ToString();
+            // Prepara il JSON formattato come stringa per la visualizzazione
+            string formattedJson = jsonObject.ToString(Newtonsoft.Json.Formatting.Indented);
+
+            // Mostra il JSON nel metodo ShowResult
+            ShowResult(formattedJson);
+
         }
         ////////////////////////
         ///// RESULT WINDOW ////
@@ -499,17 +484,16 @@ namespace TbApiTester
             BtnRefDoc.ForeColor = Color.FromArgb(65, 192, 146);
         }
 
-
         private string GetXmlContent()
         {
-            return xmlEditorWpfTb.textEditor.Text;
+            
+            return xmlEditorTbResult.TextContent;
         }
 
         private void SetXmlContent(string content)
         {
-            xmlEditorWpfTb.textEditor.Clear();
-            xmlEditorWpfTb.textEditor.AppendText(content);
-            //xmlResult.textEditor.AppendText(content);
+            xmlEditorTbResult.Update();
+            xmlEditorTbResult.TextContent = content;
         }
 
         private async void BtnGetParams_Click(object sender, EventArgs e)
@@ -616,7 +600,7 @@ namespace TbApiTester
             {
                 string contentBody = manager.tbServerManager.SetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
                 SetXmlContent(contentBody);
-
+               
                 labelCallTbResult.Text = "Result SetXmlData:";
                 labelTbUrl.Text = manager.tbServerManager.requestTb;
             }
@@ -647,7 +631,7 @@ namespace TbApiTester
 
         private void btnClearText_Click(object sender, EventArgs e)
         {
-            xmlEditorWpfTb.textEditor.Text = string.Empty;
+            xmlEditorTbResult.TextContent = string.Empty;
         }
 
 
@@ -687,17 +671,36 @@ namespace TbApiTester
 
         private async Task FillModules(string application)
         {
+
             cbxModule.DataSource = null;
-            List<string> modules = await manager.tbFsServiceManager.GetModules(manager.authenticationManager.userData, DateTime.Now, application);
-            if (modules == null)
+
+            // Ottieni i moduli e i percorsi.
+            var modulesWithPaths = await manager.tbFsServiceManager.GetModules(manager.authenticationManager.userData, DateTime.Now, application);
+            if (modulesWithPaths == null || modulesWithPaths.Count == 0)
                 return;
-            if (!modules.Contains("Module"))
+
+            // Estrai solo i nomi per il combobox.
+            List<string> moduleNames = modulesWithPaths.Select(m => m.ModuleName).ToList();
+
+            // Aggiungi "Module" se necessario.
+            if (!moduleNames.Contains("Module"))
             {
-                modules.Insert(0, "Module");
+                moduleNames.Insert(0, "Module");
+                modulesWithPaths.Insert(0, ("Module", string.Empty)); // Aggiungi anche il path vuoto.
             }
-            cbxModule.DataSource = modules;
-            if (modules.Count > 0)
+
+            cbxModule.DataSource = moduleNames;
+
+            // Memorizza i percorsi in un dizionario per utilizzi futuri.
+            var modulePaths = modulesWithPaths.ToDictionary(m => m.ModuleName, m => m.Path);
+
+            // Seleziona il primo elemento se disponibile.
+            if (moduleNames.Count > 0)
                 cbxModule.SelectedIndex = 0;
+
+            // Esempio di utilizzo del path:
+            // string selectedModule = cbxModule.SelectedItem.ToString();
+            // string selectedPath = modulePaths[selectedModule];
         }
 
         private async Task FillDocuments(string application, string module)
@@ -793,19 +796,26 @@ namespace TbApiTester
 
         private async Task FillModulesRObj(string application)
         {
-            cbxModRObj.DataSource = null;
-            List<string> modules = await manager.tbFsServiceManager.GetModules(manager.authenticationManager.userData, DateTime.Now, application);
-            if (modules == null)
+            cbxModRObj .DataSource = null;
+
+            var modulesWithPaths = await manager.tbFsServiceManager.GetModules(manager.authenticationManager.userData, DateTime.Now, application);
+            if (modulesWithPaths == null || modulesWithPaths.Count == 0)
                 return;
-            if (!modules.Contains("Module"))
+
+            List<string> moduleNames = modulesWithPaths.Select(m => m.ModuleName).ToList();
+
+            if (!moduleNames.Contains("Module"))
             {
-                modules.Insert(0, "Module");
+                moduleNames.Insert(0, "Module");
             }
-            cbxModRObj.DataSource = modules;
-            if (modules.Count > 0)
+
+            cbxModRObj.DataSource = moduleNames;
+
+            var modulePaths = modulesWithPaths.ToDictionary(m => m.ModuleName, m => m.Path);
+
+            if (moduleNames.Count > 0)
                 cbxModRObj.SelectedIndex = 0;
         }
-
 
         private void PopulateFileList(string path)
         {
@@ -908,7 +918,230 @@ namespace TbApiTester
         /////  DATA SERVICE BTN   /////
         ///////////////////////////////
 
-        
+        private async void cbxAppRObj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            manager.tbFsServiceManager.selApp = (cbxAppRObj.SelectedItem == null) ? string.Empty : cbxAppRObj.SelectedItem.ToString();
+
+
+            if (manager.tbFsServiceManager.selApp != "Applications")
+                await FillModulesRObj(manager.tbFsServiceManager.selApp);
+
+        }
+
+        private async void cbxModRObj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            manager.tbFsServiceManager.selMod = (cbxModRObj.SelectedItem == null) ? string.Empty : cbxModRObj.SelectedItem.ToString();
+
+            if (manager.tbFsServiceManager.selMod != "Module" && manager.tbFsServiceManager.selMod != string.Empty)
+            {
+                string application = manager.tbFsServiceManager.selApp;
+                string module = manager.tbFsServiceManager.selMod;
+
+                try
+                {
+                    string basePath = manager.tbFsServiceManager.Path;
+                    if (string.IsNullOrEmpty(basePath))
+                    {
+                        Console.WriteLine("Base Path is null.");
+                        return;
+                    }
+                    string parentPath = System.IO.Path.GetDirectoryName(basePath);
+                    if (string.IsNullOrEmpty(parentPath))
+                    {
+                        Console.WriteLine("Impossible retrive Path");
+                        return;
+                    }
+                    string extendedPath = System.IO.Path.Combine(parentPath, module, "ReferenceObjects");
+
+                    manager.tbFsServiceManager.CurrentPath = extendedPath;
+
+                    if (!System.IO.Directory.Exists(extendedPath))
+                    {
+                        MessageBox.Show("ReferenceObjects directory does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        int selectedIndex = cbxModRObj.SelectedIndex;
+                        cbxDocRObj.Text = "ReferenceObjects";
+                        return;
+                    }
+
+                    PopulateFileList(extendedPath);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
+        }
+
+        private void cbxDocRObj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxDocRObj.SelectedItem == null)
+            {
+                textBoxNameSpace.Clear();
+                cbxSelectionType.DataSource = null; // Reset combobox
+                loadedXmlDocument = null; // Reset XML
+                return;
+            }
+
+            string selectedFile = cbxDocRObj.SelectedItem.ToString();
+            manager.tbFsServiceManager.selDocObj = selectedFile;
+            string fullPath = Path.Combine(manager.tbFsServiceManager.CurrentPath, selectedFile);
+
+            if (File.Exists(fullPath))
+            {
+                try
+                {
+                    loadedXmlDocument = XDocument.Load(fullPath);
+
+                    // 1. Extract namespace
+                    XElement functionElement = loadedXmlDocument.Descendants("Function").FirstOrDefault();
+                    if (functionElement != null && functionElement.Attribute("namespace") != null)
+                    {
+                        string namespaceValue = functionElement.Attribute("namespace").Value;
+                        textBoxNameSpace.Text = namespaceValue;
+                    }
+                    else
+                    {
+                        textBoxNameSpace.Text = "Namespace not found.";
+                    }
+
+                    // 2. Populated combobox "Types" tag <Selection>
+                    IEnumerable<string> selectionTypes = loadedXmlDocument
+                        .Descendants("SelectionTypes")
+                        .Descendants("Selection")
+                        .Attributes("type")
+                        .Select(attr => attr.Value);
+
+                    if (selectionTypes.Any())
+                    {
+                        cbxSelectionType.DataSource = selectionTypes.ToList(); // Populated  combobox
+                    }
+                    else
+                    {
+                        cbxSelectionType.DataSource = null; // Reset
+                        MessageBox.Show("No Selection Types found.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error reading XML: {ex.Message}");
+                    textBoxNameSpace.Clear();
+                    cbxSelectionType.DataSource = null;
+                    loadedXmlDocument = null; // Reset error
+                }
+            }
+            else
+            {
+                textBoxNameSpace.Clear();
+                cbxSelectionType.DataSource = null;
+                loadedXmlDocument = null; // Reset not exist file 
+                MessageBox.Show($"The file '{selectedFile}' does not exist.");
+            }
+        }
+
+        private void cbxSelectionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSelectionType.SelectedItem != null)
+            {
+                if (cbxSelectionType.SelectedItem.ToString() == "AddQueryHere")
+                {
+                    cbxSelectionType.Text = "";
+                }
+                else
+                {
+                    cbxSelectionType.Text = cbxSelectionType.SelectedItem.ToString();
+                }
+            }
+        }
+
+
+        private void BtnViewModifyXml_Click(object sender, EventArgs e)
+        {
+            if (loadedXmlDocument == null)
+            {
+                MessageBox.Show("Nessun documento XML è stato caricato.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string content = loadedXmlDocument.ToString();
+            FormRefObj formRefObj = new FormRefObj(content, manager);
+            formRefObj.ShowDialog();
+            labelDataUrl.Text = UrlSManager.TbFsServiceUrl + "/tbfs-service/UploadObject/";
+        }
+
+
+        public enum ObjectType { Document, Report, File, Image, Text, Folder, CreateFolder, CurrentModuleRoot, Setting, Profile, ProfileFile, ReportDescription, ReferenceObject, FormatFont, Pdf, Rtf }
+
+
+
+        private async void BtnUploadRefObj_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                int statusCode = await UploadObject();
+
+                MessageBox.Show($"Upload esegito: {statusCode}");
+                BtnUploadRefObj.ForeColor = Color.Green;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Errore durante l'upload: {ex.Message}");
+                BtnUploadRefObj.ForeColor = Color.Red;
+            }
+        }
+
+        private async Task<int> UploadObject()
+        {
+            string startPath = "";
+            string filePath = $@"{manager.tbFsServiceManager.CurrentPath}\{manager.tbFsServiceManager.selDocObj}";
+            string currNamespace = manager.tbFsServiceManager.selApp + "." + manager.tbFsServiceManager.selMod;
+            string user = "AllUsers";
+
+            //  MultipartFormData
+            var form = new MultipartFormDataContent();
+            var fileContent = new ByteArrayContent(File.ReadAllBytes(filePath));
+            fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+
+            form.Add(fileContent, "files", Path.GetFileName(filePath));
+            form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(ObjectType.ReferenceObject.ToString())), "objectType");
+            form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(currNamespace)), "currentNamespace");
+            form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(user)), "user");
+            form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(startPath)), "startPath");
+
+            // URL Prepare
+            UrlSManager Urls = new UrlSManager();
+            if (UrlSManager.TbFsServiceUrl == "")
+                UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(manager.authenticationManager.userData, DateTime.Now, "/TBFSSERVICE");
+
+            string urltbfs = UrlSManager.TbFsServiceUrl + "/tbfs-service/UploadObject/";
+
+            using (var request = new HttpRequestMessage(HttpMethod.Post, new Uri(urltbfs)))
+            {
+                request.Content = form;
+
+                TbApiTesterManager.PrepareHeaderAutorization(request, manager.authenticationManager.userData);
+
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    TbResponse opResult = null;
+
+                    using (var response = await httpClient.SendAsync(request))
+                    {
+                        opResult = new TbResponse
+                        {
+                            StatusCode = (int)response.StatusCode
+                        };
+
+                        string result = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine($"Risultato dell'upload: {result}");
+
+                        return opResult.StatusCode;
+                    }
+                }
+            }
+        }
         private void buttonDSGetData_Click(object sender, EventArgs e)
         {
 
@@ -1779,199 +2012,9 @@ namespace TbApiTester
             }
         }
 
-        private void cbxSelectionType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbxSelectionType.SelectedItem != null)
-            {
-                if (cbxSelectionType.SelectedItem.ToString() == "AddQueryHere")
-                {
-                    cbxSelectionType.Text = "";
-                }
-                else
-                {
-                    cbxSelectionType.Text = cbxSelectionType.SelectedItem.ToString();
-                }
-            }
-        }
+        
 
-
-        private async void cbxAppRObj_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            manager.tbFsServiceManager.selApp = (cbxAppRObj.SelectedItem == null) ? string.Empty : cbxAppRObj.SelectedItem.ToString();
-
-
-            if (manager.tbFsServiceManager.selApp != "Applications")
-                await FillModulesRObj(manager.tbFsServiceManager.selApp);
-
-        }
-
-        private async void cbxModRObj_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            manager.tbFsServiceManager.selMod = (cbxModRObj.SelectedItem == null) ? string.Empty : cbxModRObj.SelectedItem.ToString();
-
-            if (manager.tbFsServiceManager.selMod != "Module" && manager.tbFsServiceManager.selMod != string.Empty)
-            {
-                string application = manager.tbFsServiceManager.selApp;
-                string module = manager.tbFsServiceManager.selMod;
-
-                string basePath = await manager.tbFsServiceManager.GetReferenceObjBasePath(manager.authenticationManager.userData, application, module);
-                manager.tbFsServiceManager.CurrentPath = basePath;
-                PopulateFileList(basePath);
-            }
-        }
-
-        private void cbxDocRObj_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbxDocRObj.SelectedItem == null)
-            {
-                textBoxNameSpace.Clear();
-                cbxSelectionType.DataSource = null; // Reset combobox
-                loadedXmlDocument = null; // Reset XML
-                return;
-            }
-
-            string selectedFile = cbxDocRObj.SelectedItem.ToString();
-            manager.tbFsServiceManager.selDocObj = selectedFile;
-            string fullPath = Path.Combine(manager.tbFsServiceManager.CurrentPath, selectedFile);
-
-            if (File.Exists(fullPath))
-            {
-                try
-                {
-                    loadedXmlDocument = XDocument.Load(fullPath);
-
-                    // 1. Extract namespace
-                    XElement functionElement = loadedXmlDocument.Descendants("Function").FirstOrDefault();
-                    if (functionElement != null && functionElement.Attribute("namespace") != null)
-                    {
-                        string namespaceValue = functionElement.Attribute("namespace").Value;
-                        textBoxNameSpace.Text = namespaceValue;
-                    }
-                    else
-                    {
-                        textBoxNameSpace.Text = "Namespace not found.";
-                    }
-
-                    // 2. Populated combobox "Types" tag <Selection>
-                    IEnumerable<string> selectionTypes = loadedXmlDocument
-                        .Descendants("SelectionTypes")
-                        .Descendants("Selection")
-                        .Attributes("type")
-                        .Select(attr => attr.Value);
-
-                    if (selectionTypes.Any())
-                    {
-                        cbxSelectionType.DataSource = selectionTypes.ToList(); // Populated  combobox
-                    }
-                    else
-                    {
-                        cbxSelectionType.DataSource = null; // Reset
-                        MessageBox.Show("No Selection Types found.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error reading XML: {ex.Message}");
-                    textBoxNameSpace.Clear();
-                    cbxSelectionType.DataSource = null;
-                    loadedXmlDocument = null; // Reset error
-                }
-            }
-            else
-            {
-                textBoxNameSpace.Clear();
-                cbxSelectionType.DataSource = null;
-                loadedXmlDocument = null; // Reset not exist file 
-                MessageBox.Show($"The file '{selectedFile}' does not exist.");
-            }
-        }
-
-        private void BtnViewModifyXml_Click(object sender, EventArgs e)
-        {
-            if (loadedXmlDocument == null)
-            {
-                MessageBox.Show("Nessun documento XML è stato caricato.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string content = loadedXmlDocument.ToString();
-            FormRefObj formRefObj = new FormRefObj(content, manager);
-            formRefObj.ShowDialog();
-            labelDataUrl.Text = UrlSManager.TbFsServiceUrl + "/tbfs-service/UploadObject/";
-        }
-
-
-        public enum ObjectType { Document, Report, File, Image, Text, Folder, CreateFolder, CurrentModuleRoot, Setting, Profile, ProfileFile, ReportDescription, ReferenceObject, FormatFont, Pdf, Rtf }
-
-
-
-        private async void BtnUploadRefObj_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-                int statusCode = await UploadObject();
-
-                MessageBox.Show($"Upload esegito: {statusCode}");
-                BtnUploadRefObj.ForeColor = Color.Green;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Errore durante l'upload: {ex.Message}");
-                BtnUploadRefObj.ForeColor = Color.Red;
-            }
-        }
-
-        private async Task<int> UploadObject()
-        {
-            string startPath = "";
-            string filePath = $@"{manager.tbFsServiceManager.CurrentPath}\{manager.tbFsServiceManager.selDocObj}";
-            string currNamespace = manager.tbFsServiceManager.selApp + "." + manager.tbFsServiceManager.selMod;
-            string user = "AllUsers";
-
-            //  MultipartFormData
-            var form = new MultipartFormDataContent();
-            var fileContent = new ByteArrayContent(File.ReadAllBytes(filePath));
-            fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
-
-            form.Add(fileContent, "files", Path.GetFileName(filePath));
-            form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(ObjectType.ReferenceObject.ToString())), "objectType");
-            form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(currNamespace)), "currentNamespace");
-            form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(user)), "user");
-            form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(startPath)), "startPath");
-
-            // URL Prepare
-            UrlSManager Urls = new UrlSManager();
-            if (UrlSManager.TbFsServiceUrl == "")
-                UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(manager.authenticationManager.userData, DateTime.Now, "/TBFSSERVICE");
-
-            string urltbfs = UrlSManager.TbFsServiceUrl + "/tbfs-service/UploadObject/";
-
-            using (var request = new HttpRequestMessage(HttpMethod.Post, new Uri(urltbfs)))
-            {
-                request.Content = form;
-
-                TbApiTesterManager.PrepareHeaderAutorization(request, manager.authenticationManager.userData);
-
-                using (HttpClient httpClient = new HttpClient())
-                {
-                    TbResponse opResult = null;
-
-                    using (var response = await httpClient.SendAsync(request))
-                    {
-                        opResult = new TbResponse
-                        {
-                            StatusCode = (int)response.StatusCode
-                        };
-
-                        string result = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine($"Risultato dell'upload: {result}");
-
-                        return opResult.StatusCode; 
-                    }
-                }
-            }
-        }
+       
     }
 }
 

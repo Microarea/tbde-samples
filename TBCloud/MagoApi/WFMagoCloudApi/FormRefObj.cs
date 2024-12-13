@@ -29,6 +29,8 @@ namespace TbApiTester
             //this.xmlEditorRef.TextContent = content;
             //this.modifiedXml = xmlEditorRef.TextContent = content; 
             manager = man;
+
+           
         }
         public string GetModifiedXml()
         {

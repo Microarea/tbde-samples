@@ -80,10 +80,10 @@ namespace TbApiTester
 
         ////////////////////////////
         /////// GET MODULES ////////
-        public async Task<List<string>> GetModules(UserData userData, DateTime operationDate, string application)
+        public async Task<List<(string ModuleName, string Path)>> GetModules(UserData userData, DateTime operationDate, string application)
         {
             selMod = string.Empty;
-            List<string> modulelist = new List<string>();
+            List<(string ModuleName, string Path)> moduleList = new List<(string, string)>();
 
             UrlSManager Urls = new UrlSManager();
             if (UrlSManager.TbFsServiceUrl == "")
@@ -105,7 +105,7 @@ namespace TbApiTester
                     if (string.IsNullOrEmpty(responseContent))
                     {
                         Console.WriteLine("La risposta è vuota.");
-                        return modulelist; // Restituisce una lista vuota.
+                        return moduleList; // Restituisce una lista vuota.
                     }
 
                     JObject jsonResponse = JObject.Parse(responseContent);
@@ -114,15 +114,16 @@ namespace TbApiTester
                     if (modules.Length == 0)
                     {
                         Console.WriteLine("L'array dei moduli è vuoto.");
-                        return modulelist; // Restituisce una lista vuota.
+                        return moduleList; // Restituisce una lista vuota.
                     }
 
                     foreach (var item in modules)
                     {
                         string name = item["name"]?.Value<string>();
+                        Path = item["path"]?.Value<string>();
                         if (!string.IsNullOrEmpty(name))
                         {
-                            modulelist.Add(name);
+                            moduleList.Add((name, Path ?? string.Empty));
                         }
                     }
                 }
@@ -140,7 +141,7 @@ namespace TbApiTester
                 Console.WriteLine($"Errore generico: {ex.Message}");
             }
 
-            return modulelist;
+            return moduleList;
         }
         public static FormUrlEncodedContent GetModulesParameters(string application)
         {
@@ -236,53 +237,6 @@ namespace TbApiTester
             return (folderObjects, folderObjectsNS);
         }
 
-        public async Task<string> GetReferenceObjBasePath(UserData userData, string application, string module)
-        {
-            folderPath = string.Empty;
-            if (string.IsNullOrEmpty(application) || string.IsNullOrEmpty(module))
-                throw new ArgumentException("Application and module cannot be null or empty.");
-
-            UrlSManager Urls = new UrlSManager();
-            if (UrlSManager.TbFsServiceUrl == "") UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
-
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbFsServiceUrl + "/tbfs-service/GetSubFolders");
-            TbApiTesterManager.PrepareHeaders(request, userData, DateTime.Now);
-            request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
-            request.Content = GetModulesParameters(application);
-            request.Content = GetDocumentObjectsParameters(application, module);
-
-            using (var resp = await _httpClient.SendAsync(request))
-            {
-                if (resp.StatusCode != HttpStatusCode.OK)
-                    throw new InvalidOperationException("Failed to retrieve folders.");
-
-                string ret = await resp.Content.ReadAsStringAsync();
-                if (string.IsNullOrEmpty(ret))
-                    throw new InvalidOperationException("Empty response.");
-
-                JObject jRes = JObject.Parse(ret);
-                JArray folders = jRes["folders"] as JArray;
-
-                foreach (var item in folders)
-                {
-                    folderPath = item["path"]?.ToString() ?? string.Empty;
-                    if (!string.IsNullOrEmpty(folderPath))
-                    {
-                        string normalizedPath = folderPath.Replace("\\\\", "\\");
-                        int appIndex = normalizedPath.IndexOf(application, StringComparison.OrdinalIgnoreCase);
-                        if (appIndex > 0)
-                        {
-                            return System.IO.Path.Combine(
-                                normalizedPath.Substring(0, appIndex + application.Length + 1),
-                                module,
-                                "ReferenceObjects"
-                            );
-                        }
-                    }
-                }
-                throw new InvalidOperationException("Unable to determine base path.");
-            }
-        }
 
 
         public static FormUrlEncodedContent GetDocumentObjectsParameters(string application, string module)
@@ -465,32 +419,7 @@ namespace TbApiTester
         //    //return (IActionResult)opResult;
         //}
 
-        //public async Task<IActionResult> UploadObject2(UserData userData, MultipartFormDataContent files)
-        //{
-        //    //UrlSManager Urls = new UrlSManager();
-        //    //if (UrlSManager.TbFsServiceUrl == "") UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
-        //    //string urltbfs = UrlSManager.TbFsServiceUrl + "/tbfs-service/UploadObject";
-
-        //    //using (var request = new HttpRequestMessage(HttpMethod.Post, new Uri(urltbfs)))
-        //    //{
-        //    //    request.Content = files;
-        //    //    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
-        //    //    HttpClient httpClient = new HttpClient();
-        //    //    TbResponse opResult = null;
-        //    //    using (var response = await httpClient.SendAsync(request))
-        //    //    {
-        //    //        opResult = new TbResponse();
-        //    //        opResult.StatusCode = (int)response.StatusCode;
-        //    //        string result = await response.Content.ReadAsStringAsync();
-        //    //        //return opResult.StatusCode;
-        //    //        return (IActionResult)opResult;
-        //    //    }
-        //    //}
-        //    throw new NotImplementedException();
-        //    //IActionResult actionResult = new IActionResult();
-        //   string message = $"UploadObject: returnUpload";
-        //   return new JsonResult(new { Result = true, Message = message });
-        //}
+        
 
 
         //// Helper per ottenere i byte di un file
