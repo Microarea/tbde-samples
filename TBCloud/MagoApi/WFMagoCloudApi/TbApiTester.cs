@@ -244,7 +244,7 @@ namespace TbApiTester
         {
             if (isFullScreen)
             {
-                this.WindowState = FormWindowState.Normal;
+                this.WindowState = FormWindowState.Maximized;
                 this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
                 isFullScreen = false;
             }
@@ -256,7 +256,7 @@ namespace TbApiTester
                     LoginPanel.Dock = DockStyle.Top | DockStyle.Bottom;
                 }
                 this.FormBorderStyle = FormBorderStyle.None;
-                this.WindowState = FormWindowState.Maximized;
+                this.WindowState = FormWindowState.Normal;
 
                 //  Rounded corner
                 int radius = 20;

@@ -42,7 +42,7 @@ namespace TbApiTester
             this.labelChooseProfile = new System.Windows.Forms.Label();
             this.btnTbfs = new System.Windows.Forms.Button();
             this.panelTbTextContainer = new System.Windows.Forms.Panel();
-            this.xmlEditorTbResult = new XmlEditor();
+            this.xmlEditorTbResult = new    XmlEditor();
             this.btnClearText = new System.Windows.Forms.Button();
             this.labelCallTbResult = new System.Windows.Forms.Label();
             this.BtnRefDoc = new System.Windows.Forms.Button();
@@ -529,6 +529,9 @@ namespace TbApiTester
             // tabNavigation
             // 
             this.tabNavigation.AllowDrop = true;
+            this.tabNavigation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabNavigation.Controls.Add(this.tabTbServer);
             this.tabNavigation.Controls.Add(this.tabWebMethods);
             this.tabNavigation.Controls.Add(this.tabDataService);
@@ -4478,6 +4481,8 @@ namespace TbApiTester
             // 
             // LoginPanel
             // 
+            this.LoginPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.LoginPanel.BackColor = System.Drawing.Color.White;
             this.LoginPanel.Controls.Add(this.labelMessage);
             this.LoginPanel.Controls.Add(this.btnAccount);

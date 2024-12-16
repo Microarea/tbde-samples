@@ -5681,3 +5681,35 @@ The Allocation Management must be enabled in the Sales Order Parameters
 		</maxs:DefaultDialog>
 	</maxs:Parameters>
 </maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Parameters>
+		<maxs:DefaultDialog title="Fields search">
+			<maxs:DefaultGroup title="Search group">
+				<maxs:Reason type="String"></maxs:Reason>
+				<maxs:Description type="String"></maxs:Description>
+				<maxs:UseForPureEntry type="Boolean">false</maxs:UseForPureEntry>
+				<maxs:UseForSaleEntry type="Boolean">false</maxs:UseForSaleEntry>
+				<maxs:UseForPurchaseEntry type="Boolean">false</maxs:UseForPurchaseEntry>
+				<maxs:UseForRetailSaleEntry type="Boolean">false</maxs:UseForRetailSaleEntry>
+				<maxs:AGOAccReason type="String"></maxs:AGOAccReason>
+				<maxs:OMNIAAccReason type="String"></maxs:OMNIAAccReason>
+			</maxs:DefaultGroup>
+		</maxs:DefaultDialog>
+	</maxs:Parameters>
+</maxs:AccountingReasons>

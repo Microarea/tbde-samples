@@ -48,7 +48,7 @@ namespace TbApiTester
                         break;
 
                     case GlobalSettings.ButtonState.Cloud:
-                        if (userData.GwamUrl == "https://gwam.mago.cloud")
+                        if (userData.GwamUrl == "https://test-gwam.mago.cloud" || userData.GwamUrl == "https://gwam.mago.cloud")
                         {
                             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + urlName);
                             TbApiTesterManager.PrepareHeaders(request, userData, DateTime.Now);   
