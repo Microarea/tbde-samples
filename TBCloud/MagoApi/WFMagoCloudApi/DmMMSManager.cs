@@ -120,7 +120,7 @@ namespace TbApiTester
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
-                    requestDMMS = request.ToString();
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
                     TbResponse tbResponse = new TbResponse();
@@ -170,6 +170,11 @@ namespace TbApiTester
                         
                         tbResponse.Success = true;
                         return tbResponse;
+                    }
+                    else
+                    {
+                       MessageBox.Show(tbResponse.ToString());
+                        
                     }
                     //using (var response = await client.SendAsync(request))
                     //{
@@ -233,7 +238,7 @@ namespace TbApiTester
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/selectAllByKey");
-                    requestDMMS = request.ToString();
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
                     return await CallWithTableData(userData, tableData, request);
                 }
@@ -256,7 +261,7 @@ namespace TbApiTester
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/exists");
-                    requestDMMS = request.ToString();
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
                     TbResponse response = await CallWithTableData(userData, tableData, request);
                     return response.Success == true && (response.ReturnValue.ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase));
@@ -282,7 +287,7 @@ namespace TbApiTester
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
 
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/add");
-                    requestDMMS = request.ToString();
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
                     TbResponse response = await CallWithTableData(userData, tableData, request);
 
@@ -310,7 +315,7 @@ namespace TbApiTester
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/update");
-                    requestDMMS = request.ToString();
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
                     return await CallWithTableData(userData, tableData, request);
                 }
@@ -336,7 +341,7 @@ namespace TbApiTester
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/delete");
-                    requestDMMS = request.ToString();
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS); 
                     TbResponse response = await CallWithTableData(userData, tableData, request);
                     return response.Success == true && (response.ReturnValue.ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase));
@@ -365,7 +370,7 @@ namespace TbApiTester
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/businessOjectByFindKeys");
                     var jsonData = JsonConvert.SerializeObject(boData);
                     request.Content = new StringContent(content: jsonData, encoding: Encoding.UTF8, mediaType: "application/json");
-                    requestDMMS = request.ToString();
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
@@ -400,7 +405,7 @@ namespace TbApiTester
                     request.Content = new StringContent(content: jsonData, encoding: Encoding.UTF8, mediaType: "application/json");
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                    requestDMMS = request.ToString();
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
                     TbResponse tbResponse = new TbResponse();
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -431,7 +436,7 @@ namespace TbApiTester
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
-                    requestDMMS = request.ToString();
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
 
                     var nrData = JsonConvert.SerializeObject(new
@@ -465,7 +470,7 @@ namespace TbApiTester
                 //request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                 TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                 TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                requestDMMS = request.ToString();
+                requestDMMS = $"{request.Method} {request.RequestUri}";
                 requestDMMSList.Add(requestDMMS);
 
                 TbResponse tbResponse = new TbResponse();
@@ -488,6 +493,11 @@ namespace TbApiTester
                 tbResponse.PlainResult = funResponse;
                 tbResponse.Success = true;
             }
+            else
+            {
+                MessageBox.Show(tbResponse.ToString());
+
+            }
         }
 
         internal EnumsResult GetEnumsTable(UserData userData)
@@ -498,20 +508,20 @@ namespace TbApiTester
                 try
                 {
                     UrlSManager.EnumsTableUrl = string.Empty;
-                    //UrlSManager Urls = new UrlSManager();
-                    //if (UrlSManager.EnumsTableUrl == "")
-                    //    UrlSManager.EnumsTableUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + $"getEnumsTable/");
                     UrlSManager Urls = new UrlSManager();
-                    if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + "/enums-service/getEnumsTable/");
+                    if (UrlSManager.EnumsTableUrl == "")
+                        UrlSManager.EnumsTableUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE", true);
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + $"enums-service/getEnumsTable/");
+                    //UrlSManager Urls = new UrlSManager();
+                    ////if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
+                    ////HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + "/enums-service/getEnumsTable/");
                     //if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = "http://localhost:60000/enums-service/"; //Magoweb
                     //StringBuilder builder = new StringBuilder();
                     //string GetUrl = UrlSManager.EnumsTableUrl + "getEnumsTable/";
                     //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl);
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                    requestDMMS = request.ToString();
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
 
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;

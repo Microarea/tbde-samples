@@ -74,7 +74,7 @@ namespace TbApiTester
                         if (!(responseBody.Length == 0))
                         {
                             XDocument doc = XDocument.Parse(responseBody);
-                            requestRs = UrlSManager.ReportingServiceUrl + "/rs/xmldata";
+                            requestRs = $"{request.Method} {request.RequestUri}";
                             return doc.ToString();
                            
                         }
@@ -134,7 +134,7 @@ namespace TbApiTester
                             FileName = pdfFilePath,
                             UseShellExecute = true
                         });
-                        requestRs = UrlSManager.ReportingServiceUrl + "/rs/getReportPdf";
+                        requestRs = $"{request.Method} {request.RequestUri}";
                         return $"The PDF has been successfully saved at:\n{pdfFilePath}\nAnd opened.";
                        
                     }

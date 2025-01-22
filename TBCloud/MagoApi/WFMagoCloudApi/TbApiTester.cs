@@ -16,6 +16,8 @@ using System.Text.RegularExpressions;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
 using System.Web.UI.WebControls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using static TbApiTester.LogCredential;
 
 
 
@@ -26,6 +28,7 @@ namespace TbApiTester
         //UrlSManager isCloud = new UrlSManager();
         TbApiTesterManager manager = new TbApiTesterManager();
         UiManagerApi uiManager = new UiManagerApi();
+        private LogCredential logCredential;
         private CbxUi cbxUi;
         public bool IsCloudButtonClicked { get; set; }
         private bool isLoggedIn = false;
@@ -48,16 +51,28 @@ namespace TbApiTester
         bool mousedown;
         public long defPriceHandle = 0;
         public System.Diagnostics.Process p = null;
-        private string folderPath = @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\Docs";
+        string  basePath = AppDomain.CurrentDomain.BaseDirectory;
+
+       
+        
         private bool isFullScreen = false;
         private string tableName;
         TbResponse m_GetBoResponse;
-        private XDocument loadedXmlDocument;
+        public XDocument loadedXmlDocument;
         public string CurrentPath { get; set; }
+        private Color previousColor;
 
         public TbApiTester(bool isCloudButtonClicked)
         {
             InitializeComponent();
+           
+            btnSaveCredential.Visible = false;
+            logCredential = new LogCredential();
+            string currentEnvironment = GlobalSettings.CurrentButtonState.ToString();
+            InitializeCredential(currentEnvironment);
+            string folderPath = Path.Combine(basePath, "Docs");
+
+            this.AutoScaleMode = AutoScaleMode.None;
             uiManager.SetControls(this.Controls);
             labelManager = new LabelManager(this);
             labelManager.InitializeLabels();
@@ -75,7 +90,7 @@ namespace TbApiTester
                     Http_label.Text = "MagoDevEnv authentication authority URL";
                     uiManager.ReplaceColor(Color.FromArgb(232, 159, 0), Color.FromArgb(173, 92, 174));
                     pictureBoxLogo.Image = Properties.Resources.DevEnvBtn;
-                    labelInfoAuthenticate.Text += "DevEnv";
+                    labelInfoAuthenticate.Text += "Dev";
                     break;
 
                 case GlobalSettings.ButtonState.Web:
@@ -84,6 +99,7 @@ namespace TbApiTester
                     uiManager.ReplaceColor(Color.FromArgb(232, 159, 0), Color.FromArgb(176, 205, 66));
                     this.cbxServicesWeb.Visible = true;
                     pictureBoxLogo.Image = Properties.Resources.MagoWeb;
+                    labelInfoAuthenticate.Text += "Web";
                     PopulateServicesComboBox();//____Service List MagoWeb
                     break;
 
@@ -91,6 +107,7 @@ namespace TbApiTester
                     text_http.Text = "https://gwam.mago.cloud";
                     Http_label.Text = "MagoCloud authentication authority URL";
                     pictureBoxLogo.Image = Properties.Resources.MagoCloud;
+                    labelInfoAuthenticate.Text += "Cloud";
                     break;
             }
 
@@ -112,7 +129,46 @@ namespace TbApiTester
             btnExploreReport.Hide();
             DynamicQueriesPanel.Hide();
             btnAccount.Hide();
-           
+            panelDataManagerOtherCall.Hide();
+        }
+        public void InitializeCredential(string currentEnvironment)
+        {
+            var logCredential = new LogCredential();
+            var credentials = logCredential.LoadLoginDetails(currentEnvironment);
+
+            if (credentials != null)
+            {
+                text_user.Text = credentials.Username;
+                text_pwd.Text = credentials.Password;
+                text_subscription.Text = credentials.Subscription;
+                text_producer.Text = credentials.Producer;
+                text_app.Text = credentials.App;
+            }
+            else
+            {
+                MessageBox.Show($"Welcome in Mago{currentEnvironment}", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void btnSaveCredential_Click(object sender, EventArgs e)
+        {
+            string username = text_user.Text;
+            string password = text_pwd.Text;
+            string subscription = text_subscription.Text;
+            string producer = text_producer.Text;
+            string app = text_app.Text;
+
+            string currentEnvironment = GlobalSettings.CurrentButtonState.ToString();
+
+            try
+            {
+                var logCredential = new LogCredential();
+                logCredential.SaveCredentialsFromForm(currentEnvironment, username, password, subscription, producer, app);
+                MessageBox.Show("Saved credentials!", "Saving", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 
@@ -134,6 +190,7 @@ namespace TbApiTester
             myToolTip.SetToolTip(button_exit, "MagoCloud / MagoWeb / Development Environment");
             myToolTip.SetToolTip(btnTbfs, "TBFSSERVICE");
             myToolTip.SetToolTip(btnExploreReport, "Open Report Pdf folder ");
+            myToolTip.SetToolTip(btnSaveCredential, "Save your credentials");
 
             cbxServicesWeb.Items.Add("MagoWebServices");
             cbxServicesWeb.SelectedIndex = 0;
@@ -244,7 +301,7 @@ namespace TbApiTester
         {
             if (isFullScreen)
             {
-                this.WindowState = FormWindowState.Maximized;
+                this.WindowState = FormWindowState.Normal;
                 this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
                 isFullScreen = false;
             }
@@ -256,7 +313,7 @@ namespace TbApiTester
                     LoginPanel.Dock = DockStyle.Top | DockStyle.Bottom;
                 }
                 this.FormBorderStyle = FormBorderStyle.None;
-                this.WindowState = FormWindowState.Normal;
+                this.WindowState = FormWindowState.Maximized;
 
                 //  Rounded corner
                 int radius = 20;
@@ -272,17 +329,21 @@ namespace TbApiTester
 
         private void FillContent_Click(object sender, EventArgs e)
         {
-            if (BtnFillContent.Text == "❮")//close LoginPanel
+            if (BtnFillContent.Text == "❮") // Close LoginPanel
             {
                 BtnFillContent.Text = "❯";
                 tabNavigation.Dock = DockStyle.Fill;
                 LoginPanel.Dock = DockStyle.None;
-
+                panelDataManagerOtherCall.Visible = true;
+                previousColor = BtnFillContent.BackColor;
+                BtnFillContent.BackColor = Color.FromArgb(22, 118, 186);
             }
-            else//open LoginPanel
+            else // Open LoginPanel
             {
                 BtnFillContent.Text = "❮";
                 LoginPanel.Dock = DockStyle.Top | DockStyle.Bottom;
+                panelDataManagerOtherCall.Visible = false;
+                BtnFillContent.BackColor = previousColor;
             }
         }
 
@@ -300,17 +361,18 @@ namespace TbApiTester
                 if (bok)
                 {
                     LoadEnumsTable();
-                       _= FillApplications();
+
+                    _ = FillApplications();
                     _ = FillApplicationsRObj();
                     List<SubscriptionInfo> subscriptionInfos = new List<SubscriptionInfo>();
-                    Task<bool> task = manager.authenticationManager.GetSubscriptionsForAccount(text_http.Text, text_user.Text, subscriptionInfos);
 
-                   
+
                     button_Login.ForeColor = Color.White;
                     button_Login.BackColor = Color.Green;
                     button_Login.Text = "Ok";
                     btnAccount.Visible = true;
                     labelMessage.Text = string.Empty;
+                    btnSaveCredential.Visible = true;
                 }
                 else
                 {
@@ -327,6 +389,7 @@ namespace TbApiTester
                 }
             }
         }
+
 
         private void button_Token_Click(object sender, EventArgs e)
         {
@@ -357,25 +420,23 @@ namespace TbApiTester
                 MessageBox.Show("User is not logged, please Login!");
             }
         }
+
         private void DoExit()
         {
             manager.authenticationManager.DoLogout(text_http.Text);
         }
+
         private void btnAccount_Click(object sender, EventArgs e)
         {
             List<SubscriptionInfo> subscriptionInfos = new List<SubscriptionInfo>();
 
-            Task<bool> task = manager.authenticationManager.GetSubscriptionsForAccount(text_http.Text, text_user.Text, subscriptionInfos);
             string responseContent = manager.authenticationManager._responseBody.ToString();
             JObject jsonObject = JObject.Parse(responseContent);
 
-            // Prepara il JSON formattato come stringa per la visualizzazione
             string formattedJson = jsonObject.ToString(Newtonsoft.Json.Formatting.Indented);
-
-            // Mostra il JSON nel metodo ShowResult
             ShowResult(formattedJson);
-
         }
+
         ////////////////////////
         ///// RESULT WINDOW ////
         ////////////////////////
@@ -399,21 +460,21 @@ namespace TbApiTester
             "- SetXmlData: allows the data of a business object to be written to MagoCloud using the Xml payload.";
             ShowResult(content, false, true, true);
         }
-        private void BtnOpenFolder_Click(object sender, EventArgs e)
-        {
+        //private void BtnOpenFolder_Click(object sender, EventArgs e)
+        //{
 
-            System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName(folderPath);
-            foreach (System.Diagnostics.Process process in processes)
-            {
-                if (process.MainWindowTitle.Contains(folderPath))
-                {
-                    MessageBox.Show("La cartella è già aperta", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-            }
+        //    System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName(folderPath);
+        //    foreach (System.Diagnostics.Process process in processes)
+        //    {
+        //        if (process.MainWindowTitle.Contains(folderPath))
+        //        {
+        //            MessageBox.Show("La cartella è già aperta", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //            return;
+        //        }
+        //    }
 
-            System.Diagnostics.Process.Start(folderPath);
-        }
+        //    System.Diagnostics.Process.Start(folderPath);
+        //}
         // COMBOBOX TBFSSERVICE MANAGER
         //___________________________________________________________
         private async void cbxApplication_SelectedIndexChanged(object sender, EventArgs e)
@@ -486,14 +547,17 @@ namespace TbApiTester
 
         private string GetXmlContent()
         {
-            
             return xmlEditorTbResult.TextContent;
         }
 
         private void SetXmlContent(string content)
         {
-            xmlEditorTbResult.Update();
-            xmlEditorTbResult.TextContent = content;
+            if (content != null && content != string.Empty)
+            {
+                btnClearText.Visible = true;
+                xmlEditorTbResult.Update();
+                xmlEditorTbResult.TextContent = content;
+            }
         }
 
         private async void BtnGetParams_Click(object sender, EventArgs e)
@@ -632,6 +696,8 @@ namespace TbApiTester
         private void btnClearText_Click(object sender, EventArgs e)
         {
             xmlEditorTbResult.TextContent = string.Empty;
+            if (xmlEditorTbResult.TextContent == string.Empty)
+                btnClearText.Visible = false;
         }
 
 
@@ -1464,7 +1530,6 @@ namespace TbApiTester
                 TableName = MA_CustSupp.TableName,
                 SelectedFields = new string[] { "CustSuppType", "CustSupp", "CompanyName" },
                 //JoinClause = new string[] { "CustSuppType", "CustSupp", "CompanyName", "Branch" }
-
             };
 
             TbResponse SelectResponse = await manager.dmMMSManager.Select(manager.authenticationManager.userData, query);
@@ -1634,7 +1699,16 @@ namespace TbApiTester
                 return;
             }
             SingleAdd();
-            //MultipleAdd();
+        }
+
+        private void btnMultipleAdd_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            MultipleAdd();// x400
         }
         //UpdateSlave
         //private async void btnAdd_Click(object sender, EventArgs e)
@@ -2012,9 +2086,8 @@ namespace TbApiTester
             }
         }
 
-        
-
        
+
     }
 }
 

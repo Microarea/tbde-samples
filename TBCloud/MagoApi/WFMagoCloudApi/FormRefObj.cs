@@ -22,7 +22,6 @@ namespace TbApiTester
             this.xmlEditorResult.Update();
             this.xmlEditorResult.Show();
 
-
             //this.xmlEditorWpfRef.textEditor.Text = content;
             //this.modifiedXml = xmlEditorWpfRef.textEditor.Text = content;
 

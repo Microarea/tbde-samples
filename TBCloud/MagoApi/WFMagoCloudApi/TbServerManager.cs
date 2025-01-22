@@ -113,9 +113,9 @@ namespace TbApiTester
                             var bytes = Convert.FromBase64String(resultVariable.ToString());
                             var decodedString = Encoding.UTF8.GetString(bytes);
                             outFileName = folderPath + "\\GetFull.xml";
-                            SaveFile(decodedString);
+                            //SaveFile(decodedString);
 
-                            requestTb = UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/";
+                            requestTb = $"{request.Method} {request.RequestUri}";
                             return decodedString;
                         }
                         else
@@ -183,8 +183,8 @@ namespace TbApiTester
                                 var decodedString = Encoding.UTF8.GetString(bytes);
                                 strings.AppendLine(decodedString.ToString());
                                 outFileName = folderPath + "\\InvRsnSet" + idx.ToString() + ".xml";
-                                requestTb = UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/";
-                                SaveFile(decodedString);
+                                requestTb = $"{request.Method} {request.RequestUri}";
+                                //SaveFile(decodedString);
                             }
                             return strings.ToString();
                         }
@@ -277,7 +277,7 @@ namespace TbApiTester
                             string resultVariable = jsonObject["result"]?.ToString();
                             var bytes = Convert.FromBase64String(resultVariable.ToString());
                             var decodedString = Encoding.UTF8.GetString(bytes);
-                            requestTb = UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/";
+                            requestTb = $"{request.Method} {request.RequestUri}";
                             return decodedString;
                         }
                         else

@@ -149,7 +149,6 @@
 
         #endregion
 
-        private MspzComponent.OrangePanel orangePanel3;
         private MspzComponent.OrangePanel panelDevEnv;
         private MspzComponent.OrangePanel panelCloud;
         private System.Windows.Forms.PictureBox btnDevEnv;

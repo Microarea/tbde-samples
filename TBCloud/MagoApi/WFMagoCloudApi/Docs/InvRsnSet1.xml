@@ -10176,3 +10176,60 @@ Number: 402
 		</maxs:AccountingReasons>
 	</maxs:Data>
 </maxs:AccountingReasons>
+<maxs:AccountingReasons xmlns:maxs="http://www.microarea.it/Schema/2004/SmartERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd" tbNamespace="Document.ERP.Accounting.documents.AccountingReasons" xTechProfile="DefaultFull"><maxs:Diagnostic><maxs:Warnings><maxs:Warning><maxs:Code>3</maxs:Code><maxs:Source>XTech-DataManager</maxs:Source><maxs:Message>No record matches the set export criteria</maxs:Message></maxs:Warning></maxs:Warnings></maxs:Diagnostic></maxs:AccountingReasons><?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.Documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Data>
+		<maxs:AccountingReasons master="true">
+			<maxs:Reason>ACCONTO</maxs:Reason>
+			<maxs:Description>Acconto</maxs:Description>
+			<maxs:UseForPureEntry>true</maxs:UseForPureEntry>
+			<maxs:UseForSaleEntry>true</maxs:UseForSaleEntry>
+			<maxs:UseForPurchaseEntry>true</maxs:UseForPurchaseEntry>
+			<maxs:UseForRetailSaleEntry>false</maxs:UseForRetailSaleEntry>
+			<maxs:Predefined>true</maxs:Predefined>
+			<maxs:TBCreated>2024-10-15T12:21:09</maxs:TBCreated>
+			<maxs:TBModified>2024-10-18T13:22:42</maxs:TBModified>
+			<maxs:TBCreatedID>0</maxs:TBCreatedID>
+			<maxs:TBModifiedID>0</maxs:TBModifiedID>
+			<maxs:TBGuid>{52FF0165-10FB-4E0A-AAAC-100263CAC381}</maxs:TBGuid>
+		</maxs:AccountingReasons>
+	</maxs:Data>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.Documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Data>
+		<maxs:AccountingReasons master="true">
+			<maxs:Reason>ACCONTO</maxs:Reason>
+			<maxs:Description>Acconto</maxs:Description>
+			<maxs:UseForPureEntry>true</maxs:UseForPureEntry>
+			<maxs:UseForSaleEntry>true</maxs:UseForSaleEntry>
+			<maxs:UseForPurchaseEntry>true</maxs:UseForPurchaseEntry>
+			<maxs:UseForRetailSaleEntry>false</maxs:UseForRetailSaleEntry>
+			<maxs:Predefined>true</maxs:Predefined>
+			<maxs:TBCreated>2024-10-15T12:21:09</maxs:TBCreated>
+			<maxs:TBModified>2024-10-18T13:22:42</maxs:TBModified>
+			<maxs:TBCreatedID>0</maxs:TBCreatedID>
+			<maxs:TBModifiedID>0</maxs:TBModifiedID>
+			<maxs:TBGuid>{52FF0165-10FB-4E0A-AAAC-100263CAC381}</maxs:TBGuid>
+		</maxs:AccountingReasons>
+	</maxs:Data>
+</maxs:AccountingReasons>
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.Documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Data>
+		<maxs:AccountingReasons master="true">
+			<maxs:Reason>ACCONTO</maxs:Reason>
+			<maxs:Description>Acconto2</maxs:Description>
+			<maxs:UseForPureEntry>true</maxs:UseForPureEntry>
+			<maxs:UseForSaleEntry>true</maxs:UseForSaleEntry>
+			<maxs:UseForPurchaseEntry>true</maxs:UseForPurchaseEntry>
+			<maxs:UseForRetailSaleEntry>false</maxs:UseForRetailSaleEntry>
+			<maxs:Predefined>true</maxs:Predefined>
+			<maxs:TBCreated>2024-10-15T12:21:09</maxs:TBCreated>
+			<maxs:TBModified>2024-12-17T15:20:18</maxs:TBModified>
+			<maxs:TBCreatedID>0</maxs:TBCreatedID>
+			<maxs:TBModifiedID>0</maxs:TBModifiedID>
+			<maxs:TBGuid>{52FF0165-10FB-4E0A-AAAC-100263CAC381}</maxs:TBGuid>
+		</maxs:AccountingReasons>
+	</maxs:Data>
+</maxs:AccountingReasons>

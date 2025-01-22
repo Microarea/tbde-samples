@@ -40,9 +40,9 @@ namespace WindowsFormsResult
                 this.labelSmile.Text = "?";
                 this.labelTitleResult.Text = "Calls Info";
                 this.buttonExitForm.BackColor = Color.LightSteelBlue;
-                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 1000, 300, 20, 20));
+                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 800, 300, 20, 20));
                 this.Height = 300;
-                this.Width = 1000;
+                this.Width = 800;
                 return;
             }
 
@@ -131,7 +131,7 @@ namespace WindowsFormsResult
             }
             else
             {
-                this.Width = (int)(704 * scaleFactor);
+                this.Width = (int)(584 * scaleFactor);
                 this.Height = (int)(300 * scaleFactor);
                 this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, (int)(20 * scaleFactor), (int)(20 * scaleFactor)));
             }

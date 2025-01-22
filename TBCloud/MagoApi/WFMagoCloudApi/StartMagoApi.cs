@@ -18,7 +18,6 @@ namespace TbApiTester
         public StartMagoApi()
         {
             InitializeComponent();
-            this.AutoScaleMode = AutoScaleMode.Dpi;
         }
 
         private void btnCloud_Click(object sender, EventArgs e)

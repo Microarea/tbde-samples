@@ -84,8 +84,8 @@ namespace TbApiTester
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl.ToString());
 
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
-                    requestDs = UrlSManager.DataServiceUrl + "/data-service/getdata/" + nameSpace + '/' + selectionType;
-                   
+                    requestDs = $"{request.Method} {request.RequestUri}";
+
 
                     // Esegui la richiesta
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -134,7 +134,7 @@ namespace TbApiTester
                     if (UrlSManager.DataServiceUrl == "") UrlSManager.DataServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/DATASERVICE");
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DataServiceUrl + "/data-service/api/assemblyversion");
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
-                    requestDs = UrlSManager.DataServiceUrl + "/data-service/api/assemblyversion";
+                    requestDs = $"{request.Method} {request.RequestUri}";
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)

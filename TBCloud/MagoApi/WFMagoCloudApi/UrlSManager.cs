@@ -15,7 +15,7 @@ namespace TbApiTester
         public string WebUrl { get; set; } = string.Empty;
         public string DevEnvUrl { get; set; } = string.Empty;
         public string MMSWebUrl { get; set; } = "http://localhost:60000/";
-        public string MMSDevUrl { get; set; } = "http://localhost:5058/";
+        public string MMSDevUrl { get; set; } = "http://localhost:5000/";
 
         //public UrlSManager(bool isCloud)
         //{
@@ -41,14 +41,14 @@ namespace TbApiTester
 
                     case GlobalSettings.ButtonState.Web:
                         // Caso Cloud: ritorna WebUrl se GwamUrl è uguale a "https://gwam.mago.cloud"
-                        if (userData.GwamUrl == "https://gwam.mago.cloud")
+                        if (userData.GwamUrl != null | userData.GwamUrl != string.Empty)
                         {
                             return WebUrl;
                         }
                         break;
 
                     case GlobalSettings.ButtonState.Cloud:
-                        if (userData.GwamUrl == "https://test-gwam.mago.cloud" || userData.GwamUrl == "https://gwam.mago.cloud")
+                        if (userData.GwamUrl != null | userData.GwamUrl != string.Empty)
                         {
                             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + urlName);
                             TbApiTesterManager.PrepareHeaders(request, userData, DateTime.Now);   
@@ -66,10 +66,10 @@ namespace TbApiTester
                         break;
 
                     default:
-                        return "Stato del bottone non riconosciuto";
+                        return "I don't recognize the environment";
                 }
 
-                return "Stato del bottone non gestito";
+                return "Error";
             }
         }
 

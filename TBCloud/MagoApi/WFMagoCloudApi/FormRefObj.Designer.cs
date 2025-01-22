@@ -30,12 +30,12 @@ namespace TbApiTester
         /// </summary>
         private void InitializeComponent()
         {
-            this.xmlEditorWpfRef = new XmlEditor();
+            this.xmlEditorWpfRef = new  XmlEditor();
             this.ContainerBtnUpload = new MspzComponent.OrangePanel();
             this.btnUploadXmlRefObj = new System.Windows.Forms.Button();
             this.btnSaveXml = new System.Windows.Forms.Button();
             this.btnModifyXml = new System.Windows.Forms.Button();
-            this.xmlEditorResult = new XmlEditor();
+            this.xmlEditorResult = new  XmlEditor();
             this.panelTitleResult = new System.Windows.Forms.Panel();
             this.labelTitleResult = new System.Windows.Forms.Label();
             this.panelTitleResult.SuspendLayout();
@@ -105,7 +105,7 @@ namespace TbApiTester
             // 
             // xmlEditorResult
             // 
-            this.xmlEditorResult.BackColor = System.Drawing.Color.White;
+            this.xmlEditorResult.BackColor = System.Drawing.Color.AliceBlue;
             this.xmlEditorResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xmlEditorResult.Location = new System.Drawing.Point(0, 0);
             this.xmlEditorResult.Name = "xmlEditorResult";

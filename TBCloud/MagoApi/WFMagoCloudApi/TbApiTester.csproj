@@ -158,6 +158,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Library\XmlGetParametersResult.cs" />
+    <Compile Include="LogCredential.cs" />
     <Compile Include="TbApiTesterManager.cs" />
     <Compile Include="TbApiTester.cs">
       <SubType>Form</SubType>
