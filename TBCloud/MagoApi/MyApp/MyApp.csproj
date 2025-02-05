@@ -2,12 +2,24 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microarea.Tbf.Model.Library" Version="2.5.0.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microarea.Tbf.Model">
+      <HintPath>..\..\..\..\dist-libraries\Microarea.Tbf.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Microarea.Tbf.Model.AspNet">
+      <HintPath>..\..\..\..\dist-libraries\Microarea.Tbf.Model.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microarea.Tbf.Model.Interfaces">
+      <HintPath>..\..\..\..\dist-libraries\Microarea.Tbf.Model.Interfaces.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
