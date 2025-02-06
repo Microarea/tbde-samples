@@ -162,7 +162,7 @@ namespace TbApiTester
 
         #endregion
         private XmlEditor xmlEditorWpfRef;
-        private TbApiTester TbApiTester;
+       
         private MspzComponent.OrangePanel ContainerBtnUpload;
         private System.Windows.Forms.Button btnUploadXmlRefObj;
         private System.Windows.Forms.Button btnSaveXml;

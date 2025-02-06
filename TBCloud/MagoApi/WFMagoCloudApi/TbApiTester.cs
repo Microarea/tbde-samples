@@ -47,32 +47,27 @@ namespace TbApiTester
         internal string FileName { get; set; }
         private List<string> Request { get; set; }
         public object docinfo { get; private set; }
-
         bool mousedown;
         public long defPriceHandle = 0;
         public System.Diagnostics.Process p = null;
-        string  basePath = AppDomain.CurrentDomain.BaseDirectory;
-
-       
-        
+        string basePath = AppDomain.CurrentDomain.BaseDirectory;
         private bool isFullScreen = false;
         private string tableName;
         TbResponse m_GetBoResponse;
         public XDocument loadedXmlDocument;
         public string CurrentPath { get; set; }
         private Color previousColor;
+        public string interfaceToken { get; set; }
 
         public TbApiTester(bool isCloudButtonClicked)
         {
             InitializeComponent();
-           
+            this.AutoScaleMode = AutoScaleMode.None;
             btnSaveCredential.Visible = false;
             logCredential = new LogCredential();
             string currentEnvironment = GlobalSettings.CurrentButtonState.ToString();
             InitializeCredential(currentEnvironment);
             string folderPath = Path.Combine(basePath, "Docs");
-
-            this.AutoScaleMode = AutoScaleMode.None;
             uiManager.SetControls(this.Controls);
             labelManager = new LabelManager(this);
             labelManager.InitializeLabels();
@@ -122,7 +117,7 @@ namespace TbApiTester
             this.tabNavigation.TabPages.Remove(this.TabBusinessObject);
             this.cbxSelectionType.SelectedIndex = 0;
             cbxSelectionType.DropDownStyle = ComboBoxStyle.DropDown;
-            this.comboBoxQuery.SelectedIndex = 0; 
+            this.comboBoxQuery.SelectedIndex = 0;
             this.SearchMethod.Visible = false;
             this.lblCaseSensitive.Visible = false;
             this.IsCloudButtonClicked = this.IsCloudButtonClicked;
@@ -181,8 +176,8 @@ namespace TbApiTester
         {
             // Text Tooltip
             System.Windows.Forms.ToolTip myToolTip = new System.Windows.Forms.ToolTip();
-            myToolTip.SetToolTip(BtnRefDoc, "Refresh folder");
             myToolTip.SetToolTip(BtnOpenFolder, "Open folder");
+            myToolTip.SetToolTip(btnSaveXmlTbServer, "Save xmlResult");
             myToolTip.SetToolTip(BtnQuestionCall, "Questions about calls?");
             myToolTip.SetToolTip(BtnFillContent, "Resize TabControl");
             myToolTip.SetToolTip(btnClearText, "Clear Result Window");
@@ -539,12 +534,6 @@ namespace TbApiTester
             }
         }
 
-
-        private void BtnRefDoc_Click(object sender, EventArgs e)
-        {
-            BtnRefDoc.ForeColor = Color.FromArgb(65, 192, 146);
-        }
-
         private string GetXmlContent()
         {
             return xmlEditorTbResult.TextContent;
@@ -640,14 +629,14 @@ namespace TbApiTester
             if (!manager.authenticationManager.IsLogged())
             {
                 MessageBox.Show("User is not logged, please Login!");
-                Cursor = Cursors.Default; 
+                Cursor = Cursors.Default;
                 return;
             }
 
             if (cbxProfile.SelectedItem == null)
             {
                 MessageBox.Show("Please select a file from the list!");
-                Cursor = Cursors.Default; 
+                Cursor = Cursors.Default;
                 return;
             }
 
@@ -664,7 +653,7 @@ namespace TbApiTester
             {
                 string contentBody = manager.tbServerManager.SetXmlData(manager.authenticationManager.userData, DateTime.Now, fileContent);
                 SetXmlContent(contentBody);
-               
+
                 labelCallTbResult.Text = "Result SetXmlData:";
                 labelTbUrl.Text = manager.tbServerManager.requestTb;
             }
@@ -674,7 +663,7 @@ namespace TbApiTester
             }
             finally
             {
-                Cursor = Cursors.Default; 
+                Cursor = Cursors.Default;
             }
         }
 
@@ -862,7 +851,7 @@ namespace TbApiTester
 
         private async Task FillModulesRObj(string application)
         {
-            cbxModRObj .DataSource = null;
+            cbxModRObj.DataSource = null;
 
             var modulesWithPaths = await manager.tbFsServiceManager.GetModules(manager.authenticationManager.userData, DateTime.Now, application);
             if (modulesWithPaths == null || modulesWithPaths.Count == 0)
@@ -915,7 +904,6 @@ namespace TbApiTester
 
             ShowResult(contentBody != null ? "CurrentOpeningDate\n" + contentBody : "Unable to retrieve OpeningDate\n" + contentBody, contentBody != null);
             labelWbUrl.Text = UrlSManager.TbServerUrl;
-
         }
 
         private void btnClosingDate_Click(object sender, EventArgs e)
@@ -1223,7 +1211,7 @@ namespace TbApiTester
 
                 if (cbxSelectionType.SelectedItem != null || !string.IsNullOrWhiteSpace(cbxSelectionType.Text))
                 {
-                    selectionType = cbxSelectionType.Text; 
+                    selectionType = cbxSelectionType.Text;
                 }
 
                 bool bOk = false;
@@ -1367,6 +1355,7 @@ namespace TbApiTester
             string contentBody = manager.dataServiceManager.GetVersion(manager.authenticationManager.userData);
             ShowResult(contentBody != null ? "Get Version Xml:\n" + contentBody : "Unable to retrieve Get Version\n" + contentBody, contentBody != null);
             labelDataUrl.Text = manager.dataServiceManager.requestDs;
+
         }
 
         ////////////////////////////////
@@ -1705,10 +1694,21 @@ namespace TbApiTester
         {
             if (!manager.authenticationManager.IsLogged())
             {
-                MessageBox.Show("User is not logged, please Login!");
+                MessageBox.Show("User is not logged, please login!", "Authentication Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            MultipleAdd();// x400
+
+            DialogResult result = MessageBox.Show(
+                "This action will add 400 fields. Do you want to continue?",
+                "Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                MultipleAdd();
+            }
         }
         //UpdateSlave
         //private async void btnAdd_Click(object sender, EventArgs e)
@@ -1924,7 +1924,7 @@ namespace TbApiTester
             }
         }
 
-      
+
 
         private void cbxServicesWeb_DropDown(object sender, EventArgs e)
         {
@@ -1936,7 +1936,7 @@ namespace TbApiTester
             ServiceManager serviceManager = new ServiceManager();
             var servicesStatus = serviceManager.GetServicesStatus();
 
-            cbxServicesWeb.Items.Clear(); 
+            cbxServicesWeb.Items.Clear();
 
             foreach (var (serviceName, status) in servicesStatus)
             {
@@ -2001,7 +2001,7 @@ namespace TbApiTester
                     try
                     {
                         Function function = JsonConvert.DeserializeObject<Function>(match.Value);
-                       
+
                         if (string.IsNullOrEmpty(searchTerm) || function.Ns.Contains(searchTerm))
                         {
                             resultBuilder.AppendLine($"Ns: {function.Ns}\n Type: {function.Type}");
@@ -2053,40 +2053,136 @@ namespace TbApiTester
 
         private void btnExpandDynamicQueries_Click(object sender, EventArgs e)
         {
-            if (btnExpandDynamicQueries.Text == "Try") 
+            if (btnExpandDynamicQueries.Text == "Try")
             {
                 btnExpandDynamicQueries.Text = "Close";
                 DynamicQueriesPanel.Dock = DockStyle.None;
-                DynamicQueriesPanel.Visible = true; 
-            }
-            else 
-            {
-                btnExpandDynamicQueries.Text = "Try";
-                DynamicQueriesPanel.Dock = DockStyle.None;
-                DynamicQueriesPanel.Visible = false; 
-            }
-        }
-
-        private void btnBusinessObj_Click(object sender, EventArgs e)
-        {
-            // RunDocumentAsync parameter
-            string nameSpace = "Courses.Courses.DynamicDocuments.Courses"; 
-            bool unattended = true;
-            string callerId = "caller123"; 
-
-            var result = manager.docBusinessObjManager.RunDocumentAsync<object>(manager.authenticationManager.userData, nameSpace, unattended, callerId);
-
-            if (result != null)
-            {
-                MessageBox.Show("RunDocumentAsync completato con successo.");
+                DynamicQueriesPanel.Visible = true;
             }
             else
             {
-                MessageBox.Show("RunDocumentAsync ha restituito null.");
+                btnExpandDynamicQueries.Text = "Try";
+                DynamicQueriesPanel.Dock = DockStyle.None;
+                DynamicQueriesPanel.Visible = false;
             }
         }
 
-       
+
+
+        private void btnSaveXmlTbServer_Click(object sender, EventArgs e)
+        {
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string projectDirectory = Directory.GetParent(baseDirectory).Parent.Parent.FullName;
+
+            string docsDirectory = Path.Combine(projectDirectory, "Docs");
+
+            // Determina il nome della sottocartella in base al testo della label
+            string subFolderName = string.Empty;
+            if (labelCallTbResult.Text == "Result GetXmlParams:")
+            {
+                subFolderName = "GetXmlParams";
+            }
+            else if (labelCallTbResult.Text == "Result GetXmlData:")
+            {
+                subFolderName = "GetXmlData";
+            }
+            else if (labelCallTbResult.Text == "Result SetXmlData:")
+            {
+                subFolderName = "SetXmlData";
+            }
+
+            // Imposta il percorso completo della directory
+            string targetDirectory = string.IsNullOrEmpty(subFolderName) ? docsDirectory : Path.Combine(docsDirectory, subFolderName);
+
+            // Creazione della cartella se non esiste
+            if (!Directory.Exists(targetDirectory))
+            {
+                Directory.CreateDirectory(targetDirectory);
+            }
+
+            // Imposta il percorso del file
+            string filePath = Path.Combine(targetDirectory, manager.tbFsServiceManager.selDoc + ".xml");
+
+            // Salva il file XML
+            File.WriteAllText(filePath, xmlEditorTbResult.TextContent);
+
+            MessageBox.Show($"The file has been saved in the folder:\n{targetDirectory}", "Save Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void BtnOpenFolder_Click(object sender, EventArgs e)
+        {
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string projectDirectory = Directory.GetParent(baseDirectory).Parent.Parent.FullName;
+            string docsDirectory = Path.Combine(projectDirectory, "Docs");
+
+            if (Directory.Exists(docsDirectory))
+            {
+                Process.Start("explorer.exe", docsDirectory);
+            }
+            else
+            {
+                MessageBox.Show("The 'Docs' folder does not exist.", "Folder Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private async void btnBusinessObj_Click(object sender, EventArgs e)
+        {
+            string url = "http://localhost:1234/OttieniToken-MOToken-service/OttieniTokenMOTokenDocOttieniToken/ApriSaleOrdExt";
+
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    var requestData = new JObject();
+                    var content = new StringContent(requestData.ToString(), Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await client.PostAsync(url, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string result = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine("Documento aperto: " + result);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Errore: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Eccezione: {ex.Message}");
+                }
+            }
+        }
+
+        private async void btnTokenEsterno_Click(object sender, EventArgs e)
+        {
+            string url = "http://localhost:1234/OttieniToken-MOToken-service/OttieniTokenMOTokenDocOttieniToken/PrendoIlToken";
+
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    var requestData = new JObject();
+                    var content = new StringContent(requestData.ToString(), Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await client.PostAsync(url, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string result = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"Token ricevuto: " + result, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Errore: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Eccezione: {ex.Message}");
+                }
+            }
+        }
 
     }
 }

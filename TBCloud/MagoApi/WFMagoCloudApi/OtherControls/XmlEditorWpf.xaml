@@ -10,7 +10,7 @@
 		<avalonEdit:TextEditor
 				Name="textEditor"
 				FontFamily="Century Gothic"
-				FontSize="10pt"
+				FontSize="11pt"
 				SyntaxHighlighting="XML" Background="AliceBlue" Padding="0,5,0,0"
 			/>
 	</Grid>

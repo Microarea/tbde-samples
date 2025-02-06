@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.OLE.Interop;
+﻿using Microarea.Common.FileManager;
+using Microarea.Common.Sessions;
+using Microarea.Interfaces;
+using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -11,6 +14,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace TbApiTester
@@ -102,6 +106,8 @@ namespace TbApiTester
         public string Value { get; set; }
         public Dictionary<string, object> FindFields { get; set; } = new Dictionary<string, object>();
     }
+
+    
 
     class DmMMSManager
     {
@@ -444,6 +450,7 @@ namespace TbApiTester
                         numbererKey = numbererKey,
                         consumeIt = consumeIt
                     });
+
                     request.Content = new StringContent(content: nrData, encoding: Encoding.UTF8, mediaType: "application/json");
                     TbResponse tbResponse = new TbResponse();
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;

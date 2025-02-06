@@ -178,8 +178,7 @@ namespace TbApiTester
                     string mwConsoleApi = "http://localhost:60000/mw-console/api";
 
                     HttpRequestMessage request;
-
-                    // Verifica lo stato dell'API solo se il pulsante Web è stato cliccato
+                    
                     if (GlobalSettings.CurrentButtonState == GlobalSettings.ButtonState.Web)
                     {
                         HttpResponseMessage checkResponse = client.GetAsync(mwConsoleApi).Result;
@@ -188,6 +187,7 @@ namespace TbApiTester
                         {
                             // Use MagoWebLogin  for 5.0
                             request = new HttpRequestMessage(HttpMethod.Post, MagoWebLogin50);
+                            MessageBox.Show("You are in 5.0 Version\nNow for logIn use mw-console service:\n" + MagoWebLogin50);
                         }
                         else
                         {
@@ -448,6 +448,12 @@ namespace TbApiTester
 
         internal void DoLogout(string GwamUrl) //logIn5.0
         {
+            if (string.IsNullOrEmpty(userData.Token)) 
+            {
+                MessageBox.Show("No user is logged in.", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             using (HttpClient client = new HttpClient())
             {
                 try
@@ -457,38 +463,28 @@ namespace TbApiTester
 
                     HttpRequestMessage request;
 
-                    // Controlla lo stato di GlobalSettings.CurrentButtonState
+                    //  GlobalSettings.CurrentButtonState
                     if (GlobalSettings.CurrentButtonState == GlobalSettings.ButtonState.Web)
                     {
-                        // Usa l'URL di mw-console se il pulsante Web è stato cliccato
+                        // mw-console 
                         request = new HttpRequestMessage(HttpMethod.Post, mwConsoleLogoff);
                     }
                     else
                     {
-                        // Usa l'URL locale o quello basato su GwamUrl
-                        if (string.IsNullOrEmpty(GwamUrl))
-                        {
-                            request = new HttpRequestMessage(HttpMethod.Post, localLogoff);
-                        }
-                        else
-                        {
-                            request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/logoff");
-                        }
+                        request = string.IsNullOrEmpty(GwamUrl)
+                            ? new HttpRequestMessage(HttpMethod.Post, localLogoff)
+                            : new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/logoff");
                     }
 
-                    // Prepara le intestazioni
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
 
-                    // Imposta il contenuto della richiesta
                     request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
 
-                    // Esegui la richiesta
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        // Recupera la risposta
                         string responseBody = response.Content.ReadAsStringAsync().Result;
                         JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
 
@@ -498,25 +494,25 @@ namespace TbApiTester
                             if (resultVariable == "True")
                             {
                                 userData.Clear();
-                                MessageBox.Show("The User has been successfully disconnected.");
+                                MessageBox.Show("The user has been successfully disconnected.", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 return;
                             }
                         }
 
-                        MessageBox.Show("Logout reported invalid content.");
+                        MessageBox.Show("Logout reported invalid content.", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
-                        MessageBox.Show("We were unable to logout from MagoCloud.");
+                        MessageBox.Show("We were unable to logout from MagoCloud.", "Logout Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (HttpRequestException e)
                 {
-                    MessageBox.Show($"HTTP Request Exception: {e.Message}");
+                    MessageBox.Show($"HTTP Request Exception: {e.Message}", "Logout Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Unexpected error: {ex.Message}");
+                    MessageBox.Show($"Unexpected error: {ex.Message}", "Logout Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

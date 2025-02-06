@@ -65,8 +65,9 @@ namespace TbApiTester
     public class DocBusinessObjManager
     {
         public bool unattended = true;
-        public string BONamespace = "Courses.Courses.DynamicDocuments.Courses";
-
+        public string BONamespace = "ERP.SaleOrders";
+        public string callerId = "12";
+        public string interfaceToken;
         internal async Task<TClass> RunDocumentAsync<TClass>(UserData userData, string nameSpace, bool unattended, string callerId) where TClass : class, new()
         {
             JObject jObject = new JObject
@@ -75,7 +76,6 @@ namespace TbApiTester
                 ["viewMode"] = unattended ? "BackGround" : "Foreground"
             };
 
-            // Recupera l'URL del server
             if (string.IsNullOrEmpty(UrlSManager.TbServerUrl))
             {
                 UrlSManager urls = new UrlSManager();
@@ -86,14 +86,13 @@ namespace TbApiTester
             using (HttpClient client = new HttpClient())
             using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestUrl))
             {
-                // Imposta il contenuto e le intestazioni della richiesta
                 request.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
                 TbApiTesterManager.PrepareHeaderAutorization(request, userData);
+                TbApiTesterManager.PrepareHeaderServerInfo(request, userData, DateTime.Now);
                 TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                 request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
                 try
                 {
-                    // Esegui la richiesta in modo asincrono
                     HttpResponseMessage response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead);
 
                     if (response.IsSuccessStatusCode)
@@ -101,11 +100,9 @@ namespace TbApiTester
                         string responseBody = await response.Content.ReadAsStringAsync();
                         JObject responseObject = JObject.Parse(responseBody);
 
-                        // Verifica il campo "success" e analizza il contenuto del componente
                         if (responseObject["success"]?.Value<bool>() == true && responseObject["component"] is JObject componentObj)
                         {
                             TClass val = new TClass();
-
                             dynamic dynamicVal = val; 
                             dynamicVal.NameSpace = nameSpace;
                             dynamicVal.Authorization = userData.Token;
@@ -114,7 +111,6 @@ namespace TbApiTester
                             dynamicVal.Url = requestUrl;
                             dynamicVal.CallerId = callerId;
                             dynamicVal.Unattended = unattended;
-
                             dynamicVal.OnInitDocument();
                             dynamicVal.StartListening();
                             await dynamicVal.Ready; 
@@ -130,7 +126,7 @@ namespace TbApiTester
                 }
                 catch (Exception ex)
                 {
-                    throw new InvalidOperationException("Errore durante l'esecuzione della richiesta HTTP.", ex);
+                    throw new InvalidOperationException("Error HTTP.", ex);
                 }
             }
             return null;
