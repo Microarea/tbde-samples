@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    
+    <RootNamespace>Courses-Courses-service</RootNamespace>
+  </PropertyGroup>
+
+  <!--<ItemGroup>
+    <ProjectReference Include="..\..\..\..\tbf-model\tbf-model\tbf-model.csproj" />
+  </ItemGroup>-->
+
+</Project>

@@ -1,0 +1,9 @@
+{
+  "defaultMicroservice": {
+    "version": 1,
+    "dotNetVersion": "net8.0",
+    "developmentUrl": "http://localhost:1234",
+    "productionUrl": "",
+    "generateCSharpCode": true
+  }
+}

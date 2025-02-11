@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<HotKeyLink>
+  <Function localize="Teachers" namespace="Courses.Courses.DynamicDocuments.Teachers" type="string" report="False" published="False" />
+  <ClassName>TeacherHKL</ClassName>
+  <DbField name="MMS_Teachers.Teacher" />
+  <DbTable name="MMS_Teachers" owner="" loadFullRecord="" />
+  <DbFieldDescription name="MMS_Teachers.Description" />
+  <ComboBox datafile="" maxDisplayedFields="4">
+    <Column when="" source="MMS_Teachers.Teacher" localize="Teacher" />
+    <Column when="" source="MMS_Teachers.Description" localize="Description" />
+  </ComboBox>
+  <CallLink when="" namespace="Courses.Courses.DynamicDocuments.Teachers" addOnFlyEnabled="True" mustExistData="False" browseEnabled="True" />
+  <SelectionTypes>
+    <Selection name="Radar" type="radar" localize="" />
+    <Selection name="WebCombo" type="default" localize="" />
+    <Selection name="direct" type="direct" localize="" />
+  </SelectionTypes>
+  <SelectionModes>
+    <Mode name="Radar" type="query"><![CDATA[Select mms_teachers.teacher {COL mms_teachers.teacher KEY  TITLE "teacher"},mms_teachers.tbcreated {COL mms_teachers.tbcreated TYPE DateTime TITLE "TBCreated"},mms_teachers.tbmodified {COL mms_teachers.tbmodified TYPE DateTime TITLE "TBModified"},mms_teachers.tbcreatedid {COL mms_teachers.tbcreatedid TYPE Long TITLE "tbcreatedid"},mms_teachers.tbmodifiedid {COL mms_teachers.tbmodifiedid TYPE Long TITLE "tbmodifiedid"},mms_teachers.tbguid {COL mms_teachers.tbguid TYPE Uuid TITLE "TBGuid"},mms_teachers.description {COL mms_teachers.description TITLE "description"},mms_teachers.disabled {COL mms_teachers.disabled TYPE Bool TITLE "disabled"} FROM mms_teachers]]></Mode>
+    <Mode name="WebCombo" type="query"><![CDATA[SELECT MMS_Teachers.Teacher { COL MMS_Teachers.Teacher }, MMS_Teachers.Description { COL MMS_Teachers.Description } FROM MMS_Teachers WHERE MMS_Teachers.Teacher LIKE { IN filter_value } OR MMS_Teachers.Description LIKE { IN filter_value }]]></Mode>
+    <Mode name="direct" type="query"><![CDATA[SELECT MMS_Teachers.teacher { COL MMS_Teachers.teacher }, MMS_Teachers.description { COL MMS_Teachers.description }, MMS_Teachers.disabled { COL MMS_Teachers.disabled } FROM MMS_Teachers WHERE MMS_Teachers.Teacher = { IN filter_value }]]></Mode>
+  </SelectionModes>
+  <Dynamic>True</Dynamic>
+</HotKeyLink>

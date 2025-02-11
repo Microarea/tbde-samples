@@ -1,0 +1,40 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <VersionLang>12.0</VersionLang>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.*" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.*" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.4.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.*" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.*" />
+    <PackageReference Include="Flurl" Version="4.0.*" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microarea.Tbf.Model.AspNet">
+      <HintPath>..\..\..\..\dist-libraries\Microarea.Tbf.Model.AspNet.dll</HintPath>
+      <Private></Private>
+    </Reference>
+    <Reference Include="Microarea.Tbf.Model.Interfaces">
+      <HintPath>..\..\..\..\dist-libraries\Microarea.Tbf.Model.Interfaces.dll</HintPath>
+      <Private></Private>
+    </Reference>
+    <Reference Include="taskbuilder-netcore-generic">
+      <HintPath>..\..\..\..\dist-libraries\taskbuilder-netcore-generic.dll</HintPath>
+      <Private></Private>
+    </Reference>
+    <Reference Include="taskbuilder-netcore-interfaces">
+      <HintPath>..\..\..\..\dist-libraries\taskbuilder-netcore-interfaces.dll</HintPath>
+      <Private></Private>
+    </Reference>
+    <Reference Include="Microarea.Tbf.Model">
+      <HintPath>..\..\..\..\dist-libraries\Microarea.Tbf.Model.dll</HintPath>
+      <Private></Private>
+    </Reference>
+  </ItemGroup>
+</Project>
