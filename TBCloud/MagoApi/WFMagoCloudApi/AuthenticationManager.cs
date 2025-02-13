@@ -202,13 +202,14 @@ namespace TbApiTester
                     }
                     else
                     {
-                        // Usa gwamUrl direttamente per altri stati del pulsante
-                        if (string.IsNullOrEmpty(gwamUrl))
+                        // If url empty 5000
+                        if (gwamUrl == string.Empty)
                         {
-                            MessageBox.Show("Invalid GWAM URL.");
-                            return false;
+                            string localLogin = "http://localhost:5000/account-manager/login";
+                            request = new HttpRequestMessage(HttpMethod.Post, localLogin);
                         }
-                        request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
+                        else // Use gwamUrl 
+                            request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
                     }
 
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, producerKey, appKey);
@@ -323,7 +324,7 @@ namespace TbApiTester
         //}
 
 
-        internal void ValidToken(string GwamUrl)//ValidToken 5.0
+        internal void ValidToken(string gwamUrl)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -331,57 +332,52 @@ namespace TbApiTester
                 {
                     string localIsValidToken = "http://localhost:5000/account-manager/isvalidtoken";
                     string mwConsoleIsValidToken = "http://localhost:60000/mw-console/api/isvalidtoken";
-
-                    HttpRequestMessage request;
+                    string mwConsoleApi = "http://localhost:60000/mw-console/api";
+                    string requestUrl;
 
                     if (GlobalSettings.CurrentButtonState == GlobalSettings.ButtonState.Web)
                     {
-                        request = new HttpRequestMessage(HttpMethod.Post, mwConsoleIsValidToken);
-                    }
-                    else
-                    {
-                        if (string.IsNullOrEmpty(GwamUrl))
+                        if (client.GetAsync(mwConsoleApi).Result.StatusCode == System.Net.HttpStatusCode.OK)
                         {
-                            request = new HttpRequestMessage(HttpMethod.Post, localIsValidToken);
+                            requestUrl = mwConsoleIsValidToken;
+                            MessageBox.Show("You are in 5.0 Version\nNow for token validation use mw-console service:\n" + mwConsoleIsValidToken);
+                        }
+                        else if (string.IsNullOrEmpty(gwamUrl))
+                        {
+                            MessageBox.Show(mwConsoleApi);
+                            return;
                         }
                         else
                         {
-                            request = new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/isvalidtoken");
+                            requestUrl = gwamUrl + "/gwam_login/api/isvalidtoken";
                         }
-                    }
-
-
-                    TbApiTesterManager.PrepareHeaders(request, userData, DateTime.Now);
-                    request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
-
-                    HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                    {
-                        string responseBody = response.Content.ReadAsStringAsync().Result;
-                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
-
-                        if (jsonObject != null)
-                        {
-                            string resultVariable = jsonObject["Result"]?.ToString();
-                            if (resultVariable == "True")
-                            {
-                                MessageBox.Show("The token is valid");
-                                return;
-                            }
-                        }
-
-                        MessageBox.Show("Token is no longer valid.");
                     }
                     else
                     {
-                        MessageBox.Show("Unable to retrieve the token.");
+                        requestUrl = string.IsNullOrEmpty(gwamUrl) ? localIsValidToken : gwamUrl + "/gwam_login/api/isvalidtoken";
+                        if (string.IsNullOrEmpty(gwamUrl))
+                            MessageBox.Show("Using local validation: " + localIsValidToken);
+                    }
+
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+                    TbApiTesterManager.PrepareHeaders(request, userData, DateTime.Now);
+                    request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = client.SendAsync(request).Result;
+                    string responseBody = response.Content.ReadAsStringAsync().Result;
+
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK && JsonConvert.DeserializeObject<JObject>(responseBody)?["Result"]?.ToString() == "True")
+                    {
+                        MessageBox.Show("The token is valid");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Token is no longer valid.");
                     }
                 }
                 catch (HttpRequestException e)
                 {
-                    Console.WriteLine("\nException Caught!");
-                    Console.WriteLine("Message :{0} ", e.Message);
+                    MessageBox.Show("Error in ValidToken: " + e.Message);
                 }
             }
         }
@@ -446,9 +442,9 @@ namespace TbApiTester
         //    }
         //}
 
-        internal void DoLogout(string GwamUrl) //logIn5.0
+        internal void DoLogout(string gwamUrl)
         {
-            if (string.IsNullOrEmpty(userData.Token)) 
+            if (string.IsNullOrEmpty(userData.Token))
             {
                 MessageBox.Show("No user is logged in.", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -460,50 +456,45 @@ namespace TbApiTester
                 {
                     string localLogoff = "http://localhost:5000/account-manager/logoff";
                     string mwConsoleLogoff = "http://localhost:60000/mw-console/api/logoff";
+                    string mwConsoleApi = "http://localhost:60000/mw-console/api";
+                    string requestUrl;
 
-                    HttpRequestMessage request;
 
-                    //  GlobalSettings.CurrentButtonState
                     if (GlobalSettings.CurrentButtonState == GlobalSettings.ButtonState.Web)
                     {
-                        // mw-console 
-                        request = new HttpRequestMessage(HttpMethod.Post, mwConsoleLogoff);
+                        if (client.GetAsync(mwConsoleApi).Result.StatusCode == System.Net.HttpStatusCode.OK)
+                        {
+                            requestUrl = mwConsoleLogoff;
+                            MessageBox.Show("You are in 5.0 Version\nNow for logoff use mw-console service:\n" + mwConsoleLogoff);
+                        }
+                        else
+                        {
+                            requestUrl = gwamUrl + "/gwam_login/api/logoff";
+                        }
                     }
                     else
                     {
-                        request = string.IsNullOrEmpty(GwamUrl)
-                            ? new HttpRequestMessage(HttpMethod.Post, localLogoff)
-                            : new HttpRequestMessage(HttpMethod.Post, GwamUrl + "/gwam_login/api/logoff");
+                        requestUrl = string.IsNullOrEmpty(gwamUrl) ? localLogoff : gwamUrl + "/gwam_login/api/logoff";
+                        if (string.IsNullOrEmpty(gwamUrl))
+                            MessageBox.Show("Using local validation: " + localLogoff);
                     }
 
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
-
                     request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
 
-                    HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
+                    HttpResponseMessage response = client.SendAsync(request).Result;
+                    string responseBody = response.Content.ReadAsStringAsync().Result;
 
-                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK && JsonConvert.DeserializeObject<JObject>(responseBody)?["Result"]?.ToString() == "True")
                     {
-                        string responseBody = response.Content.ReadAsStringAsync().Result;
-                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
-
-                        if (jsonObject != null)
-                        {
-                            string resultVariable = jsonObject["Result"]?.ToString();
-                            if (resultVariable == "True")
-                            {
-                                userData.Clear();
-                                MessageBox.Show("The user has been successfully disconnected.", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                return;
-                            }
-                        }
-
-                        MessageBox.Show("Logout reported invalid content.", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        userData.Clear();
+                        MessageBox.Show("The user has been successfully disconnected.", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("We were unable to logout from MagoCloud.", "Logout Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Logout reported invalid content.", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 catch (HttpRequestException e)
@@ -516,6 +507,7 @@ namespace TbApiTester
                 }
             }
         }
+
 
 
     }

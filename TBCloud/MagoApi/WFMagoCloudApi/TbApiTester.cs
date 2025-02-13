@@ -58,10 +58,12 @@ namespace TbApiTester
         public string CurrentPath { get; set; }
         private Color previousColor;
         public string interfaceToken { get; set; }
+        public string info { get; set; }
 
         public TbApiTester(bool isCloudButtonClicked)
         {
             InitializeComponent();
+            this.tabLog.Hide();///to do
             this.AutoScaleMode = AutoScaleMode.None;
             btnSaveCredential.Visible = false;
             logCredential = new LogCredential();
@@ -114,7 +116,6 @@ namespace TbApiTester
             this.FormBorderStyle = FormBorderStyle.None;
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             this.tabNavigation.TabPages.Remove(this.tabMSH);
-            this.tabNavigation.TabPages.Remove(this.TabBusinessObject);
             this.cbxSelectionType.SelectedIndex = 0;
             cbxSelectionType.DropDownStyle = ComboBoxStyle.DropDown;
             this.comboBoxQuery.SelectedIndex = 0;
@@ -571,11 +572,10 @@ namespace TbApiTester
 
             string contentBody = await manager.tbServerManager.GetXmlParams(manager.authenticationManager.userData, DateTime.Now, fileContent);
             labelCallTbResult.Text = "Result GetXmlParams:";
-            labelTbUrl.Text = manager.tbServerManager.requestTb;
 
             SetXmlContent(contentBody);
-
             Cursor = Cursors.Default;
+            labelTbUrl.Text = manager.tbServerManager.requestTb;
         }
         private void buttonGetTb_Click(object sender, EventArgs e)
         {
@@ -1251,6 +1251,7 @@ namespace TbApiTester
            "The OrderLists is not a Mago document.\r\nIt was created for this example you can find it in the Docs folder in this project\n" +
             "You can use it by adding it to your environment at the following path:\n" +
             "YourEnvironment\\Standard\\Applications\\ERP\\SaleOrders\\ReferenceObjects";
+            info = content;
             ShowResult(content, false, true, true);
         }
         private void btnGetDataQry_Click(object sender, EventArgs e)
@@ -1865,63 +1866,9 @@ namespace TbApiTester
 
         private void btnBObjectData_Click(object sender, EventArgs e)
         {
-            if (!manager.authenticationManager.IsLogged())
-            {
-                MessageBox.Show("User is not logged, please Login!");
-                return;
-            }
-            BusinessObjectData boData = new BusinessObjectData();
-            boData.BONamespace = "ERP.CustomersSuppliers.Documents.Customers";
-            // search by primary key
-            boData.FindFields.Add("CustSuppType", textBoxBoCustSType.Text);
-            if (!string.IsNullOrEmpty(textBoxBoCustSupp.Text))
-            {
-                boData.FindFields.Add("CustSupp", textBoxBoCustSupp.Text);
-            }
-            // search by company name or by other master table fields. % field enables like operator
-            //boData.FindFields.Add("CompanyName", textBoxBoCompanyName.Text);
-            boData.OrderByFields = new string[] { "CompanyName" };
-            boData.RequestedTables = new List<RequestedTable>();
-            boData.RequestedTables.Add(new RequestedTable(textBoxBoTabName.Text, new string[] { "CustSuppType", "CustSupp", "CompanyName" }));
-            boData.RequestedTables.Add(new RequestedTable(textBoxCustSCOptions.Text, new string[] { "CustSuppType", "Customer", "Category", "CommissionCtg", "Area", "Salesperson", "AreaManager" }));
-            boData.RequestedTables.Add(new RequestedTable(textBoxCustSuppNotes.Text, new string[] { "CustSuppType", "CustSupp", "Line", "Notes", "TBCreated" }));
+            ////////////////////// MSPZ
+            //// da cancellare
 
-            m_GetBoResponse = manager.dmMMSManager.GetBOByFindKeys(manager.authenticationManager.userData, boData).Result;
-            string BoResponseContentBody = (string)m_GetBoResponse.ReturnValue;
-
-            if (BoResponseContentBody != null && BoResponseContentBody.ToLower() != "null")
-            {
-                JObject dataObject = JObject.Parse(BoResponseContentBody);
-                string contentBody = "";
-
-                foreach (var property in dataObject)
-                {
-                    if (property.Key == textBoxBoTabName.Text)
-                    {
-                        var maCustSuppArray = (JArray)property.Value;
-                        foreach (var maCustSuppItem in maCustSuppArray)
-                        {
-                            // Ma_CustSupp
-                            var maCustSuppData = maCustSuppItem["data"].ToString();
-                            maCustSuppData = maCustSuppData.Replace("\r\n", "");
-                            contentBody += $"{property.Key} data: \n{maCustSuppData}\n";
-
-                            // Ma_CustSuppCustomerOptions
-                            var maCustSuppCustomerOptions = maCustSuppItem[textBoxCustSCOptions.Text];
-                            contentBody += $"{textBoxCustSCOptions.Text}: {maCustSuppCustomerOptions}\n";
-
-                            // Ma_CustSuppNotes
-                            var maCustSuppNotes = maCustSuppItem[textBoxCustSuppNotes.Text];
-                            contentBody += $"{textBoxCustSuppNotes.Text}: {maCustSuppNotes}\n";
-                        }
-                    }
-                }
-                ShowResult(contentBody);
-            }
-            else
-            {
-                ShowResult("Error retrieving GetBOByFindKeys: Null response.\nCheck that the entered parameters are correct.", false);
-            }
         }
 
 
@@ -2053,8 +2000,15 @@ namespace TbApiTester
 
         private void btnExpandDynamicQueries_Click(object sender, EventArgs e)
         {
+           
             if (btnExpandDynamicQueries.Text == "Try")
             {
+                string content =
+                  "The OrderLists is not a Mago document.\r\nIt was created for this example you can find it in the Docs folder in this project\n" +
+                  "You can use it by adding it to your environment at the following path:\n" +
+                  "YourEnvironment\\Standard\\Applications\\ERP\\SaleOrders\\ReferenceObjects";
+                ShowResult(content, false, true, true);
+
                 btnExpandDynamicQueries.Text = "Close";
                 DynamicQueriesPanel.Dock = DockStyle.None;
                 DynamicQueriesPanel.Visible = true;
@@ -2184,6 +2138,44 @@ namespace TbApiTester
             }
         }
 
+        ///TODO//
+        private void btnTbServerLog_Click(object sender, EventArgs e)
+        {
+            if (manager.tbServerManager != null)
+            {
+                List<string> logs = manager.tbServerManager.GetRequestResponseLogs();
+                richTextLog.Text = string.Join(Environment.NewLine, logs);
+            }
+            else
+            {
+                richTextLog.Text = "No logs.";
+            }
+        }
+
+        private void btnClearLog_Click(object sender, EventArgs e)
+        {
+            if (manager.tbServerManager != null)
+            {
+                manager.tbServerManager.ClearLogs(); 
+                richTextLog.Text = string.Empty; 
+            }
+
+        }
+
+        private void btnDataServiceLogs_Click(object sender, EventArgs e)
+        {
+            if (manager.dataServiceManager != null)
+            {
+                List<string> logs = manager.dataServiceManager.GetRequestResponseLogs();
+                richTextLog.Text = string.Join(Environment.NewLine, logs);
+            }
+            else
+            {
+                richTextLog.Text = "No logs.";
+            }
+
+        }
+        
     }
 }
 

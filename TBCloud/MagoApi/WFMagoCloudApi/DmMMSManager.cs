@@ -1,9 +1,4 @@
-﻿using Microarea.Common.FileManager;
-using Microarea.Common.Sessions;
-using Microarea.Interfaces;
-using Microsoft.VisualStudio.OLE.Interop;
-using Microsoft.VisualStudio.TextManager.Interop;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;

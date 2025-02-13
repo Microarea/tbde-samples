@@ -17,51 +17,7 @@ using System.Xml.Linq;
 
 namespace TbApiTester
 {
-    public class MMS_CoursesMaster ///MasterTable
-    {
-        public static string MMS_Courses = "MMS_Courses";
-
-        public long CoursesId { get; set; }
-        public DateTime StartDate { get; set; }
-        public string Description { get; set; }
-        public string Note { get; set; }
-        public Enum CourseLevel { get; set; }
-        public int TotalDay { get; set; }
-    }
-
-    public class MMS_CoursesInfoSlave ///1-1
-    {
-        public static string MMS_CoursesInfo = "MMS_CoursesInfo";
-
-        public long CourseId { get; set; }
-        public int Days { get; set; }
-        public string Teacher { get; set; }
-        public string Notes { get; set; }
-        public SqlMoney PriceADay { get; set; }
-        public string TeacherName { get; set; }
-        public string TeacherCompleteName { get; set; }
-    }
-
-    public class MMS_CoursesDetailsSlave ///1-n
-    {
-        public static string MMS_CoursesDetails = "MMS_CoursesDetails";
-
-        public long CourseId { get; set; }
-        public int Days { get; set; }
-        public string Teacher { get; set; }
-        public string Notes { get; set; }
-        public SqlMoney PriceADay { get; set; }
-        public string TeacherName { get; set; }
-        public string TeacherCompleteName { get; set; }
-    }
-
-    public enum CourseLevelEnum
-    {
-        Beginner,
-        Intermediate,
-        Expert
-    }
-
+   
     public class DocBusinessObjManager
     {
         public bool unattended = true;

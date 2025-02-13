@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.VisualBasic.Logging;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -19,32 +20,35 @@ namespace TbApiTester
         public string folderPath { get; set; }
         public string outFileName { get; set; }
         public string requestTb { get; set; }
-        private List<string> requestTbList = new List<string>();
+        public List<string> requestTbList = new List<string>();
+        public List<string> responseTbList = new List<string>();
+
+      
+
+        public List<string> GetRequestResponseLogs()
+        {
+            List<string> logs = new List<string>();
+
+            int count = Math.Min(requestTbList.Count, responseTbList.Count);
+            for (int i = 0; i < count; i++)
+            {
+                logs.Add(requestTbList[i]); // REQUEST
+                logs.Add(responseTbList[i]); // RESPONSE
+              
+              
+            }
+
+            return logs;
+        }
+        public void ClearLogs()
+        {
+            requestTbList.Clear();
+            responseTbList.Clear();
+        }
 
         //////  RetriveTbServerUrl  ///////
 
-        ///////////////////////////////////
-        //////  RetriveTbServerUrl  ///////
-        ///////////////////////////////////
-        //public string RetriveTbServerUrl(UserData userData, DateTime operationDate)
-        //{
-        //    using (HttpClient client = new HttpClient())
-        //    {
-        //        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/TBSERVER");
-        //        TbApiTesterManager.PrepareHeaders(request, userData);
 
-        //        HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-        //        string responseBody = response.Content.ReadAsStringAsync().Result;
-        //        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
-
-        //        string resultVariable = "";
-        //        if (jsonObject != null)
-        //        {
-        //            resultVariable = jsonObject["Content"]?.ToString();
-        //        }
-        //        return UrlSManager.TbServerUrl = resultVariable;
-        //    }
-        //}
         public (bool, string) LoadMagicLinkFile(string xmlFileName)
         {
             DirectoryInfo folder = new DirectoryInfo(folderPath);
@@ -69,21 +73,7 @@ namespace TbApiTester
             }
         }
 
-        public bool SaveFile(string content)
-        {
-            DirectoryInfo folder = new DirectoryInfo(folderPath);
-            folder.Refresh();
-            try
-            {
-                File.AppendAllText(outFileName, content);
-                return true;
-            }
-            catch (HttpRequestException e)
-            {
-                MessageBox.Show("SaveFile: " + e.Message);
-                return false;
-            }
-        }
+
         /////////////////////////////
         /////// Get xml Params ////////
         public async Task<string> GetXmlParams(UserData userData, DateTime operationDate, string xmlContent)
@@ -93,43 +83,47 @@ namespace TbApiTester
                 try
                 {
                     UrlSManager Urls = new UrlSManager();
-                    if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
-                    //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveTbServerUrl(userData,DateTime.Now);
+                    if (UrlSManager.TbServerUrl == "")
+                        UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
+
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
                     string jsonInString = PrepareGetParams(request, xmlContent, userData.UserName);
-                    request.Method = HttpMethod.Post;
-                    request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
+                    request.Content = new StringContent(jsonInString, Encoding.UTF8, "application/json");
+
+                    // Log della richiesta e del payload
+                    requestTbList.Add($"REQUEST: {request.Method} {request.RequestUri}");
+
+
                     var response = await client.SendAsync(request);
-                    string responseBody = response.Content.ReadAsStringAsync().Result;
+                    string responseBody = await response.Content.ReadAsStringAsync(); // Legge il JSON della risposta
+
+                    // Salva la response nel log in formato leggibile
+                    responseTbList.Add($"RESPONSE: {response}");
+
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        string functionParams = response.Content.ReadAsStringAsync().Result;
-                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(functionParams);
-
+                        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
                         if (jsonObject != null)
                         {
                             string resultVariable = jsonObject["result"]?.ToString();
-                            var bytes = Convert.FromBase64String(resultVariable.ToString());
+                            var bytes = Convert.FromBase64String(resultVariable);
                             var decodedString = Encoding.UTF8.GetString(bytes);
-                            outFileName = folderPath + "\\GetFull.xml";
-                            //SaveFile(decodedString);
-
-                            requestTb = $"{request.Method} {request.RequestUri}";
+                            requestTbList.Add(new string('-', 50)); //_______
                             return decodedString;
                         }
-                        else
-                            return "GetXmlParams error: unable to retrive the result";
                     }
-                    else
-                        return "GetXmlParams error. Response message : " + responseBody;
+                    return "GetXmlParams error: unable to retrieve the result";
                 }
                 catch (HttpRequestException e)
                 {
-                    return "GetXmlParams exception Caught: Message: " + e.Message;
+                    return "GetXmlParams exception Caught: " + e.Message;
                 }
+
             }
         }
+
+
         public string PrepareGetParams(HttpRequestMessage request, string xmlParams, string userName)
         {
             var functionParams = JsonConvert.SerializeObject(new
@@ -155,17 +149,21 @@ namespace TbApiTester
                 try
                 {
                     UrlSManager Urls = new UrlSManager();
-                    if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
-                    //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveTbServerUrl(userData,DateTime.Now);
+                    if (UrlSManager.TbServerUrl == "")
+                        UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
+
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
                     string jsonInString = PrepareGetTb(request, xmlContent, userData.UserName);
-                    request.Method = HttpMethod.Post;
-                    request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
-                    var response = client.SendAsync(request).Result;
-                   
+                    request.Content = new StringContent(jsonInString, Encoding.UTF8, "application/json");
 
+                    requestTb = $"GetXmlData_ {request.Method} {request.RequestUri}";
+                    requestTbList.Add(requestTb); 
+
+                    var response = client.SendAsync(request).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
+                    responseTbList.Add(response.ToString());
+
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         string functionParams = response.Content.ReadAsStringAsync().Result;
@@ -184,7 +182,6 @@ namespace TbApiTester
                                 strings.AppendLine(decodedString.ToString());
                                 outFileName = folderPath + "\\InvRsnSet" + idx.ToString() + ".xml";
                                 requestTb = $"{request.Method} {request.RequestUri}";
-                                //SaveFile(decodedString);
                             }
                             return strings.ToString();
                         }
@@ -258,15 +255,20 @@ namespace TbApiTester
                 try
                 {
                     UrlSManager Urls = new UrlSManager();
-                    if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
+                    if (UrlSManager.TbServerUrl == "")
+                        UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
+
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
                     string jsonInString = PrepareSetTb(request, xmlContent, nAction, userData.UserName);
-                    request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
+                    request.Content = new StringContent(jsonInString, Encoding.UTF8, "application/json");
+
+                    requestTb = $"SetXmlData_ {request.Method} {request.RequestUri}";
+                    requestTbList.Add(requestTb); 
+
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-                    requestTb = request.ToString();
-                    requestTbList.Add(requestTb);
                     string responseBody = response.Content.ReadAsStringAsync().Result;
+                    responseTbList.Add(responseBody); 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         string functionParams = response.Content.ReadAsStringAsync().Result;
@@ -311,9 +313,6 @@ namespace TbApiTester
             return (functionParams);
         }
 
-        public List<string> GetRequestTbList()
-        {
-            return requestTbList;
-        }
+        
     }
 }

@@ -44,7 +44,7 @@ namespace TbApiTester
             this.panelTbTextContainer = new System.Windows.Forms.Panel();
             this.btnClearText = new System.Windows.Forms.Button();
             this.btnSaveXmlTbServer = new System.Windows.Forms.Button();
-            this.xmlEditorTbResult = new  XmlEditor();
+            this.xmlEditorTbResult = new   XmlEditor();
             this.labelCallTbResult = new System.Windows.Forms.Label();
             this.BtnOpenFolder = new System.Windows.Forms.Button();
             this.BtnQuestionCall = new System.Windows.Forms.Button();
@@ -277,81 +277,6 @@ namespace TbApiTester
             this.panel15 = new System.Windows.Forms.Panel();
             this.rndPanelUrl = new MspzComponent.RoundedPanel();
             this.DmMMSUrl = new System.Windows.Forms.Label();
-            this.TabBusinessObject = new System.Windows.Forms.TabPage();
-            this.panel80 = new System.Windows.Forms.Panel();
-            this.panel81 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnBObjectData = new System.Windows.Forms.Button();
-            this.panel53 = new System.Windows.Forms.Panel();
-            this.panel54 = new System.Windows.Forms.Panel();
-            this.panel100 = new System.Windows.Forms.Panel();
-            this.panel103 = new System.Windows.Forms.Panel();
-            this.panel104 = new System.Windows.Forms.Panel();
-            this.panel105 = new System.Windows.Forms.Panel();
-            this.panel106 = new System.Windows.Forms.Panel();
-            this.labelBoCompanyName = new System.Windows.Forms.Label();
-            this.labelBoCustSupp = new System.Windows.Forms.Label();
-            this.labelBoCustSType = new System.Windows.Forms.Label();
-            this.labelBoTabName = new System.Windows.Forms.Label();
-            this.panel107 = new System.Windows.Forms.Panel();
-            this.panel108 = new System.Windows.Forms.Panel();
-            this.textBoxBoTabName = new System.Windows.Forms.TextBox();
-            this.panel109 = new System.Windows.Forms.Panel();
-            this.panel110 = new System.Windows.Forms.Panel();
-            this.textBoxBoCustSType = new System.Windows.Forms.TextBox();
-            this.textBoxBoCustSupp = new System.Windows.Forms.TextBox();
-            this.textBoxBoCompanyName = new System.Windows.Forms.TextBox();
-            this.labelBObjectData = new System.Windows.Forms.Label();
-            this.panelTableCustSuppNotes = new System.Windows.Forms.Panel();
-            this.panel98 = new System.Windows.Forms.Panel();
-            this.panel99 = new System.Windows.Forms.Panel();
-            this.labelTbCreated = new System.Windows.Forms.Label();
-            this.textBoxTbCreated = new System.Windows.Forms.TextBox();
-            this.panel83 = new System.Windows.Forms.Panel();
-            this.panel84 = new System.Windows.Forms.Panel();
-            this.panel85 = new System.Windows.Forms.Panel();
-            this.panel86 = new System.Windows.Forms.Panel();
-            this.panel87 = new System.Windows.Forms.Panel();
-            this.panel88 = new System.Windows.Forms.Panel();
-            this.labelNotes = new System.Windows.Forms.Label();
-            this.labelLineNotes = new System.Windows.Forms.Label();
-            this.labelCustSuppNotes = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.panel89 = new System.Windows.Forms.Panel();
-            this.panel90 = new System.Windows.Forms.Panel();
-            this.textBoxCustSuppNotes = new System.Windows.Forms.TextBox();
-            this.textBoxCustSNotes = new System.Windows.Forms.TextBox();
-            this.textBoxNotes = new System.Windows.Forms.TextBox();
-            this.textBoxLine = new System.Windows.Forms.TextBox();
-            this.panelCustSuppOptions = new System.Windows.Forms.Panel();
-            this.panel96 = new System.Windows.Forms.Panel();
-            this.panel97 = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBoxAreaManager = new System.Windows.Forms.TextBox();
-            this.panel94 = new System.Windows.Forms.Panel();
-            this.panel95 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.panel69 = new System.Windows.Forms.Panel();
-            this.panel93 = new System.Windows.Forms.Panel();
-            this.textBoxSalesperson = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel72 = new System.Windows.Forms.Panel();
-            this.panel73 = new System.Windows.Forms.Panel();
-            this.textBoxArea = new System.Windows.Forms.TextBox();
-            this.panel74 = new System.Windows.Forms.Panel();
-            this.panel75 = new System.Windows.Forms.Panel();
-            this.panel76 = new System.Windows.Forms.Panel();
-            this.panel77 = new System.Windows.Forms.Panel();
-            this.labelCommisionCtg = new System.Windows.Forms.Label();
-            this.labelCategory = new System.Windows.Forms.Label();
-            this.labelCustomer = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.panel78 = new System.Windows.Forms.Panel();
-            this.panel79 = new System.Windows.Forms.Panel();
-            this.textBoxCustSCOptions = new System.Windows.Forms.TextBox();
-            this.textBoxCustomer = new System.Windows.Forms.TextBox();
-            this.textBoxCommisionCtg = new System.Windows.Forms.TextBox();
-            this.textBoxCategory = new System.Windows.Forms.TextBox();
             this.tabDocBusinessObject = new System.Windows.Forms.TabPage();
             this.btnTokenEsterno = new System.Windows.Forms.Button();
             this.panel127 = new System.Windows.Forms.Panel();
@@ -363,6 +288,17 @@ namespace TbApiTester
             this.labelBusinessObj = new System.Windows.Forms.Label();
             this.roundedPanel2 = new MspzComponent.RoundedPanel();
             this.labelBObjUrl = new System.Windows.Forms.Label();
+            this.tabLog = new System.Windows.Forms.TabPage();
+            this.panel53 = new System.Windows.Forms.Panel();
+            this.btnClearLog = new System.Windows.Forms.Button();
+            this.richTextLog = new System.Windows.Forms.RichTextBox();
+            this.LogsLabel = new System.Windows.Forms.Label();
+            this.orangePanel6 = new MspzComponent.OrangePanel();
+            this.btnTbServerLog = new System.Windows.Forms.Button();
+            this.orangePanel7 = new MspzComponent.OrangePanel();
+            this.btnDataServiceLogs = new System.Windows.Forms.Button();
+            this.orangePanel8 = new MspzComponent.OrangePanel();
+            this.btnReportingServiceLog = new System.Windows.Forms.Button();
             this.panelTitleForm = new System.Windows.Forms.Panel();
             this.btnReduceIcon = new System.Windows.Forms.Button();
             this.cbxServicesWeb = new System.Windows.Forms.ComboBox();
@@ -478,32 +414,15 @@ namespace TbApiTester
             this.panel49.SuspendLayout();
             this.panel2.SuspendLayout();
             this.rndPanelUrl.SuspendLayout();
-            this.TabBusinessObject.SuspendLayout();
-            this.panel80.SuspendLayout();
-            this.panel53.SuspendLayout();
-            this.panel100.SuspendLayout();
-            this.panel103.SuspendLayout();
-            this.panel105.SuspendLayout();
-            this.panel107.SuspendLayout();
-            this.panel109.SuspendLayout();
-            this.panelTableCustSuppNotes.SuspendLayout();
-            this.panel98.SuspendLayout();
-            this.panel83.SuspendLayout();
-            this.panel85.SuspendLayout();
-            this.panel87.SuspendLayout();
-            this.panel89.SuspendLayout();
-            this.panelCustSuppOptions.SuspendLayout();
-            this.panel96.SuspendLayout();
-            this.panel94.SuspendLayout();
-            this.panel69.SuspendLayout();
-            this.panel72.SuspendLayout();
-            this.panel74.SuspendLayout();
-            this.panel76.SuspendLayout();
-            this.panel78.SuspendLayout();
             this.tabDocBusinessObject.SuspendLayout();
             this.panel127.SuspendLayout();
             this.panel121.SuspendLayout();
             this.roundedPanel2.SuspendLayout();
+            this.tabLog.SuspendLayout();
+            this.panel53.SuspendLayout();
+            this.orangePanel6.SuspendLayout();
+            this.orangePanel7.SuspendLayout();
+            this.orangePanel8.SuspendLayout();
             this.panelTitleForm.SuspendLayout();
             this.panelmarginright.SuspendLayout();
             this.orangePanel2.SuspendLayout();
@@ -529,7 +448,7 @@ namespace TbApiTester
             linkHelpTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             linkHelpTb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             linkHelpTb.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            linkHelpTb.Location = new System.Drawing.Point(767, 295);
+            linkHelpTb.Location = new System.Drawing.Point(767, 316);
             linkHelpTb.Name = "linkHelpTb";
             linkHelpTb.Size = new System.Drawing.Size(110, 16);
             linkHelpTb.TabIndex = 92;
@@ -551,8 +470,8 @@ namespace TbApiTester
             this.tabNavigation.Controls.Add(this.tabDMS);
             this.tabNavigation.Controls.Add(this.tabMSH);
             this.tabNavigation.Controls.Add(this.DataManager);
-            this.tabNavigation.Controls.Add(this.TabBusinessObject);
             this.tabNavigation.Controls.Add(this.tabDocBusinessObject);
+            this.tabNavigation.Controls.Add(this.tabLog);
             this.tabNavigation.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabNavigation.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabNavigation.HotTrack = true;
@@ -586,10 +505,10 @@ namespace TbApiTester
             this.tabTbServer.Controls.Add(this.orangePanel5);
             this.tabTbServer.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold);
             this.tabTbServer.ForeColor = System.Drawing.Color.White;
-            this.tabTbServer.Location = new System.Drawing.Point(4, 46);
+            this.tabTbServer.Location = new System.Drawing.Point(4, 25);
             this.tabTbServer.Name = "tabTbServer";
             this.tabTbServer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTbServer.Size = new System.Drawing.Size(914, 527);
+            this.tabTbServer.Size = new System.Drawing.Size(914, 548);
             this.tabTbServer.TabIndex = 1;
             this.tabTbServer.Text = "TbServer-MagicLink";
             // 
@@ -684,7 +603,7 @@ namespace TbApiTester
             this.panelTbTextContainer.Location = new System.Drawing.Point(16, 199);
             this.panelTbTextContainer.Margin = new System.Windows.Forms.Padding(2);
             this.panelTbTextContainer.Name = "panelTbTextContainer";
-            this.panelTbTextContainer.Size = new System.Drawing.Size(886, 316);
+            this.panelTbTextContainer.Size = new System.Drawing.Size(886, 337);
             this.panelTbTextContainer.TabIndex = 115;
             // 
             // btnClearText
@@ -698,7 +617,7 @@ namespace TbApiTester
             this.btnClearText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearText.Font = new System.Drawing.Font("Century Gothic", 21.75F);
             this.btnClearText.ForeColor = System.Drawing.Color.IndianRed;
-            this.btnClearText.Location = new System.Drawing.Point(788, 226);
+            this.btnClearText.Location = new System.Drawing.Point(788, 247);
             this.btnClearText.Name = "btnClearText";
             this.btnClearText.Size = new System.Drawing.Size(63, 46);
             this.btnClearText.TabIndex = 116;
@@ -735,7 +654,7 @@ namespace TbApiTester
             this.xmlEditorTbResult.BackColor = System.Drawing.Color.AliceBlue;
             this.xmlEditorTbResult.Location = new System.Drawing.Point(17, 42);
             this.xmlEditorTbResult.Name = "xmlEditorTbResult";
-            this.xmlEditorTbResult.Size = new System.Drawing.Size(852, 251);
+            this.xmlEditorTbResult.Size = new System.Drawing.Size(852, 272);
             this.xmlEditorTbResult.TabIndex = 118;
             this.xmlEditorTbResult.TextContent = "";
             // 
@@ -964,10 +883,10 @@ namespace TbApiTester
             this.tabWebMethods.Controls.Add(this.roundedPanel3);
             this.tabWebMethods.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabWebMethods.ForeColor = System.Drawing.SystemColors.Control;
-            this.tabWebMethods.Location = new System.Drawing.Point(4, 46);
+            this.tabWebMethods.Location = new System.Drawing.Point(4, 25);
             this.tabWebMethods.Margin = new System.Windows.Forms.Padding(0);
             this.tabWebMethods.Name = "tabWebMethods";
-            this.tabWebMethods.Size = new System.Drawing.Size(914, 527);
+            this.tabWebMethods.Size = new System.Drawing.Size(914, 548);
             this.tabWebMethods.TabIndex = 4;
             this.tabWebMethods.Text = "WebMethods-MagicLink";
             // 
@@ -975,7 +894,7 @@ namespace TbApiTester
             // 
             this.SearchMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchMethod.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
-            this.SearchMethod.Location = new System.Drawing.Point(654, 217);
+            this.SearchMethod.Location = new System.Drawing.Point(654, 214);
             this.SearchMethod.Name = "SearchMethod";
             this.SearchMethod.Size = new System.Drawing.Size(190, 21);
             this.SearchMethod.TabIndex = 95;
@@ -1065,7 +984,7 @@ namespace TbApiTester
             this.WebMetodLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.WebMetodLbl.AutoSize = true;
             this.WebMetodLbl.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
-            this.WebMetodLbl.Location = new System.Drawing.Point(615, 220);
+            this.WebMetodLbl.Location = new System.Drawing.Point(615, 217);
             this.WebMetodLbl.Name = "WebMetodLbl";
             this.WebMetodLbl.Size = new System.Drawing.Size(36, 15);
             this.WebMetodLbl.TabIndex = 96;
@@ -1589,10 +1508,10 @@ namespace TbApiTester
             this.tabDataService.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabDataService.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold);
             this.tabDataService.ForeColor = System.Drawing.Color.White;
-            this.tabDataService.Location = new System.Drawing.Point(4, 46);
+            this.tabDataService.Location = new System.Drawing.Point(4, 25);
             this.tabDataService.Name = "tabDataService";
             this.tabDataService.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDataService.Size = new System.Drawing.Size(914, 527);
+            this.tabDataService.Size = new System.Drawing.Size(914, 548);
             this.tabDataService.TabIndex = 0;
             this.tabDataService.Text = "DataService";
             // 
@@ -1723,11 +1642,11 @@ namespace TbApiTester
             this.label21.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label21.ForeColor = System.Drawing.SystemColors.Control;
-            this.label21.Location = new System.Drawing.Point(150, 358);
+            this.label21.Location = new System.Drawing.Point(136, 358);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(189, 18);
+            this.label21.Size = new System.Drawing.Size(219, 18);
             this.label21.TabIndex = 101;
-            this.label21.Text = "Dynamic parameter queries";
+            this.label21.Text = "How to menage custom queries";
             this.label21.UseWaitCursor = true;
             // 
             // btnExpandDynamicQueries
@@ -2169,9 +2088,9 @@ namespace TbApiTester
             this.tabRs.Controls.Add(this.btnGetRsItems);
             this.tabRs.Controls.Add(this.panel18);
             this.tabRs.Controls.Add(this.roundedPanel5);
-            this.tabRs.Location = new System.Drawing.Point(4, 46);
+            this.tabRs.Location = new System.Drawing.Point(4, 25);
             this.tabRs.Name = "tabRs";
-            this.tabRs.Size = new System.Drawing.Size(914, 527);
+            this.tabRs.Size = new System.Drawing.Size(914, 548);
             this.tabRs.TabIndex = 5;
             this.tabRs.Text = "ReportingService";
             // 
@@ -2499,10 +2418,10 @@ namespace TbApiTester
             this.tabDMS.Controls.Add(this.buttonMicrHome);
             this.tabDMS.Controls.Add(this.roundedPanel6);
             this.tabDMS.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold);
-            this.tabDMS.Location = new System.Drawing.Point(4, 46);
+            this.tabDMS.Location = new System.Drawing.Point(4, 25);
             this.tabDMS.Name = "tabDMS";
             this.tabDMS.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDMS.Size = new System.Drawing.Size(914, 527);
+            this.tabDMS.Size = new System.Drawing.Size(914, 548);
             this.tabDMS.TabIndex = 2;
             this.tabDMS.Text = "DMS";
             // 
@@ -2670,9 +2589,9 @@ namespace TbApiTester
             // 
             this.tabMSH.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
             this.tabMSH.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold);
-            this.tabMSH.Location = new System.Drawing.Point(4, 46);
+            this.tabMSH.Location = new System.Drawing.Point(4, 25);
             this.tabMSH.Name = "tabMSH";
-            this.tabMSH.Size = new System.Drawing.Size(914, 527);
+            this.tabMSH.Size = new System.Drawing.Size(914, 548);
             this.tabMSH.TabIndex = 3;
             this.tabMSH.Text = "MSH";
             // 
@@ -2688,10 +2607,10 @@ namespace TbApiTester
             this.DataManager.Controls.Add(this.labelGetService);
             this.DataManager.Controls.Add(this.panel2);
             this.DataManager.Controls.Add(this.rndPanelUrl);
-            this.DataManager.Location = new System.Drawing.Point(4, 46);
+            this.DataManager.Location = new System.Drawing.Point(4, 25);
             this.DataManager.Margin = new System.Windows.Forms.Padding(2);
             this.DataManager.Name = "DataManager";
-            this.DataManager.Size = new System.Drawing.Size(914, 527);
+            this.DataManager.Size = new System.Drawing.Size(914, 548);
             this.DataManager.TabIndex = 6;
             this.DataManager.Text = "DataManager";
             // 
@@ -3493,801 +3412,6 @@ namespace TbApiTester
             this.DmMMSUrl.TabIndex = 90;
             this.DmMMSUrl.Text = "Url:";
             // 
-            // TabBusinessObject
-            // 
-            this.TabBusinessObject.AllowDrop = true;
-            this.TabBusinessObject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.TabBusinessObject.Controls.Add(this.panel80);
-            this.TabBusinessObject.Controls.Add(this.label2);
-            this.TabBusinessObject.Controls.Add(this.btnBObjectData);
-            this.TabBusinessObject.Controls.Add(this.panel53);
-            this.TabBusinessObject.Controls.Add(this.panel100);
-            this.TabBusinessObject.Controls.Add(this.labelBObjectData);
-            this.TabBusinessObject.Controls.Add(this.panelTableCustSuppNotes);
-            this.TabBusinessObject.Controls.Add(this.panelCustSuppOptions);
-            this.TabBusinessObject.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.TabBusinessObject.Location = new System.Drawing.Point(4, 46);
-            this.TabBusinessObject.Name = "TabBusinessObject";
-            this.TabBusinessObject.Size = new System.Drawing.Size(914, 527);
-            this.TabBusinessObject.TabIndex = 7;
-            this.TabBusinessObject.Text = "BusinessObject";
-            // 
-            // panel80
-            // 
-            this.panel80.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel80.Controls.Add(this.panel81);
-            this.panel80.Location = new System.Drawing.Point(371, 469);
-            this.panel80.Name = "panel80";
-            this.panel80.Size = new System.Drawing.Size(270, 1);
-            this.panel80.TabIndex = 129;
-            // 
-            // panel81
-            // 
-            this.panel81.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel81.Location = new System.Drawing.Point(0, 2);
-            this.panel81.Name = "panel81";
-            this.panel81.Size = new System.Drawing.Size(367, 1);
-            this.panel81.TabIndex = 63;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(386, 445);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 18);
-            this.label2.TabIndex = 131;
-            this.label2.Text = "UpdateBusinessObject";
-            // 
-            // btnBObjectData
-            // 
-            this.btnBObjectData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.btnBObjectData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnBObjectData.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBObjectData.FlatAppearance.BorderSize = 0;
-            this.btnBObjectData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBObjectData.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnBObjectData.ForeColor = System.Drawing.Color.White;
-            this.btnBObjectData.Location = new System.Drawing.Point(16, 126);
-            this.btnBObjectData.Name = "btnBObjectData";
-            this.btnBObjectData.Size = new System.Drawing.Size(52, 34);
-            this.btnBObjectData.TabIndex = 127;
-            this.btnBObjectData.Text = "Run";
-            this.btnBObjectData.UseVisualStyleBackColor = false;
-            this.btnBObjectData.Click += new System.EventHandler(this.btnBObjectData_Click);
-            // 
-            // panel53
-            // 
-            this.panel53.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel53.Controls.Add(this.panel54);
-            this.panel53.Location = new System.Drawing.Point(65, 158);
-            this.panel53.Name = "panel53";
-            this.panel53.Size = new System.Drawing.Size(270, 1);
-            this.panel53.TabIndex = 126;
-            // 
-            // panel54
-            // 
-            this.panel54.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel54.Location = new System.Drawing.Point(0, 2);
-            this.panel54.Name = "panel54";
-            this.panel54.Size = new System.Drawing.Size(367, 1);
-            this.panel54.TabIndex = 63;
-            // 
-            // panel100
-            // 
-            this.panel100.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.panel100.Controls.Add(this.panel103);
-            this.panel100.Controls.Add(this.panel105);
-            this.panel100.Controls.Add(this.labelBoCompanyName);
-            this.panel100.Controls.Add(this.labelBoCustSupp);
-            this.panel100.Controls.Add(this.labelBoCustSType);
-            this.panel100.Controls.Add(this.labelBoTabName);
-            this.panel100.Controls.Add(this.panel107);
-            this.panel100.Controls.Add(this.textBoxBoTabName);
-            this.panel100.Controls.Add(this.panel109);
-            this.panel100.Controls.Add(this.textBoxBoCustSType);
-            this.panel100.Controls.Add(this.textBoxBoCustSupp);
-            this.panel100.Controls.Add(this.textBoxBoCompanyName);
-            this.panel100.Location = new System.Drawing.Point(14, 9);
-            this.panel100.Name = "panel100";
-            this.panel100.Size = new System.Drawing.Size(726, 115);
-            this.panel100.TabIndex = 125;
-            // 
-            // panel103
-            // 
-            this.panel103.BackColor = System.Drawing.Color.White;
-            this.panel103.Controls.Add(this.panel104);
-            this.panel103.Location = new System.Drawing.Point(490, 99);
-            this.panel103.Name = "panel103";
-            this.panel103.Size = new System.Drawing.Size(218, 1);
-            this.panel103.TabIndex = 99;
-            // 
-            // panel104
-            // 
-            this.panel104.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel104.Location = new System.Drawing.Point(0, 2);
-            this.panel104.Name = "panel104";
-            this.panel104.Size = new System.Drawing.Size(367, 1);
-            this.panel104.TabIndex = 63;
-            // 
-            // panel105
-            // 
-            this.panel105.BackColor = System.Drawing.Color.White;
-            this.panel105.Controls.Add(this.panel106);
-            this.panel105.Location = new System.Drawing.Point(257, 99);
-            this.panel105.Name = "panel105";
-            this.panel105.Size = new System.Drawing.Size(218, 1);
-            this.panel105.TabIndex = 98;
-            // 
-            // panel106
-            // 
-            this.panel106.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel106.Location = new System.Drawing.Point(0, 2);
-            this.panel106.Name = "panel106";
-            this.panel106.Size = new System.Drawing.Size(367, 1);
-            this.panel106.TabIndex = 63;
-            // 
-            // labelBoCompanyName
-            // 
-            this.labelBoCompanyName.AutoSize = true;
-            this.labelBoCompanyName.BackColor = System.Drawing.Color.Transparent;
-            this.labelBoCompanyName.ForeColor = System.Drawing.Color.White;
-            this.labelBoCompanyName.Location = new System.Drawing.Point(477, 60);
-            this.labelBoCompanyName.Name = "labelBoCompanyName";
-            this.labelBoCompanyName.Size = new System.Drawing.Size(110, 16);
-            this.labelBoCompanyName.TabIndex = 102;
-            this.labelBoCompanyName.Text = "CompanyName";
-            // 
-            // labelBoCustSupp
-            // 
-            this.labelBoCustSupp.AutoSize = true;
-            this.labelBoCustSupp.BackColor = System.Drawing.Color.Transparent;
-            this.labelBoCustSupp.ForeColor = System.Drawing.Color.White;
-            this.labelBoCustSupp.Location = new System.Drawing.Point(244, 60);
-            this.labelBoCustSupp.Name = "labelBoCustSupp";
-            this.labelBoCustSupp.Size = new System.Drawing.Size(68, 16);
-            this.labelBoCustSupp.TabIndex = 101;
-            this.labelBoCustSupp.Text = "CustSupp";
-            // 
-            // labelBoCustSType
-            // 
-            this.labelBoCustSType.AutoSize = true;
-            this.labelBoCustSType.BackColor = System.Drawing.Color.Transparent;
-            this.labelBoCustSType.ForeColor = System.Drawing.Color.White;
-            this.labelBoCustSType.Location = new System.Drawing.Point(10, 60);
-            this.labelBoCustSType.Name = "labelBoCustSType";
-            this.labelBoCustSType.Size = new System.Drawing.Size(99, 16);
-            this.labelBoCustSType.TabIndex = 100;
-            this.labelBoCustSType.Text = "CustSuppType";
-            // 
-            // labelBoTabName
-            // 
-            this.labelBoTabName.AutoSize = true;
-            this.labelBoTabName.BackColor = System.Drawing.Color.Transparent;
-            this.labelBoTabName.ForeColor = System.Drawing.Color.White;
-            this.labelBoTabName.Location = new System.Drawing.Point(14, 8);
-            this.labelBoTabName.Name = "labelBoTabName";
-            this.labelBoTabName.Size = new System.Drawing.Size(82, 16);
-            this.labelBoTabName.TabIndex = 99;
-            this.labelBoTabName.Text = "TableName";
-            // 
-            // panel107
-            // 
-            this.panel107.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel107.Controls.Add(this.panel108);
-            this.panel107.Location = new System.Drawing.Point(22, 52);
-            this.panel107.Name = "panel107";
-            this.panel107.Size = new System.Drawing.Size(290, 1);
-            this.panel107.TabIndex = 98;
-            // 
-            // panel108
-            // 
-            this.panel108.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel108.Location = new System.Drawing.Point(0, 2);
-            this.panel108.Name = "panel108";
-            this.panel108.Size = new System.Drawing.Size(367, 1);
-            this.panel108.TabIndex = 63;
-            // 
-            // textBoxBoTabName
-            // 
-            this.textBoxBoTabName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.textBoxBoTabName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxBoTabName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxBoTabName.ForeColor = System.Drawing.Color.White;
-            this.textBoxBoTabName.Location = new System.Drawing.Point(20, 26);
-            this.textBoxBoTabName.Name = "textBoxBoTabName";
-            this.textBoxBoTabName.Size = new System.Drawing.Size(230, 16);
-            this.textBoxBoTabName.TabIndex = 32;
-            this.textBoxBoTabName.Text = "MA_CustSupp";
-            // 
-            // panel109
-            // 
-            this.panel109.BackColor = System.Drawing.Color.White;
-            this.panel109.Controls.Add(this.panel110);
-            this.panel109.Location = new System.Drawing.Point(22, 99);
-            this.panel109.Name = "panel109";
-            this.panel109.Size = new System.Drawing.Size(218, 1);
-            this.panel109.TabIndex = 97;
-            // 
-            // panel110
-            // 
-            this.panel110.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel110.Location = new System.Drawing.Point(0, 2);
-            this.panel110.Name = "panel110";
-            this.panel110.Size = new System.Drawing.Size(367, 1);
-            this.panel110.TabIndex = 63;
-            // 
-            // textBoxBoCustSType
-            // 
-            this.textBoxBoCustSType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.textBoxBoCustSType.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxBoCustSType.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxBoCustSType.ForeColor = System.Drawing.Color.White;
-            this.textBoxBoCustSType.Location = new System.Drawing.Point(22, 80);
-            this.textBoxBoCustSType.Name = "textBoxBoCustSType";
-            this.textBoxBoCustSType.Size = new System.Drawing.Size(230, 16);
-            this.textBoxBoCustSType.TabIndex = 33;
-            this.textBoxBoCustSType.Text = "3211264";
-            // 
-            // textBoxBoCustSupp
-            // 
-            this.textBoxBoCustSupp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.textBoxBoCustSupp.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxBoCustSupp.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxBoCustSupp.ForeColor = System.Drawing.Color.White;
-            this.textBoxBoCustSupp.Location = new System.Drawing.Point(257, 80);
-            this.textBoxBoCustSupp.Name = "textBoxBoCustSupp";
-            this.textBoxBoCustSupp.Size = new System.Drawing.Size(230, 16);
-            this.textBoxBoCustSupp.TabIndex = 34;
-            // 
-            // textBoxBoCompanyName
-            // 
-            this.textBoxBoCompanyName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.textBoxBoCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxBoCompanyName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxBoCompanyName.ForeColor = System.Drawing.Color.White;
-            this.textBoxBoCompanyName.Location = new System.Drawing.Point(490, 80);
-            this.textBoxBoCompanyName.Name = "textBoxBoCompanyName";
-            this.textBoxBoCompanyName.Size = new System.Drawing.Size(230, 16);
-            this.textBoxBoCompanyName.TabIndex = 35;
-            // 
-            // labelBObjectData
-            // 
-            this.labelBObjectData.AutoSize = true;
-            this.labelBObjectData.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.labelBObjectData.ForeColor = System.Drawing.Color.White;
-            this.labelBObjectData.Location = new System.Drawing.Point(80, 135);
-            this.labelBObjectData.Name = "labelBObjectData";
-            this.labelBObjectData.Size = new System.Drawing.Size(143, 18);
-            this.labelBObjectData.TabIndex = 128;
-            this.labelBObjectData.Text = "BusinessObjectData";
-            // 
-            // panelTableCustSuppNotes
-            // 
-            this.panelTableCustSuppNotes.BackColor = System.Drawing.Color.White;
-            this.panelTableCustSuppNotes.Controls.Add(this.panel98);
-            this.panelTableCustSuppNotes.Controls.Add(this.labelTbCreated);
-            this.panelTableCustSuppNotes.Controls.Add(this.textBoxTbCreated);
-            this.panelTableCustSuppNotes.Controls.Add(this.panel83);
-            this.panelTableCustSuppNotes.Controls.Add(this.panel85);
-            this.panelTableCustSuppNotes.Controls.Add(this.panel87);
-            this.panelTableCustSuppNotes.Controls.Add(this.labelNotes);
-            this.panelTableCustSuppNotes.Controls.Add(this.labelLineNotes);
-            this.panelTableCustSuppNotes.Controls.Add(this.labelCustSuppNotes);
-            this.panelTableCustSuppNotes.Controls.Add(this.label22);
-            this.panelTableCustSuppNotes.Controls.Add(this.panel89);
-            this.panelTableCustSuppNotes.Controls.Add(this.textBoxCustSuppNotes);
-            this.panelTableCustSuppNotes.Controls.Add(this.textBoxCustSNotes);
-            this.panelTableCustSuppNotes.Controls.Add(this.textBoxNotes);
-            this.panelTableCustSuppNotes.Controls.Add(this.textBoxLine);
-            this.panelTableCustSuppNotes.Location = new System.Drawing.Point(318, 170);
-            this.panelTableCustSuppNotes.Name = "panelTableCustSuppNotes";
-            this.panelTableCustSuppNotes.Size = new System.Drawing.Size(289, 254);
-            this.panelTableCustSuppNotes.TabIndex = 124;
-            // 
-            // panel98
-            // 
-            this.panel98.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.panel98.Controls.Add(this.panel99);
-            this.panel98.Location = new System.Drawing.Point(29, 236);
-            this.panel98.Name = "panel98";
-            this.panel98.Size = new System.Drawing.Size(218, 1);
-            this.panel98.TabIndex = 105;
-            // 
-            // panel99
-            // 
-            this.panel99.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel99.Location = new System.Drawing.Point(0, 2);
-            this.panel99.Name = "panel99";
-            this.panel99.Size = new System.Drawing.Size(367, 1);
-            this.panel99.TabIndex = 63;
-            // 
-            // labelTbCreated
-            // 
-            this.labelTbCreated.AutoSize = true;
-            this.labelTbCreated.BackColor = System.Drawing.Color.White;
-            this.labelTbCreated.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelTbCreated.Location = new System.Drawing.Point(22, 197);
-            this.labelTbCreated.Name = "labelTbCreated";
-            this.labelTbCreated.Size = new System.Drawing.Size(75, 16);
-            this.labelTbCreated.TabIndex = 106;
-            this.labelTbCreated.Text = "TbCreated";
-            // 
-            // textBoxTbCreated
-            // 
-            this.textBoxTbCreated.BackColor = System.Drawing.Color.White;
-            this.textBoxTbCreated.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxTbCreated.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTbCreated.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxTbCreated.Location = new System.Drawing.Point(29, 217);
-            this.textBoxTbCreated.Name = "textBoxTbCreated";
-            this.textBoxTbCreated.Size = new System.Drawing.Size(230, 16);
-            this.textBoxTbCreated.TabIndex = 104;
-            this.textBoxTbCreated.Text = "IT";
-            // 
-            // panel83
-            // 
-            this.panel83.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.panel83.Controls.Add(this.panel84);
-            this.panel83.Location = new System.Drawing.Point(29, 192);
-            this.panel83.Name = "panel83";
-            this.panel83.Size = new System.Drawing.Size(218, 1);
-            this.panel83.TabIndex = 99;
-            // 
-            // panel84
-            // 
-            this.panel84.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel84.Location = new System.Drawing.Point(0, 2);
-            this.panel84.Name = "panel84";
-            this.panel84.Size = new System.Drawing.Size(367, 1);
-            this.panel84.TabIndex = 63;
-            // 
-            // panel85
-            // 
-            this.panel85.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.panel85.Controls.Add(this.panel86);
-            this.panel85.Location = new System.Drawing.Point(29, 148);
-            this.panel85.Name = "panel85";
-            this.panel85.Size = new System.Drawing.Size(218, 1);
-            this.panel85.TabIndex = 99;
-            // 
-            // panel86
-            // 
-            this.panel86.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel86.Location = new System.Drawing.Point(0, 2);
-            this.panel86.Name = "panel86";
-            this.panel86.Size = new System.Drawing.Size(367, 1);
-            this.panel86.TabIndex = 63;
-            // 
-            // panel87
-            // 
-            this.panel87.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.panel87.Controls.Add(this.panel88);
-            this.panel87.Location = new System.Drawing.Point(29, 103);
-            this.panel87.Name = "panel87";
-            this.panel87.Size = new System.Drawing.Size(218, 1);
-            this.panel87.TabIndex = 98;
-            // 
-            // panel88
-            // 
-            this.panel88.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel88.Location = new System.Drawing.Point(0, 2);
-            this.panel88.Name = "panel88";
-            this.panel88.Size = new System.Drawing.Size(367, 1);
-            this.panel88.TabIndex = 63;
-            // 
-            // labelNotes
-            // 
-            this.labelNotes.AutoSize = true;
-            this.labelNotes.BackColor = System.Drawing.Color.White;
-            this.labelNotes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelNotes.Location = new System.Drawing.Point(22, 153);
-            this.labelNotes.Name = "labelNotes";
-            this.labelNotes.Size = new System.Drawing.Size(43, 16);
-            this.labelNotes.TabIndex = 103;
-            this.labelNotes.Text = "Notes";
-            // 
-            // labelLineNotes
-            // 
-            this.labelLineNotes.AutoSize = true;
-            this.labelLineNotes.BackColor = System.Drawing.Color.White;
-            this.labelLineNotes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelLineNotes.Location = new System.Drawing.Point(22, 108);
-            this.labelLineNotes.Name = "labelLineNotes";
-            this.labelLineNotes.Size = new System.Drawing.Size(33, 16);
-            this.labelLineNotes.TabIndex = 102;
-            this.labelLineNotes.Text = "Line";
-            // 
-            // labelCustSuppNotes
-            // 
-            this.labelCustSuppNotes.AutoSize = true;
-            this.labelCustSuppNotes.BackColor = System.Drawing.Color.White;
-            this.labelCustSuppNotes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelCustSuppNotes.Location = new System.Drawing.Point(22, 64);
-            this.labelCustSuppNotes.Name = "labelCustSuppNotes";
-            this.labelCustSuppNotes.Size = new System.Drawing.Size(68, 16);
-            this.labelCustSuppNotes.TabIndex = 101;
-            this.labelCustSuppNotes.Text = "CustSupp";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.label22.Location = new System.Drawing.Point(10, 11);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(82, 16);
-            this.label22.TabIndex = 99;
-            this.label22.Text = "TableName";
-            // 
-            // panel89
-            // 
-            this.panel89.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel89.Controls.Add(this.panel90);
-            this.panel89.Location = new System.Drawing.Point(1, 55);
-            this.panel89.Name = "panel89";
-            this.panel89.Size = new System.Drawing.Size(288, 1);
-            this.panel89.TabIndex = 98;
-            // 
-            // panel90
-            // 
-            this.panel90.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel90.Location = new System.Drawing.Point(0, 2);
-            this.panel90.Name = "panel90";
-            this.panel90.Size = new System.Drawing.Size(367, 1);
-            this.panel90.TabIndex = 63;
-            // 
-            // textBoxCustSuppNotes
-            // 
-            this.textBoxCustSuppNotes.BackColor = System.Drawing.Color.White;
-            this.textBoxCustSuppNotes.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxCustSuppNotes.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCustSuppNotes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxCustSuppNotes.Location = new System.Drawing.Point(16, 30);
-            this.textBoxCustSuppNotes.Name = "textBoxCustSuppNotes";
-            this.textBoxCustSuppNotes.Size = new System.Drawing.Size(230, 16);
-            this.textBoxCustSuppNotes.TabIndex = 32;
-            this.textBoxCustSuppNotes.Text = "MA_CustSuppNotes";
-            // 
-            // textBoxCustSNotes
-            // 
-            this.textBoxCustSNotes.BackColor = System.Drawing.Color.White;
-            this.textBoxCustSNotes.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxCustSNotes.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCustSNotes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxCustSNotes.Location = new System.Drawing.Point(29, 84);
-            this.textBoxCustSNotes.Name = "textBoxCustSNotes";
-            this.textBoxCustSNotes.Size = new System.Drawing.Size(230, 16);
-            this.textBoxCustSNotes.TabIndex = 34;
-            // 
-            // textBoxNotes
-            // 
-            this.textBoxNotes.BackColor = System.Drawing.Color.White;
-            this.textBoxNotes.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxNotes.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNotes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxNotes.Location = new System.Drawing.Point(29, 172);
-            this.textBoxNotes.Name = "textBoxNotes";
-            this.textBoxNotes.Size = new System.Drawing.Size(230, 16);
-            this.textBoxNotes.TabIndex = 36;
-            this.textBoxNotes.Text = "IT";
-            // 
-            // textBoxLine
-            // 
-            this.textBoxLine.BackColor = System.Drawing.Color.White;
-            this.textBoxLine.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxLine.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLine.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxLine.Location = new System.Drawing.Point(29, 128);
-            this.textBoxLine.Name = "textBoxLine";
-            this.textBoxLine.Size = new System.Drawing.Size(230, 16);
-            this.textBoxLine.TabIndex = 35;
-            // 
-            // panelCustSuppOptions
-            // 
-            this.panelCustSuppOptions.BackColor = System.Drawing.Color.White;
-            this.panelCustSuppOptions.Controls.Add(this.panel96);
-            this.panelCustSuppOptions.Controls.Add(this.label16);
-            this.panelCustSuppOptions.Controls.Add(this.textBoxAreaManager);
-            this.panelCustSuppOptions.Controls.Add(this.panel94);
-            this.panelCustSuppOptions.Controls.Add(this.label12);
-            this.panelCustSuppOptions.Controls.Add(this.panel69);
-            this.panelCustSuppOptions.Controls.Add(this.textBoxSalesperson);
-            this.panelCustSuppOptions.Controls.Add(this.label4);
-            this.panelCustSuppOptions.Controls.Add(this.panel72);
-            this.panelCustSuppOptions.Controls.Add(this.textBoxArea);
-            this.panelCustSuppOptions.Controls.Add(this.panel74);
-            this.panelCustSuppOptions.Controls.Add(this.panel76);
-            this.panelCustSuppOptions.Controls.Add(this.labelCommisionCtg);
-            this.panelCustSuppOptions.Controls.Add(this.labelCategory);
-            this.panelCustSuppOptions.Controls.Add(this.labelCustomer);
-            this.panelCustSuppOptions.Controls.Add(this.label18);
-            this.panelCustSuppOptions.Controls.Add(this.panel78);
-            this.panelCustSuppOptions.Controls.Add(this.textBoxCustSCOptions);
-            this.panelCustSuppOptions.Controls.Add(this.textBoxCustomer);
-            this.panelCustSuppOptions.Controls.Add(this.textBoxCommisionCtg);
-            this.panelCustSuppOptions.Controls.Add(this.textBoxCategory);
-            this.panelCustSuppOptions.Location = new System.Drawing.Point(13, 170);
-            this.panelCustSuppOptions.Name = "panelCustSuppOptions";
-            this.panelCustSuppOptions.Size = new System.Drawing.Size(289, 349);
-            this.panelCustSuppOptions.TabIndex = 123;
-            // 
-            // panel96
-            // 
-            this.panel96.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.panel96.Controls.Add(this.panel97);
-            this.panel96.Location = new System.Drawing.Point(35, 334);
-            this.panel96.Name = "panel96";
-            this.panel96.Size = new System.Drawing.Size(218, 1);
-            this.panel96.TabIndex = 129;
-            // 
-            // panel97
-            // 
-            this.panel97.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel97.Location = new System.Drawing.Point(0, 2);
-            this.panel97.Name = "panel97";
-            this.panel97.Size = new System.Drawing.Size(367, 1);
-            this.panel97.TabIndex = 63;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.White;
-            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.label16.Location = new System.Drawing.Point(26, 294);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(99, 16);
-            this.label16.TabIndex = 130;
-            this.label16.Text = "AreaManager";
-            // 
-            // textBoxAreaManager
-            // 
-            this.textBoxAreaManager.BackColor = System.Drawing.Color.White;
-            this.textBoxAreaManager.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxAreaManager.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAreaManager.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxAreaManager.Location = new System.Drawing.Point(35, 314);
-            this.textBoxAreaManager.Name = "textBoxAreaManager";
-            this.textBoxAreaManager.Size = new System.Drawing.Size(230, 16);
-            this.textBoxAreaManager.TabIndex = 128;
-            this.textBoxAreaManager.Text = "IT";
-            // 
-            // panel94
-            // 
-            this.panel94.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.panel94.Controls.Add(this.panel95);
-            this.panel94.Location = new System.Drawing.Point(35, 283);
-            this.panel94.Name = "panel94";
-            this.panel94.Size = new System.Drawing.Size(218, 1);
-            this.panel94.TabIndex = 126;
-            // 
-            // panel95
-            // 
-            this.panel95.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel95.Location = new System.Drawing.Point(0, 2);
-            this.panel95.Name = "panel95";
-            this.panel95.Size = new System.Drawing.Size(367, 1);
-            this.panel95.TabIndex = 63;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.White;
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.label12.Location = new System.Drawing.Point(26, 244);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(85, 16);
-            this.label12.TabIndex = 127;
-            this.label12.Text = "Salesperson";
-            // 
-            // panel69
-            // 
-            this.panel69.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.panel69.Controls.Add(this.panel93);
-            this.panel69.Location = new System.Drawing.Point(35, 234);
-            this.panel69.Name = "panel69";
-            this.panel69.Size = new System.Drawing.Size(218, 1);
-            this.panel69.TabIndex = 105;
-            // 
-            // panel93
-            // 
-            this.panel93.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel93.Location = new System.Drawing.Point(0, 2);
-            this.panel93.Name = "panel93";
-            this.panel93.Size = new System.Drawing.Size(367, 1);
-            this.panel93.TabIndex = 63;
-            // 
-            // textBoxSalesperson
-            // 
-            this.textBoxSalesperson.BackColor = System.Drawing.Color.White;
-            this.textBoxSalesperson.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxSalesperson.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSalesperson.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxSalesperson.Location = new System.Drawing.Point(35, 264);
-            this.textBoxSalesperson.Name = "textBoxSalesperson";
-            this.textBoxSalesperson.Size = new System.Drawing.Size(230, 16);
-            this.textBoxSalesperson.TabIndex = 125;
-            this.textBoxSalesperson.Text = "IT";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.label4.Location = new System.Drawing.Point(26, 195);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 16);
-            this.label4.TabIndex = 106;
-            this.label4.Text = "Area";
-            // 
-            // panel72
-            // 
-            this.panel72.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.panel72.Controls.Add(this.panel73);
-            this.panel72.Location = new System.Drawing.Point(35, 187);
-            this.panel72.Name = "panel72";
-            this.panel72.Size = new System.Drawing.Size(218, 1);
-            this.panel72.TabIndex = 99;
-            // 
-            // panel73
-            // 
-            this.panel73.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel73.Location = new System.Drawing.Point(0, 2);
-            this.panel73.Name = "panel73";
-            this.panel73.Size = new System.Drawing.Size(367, 1);
-            this.panel73.TabIndex = 63;
-            // 
-            // textBoxArea
-            // 
-            this.textBoxArea.BackColor = System.Drawing.Color.White;
-            this.textBoxArea.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxArea.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxArea.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxArea.Location = new System.Drawing.Point(35, 214);
-            this.textBoxArea.Name = "textBoxArea";
-            this.textBoxArea.Size = new System.Drawing.Size(230, 16);
-            this.textBoxArea.TabIndex = 104;
-            this.textBoxArea.Text = "IT";
-            // 
-            // panel74
-            // 
-            this.panel74.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.panel74.Controls.Add(this.panel75);
-            this.panel74.Location = new System.Drawing.Point(35, 146);
-            this.panel74.Name = "panel74";
-            this.panel74.Size = new System.Drawing.Size(218, 1);
-            this.panel74.TabIndex = 99;
-            // 
-            // panel75
-            // 
-            this.panel75.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel75.Location = new System.Drawing.Point(0, 2);
-            this.panel75.Name = "panel75";
-            this.panel75.Size = new System.Drawing.Size(367, 1);
-            this.panel75.TabIndex = 63;
-            // 
-            // panel76
-            // 
-            this.panel76.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.panel76.Controls.Add(this.panel77);
-            this.panel76.Location = new System.Drawing.Point(35, 103);
-            this.panel76.Name = "panel76";
-            this.panel76.Size = new System.Drawing.Size(218, 1);
-            this.panel76.TabIndex = 98;
-            // 
-            // panel77
-            // 
-            this.panel77.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel77.Location = new System.Drawing.Point(0, 2);
-            this.panel77.Name = "panel77";
-            this.panel77.Size = new System.Drawing.Size(367, 1);
-            this.panel77.TabIndex = 63;
-            // 
-            // labelCommisionCtg
-            // 
-            this.labelCommisionCtg.AutoSize = true;
-            this.labelCommisionCtg.BackColor = System.Drawing.Color.White;
-            this.labelCommisionCtg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelCommisionCtg.Location = new System.Drawing.Point(26, 150);
-            this.labelCommisionCtg.Name = "labelCommisionCtg";
-            this.labelCommisionCtg.Size = new System.Drawing.Size(102, 16);
-            this.labelCommisionCtg.TabIndex = 103;
-            this.labelCommisionCtg.Text = "CommisionCtg";
-            // 
-            // labelCategory
-            // 
-            this.labelCategory.AutoSize = true;
-            this.labelCategory.BackColor = System.Drawing.Color.White;
-            this.labelCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelCategory.Location = new System.Drawing.Point(26, 108);
-            this.labelCategory.Name = "labelCategory";
-            this.labelCategory.Size = new System.Drawing.Size(68, 16);
-            this.labelCategory.TabIndex = 102;
-            this.labelCategory.Text = "Category";
-            // 
-            // labelCustomer
-            // 
-            this.labelCustomer.AutoSize = true;
-            this.labelCustomer.BackColor = System.Drawing.Color.White;
-            this.labelCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelCustomer.Location = new System.Drawing.Point(26, 65);
-            this.labelCustomer.Name = "labelCustomer";
-            this.labelCustomer.Size = new System.Drawing.Size(68, 16);
-            this.labelCustomer.TabIndex = 101;
-            this.labelCustomer.Text = "Customer";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.label18.Location = new System.Drawing.Point(10, 11);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(82, 16);
-            this.label18.TabIndex = 99;
-            this.label18.Text = "TableName";
-            // 
-            // panel78
-            // 
-            this.panel78.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel78.Controls.Add(this.panel79);
-            this.panel78.Location = new System.Drawing.Point(1, 55);
-            this.panel78.Name = "panel78";
-            this.panel78.Size = new System.Drawing.Size(288, 1);
-            this.panel78.TabIndex = 98;
-            // 
-            // panel79
-            // 
-            this.panel79.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.panel79.Location = new System.Drawing.Point(0, 2);
-            this.panel79.Name = "panel79";
-            this.panel79.Size = new System.Drawing.Size(367, 1);
-            this.panel79.TabIndex = 63;
-            // 
-            // textBoxCustSCOptions
-            // 
-            this.textBoxCustSCOptions.BackColor = System.Drawing.Color.White;
-            this.textBoxCustSCOptions.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxCustSCOptions.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCustSCOptions.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxCustSCOptions.Location = new System.Drawing.Point(16, 30);
-            this.textBoxCustSCOptions.Name = "textBoxCustSCOptions";
-            this.textBoxCustSCOptions.Size = new System.Drawing.Size(230, 16);
-            this.textBoxCustSCOptions.TabIndex = 32;
-            this.textBoxCustSCOptions.Text = "MA_CustSuppCustomerOptions";
-            // 
-            // textBoxCustomer
-            // 
-            this.textBoxCustomer.BackColor = System.Drawing.Color.White;
-            this.textBoxCustomer.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxCustomer.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCustomer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxCustomer.Location = new System.Drawing.Point(35, 84);
-            this.textBoxCustomer.Name = "textBoxCustomer";
-            this.textBoxCustomer.Size = new System.Drawing.Size(230, 16);
-            this.textBoxCustomer.TabIndex = 34;
-            // 
-            // textBoxCommisionCtg
-            // 
-            this.textBoxCommisionCtg.BackColor = System.Drawing.Color.White;
-            this.textBoxCommisionCtg.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxCommisionCtg.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCommisionCtg.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxCommisionCtg.Location = new System.Drawing.Point(35, 170);
-            this.textBoxCommisionCtg.Name = "textBoxCommisionCtg";
-            this.textBoxCommisionCtg.Size = new System.Drawing.Size(230, 16);
-            this.textBoxCommisionCtg.TabIndex = 36;
-            // 
-            // textBoxCategory
-            // 
-            this.textBoxCategory.BackColor = System.Drawing.Color.White;
-            this.textBoxCategory.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxCategory.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCategory.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxCategory.Location = new System.Drawing.Point(35, 128);
-            this.textBoxCategory.Name = "textBoxCategory";
-            this.textBoxCategory.Size = new System.Drawing.Size(230, 16);
-            this.textBoxCategory.TabIndex = 35;
-            // 
             // tabDocBusinessObject
             // 
             this.tabDocBusinessObject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
@@ -4298,9 +3422,9 @@ namespace TbApiTester
             this.tabDocBusinessObject.Controls.Add(this.panel121);
             this.tabDocBusinessObject.Controls.Add(this.labelBusinessObj);
             this.tabDocBusinessObject.Controls.Add(this.roundedPanel2);
-            this.tabDocBusinessObject.Location = new System.Drawing.Point(4, 46);
+            this.tabDocBusinessObject.Location = new System.Drawing.Point(4, 25);
             this.tabDocBusinessObject.Name = "tabDocBusinessObject";
-            this.tabDocBusinessObject.Size = new System.Drawing.Size(914, 527);
+            this.tabDocBusinessObject.Size = new System.Drawing.Size(914, 548);
             this.tabDocBusinessObject.TabIndex = 8;
             this.tabDocBusinessObject.Text = "DocBusinessObject";
             // 
@@ -4415,6 +3539,156 @@ namespace TbApiTester
             this.labelBObjUrl.Size = new System.Drawing.Size(25, 16);
             this.labelBObjUrl.TabIndex = 88;
             this.labelBObjUrl.Text = "Url:";
+            // 
+            // tabLog
+            // 
+            this.tabLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.tabLog.Controls.Add(this.panel53);
+            this.tabLog.Controls.Add(this.orangePanel6);
+            this.tabLog.Controls.Add(this.orangePanel7);
+            this.tabLog.Controls.Add(this.orangePanel8);
+            this.tabLog.Location = new System.Drawing.Point(4, 25);
+            this.tabLog.Name = "tabLog";
+            this.tabLog.Size = new System.Drawing.Size(914, 548);
+            this.tabLog.TabIndex = 9;
+            this.tabLog.Text = "Logs";
+            // 
+            // panel53
+            // 
+            this.panel53.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel53.BackColor = System.Drawing.Color.White;
+            this.panel53.Controls.Add(this.btnClearLog);
+            this.panel53.Controls.Add(this.richTextLog);
+            this.panel53.Controls.Add(this.LogsLabel);
+            this.panel53.Location = new System.Drawing.Point(13, 43);
+            this.panel53.Margin = new System.Windows.Forms.Padding(2);
+            this.panel53.Name = "panel53";
+            this.panel53.Size = new System.Drawing.Size(886, 492);
+            this.panel53.TabIndex = 120;
+            // 
+            // btnClearLog
+            // 
+            this.btnClearLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearLog.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnClearLog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClearLog.FlatAppearance.BorderSize = 0;
+            this.btnClearLog.FlatAppearance.MouseDownBackColor = System.Drawing.Color.AliceBlue;
+            this.btnClearLog.FlatAppearance.MouseOverBackColor = System.Drawing.Color.AliceBlue;
+            this.btnClearLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearLog.Font = new System.Drawing.Font("Century Gothic", 21.75F);
+            this.btnClearLog.ForeColor = System.Drawing.Color.IndianRed;
+            this.btnClearLog.Location = new System.Drawing.Point(778, 400);
+            this.btnClearLog.Name = "btnClearLog";
+            this.btnClearLog.Size = new System.Drawing.Size(63, 46);
+            this.btnClearLog.TabIndex = 116;
+            this.btnClearLog.Text = "🧹";
+            this.btnClearLog.UseVisualStyleBackColor = false;
+            this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click);
+            // 
+            // richTextLog
+            // 
+            this.richTextLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextLog.BackColor = System.Drawing.Color.AliceBlue;
+            this.richTextLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextLog.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.richTextLog.Location = new System.Drawing.Point(21, 53);
+            this.richTextLog.Name = "richTextLog";
+            this.richTextLog.Size = new System.Drawing.Size(846, 418);
+            this.richTextLog.TabIndex = 117;
+            this.richTextLog.Text = "";
+            // 
+            // LogsLabel
+            // 
+            this.LogsLabel.AutoSize = true;
+            this.LogsLabel.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold);
+            this.LogsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.LogsLabel.Location = new System.Drawing.Point(17, 18);
+            this.LogsLabel.Name = "LogsLabel";
+            this.LogsLabel.Size = new System.Drawing.Size(46, 19);
+            this.LogsLabel.TabIndex = 115;
+            this.LogsLabel.Text = "Logs";
+            // 
+            // orangePanel6
+            // 
+            this.orangePanel6.BackColor = System.Drawing.Color.White;
+            this.orangePanel6.Controls.Add(this.btnTbServerLog);
+            this.orangePanel6.Location = new System.Drawing.Point(13, 14);
+            this.orangePanel6.Name = "orangePanel6";
+            this.orangePanel6.Size = new System.Drawing.Size(153, 61);
+            this.orangePanel6.TabIndex = 116;
+            // 
+            // btnTbServerLog
+            // 
+            this.btnTbServerLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.btnTbServerLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTbServerLog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTbServerLog.FlatAppearance.BorderSize = 0;
+            this.btnTbServerLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTbServerLog.Font = new System.Drawing.Font("Century Gothic", 9.25F, System.Drawing.FontStyle.Bold);
+            this.btnTbServerLog.ForeColor = System.Drawing.Color.White;
+            this.btnTbServerLog.Location = new System.Drawing.Point(-2, 0);
+            this.btnTbServerLog.Name = "btnTbServerLog";
+            this.btnTbServerLog.Size = new System.Drawing.Size(156, 33);
+            this.btnTbServerLog.TabIndex = 109;
+            this.btnTbServerLog.Text = "TbServer";
+            this.btnTbServerLog.UseVisualStyleBackColor = false;
+            this.btnTbServerLog.Click += new System.EventHandler(this.btnTbServerLog_Click);
+            // 
+            // orangePanel7
+            // 
+            this.orangePanel7.BackColor = System.Drawing.Color.White;
+            this.orangePanel7.Controls.Add(this.btnDataServiceLogs);
+            this.orangePanel7.Location = new System.Drawing.Point(171, 14);
+            this.orangePanel7.Name = "orangePanel7";
+            this.orangePanel7.Size = new System.Drawing.Size(153, 61);
+            this.orangePanel7.TabIndex = 117;
+            // 
+            // btnDataServiceLogs
+            // 
+            this.btnDataServiceLogs.AutoEllipsis = true;
+            this.btnDataServiceLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.btnDataServiceLogs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDataServiceLogs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDataServiceLogs.FlatAppearance.BorderSize = 0;
+            this.btnDataServiceLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDataServiceLogs.Font = new System.Drawing.Font("Century Gothic", 9.25F, System.Drawing.FontStyle.Bold);
+            this.btnDataServiceLogs.ForeColor = System.Drawing.Color.White;
+            this.btnDataServiceLogs.Location = new System.Drawing.Point(-4, 0);
+            this.btnDataServiceLogs.Name = "btnDataServiceLogs";
+            this.btnDataServiceLogs.Size = new System.Drawing.Size(156, 33);
+            this.btnDataServiceLogs.TabIndex = 107;
+            this.btnDataServiceLogs.Text = "DataService";
+            this.btnDataServiceLogs.UseVisualStyleBackColor = false;
+            this.btnDataServiceLogs.Click += new System.EventHandler(this.btnDataServiceLogs_Click);
+            // 
+            // orangePanel8
+            // 
+            this.orangePanel8.BackColor = System.Drawing.Color.White;
+            this.orangePanel8.Controls.Add(this.btnReportingServiceLog);
+            this.orangePanel8.Location = new System.Drawing.Point(329, 14);
+            this.orangePanel8.Name = "orangePanel8";
+            this.orangePanel8.Size = new System.Drawing.Size(153, 61);
+            this.orangePanel8.TabIndex = 118;
+            // 
+            // btnReportingServiceLog
+            // 
+            this.btnReportingServiceLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.btnReportingServiceLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnReportingServiceLog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReportingServiceLog.FlatAppearance.BorderSize = 0;
+            this.btnReportingServiceLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportingServiceLog.Font = new System.Drawing.Font("Century Gothic", 9.25F, System.Drawing.FontStyle.Bold);
+            this.btnReportingServiceLog.ForeColor = System.Drawing.Color.White;
+            this.btnReportingServiceLog.Location = new System.Drawing.Point(-3, 0);
+            this.btnReportingServiceLog.Name = "btnReportingServiceLog";
+            this.btnReportingServiceLog.Size = new System.Drawing.Size(156, 33);
+            this.btnReportingServiceLog.TabIndex = 115;
+            this.btnReportingServiceLog.Text = "ReportingService";
+            this.btnReportingServiceLog.UseVisualStyleBackColor = false;
             // 
             // panelTitleForm
             // 
@@ -5128,38 +4402,18 @@ namespace TbApiTester
             this.panel2.ResumeLayout(false);
             this.rndPanelUrl.ResumeLayout(false);
             this.rndPanelUrl.PerformLayout();
-            this.TabBusinessObject.ResumeLayout(false);
-            this.TabBusinessObject.PerformLayout();
-            this.panel80.ResumeLayout(false);
-            this.panel53.ResumeLayout(false);
-            this.panel100.ResumeLayout(false);
-            this.panel100.PerformLayout();
-            this.panel103.ResumeLayout(false);
-            this.panel105.ResumeLayout(false);
-            this.panel107.ResumeLayout(false);
-            this.panel109.ResumeLayout(false);
-            this.panelTableCustSuppNotes.ResumeLayout(false);
-            this.panelTableCustSuppNotes.PerformLayout();
-            this.panel98.ResumeLayout(false);
-            this.panel83.ResumeLayout(false);
-            this.panel85.ResumeLayout(false);
-            this.panel87.ResumeLayout(false);
-            this.panel89.ResumeLayout(false);
-            this.panelCustSuppOptions.ResumeLayout(false);
-            this.panelCustSuppOptions.PerformLayout();
-            this.panel96.ResumeLayout(false);
-            this.panel94.ResumeLayout(false);
-            this.panel69.ResumeLayout(false);
-            this.panel72.ResumeLayout(false);
-            this.panel74.ResumeLayout(false);
-            this.panel76.ResumeLayout(false);
-            this.panel78.ResumeLayout(false);
             this.tabDocBusinessObject.ResumeLayout(false);
             this.tabDocBusinessObject.PerformLayout();
             this.panel127.ResumeLayout(false);
             this.panel121.ResumeLayout(false);
             this.roundedPanel2.ResumeLayout(false);
             this.roundedPanel2.PerformLayout();
+            this.tabLog.ResumeLayout(false);
+            this.panel53.ResumeLayout(false);
+            this.panel53.PerformLayout();
+            this.orangePanel6.ResumeLayout(false);
+            this.orangePanel7.ResumeLayout(false);
+            this.orangePanel8.ResumeLayout(false);
             this.panelTitleForm.ResumeLayout(false);
             this.panelTitleForm.PerformLayout();
             this.panelmarginright.ResumeLayout(false);
@@ -5407,81 +4661,6 @@ namespace TbApiTester
         private System.Windows.Forms.ComboBox cbxArchiveType;
         private System.Windows.Forms.Label labelCbxArchiveType;
         private System.Windows.Forms.Label labelNextIdN;
-        private System.Windows.Forms.TabPage TabBusinessObject;
-        private System.Windows.Forms.Panel panelCustSuppOptions;
-        private System.Windows.Forms.Panel panel72;
-        private System.Windows.Forms.Panel panel73;
-        private System.Windows.Forms.Panel panel74;
-        private System.Windows.Forms.Panel panel75;
-        private System.Windows.Forms.Panel panel76;
-        private System.Windows.Forms.Panel panel77;
-        private System.Windows.Forms.Label labelCommisionCtg;
-        private System.Windows.Forms.Label labelCategory;
-        private System.Windows.Forms.Label labelCustomer;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Panel panel78;
-        private System.Windows.Forms.Panel panel79;
-        private System.Windows.Forms.TextBox textBoxCustSCOptions;
-        private System.Windows.Forms.TextBox textBoxCustomer;
-        private System.Windows.Forms.TextBox textBoxCommisionCtg;
-        private System.Windows.Forms.TextBox textBoxCategory;
-        private System.Windows.Forms.Panel panelTableCustSuppNotes;
-        private System.Windows.Forms.Panel panel83;
-        private System.Windows.Forms.Panel panel84;
-        private System.Windows.Forms.Panel panel85;
-        private System.Windows.Forms.Panel panel86;
-        private System.Windows.Forms.Panel panel87;
-        private System.Windows.Forms.Panel panel88;
-        private System.Windows.Forms.Label labelNotes;
-        private System.Windows.Forms.Label labelLineNotes;
-        private System.Windows.Forms.Label labelCustSuppNotes;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Panel panel89;
-        private System.Windows.Forms.Panel panel90;
-        private System.Windows.Forms.TextBox textBoxCustSuppNotes;
-        private System.Windows.Forms.TextBox textBoxCustSNotes;
-        private System.Windows.Forms.TextBox textBoxNotes;
-        private System.Windows.Forms.TextBox textBoxLine;
-        private System.Windows.Forms.Panel panel96;
-        private System.Windows.Forms.Panel panel97;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBoxAreaManager;
-        private System.Windows.Forms.Panel panel94;
-        private System.Windows.Forms.Panel panel95;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Panel panel69;
-        private System.Windows.Forms.Panel panel93;
-        private System.Windows.Forms.TextBox textBoxSalesperson;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxArea;
-        private System.Windows.Forms.Panel panel100;
-        private System.Windows.Forms.Panel panel103;
-        private System.Windows.Forms.Panel panel104;
-        private System.Windows.Forms.Panel panel105;
-        private System.Windows.Forms.Panel panel106;
-        private System.Windows.Forms.Label labelBoCompanyName;
-        private System.Windows.Forms.Label labelBoCustSupp;
-        private System.Windows.Forms.Label labelBoCustSType;
-        private System.Windows.Forms.Label labelBoTabName;
-        private System.Windows.Forms.Panel panel107;
-        private System.Windows.Forms.Panel panel108;
-        private System.Windows.Forms.TextBox textBoxBoTabName;
-        private System.Windows.Forms.Panel panel109;
-        private System.Windows.Forms.Panel panel110;
-        private System.Windows.Forms.TextBox textBoxBoCustSType;
-        private System.Windows.Forms.TextBox textBoxBoCustSupp;
-        private System.Windows.Forms.TextBox textBoxBoCompanyName;
-        private System.Windows.Forms.Panel panel98;
-        private System.Windows.Forms.Panel panel99;
-        private System.Windows.Forms.Label labelTbCreated;
-        private System.Windows.Forms.TextBox textBoxTbCreated;
-        private System.Windows.Forms.Button btnBObjectData;
-        private System.Windows.Forms.Label labelBObjectData;
-        private System.Windows.Forms.Panel panel53;
-        private System.Windows.Forms.Panel panel54;
-        private System.Windows.Forms.Panel panel80;
-        private System.Windows.Forms.Panel panel81;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbxServicesWeb;
         private System.Windows.Forms.Button WebMethodList;
         private System.Windows.Forms.TextBox SearchMethod;
@@ -5557,5 +4736,17 @@ namespace TbApiTester
         private System.Windows.Forms.Panel panel127;
         private System.Windows.Forms.Panel panel129;
         private System.Windows.Forms.Label BtnOttieniToken;
+        private System.Windows.Forms.TabPage tabLog;
+        private System.Windows.Forms.Panel panel53;
+        private System.Windows.Forms.Button btnClearLog;
+       
+        private System.Windows.Forms.Label LogsLabel;
+        private OrangePanel orangePanel6;
+        private System.Windows.Forms.Button btnTbServerLog;
+        private OrangePanel orangePanel7;
+        private System.Windows.Forms.Button btnDataServiceLogs;
+        private OrangePanel orangePanel8;
+        private System.Windows.Forms.Button btnReportingServiceLog;
+        private System.Windows.Forms.RichTextBox richTextLog;
     }
 }

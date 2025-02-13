@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.VisualBasic.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -16,7 +17,8 @@ namespace TbApiTester
     class DataServiceManager
     {
         public string requestDs { get; set; }
-       
+        public List<string> requestDsList = new List<string>();
+        public List<string> responseDsList = new List<string>();
         ////// RetriveDataServiceUrl ///////
 
         //Uri RsUrl = new Uri("https://develop.mago.cloud/13/be");
@@ -40,6 +42,27 @@ namespace TbApiTester
         //         return UrlSManager.DataServiceUrl = resultVariable;
         //     }
         //}
+
+        public List<string> GetRequestResponseLogs()
+        {
+            List<string> logs = new List<string>();
+
+            int count = Math.Min(responseDsList.Count, responseDsList.Count);
+            for (int i = 0; i < count; i++)
+            {
+                logs.Add(responseDsList[i]); // REQUEST
+                
+              
+            }
+
+            return logs;
+        }
+        public void ClearLogs()
+        {
+            responseDsList.Clear();
+            responseDsList.Clear();
+        }
+
         public string PrepareDSParam(HttpRequestMessage request)
         {
             var functionParams = JsonConvert.SerializeObject(new
@@ -85,11 +108,12 @@ namespace TbApiTester
 
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     requestDs = $"{request.Method} {request.RequestUri}";
-
+                    responseDsList.Add(requestDs);
 
                     // Esegui la richiesta
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-
+                    responseDsList.Add($"RESPONSE: {response}");
+                    responseDsList.Add(new string('-', 50));
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         string responseBody = response.Content.ReadAsStringAsync().Result;
