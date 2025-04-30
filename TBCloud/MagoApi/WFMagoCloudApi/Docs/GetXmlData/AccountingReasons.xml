@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.Documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Data>
+		<maxs:AccountingReasons master="true">
+			<maxs:Reason>BIA</maxs:Reason>
+			<maxs:Description>Apertura</maxs:Description>
+			<maxs:UseForPureEntry>true</maxs:UseForPureEntry>
+			<maxs:UseForSaleEntry>false</maxs:UseForSaleEntry>
+			<maxs:UseForPurchaseEntry>false</maxs:UseForPurchaseEntry>
+			<maxs:UseForRetailSaleEntry>false</maxs:UseForRetailSaleEntry>
+			<maxs:Predefined>true</maxs:Predefined>
+			<maxs:TBCreated>2023-10-03T10:14:46</maxs:TBCreated>
+			<maxs:TBModified>2023-10-03T10:14:46</maxs:TBModified>
+			<maxs:TBCreatedID>0</maxs:TBCreatedID>
+			<maxs:TBModifiedID>0</maxs:TBModifiedID>
+			<maxs:TBGuid>{0AB4E3C7-4D3C-430E-8A56-DF08C104B4F7}</maxs:TBGuid>
+		</maxs:AccountingReasons>
+	</maxs:Data>
+</maxs:AccountingReasons>
+
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.Documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Data>
+		<maxs:AccountingReasons master="true">
+			<maxs:Reason>BIA2</maxs:Reason>
+			<maxs:Description></maxs:Description>
+			<maxs:UseForPureEntry>false</maxs:UseForPureEntry>
+			<maxs:UseForSaleEntry>false</maxs:UseForSaleEntry>
+			<maxs:UseForPurchaseEntry>false</maxs:UseForPurchaseEntry>
+			<maxs:UseForRetailSaleEntry>false</maxs:UseForRetailSaleEntry>
+			<maxs:Predefined>false</maxs:Predefined>
+			<maxs:TBCreated>2025-02-06T16:20:29</maxs:TBCreated>
+			<maxs:TBModified>2025-02-06T16:20:29</maxs:TBModified>
+			<maxs:TBCreatedID>48</maxs:TBCreatedID>
+			<maxs:TBModifiedID>48</maxs:TBModifiedID>
+			<maxs:TBGuid>{2053DF3A-4733-4BB8-A480-30F8AD3853AC}</maxs:TBGuid>
+		</maxs:AccountingReasons>
+	</maxs:Data>
+</maxs:AccountingReasons>
+
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.Documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Data>
+		<maxs:AccountingReasons master="true">
+			<maxs:Reason>BIA3</maxs:Reason>
+			<maxs:Description></maxs:Description>
+			<maxs:UseForPureEntry>false</maxs:UseForPureEntry>
+			<maxs:UseForSaleEntry>false</maxs:UseForSaleEntry>
+			<maxs:UseForPurchaseEntry>false</maxs:UseForPurchaseEntry>
+			<maxs:UseForRetailSaleEntry>false</maxs:UseForRetailSaleEntry>
+			<maxs:Predefined>false</maxs:Predefined>
+			<maxs:TBCreated>2025-02-06T16:32:52</maxs:TBCreated>
+			<maxs:TBModified>2025-02-06T16:32:52</maxs:TBModified>
+			<maxs:TBCreatedID>48</maxs:TBCreatedID>
+			<maxs:TBModifiedID>48</maxs:TBModifiedID>
+			<maxs:TBGuid>{05A97C79-05BB-457A-9838-69C6E60AE94D}</maxs:TBGuid>
+		</maxs:AccountingReasons>
+	</maxs:Data>
+</maxs:AccountingReasons>
+
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:AccountingReasons tbNamespace="Document.ERP.Accounting.Documents.AccountingReasons" xTechProfile="DefaultFull" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Accounting/AccountingReasons/Standard/DefaultFull.xsd">
+	<maxs:Data>
+		<maxs:AccountingReasons master="true">
+			<maxs:Reason>BIA4</maxs:Reason>
+			<maxs:Description>Apertura</maxs:Description>
+			<maxs:UseForPureEntry>true</maxs:UseForPureEntry>
+			<maxs:UseForSaleEntry>false</maxs:UseForSaleEntry>
+			<maxs:UseForPurchaseEntry>false</maxs:UseForPurchaseEntry>
+			<maxs:UseForRetailSaleEntry>false</maxs:UseForRetailSaleEntry>
+			<maxs:Predefined>true</maxs:Predefined>
+			<maxs:TBCreated>2025-02-10T13:59:21</maxs:TBCreated>
+			<maxs:TBModified>2025-02-10T13:59:21</maxs:TBModified>
+			<maxs:TBCreatedID>0</maxs:TBCreatedID>
+			<maxs:TBModifiedID>0</maxs:TBModifiedID>
+			<maxs:TBGuid>{0AB4E3C7-4D3C-430E-8A56-DF08C104B4F7}</maxs:TBGuid>
+		</maxs:AccountingReasons>
+	</maxs:Data>
+</maxs:AccountingReasons>
+

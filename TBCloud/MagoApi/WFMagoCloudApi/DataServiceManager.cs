@@ -83,37 +83,32 @@ namespace TbApiTester
                         UrlSManager.DataServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/DATASERVICE");
                     }
 
-                    // Costruzione della URL base
+                    
                     StringBuilder GetUrl = new StringBuilder(UrlSManager.DataServiceUrl + "/data-service/getdata/" + nameSpace + '/' + selectionType);
 
-                    // Aggiungi `filterVal` alla URL come parametro di query, se specificato
                     if (!string.IsNullOrEmpty(filterVal))
                     {
                         GetUrl.Append($"?filter={Uri.EscapeDataString(filterVal)}");
                     }
 
-                    // Aggiungi `argsVal` alla URL come parametro di query, se specificato
                     if (!string.IsNullOrEmpty(argsVal))
                     {
                         GetUrl.Append(string.IsNullOrEmpty(filterVal) ? "?" : "&");
                         GetUrl.Append($"args={Uri.EscapeDataString(argsVal)}");
                     }
 
-                    // Aggiungi `forcedRefresh` per forzare l'aggiornamento delle cache
                     GetUrl.Append((string.IsNullOrEmpty(filterVal) && string.IsNullOrEmpty(argsVal)) ? "?" : "&");
                     GetUrl.Append("forcedRefresh=true");
 
-                    // Configura la richiesta HTTP
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl.ToString());
 
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     requestDs = $"{request.Method} {request.RequestUri}";
-                    responseDsList.Add(requestDs);
+                    requestDsList.Add( DateTime.Now+ requestDs + filterVal );
 
-                    // Esegui la richiesta
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-                    responseDsList.Add($"RESPONSE: {response}");
-                    responseDsList.Add(new string('-', 50));
+                   
+                    responseDsList.Add($"[{DateTime.Now}] Status: {response}\n");
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         string responseBody = response.Content.ReadAsStringAsync().Result;

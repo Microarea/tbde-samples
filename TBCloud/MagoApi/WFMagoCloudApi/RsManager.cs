@@ -105,7 +105,7 @@ namespace TbApiTester
                     if (UrlSManager.ReportingServiceUrl == "") UrlSManager.ReportingServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/REPORTSERVICE");
                     //if (UrlSManager.ReportingServiceUrl == "") UrlSManager.ReportingServiceUrl = RetriveRsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.ReportingServiceUrl + "/rs/getReportPdf");
-                    TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
 
                     string jsonInString = "";
                     if (btn == 0)

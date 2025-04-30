@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
@@ -167,21 +168,18 @@ namespace TbApiTester
                     {
                         JObject data = JsonConvert.DeserializeObject<JObject>(funResponse);
                         tbResponse.ReturnValue = data["data"]["Name"]?.ToString();
-                        tbResponse.PlainResult = funResponse;
+                        tbResponse.PlainResult = funResponse.ToString();
                         
                         tbResponse.Success = true;
                         return tbResponse;
                     }
                     else
                     {
-                       MessageBox.Show(tbResponse.ToString());
-                        
+                        // Extract only the first line of the error message
+                        string shortMessage = funResponse.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)[0];
+
+                        MessageBox.Show(tbResponse.StatusCode.ToString()+shortMessage);
                     }
-                    //using (var response = await client.SendAsync(request))
-                    //{
-                    //    AssignTbResponse(response, tbResponse);
-                    //}
-                    //return tbResponse;
                 }
                 catch (HttpRequestException e)
                 {
@@ -214,11 +212,25 @@ namespace TbApiTester
                     request.Content = new StringContent(content: queryParam, encoding: Encoding.UTF8, mediaType: "application/json");
                     TbResponse tbResponse = new TbResponse();
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-
-                    
-                    await AssignTbResponse(response, tbResponse);
-                    return tbResponse;
-
+                    tbResponse.StatusCode = (int)response.StatusCode;
+                    string funResponse = await response.Content.ReadAsStringAsync();
+                    if (response.StatusCode == HttpStatusCode.OK && !string.IsNullOrEmpty(funResponse))
+                    {
+                        await AssignTbResponse(response, tbResponse);
+                        return tbResponse;
+                    }
+                    else
+                    {
+                        // Extract only the first line of the error message
+                        tbResponse.Success = false;
+                        tbResponse.PlainResult = funResponse.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)[0].Replace("System.Exception", " ATTENTION ");
+                        if (funResponse == "")
+                        {
+                            tbResponse.PlainResult = " WARNING you do not have an activated MagoApi module ";
+                        }
+                        return tbResponse;
+                    }
+                   
                 }
                 catch (HttpRequestException e)
                 {
@@ -449,8 +461,19 @@ namespace TbApiTester
                     request.Content = new StringContent(content: nrData, encoding: Encoding.UTF8, mediaType: "application/json");
                     TbResponse tbResponse = new TbResponse();
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-                    await AssignTbResponse(response, tbResponse);
-                    return tbResponse;
+                    string funResponse = await response.Content.ReadAsStringAsync();
+                    if (response.StatusCode == HttpStatusCode.OK && !string.IsNullOrEmpty(funResponse))
+                    {
+                        await AssignTbResponse(response, tbResponse);
+                        return tbResponse;
+                    }
+                    else
+                    {
+                        // Extract only the first line of the error message
+                        string shortMessage = funResponse.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)[0];
+                        return tbResponse;
+                        MessageBox.Show(tbResponse.StatusCode.ToString() + shortMessage);
+                    }
                 }
                 catch (HttpRequestException e)
                 {

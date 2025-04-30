@@ -1,5 +1,4 @@
-﻿
-using MspzComponent;
+﻿using MspzComponent;
 
 namespace TbApiTester
 {
@@ -31,7 +30,6 @@ namespace TbApiTester
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.LinkLabel linkHelpTb;
             this.tabNavigation = new System.Windows.Forms.TabControl();
             this.tabTbServer = new System.Windows.Forms.TabPage();
             this.paneltbfsH = new System.Windows.Forms.Panel();
@@ -44,7 +42,7 @@ namespace TbApiTester
             this.panelTbTextContainer = new System.Windows.Forms.Panel();
             this.btnClearText = new System.Windows.Forms.Button();
             this.btnSaveXmlTbServer = new System.Windows.Forms.Button();
-            this.xmlEditorTbResult = new   XmlEditor();
+            this.xmlEditorTbResult = new  XmlEditor();
             this.labelCallTbResult = new System.Windows.Forms.Label();
             this.BtnOpenFolder = new System.Windows.Forms.Button();
             this.BtnQuestionCall = new System.Windows.Forms.Button();
@@ -87,6 +85,12 @@ namespace TbApiTester
             this.panel12 = new System.Windows.Forms.Panel();
             this.labelTitleDate = new System.Windows.Forms.Label();
             this.roundedPanel1 = new MspzComponent.RoundedPanel();
+            this.orangePanel9 = new MspzComponent.OrangePanel();
+            this.labelThred = new System.Windows.Forms.Label();
+            this.ThreadStatusPanel = new MspzComponent.OrangePanel();
+            this.BtnInfoLoginCntx = new System.Windows.Forms.Button();
+            this.btnUseLogInCnxt = new System.Windows.Forms.Button();
+            this.btnReleaseLogInCnxt = new System.Windows.Forms.Button();
             this.btnCreatePx = new System.Windows.Forms.Button();
             this.labelNsCreate = new System.Windows.Forms.Label();
             this.labelNSGetPX = new System.Windows.Forms.Label();
@@ -191,6 +195,30 @@ namespace TbApiTester
             this.roundedPanel5 = new MspzComponent.RoundedPanel();
             this.labelRsUrl = new System.Windows.Forms.Label();
             this.tabDMS = new System.Windows.Forms.TabPage();
+            this.panel74 = new System.Windows.Forms.Panel();
+            this.panel72 = new System.Windows.Forms.Panel();
+            this.panel73 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtBoxERPpkv = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtBoxERPDocNs = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtBoxErpTbGuid = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.labelArchive = new System.Windows.Forms.Label();
+            this.panel78 = new System.Windows.Forms.Panel();
+            this.panel79 = new System.Windows.Forms.Panel();
+            this.btnArchiveBinary = new System.Windows.Forms.Button();
+            this.textBoxfilename = new System.Windows.Forms.TextBox();
+            this.labelAttach = new System.Windows.Forms.Label();
+            this.btnAttachBinary = new System.Windows.Forms.Button();
+            this.buttonMicrHome = new System.Windows.Forms.Button();
+            this.txtArchiveDocId = new System.Windows.Forms.TextBox();
+            this.labelGetBinary = new System.Windows.Forms.Label();
+            this.panel54 = new System.Windows.Forms.Panel();
+            this.panel69 = new System.Windows.Forms.Panel();
+            this.btnGetBinary = new System.Windows.Forms.Button();
             this.linkHelpDMS = new System.Windows.Forms.LinkLabel();
             this.labelDmsSetting = new System.Windows.Forms.Label();
             this.panel24 = new System.Windows.Forms.Panel();
@@ -202,7 +230,6 @@ namespace TbApiTester
             this.labelMicrHome = new System.Windows.Forms.Label();
             this.panelMicrHome = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.buttonMicrHome = new System.Windows.Forms.Button();
             this.roundedPanel6 = new MspzComponent.RoundedPanel();
             this.labelDmsUrl = new System.Windows.Forms.Label();
             this.tabMSH = new System.Windows.Forms.TabPage();
@@ -345,7 +372,6 @@ namespace TbApiTester
             this.Http_label = new System.Windows.Forms.Label();
             this.button_exit = new System.Windows.Forms.Button();
             this.button_Login = new System.Windows.Forms.Button();
-            linkHelpTb = new System.Windows.Forms.LinkLabel();
             this.tabNavigation.SuspendLayout();
             this.tabTbServer.SuspendLayout();
             this.paneltbfsH.SuspendLayout();
@@ -364,6 +390,7 @@ namespace TbApiTester
             this.panelLineClosingDateWM.SuspendLayout();
             this.panelLineOpenDateWM.SuspendLayout();
             this.roundedPanel1.SuspendLayout();
+            this.orangePanel9.SuspendLayout();
             this.panelLineDisposeWM.SuspendLayout();
             this.panelLineGetPxWM.SuspendLayout();
             this.panelLineCreateWM.SuspendLayout();
@@ -390,6 +417,9 @@ namespace TbApiTester
             this.panel18.SuspendLayout();
             this.roundedPanel5.SuspendLayout();
             this.tabDMS.SuspendLayout();
+            this.panel72.SuspendLayout();
+            this.panel78.SuspendLayout();
+            this.panel54.SuspendLayout();
             this.panel24.SuspendLayout();
             this.panelMicrHome.SuspendLayout();
             this.roundedPanel6.SuspendLayout();
@@ -435,27 +465,6 @@ namespace TbApiTester
             this.panelLinePwdBox.SuspendLayout();
             this.panelLineUserBox.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // linkHelpTb
-            // 
-            linkHelpTb.ActiveLinkColor = System.Drawing.Color.DarkOrange;
-            linkHelpTb.AllowDrop = true;
-            linkHelpTb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            linkHelpTb.AutoSize = true;
-            linkHelpTb.BackColor = System.Drawing.Color.White;
-            linkHelpTb.Cursor = System.Windows.Forms.Cursors.Help;
-            linkHelpTb.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
-            linkHelpTb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            linkHelpTb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            linkHelpTb.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            linkHelpTb.Location = new System.Drawing.Point(767, 316);
-            linkHelpTb.Name = "linkHelpTb";
-            linkHelpTb.Size = new System.Drawing.Size(110, 16);
-            linkHelpTb.TabIndex = 92;
-            linkHelpTb.TabStop = true;
-            linkHelpTb.Text = "ViewSourceCode";
-            linkHelpTb.UseMnemonic = false;
-            linkHelpTb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkHelpTb_LinkClicked);
             // 
             // tabNavigation
             // 
@@ -597,13 +606,12 @@ namespace TbApiTester
             this.panelTbTextContainer.Controls.Add(this.btnClearText);
             this.panelTbTextContainer.Controls.Add(this.btnSaveXmlTbServer);
             this.panelTbTextContainer.Controls.Add(this.xmlEditorTbResult);
-            this.panelTbTextContainer.Controls.Add(linkHelpTb);
             this.panelTbTextContainer.Controls.Add(this.labelCallTbResult);
             this.panelTbTextContainer.Controls.Add(this.BtnOpenFolder);
             this.panelTbTextContainer.Location = new System.Drawing.Point(16, 199);
             this.panelTbTextContainer.Margin = new System.Windows.Forms.Padding(2);
             this.panelTbTextContainer.Name = "panelTbTextContainer";
-            this.panelTbTextContainer.Size = new System.Drawing.Size(886, 337);
+            this.panelTbTextContainer.Size = new System.Drawing.Size(886, 335);
             this.panelTbTextContainer.TabIndex = 115;
             // 
             // btnClearText
@@ -617,7 +625,7 @@ namespace TbApiTester
             this.btnClearText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearText.Font = new System.Drawing.Font("Century Gothic", 21.75F);
             this.btnClearText.ForeColor = System.Drawing.Color.IndianRed;
-            this.btnClearText.Location = new System.Drawing.Point(788, 247);
+            this.btnClearText.Location = new System.Drawing.Point(788, 246);
             this.btnClearText.Name = "btnClearText";
             this.btnClearText.Size = new System.Drawing.Size(63, 46);
             this.btnClearText.TabIndex = 116;
@@ -654,7 +662,7 @@ namespace TbApiTester
             this.xmlEditorTbResult.BackColor = System.Drawing.Color.AliceBlue;
             this.xmlEditorTbResult.Location = new System.Drawing.Point(17, 42);
             this.xmlEditorTbResult.Name = "xmlEditorTbResult";
-            this.xmlEditorTbResult.Size = new System.Drawing.Size(852, 272);
+            this.xmlEditorTbResult.Size = new System.Drawing.Size(852, 270);
             this.xmlEditorTbResult.TabIndex = 118;
             this.xmlEditorTbResult.TextContent = "";
             // 
@@ -992,21 +1000,11 @@ namespace TbApiTester
             // 
             // linkCodeSourceWb
             // 
-            this.linkCodeSourceWb.ActiveLinkColor = System.Drawing.Color.DarkOrange;
-            this.linkCodeSourceWb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkCodeSourceWb.AutoSize = true;
-            this.linkCodeSourceWb.Cursor = System.Windows.Forms.Cursors.Help;
-            this.linkCodeSourceWb.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.linkCodeSourceWb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkCodeSourceWb.LinkColor = System.Drawing.Color.White;
-            this.linkCodeSourceWb.Location = new System.Drawing.Point(808, 3215);
+            this.linkCodeSourceWb.Location = new System.Drawing.Point(0, 0);
+            this.linkCodeSourceWb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkCodeSourceWb.Name = "linkCodeSourceWb";
-            this.linkCodeSourceWb.Size = new System.Drawing.Size(110, 16);
-            this.linkCodeSourceWb.TabIndex = 93;
-            this.linkCodeSourceWb.TabStop = true;
-            this.linkCodeSourceWb.Text = "ViewSourceCode";
-            this.linkCodeSourceWb.UseMnemonic = false;
-            this.linkCodeSourceWb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCodeSourceWb_LinkClicked);
+            this.linkCodeSourceWb.Size = new System.Drawing.Size(80, 18);
+            this.linkCodeSourceWb.TabIndex = 101;
             // 
             // btnCurrOpeningDate
             // 
@@ -1157,6 +1155,7 @@ namespace TbApiTester
             this.roundedPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.roundedPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.roundedPanel1.Controls.Add(this.orangePanel9);
             this.roundedPanel1.Controls.Add(this.btnCreatePx);
             this.roundedPanel1.Controls.Add(this.labelNsCreate);
             this.roundedPanel1.Controls.Add(this.labelNSGetPX);
@@ -1168,10 +1167,92 @@ namespace TbApiTester
             this.roundedPanel1.Controls.Add(this.panelLineGetPxWM);
             this.roundedPanel1.Controls.Add(this.panelLineCreateWM);
             this.roundedPanel1.ForeColor = System.Drawing.Color.White;
-            this.roundedPanel1.Location = new System.Drawing.Point(29, 290);
+            this.roundedPanel1.Location = new System.Drawing.Point(29, 280);
             this.roundedPanel1.Name = "roundedPanel1";
-            this.roundedPanel1.Size = new System.Drawing.Size(1250, 213);
+            this.roundedPanel1.Size = new System.Drawing.Size(1250, 255);
             this.roundedPanel1.TabIndex = 90;
+            // 
+            // orangePanel9
+            // 
+            this.orangePanel9.Controls.Add(this.labelThred);
+            this.orangePanel9.Controls.Add(this.ThreadStatusPanel);
+            this.orangePanel9.Controls.Add(this.BtnInfoLoginCntx);
+            this.orangePanel9.Controls.Add(this.btnUseLogInCnxt);
+            this.orangePanel9.Controls.Add(this.btnReleaseLogInCnxt);
+            this.orangePanel9.Location = new System.Drawing.Point(633, 55);
+            this.orangePanel9.Name = "orangePanel9";
+            this.orangePanel9.Size = new System.Drawing.Size(200, 175);
+            this.orangePanel9.TabIndex = 86;
+            // 
+            // labelThred
+            // 
+            this.labelThred.AutoSize = true;
+            this.labelThred.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
+            this.labelThred.Location = new System.Drawing.Point(30, 114);
+            this.labelThred.Name = "labelThred";
+            this.labelThred.Size = new System.Drawing.Size(0, 15);
+            this.labelThred.TabIndex = 117;
+            // 
+            // ThreadStatusPanel
+            // 
+            this.ThreadStatusPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ThreadStatusPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ThreadStatusPanel.Location = new System.Drawing.Point(14, 118);
+            this.ThreadStatusPanel.Name = "ThreadStatusPanel";
+            this.ThreadStatusPanel.Size = new System.Drawing.Size(10, 10);
+            this.ThreadStatusPanel.TabIndex = 116;
+            // 
+            // BtnInfoLoginCntx
+            // 
+            this.BtnInfoLoginCntx.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.BtnInfoLoginCntx.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnInfoLoginCntx.FlatAppearance.BorderSize = 0;
+            this.BtnInfoLoginCntx.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.BtnInfoLoginCntx.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.BtnInfoLoginCntx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnInfoLoginCntx.Font = new System.Drawing.Font("Century Gothic", 17F);
+            this.BtnInfoLoginCntx.ForeColor = System.Drawing.Color.White;
+            this.BtnInfoLoginCntx.Location = new System.Drawing.Point(148, 132);
+            this.BtnInfoLoginCntx.Name = "BtnInfoLoginCntx";
+            this.BtnInfoLoginCntx.Size = new System.Drawing.Size(44, 39);
+            this.BtnInfoLoginCntx.TabIndex = 115;
+            this.BtnInfoLoginCntx.Text = "❔";
+            this.BtnInfoLoginCntx.UseVisualStyleBackColor = false;
+            this.BtnInfoLoginCntx.Click += new System.EventHandler(this.BtnInfoLoginCntx_Click);
+            // 
+            // btnUseLogInCnxt
+            // 
+            this.btnUseLogInCnxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.btnUseLogInCnxt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnUseLogInCnxt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUseLogInCnxt.FlatAppearance.BorderSize = 0;
+            this.btnUseLogInCnxt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUseLogInCnxt.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUseLogInCnxt.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnUseLogInCnxt.Location = new System.Drawing.Point(14, 22);
+            this.btnUseLogInCnxt.Name = "btnUseLogInCnxt";
+            this.btnUseLogInCnxt.Size = new System.Drawing.Size(168, 34);
+            this.btnUseLogInCnxt.TabIndex = 85;
+            this.btnUseLogInCnxt.Text = "useLoginContext";
+            this.btnUseLogInCnxt.UseVisualStyleBackColor = false;
+            this.btnUseLogInCnxt.Click += new System.EventHandler(this.btnUseLogInCnxt_Click);
+            // 
+            // btnReleaseLogInCnxt
+            // 
+            this.btnReleaseLogInCnxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.btnReleaseLogInCnxt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnReleaseLogInCnxt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReleaseLogInCnxt.FlatAppearance.BorderSize = 0;
+            this.btnReleaseLogInCnxt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReleaseLogInCnxt.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReleaseLogInCnxt.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnReleaseLogInCnxt.Location = new System.Drawing.Point(14, 66);
+            this.btnReleaseLogInCnxt.Name = "btnReleaseLogInCnxt";
+            this.btnReleaseLogInCnxt.Size = new System.Drawing.Size(168, 34);
+            this.btnReleaseLogInCnxt.TabIndex = 86;
+            this.btnReleaseLogInCnxt.Text = "releaseLoginContext";
+            this.btnReleaseLogInCnxt.UseVisualStyleBackColor = false;
+            this.btnReleaseLogInCnxt.Click += new System.EventHandler(this.btnReleaseLogInCnxt_Click);
             // 
             // btnCreatePx
             // 
@@ -1182,7 +1263,7 @@ namespace TbApiTester
             this.btnCreatePx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreatePx.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreatePx.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCreatePx.Location = new System.Drawing.Point(26, 54);
+            this.btnCreatePx.Location = new System.Drawing.Point(22, 76);
             this.btnCreatePx.Name = "btnCreatePx";
             this.btnCreatePx.Size = new System.Drawing.Size(125, 34);
             this.btnCreatePx.TabIndex = 72;
@@ -1196,7 +1277,7 @@ namespace TbApiTester
             this.labelNsCreate.BackColor = System.Drawing.Color.Transparent;
             this.labelNsCreate.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.labelNsCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelNsCreate.Location = new System.Drawing.Point(154, 64);
+            this.labelNsCreate.Location = new System.Drawing.Point(150, 86);
             this.labelNsCreate.Name = "labelNsCreate";
             this.labelNsCreate.Size = new System.Drawing.Size(338, 15);
             this.labelNsCreate.TabIndex = 81;
@@ -1208,7 +1289,7 @@ namespace TbApiTester
             this.labelNSGetPX.BackColor = System.Drawing.Color.Transparent;
             this.labelNSGetPX.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.labelNSGetPX.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelNSGetPX.Location = new System.Drawing.Point(154, 119);
+            this.labelNSGetPX.Location = new System.Drawing.Point(150, 141);
             this.labelNSGetPX.Name = "labelNSGetPX";
             this.labelNSGetPX.Size = new System.Drawing.Size(387, 15);
             this.labelNSGetPX.TabIndex = 82;
@@ -1223,7 +1304,7 @@ namespace TbApiTester
             this.btnGetPrice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGetPrice.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGetPrice.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnGetPrice.Location = new System.Drawing.Point(26, 108);
+            this.btnGetPrice.Location = new System.Drawing.Point(22, 130);
             this.btnGetPrice.Name = "btnGetPrice";
             this.btnGetPrice.Size = new System.Drawing.Size(125, 34);
             this.btnGetPrice.TabIndex = 73;
@@ -1240,7 +1321,7 @@ namespace TbApiTester
             this.btnDispose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDispose.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDispose.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnDispose.Location = new System.Drawing.Point(26, 163);
+            this.btnDispose.Location = new System.Drawing.Point(22, 183);
             this.btnDispose.Name = "btnDispose";
             this.btnDispose.Size = new System.Drawing.Size(125, 34);
             this.btnDispose.TabIndex = 74;
@@ -1254,7 +1335,7 @@ namespace TbApiTester
             this.labelNSDispose.BackColor = System.Drawing.Color.Transparent;
             this.labelNSDispose.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold);
             this.labelNSDispose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelNSDispose.Location = new System.Drawing.Point(158, 174);
+            this.labelNSDispose.Location = new System.Drawing.Point(154, 194);
             this.labelNSDispose.Name = "labelNSDispose";
             this.labelNSDispose.Size = new System.Drawing.Size(344, 15);
             this.labelNSDispose.TabIndex = 83;
@@ -1264,7 +1345,7 @@ namespace TbApiTester
             // 
             this.panelLineDisposeWM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
             this.panelLineDisposeWM.Controls.Add(this.panel43);
-            this.panelLineDisposeWM.Location = new System.Drawing.Point(148, 196);
+            this.panelLineDisposeWM.Location = new System.Drawing.Point(144, 216);
             this.panelLineDisposeWM.Name = "panelLineDisposeWM";
             this.panelLineDisposeWM.Size = new System.Drawing.Size(406, 1);
             this.panelLineDisposeWM.TabIndex = 68;
@@ -1295,7 +1376,7 @@ namespace TbApiTester
             // 
             this.panelLineGetPxWM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
             this.panelLineGetPxWM.Controls.Add(this.panel41);
-            this.panelLineGetPxWM.Location = new System.Drawing.Point(148, 141);
+            this.panelLineGetPxWM.Location = new System.Drawing.Point(144, 163);
             this.panelLineGetPxWM.Name = "panelLineGetPxWM";
             this.panelLineGetPxWM.Size = new System.Drawing.Size(406, 1);
             this.panelLineGetPxWM.TabIndex = 68;
@@ -1315,7 +1396,7 @@ namespace TbApiTester
             this.panelLineCreateWM.Controls.Add(this.panel28);
             this.panelLineCreateWM.Controls.Add(this.panel26);
             this.panelLineCreateWM.Controls.Add(this.panel25);
-            this.panelLineCreateWM.Location = new System.Drawing.Point(148, 86);
+            this.panelLineCreateWM.Location = new System.Drawing.Point(144, 108);
             this.panelLineCreateWM.Name = "panelLineCreateWM";
             this.panelLineCreateWM.Size = new System.Drawing.Size(406, 1);
             this.panelLineCreateWM.TabIndex = 68;
@@ -1686,21 +1767,11 @@ namespace TbApiTester
             // 
             // linkHelpDataService
             // 
-            this.linkHelpDataService.ActiveLinkColor = System.Drawing.Color.DarkOrange;
-            this.linkHelpDataService.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkHelpDataService.AutoSize = true;
-            this.linkHelpDataService.Cursor = System.Windows.Forms.Cursors.Help;
-            this.linkHelpDataService.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.linkHelpDataService.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkHelpDataService.LinkColor = System.Drawing.Color.White;
-            this.linkHelpDataService.Location = new System.Drawing.Point(854, 3344);
+            this.linkHelpDataService.Location = new System.Drawing.Point(0, 0);
+            this.linkHelpDataService.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkHelpDataService.Name = "linkHelpDataService";
-            this.linkHelpDataService.Size = new System.Drawing.Size(110, 16);
-            this.linkHelpDataService.TabIndex = 94;
-            this.linkHelpDataService.TabStop = true;
-            this.linkHelpDataService.Text = "ViewSourceCode";
-            this.linkHelpDataService.UseMnemonic = false;
-            this.linkHelpDataService.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkHelpDataService_LinkClicked);
+            this.linkHelpDataService.Size = new System.Drawing.Size(80, 18);
+            this.linkHelpDataService.TabIndex = 127;
             // 
             // textBoxNameSpace
             // 
@@ -2202,21 +2273,11 @@ namespace TbApiTester
             // 
             // linkHelpReportingService
             // 
-            this.linkHelpReportingService.ActiveLinkColor = System.Drawing.Color.DarkOrange;
-            this.linkHelpReportingService.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkHelpReportingService.AutoSize = true;
-            this.linkHelpReportingService.Cursor = System.Windows.Forms.Cursors.Help;
-            this.linkHelpReportingService.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.linkHelpReportingService.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkHelpReportingService.LinkColor = System.Drawing.Color.White;
-            this.linkHelpReportingService.Location = new System.Drawing.Point(808, 3219);
+            this.linkHelpReportingService.Location = new System.Drawing.Point(0, 0);
+            this.linkHelpReportingService.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkHelpReportingService.Name = "linkHelpReportingService";
-            this.linkHelpReportingService.Size = new System.Drawing.Size(110, 16);
-            this.linkHelpReportingService.TabIndex = 95;
-            this.linkHelpReportingService.TabStop = true;
-            this.linkHelpReportingService.Text = "ViewSourceCode";
-            this.linkHelpReportingService.UseMnemonic = false;
-            this.linkHelpReportingService.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkHelpReportingService_LinkClicked);
+            this.linkHelpReportingService.Size = new System.Drawing.Size(80, 18);
+            this.linkHelpReportingService.TabIndex = 104;
             // 
             // label10
             // 
@@ -2406,6 +2467,27 @@ namespace TbApiTester
             // tabDMS
             // 
             this.tabDMS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.tabDMS.Controls.Add(this.panel74);
+            this.tabDMS.Controls.Add(this.panel72);
+            this.tabDMS.Controls.Add(this.label12);
+            this.tabDMS.Controls.Add(this.txtBoxERPpkv);
+            this.tabDMS.Controls.Add(this.label4);
+            this.tabDMS.Controls.Add(this.txtBoxERPDocNs);
+            this.tabDMS.Controls.Add(this.label3);
+            this.tabDMS.Controls.Add(this.txtBoxErpTbGuid);
+            this.tabDMS.Controls.Add(this.label2);
+            this.tabDMS.Controls.Add(this.textBox2);
+            this.tabDMS.Controls.Add(this.labelArchive);
+            this.tabDMS.Controls.Add(this.panel78);
+            this.tabDMS.Controls.Add(this.btnArchiveBinary);
+            this.tabDMS.Controls.Add(this.textBoxfilename);
+            this.tabDMS.Controls.Add(this.labelAttach);
+            this.tabDMS.Controls.Add(this.btnAttachBinary);
+            this.tabDMS.Controls.Add(this.buttonMicrHome);
+            this.tabDMS.Controls.Add(this.txtArchiveDocId);
+            this.tabDMS.Controls.Add(this.labelGetBinary);
+            this.tabDMS.Controls.Add(this.panel54);
+            this.tabDMS.Controls.Add(this.btnGetBinary);
             this.tabDMS.Controls.Add(this.linkHelpDMS);
             this.tabDMS.Controls.Add(this.labelDmsSetting);
             this.tabDMS.Controls.Add(this.panel24);
@@ -2415,7 +2497,6 @@ namespace TbApiTester
             this.tabDMS.Controls.Add(this.panel23);
             this.tabDMS.Controls.Add(this.labelMicrHome);
             this.tabDMS.Controls.Add(this.panelMicrHome);
-            this.tabDMS.Controls.Add(this.buttonMicrHome);
             this.tabDMS.Controls.Add(this.roundedPanel6);
             this.tabDMS.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold);
             this.tabDMS.Location = new System.Drawing.Point(4, 25);
@@ -2425,30 +2506,289 @@ namespace TbApiTester
             this.tabDMS.TabIndex = 2;
             this.tabDMS.Text = "DMS";
             // 
+            // panel74
+            // 
+            this.panel74.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel74.Location = new System.Drawing.Point(82, 269);
+            this.panel74.Name = "panel74";
+            this.panel74.Size = new System.Drawing.Size(1, 101);
+            this.panel74.TabIndex = 96;
+            // 
+            // panel72
+            // 
+            this.panel72.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel72.Controls.Add(this.panel73);
+            this.panel72.Location = new System.Drawing.Point(82, 370);
+            this.panel72.Name = "panel72";
+            this.panel72.Size = new System.Drawing.Size(299, 1);
+            this.panel72.TabIndex = 96;
+            // 
+            // panel73
+            // 
+            this.panel73.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel73.Location = new System.Drawing.Point(0, 2);
+            this.panel73.Name = "panel73";
+            this.panel73.Size = new System.Drawing.Size(367, 1);
+            this.panel73.TabIndex = 63;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label12.ForeColor = System.Drawing.SystemColors.Control;
+            this.label12.Location = new System.Drawing.Point(106, 346);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(151, 18);
+            this.label12.TabIndex = 140;
+            this.label12.Text = "ERPPrimaryKeyValue";
+            // 
+            // txtBoxERPpkv
+            // 
+            this.txtBoxERPpkv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.txtBoxERPpkv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBoxERPpkv.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxERPpkv.ForeColor = System.Drawing.Color.White;
+            this.txtBoxERPpkv.Location = new System.Drawing.Point(268, 346);
+            this.txtBoxERPpkv.Name = "txtBoxERPpkv";
+            this.txtBoxERPpkv.Size = new System.Drawing.Size(328, 19);
+            this.txtBoxERPpkv.TabIndex = 139;
+            this.txtBoxERPpkv.Text = "3211264;FITTIZIO";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label4.ForeColor = System.Drawing.SystemColors.Control;
+            this.label4.Location = new System.Drawing.Point(106, 321);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(147, 18);
+            this.label4.TabIndex = 138;
+            this.label4.Text = "ERPDocNamespace";
+            // 
+            // txtBoxERPDocNs
+            // 
+            this.txtBoxERPDocNs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.txtBoxERPDocNs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBoxERPDocNs.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxERPDocNs.ForeColor = System.Drawing.Color.White;
+            this.txtBoxERPDocNs.Location = new System.Drawing.Point(268, 321);
+            this.txtBoxERPDocNs.Name = "txtBoxERPDocNs";
+            this.txtBoxERPDocNs.Size = new System.Drawing.Size(361, 19);
+            this.txtBoxERPDocNs.TabIndex = 136;
+            this.txtBoxERPDocNs.Text = "ERP.CustomersSuppliers.Documents.Customers";
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 23);
+            this.label3.TabIndex = 137;
+            // 
+            // txtBoxErpTbGuid
+            // 
+            this.txtBoxErpTbGuid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.txtBoxErpTbGuid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBoxErpTbGuid.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxErpTbGuid.ForeColor = System.Drawing.Color.White;
+            this.txtBoxErpTbGuid.Location = new System.Drawing.Point(268, 297);
+            this.txtBoxErpTbGuid.Name = "txtBoxErpTbGuid";
+            this.txtBoxErpTbGuid.Size = new System.Drawing.Size(328, 19);
+            this.txtBoxErpTbGuid.TabIndex = 134;
+            this.txtBoxErpTbGuid.Text = "91DA1EB1-CEDF-4E4E-A872-80B72E7CD087";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(105, 296);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 18);
+            this.label2.TabIndex = 133;
+            this.label2.Text = "ERPTBGuid";
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.Color.White;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.textBox2.Location = new System.Drawing.Point(336, 398);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(40, 21);
+            this.textBox2.TabIndex = 132;
+            this.textBox2.Text = "1";
+            // 
+            // labelArchive
+            // 
+            this.labelArchive.AutoSize = true;
+            this.labelArchive.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.labelArchive.ForeColor = System.Drawing.SystemColors.Control;
+            this.labelArchive.Location = new System.Drawing.Point(104, 397);
+            this.labelArchive.Name = "labelArchive";
+            this.labelArchive.Size = new System.Drawing.Size(154, 18);
+            this.labelArchive.TabIndex = 131;
+            this.labelArchive.Text = "Archive Binary content";
+            // 
+            // panel78
+            // 
+            this.panel78.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel78.Controls.Add(this.panel79);
+            this.panel78.Location = new System.Drawing.Point(78, 422);
+            this.panel78.Name = "panel78";
+            this.panel78.Size = new System.Drawing.Size(299, 1);
+            this.panel78.TabIndex = 129;
+            // 
+            // panel79
+            // 
+            this.panel79.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel79.Location = new System.Drawing.Point(0, 2);
+            this.panel79.Name = "panel79";
+            this.panel79.Size = new System.Drawing.Size(367, 1);
+            this.panel79.TabIndex = 63;
+            // 
+            // btnArchiveBinary
+            // 
+            this.btnArchiveBinary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.btnArchiveBinary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnArchiveBinary.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnArchiveBinary.FlatAppearance.BorderSize = 0;
+            this.btnArchiveBinary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnArchiveBinary.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnArchiveBinary.ForeColor = System.Drawing.Color.White;
+            this.btnArchiveBinary.Location = new System.Drawing.Point(30, 389);
+            this.btnArchiveBinary.Name = "btnArchiveBinary";
+            this.btnArchiveBinary.Size = new System.Drawing.Size(52, 34);
+            this.btnArchiveBinary.TabIndex = 130;
+            this.btnArchiveBinary.Text = "Run";
+            this.btnArchiveBinary.UseVisualStyleBackColor = false;
+            // 
+            // textBoxfilename
+            // 
+            this.textBoxfilename.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.textBoxfilename.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxfilename.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxfilename.ForeColor = System.Drawing.Color.White;
+            this.textBoxfilename.Location = new System.Drawing.Point(268, 267);
+            this.textBoxfilename.Name = "textBoxfilename";
+            this.textBoxfilename.Size = new System.Drawing.Size(328, 19);
+            this.textBoxfilename.TabIndex = 128;
+            this.textBoxfilename.Text = "1";
+            // 
+            // labelAttach
+            // 
+            this.labelAttach.AutoSize = true;
+            this.labelAttach.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.labelAttach.ForeColor = System.Drawing.SystemColors.Control;
+            this.labelAttach.Location = new System.Drawing.Point(104, 266);
+            this.labelAttach.Name = "labelAttach";
+            this.labelAttach.Size = new System.Drawing.Size(147, 18);
+            this.labelAttach.TabIndex = 127;
+            this.labelAttach.Text = "Attach Binary content";
+            // 
+            // btnAttachBinary
+            // 
+            this.btnAttachBinary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.btnAttachBinary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnAttachBinary.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAttachBinary.FlatAppearance.BorderSize = 0;
+            this.btnAttachBinary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAttachBinary.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAttachBinary.ForeColor = System.Drawing.Color.White;
+            this.btnAttachBinary.Location = new System.Drawing.Point(31, 257);
+            this.btnAttachBinary.Name = "btnAttachBinary";
+            this.btnAttachBinary.Size = new System.Drawing.Size(52, 34);
+            this.btnAttachBinary.TabIndex = 126;
+            this.btnAttachBinary.Text = "Run";
+            this.btnAttachBinary.UseVisualStyleBackColor = false;
+            this.btnAttachBinary.Click += new System.EventHandler(this.btnAttachBinary_Click);
+            // 
+            // buttonMicrHome
+            // 
+            this.buttonMicrHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.buttonMicrHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.buttonMicrHome.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonMicrHome.FlatAppearance.BorderSize = 0;
+            this.buttonMicrHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonMicrHome.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMicrHome.ForeColor = System.Drawing.Color.White;
+            this.buttonMicrHome.Location = new System.Drawing.Point(32, 156);
+            this.buttonMicrHome.Name = "buttonMicrHome";
+            this.buttonMicrHome.Size = new System.Drawing.Size(52, 34);
+            this.buttonMicrHome.TabIndex = 68;
+            this.buttonMicrHome.Text = "Run";
+            this.buttonMicrHome.UseVisualStyleBackColor = false;
+            this.buttonMicrHome.Click += new System.EventHandler(this.buttonMicrHome_Click);
+            // 
+            // txtArchiveDocId
+            // 
+            this.txtArchiveDocId.BackColor = System.Drawing.Color.White;
+            this.txtArchiveDocId.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtArchiveDocId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.txtArchiveDocId.Location = new System.Drawing.Point(337, 215);
+            this.txtArchiveDocId.Name = "txtArchiveDocId";
+            this.txtArchiveDocId.Size = new System.Drawing.Size(40, 21);
+            this.txtArchiveDocId.TabIndex = 98;
+            this.txtArchiveDocId.Text = "1";
+            // 
+            // labelGetBinary
+            // 
+            this.labelGetBinary.AutoSize = true;
+            this.labelGetBinary.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.labelGetBinary.ForeColor = System.Drawing.SystemColors.Control;
+            this.labelGetBinary.Location = new System.Drawing.Point(105, 214);
+            this.labelGetBinary.Name = "labelGetBinary";
+            this.labelGetBinary.Size = new System.Drawing.Size(233, 18);
+            this.labelGetBinary.TabIndex = 97;
+            this.labelGetBinary.Text = "GetBinary to archiveDocId         N°";
+            // 
+            // panel54
+            // 
+            this.panel54.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel54.Controls.Add(this.panel69);
+            this.panel54.Location = new System.Drawing.Point(79, 239);
+            this.panel54.Name = "panel54";
+            this.panel54.Size = new System.Drawing.Size(299, 1);
+            this.panel54.TabIndex = 95;
+            // 
+            // panel69
+            // 
+            this.panel69.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.panel69.Location = new System.Drawing.Point(0, 2);
+            this.panel69.Name = "panel69";
+            this.panel69.Size = new System.Drawing.Size(367, 1);
+            this.panel69.TabIndex = 63;
+            // 
+            // btnGetBinary
+            // 
+            this.btnGetBinary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.btnGetBinary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnGetBinary.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGetBinary.FlatAppearance.BorderSize = 0;
+            this.btnGetBinary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGetBinary.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGetBinary.ForeColor = System.Drawing.Color.White;
+            this.btnGetBinary.Location = new System.Drawing.Point(31, 206);
+            this.btnGetBinary.Name = "btnGetBinary";
+            this.btnGetBinary.Size = new System.Drawing.Size(52, 34);
+            this.btnGetBinary.TabIndex = 96;
+            this.btnGetBinary.Text = "Run";
+            this.btnGetBinary.UseVisualStyleBackColor = false;
+            this.btnGetBinary.Click += new System.EventHandler(this.btnGetBinary_Click);
+            // 
             // linkHelpDMS
             // 
-            this.linkHelpDMS.ActiveLinkColor = System.Drawing.Color.DarkOrange;
-            this.linkHelpDMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkHelpDMS.AutoSize = true;
-            this.linkHelpDMS.Cursor = System.Windows.Forms.Cursors.Help;
-            this.linkHelpDMS.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.linkHelpDMS.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkHelpDMS.LinkColor = System.Drawing.Color.White;
-            this.linkHelpDMS.Location = new System.Drawing.Point(1185, 3240);
+            this.linkHelpDMS.Location = new System.Drawing.Point(0, 0);
+            this.linkHelpDMS.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkHelpDMS.Name = "linkHelpDMS";
-            this.linkHelpDMS.Size = new System.Drawing.Size(110, 16);
-            this.linkHelpDMS.TabIndex = 95;
-            this.linkHelpDMS.TabStop = true;
-            this.linkHelpDMS.Text = "ViewSourceCode";
-            this.linkHelpDMS.UseMnemonic = false;
-            this.linkHelpDMS.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkHelpDMS_LinkClicked);
+            this.linkHelpDMS.Size = new System.Drawing.Size(80, 18);
+            this.linkHelpDMS.TabIndex = 0;
             // 
             // labelDmsSetting
             // 
             this.labelDmsSetting.AutoSize = true;
             this.labelDmsSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.labelDmsSetting.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelDmsSetting.Location = new System.Drawing.Point(150, 278);
+            this.labelDmsSetting.Location = new System.Drawing.Point(432, 165);
             this.labelDmsSetting.Name = "labelDmsSetting";
             this.labelDmsSetting.Size = new System.Drawing.Size(85, 18);
             this.labelDmsSetting.TabIndex = 75;
@@ -2458,7 +2798,7 @@ namespace TbApiTester
             // 
             this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
             this.panel24.Controls.Add(this.panel40);
-            this.panel24.Location = new System.Drawing.Point(87, 302);
+            this.panel24.Location = new System.Drawing.Point(369, 189);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(279, 1);
             this.panel24.TabIndex = 73;
@@ -2480,7 +2820,7 @@ namespace TbApiTester
             this.btnDmsSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDmsSetting.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDmsSetting.ForeColor = System.Drawing.Color.White;
-            this.btnDmsSetting.Location = new System.Drawing.Point(76, 270);
+            this.btnDmsSetting.Location = new System.Drawing.Point(358, 156);
             this.btnDmsSetting.Name = "btnDmsSetting";
             this.btnDmsSetting.Size = new System.Drawing.Size(52, 34);
             this.btnDmsSetting.TabIndex = 74;
@@ -2504,7 +2844,7 @@ namespace TbApiTester
             this.labelDmsTitle.AutoSize = true;
             this.labelDmsTitle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.labelDmsTitle.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelDmsTitle.Location = new System.Drawing.Point(76, 162);
+            this.labelDmsTitle.Location = new System.Drawing.Point(32, 112);
             this.labelDmsTitle.Name = "labelDmsTitle";
             this.labelDmsTitle.Size = new System.Drawing.Size(99, 23);
             this.labelDmsTitle.TabIndex = 70;
@@ -2513,7 +2853,7 @@ namespace TbApiTester
             // panel23
             // 
             this.panel23.BackColor = System.Drawing.Color.White;
-            this.panel23.Location = new System.Drawing.Point(76, 186);
+            this.panel23.Location = new System.Drawing.Point(32, 136);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(403, 1);
             this.panel23.TabIndex = 71;
@@ -2523,7 +2863,7 @@ namespace TbApiTester
             this.labelMicrHome.AutoSize = true;
             this.labelMicrHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.labelMicrHome.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelMicrHome.Location = new System.Drawing.Point(150, 223);
+            this.labelMicrHome.Location = new System.Drawing.Point(106, 165);
             this.labelMicrHome.Name = "labelMicrHome";
             this.labelMicrHome.Size = new System.Drawing.Size(49, 18);
             this.labelMicrHome.TabIndex = 69;
@@ -2533,7 +2873,7 @@ namespace TbApiTester
             // 
             this.panelMicrHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
             this.panelMicrHome.Controls.Add(this.panel8);
-            this.panelMicrHome.Location = new System.Drawing.Point(87, 247);
+            this.panelMicrHome.Location = new System.Drawing.Point(43, 189);
             this.panelMicrHome.Name = "panelMicrHome";
             this.panelMicrHome.Size = new System.Drawing.Size(279, 1);
             this.panelMicrHome.TabIndex = 67;
@@ -2546,31 +2886,14 @@ namespace TbApiTester
             this.panel8.Size = new System.Drawing.Size(367, 1);
             this.panel8.TabIndex = 63;
             // 
-            // buttonMicrHome
-            // 
-            this.buttonMicrHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            this.buttonMicrHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.buttonMicrHome.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonMicrHome.FlatAppearance.BorderSize = 0;
-            this.buttonMicrHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonMicrHome.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMicrHome.ForeColor = System.Drawing.Color.White;
-            this.buttonMicrHome.Location = new System.Drawing.Point(76, 214);
-            this.buttonMicrHome.Name = "buttonMicrHome";
-            this.buttonMicrHome.Size = new System.Drawing.Size(52, 34);
-            this.buttonMicrHome.TabIndex = 68;
-            this.buttonMicrHome.Text = "Run";
-            this.buttonMicrHome.UseVisualStyleBackColor = false;
-            this.buttonMicrHome.Click += new System.EventHandler(this.buttonMicrHome_Click);
-            // 
             // roundedPanel6
             // 
             this.roundedPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.roundedPanel6.Controls.Add(this.labelDmsUrl);
-            this.roundedPanel6.Location = new System.Drawing.Point(223, 107);
+            this.roundedPanel6.Location = new System.Drawing.Point(217, 79);
             this.roundedPanel6.Name = "roundedPanel6";
-            this.roundedPanel6.Size = new System.Drawing.Size(1123, 42);
+            this.roundedPanel6.Size = new System.Drawing.Size(923, 26);
             this.roundedPanel6.TabIndex = 94;
             // 
             // labelDmsUrl
@@ -2579,7 +2902,7 @@ namespace TbApiTester
             this.labelDmsUrl.BackColor = System.Drawing.Color.Transparent;
             this.labelDmsUrl.Font = new System.Drawing.Font("Century Gothic", 10.75F, System.Drawing.FontStyle.Bold);
             this.labelDmsUrl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.labelDmsUrl.Location = new System.Drawing.Point(14, 12);
+            this.labelDmsUrl.Location = new System.Drawing.Point(14, 5);
             this.labelDmsUrl.Name = "labelDmsUrl";
             this.labelDmsUrl.Size = new System.Drawing.Size(31, 18);
             this.labelDmsUrl.TabIndex = 90;
@@ -3395,9 +3718,9 @@ namespace TbApiTester
             this.rndPanelUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rndPanelUrl.Controls.Add(this.DmMMSUrl);
-            this.rndPanelUrl.Location = new System.Drawing.Point(274, 20);
+            this.rndPanelUrl.Location = new System.Drawing.Point(195, 20);
             this.rndPanelUrl.Name = "rndPanelUrl";
-            this.rndPanelUrl.Size = new System.Drawing.Size(758, 26);
+            this.rndPanelUrl.Size = new System.Drawing.Size(837, 26);
             this.rndPanelUrl.TabIndex = 95;
             // 
             // DmMMSUrl
@@ -3469,9 +3792,9 @@ namespace TbApiTester
             this.BtnOttieniToken.ForeColor = System.Drawing.Color.White;
             this.BtnOttieniToken.Location = new System.Drawing.Point(87, 183);
             this.BtnOttieniToken.Name = "BtnOttieniToken";
-            this.BtnOttieniToken.Size = new System.Drawing.Size(92, 18);
+            this.BtnOttieniToken.Size = new System.Drawing.Size(130, 18);
             this.BtnOttieniToken.TabIndex = 138;
-            this.BtnOttieniToken.Text = "OttieniToken";
+            this.BtnOttieniToken.Text = "View Seved Token";
             // 
             // btnBusinessObj
             // 
@@ -4338,6 +4661,8 @@ namespace TbApiTester
             this.panelLineOpenDateWM.ResumeLayout(false);
             this.roundedPanel1.ResumeLayout(false);
             this.roundedPanel1.PerformLayout();
+            this.orangePanel9.ResumeLayout(false);
+            this.orangePanel9.PerformLayout();
             this.panelLineDisposeWM.ResumeLayout(false);
             this.panelLineGetPxWM.ResumeLayout(false);
             this.panelLineCreateWM.ResumeLayout(false);
@@ -4371,6 +4696,9 @@ namespace TbApiTester
             this.roundedPanel5.PerformLayout();
             this.tabDMS.ResumeLayout(false);
             this.tabDMS.PerformLayout();
+            this.panel72.ResumeLayout(false);
+            this.panel78.ResumeLayout(false);
+            this.panel54.ResumeLayout(false);
             this.panel24.ResumeLayout(false);
             this.panelMicrHome.ResumeLayout(false);
             this.roundedPanel6.ResumeLayout(false);
@@ -4748,5 +5076,34 @@ namespace TbApiTester
         private OrangePanel orangePanel8;
         private System.Windows.Forms.Button btnReportingServiceLog;
         private System.Windows.Forms.RichTextBox richTextLog;
+        private System.Windows.Forms.Label labelGetBinary;
+        private System.Windows.Forms.Panel panel54;
+        private System.Windows.Forms.Panel panel69;
+        private System.Windows.Forms.Button btnGetBinary;
+        private System.Windows.Forms.TextBox txtArchiveDocId;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label labelArchive;
+        private System.Windows.Forms.Panel panel78;
+        private System.Windows.Forms.Panel panel79;
+        private System.Windows.Forms.Button btnArchiveBinary;
+        private System.Windows.Forms.TextBox textBoxfilename;
+        private System.Windows.Forms.Label labelAttach;
+        private System.Windows.Forms.Button btnAttachBinary;
+        private System.Windows.Forms.TextBox txtBoxErpTbGuid;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtBoxERPDocNs;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtBoxERPpkv;
+        private System.Windows.Forms.Panel panel74;
+        private System.Windows.Forms.Panel panel72;
+        private System.Windows.Forms.Panel panel73;
+        private System.Windows.Forms.Button btnReleaseLogInCnxt;
+        private System.Windows.Forms.Button btnUseLogInCnxt;
+        private OrangePanel orangePanel9;
+        private System.Windows.Forms.Button BtnInfoLoginCntx;
+        private OrangePanel ThreadStatusPanel;
+        private System.Windows.Forms.Label labelThred;
     }
 }

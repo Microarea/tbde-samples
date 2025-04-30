@@ -23,28 +23,9 @@ namespace TbApiTester
         public List<string> requestTbList = new List<string>();
         public List<string> responseTbList = new List<string>();
 
-      
 
-        public List<string> GetRequestResponseLogs()
-        {
-            List<string> logs = new List<string>();
 
-            int count = Math.Min(requestTbList.Count, responseTbList.Count);
-            for (int i = 0; i < count; i++)
-            {
-                logs.Add(requestTbList[i]); // REQUEST
-                logs.Add(responseTbList[i]); // RESPONSE
-              
-              
-            }
-
-            return logs;
-        }
-        public void ClearLogs()
-        {
-            requestTbList.Clear();
-            responseTbList.Clear();
-        }
+       
 
         //////  RetriveTbServerUrl  ///////
 
@@ -91,15 +72,14 @@ namespace TbApiTester
                     string jsonInString = PrepareGetParams(request, xmlContent, userData.UserName);
                     request.Content = new StringContent(jsonInString, Encoding.UTF8, "application/json");
 
-                    // Log della richiesta e del payload
-                    requestTbList.Add($"REQUEST: {request.Method} {request.RequestUri}");
-
+                    // Log REQUEST
+                    requestTbList.Add($"GetXmlParams_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {jsonInString}");
 
                     var response = await client.SendAsync(request);
-                    string responseBody = await response.Content.ReadAsStringAsync(); // Legge il JSON della risposta
+                    string responseBody = await response.Content.ReadAsStringAsync();
 
-                    // Salva la response nel log in formato leggibile
-                    responseTbList.Add($"RESPONSE: {response}");
+                    // Log RESPONSE
+                    responseTbList.Add($"[{DateTime.Now}] Status: {response}\n");
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -109,7 +89,6 @@ namespace TbApiTester
                             string resultVariable = jsonObject["result"]?.ToString();
                             var bytes = Convert.FromBase64String(resultVariable);
                             var decodedString = Encoding.UTF8.GetString(bytes);
-                            requestTbList.Add(new string('-', 50)); //_______
                             return decodedString;
                         }
                     }
@@ -119,7 +98,6 @@ namespace TbApiTester
                 {
                     return "GetXmlParams exception Caught: " + e.Message;
                 }
-
             }
         }
 
@@ -157,12 +135,12 @@ namespace TbApiTester
                     string jsonInString = PrepareGetTb(request, xmlContent, userData.UserName);
                     request.Content = new StringContent(jsonInString, Encoding.UTF8, "application/json");
 
-                    requestTb = $"GetXmlData_ {request.Method} {request.RequestUri}";
-                    requestTbList.Add(requestTb); 
-
+                    //requestTb = $"GetXmlData_ {request.Method} {request.RequestUri}";
+                    // Log REQUEST
+                    requestTbList.Add($"GetXmlData_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {jsonInString}");
                     var response = client.SendAsync(request).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
-                    responseTbList.Add(response.ToString());
+                    responseTbList.Add($"[{DateTime.Now}] Status: {response}\n");
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -262,13 +240,13 @@ namespace TbApiTester
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
                     string jsonInString = PrepareSetTb(request, xmlContent, nAction, userData.UserName);
                     request.Content = new StringContent(jsonInString, Encoding.UTF8, "application/json");
-
-                    requestTb = $"SetXmlData_ {request.Method} {request.RequestUri}";
+                    requestTbList.Add($"SetXmlData_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {jsonInString}");
+                   
                     requestTbList.Add(requestTb); 
 
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
-                    responseTbList.Add(responseBody); 
+                    responseTbList.Add($"[{DateTime.Now}] Status: {response}\n");
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         string functionParams = response.Content.ReadAsStringAsync().Result;

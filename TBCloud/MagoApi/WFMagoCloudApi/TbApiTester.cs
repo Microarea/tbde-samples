@@ -18,6 +18,9 @@ using System.Runtime.InteropServices;
 using System.Web.UI.WebControls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static TbApiTester.LogCredential;
+using System.Windows.Controls.Primitives;
+using System.Data;
+
 
 
 
@@ -33,7 +36,8 @@ namespace TbApiTester
         public bool IsCloudButtonClicked { get; set; }
         private bool isLoggedIn = false;
         private readonly LabelManager labelManager;
-
+        public string base64Data;//dms
+        public string fileName;//dms
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
            int nLeftRect,
@@ -59,15 +63,18 @@ namespace TbApiTester
         private Color previousColor;
         public string interfaceToken { get; set; }
         public string info { get; set; }
+        private System.Windows.Forms.Timer countdownTimer;
+        private int countdownSeconds = 15;
+        private bool thread;
 
         public TbApiTester(bool isCloudButtonClicked)
         {
             InitializeComponent();
-            this.tabLog.Hide();///to do
             this.AutoScaleMode = AutoScaleMode.None;
             btnSaveCredential.Visible = false;
             logCredential = new LogCredential();
             string currentEnvironment = GlobalSettings.CurrentButtonState.ToString();
+
             InitializeCredential(currentEnvironment);
             string folderPath = Path.Combine(basePath, "Docs");
             uiManager.SetControls(this.Controls);
@@ -83,7 +90,7 @@ namespace TbApiTester
             switch (buttonState)
             {
                 case GlobalSettings.ButtonState.DevEnv:
-                    text_http.Text = "https://test-gwam.mago.cloud";
+                    text_http.Text = "";//"http://localhost:5000/account-manager/login"
                     Http_label.Text = "MagoDevEnv authentication authority URL";
                     uiManager.ReplaceColor(Color.FromArgb(232, 159, 0), Color.FromArgb(173, 92, 174));
                     pictureBoxLogo.Image = Properties.Resources.DevEnvBtn;
@@ -350,7 +357,6 @@ namespace TbApiTester
         private void button_Login_Click(object sender, System.EventArgs e)
         {
             bool bok = false;
-
             if (AreParametersOk())
             {
                 bok = manager.authenticationManager.DoLogin(text_http.Text, text_user.Text, text_pwd.Text, text_subscription.Text, text_producer.Text, text_app.Text);
@@ -360,15 +366,33 @@ namespace TbApiTester
 
                     _ = FillApplications();
                     _ = FillApplicationsRObj();
-                    List<SubscriptionInfo> subscriptionInfos = new List<SubscriptionInfo>();
+                    btnSaveCredential.Visible = true;
+                    btnAccount.Visible = true;
 
+                    //account-manager/GetModules
+                    //string moduleMessage = manager.authenticationManager.GetModules(text_http.Text, manager.authenticationManager.userData, DateTime.Now);
+                    Query query = new Query();
+                    query.TableName = MA_CustSupp.TableName; ;
+                    query.SelectedFields = new string[] { "*" };
+                    TbResponse CountResponse = manager.dmMMSManager.Count(manager.authenticationManager.userData, query).Result;
 
+                    if (CountResponse == null)
+                    {
+                        DmMMSUrl.Text = "❌ Error: No response";
+                        return;
+                    }
+
+                    string moduleMessage = CountResponse.PlainResult?.ToString() ?? "No value received";
+
+                    if (!CountResponse.Success)
+                    {
+                        DmMMSUrl.Text = moduleMessage;  // View error message
+                        DmMMSUrl.ForeColor = Color.Black;
+                        DisableButtonsInControl(this.DataManager);
+                        return;
+                    }
                     button_Login.ForeColor = Color.White;
                     button_Login.BackColor = Color.Green;
-                    button_Login.Text = "Ok";
-                    btnAccount.Visible = true;
-                    labelMessage.Text = string.Empty;
-                    btnSaveCredential.Visible = true;
                 }
                 else
                 {
@@ -390,7 +414,38 @@ namespace TbApiTester
         private void button_Token_Click(object sender, EventArgs e)
         {
             if (manager.authenticationManager.IsLogged())
+            {
+
                 manager.authenticationManager.ValidToken(text_http.Text);
+                string subKey = text_subscription.Text;
+                string conn = "Data Source= localhost;Initial Catalog= 'DT-EB28E9';User Id='sa';Password='Microarea.';Connect Timeout=30;Pooling=true;Encrypt=False;";
+                string currentUser = text_user.Text;
+                string accName;
+
+                //TB_Locks locks = new TB_Locks();
+                //accName = locks.AccountName;
+                
+                //TB_LocksConfiguration confLock = new TB_LocksConfiguration(Microarea.Tbf.Model.Database.DbType.SQLSERVER, subKey);
+                //Microarea.Tbf.Model.DataManager.Providers.SubscriptionProvider subProv = new Microarea.Tbf.Model.DataManager.Providers.SubscriptionProvider(subKey, conn, DbType.SQLSERVER);
+                //Microarea.Tbf.Model.Interfaces.Database.DbDataContextProduct product = new Microarea.Tbf.Model.Interfaces.Database.DbDataContextProduct();
+                //TbLockManager lockMg = new TbLockManager(subProv, product);
+
+                //string procName = text_app.Text;
+                //string iKey = "I-663D32";
+                
+                //string token = manager.authenticationManager.userData.LoginKey;
+                //string context = "000000002E846AA0";
+                //RecordLockInfo pippo = new RecordLockInfo(procName, iKey, accName, token, context, 48, 48);
+
+                //ILogger<DiagnosticProvider> logger;
+                //var factory = LoggerFactory.Create(builder =>
+                //{
+                //    builder.AddConsole(); // oppure .AddDebug(), .AddFile() ecc.
+                //});
+                //logger = factory.CreateLogger<DiagnosticProvider>();
+                //DiagnosticProvider provider = new DiagnosticProvider(logger);
+                //_ = lockMg.RecordLockAsync(pippo, provider, "MA_ActivityCodes", "ActivityCodes:466400");
+            }
             else
                 MessageBox.Show("User is not logged, please Login!");
         }
@@ -433,6 +488,22 @@ namespace TbApiTester
             ShowResult(formattedJson);
         }
 
+
+        private void DisableButtonsInControl(Control parentControl)
+        {
+            foreach (Control ctrl in parentControl.Controls)
+            {
+                if (ctrl is System.Windows.Forms.Button btn)
+                {
+                    btn.Enabled = false;
+                    btn.BackColor = Color.LightGray;
+                }
+                else if (ctrl.HasChildren)
+                {
+                    DisableButtonsInControl(ctrl);
+                }
+            }
+        }
         ////////////////////////
         ///// RESULT WINDOW ////
         ////////////////////////
@@ -456,27 +527,12 @@ namespace TbApiTester
             "- SetXmlData: allows the data of a business object to be written to MagoCloud using the Xml payload.";
             ShowResult(content, false, true, true);
         }
-        //private void BtnOpenFolder_Click(object sender, EventArgs e)
-        //{
 
-        //    System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName(folderPath);
-        //    foreach (System.Diagnostics.Process process in processes)
-        //    {
-        //        if (process.MainWindowTitle.Contains(folderPath))
-        //        {
-        //            MessageBox.Show("La cartella è già aperta", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            return;
-        //        }
-        //    }
-
-        //    System.Diagnostics.Process.Start(folderPath);
-        //}
         // COMBOBOX TBFSSERVICE MANAGER
         //___________________________________________________________
         private async void cbxApplication_SelectedIndexChanged(object sender, EventArgs e)
         {
             manager.tbFsServiceManager.selApp = (cbxApplication.SelectedItem == null) ? string.Empty : cbxApplication.SelectedItem.ToString();
-
 
             if (manager.tbFsServiceManager.selApp != "Application")
                 await FillModules(manager.tbFsServiceManager.selApp);
@@ -693,30 +749,47 @@ namespace TbApiTester
         //////////////////////////////
         ///// TBFSSERVICE MANAGER ////
         //////////////////////////////
+        private async Task FillComboBox<T>(ComboBox comboBox, Task<List<T>> dataTask, string defaultItem = null)
+        {
+            try
+            {
+                // Ottieni i dati
+                List<T> items = await dataTask;
+                if (items == null)
+                    return;
+
+                
+                comboBox.DataSource = null;
+
+                if (!string.IsNullOrEmpty(defaultItem) && !items.Contains((T)Convert.ChangeType(defaultItem, typeof(T))))
+                {
+                    items.Insert(0, (T)Convert.ChangeType(defaultItem, typeof(T)));
+                }
+
+                comboBox.DataSource = items;
+
+                if (items.Count > 0)
+                {
+                    comboBox.SelectedIndex = 0;
+                    comboBox.ForeColor = Color.White;
+                }
+                else
+                {
+                    comboBox.ForeColor = Color.Red;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
 
 
         private async Task FillApplications()
         {
             try
             {
-                List<string> applications = await manager.tbFsServiceManager.GetApplications(manager.authenticationManager.userData, DateTime.Now);
-                if (applications == null)
-                    return;
-
-                cbxApplication.DataSource = null;
-                if (!applications.Contains("Application"))
-                {
-                    applications.Insert(0, "Application");
-                }
-                cbxApplication.DataSource = applications;
-                if (applications.Count > 0)
-                {
-                    cbxApplication.SelectedIndex = 0;
-                }
-                else
-                {
-                    cbxApplication.ForeColor = Color.Red;
-                }
+                await FillComboBox(cbxApplication, manager.tbFsServiceManager.GetApplications(manager.authenticationManager.userData, DateTime.Now), "Application");
             }
             catch (Exception e)
             {
@@ -726,53 +799,18 @@ namespace TbApiTester
 
         private async Task FillModules(string application)
         {
-
-            cbxModule.DataSource = null;
-
-            // Ottieni i moduli e i percorsi.
             var modulesWithPaths = await manager.tbFsServiceManager.GetModules(manager.authenticationManager.userData, DateTime.Now, application);
-            if (modulesWithPaths == null || modulesWithPaths.Count == 0)
-                return;
+            List<string> moduleNames = modulesWithPaths?.Select(m => m.ModuleName).ToList() ?? new List<string>();
 
-            // Estrai solo i nomi per il combobox.
-            List<string> moduleNames = modulesWithPaths.Select(m => m.ModuleName).ToList();
-
-            // Aggiungi "Module" se necessario.
-            if (!moduleNames.Contains("Module"))
-            {
-                moduleNames.Insert(0, "Module");
-                modulesWithPaths.Insert(0, ("Module", string.Empty)); // Aggiungi anche il path vuoto.
-            }
-
-            cbxModule.DataSource = moduleNames;
-
-            // Memorizza i percorsi in un dizionario per utilizzi futuri.
-            var modulePaths = modulesWithPaths.ToDictionary(m => m.ModuleName, m => m.Path);
-
-            // Seleziona il primo elemento se disponibile.
-            if (moduleNames.Count > 0)
-                cbxModule.SelectedIndex = 0;
-
-            // Esempio di utilizzo del path:
-            // string selectedModule = cbxModule.SelectedItem.ToString();
-            // string selectedPath = modulePaths[selectedModule];
+            await FillComboBox(cbxModule, Task.FromResult(moduleNames), "Module");
+          
         }
 
         private async Task FillDocuments(string application, string module)
         {
-            cbxDocReport.DataSource = null;
-            (List<string> folderNames, List<string> folderObjectsNS) = await manager.tbFsServiceManager.GetDocumentsFolders(manager.authenticationManager.userData, DateTime.Now, application, module);
-
-            if (folderNames == null)
-                return;
-            if (!folderNames.Contains("Document"))
-            {
-                folderNames.Insert(0, "Document");
-            }
-            cbxDocReport.DataSource = folderNames; // Remove the DataSource before editing the collection of items
+            var (folderNames, folderObjectsNS) = await manager.tbFsServiceManager.GetDocumentsFolders(manager.authenticationManager.userData, DateTime.Now, application, module);
+            await FillComboBox(cbxDocReport, Task.FromResult(folderNames), "Document");
             manager.tbFsServiceManager.DocumentNamespace = folderObjectsNS;
-            if (folderNames.Count > 0)
-                cbxDocReport.SelectedIndex = 0;
         }
 
         private async Task FillProfiles(string application, string module, string folderName)
@@ -889,7 +927,26 @@ namespace TbApiTester
         ///// WEBMETHODS BTN /////
         //////////////////////////
 
+
+
+        private void BtnInfoLoginCntx_Click(object sender, EventArgs e)
+        {
+            string content =
+          $@"Thread Lifecycle
+
+            Creating context objects alone is not sufficient to keep the thread alive.
+            To explicitly manage the thread's lifecycle, the following endpoints can be used:
+
+            - Keep the thread alive:  
+              POST http://{UrlSManager.TbServerUrl}/tbserver/api/tb/document/useLoginContext/
+
+            - Release the thread:  
+              POST http://{UrlSManager.TbServerUrl}/tbserver/api/tb/document/releaseLoginContext/";
+            ShowResult(content, false, true, true);
+        }
         /////// DATE BTN ////////
+
+
         private void btnCurrOpeningDate_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
@@ -898,12 +955,12 @@ namespace TbApiTester
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            labelWbUrl.Text = manager.authenticationManager.userData.TbUrl.ToString();
+           
             DateTime now = new DateTime(2022, 12, 31);
             string contentBody = manager.webMethodsManager.CurrentOpeningDate(manager.authenticationManager.userData, now);
-
+            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
             ShowResult(contentBody != null ? "CurrentOpeningDate\n" + contentBody : "Unable to retrieve OpeningDate\n" + contentBody, contentBody != null);
-            labelWbUrl.Text = UrlSManager.TbServerUrl;
+            
         }
 
         private void btnClosingDate_Click(object sender, EventArgs e)
@@ -914,12 +971,13 @@ namespace TbApiTester
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
+            
             string contentBody = manager.webMethodsManager.ClosingDateFiscalYear(manager.authenticationManager.userData, DateTime.Now);
-
+            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
             ShowResult(contentBody != null ? "ClosingDate\n" + contentBody : "Unable to retrieve ClosingDate\n" + contentBody, contentBody != null);
         }
 
-        private void btnCreatePx_Click(object sender, EventArgs e)
+        private async void btnCreatePx_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
@@ -927,9 +985,47 @@ namespace TbApiTester
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            defPriceHandle = manager.webMethodsManager.DefaultSalesPricesCreate(manager.authenticationManager.userData, DateTime.Now);
+            defPriceHandle =  manager.webMethodsManager.DefaultSalesPricesCreate(manager.authenticationManager.userData, DateTime.Now);
+            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
             ShowResult(defPriceHandle < 1 ? "The creation is not successful : \n" + defPriceHandle.ToString() : "Successful \n"
                 + "You have created the handle number : \n" + defPriceHandle.ToString(), defPriceHandle >= 1); if (defPriceHandle < 1) ;
+            if (thread != true) StartCountdown();
+            else return;
+        }
+
+        private void StartCountdown()
+        {
+            countdownSeconds = 15;
+            labelThred.Text = $"Thread valid for:\n{countdownSeconds} seconds";
+
+            if (countdownTimer == null)
+            {
+                countdownTimer = new System.Windows.Forms.Timer();
+                countdownTimer.Interval = 1000; // 1 secondo
+                countdownTimer.Tick += CountdownTimer_Tick;
+            }
+
+            countdownTimer.Start();
+        }
+
+        private void CountdownTimer_Tick(object sender, EventArgs e)
+        {
+            countdownSeconds--;
+
+            if (countdownSeconds > 0)
+            {
+                ThreadStatusPanel.Visible = true;
+                ThreadStatusPanel.BackColor = Color.LimeGreen;
+                labelThred.Text = $"Thread valid for:\n{countdownSeconds} seconds";
+            }
+            else
+            {
+                countdownTimer.Stop();
+                ThreadStatusPanel.Visible = true;
+                ThreadStatusPanel.BackColor = Color.Red;
+                labelThred.Text = "Thread is no longer valid.";
+                defPriceHandle = -1; 
+            }
         }
 
         private void btnGetDefPrice_Click(object sender, EventArgs e)
@@ -946,7 +1042,8 @@ namespace TbApiTester
             string uom = "KG";
             double quantity = 10.0;
             string contentBody = manager.webMethodsManager.GetDefaultPrice(manager.authenticationManager.userData, DateTime.Now, handle, customer, item, uom, quantity);
-            ShowResult(contentBody != null ? "DefaultPricesHandle is : \n" + contentBody : "Error retrieving prices", contentBody != null);
+            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
+            ShowResult(contentBody != null ? "DefaultPricesHandle is : \n" + contentBody : "Error retrieving prices\n" + "Thread inactive or expired?", contentBody != null);
         }
 
         private void btnDispose_Click(object sender, EventArgs e)
@@ -959,13 +1056,55 @@ namespace TbApiTester
             }
             long handle = defPriceHandle;
             bool contentBody = manager.webMethodsManager.DefaultSalesPricesDispose(manager.authenticationManager.userData, DateTime.Now, handle);
+            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
             string res = "Dispose successful: \n " + contentBody + "\nThe canceled sales price is: " + defPriceHandle.ToString();
             if (handle == 0)
             {
-                ShowResult("Impossible to cancel. No SalesPrices created.", false);
+                ShowResult("Impossible to cancel. No SalesPrices created.\n" + "Thread inactive or expired?", false);
             }
             else
                 ShowResult(res, contentBody);
+        }
+
+        private  void btnUseLogInCnxt_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            countdownTimer.Stop();
+            thread =  manager.webMethodsManager.UseLoginContext(manager.authenticationManager.userData, DateTime.Now);
+            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
+            if (thread == true) 
+            {
+                ThreadStatusPanel.Visible = true;
+                ThreadStatusPanel.BackColor = Color.LimeGreen;
+                labelThred.Text = "Thread active";
+            }
+            else
+            {
+                ThreadStatusPanel.BackColor = Color.Red;
+            }
+        }
+
+        private void btnReleaseLogInCnxt_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+
+            thread = manager.webMethodsManager.ReleaseLoginContext(manager.authenticationManager.userData, DateTime.Now);
+            if (thread == true) 
+            {
+                StartCountdown();
+                thread = false;
+            }
+            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
         }
 
         ////////////////////////////////
@@ -1114,7 +1253,7 @@ namespace TbApiTester
         {
             if (loadedXmlDocument == null)
             {
-                MessageBox.Show("Nessun documento XML è stato caricato.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No XML document was loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1136,12 +1275,12 @@ namespace TbApiTester
             {
                 int statusCode = await UploadObject();
 
-                MessageBox.Show($"Upload esegito: {statusCode}");
+                MessageBox.Show($"Upload done: {statusCode}");
                 BtnUploadRefObj.ForeColor = Color.Green;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Errore durante l'upload: {ex.Message}");
+                MessageBox.Show($"Error while uploading: {ex.Message}");
                 BtnUploadRefObj.ForeColor = Color.Red;
             }
         }
@@ -1189,7 +1328,7 @@ namespace TbApiTester
                         };
 
                         string result = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine($"Risultato dell'upload: {result}");
+                        Console.WriteLine($"Upload result: {result}");
 
                         return opResult.StatusCode;
                     }
@@ -1279,7 +1418,7 @@ namespace TbApiTester
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Errore nella costruzione di joQ1: " + ex.Message);
+                Console.WriteLine("Error joQ1: " + ex.Message);
             }
             string args_valQ1 = joQ1.ToString();
 
@@ -1292,14 +1431,14 @@ namespace TbApiTester
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Errore nella costruzione di joQ2: " + ex.Message);
+                Console.WriteLine("Error joQ2: " + ex.Message);
             }
             string args_valQ2 = joQ2.ToString();
 
-            // Leggi la selezione della ComboBox
+            // Read the ComboBox selection
             string selectedQuery = comboBoxQuery.SelectedItem?.ToString() ?? "";
 
-            string result = ""; // Variabile per memorizzare il risultato della query
+            string result = "";
             switch (selectedQuery)
             {
                 case "Radar":
@@ -1337,10 +1476,10 @@ namespace TbApiTester
                     break;
 
                 default:
-                    MessageBox.Show("Per favore, seleziona una query dalla lista.");
+                    MessageBox.Show("Please select a query from the list.");
                     return;
             }
-            ShowResult($"Risultato {selectedQuery}:\n{result}", bOk);
+            ShowResult($"Result {selectedQuery}:\n{result}", bOk);
             labelDataUrl.Text = manager.dataServiceManager.requestDs;
         }
 
@@ -1446,34 +1585,235 @@ namespace TbApiTester
             ShowResult(contentBody != null ? "DmsSetting: \n " + contentBody : "Error retrieving DmsSetting", contentBody != null);
         }
 
-        //////////////////////
-        //// BTN SOURCECODE ///
-        ///////////////////////
-        private void linkHelpTb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+
+        private async void CbxDmsApp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string contentBody = manager.exampleManager.ExampleTb();
-            OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\TbServerManager.cs");
+        //    manager.tbFsServiceManager.selApp = (CbxDmsApp.SelectedItem == null) ? string.Empty : CbxDmsApp.SelectedItem.ToString();
+
+
+        //    if (manager.tbFsServiceManager.selApp != "Application")
+        //        await FillModules(manager.tbFsServiceManager.selApp);
+
+        }
+        //___________________________________________________________
+        private async void cbxDmsMod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //manager.tbFsServiceManager.selMod = (cbxDmsMod.SelectedItem == null) ? string.Empty : cbxDmsMod.SelectedItem.ToString();
+
+
+            //if (manager.tbFsServiceManager.selMod != "Module")
+            //{
+            //    string application = manager.tbFsServiceManager.selApp;
+            //    string module = manager.tbFsServiceManager.selMod;
+            //    if (manager.tbFsServiceManager.DocumentPath != null && manager.tbFsServiceManager.DocumentPath.Count > 0 && cbxDmsMod != null && cbxDmsMod.SelectedIndex > -1)
+            //    {
+            //        manager.tbFsServiceManager.CurrentDocNS = manager.tbFsServiceManager.DocumentNamespace[cbxDmsDoc.SelectedIndex];
+            //    }
+            //    await FillDocuments(application, module);
+
+            //}
+
+
+        }
+        //___________________________________________________________
+        private async void cbxDmsDoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //manager.tbFsServiceManager.selDoc = (cbxDmsDoc.SelectedItem == null) ? string.Empty : cbxDmsDoc.SelectedItem.ToString();
+
+            //if (cbxDmsDoc.Items.Count == 0 || cbxDmsDoc.SelectedIndex < 0)
+            //{
+            //    return; 
+            //}
+            //if (manager.tbFsServiceManager.selDoc != "Document")
+            //{
+            //    string application = manager.tbFsServiceManager.selApp;
+            //    string module = manager.tbFsServiceManager.selMod;
+            //    string folderName = manager.tbFsServiceManager.selDoc;
+            //    if (manager.tbFsServiceManager.DocumentNamespace != null && manager.tbFsServiceManager.DocumentNamespace.Count > 0 && cbxDocReport != null && cbxDocReport.SelectedIndex > -1)
+            //    {
+            //        manager.tbFsServiceManager.CurrentDocNS = manager.tbFsServiceManager.DocumentNamespace[cbxDocReport.SelectedIndex - 1];
+            //    }
+            //    await FillProfiles(application, module, folderName);
+            //}
         }
 
-        private void linkCodeSourceWb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private async void btnGetBinary_Click(object sender, EventArgs e)
         {
-            OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WebMethodsManager.cs");
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+
+            string archiveDocId = txtArchiveDocId.Text.Trim(); // Prende il valore dall'interfaccia
+
+            if (string.IsNullOrEmpty(archiveDocId))
+            {
+                MessageBox.Show("Please enter an ArchiveDocId.");
+                return;
+            }
+
+            try
+            {
+                string responseBody = await manager.dmsManager.GetBinary(manager.authenticationManager.userData, archiveDocId);
+
+                if (!string.IsNullOrEmpty(responseBody))
+                {
+                    JObject jsonResponse = JObject.Parse(responseBody);
+
+                    if (jsonResponse["Content"]?["Item1"] != null && jsonResponse["Content"]?["Item2"] != null)
+                    {
+                         base64Data = jsonResponse["Content"]["Item1"].ToString();
+                         fileName = jsonResponse["Content"]["Item2"].ToString();
+                        byte[] fileBytes = Convert.FromBase64String(base64Data);
+
+                        string extension = Path.GetExtension(fileName).ToLower();
+
+                        switch (extension)
+                        {
+                            case ".jpg":
+                            case ".jpeg":
+                            case ".png":
+                            case ".bmp":
+                            case ".gif":
+                                System.Drawing.Image image = Base64ToImage(base64Data);
+                                ShowImage(image, fileName);
+                                break;
+
+                            case ".pdf":
+                                string pdfPath = SaveFile(fileBytes, fileName);
+                                OpenFile(pdfPath);
+                                break;
+
+                            case ".txt":
+                            case ".log":
+                                string textContent = Encoding.UTF8.GetString(fileBytes);
+                                ShowText(textContent, fileName);
+                                break;
+
+                            default:
+                                string filePath = SaveFile(fileBytes, fileName);
+                                MessageBox.Show($"File saved: {filePath}", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                        }
+                        textBoxfilename.Text = fileName;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid response format.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error retrieving DmsSetting.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+        private async void btnAttachBinary_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+
+            string responseBody = await manager.dmsManager.AttachBinarycontent(manager.authenticationManager.userData, base64Data, textBoxfilename.Text, txtBoxErpTbGuid.Text, txtBoxERPDocNs.Text,txtBoxERPpkv.Text);
+           
+            return;
         }
 
-        private void linkHelpDataService_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private async void btnArchiveBinary_Click(object sender, EventArgs e)
         {
-            OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\DataServiceManager.cs");
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+            fileName = textBoxfilename.Text;
+            string responseBody = await manager.dmsManager.ArchiveBinarycontent(manager.authenticationManager.userData, base64Data, textBoxfilename.Text);
+            return;
         }
 
-        private void linkHelpReportingService_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        // Funzione per convertire base64 in immagine
+        private System.Drawing.Image Base64ToImage(string base64String)
         {
-            OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\RsManager.cs");
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            using (MemoryStream ms = new MemoryStream(imageBytes))
+            {
+                return System.Drawing.Image.FromStream(ms);
+            }
         }
 
-        private void linkHelpDMS_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        // Funzione per salvare il file ricevuto su disco
+        private string SaveFile(byte[] fileBytes, string fileName)
         {
-            OpenVisualStudio(@"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\WFMagoCloudApi.sln", @"C:\mago\tbde-samples\TBCloud\MagoApi\WFMagoCloudApi\DmsManager.cs");
+            string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+            File.WriteAllBytes(savePath, fileBytes);
+            return savePath;
         }
+
+        // Funzione per mostrare il file di testo in un MessageBox o TextBox
+        private void ShowText(string text, string fileName)
+        {
+            Form textForm = new Form
+            {
+                Text = $"Text Preview: {fileName}",
+                Size = new Size(600, 400)
+            };
+
+            System.Windows.Forms.TextBox textBox = new System.Windows.Forms.TextBox
+            {
+                Multiline = true,
+                ScrollBars = System.Windows.Forms.ScrollBars.Vertical,
+                Dock = DockStyle.Fill,
+                Text = text
+            };
+
+            textForm.Controls.Add(textBox);
+            textForm.ShowDialog();
+        }
+
+        // Funzione per aprire file PDF o altri file con il programma predefinito
+        private void OpenFile(string filePath)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+                {
+                    FileName = filePath,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Cannot open file: {ex.Message}");
+            }
+        }
+
+        // Funzione per mostrare l'immagine in una PictureBox
+        private void ShowImage(System.Drawing.Image image, string fileName)
+        {
+            Form imageForm = new Form
+            {
+                Text = $"Preview: {fileName}",
+                Size = new Size(600, 400)
+            };
+
+            PictureBox pictureBox = new PictureBox
+            {
+                Image = image,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Dock = DockStyle.Fill
+            };
+
+            imageForm.Controls.Add(pictureBox);
+            imageForm.ShowDialog();
+        }
+
 
         ////////////////////////
         ////DATA MANAGER MMS////
@@ -1500,11 +1840,17 @@ namespace TbApiTester
                 return;
             }
             TbResponse responseS = manager.dmMMSManager.Schema(manager.authenticationManager.userData, MA_CustSupp.TableName).Result;
-            string schemaContentBody = responseS.PlainResult;
-            //TbResponse responseP = manager.dmMMSManager.Prototype(manager.authenticationManager.userData, sampleTableName).Result;
-            //string prototypeContentBody = responseP.PlainResult;
-            string contentBody = MA_CustSupp.TableName;
-            ShowResult(responseS.Success ? "TableSchema " + MA_CustSupp.TableName + " OK" : "Error retrieving TableSchema " + MA_CustSupp.TableName);
+            if (responseS == null || !responseS.Success)
+            {
+                btnTableSchema.ForeColor = Color.Red;
+                return;
+            }
+
+            string schemaContentBody = responseS.PlainResult ?? "No data available";
+
+            // Display success message
+            ShowResult($"TableSchema {MA_CustSupp.TableName} OK");
+
             DmMMSUrl.Text = UrlSManager.DmMMSUrl;
         }
 
@@ -1523,6 +1869,11 @@ namespace TbApiTester
             };
 
             TbResponse SelectResponse = await manager.dmMMSManager.Select(manager.authenticationManager.userData, query);
+            if (SelectResponse == null || !SelectResponse.Success)
+            {
+                btnSelect.ForeColor = Color.Red;
+                return;
+            }
             JArray dataArray = JArray.Parse((string)SelectResponse.ReturnValue);
             StringBuilder contentBody = new StringBuilder();
 
@@ -1551,6 +1902,11 @@ namespace TbApiTester
             query.TableName = MA_CustSupp.TableName; ;
             query.SelectedFields = new string[] { "*" };
             TbResponse CountResponse = manager.dmMMSManager.Count(manager.authenticationManager.userData, query).Result;
+            if (CountResponse == null || !CountResponse.Success)
+            {
+                btnCount.ForeColor = Color.Red;
+                return;
+            }
             string CountContentBody = (string)CountResponse.ReturnValue;
             string contentBody = CountContentBody;
             labelCount.Text = "Count " + MA_CustSupp.TableName + " = " + contentBody;
@@ -1567,6 +1923,11 @@ namespace TbApiTester
             tableData.TableName = MA_CustSupp.TableName; ;
             tableData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
             TbResponse selectByKeyResponse = manager.dmMMSManager.SelectAllByKey(manager.authenticationManager.userData, tableData).Result;
+            if (selectByKeyResponse == null || !selectByKeyResponse.Success)
+            {
+                btnSelectAllByKey.ForeColor = Color.Red;
+                return;
+            }
             string selectByKeyContentBody = (string)selectByKeyResponse.ReturnValue;
 
             if (selectByKeyContentBody != null && selectByKeyContentBody.ToLower() != "null")
@@ -1631,7 +1992,9 @@ namespace TbApiTester
             crudData.Keys = new object[] { textBoxCustSuppType.Text, textBoxCustSupp.Text };
             if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
             {
+
                 TbResponse updateResponse = manager.dmMMSManager.Update(manager.authenticationManager.userData, crudData).Result;
+
                 if (updateResponse.Success != true)
                     MessageBox.Show($"Table not Updated ({updateResponse.StatusCode})");
                 else
@@ -2000,7 +2363,7 @@ namespace TbApiTester
 
         private void btnExpandDynamicQueries_Click(object sender, EventArgs e)
         {
-           
+
             if (btnExpandDynamicQueries.Text == "Try")
             {
                 string content =
@@ -2091,7 +2454,7 @@ namespace TbApiTester
                     var requestData = new JObject();
                     var content = new StringContent(requestData.ToString(), Encoding.UTF8, "application/json");
                     HttpResponseMessage response = await client.PostAsync(url, content);
-
+                    labelBObjUrl.Text = url.ToString();
                     if (response.IsSuccessStatusCode)
                     {
                         string result = await response.Content.ReadAsStringAsync();
@@ -2120,6 +2483,7 @@ namespace TbApiTester
                     var requestData = new JObject();
                     var content = new StringContent(requestData.ToString(), Encoding.UTF8, "application/json");
                     HttpResponseMessage response = await client.PostAsync(url, content);
+                    labelBObjUrl.Text = url.ToString();
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -2141,41 +2505,86 @@ namespace TbApiTester
         ///TODO//
         private void btnTbServerLog_Click(object sender, EventArgs e)
         {
-            if (manager.tbServerManager != null)
+            if (manager.tbServerManager.requestTbList.Count == 0 && manager.tbServerManager.responseTbList.Count == 0)
             {
-                List<string> logs = manager.tbServerManager.GetRequestResponseLogs();
-                richTextLog.Text = string.Join(Environment.NewLine, logs);
+                AppendToLog("⚠️");
+                return;
+            }
+
+            StringBuilder logBuilder = new StringBuilder();
+
+            for (int i = 0; i < manager.tbServerManager.requestTbList.Count; i++)
+            {
+                logBuilder.AppendLine($"🟢 REQUEST: {manager.tbServerManager.requestTbList[i]}");
+
+                if (i < manager.tbServerManager.responseTbList.Count)
+                {
+                    logBuilder.AppendLine($"🔵 RESPONSE: {manager.tbServerManager.responseTbList[i]}");
+                }
+                else
+                {
+                    logBuilder.AppendLine($"⚠️ No Response");
+                }
+                logBuilder.AppendLine(new string('=', 60)); // Separatore
+            }
+
+            AppendToLog(logBuilder.ToString());
+        }
+
+        // Metodo per aggiornare la RichTextBox in modo sicuro
+        private void AppendToLog(string text)
+        {
+            if (richTextLog.InvokeRequired)
+            {
+                richTextLog.Invoke(new Action(() => AppendToLog(text)));
             }
             else
             {
-                richTextLog.Text = "No logs.";
+                richTextLog.AppendText($"{text}{Environment.NewLine}");
+                richTextLog.ScrollToCaret();
             }
         }
+
 
         private void btnClearLog_Click(object sender, EventArgs e)
         {
             if (manager.tbServerManager != null)
             {
-                manager.tbServerManager.ClearLogs(); 
-                richTextLog.Text = string.Empty; 
+                manager.logsManager.ClearLogs();
+                richTextLog.Text = string.Empty;
             }
 
         }
 
         private void btnDataServiceLogs_Click(object sender, EventArgs e)
         {
-            if (manager.dataServiceManager != null)
+            if (manager.tbServerManager.requestTbList.Count == 0 && manager.tbServerManager.responseTbList.Count == 0)
             {
-                List<string> logs = manager.dataServiceManager.GetRequestResponseLogs();
-                richTextLog.Text = string.Join(Environment.NewLine, logs);
-            }
-            else
-            {
-                richTextLog.Text = "No logs.";
+                AppendToLog("⚠️");
+                return;
             }
 
+            StringBuilder logBuilder = new StringBuilder();
+
+            for (int i = 0; i < manager.dataServiceManager.requestDsList.Count; i++)
+            {
+                logBuilder.AppendLine($"🟢 REQUEST: {manager.dataServiceManager.requestDsList[i]}");
+
+                if (i < manager.dataServiceManager.responseDsList.Count)
+                {
+                    logBuilder.AppendLine($"🔵 RESPONSE: {manager.dataServiceManager.responseDsList[i]}");
+                }
+                else
+                {
+                    logBuilder.AppendLine($"⚠️ No Response");
+                }
+                logBuilder.AppendLine(new string('=', 60)); // Separatore
+            }
+
+            AppendToLog(logBuilder.ToString());
         }
-        
+
+       
     }
 }
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Policy;
 using System.Security.Principal;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -31,7 +32,8 @@ namespace TbApiTester
         internal string SubscriptionKey { get;  set; }
         internal string Producer { get; set; }
         internal string AppKey { get; set; }
-       
+        internal string LoginKey { get; set; }
+
         internal void Clear()
         {
             UrlSManager.TbFsServiceUrl = string.Empty;
@@ -49,6 +51,7 @@ namespace TbApiTester
             SubscriptionKey = string.Empty;
             Producer = string.Empty;
             AppKey = string.Empty;
+            LoginKey = string.Empty;
         }
     }
     public class SubscriptionInfo
@@ -182,7 +185,7 @@ namespace TbApiTester
                     if (GlobalSettings.CurrentButtonState == GlobalSettings.ButtonState.Web)
                     {
                         HttpResponseMessage checkResponse = client.GetAsync(mwConsoleApi).Result;
-
+                        string moduleMessage = GetModules(gwamUrl,userData, DateTime.Now);
                         if (checkResponse.StatusCode == System.Net.HttpStatusCode.OK)
                         {
                             // Use MagoWebLogin  for 5.0
@@ -220,10 +223,10 @@ namespace TbApiTester
                 { "AccountName", userName },
                 { "Password", pwd },
                 { "Token", "" },
-                { "AppId", "MagoAPI" },
+                { "AppId", appKey },
                 { "SubscriptionKey", subscriptionKey },
                 { "ProducerKey", "" },
-                { "AppKey", "" }
+                { "AppKey", appKey }
             };
 
                     string requestJsonInString = JsonConvert.SerializeObject(credential);
@@ -245,6 +248,7 @@ namespace TbApiTester
                                 userData.Token = jsonObject["JwtToken"]?.ToString();
                                 userData.UserName = jsonObject["AccountName"]?.ToString();
                                 userData.SubscriptionKey = subscriptionKey;
+                                userData.LoginKey = jsonObject["LoginKey"]?.ToString();
 
                                 MessageBox.Show("The login was successful.");
                                 return true;
@@ -508,7 +512,75 @@ namespace TbApiTester
             }
         }
 
+        internal string GetModules(string gwamUrl,UserData userData, DateTime operationDate)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    string localGetModules = "http://localhost:5000/account-manager/GetModules";
+                    string mwConsoleGetModules = "http://localhost:60000/account-manager/GetModules";
+                    string mwConsoleApi = "http://localhost:60000/mw-console/api";
+                    string requestUrl;
 
+                    if (GlobalSettings.CurrentButtonState == GlobalSettings.ButtonState.Web)
+                    {
+                        if (client.GetAsync(mwConsoleApi).Result.StatusCode == System.Net.HttpStatusCode.OK)
+                        {
+                            requestUrl = mwConsoleGetModules;
+                        }
+                        else if (string.IsNullOrEmpty(gwamUrl))
+                        {
+                            return "MW Console API is unreachable.";
+                        }
+                        else
+                        {
+                            requestUrl = "http://localhost:5000/account-manager/GetModules";
+                        }
+                    }
+                    else
+                    {
+                        requestUrl = string.IsNullOrEmpty(gwamUrl) ? localGetModules : gwamUrl + "/gwam_login/api/GetModules";
+                    }
+
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
+                    request.Content = new StringContent(GetTokenForBody(), System.Text.Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = client.SendAsync(request).Result;
+                    string responseBody = response.Content.ReadAsStringAsync().Result;
+
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(responseBody);
+
+                        if (jsonResponse?["modules"]?["module"] is JArray modulesArray)
+                        {
+                            bool containsMagoAPI = modulesArray.Any(m => m["name"]?.ToString() == "erp.magoapi");
+
+                            if (!containsMagoAPI)
+                            {
+                                return "❌ DataManager is disabled."+" The module 'MagoApi' is NOT available.";
+                            }
+                            // If the module exists, return an empty string (no error message)
+                            return "";
+                        }
+                        else
+                        {
+                            return "⚠️ Invalid response format: 'modules' array not found.";
+                        }
+                    }
+                    else
+                    {
+                        return "❌ Token is no longer valid.";
+                    }
+                }
+                catch (HttpRequestException e)
+                {
+                    return "❌ Error in GetModules: " + e.Message;
+                }
+            }
+        }
 
     }
 }

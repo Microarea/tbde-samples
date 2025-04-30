@@ -33,7 +33,7 @@ namespace TbApiTester
         //        if (jsonObject != null)
         //        {
         //            resultVariable = jsonObject["Content"]?.ToString();
-                    
+
         //        }
         //        return UrlSManager.DataServiceUrl = resultVariable;
         //    }
@@ -113,5 +113,140 @@ namespace TbApiTester
             }
         }
 
+        internal async Task<string> GetBinary(UserData userData, string archiveDocId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (string.IsNullOrEmpty(UrlSManager.TbServerUrl))
+                        UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MICRODMS/");
+
+                    string requestUrl = UrlSManager.DmsServiceUrl + "/dms/api/attach/getbinary";
+                    string localrequestUrl = "http://localhost:60000/dms/api/attach/getbinary";
+                    string localrequestUrlWeb = "http://localhost:60000/dms/api/attach/getbinary";
+
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, localrequestUrl);
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
+
+                    // Corpo della richiesta con il valore dinamico
+                    var requestBody = new { archivedocid = archiveDocId };
+                    request.Content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string contentBase64 = await response.Content.ReadAsStringAsync();
+                        return contentBase64;
+                    }
+                    else
+                    {
+                        return $"Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}";
+                    }
+                }
+                catch (Exception e)
+                {
+                    return $"Exception: {e.Message}";
+                }
+            }
+        }
+
+        internal async Task<string> AttachBinarycontent(UserData userData, string contentBase64, string fileName, string erpTbGuid, string erpDocNs, string erpPKV)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (string.IsNullOrEmpty(UrlSManager.TbServerUrl))
+                        UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MICRODMS/");
+
+                    string requestUrl = UrlSManager.DmsServiceUrl + "/dms/api/attach/binarycontent";
+                    string localrequestUrl = "http://localhost:60000/dms/api/attach/binarycontent";
+
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, localrequestUrl);
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
+
+                    var requestBody = new
+                    {
+                        content = contentBase64,
+                        Name = fileName,
+                        CollectionId = 1,
+                        Description = fileName,
+                        FreeTags = "",
+                        ERPTBGuid = erpTbGuid,
+                        ERPDocNamespace = erpDocNs,
+                        ERPPrimaryKeyValue = erpPKV,
+                        BookmarkList = ""
+                    };
+
+                    request.Content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return await response.Content.ReadAsStringAsync();
+                    }
+                    else
+                    {
+                        return $"Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}";
+                    }
+                }
+                catch (Exception e)
+                {
+                    return $"Exception: {e.Message}";
+                }
+            }
+        }
+
+
+        internal async Task<string> ArchiveBinarycontent(UserData userData, string contentBase64, string fileName)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (string.IsNullOrEmpty(UrlSManager.TbServerUrl))
+                        UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MICRODMS/");
+
+                    string requestUrl = UrlSManager.DmsServiceUrl + "/dms/api/archive/binarycontent";
+                    string localrequestUrl = "http://localhost:5020/dms/api/archive/binarycontent";
+
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, localrequestUrl);
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
+
+                    var requestBody = new
+                    {
+                        CollectionId = 1,
+                        Description = fileName,//Modificare
+                        FreeTags = "",
+                        BookmarkList = ""
+                    };
+
+                    request.Content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return await response.Content.ReadAsStringAsync();
+                    }
+                    else
+                    {
+                        return $"Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}";
+                    }
+                }
+                catch (Exception e)
+                {
+                    return $"Exception: {e.Message}";
+                }
+            }
+        }
     }
 }
+
+

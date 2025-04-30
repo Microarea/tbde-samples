@@ -8,15 +8,18 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using Microarea.Generic;
+using System.Threading.Tasks;
 
 namespace TbApiTester
 {
     class WebMethodsManager
     {
+        public string requestWm;
         //Uri RsUrl = new Uri("https://develop.mago.cloud/13/be");
         //public string RetriveWebMethodsUrl(UserData userData, DateTime operationDate)
         //{
-           
+
         //    using (HttpClient client = new HttpClient())
         //    {
         //        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/TBSERVER");
@@ -48,7 +51,7 @@ namespace TbApiTester
                     //UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
-
+                    requestWm = $"{request.Method} {request.RequestUri}";
                     string jsonInString = PrepareOpeningDate(request);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -87,8 +90,8 @@ namespace TbApiTester
             return (functionParams);
         }
 
-          /////////////////////////////////////
-         //// Closing Date of Fiscal Year ////
+        /////////////////////////////////////
+        //// Closing Date of Fiscal Year ////
         /////////////////////////////////////
         public string ClosingDateFiscalYear(UserData userData, DateTime operationDate)
         {
@@ -101,7 +104,7 @@ namespace TbApiTester
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
-
+                    requestWm = $"{request.Method} {request.RequestUri}";
                     string jsonInString = PrepareCloseDate(request);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -136,15 +139,15 @@ namespace TbApiTester
                 ns = "ERP.Company.Dbl.ClosingDateOfFiscalYear",
                 args = new
                 {
-                        data = mydate,
-                        result = "data"
+                    data = mydate,
+                    result = "data"
                 }
             });
             return (functionParams);
         }
 
-          ////////////////////////////////////
-         //// Default Sale PricesCreate  ////
+        ////////////////////////////////////
+        //// Default Sale PricesCreate  ////
         ////////////////////////////////////
         public long DefaultSalesPricesCreate(UserData userData, DateTime operationDate)
         {
@@ -156,6 +159,7 @@ namespace TbApiTester
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
+                    requestWm = $"{request.Method} {request.RequestUri}";
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
 
                     string jsonInString = PrepareDefSPCreate(request);
@@ -197,10 +201,10 @@ namespace TbApiTester
             return (functionParams);
         }
 
-          ////////////////////////////////////
-         /////// Get Default Prices /////////
         ////////////////////////////////////
-        public string GetDefaultPrice(UserData userData, DateTime operationDate, long handle , string customer , string item, string uom, double quantity )
+        /////// Get Default Prices /////////
+        ////////////////////////////////////
+        public string GetDefaultPrice(UserData userData, DateTime operationDate, long handle, string customer, string item, string uom, double quantity)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -210,6 +214,7 @@ namespace TbApiTester
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
+                    requestWm = $"{request.Method} {request.RequestUri}";
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
 
                     string jsonInString = PrepareGetDefaultPx(request, handle, customer, item, uom, quantity);
@@ -239,7 +244,7 @@ namespace TbApiTester
             }
         }
 
-        public string PrepareGetDefaultPx(HttpRequestMessage request, long CurrHandle, string customer , string item, string uom, double quantity)
+        public string PrepareGetDefaultPx(HttpRequestMessage request, long CurrHandle, string customer, string item, string uom, double quantity)
         {
             var functionParams = JsonConvert.SerializeObject(new
             {
@@ -247,17 +252,17 @@ namespace TbApiTester
                 args = new
                 {
                     handle = CurrHandle,
-                    Customer = customer, 
+                    Customer = customer,
                     Item = item,
                     UoM = uom,
-                    Quantity = quantity 
+                    Quantity = quantity
                 }
             });
             return (functionParams);
         }
 
-          //////////////////////////////////////
-         //// Default Sale Prices Dispose  ////
+        //////////////////////////////////////
+        //// Default Sale Prices Dispose  ////
         //////////////////////////////////////
         public bool DefaultSalesPricesDispose(UserData userData, DateTime operationDate, long handle)
         {
@@ -269,6 +274,7 @@ namespace TbApiTester
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
+                    requestWm = $"{request.Method} {request.RequestUri}";
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
 
                     string jsonInString = PrepareDefSPDispose(request, handle);
@@ -285,7 +291,7 @@ namespace TbApiTester
                             bool resultVariable = false;
                             bool resOk = (bool)jsonObject["success"];
                             if (resOk)
-                               resultVariable = (bool)jsonObject["retVal"];
+                                resultVariable = (bool)jsonObject["retVal"];
                             return resultVariable;
                         }
                         else
@@ -313,7 +319,79 @@ namespace TbApiTester
             });
             return (functionParams);
         }
+
+        public bool UseLoginContext(UserData userData, DateTime operationDate)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.TbServerUrl == "")
+                        UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/useLoginContext/");
+                    requestWm = $"{request.Method} {request.RequestUri}";
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
+                    TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate);
+
+                    request.Content = new StringContent("{}", Encoding.UTF8, "application/json");
+
+                    var response = client.SendAsync(request).Result;
+                    var responseBody = response.Content.ReadAsStringAsync().Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return true; // oppure JObject.Parse(responseBody).ToString()
+                    }
+                    else
+                    {
+                        return   false;
+                    }
+                }
+                catch (HttpRequestException e)
+                {
+                    return false;
+                }
+            }
+        }
+        public bool ReleaseLoginContext(UserData userData, DateTime operationDate)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.TbServerUrl == "")
+                        UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/releaseLoginContext/");
+                    requestWm = $"{request.Method} {request.RequestUri}";
+
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
+                    TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate);
+
+                    request.Content = new StringContent("{}", Encoding.UTF8, "application/json");
+
+                    var response = client.SendAsync(request).Result;
+                    var responseBody = response.Content.ReadAsStringAsync().Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return true; // oppure JObject.Parse(responseBody).ToString()
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (HttpRequestException e)
+                {
+                    return false;
+                }
+            }
+        }
     }
 
 }
+
+
 

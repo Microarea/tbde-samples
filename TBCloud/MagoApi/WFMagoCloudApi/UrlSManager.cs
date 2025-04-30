@@ -40,7 +40,7 @@ namespace TbApiTester
                         break;
 
                     case GlobalSettings.ButtonState.Web:
-                        // Caso Cloud: ritorna WebUrl se GwamUrl è uguale a "https://gwam.mago.cloud"
+                        // Caso Web: ritorna WebUrl se GwamUrl è uguale a "https://gwam.mago.cloud"
                         if (userData.GwamUrl != null | userData.GwamUrl != string.Empty)
                         {
                             return WebUrl;

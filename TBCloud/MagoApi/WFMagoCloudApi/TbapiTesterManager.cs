@@ -25,9 +25,10 @@ namespace TbApiTester
         internal ExampleManager exampleManager = new ExampleManager();
         internal ServiceManager serviceManager = new ServiceManager();
         internal DocBusinessObjManager docBusinessObjManager = new DocBusinessObjManager();
+        internal LogManager logsManager = new LogManager();
 
 
-       
+
         internal static void PrepareHeaders(HttpRequestMessage request, UserData userData, DateTime operationDate)
         {
             PrepareHeaderAutorization(request, userData);

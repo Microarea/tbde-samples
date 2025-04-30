@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<maxs:Invoice tbNamespace="Document.ERP.Sales.Documents.Invoice" xTechProfile="DefaultLight" xmlns:maxs="http://www.microarea.it/Schema/2004/Smart/ERP/Sales/Invoice/Standard/DefaultLight.xsd">
+    <maxs:Data>
+        <maxs:SaleDocument master="true">
+            <maxs:DocumentDate>2025-04-01</maxs:DocumentDate>
+            <maxs:CustSupp>0027</maxs:CustSupp>
+            <maxs:OurReference></maxs:OurReference>
+            <maxs:YourReference></maxs:YourReference>
+            <maxs:Payment>RBDF3</maxs:Payment>
+            <maxs:PostingDate>2025-04-01</maxs:PostingDate>
+            <maxs:Currency>EUR</maxs:Currency>
+        </maxs:SaleDocument>
+        <maxs:Detail>
+            <maxs:DetailRow>
+                <maxs:LineType>3538947</maxs:LineType>
+                <maxs:Description>Bicicletta  "base"</maxs:Description>
+                <maxs:Item>BIBASE</maxs:Item>
+                <maxs:UoM>NR</maxs:UoM>
+                <maxs:Qty>10</maxs:Qty>
+                <maxs:UnitValue>302.1300000</maxs:UnitValue>
+            </maxs:DetailRow>
+        </maxs:Detail>
+    </maxs:Data>
+</maxs:Invoice>
