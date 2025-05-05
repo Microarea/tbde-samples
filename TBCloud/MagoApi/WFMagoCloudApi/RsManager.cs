@@ -1,4 +1,5 @@
 ﻿
+using Microarea.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -21,6 +22,9 @@ namespace TbApiTester
     {
         public static string PdfDirectory { get; } = Path.Combine(Application.StartupPath, "Reports");
         public string requestRs { get; set; }
+        
+        public List<string> requestRsList = new List<string>();
+        public List<string> responseRsList = new List<string>();
         ////////     RetriveRsUr      ////////
 
         ////Uri RsUrl = new Uri("https://develop.mago.cloud/13/be");
@@ -68,6 +72,9 @@ namespace TbApiTester
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
+                    requestRs = $"{request.Method} {request.RequestUri}";
+                    requestRsList.Add(DateTime.Now + requestRs);
+                   
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -75,6 +82,7 @@ namespace TbApiTester
                         {
                             XDocument doc = XDocument.Parse(responseBody);
                             requestRs = $"{request.Method} {request.RequestUri}";
+                            responseRsList.Add($"[{DateTime.Now}] Status: {response}\n");
                             return doc.ToString();
                            
                         }
@@ -113,7 +121,8 @@ namespace TbApiTester
                    
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-
+                    requestRs = $"{request.Method} {request.RequestUri}";
+                    requestRsList.Add(DateTime.Now + requestRs);
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         // Create a Folder
@@ -135,6 +144,7 @@ namespace TbApiTester
                             UseShellExecute = true
                         });
                         requestRs = $"{request.Method} {request.RequestUri}";
+                        responseRsList.Add($"[{DateTime.Now}] Status: {response}\n");
                         return $"The PDF has been successfully saved at:\n{pdfFilePath}\nAnd opened.";
                        
                     }

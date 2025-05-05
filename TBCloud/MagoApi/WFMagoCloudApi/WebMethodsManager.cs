@@ -15,7 +15,10 @@ namespace TbApiTester
 {
     class WebMethodsManager
     {
-        public string requestWm;
+        
+        public string requestTb { get; set; }
+        public List<string> requestTbList = new List<string>();
+        public List<string> responseTbList = new List<string>();
         //Uri RsUrl = new Uri("https://develop.mago.cloud/13/be");
         //public string RetriveWebMethodsUrl(UserData userData, DateTime operationDate)
         //{
@@ -51,11 +54,13 @@ namespace TbApiTester
                     //UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
-                    requestWm = $"{request.Method} {request.RequestUri}";
+                    requestTb = $"{request.Method} {request.RequestUri}";
                     string jsonInString = PrepareOpeningDate(request);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
+                    requestTbList.Add($"CurrentOpeningDate_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {jsonInString}");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
+                    responseTbList.Add($"[{DateTime.Now}] Status: {response}\n");
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         string functionParams = response.Content.ReadAsStringAsync().Result;
@@ -104,11 +109,13 @@ namespace TbApiTester
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
-                    requestWm = $"{request.Method} {request.RequestUri}";
+                    requestTb = $"{request.Method} {request.RequestUri}";
                     string jsonInString = PrepareCloseDate(request);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
+                    requestTbList.Add($"ClosingDateFiscalYear_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {jsonInString}");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
+                    responseTbList.Add($"[{DateTime.Now}] Status: {response}\n");
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         string functionParams = response.Content.ReadAsStringAsync().Result;
@@ -159,13 +166,15 @@ namespace TbApiTester
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
-                    requestWm = $"{request.Method} {request.RequestUri}";
+                    requestTb = $"{request.Method} {request.RequestUri}";
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
 
                     string jsonInString = PrepareDefSPCreate(request);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
+                    requestTbList.Add($"DefaultSalesPricesCreate_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {jsonInString}");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
+                    responseTbList.Add($"[{DateTime.Now}] Status: {response}\n");
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         //string functionParams = response.Content.ReadAsStringAsync().Result;
@@ -214,13 +223,16 @@ namespace TbApiTester
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
-                    requestWm = $"{request.Method} {request.RequestUri}";
+                    requestTb = $"{request.Method} {request.RequestUri}";
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
-
                     string jsonInString = PrepareGetDefaultPx(request, handle, customer, item, uom, quantity);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
+
+                    requestTbList.Add($"GetDefaultPrice_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {jsonInString}");
+
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
+                    responseTbList.Add($"[{DateTime.Now}] Status: {response}\n");
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         string functionParams = response.Content.ReadAsStringAsync().Result;
@@ -274,13 +286,14 @@ namespace TbApiTester
                     if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
-                    requestWm = $"{request.Method} {request.RequestUri}";
+                    requestTb = $"{request.Method} {request.RequestUri}";
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
-
                     string jsonInString = PrepareDefSPDispose(request, handle);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
+                    requestTbList.Add($"DefaultSalesPricesDispose_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {jsonInString}");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
+                    responseTbList.Add($"[{DateTime.Now}] Status: {response}\n");
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         string functionParams = response.Content.ReadAsStringAsync().Result;
@@ -330,14 +343,17 @@ namespace TbApiTester
                     if (UrlSManager.TbServerUrl == "")
                         UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/useLoginContext/");
-                    requestWm = $"{request.Method} {request.RequestUri}";
+                    requestTb = $"{request.Method} {request.RequestUri}";
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate);
 
                     request.Content = new StringContent("{}", Encoding.UTF8, "application/json");
+                    requestTbList.Add($"UseLoginContext_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {request.Content}");
 
                     var response = client.SendAsync(request).Result;
                     var responseBody = response.Content.ReadAsStringAsync().Result;
+
+                    responseTbList.Add($"[{DateTime.Now}] Status: {response}\n");
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -364,15 +380,18 @@ namespace TbApiTester
                     if (UrlSManager.TbServerUrl == "")
                         UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBSERVER");
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/releaseLoginContext/");
-                    requestWm = $"{request.Method} {request.RequestUri}";
+                    requestTb = $"{request.Method} {request.RequestUri}";
 
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate);
 
                     request.Content = new StringContent("{}", Encoding.UTF8, "application/json");
+                    requestTbList.Add($"UseLoginContext_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {request.Content}");
 
                     var response = client.SendAsync(request).Result;
                     var responseBody = response.Content.ReadAsStringAsync().Result;
+                    responseTbList.Add($"[{DateTime.Now}] Status: {response}\n");
+
 
                     if (response.IsSuccessStatusCode)
                     {

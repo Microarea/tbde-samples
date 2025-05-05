@@ -424,7 +424,7 @@ namespace TbApiTester
 
                 //TB_Locks locks = new TB_Locks();
                 //accName = locks.AccountName;
-                
+
                 //TB_LocksConfiguration confLock = new TB_LocksConfiguration(Microarea.Tbf.Model.Database.DbType.SQLSERVER, subKey);
                 //Microarea.Tbf.Model.DataManager.Providers.SubscriptionProvider subProv = new Microarea.Tbf.Model.DataManager.Providers.SubscriptionProvider(subKey, conn, DbType.SQLSERVER);
                 //Microarea.Tbf.Model.Interfaces.Database.DbDataContextProduct product = new Microarea.Tbf.Model.Interfaces.Database.DbDataContextProduct();
@@ -432,7 +432,7 @@ namespace TbApiTester
 
                 //string procName = text_app.Text;
                 //string iKey = "I-663D32";
-                
+
                 //string token = manager.authenticationManager.userData.LoginKey;
                 //string context = "000000002E846AA0";
                 //RecordLockInfo pippo = new RecordLockInfo(procName, iKey, accName, token, context, 48, 48);
@@ -758,7 +758,7 @@ namespace TbApiTester
                 if (items == null)
                     return;
 
-                
+
                 comboBox.DataSource = null;
 
                 if (!string.IsNullOrEmpty(defaultItem) && !items.Contains((T)Convert.ChangeType(defaultItem, typeof(T))))
@@ -803,7 +803,7 @@ namespace TbApiTester
             List<string> moduleNames = modulesWithPaths?.Select(m => m.ModuleName).ToList() ?? new List<string>();
 
             await FillComboBox(cbxModule, Task.FromResult(moduleNames), "Module");
-          
+
         }
 
         private async Task FillDocuments(string application, string module)
@@ -955,12 +955,12 @@ namespace TbApiTester
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-           
+
             DateTime now = new DateTime(2022, 12, 31);
             string contentBody = manager.webMethodsManager.CurrentOpeningDate(manager.authenticationManager.userData, now);
-            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
+            labelWbUrl.Text = manager.webMethodsManager.requestTb.ToString();
             ShowResult(contentBody != null ? "CurrentOpeningDate\n" + contentBody : "Unable to retrieve OpeningDate\n" + contentBody, contentBody != null);
-            
+
         }
 
         private void btnClosingDate_Click(object sender, EventArgs e)
@@ -971,9 +971,9 @@ namespace TbApiTester
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            
+
             string contentBody = manager.webMethodsManager.ClosingDateFiscalYear(manager.authenticationManager.userData, DateTime.Now);
-            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
+            labelWbUrl.Text = manager.webMethodsManager.requestTb.ToString();
             ShowResult(contentBody != null ? "ClosingDate\n" + contentBody : "Unable to retrieve ClosingDate\n" + contentBody, contentBody != null);
         }
 
@@ -985,8 +985,8 @@ namespace TbApiTester
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            defPriceHandle =  manager.webMethodsManager.DefaultSalesPricesCreate(manager.authenticationManager.userData, DateTime.Now);
-            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
+            defPriceHandle = manager.webMethodsManager.DefaultSalesPricesCreate(manager.authenticationManager.userData, DateTime.Now);
+            labelWbUrl.Text = manager.webMethodsManager.requestTb.ToString();
             ShowResult(defPriceHandle < 1 ? "The creation is not successful : \n" + defPriceHandle.ToString() : "Successful \n"
                 + "You have created the handle number : \n" + defPriceHandle.ToString(), defPriceHandle >= 1); if (defPriceHandle < 1) ;
             if (thread != true) StartCountdown();
@@ -1024,7 +1024,7 @@ namespace TbApiTester
                 ThreadStatusPanel.Visible = true;
                 ThreadStatusPanel.BackColor = Color.Red;
                 labelThred.Text = "Thread is no longer valid.";
-                defPriceHandle = -1; 
+                defPriceHandle = -1;
             }
         }
 
@@ -1042,7 +1042,7 @@ namespace TbApiTester
             string uom = "KG";
             double quantity = 10.0;
             string contentBody = manager.webMethodsManager.GetDefaultPrice(manager.authenticationManager.userData, DateTime.Now, handle, customer, item, uom, quantity);
-            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
+            labelWbUrl.Text = manager.webMethodsManager.requestTb.ToString();
             ShowResult(contentBody != null ? "DefaultPricesHandle is : \n" + contentBody : "Error retrieving prices\n" + "Thread inactive or expired?", contentBody != null);
         }
 
@@ -1056,7 +1056,7 @@ namespace TbApiTester
             }
             long handle = defPriceHandle;
             bool contentBody = manager.webMethodsManager.DefaultSalesPricesDispose(manager.authenticationManager.userData, DateTime.Now, handle);
-            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
+            labelWbUrl.Text = manager.webMethodsManager.requestTb.ToString();
             string res = "Dispose successful: \n " + contentBody + "\nThe canceled sales price is: " + defPriceHandle.ToString();
             if (handle == 0)
             {
@@ -1066,7 +1066,7 @@ namespace TbApiTester
                 ShowResult(res, contentBody);
         }
 
-        private  void btnUseLogInCnxt_Click(object sender, EventArgs e)
+        private void btnUseLogInCnxt_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             if (!manager.authenticationManager.IsLogged())
@@ -1074,10 +1074,13 @@ namespace TbApiTester
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            countdownTimer.Stop();
-            thread =  manager.webMethodsManager.UseLoginContext(manager.authenticationManager.userData, DateTime.Now);
-            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
-            if (thread == true) 
+            if (countdownTimer != null)
+            {
+                countdownTimer.Stop();
+            }
+            thread = manager.webMethodsManager.UseLoginContext(manager.authenticationManager.userData, DateTime.Now);
+            labelWbUrl.Text = manager.webMethodsManager.requestTb.ToString();
+            if (thread == true)
             {
                 ThreadStatusPanel.Visible = true;
                 ThreadStatusPanel.BackColor = Color.LimeGreen;
@@ -1099,12 +1102,12 @@ namespace TbApiTester
             }
 
             thread = manager.webMethodsManager.ReleaseLoginContext(manager.authenticationManager.userData, DateTime.Now);
-            if (thread == true) 
+            if (thread == true)
             {
                 StartCountdown();
                 thread = false;
             }
-            labelWbUrl.Text = manager.webMethodsManager.requestWm.ToString();
+            labelWbUrl.Text = manager.webMethodsManager.requestTb.ToString();
         }
 
         ////////////////////////////////
@@ -1588,11 +1591,11 @@ namespace TbApiTester
 
         private async void CbxDmsApp_SelectedIndexChanged(object sender, EventArgs e)
         {
-        //    manager.tbFsServiceManager.selApp = (CbxDmsApp.SelectedItem == null) ? string.Empty : CbxDmsApp.SelectedItem.ToString();
+            //    manager.tbFsServiceManager.selApp = (CbxDmsApp.SelectedItem == null) ? string.Empty : CbxDmsApp.SelectedItem.ToString();
 
 
-        //    if (manager.tbFsServiceManager.selApp != "Application")
-        //        await FillModules(manager.tbFsServiceManager.selApp);
+            //    if (manager.tbFsServiceManager.selApp != "Application")
+            //        await FillModules(manager.tbFsServiceManager.selApp);
 
         }
         //___________________________________________________________
@@ -1663,8 +1666,8 @@ namespace TbApiTester
 
                     if (jsonResponse["Content"]?["Item1"] != null && jsonResponse["Content"]?["Item2"] != null)
                     {
-                         base64Data = jsonResponse["Content"]["Item1"].ToString();
-                         fileName = jsonResponse["Content"]["Item2"].ToString();
+                        base64Data = jsonResponse["Content"]["Item1"].ToString();
+                        fileName = jsonResponse["Content"]["Item2"].ToString();
                         byte[] fileBytes = Convert.FromBase64String(base64Data);
 
                         string extension = Path.GetExtension(fileName).ToLower();
@@ -1721,8 +1724,8 @@ namespace TbApiTester
                 return;
             }
 
-            string responseBody = await manager.dmsManager.AttachBinarycontent(manager.authenticationManager.userData, base64Data, textBoxfilename.Text, txtBoxErpTbGuid.Text, txtBoxERPDocNs.Text,txtBoxERPpkv.Text);
-           
+            string responseBody = await manager.dmsManager.AttachBinarycontent(manager.authenticationManager.userData, base64Data, textBoxfilename.Text, txtBoxErpTbGuid.Text, txtBoxERPDocNs.Text, txtBoxERPpkv.Text);
+
             return;
         }
 
@@ -2393,7 +2396,7 @@ namespace TbApiTester
 
             string docsDirectory = Path.Combine(projectDirectory, "Docs");
 
-            // Determina il nome della sottocartella in base al testo della label
+            // Determine the name of the subfolder based on the label text
             string subFolderName = string.Empty;
             if (labelCallTbResult.Text == "Result GetXmlParams:")
             {
@@ -2408,24 +2411,23 @@ namespace TbApiTester
                 subFolderName = "SetXmlData";
             }
 
-            // Imposta il percorso completo della directory
+            // Set the full path of the directory
             string targetDirectory = string.IsNullOrEmpty(subFolderName) ? docsDirectory : Path.Combine(docsDirectory, subFolderName);
 
-            // Creazione della cartella se non esiste
+            // Create the folder if it doesn't exist
             if (!Directory.Exists(targetDirectory))
             {
                 Directory.CreateDirectory(targetDirectory);
             }
 
-            // Imposta il percorso del file
+            // Set the file path
             string filePath = Path.Combine(targetDirectory, manager.tbFsServiceManager.selDoc + ".xml");
 
-            // Salva il file XML
+            // Save the XML file
             File.WriteAllText(filePath, xmlEditorTbResult.TextContent);
 
             MessageBox.Show($"The file has been saved in the folder:\n{targetDirectory}", "Save Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
 
         private void BtnOpenFolder_Click(object sender, EventArgs e)
         {
@@ -2443,6 +2445,11 @@ namespace TbApiTester
             }
 
         }
+
+        //////////////////////////
+        ///DOC BUSINESS OBJECT///
+        /////////////////////////
+
         private async void btnBusinessObj_Click(object sender, EventArgs e)
         {
             string url = "http://localhost:1234/OttieniToken-MOToken-service/OttieniTokenMOTokenDocOttieniToken/ApriSaleOrdExt";
@@ -2502,36 +2509,11 @@ namespace TbApiTester
             }
         }
 
-        ///TODO//
-        private void btnTbServerLog_Click(object sender, EventArgs e)
-        {
-            if (manager.tbServerManager.requestTbList.Count == 0 && manager.tbServerManager.responseTbList.Count == 0)
-            {
-                AppendToLog("⚠️");
-                return;
-            }
 
-            StringBuilder logBuilder = new StringBuilder();
+        ////////////////////
+        ///TODO LOGS Btn///
+        //////////////////
 
-            for (int i = 0; i < manager.tbServerManager.requestTbList.Count; i++)
-            {
-                logBuilder.AppendLine($"🟢 REQUEST: {manager.tbServerManager.requestTbList[i]}");
-
-                if (i < manager.tbServerManager.responseTbList.Count)
-                {
-                    logBuilder.AppendLine($"🔵 RESPONSE: {manager.tbServerManager.responseTbList[i]}");
-                }
-                else
-                {
-                    logBuilder.AppendLine($"⚠️ No Response");
-                }
-                logBuilder.AppendLine(new string('=', 60)); // Separatore
-            }
-
-            AppendToLog(logBuilder.ToString());
-        }
-
-        // Metodo per aggiornare la RichTextBox in modo sicuro
         private void AppendToLog(string text)
         {
             if (richTextLog.InvokeRequired)
@@ -2555,10 +2537,70 @@ namespace TbApiTester
             }
 
         }
+        private void btnTbServerLog_Click(object sender, EventArgs e)
+        {
+            richTextLog.Text = string.Empty;
+            richTextLog.Text = string.Empty;
+
+            bool isTbServerEmpty = manager.tbServerManager.requestTbList.Count == 0 && manager.tbServerManager.responseTbList.Count == 0;
+            bool isWebMethodsEmpty = manager.webMethodsManager.requestTbList.Count == 0 && manager.webMethodsManager.responseTbList.Count == 0;
+
+            if (isTbServerEmpty && isWebMethodsEmpty)
+            {
+                AppendToLog("⚠️ Nessun log disponibile.");
+                return;
+            }
+
+            StringBuilder logBuilder = new StringBuilder();
+
+            // Log to tbServerManager
+            if (!isTbServerEmpty)
+            {
+                logBuilder.AppendLine("===== 📡 TB SERVER LOG =====");
+                for (int i = 0; i < manager.tbServerManager.requestTbList.Count; i++)
+                {
+                    logBuilder.AppendLine($"🟢 REQUEST: {manager.tbServerManager.requestTbList[i]}");
+
+                    if (i < manager.tbServerManager.responseTbList.Count)
+                    {
+                        logBuilder.AppendLine($"🔵 RESPONSE: {manager.tbServerManager.responseTbList[i]}");
+                    }
+                    else
+                    {
+                        logBuilder.AppendLine("⚠️ No Response");
+                    }
+                    logBuilder.AppendLine(new string('=', 60));
+                }
+            }
+
+            // Log to webMethodsManager
+            if (!isWebMethodsEmpty)
+            {
+                logBuilder.AppendLine("===== 🌐 WEB METHODS LOG =====");
+                for (int i = 0; i < manager.webMethodsManager.requestTbList.Count; i++)
+                {
+                    logBuilder.AppendLine($"🟢 REQUEST: {manager.webMethodsManager.requestTbList[i]}");
+
+                    if (i < manager.webMethodsManager.responseTbList.Count)
+                    {
+                        logBuilder.AppendLine($"🔵 RESPONSE: {manager.webMethodsManager.responseTbList[i]}");
+                    }
+                    else
+                    {
+                        logBuilder.AppendLine("⚠️ No Response");
+                    }
+                    logBuilder.AppendLine(new string('=', 60));
+                }
+            }
+
+            AppendToLog(logBuilder.ToString());
+        }
+
 
         private void btnDataServiceLogs_Click(object sender, EventArgs e)
         {
-            if (manager.tbServerManager.requestTbList.Count == 0 && manager.tbServerManager.responseTbList.Count == 0)
+            richTextLog.Text = string.Empty;
+            if (manager.dataServiceManager.requestDsList.Count == 0 && manager.dataServiceManager.requestDsList.Count == 0)
             {
                 AppendToLog("⚠️");
                 return;
@@ -2573,6 +2615,35 @@ namespace TbApiTester
                 if (i < manager.dataServiceManager.responseDsList.Count)
                 {
                     logBuilder.AppendLine($"🔵 RESPONSE: {manager.dataServiceManager.responseDsList[i]}");
+                }
+                else
+                {
+                    logBuilder.AppendLine($"⚠️ No Response");
+                }
+                logBuilder.AppendLine(new string('=', 60)); // Separatore
+            }
+
+            AppendToLog(logBuilder.ToString());
+        }
+
+        private void btnReportingServiceLog_Click(object sender, EventArgs e)
+        {
+            richTextLog.Text = string.Empty;
+            if (manager.rsManager.requestRsList.Count == 0 && manager.rsManager.requestRsList.Count == 0)
+            {
+                AppendToLog("⚠️");
+                return;
+            }
+
+            StringBuilder logBuilder = new StringBuilder();
+
+            for (int i = 0; i < manager.rsManager.requestRsList.Count; i++)
+            {
+                logBuilder.AppendLine($"🟢 REQUEST: {manager.rsManager.requestRsList[i]}");
+
+                if (i < manager.rsManager.responseRsList.Count)
+                {
+                    logBuilder.AppendLine($"🔵 RESPONSE: {manager.rsManager.responseRsList[i]}");
                 }
                 else
                 {

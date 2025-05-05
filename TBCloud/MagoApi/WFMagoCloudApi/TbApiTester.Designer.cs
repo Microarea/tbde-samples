@@ -4012,6 +4012,7 @@ namespace TbApiTester
             this.btnReportingServiceLog.TabIndex = 115;
             this.btnReportingServiceLog.Text = "ReportingService";
             this.btnReportingServiceLog.UseVisualStyleBackColor = false;
+            this.btnReportingServiceLog.Click += new System.EventHandler(this.btnReportingServiceLog_Click);
             // 
             // panelTitleForm
             // 
