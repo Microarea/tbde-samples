@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns:sl="urn:TBStringLoader">
+	<Version>1</Version>
+	<MaxDocuments>10</MaxDocuments>
+	<MaxDimension>100</MaxDimension>
+	<DataUrl>DocOttieniToken.xml</DataUrl>
+	<EnvelopeClass localizable="true" extension="">DocOttieniToken</EnvelopeClass>
+	<Postable>1</Postable>
+	<PostBack>1</PostBack>
+	<NoExtRefPostBack>0</NoExtRefPostBack>
+	<FullPrepare>1</FullPrepare>
+</Document>

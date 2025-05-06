@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HotKeyLink>
+	<Dynamic>true</Dynamic>
+	<Function localize="DocOttieniToken" namespace="OttieniToken.MOToken.DynamicDocuments.DocOttieniToken" type="String" report="false" published="false"></Function>
+	<SelectionTypes>
+		<Selection type="radar" name="Radar"></Selection>
+	</SelectionTypes>
+	<SelectionModes>
+		<Mode name="Radar" type="query"><![CDATA[Select MA_Areas.Area {COL MA_Areas.Area KEY  TITLE "Area"},MA_Areas.Description {COL MA_Areas.Description TITLE "Description"},MA_Areas.AreaManager {COL MA_Areas.AreaManager TITLE "AreaManager"},MA_Areas.Notes {COL MA_Areas.Notes TITLE "Notes"},MA_Areas.TBCreated {COL MA_Areas.TBCreated TYPE DateTime TITLE "TBCreated"},MA_Areas.TBModified {COL MA_Areas.TBModified TYPE DateTime TITLE "TBModified"},MA_Areas.TBCreatedID {COL MA_Areas.TBCreatedID TYPE Long TITLE "TBCreatedID"},MA_Areas.TBModifiedID {COL MA_Areas.TBModifiedID TYPE Long TITLE "TBModifiedID"} FROM MA_Areas]]></Mode>
+	</SelectionModes>
+</HotKeyLink>

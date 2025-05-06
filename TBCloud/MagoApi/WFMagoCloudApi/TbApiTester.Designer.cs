@@ -42,7 +42,7 @@ namespace TbApiTester
             this.panelTbTextContainer = new System.Windows.Forms.Panel();
             this.btnClearText = new System.Windows.Forms.Button();
             this.btnSaveXmlTbServer = new System.Windows.Forms.Button();
-            this.xmlEditorTbResult = new  XmlEditor();
+            this.xmlEditorTbResult = new   XmlEditor();
             this.labelCallTbResult = new System.Windows.Forms.Label();
             this.BtnOpenFolder = new System.Windows.Forms.Button();
             this.BtnQuestionCall = new System.Windows.Forms.Button();
@@ -326,6 +326,8 @@ namespace TbApiTester
             this.btnDataServiceLogs = new System.Windows.Forms.Button();
             this.orangePanel8 = new MspzComponent.OrangePanel();
             this.btnReportingServiceLog = new System.Windows.Forms.Button();
+            this.orangePanel10 = new MspzComponent.OrangePanel();
+            this.btnDataManagerLog = new System.Windows.Forms.Button();
             this.panelTitleForm = new System.Windows.Forms.Panel();
             this.btnReduceIcon = new System.Windows.Forms.Button();
             this.cbxServicesWeb = new System.Windows.Forms.ComboBox();
@@ -372,6 +374,7 @@ namespace TbApiTester
             this.Http_label = new System.Windows.Forms.Label();
             this.button_exit = new System.Windows.Forms.Button();
             this.button_Login = new System.Windows.Forms.Button();
+            this.btnGetEnumsInfo = new System.Windows.Forms.Button();
             this.tabNavigation.SuspendLayout();
             this.tabTbServer.SuspendLayout();
             this.paneltbfsH.SuspendLayout();
@@ -453,6 +456,7 @@ namespace TbApiTester
             this.orangePanel6.SuspendLayout();
             this.orangePanel7.SuspendLayout();
             this.orangePanel8.SuspendLayout();
+            this.orangePanel10.SuspendLayout();
             this.panelTitleForm.SuspendLayout();
             this.panelmarginright.SuspendLayout();
             this.orangePanel2.SuspendLayout();
@@ -2921,6 +2925,7 @@ namespace TbApiTester
             // DataManager
             // 
             this.DataManager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.DataManager.Controls.Add(this.btnGetEnumsInfo);
             this.DataManager.Controls.Add(this.panelDataManagerOtherCall);
             this.DataManager.Controls.Add(this.cbxArchiveType);
             this.DataManager.Controls.Add(this.labelCbxArchiveType);
@@ -3000,7 +3005,7 @@ namespace TbApiTester
             this.cbxArchiveType.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxArchiveType.ForeColor = System.Drawing.SystemColors.Window;
             this.cbxArchiveType.FormattingEnabled = true;
-            this.cbxArchiveType.Location = new System.Drawing.Point(50, 452);
+            this.cbxArchiveType.Location = new System.Drawing.Point(49, 457);
             this.cbxArchiveType.Name = "cbxArchiveType";
             this.cbxArchiveType.Size = new System.Drawing.Size(232, 23);
             this.cbxArchiveType.TabIndex = 114;
@@ -3700,7 +3705,7 @@ namespace TbApiTester
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
             this.panel2.Controls.Add(this.panel15);
-            this.panel2.Location = new System.Drawing.Point(87, 69);
+            this.panel2.Location = new System.Drawing.Point(40, 70);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(279, 1);
             this.panel2.TabIndex = 70;
@@ -3718,9 +3723,9 @@ namespace TbApiTester
             this.rndPanelUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rndPanelUrl.Controls.Add(this.DmMMSUrl);
-            this.rndPanelUrl.Location = new System.Drawing.Point(195, 20);
+            this.rndPanelUrl.Location = new System.Drawing.Point(298, 20);
             this.rndPanelUrl.Name = "rndPanelUrl";
-            this.rndPanelUrl.Size = new System.Drawing.Size(837, 26);
+            this.rndPanelUrl.Size = new System.Drawing.Size(734, 26);
             this.rndPanelUrl.TabIndex = 95;
             // 
             // DmMMSUrl
@@ -3870,6 +3875,7 @@ namespace TbApiTester
             this.tabLog.Controls.Add(this.orangePanel6);
             this.tabLog.Controls.Add(this.orangePanel7);
             this.tabLog.Controls.Add(this.orangePanel8);
+            this.tabLog.Controls.Add(this.orangePanel10);
             this.tabLog.Location = new System.Drawing.Point(4, 25);
             this.tabLog.Name = "tabLog";
             this.tabLog.Size = new System.Drawing.Size(914, 548);
@@ -3941,7 +3947,7 @@ namespace TbApiTester
             this.orangePanel6.Controls.Add(this.btnTbServerLog);
             this.orangePanel6.Location = new System.Drawing.Point(13, 14);
             this.orangePanel6.Name = "orangePanel6";
-            this.orangePanel6.Size = new System.Drawing.Size(153, 61);
+            this.orangePanel6.Size = new System.Drawing.Size(137, 61);
             this.orangePanel6.TabIndex = 116;
             // 
             // btnTbServerLog
@@ -3955,7 +3961,7 @@ namespace TbApiTester
             this.btnTbServerLog.ForeColor = System.Drawing.Color.White;
             this.btnTbServerLog.Location = new System.Drawing.Point(-2, 0);
             this.btnTbServerLog.Name = "btnTbServerLog";
-            this.btnTbServerLog.Size = new System.Drawing.Size(156, 33);
+            this.btnTbServerLog.Size = new System.Drawing.Size(140, 33);
             this.btnTbServerLog.TabIndex = 109;
             this.btnTbServerLog.Text = "TbServer";
             this.btnTbServerLog.UseVisualStyleBackColor = false;
@@ -3965,9 +3971,9 @@ namespace TbApiTester
             // 
             this.orangePanel7.BackColor = System.Drawing.Color.White;
             this.orangePanel7.Controls.Add(this.btnDataServiceLogs);
-            this.orangePanel7.Location = new System.Drawing.Point(171, 14);
+            this.orangePanel7.Location = new System.Drawing.Point(153, 14);
             this.orangePanel7.Name = "orangePanel7";
-            this.orangePanel7.Size = new System.Drawing.Size(153, 61);
+            this.orangePanel7.Size = new System.Drawing.Size(137, 61);
             this.orangePanel7.TabIndex = 117;
             // 
             // btnDataServiceLogs
@@ -3982,7 +3988,7 @@ namespace TbApiTester
             this.btnDataServiceLogs.ForeColor = System.Drawing.Color.White;
             this.btnDataServiceLogs.Location = new System.Drawing.Point(-4, 0);
             this.btnDataServiceLogs.Name = "btnDataServiceLogs";
-            this.btnDataServiceLogs.Size = new System.Drawing.Size(156, 33);
+            this.btnDataServiceLogs.Size = new System.Drawing.Size(140, 33);
             this.btnDataServiceLogs.TabIndex = 107;
             this.btnDataServiceLogs.Text = "DataService";
             this.btnDataServiceLogs.UseVisualStyleBackColor = false;
@@ -3992,9 +3998,9 @@ namespace TbApiTester
             // 
             this.orangePanel8.BackColor = System.Drawing.Color.White;
             this.orangePanel8.Controls.Add(this.btnReportingServiceLog);
-            this.orangePanel8.Location = new System.Drawing.Point(329, 14);
+            this.orangePanel8.Location = new System.Drawing.Point(293, 14);
             this.orangePanel8.Name = "orangePanel8";
-            this.orangePanel8.Size = new System.Drawing.Size(153, 61);
+            this.orangePanel8.Size = new System.Drawing.Size(137, 61);
             this.orangePanel8.TabIndex = 118;
             // 
             // btnReportingServiceLog
@@ -4008,11 +4014,38 @@ namespace TbApiTester
             this.btnReportingServiceLog.ForeColor = System.Drawing.Color.White;
             this.btnReportingServiceLog.Location = new System.Drawing.Point(-3, 0);
             this.btnReportingServiceLog.Name = "btnReportingServiceLog";
-            this.btnReportingServiceLog.Size = new System.Drawing.Size(156, 33);
+            this.btnReportingServiceLog.Size = new System.Drawing.Size(140, 33);
             this.btnReportingServiceLog.TabIndex = 115;
             this.btnReportingServiceLog.Text = "ReportingService";
             this.btnReportingServiceLog.UseVisualStyleBackColor = false;
             this.btnReportingServiceLog.Click += new System.EventHandler(this.btnReportingServiceLog_Click);
+            // 
+            // orangePanel10
+            // 
+            this.orangePanel10.BackColor = System.Drawing.Color.White;
+            this.orangePanel10.Controls.Add(this.btnDataManagerLog);
+            this.orangePanel10.Location = new System.Drawing.Point(433, 14);
+            this.orangePanel10.Name = "orangePanel10";
+            this.orangePanel10.Size = new System.Drawing.Size(137, 61);
+            this.orangePanel10.TabIndex = 121;
+            // 
+            // btnDataManagerLog
+            // 
+            this.btnDataManagerLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
+            this.btnDataManagerLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDataManagerLog.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDataManagerLog.FlatAppearance.BorderSize = 0;
+            this.btnDataManagerLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDataManagerLog.Font = new System.Drawing.Font("Century Gothic", 9.25F, System.Drawing.FontStyle.Bold);
+            this.btnDataManagerLog.ForeColor = System.Drawing.Color.White;
+            this.btnDataManagerLog.Location = new System.Drawing.Point(-3, 0);
+            this.btnDataManagerLog.Name = "btnDataManagerLog";
+            this.btnDataManagerLog.Size = new System.Drawing.Size(140, 33);
+            this.btnDataManagerLog.TabIndex = 115;
+            this.btnDataManagerLog.Text = "DataManager";
+            this.btnDataManagerLog.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnDataManagerLog.UseVisualStyleBackColor = false;
+            this.btnDataManagerLog.Click += new System.EventHandler(this.btnDataManagerLog_Click);
             // 
             // panelTitleForm
             // 
@@ -4618,6 +4651,25 @@ namespace TbApiTester
             this.button_Login.EnabledChanged += new System.EventHandler(this.button_Login_Click);
             this.button_Login.Click += new System.EventHandler(this.button_Login_Click);
             // 
+            // btnGetEnumsInfo
+            // 
+            this.btnGetEnumsInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.btnGetEnumsInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGetEnumsInfo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.btnGetEnumsInfo.FlatAppearance.BorderSize = 0;
+            this.btnGetEnumsInfo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.btnGetEnumsInfo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.btnGetEnumsInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGetEnumsInfo.Font = new System.Drawing.Font("Century Gothic", 11.75F, System.Drawing.FontStyle.Bold);
+            this.btnGetEnumsInfo.ForeColor = System.Drawing.Color.White;
+            this.btnGetEnumsInfo.Location = new System.Drawing.Point(229, 422);
+            this.btnGetEnumsInfo.Name = "btnGetEnumsInfo";
+            this.btnGetEnumsInfo.Size = new System.Drawing.Size(38, 34);
+            this.btnGetEnumsInfo.TabIndex = 119;
+            this.btnGetEnumsInfo.Text = "?";
+            this.btnGetEnumsInfo.UseVisualStyleBackColor = false;
+            this.btnGetEnumsInfo.Click += new System.EventHandler(this.btnGetEnumsInfo_Click);
+            // 
             // TbApiTester
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
@@ -4743,6 +4795,7 @@ namespace TbApiTester
             this.orangePanel6.ResumeLayout(false);
             this.orangePanel7.ResumeLayout(false);
             this.orangePanel8.ResumeLayout(false);
+            this.orangePanel10.ResumeLayout(false);
             this.panelTitleForm.ResumeLayout(false);
             this.panelTitleForm.PerformLayout();
             this.panelmarginright.ResumeLayout(false);
@@ -5106,5 +5159,8 @@ namespace TbApiTester
         private System.Windows.Forms.Button BtnInfoLoginCntx;
         private OrangePanel ThreadStatusPanel;
         private System.Windows.Forms.Label labelThred;
+        private OrangePanel orangePanel10;
+        private System.Windows.Forms.Button btnDataManagerLog;
+        private System.Windows.Forms.Button btnGetEnumsInfo;
     }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DocumentObjects>
+	<Documents>
+		<Document namespace="OttieniToken.MOToken.DynamicDocuments.DocOttieniToken" localize="DocOttieniToken" classhierarchy="" dynamic="true">
+			<ViewModes>
+				<Mode name="Default" localize="Default" type="DataEntry" schedulable="false" frameID="M.Framework.TbGes.DynamicDocuments.IDD_EMPTYDOCUMENT"></Mode>
+				<Mode name="BackGround"></Mode>
+			</ViewModes>
+		</Document>
+	</Documents>
+</DocumentObjects>

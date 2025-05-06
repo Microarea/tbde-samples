@@ -1,0 +1,5 @@
+<Applications localize="OttieniToken" producer="marco" productId="MW">
+  <Application container="Applications" name="OttieniToken">
+    <Module name="MOToken" />
+  </Application>
+</Applications>

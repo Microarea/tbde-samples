@@ -1831,7 +1831,7 @@ namespace TbApiTester
             }
             string contentBody = manager.dmMMSManager.GetDmMMSServiceVersion(manager.authenticationManager.userData);
             ShowResult(contentBody != null ? contentBody : "Error retrieving Data Manager MMS", contentBody != null);
-            DmMMSUrl.Text = UrlSManager.DmMMSUrl;
+            DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
 
         }
 
@@ -1854,7 +1854,7 @@ namespace TbApiTester
             // Display success message
             ShowResult($"TableSchema {MA_CustSupp.TableName} OK");
 
-            DmMMSUrl.Text = UrlSManager.DmMMSUrl;
+            DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
         }
 
         private async void btnSelect_Click(object sender, EventArgs e)
@@ -1892,6 +1892,7 @@ namespace TbApiTester
                 contentBody.AppendLine("------------");
             }
             ShowResult(contentBody.ToString(), true);
+            DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
         }
 
         private void btnCount_Click(object sender, EventArgs e)
@@ -1913,6 +1914,7 @@ namespace TbApiTester
             string CountContentBody = (string)CountResponse.ReturnValue;
             string contentBody = CountContentBody;
             labelCount.Text = "Count " + MA_CustSupp.TableName + " = " + contentBody;
+            DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
         }
 
         private void btnSelectAllByKey_Click(object sender, EventArgs e)
@@ -1956,6 +1958,7 @@ namespace TbApiTester
             {
                 ShowResult("Error retrieving SelectAllByKey: Null response.\nCheck that the entered parameters are correct.", false);
             }
+            DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
         }
 
         private void btnExists_Click(object sender, EventArgs e)
@@ -1976,6 +1979,7 @@ namespace TbApiTester
                 MessageBox.Show(textBoxCustSupp.Text + " not Exist");
                 return;
             }
+            DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
             MessageBox.Show(textBoxCustSupp.Text + " Already Exist");
             return;
         }
@@ -1997,7 +2001,7 @@ namespace TbApiTester
             {
 
                 TbResponse updateResponse = manager.dmMMSManager.Update(manager.authenticationManager.userData, crudData).Result;
-
+                DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
                 if (updateResponse.Success != true)
                     MessageBox.Show($"Table not Updated ({updateResponse.StatusCode})");
                 else
@@ -2007,12 +2011,14 @@ namespace TbApiTester
             else
             {
                 TbResponse addResponse = manager.dmMMSManager.Add(manager.authenticationManager.userData, crudData).Result;
+                DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
                 if (addResponse.Success != true)
                     MessageBox.Show($"Table not Added ({addResponse.StatusCode})");
                 else
                     MessageBox.Show($"Table Added Successfully ({addResponse.StatusCode})");
                 return;
             }
+
         }
 
         private void MultipleAdd()
@@ -2032,6 +2038,7 @@ namespace TbApiTester
                 if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
                 {
                     TbResponse updateResponse = manager.dmMMSManager.Update(manager.authenticationManager.userData, crudData).Result;
+                   
                     //if (updateResponse.Success != true)
                     //    MessageBox.Show($"Table not Updated ({updateResponse.StatusCode})");
                     //else
@@ -2040,6 +2047,7 @@ namespace TbApiTester
                 else
                 {
                     TbResponse addResponse = manager.dmMMSManager.Add(manager.authenticationManager.userData, crudData).Result;
+                  
                     //if (addResponse.Success != true)
                     //    MessageBox.Show($"Table not Added ({addResponse.StatusCode})");
                     //else
@@ -2055,6 +2063,7 @@ namespace TbApiTester
                 return;
             }
             SingleAdd();
+            DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
         }
 
         private void btnMultipleAdd_Click(object sender, EventArgs e)
@@ -2075,6 +2084,7 @@ namespace TbApiTester
             if (result == DialogResult.Yes)
             {
                 MultipleAdd();
+                DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
             }
         }
         //UpdateSlave
@@ -2132,6 +2142,7 @@ namespace TbApiTester
             if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
             {
                 bool? bDeleted = manager.dmMMSManager?.Delete(manager.authenticationManager.userData, crudData).Result;
+                DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
                 if (bDeleted == true)
                 {
                     MessageBox.Show(textBoxCustSupp.Text + " Table cleared successfully");
@@ -2158,6 +2169,7 @@ namespace TbApiTester
                 return;
             }
             EnumsResult enumsResult = manager.dmMMSManager.GetEnumsTable(manager.authenticationManager.userData);
+
 
             if (enumsResult != null)
             {
@@ -2228,15 +2240,14 @@ namespace TbApiTester
                 labelNextIdN.BackColor = Color.Red;
                 labelNextIdN.Text = cbxArchiveType.Text + " ArchiveType not present ";
             }
+            DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
         }
 
-        private void btnBObjectData_Click(object sender, EventArgs e)
+        private void btnGetEnumsInfo_Click(object sender, EventArgs e)
         {
-            ////////////////////// MSPZ
-            //// da cancellare
-
+            string content = $"\n-getEnumsTable: {UrlSManager.EnumsTableUrl}enums-service/getEnumsTable/\n\nThis endpoint is used to retrieve the list of available Archive Type";
+            ShowResult(content, false, true, true);
         }
-
 
 
         private void cbxServicesWeb_DropDown(object sender, EventArgs e)
@@ -2655,7 +2666,37 @@ namespace TbApiTester
             AppendToLog(logBuilder.ToString());
         }
 
-       
+        private void btnDataManagerLog_Click(object sender, EventArgs e)
+        {
+            richTextLog.Text = string.Empty;
+            if (manager.rsManager.requestRsList.Count == 0 && manager.rsManager.requestRsList.Count == 0)
+            {
+                AppendToLog("⚠️");
+                return;
+            }
+
+            StringBuilder logBuilder = new StringBuilder();
+
+            for (int i = 0; i < manager.dmMMSManager.requestDMMSList.Count; i++)
+            {
+                logBuilder.AppendLine($"🟢 REQUEST: {manager.dmMMSManager.requestDMMSList[i]}");
+
+                if (i < manager.dmMMSManager.responseDMMSList.Count)
+                {
+                    logBuilder.AppendLine($"🔵 RESPONSE: {manager.dmMMSManager.responseDMMSList[i]}");
+                }
+                else
+                {
+                    logBuilder.AppendLine($"⚠️ No Response");
+                }
+                logBuilder.AppendLine(new string('=', 60)); // Separatore
+            }
+
+            AppendToLog(logBuilder.ToString());
+
+        }
+
+        
     }
 }
 

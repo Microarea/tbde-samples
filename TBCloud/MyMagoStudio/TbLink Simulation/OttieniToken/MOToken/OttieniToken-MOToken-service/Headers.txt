@@ -1,0 +1,3 @@
+{"type":"jwt","appId":"M4","securityValue":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJMb2dpbktleSI6ImNhMmJiOTNiLTg3ZjItNDcwOS05MTVjLTM4MDg2MzRkZDk3ZCIsIlRpbWVzdGFtcCI6NjM4ODE2ODU1NjM4MzY5ODM4LCJBY2NvdW50TmFtZSI6Im1hcmNvLnNwYXppYW5AenVjY2hldHRpLmNvbSIsIkFjY291bnRFbWFpbCI6Im1hcmNvLnNwYXppYW5AenVjY2hldHRpLmNvbSIsIkluc3RhbmNlS2V5IjoiSS02NjNEMzIiLCJTdWJzY3JpcHRpb25LZXkiOiJERVYtMjMtRUIyOEU5IiwiQXBwU2VjdXJpdHkiOnsiQXBwSWQiOm51bGwsIlNlY3VyaXR5VmFsdWUiOm51bGx9fQ.aw5FPtlagEAEVNOQLdHtuvu6mUjkY7b9LEg22o4jNCA"}
+{"workerId":47,"tbServerName":"E9DA7C24-49A3-46fe-902A-31C3C945DF34","Subscription":"DEV-23-EB28E9","gmtOffset":120,"date":{"day":30,"month":4,"year":2025},"ui_culture":"en","culture":"en","companyId":0,"companyName":"","storeCode":""}
+141

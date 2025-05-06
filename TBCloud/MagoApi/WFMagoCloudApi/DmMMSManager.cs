@@ -108,7 +108,8 @@ namespace TbApiTester
     class DmMMSManager
     {
         public string requestDMMS { get; set; }
-        private List<string> requestDMMSList = new List<string>();
+        public List<string> requestDMMSList = new List<string>();
+        public List<string> responseDMMSList = new List<string>();
         internal string GetDmMMSServiceVersion(UserData userData)
         {
             using (HttpClient client = new HttpClient())
@@ -123,8 +124,10 @@ namespace TbApiTester
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
                     requestDMMS = $"{request.Method} {request.RequestUri}";
+                    requestDMMSList.Add($"[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {request.Headers}");
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
+                    responseDMMSList.Add($"[{DateTime.Now}] Status: {response}\n");
                     TbResponse tbResponse = new TbResponse();
                     if (response.StatusCode == HttpStatusCode.OK && !string.IsNullOrEmpty(responseBody))
                     {
@@ -157,12 +160,13 @@ namespace TbApiTester
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/{call}?tableName={tableName}");
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                    requestDMMS = request.ToString();
-                    requestDMMSList.Add(requestDMMS);
+                    
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
+                    requestDMMSList.Add($"[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {request.Headers}");
                     TbResponse tbResponse = new TbResponse();
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string funResponse = await response.Content.ReadAsStringAsync();
-                   
+                    responseDMMSList.Add($"[{DateTime.Now}] Status: {response}\n");
                     tbResponse.StatusCode = (int)response.StatusCode;
                     if (response.StatusCode == HttpStatusCode.OK && !string.IsNullOrEmpty(funResponse))
                     {
@@ -206,14 +210,15 @@ namespace TbApiTester
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/{call}");
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                    requestDMMS = request.ToString();
-                    requestDMMSList.Add(requestDMMS);
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
+                    requestDMMSList.Add($"[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {request.Headers}");
                     var queryParam = JsonConvert.SerializeObject(query);
                     request.Content = new StringContent(content: queryParam, encoding: Encoding.UTF8, mediaType: "application/json");
                     TbResponse tbResponse = new TbResponse();
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     tbResponse.StatusCode = (int)response.StatusCode;
                     string funResponse = await response.Content.ReadAsStringAsync();
+                    responseDMMSList.Add($"[{DateTime.Now}] Status: {response}\n");
                     if (response.StatusCode == HttpStatusCode.OK && !string.IsNullOrEmpty(funResponse))
                     {
                         await AssignTbResponse(response, tbResponse);
@@ -496,11 +501,11 @@ namespace TbApiTester
                 TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                 TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                 requestDMMS = $"{request.Method} {request.RequestUri}";
-                requestDMMSList.Add(requestDMMS);
+                requestDMMSList.Add($"[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {request.Headers}");
 
                 TbResponse tbResponse = new TbResponse();
                 HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-
+                responseDMMSList.Add($"[{DateTime.Now}] Status: {response}\n");
                 await AssignTbResponse(response, tbResponse);
 
                 return tbResponse;
@@ -511,6 +516,7 @@ namespace TbApiTester
         {
             string funResponse = await response.Content.ReadAsStringAsync();
             tbResponse.StatusCode = (int)response.StatusCode;
+            responseDMMSList.Add($"[{DateTime.Now}] Status: {response}\n");
             if (response.StatusCode == HttpStatusCode.OK && !string.IsNullOrEmpty(funResponse))
             {
                 JObject data = JsonConvert.DeserializeObject<JObject>(funResponse);
@@ -546,7 +552,7 @@ namespace TbApiTester
                     //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl);
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                    requestDMMS = $"{request.Method} {request.RequestUri}";
+                  
                     requestDMMSList.Add(requestDMMS);
 
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -609,10 +615,7 @@ namespace TbApiTester
             }
 
         }
-        public List<string> GetRequestDMMSList()
-        {
-            return requestDMMSList;
-        }
+      
     }
 }
 

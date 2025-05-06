@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SalesModule localize="OttieniToken" edition="Professional" internalcode="marco">
+  <ShortNames>
+    <ShortName name="MOTK" />
+  </ShortNames>
+  <Application container="Applications" name="OttieniToken">
+    <Module name="MOToken" />
+  </Application>
+</SalesModule>

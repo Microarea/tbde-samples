@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClientDocumentObjects>
+	<CodelessClientDocuments>
+		<ServerDocument namespace="ERP.Company.Documents.Company">
+			<CodelessClientDocument namespace="Document.OttieniToken.MOToken.codeless.CDCompany"></CodelessClientDocument>
+		</ServerDocument>
+	</CodelessClientDocuments>
+</ClientDocumentObjects>

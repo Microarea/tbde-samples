@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DBTs xmlns:sl="urn:TBStringLoader">
+	<Master namespace="OttieniToken.MOToken.DynamicDocuments.DocOttieniToken.MA_Areas">
+		<Title localizable="true">MA_Areas</Title>
+		<Table namespace="ERP.SalesPeople.Dbl.MA_Areas">MA_Areas</Table>
+		<ChooseUpdate>0</ChooseUpdate>
+	</Master>
+</DBTs>
