@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "18d9b531-9f81-4ae0-a9dc-84e66cd422d4",
+		"_postman_id": "a7908be1-c708-4305-bcd2-68350a7386de",
 		"name": "TaskBuilderCloudAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23716229"
@@ -450,6 +450,265 @@
 								"{{local-url}}account-manager"
 							],
 							"path": [
+								"logoff"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5.0 Mw-Console LogIn",
+			"item": [
+				{
+					"name": "5.0 mw-console   (listen)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:60000/mw-console/api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60000",
+							"path": [
+								"mw-console",
+								"api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.0 mw-console Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:60000/mw-console/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60000",
+							"path": [
+								"mw-console",
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.0 mw-console  IsValidToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:60000/mw-console/api/isvalidtoken",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60000",
+							"path": [
+								"mw-console",
+								"api",
+								"isvalidtoken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.0 mw-console Logoff",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"jwt-token\", \"\");\r",
+									"console.log(res[\"Message\"]);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"token\":\"{{jwt-token}}\"}"
+						},
+						"url": {
+							"raw": "http://localhost:60000/mw-console/api/logoff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60000",
+							"path": [
+								"mw-console",
+								"api",
 								"logoff"
 							]
 						}
@@ -2870,6 +3129,704 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "MMS-service/defaultuserfunctions",
+			"item": [
+				{
+					"name": "CurrentSubscriptionKey",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 0088\"\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-url}}mymagostudio-service/defaultuserfunctions/CurrentSubscriptionKey",
+							"host": [
+								"{{local-url}}mymagostudio-service"
+							],
+							"path": [
+								"defaultuserfunctions",
+								"CurrentSubscriptionKey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CurrentSubscriptionDescription",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 0088\"\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-url}}mymagostudio-service/defaultuserfunctions/CurrentSubscriptionDescription",
+							"host": [
+								"{{local-url}}mymagostudio-service"
+							],
+							"path": [
+								"defaultuserfunctions",
+								"CurrentSubscriptionDescription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CurrentUserName",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 0088\"\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-url}}mymagostudio-service/defaultuserfunctions/CurrentUserName",
+							"host": [
+								"{{local-url}}mymagostudio-service"
+							],
+							"path": [
+								"defaultuserfunctions",
+								"CurrentUserName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CurrentUserFullName",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 0088\"\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-url}}mymagostudio-service/defaultuserfunctions/CurrentUserFullName",
+							"host": [
+								"{{local-url}}mymagostudio-service"
+							],
+							"path": [
+								"defaultuserfunctions",
+								"CurrentUserFullName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CurrentUserNickName",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 0088\"\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-url}}mymagostudio-service/defaultuserfunctions/CurrentUserNickName",
+							"host": [
+								"{{local-url}}mymagostudio-service"
+							],
+							"path": [
+								"defaultuserfunctions",
+								"CurrentUserNickName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CurrentWorkerName",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 0088\"\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-url}}mymagostudio-service/defaultuserfunctions/CurrentWorkerName",
+							"host": [
+								"{{local-url}}mymagostudio-service"
+							],
+							"path": [
+								"defaultuserfunctions",
+								"CurrentWorkerName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CurrentWorkerEmail",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-url}}mymagostudio-service/defaultuserfunctions/CurrentWorkerEmail",
+							"host": [
+								"{{local-url}}mymagostudio-service"
+							],
+							"path": [
+								"defaultuserfunctions",
+								"CurrentWorkerEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApplicationTitle",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 0088\"\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-url}}mymagostudio-service/defaultuserfunctions/ApplicationTitle",
+							"host": [
+								"{{local-url}}mymagostudio-service"
+							],
+							"path": [
+								"defaultuserfunctions",
+								"ApplicationTitle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModuleTitle",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 0088\"\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-url}}mymagostudio-service/defaultuserfunctions/ModuleTitle",
+							"host": [
+								"{{local-url}}mymagostudio-service"
+							],
+							"path": [
+								"defaultuserfunctions",
+								"ModuleTitle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MonthName",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 0088\"\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-url}}mymagostudio-service/defaultuserfunctions/MonthName",
+							"host": [
+								"{{local-url}}mymagostudio-service"
+							],
+							"path": [
+								"defaultuserfunctions",
+								"MonthName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "WeekDayName",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 0088\"\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-url}}mymagostudio-service/defaultuserfunctions/WeekDayName",
+							"host": [
+								"{{local-url}}mymagostudio-service"
+							],
+							"path": [
+								"defaultuserfunctions",
+								"WeekDayName"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -2981,4 +3938,4 @@
 			"type": "string"
 		}
 	]
-}  
+}
