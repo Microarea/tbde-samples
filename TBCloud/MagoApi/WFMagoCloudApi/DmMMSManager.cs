@@ -500,8 +500,7 @@ namespace TbApiTester
                 //request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                 TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                 TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                requestDMMS = $"{request.Method} {request.RequestUri}";
-                requestDMMSList.Add($"[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {request.Headers}");
+                
 
                 TbResponse tbResponse = new TbResponse();
                 HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -526,7 +525,7 @@ namespace TbApiTester
             }
             else
             {
-                MessageBox.Show(tbResponse.ToString());
+                MessageBox.Show(response.ToString());
 
             }
         }

@@ -15,7 +15,7 @@ namespace TbApiTester
 {
     class WebMethodsManager
     {
-        
+
         public string requestTb { get; set; }
         public List<string> requestTbList = new List<string>();
         public List<string> responseTbList = new List<string>();
@@ -361,7 +361,7 @@ namespace TbApiTester
                     }
                     else
                     {
-                        return   false;
+                        return false;
                     }
                 }
                 catch (HttpRequestException e)
@@ -392,18 +392,44 @@ namespace TbApiTester
                     var responseBody = response.Content.ReadAsStringAsync().Result;
                     responseTbList.Add($"[{DateTime.Now}] Status: {response}\n");
 
-
                     if (response.IsSuccessStatusCode)
                     {
-                        return true; // oppure JObject.Parse(responseBody).ToString()
+                        var jObj = JObject.Parse(responseBody);
+                        bool hasErrors = jObj["hasErrors"]?.Value<bool>() ?? false;
+                        string message = jObj["messages"]?.FirstOrDefault()?["text"]?.ToString();
+
+                        if (hasErrors)
+                        {
+                            MessageBox.Show(
+                                message ?? "An unknown error occurred while releasing the login context.",
+                                "Login Context Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning
+                            );
+                            return false;
+                        }
+
+                        return true;
                     }
                     else
                     {
+                        MessageBox.Show(
+                            $"HTTP error: {response.StatusCode}",
+                            "Request Failed",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
                         return false;
                     }
                 }
                 catch (HttpRequestException e)
                 {
+                    MessageBox.Show(
+                        $"Network error: {e.Message}",
+                        "Connection Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
                     return false;
                 }
             }

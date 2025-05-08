@@ -74,7 +74,7 @@ namespace TbApiTester
             btnSaveCredential.Visible = false;
             logCredential = new LogCredential();
             string currentEnvironment = GlobalSettings.CurrentButtonState.ToString();
-
+         
             InitializeCredential(currentEnvironment);
             string folderPath = Path.Combine(basePath, "Docs");
             uiManager.SetControls(this.Controls);
@@ -114,7 +114,6 @@ namespace TbApiTester
                     labelInfoAuthenticate.Text += "Cloud";
                     break;
             }
-
 
             IsCloudButtonClicked = isCloudButtonClicked;
             btnClearText.Visible = false;
@@ -938,10 +937,10 @@ namespace TbApiTester
             To explicitly manage the thread's lifecycle, the following endpoints can be used:
 
             - Keep the thread alive:  
-              POST http://{UrlSManager.TbServerUrl}/tbserver/api/tb/document/useLoginContext/
+              POST {UrlSManager.TbServerUrl}/tbserver/api/tb/document/useLoginContext/
 
             - Release the thread:  
-              POST http://{UrlSManager.TbServerUrl}/tbserver/api/tb/document/releaseLoginContext/";
+              POST {UrlSManager.TbServerUrl}/tbserver/api/tb/document/releaseLoginContext/";
             ShowResult(content, false, true, true);
         }
         /////// DATE BTN ////////
@@ -2544,14 +2543,15 @@ namespace TbApiTester
             if (manager.tbServerManager != null)
             {
                 manager.logsManager.ClearLogs();
+                LogsLabel.Text = "Logs";
                 richTextLog.Text = string.Empty;
             }
 
         }
         private void btnTbServerLog_Click(object sender, EventArgs e)
         {
-            richTextLog.Text = string.Empty;
-            richTextLog.Text = string.Empty;
+           
+            LogsLabel.Text = "TbServer Logs";
 
             bool isTbServerEmpty = manager.tbServerManager.requestTbList.Count == 0 && manager.tbServerManager.responseTbList.Count == 0;
             bool isWebMethodsEmpty = manager.webMethodsManager.requestTbList.Count == 0 && manager.webMethodsManager.responseTbList.Count == 0;
@@ -2600,7 +2600,7 @@ namespace TbApiTester
                     {
                         logBuilder.AppendLine("⚠️ No Response");
                     }
-                    logBuilder.AppendLine(new string('=', 60));
+                    logBuilder.AppendLine(new string('=', 60));// =====
                 }
             }
 
@@ -2610,7 +2610,8 @@ namespace TbApiTester
 
         private void btnDataServiceLogs_Click(object sender, EventArgs e)
         {
-            richTextLog.Text = string.Empty;
+            
+            LogsLabel.Text = "DataService Logs";
             if (manager.dataServiceManager.requestDsList.Count == 0 && manager.dataServiceManager.requestDsList.Count == 0)
             {
                 AppendToLog("⚠️");
@@ -2631,7 +2632,7 @@ namespace TbApiTester
                 {
                     logBuilder.AppendLine($"⚠️ No Response");
                 }
-                logBuilder.AppendLine(new string('=', 60)); // Separatore
+                logBuilder.AppendLine(new string('=', 60)); // =====
             }
 
             AppendToLog(logBuilder.ToString());
@@ -2639,7 +2640,8 @@ namespace TbApiTester
 
         private void btnReportingServiceLog_Click(object sender, EventArgs e)
         {
-            richTextLog.Text = string.Empty;
+            
+            LogsLabel.Text = "ReportingService Logs";
             if (manager.rsManager.requestRsList.Count == 0 && manager.rsManager.requestRsList.Count == 0)
             {
                 AppendToLog("⚠️");
@@ -2660,7 +2662,7 @@ namespace TbApiTester
                 {
                     logBuilder.AppendLine($"⚠️ No Response");
                 }
-                logBuilder.AppendLine(new string('=', 60)); // Separatore
+                logBuilder.AppendLine(new string('=', 60)); // ======
             }
 
             AppendToLog(logBuilder.ToString());
@@ -2668,8 +2670,9 @@ namespace TbApiTester
 
         private void btnDataManagerLog_Click(object sender, EventArgs e)
         {
-            richTextLog.Text = string.Empty;
-            if (manager.rsManager.requestRsList.Count == 0 && manager.rsManager.requestRsList.Count == 0)
+            //richTextLog.Text = string.Empty;
+            LogsLabel.Text = "DataManager Logs";
+            if (manager.dmMMSManager.requestDMMSList.Count == 0 && manager.dmMMSManager.requestDMMSList.Count == 0)
             {
                 AppendToLog("⚠️");
                 return;
@@ -2689,7 +2692,7 @@ namespace TbApiTester
                 {
                     logBuilder.AppendLine($"⚠️ No Response");
                 }
-                logBuilder.AppendLine(new string('=', 60)); // Separatore
+                logBuilder.AppendLine(new string('=', 60)); // =====
             }
 
             AppendToLog(logBuilder.ToString());

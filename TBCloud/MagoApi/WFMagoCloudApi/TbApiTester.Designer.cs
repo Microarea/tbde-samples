@@ -42,7 +42,7 @@ namespace TbApiTester
             this.panelTbTextContainer = new System.Windows.Forms.Panel();
             this.btnClearText = new System.Windows.Forms.Button();
             this.btnSaveXmlTbServer = new System.Windows.Forms.Button();
-            this.xmlEditorTbResult = new   XmlEditor();
+            this.xmlEditorTbResult = new XmlEditor();
             this.labelCallTbResult = new System.Windows.Forms.Label();
             this.BtnOpenFolder = new System.Windows.Forms.Button();
             this.BtnQuestionCall = new System.Windows.Forms.Button();
@@ -234,6 +234,7 @@ namespace TbApiTester
             this.labelDmsUrl = new System.Windows.Forms.Label();
             this.tabMSH = new System.Windows.Forms.TabPage();
             this.DataManager = new System.Windows.Forms.TabPage();
+            this.btnGetEnumsInfo = new System.Windows.Forms.Button();
             this.panelDataManagerOtherCall = new System.Windows.Forms.Panel();
             this.LabelmultipleAdd = new System.Windows.Forms.Label();
             this.btnMultipleAdd = new System.Windows.Forms.Button();
@@ -374,7 +375,6 @@ namespace TbApiTester
             this.Http_label = new System.Windows.Forms.Label();
             this.button_exit = new System.Windows.Forms.Button();
             this.button_Login = new System.Windows.Forms.Button();
-            this.btnGetEnumsInfo = new System.Windows.Forms.Button();
             this.tabNavigation.SuspendLayout();
             this.tabTbServer.SuspendLayout();
             this.paneltbfsH.SuspendLayout();
@@ -2942,6 +2942,25 @@ namespace TbApiTester
             this.DataManager.TabIndex = 6;
             this.DataManager.Text = "DataManager";
             // 
+            // btnGetEnumsInfo
+            // 
+            this.btnGetEnumsInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.btnGetEnumsInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGetEnumsInfo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.btnGetEnumsInfo.FlatAppearance.BorderSize = 0;
+            this.btnGetEnumsInfo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.btnGetEnumsInfo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
+            this.btnGetEnumsInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGetEnumsInfo.Font = new System.Drawing.Font("Century Gothic", 11.75F, System.Drawing.FontStyle.Bold);
+            this.btnGetEnumsInfo.ForeColor = System.Drawing.Color.White;
+            this.btnGetEnumsInfo.Location = new System.Drawing.Point(229, 422);
+            this.btnGetEnumsInfo.Name = "btnGetEnumsInfo";
+            this.btnGetEnumsInfo.Size = new System.Drawing.Size(38, 34);
+            this.btnGetEnumsInfo.TabIndex = 119;
+            this.btnGetEnumsInfo.Text = "?";
+            this.btnGetEnumsInfo.UseVisualStyleBackColor = false;
+            this.btnGetEnumsInfo.Click += new System.EventHandler(this.btnGetEnumsInfo_Click);
+            // 
             // panelDataManagerOtherCall
             // 
             this.panelDataManagerOtherCall.Controls.Add(this.LabelmultipleAdd);
@@ -3929,6 +3948,7 @@ namespace TbApiTester
             this.richTextLog.Size = new System.Drawing.Size(846, 418);
             this.richTextLog.TabIndex = 117;
             this.richTextLog.Text = "";
+            this.richTextLog.WordWrap = false;
             // 
             // LogsLabel
             // 
@@ -4650,25 +4670,6 @@ namespace TbApiTester
             this.button_Login.UseVisualStyleBackColor = false;
             this.button_Login.EnabledChanged += new System.EventHandler(this.button_Login_Click);
             this.button_Login.Click += new System.EventHandler(this.button_Login_Click);
-            // 
-            // btnGetEnumsInfo
-            // 
-            this.btnGetEnumsInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.btnGetEnumsInfo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGetEnumsInfo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.btnGetEnumsInfo.FlatAppearance.BorderSize = 0;
-            this.btnGetEnumsInfo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.btnGetEnumsInfo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(118)))), ((int)(((byte)(186)))));
-            this.btnGetEnumsInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGetEnumsInfo.Font = new System.Drawing.Font("Century Gothic", 11.75F, System.Drawing.FontStyle.Bold);
-            this.btnGetEnumsInfo.ForeColor = System.Drawing.Color.White;
-            this.btnGetEnumsInfo.Location = new System.Drawing.Point(229, 422);
-            this.btnGetEnumsInfo.Name = "btnGetEnumsInfo";
-            this.btnGetEnumsInfo.Size = new System.Drawing.Size(38, 34);
-            this.btnGetEnumsInfo.TabIndex = 119;
-            this.btnGetEnumsInfo.Text = "?";
-            this.btnGetEnumsInfo.UseVisualStyleBackColor = false;
-            this.btnGetEnumsInfo.Click += new System.EventHandler(this.btnGetEnumsInfo_Click);
             // 
             // TbApiTester
             // 

@@ -190,7 +190,7 @@ namespace TbApiTester
                         {
                             // Use MagoWebLogin  for 5.0
                             request = new HttpRequestMessage(HttpMethod.Post, MagoWebLogin50);
-                            MessageBox.Show("You are in 5.0 Version\nNow for logIn use mw-console service:\n" + MagoWebLogin50);
+                            MessageBox.Show("You are on Version 5.0 or later \nNow for logIn use mw-console service:\n" + MagoWebLogin50);
                         }
                         else
                         {
@@ -344,7 +344,7 @@ namespace TbApiTester
                         if (client.GetAsync(mwConsoleApi).Result.StatusCode == System.Net.HttpStatusCode.OK)
                         {
                             requestUrl = mwConsoleIsValidToken;
-                            MessageBox.Show("You are in 5.0 Version\nNow for token validation use mw-console service:\n" + mwConsoleIsValidToken);
+                            MessageBox.Show("You are on Version 5.0 or later\nNow for token validation use mw-console service:\n" + mwConsoleIsValidToken);
                         }
                         else if (string.IsNullOrEmpty(gwamUrl))
                         {
@@ -469,7 +469,7 @@ namespace TbApiTester
                         if (client.GetAsync(mwConsoleApi).Result.StatusCode == System.Net.HttpStatusCode.OK)
                         {
                             requestUrl = mwConsoleLogoff;
-                            MessageBox.Show("You are in 5.0 Version\nNow for logoff use mw-console service:\n" + mwConsoleLogoff);
+                            MessageBox.Show("You are on Version 5.0 or later\nNow for logoff use mw-console service:\n" + mwConsoleLogoff);
                         }
                         else
                         {
