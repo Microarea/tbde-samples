@@ -8,7 +8,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using Microarea.Generic;
 using System.Threading.Tasks;
 
 namespace TbApiTester
@@ -346,6 +345,7 @@ namespace TbApiTester
                     requestTb = $"{request.Method} {request.RequestUri}";
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate);
+                    TbApiTesterManager.PrepareHeaderSnapshot(request, userData);
 
                     request.Content = new StringContent("{}", Encoding.UTF8, "application/json");
                     requestTbList.Add($"UseLoginContext_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {request.Content}");
@@ -384,6 +384,7 @@ namespace TbApiTester
 
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate);
+                    TbApiTesterManager.PrepareHeaderSnapshot(request, userData);
 
                     request.Content = new StringContent("{}", Encoding.UTF8, "application/json");
                     requestTbList.Add($"UseLoginContext_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {request.Content}");

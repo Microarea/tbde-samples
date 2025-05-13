@@ -38,6 +38,8 @@ namespace TbApiTester
         {
             UrlSManager.TbFsServiceUrl = string.Empty;
             UrlSManager.DmMMSUrl = string.Empty;
+            UrlSManager.TbServerUrl = string.Empty;
+            UrlSManager.DmsServiceUrl = string.Empty;
             DataUrl = string.Empty;
             DmsUrl = string.Empty;
             TbFsUrl = null;

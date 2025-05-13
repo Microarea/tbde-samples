@@ -392,6 +392,7 @@ namespace TbApiTester
                     }
                     button_Login.ForeColor = Color.White;
                     button_Login.BackColor = Color.Green;
+                    labelMessage.Text = string.Empty;
                 }
                 else
                 {
@@ -464,6 +465,9 @@ namespace TbApiTester
                 button_Login.Text = "Login";
                 button_Login.BackColor = Color.FromArgb(22, 118, 186);
                 btnAccount.Visible = false;
+                UrlSManager.TbFsServiceUrl = string.Empty;
+                UrlSManager.DmMMSUrl = string.Empty;
+                UrlSManager.EnumsTableUrl = string.Empty;
             }
             else
             {
@@ -2550,7 +2554,7 @@ namespace TbApiTester
         }
         private void btnTbServerLog_Click(object sender, EventArgs e)
         {
-           
+            richTextLog.Text = string.Empty;
             LogsLabel.Text = "TbServer Logs";
 
             bool isTbServerEmpty = manager.tbServerManager.requestTbList.Count == 0 && manager.tbServerManager.responseTbList.Count == 0;
@@ -2558,7 +2562,7 @@ namespace TbApiTester
 
             if (isTbServerEmpty && isWebMethodsEmpty)
             {
-                AppendToLog("⚠️ Nessun log disponibile.");
+                AppendToLog("⚠️ TbServer Logs Empty");
                 return;
             }
 
@@ -2610,11 +2614,11 @@ namespace TbApiTester
 
         private void btnDataServiceLogs_Click(object sender, EventArgs e)
         {
-            
+            richTextLog.Text = string.Empty;
             LogsLabel.Text = "DataService Logs";
             if (manager.dataServiceManager.requestDsList.Count == 0 && manager.dataServiceManager.requestDsList.Count == 0)
             {
-                AppendToLog("⚠️");
+                AppendToLog("⚠️ DataService Logs Empty");
                 return;
             }
 
@@ -2640,11 +2644,11 @@ namespace TbApiTester
 
         private void btnReportingServiceLog_Click(object sender, EventArgs e)
         {
-            
+            richTextLog.Text = string.Empty;
             LogsLabel.Text = "ReportingService Logs";
             if (manager.rsManager.requestRsList.Count == 0 && manager.rsManager.requestRsList.Count == 0)
             {
-                AppendToLog("⚠️");
+                AppendToLog("⚠️ ReportingService Logs Empty");
                 return;
             }
 
@@ -2670,11 +2674,11 @@ namespace TbApiTester
 
         private void btnDataManagerLog_Click(object sender, EventArgs e)
         {
-            //richTextLog.Text = string.Empty;
+            richTextLog.Text = string.Empty;
             LogsLabel.Text = "DataManager Logs";
             if (manager.dmMMSManager.requestDMMSList.Count == 0 && manager.dmMMSManager.requestDMMSList.Count == 0)
             {
-                AppendToLog("⚠️");
+                AppendToLog("⚠️ DataManager Logs Empty");
                 return;
             }
 
