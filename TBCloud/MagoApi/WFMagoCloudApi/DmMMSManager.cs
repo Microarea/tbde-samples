@@ -477,7 +477,7 @@ namespace TbApiTester
                         // Extract only the first line of the error message
                         string shortMessage = funResponse.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)[0];
                         return tbResponse;
-                        MessageBox.Show(tbResponse.StatusCode.ToString() + shortMessage);
+                        //MessageBox.Show(tbResponse.StatusCode.ToString() + shortMessage);
                     }
                 }
                 catch (HttpRequestException e)

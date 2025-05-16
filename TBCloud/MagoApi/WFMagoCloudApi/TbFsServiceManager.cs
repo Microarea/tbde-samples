@@ -392,6 +392,8 @@ namespace TbApiTester
             });
         }
 
+
+        // For net.8
         //public async Task<IActionResult> UploadObject(UserData userData, MultipartFormDataContent files, Microarea.Tbf.Model.Interfaces.API.ObjectType objectType, string currNamespace, string user)
         //{
         //    UrlSManager Urls = new UrlSManager();
@@ -419,7 +421,7 @@ namespace TbApiTester
         //    //return (IActionResult)opResult;
         //}
 
-        
+
 
 
         //// Helper per ottenere i byte di un file

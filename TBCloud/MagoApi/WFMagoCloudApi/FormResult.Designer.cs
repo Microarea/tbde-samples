@@ -32,10 +32,7 @@ namespace WindowsFormsResult
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormResult));
             this.labelFormContent = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
-            this.pictureBoxRequest = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.richXmlTextBox = new System.Windows.Forms.RichTextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBoxCode = new System.Windows.Forms.TextBox();
             this.buttonExitForm = new System.Windows.Forms.Button();
             this.panelTitleResult = new System.Windows.Forms.Panel();
@@ -43,11 +40,16 @@ namespace WindowsFormsResult
             this.labelSmile = new System.Windows.Forms.Label();
             this.labelTitleResult = new System.Windows.Forms.Label();
             this.buttonResize = new System.Windows.Forms.Button();
+            this.pictureBoxRequest = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxToken = new System.Windows.Forms.PictureBox();
             this.panelContent.SuspendLayout();
+            this.panelTitleResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRequest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelTitleResult.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxToken)).BeginInit();
             this.SuspendLayout();
             // 
             // labelFormContent
@@ -59,6 +61,7 @@ namespace WindowsFormsResult
             // panelContent
             // 
             resources.ApplyResources(this.panelContent, "panelContent");
+            this.panelContent.Controls.Add(this.pictureBoxToken);
             this.panelContent.Controls.Add(this.pictureBoxRequest);
             this.panelContent.Controls.Add(this.pictureBox2);
             this.panelContent.Controls.Add(this.richXmlTextBox);
@@ -67,30 +70,12 @@ namespace WindowsFormsResult
             this.panelContent.Controls.Add(this.labelFormContent);
             this.panelContent.Name = "panelContent";
             // 
-            // pictureBoxRequest
-            // 
-            resources.ApplyResources(this.pictureBoxRequest, "pictureBoxRequest");
-            this.pictureBoxRequest.Name = "pictureBoxRequest";
-            this.pictureBoxRequest.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.TabStop = false;
-            // 
             // richXmlTextBox
             // 
             this.richXmlTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richXmlTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             resources.ApplyResources(this.richXmlTextBox, "richXmlTextBox");
             this.richXmlTextBox.Name = "richXmlTextBox";
-            // 
-            // pictureBox1
-            // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
             // 
             // textBoxCode
             // 
@@ -157,6 +142,30 @@ namespace WindowsFormsResult
             this.buttonResize.UseVisualStyleBackColor = false;
             this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
             // 
+            // pictureBoxRequest
+            // 
+            resources.ApplyResources(this.pictureBoxRequest, "pictureBoxRequest");
+            this.pictureBoxRequest.Name = "pictureBoxRequest";
+            this.pictureBoxRequest.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBoxToken
+            // 
+            resources.ApplyResources(this.pictureBoxToken, "pictureBoxToken");
+            this.pictureBoxToken.Name = "pictureBoxToken";
+            this.pictureBoxToken.TabStop = false;
+            // 
             // FormResult
             // 
             this.AllowDrop = true;
@@ -174,11 +183,12 @@ namespace WindowsFormsResult
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.panelContent.ResumeLayout(false);
             this.panelContent.PerformLayout();
+            this.panelTitleResult.ResumeLayout(false);
+            this.panelTitleResult.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRequest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelTitleResult.ResumeLayout(false);
-            this.panelTitleResult.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxToken)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -198,5 +208,6 @@ namespace WindowsFormsResult
         private System.Windows.Forms.PictureBox pictureBoxRequest;
         private System.Windows.Forms.Button btnUploadXml;
         private System.Windows.Forms.Label labelSmile;
+        private System.Windows.Forms.PictureBox pictureBoxToken;
     }
 }

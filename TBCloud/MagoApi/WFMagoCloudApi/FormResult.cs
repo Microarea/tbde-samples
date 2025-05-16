@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using ServiceStack.ServiceInterface.ServiceModel;
+using TbApiTester.Properties;
 
 namespace WindowsFormsResult
 {
@@ -18,7 +20,7 @@ namespace WindowsFormsResult
            );
         
 
-        public FormResult(string content,  bool bOk = false, bool bBlue = false, bool bHelp = false)
+        public FormResult(string content,  bool bOk = false, bool bBlue = false, bool bHelp = false, bool showImage = false)
         {
 
             InitializeComponent();
@@ -29,19 +31,23 @@ namespace WindowsFormsResult
             this.richXmlTextBox.Hide();
             labelFormContent.Text = content;
             richXmlTextBox.AppendText(content);
-            
+            this.pictureBoxToken.Visible = showImage;
+            this.pictureBoxToken.Image = Resources.ImgTokenExt;
+           
+
 
             this.content = content;
             if(bHelp)
             {
+               
                 this.btnUploadXml.Hide();
                 panelTitleResult.BackColor = Color.LightSteelBlue;
                 this.buttonResize.Hide();
                 this.labelSmile.Text = "?";
                 this.labelTitleResult.Text = "Calls Info";
                 this.buttonExitForm.BackColor = Color.LightSteelBlue;
-                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 800, 300, 20, 20));
-                this.Height = 300;
+                this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, 800, 400, 20, 20));
+                this.Height = 400;
                 this.Width = 800;
                 return;
             }

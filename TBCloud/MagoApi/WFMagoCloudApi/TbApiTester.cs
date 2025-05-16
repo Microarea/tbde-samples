@@ -15,13 +15,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
-using System.Web.UI.WebControls;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using static TbApiTester.LogCredential;
-using System.Windows.Controls.Primitives;
 using System.Data;
-
-
 
 
 namespace TbApiTester
@@ -56,8 +50,6 @@ namespace TbApiTester
         public System.Diagnostics.Process p = null;
         string basePath = AppDomain.CurrentDomain.BaseDirectory;
         private bool isFullScreen = false;
-        private string tableName;
-        TbResponse m_GetBoResponse;
         public XDocument loadedXmlDocument;
         public string CurrentPath { get; set; }
         private Color previousColor;
@@ -74,8 +66,9 @@ namespace TbApiTester
             btnSaveCredential.Visible = false;
             logCredential = new LogCredential();
             string currentEnvironment = GlobalSettings.CurrentButtonState.ToString();
-         
+
             InitializeCredential(currentEnvironment);
+            labelHelpToken.Visible = false;
             string folderPath = Path.Combine(basePath, "Docs");
             uiManager.SetControls(this.Controls);
             labelManager = new LabelManager(this);
@@ -510,10 +503,10 @@ namespace TbApiTester
         ////////////////////////
         ///// RESULT WINDOW ////
         ////////////////////////
-        private void ShowResult(string content, bool bOk = true, bool bBlue = false, bool bHelp = false)
+        private void ShowResult(string content, bool bOk = true, bool bBlue = false, bool bHelp = false, bool showImage = false)
         {
 
-            Form form = new WindowsFormsResult.FormResult(content, bOk, bBlue, bHelp);
+            Form form = new WindowsFormsResult.FormResult(content, bOk, bBlue, bHelp, showImage);
             form.ShowDialog(this);
             Cursor = Cursors.Default;
         }
@@ -528,7 +521,7 @@ namespace TbApiTester
             "- GetXmlParams: retrieves the whole list of parameters useful for performing the GetXmlData\n" +
             "- GetXmlData: retrives the entire business object data defined in the export profile.\n" +
             "- SetXmlData: allows the data of a business object to be written to MagoCloud using the Xml payload.";
-            ShowResult(content, false, true, true);
+            ShowResult(content, false, true, true, false);
         }
 
         // COMBOBOX TBFSSERVICE MANAGER
@@ -945,7 +938,7 @@ namespace TbApiTester
 
             - Release the thread:  
               POST {UrlSManager.TbServerUrl}/tbserver/api/tb/document/releaseLoginContext/";
-            ShowResult(content, false, true, true);
+            ShowResult(content, false, true, true, false);
         }
         /////// DATE BTN ////////
 
@@ -1397,7 +1390,7 @@ namespace TbApiTester
             "You can use it by adding it to your environment at the following path:\n" +
             "YourEnvironment\\Standard\\Applications\\ERP\\SaleOrders\\ReferenceObjects";
             info = content;
-            ShowResult(content, false, true, true);
+            ShowResult(content, false, true, true, false);
         }
         private void btnGetDataQry_Click(object sender, EventArgs e)
         {
@@ -2249,7 +2242,7 @@ namespace TbApiTester
         private void btnGetEnumsInfo_Click(object sender, EventArgs e)
         {
             string content = $"\n-getEnumsTable: {UrlSManager.EnumsTableUrl}enums-service/getEnumsTable/\n\nThis endpoint is used to retrieve the list of available Archive Type";
-            ShowResult(content, false, true, true);
+            ShowResult(content, false, true, true, false);
         }
 
 
@@ -2339,7 +2332,7 @@ namespace TbApiTester
                     }
                     catch (JsonReaderException ex)
                     {
-                        resultBuilder.AppendLine("Errore durante la deserializzazione di un oggetto JSON: " + ex.Message);
+                        resultBuilder.AppendLine("Error JSON: " + ex.Message);
                     }
                 }
 
@@ -2347,7 +2340,7 @@ namespace TbApiTester
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Errore generale: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
 
         }
@@ -2375,7 +2368,7 @@ namespace TbApiTester
            $"\n- GetAllModulesByApplication: {UrlSManager.TbFsServiceUrl}/tbfs-service/GetAllModulesByApplication.\n" +
            $"\n- GetSubFolders: {UrlSManager.TbFsServiceUrl}/tbfs-service/GetSubFolders.\n" +
            $"\n- getprofilefolders: {UrlSManager.TbFsServiceUrl}/tbfs-service/getprofilefolders";
-            ShowResult(content, false, true, true);
+            ShowResult(content, false, true, true,false);
         }
 
         private void btnExpandDynamicQueries_Click(object sender, EventArgs e)
@@ -2479,16 +2472,16 @@ namespace TbApiTester
                     if (response.IsSuccessStatusCode)
                     {
                         string result = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine("Documento aperto: " + result);
+                        MessageBox.Show("Documen is opened");
                     }
                     else
                     {
-                        Console.WriteLine($"Errore: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
+                        Console.WriteLine($"Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Eccezione: {ex.Message}");
+                    Console.WriteLine($"Exception: {ex.Message}");
                 }
             }
         }
@@ -2509,16 +2502,16 @@ namespace TbApiTester
                     if (response.IsSuccessStatusCode)
                     {
                         string result = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show($"Token ricevuto: " + result, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"Token received : " + result, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        Console.WriteLine($"Errore: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
+                        Console.WriteLine($"Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Eccezione: {ex.Message}");
+                    Console.WriteLine($"Exception: {ex.Message}");
                 }
             }
         }
@@ -2703,7 +2696,19 @@ namespace TbApiTester
 
         }
 
-        
+        private void btnHelpBoDoc_Click(object sender, EventArgs e)
+        {
+            string content = "Once the DocOttieniToken document is opened, press the button shown below.\n" +
+        "This will allow the business object call that opens the document.\n" +
+        "The standard OttieniToken customization can be found inside TbLinkSimulation,\r\n" +
+        "which can be downloaded from the same link as this software.\r\n" +
+        "Make sure you don’t already have it at:" +
+        "\r\nC:\\YourFolder\\tbde-samples\\TBCloud\\MyMagoStudio\\TbLinkSimulation\r\n" +
+        "\r\nWarning: the document DocOttieni Token must be opened in order to execute the businessObject call.";
+            labelHelpToken.Visible = true;
+            labelHelpToken.Text = "Warning: the document DocOttieniToken must be opened in order to execute the businessObject call.";
+            ShowResult(content, false, true, true, true); 
+        }
     }
 }
 

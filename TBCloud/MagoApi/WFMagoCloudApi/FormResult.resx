@@ -133,16 +133,13 @@
     <value>NoControl</value>
   </data>
   <data name="labelFormContent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>33, 94</value>
-  </data>
-  <data name="labelFormContent.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>25, 76</value>
   </data>
   <data name="labelFormContent.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>7, 6, 7, 6</value>
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="labelFormContent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 38</value>
+    <value>122, 32</value>
   </data>
   <data name="labelFormContent.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -160,10 +157,31 @@
     <value>panelContent</value>
   </data>
   <data name="&gt;&gt;labelFormContent.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="panelContent.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="pictureBoxToken.Location" type="System.Drawing.Point, System.Drawing">
+    <value>27, 234</value>
+  </data>
+  <data name="pictureBoxToken.Size" type="System.Drawing.Size, System.Drawing">
+    <value>572, 151</value>
+  </data>
+  <data name="pictureBoxToken.TabIndex" type="System.Int32, mscorlib">
+    <value>141</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxToken.Name" xml:space="preserve">
+    <value>pictureBoxToken</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxToken.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxToken.Parent" xml:space="preserve">
+    <value>panelContent</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxToken.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="pictureBoxRequest.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -171,11 +189,8 @@
   <data name="pictureBoxRequest.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="pictureBoxRequest.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="pictureBoxRequest.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 62</value>
+    <value>100, 50</value>
   </data>
   <data name="pictureBoxRequest.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -190,7 +205,7 @@
     <value>panelContent</value>
   </data>
   <data name="&gt;&gt;pictureBoxRequest.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="pictureBox2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -198,11 +213,8 @@
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="pictureBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 62</value>
+    <value>100, 50</value>
   </data>
   <data name="pictureBox2.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
@@ -217,16 +229,13 @@
     <value>panelContent</value>
   </data>
   <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="richXmlTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 117</value>
-  </data>
-  <data name="richXmlTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>128, 95</value>
   </data>
   <data name="richXmlTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 248</value>
+    <value>157, 202</value>
   </data>
   <data name="richXmlTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -244,7 +253,7 @@
     <value>panelContent</value>
   </data>
   <data name="&gt;&gt;richXmlTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -252,11 +261,8 @@
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 62</value>
+    <value>100, 50</value>
   </data>
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -271,16 +277,13 @@
     <value>panelContent</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="textBoxCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="textBoxCode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
   <data name="textBoxCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 24</value>
+    <value>100, 21</value>
   </data>
   <data name="textBoxCode.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -295,7 +298,7 @@
     <value>panelContent</value>
   </data>
   <data name="&gt;&gt;textBoxCode.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="panelContent.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -307,13 +310,13 @@
     <value>0, 0</value>
   </data>
   <data name="panelContent.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 37, 4, 0</value>
+    <value>3, 30, 3, 0</value>
   </data>
   <data name="panelContent.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>17, 49, 0, 0</value>
+    <value>13, 40, 0, 0</value>
   </data>
   <data name="panelContent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>779, 369</value>
+    <value>584, 300</value>
   </data>
   <data name="panelContent.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -343,13 +346,10 @@
     <value>NoControl</value>
   </data>
   <data name="buttonExitForm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>679, 0</value>
-  </data>
-  <data name="buttonExitForm.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>509, 0</value>
   </data>
   <data name="buttonExitForm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 66</value>
+    <value>75, 54</value>
   </data>
   <data name="buttonExitForm.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -372,6 +372,81 @@
   <data name="panelTitleResult.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
+  <data name="&gt;&gt;btnUploadXml.Name" xml:space="preserve">
+    <value>btnUploadXml</value>
+  </data>
+  <data name="&gt;&gt;btnUploadXml.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnUploadXml.Parent" xml:space="preserve">
+    <value>panelTitleResult</value>
+  </data>
+  <data name="&gt;&gt;btnUploadXml.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labelSmile.Name" xml:space="preserve">
+    <value>labelSmile</value>
+  </data>
+  <data name="&gt;&gt;labelSmile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelSmile.Parent" xml:space="preserve">
+    <value>panelTitleResult</value>
+  </data>
+  <data name="&gt;&gt;labelSmile.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;labelTitleResult.Name" xml:space="preserve">
+    <value>labelTitleResult</value>
+  </data>
+  <data name="&gt;&gt;labelTitleResult.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelTitleResult.Parent" xml:space="preserve">
+    <value>panelTitleResult</value>
+  </data>
+  <data name="&gt;&gt;labelTitleResult.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;buttonResize.Name" xml:space="preserve">
+    <value>buttonResize</value>
+  </data>
+  <data name="&gt;&gt;buttonResize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonResize.Parent" xml:space="preserve">
+    <value>panelTitleResult</value>
+  </data>
+  <data name="&gt;&gt;buttonResize.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="panelTitleResult.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panelTitleResult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panelTitleResult.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="panelTitleResult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>584, 54</value>
+  </data>
+  <data name="panelTitleResult.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelTitleResult.Name" xml:space="preserve">
+    <value>panelTitleResult</value>
+  </data>
+  <data name="&gt;&gt;panelTitleResult.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelTitleResult.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelTitleResult.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnUploadXml.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
   </data>
@@ -385,13 +460,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnUploadXml.Location" type="System.Drawing.Point, System.Drawing">
-    <value>429, 0</value>
-  </data>
-  <data name="btnUploadXml.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>322, 0</value>
   </data>
   <data name="btnUploadXml.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 66</value>
+    <value>62, 54</value>
   </data>
   <data name="btnUploadXml.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -421,10 +493,13 @@
     <value>NoControl</value>
   </data>
   <data name="labelSmile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 4</value>
+    <value>120, 3</value>
+  </data>
+  <data name="labelSmile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
   <data name="labelSmile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 55</value>
+    <value>102, 44</value>
   </data>
   <data name="labelSmile.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -454,13 +529,10 @@
     <value>NoControl</value>
   </data>
   <data name="labelTitleResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 17</value>
-  </data>
-  <data name="labelTitleResult.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>12, 14</value>
   </data>
   <data name="labelTitleResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 30</value>
+    <value>70, 25</value>
   </data>
   <data name="labelTitleResult.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -499,16 +571,13 @@
     <value>NoControl</value>
   </data>
   <data name="buttonResize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>512, 0</value>
-  </data>
-  <data name="buttonResize.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>384, 0</value>
   </data>
   <data name="buttonResize.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
   <data name="buttonResize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 66</value>
+    <value>125, 54</value>
   </data>
   <data name="buttonResize.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -528,56 +597,26 @@
   <data name="&gt;&gt;buttonResize.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="panelTitleResult.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="panelTitleResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="panelTitleResult.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="panelTitleResult.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>Yes</value>
-  </data>
-  <data name="panelTitleResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>779, 66</value>
-  </data>
-  <data name="panelTitleResult.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelTitleResult.Name" xml:space="preserve">
-    <value>panelTitleResult</value>
-  </data>
-  <data name="&gt;&gt;panelTitleResult.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelTitleResult.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelTitleResult.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+    <value>6, 13</value>
   </data>
   <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>779, 369</value>
+    <value>584, 300</value>
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>1045, 689</value>
+    <value>784, 560</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>779, 369</value>
+    <value>584, 300</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
