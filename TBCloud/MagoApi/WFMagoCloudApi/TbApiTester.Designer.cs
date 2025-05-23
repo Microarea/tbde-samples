@@ -42,7 +42,7 @@ namespace TbApiTester
             this.panelTbTextContainer = new System.Windows.Forms.Panel();
             this.btnClearText = new System.Windows.Forms.Button();
             this.btnSaveXmlTbServer = new System.Windows.Forms.Button();
-            this.xmlEditorTbResult = new XmlEditor();
+            this.xmlEditorTbResult = new  XmlEditor();
             this.labelCallTbResult = new System.Windows.Forms.Label();
             this.BtnOpenFolder = new System.Windows.Forms.Button();
             this.BtnQuestionCall = new System.Windows.Forms.Button();
@@ -2663,6 +2663,7 @@ namespace TbApiTester
             this.btnArchiveBinary.TabIndex = 130;
             this.btnArchiveBinary.Text = "Run";
             this.btnArchiveBinary.UseVisualStyleBackColor = false;
+            this.btnArchiveBinary.Click += new System.EventHandler(this.btnArchiveBinary_Click);
             // 
             // textBoxfilename
             // 

@@ -1725,6 +1725,7 @@ namespace TbApiTester
             return;
         }
 
+        
         private async void btnArchiveBinary_Click(object sender, EventArgs e)
         {
             if (!manager.authenticationManager.IsLogged())
@@ -2709,6 +2710,8 @@ namespace TbApiTester
             labelHelpToken.Text = "Warning: the document DocOttieniToken must be opened in order to execute the businessObject call.";
             ShowResult(content, false, true, true, true); 
         }
+
+        
     }
 }
 
