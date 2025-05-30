@@ -1,18 +1,18 @@
-﻿using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing;
-using static System.Net.Mime.MediaTypeNames;
-using System.Web.UI;
+﻿//using Newtonsoft.Json.Linq;
+//using Newtonsoft.Json;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Net.Http;
+//using System.Text;
+//using System.Threading;
+//using System.Threading.Tasks;
+//using System.Windows.Forms;
+//using System.Drawing;
+//using static System.Net.Mime.MediaTypeNames;
+//using System.Web.UI;
 using Image = System.Drawing.Image;
-using System.IO;
+//using System.IO;
 
 namespace TbApiTester
 {

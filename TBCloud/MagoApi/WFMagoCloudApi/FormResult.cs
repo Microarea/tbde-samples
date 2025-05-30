@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using ServiceStack.ServiceInterface.ServiceModel;
 using TbApiTester.Properties;
 
 namespace WindowsFormsResult
@@ -18,9 +17,9 @@ namespace WindowsFormsResult
            int nWhidthEllipse,
            int nHeightEllipse
            );
-        
 
-        public FormResult(string content,  bool bOk = false, bool bBlue = false, bool bHelp = false, bool showImage = false)
+
+        public FormResult(string content, bool bOk = false, bool bBlue = false, bool bHelp = false, bool showImage = false)
         {
 
             InitializeComponent();
@@ -33,13 +32,14 @@ namespace WindowsFormsResult
             richXmlTextBox.AppendText(content);
             this.pictureBoxToken.Visible = showImage;
             this.pictureBoxToken.Image = Resources.ImgTokenExt;
-           
+
+
 
 
             this.content = content;
-            if(bHelp)
+            if (bHelp)
             {
-               
+
                 this.btnUploadXml.Hide();
                 panelTitleResult.BackColor = Color.LightSteelBlue;
                 this.buttonResize.Hide();
@@ -77,7 +77,7 @@ namespace WindowsFormsResult
                 panelTitleResult.BackColor = Color.FromArgb(28, 28, 28);
                 this.labelFormContent.Hide();
                 this.richXmlTextBox.ForeColor = Color.Blue;
-               
+
                 this.labelTitleResult.Text = "Xml";
                 this.labelSmile.Text = "🤔";
                 this.buttonResize.BackColor = Color.FromArgb(28, 28, 28);

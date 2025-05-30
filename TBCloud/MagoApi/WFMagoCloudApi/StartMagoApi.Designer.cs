@@ -28,123 +28,122 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.panelWeb = new MspzComponent.OrangePanel();
-            this.btnWeb = new System.Windows.Forms.PictureBox();
-            this.panelCloud = new MspzComponent.OrangePanel();
-            this.btnCloud = new System.Windows.Forms.PictureBox();
-            this.panelDevEnv = new MspzComponent.OrangePanel();
-            this.btnDevEnv = new System.Windows.Forms.PictureBox();
-            this.panelWeb.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnWeb)).BeginInit();
-            this.panelCloud.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCloud)).BeginInit();
-            this.panelDevEnv.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDevEnv)).BeginInit();
-            this.SuspendLayout();
+            label1 = new Label();
+            panelWeb = new MspzComponent.OrangePanel();
+            btnWeb = new PictureBox();
+            panelCloud = new MspzComponent.OrangePanel();
+            btnCloud = new PictureBox();
+            panelDevEnv = new MspzComponent.OrangePanel();
+            btnDevEnv = new PictureBox();
+            panelWeb.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnWeb).BeginInit();
+            panelCloud.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnCloud).BeginInit();
+            panelDevEnv.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnDevEnv).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 179);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(441, 18);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Choose the environment to use with the Mago platform APIs";
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 9F, FontStyle.Bold);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(12, 179);
+            label1.Name = "label1";
+            label1.Size = new Size(350, 16);
+            label1.TabIndex = 3;
+            label1.Text = "Choose the environment to use with the Mago platform APIs";
             // 
             // panelWeb
             // 
-            this.panelWeb.BackColor = System.Drawing.Color.White;
-            this.panelWeb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelWeb.Controls.Add(this.btnWeb);
-            this.panelWeb.Location = new System.Drawing.Point(9, 58);
-            this.panelWeb.Name = "panelWeb";
-            this.panelWeb.Size = new System.Drawing.Size(164, 91);
-            this.panelWeb.TabIndex = 2;
+            panelWeb.BackColor = Color.White;
+            panelWeb.BorderStyle = BorderStyle.FixedSingle;
+            panelWeb.Controls.Add(btnWeb);
+            panelWeb.Location = new Point(9, 58);
+            panelWeb.Name = "panelWeb";
+            panelWeb.Size = new Size(164, 91);
+            panelWeb.TabIndex = 2;
             // 
             // btnWeb
             // 
-            this.btnWeb.BackColor = System.Drawing.Color.White;
-            this.btnWeb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnWeb.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnWeb.Image = global::TbApiTester.Properties.Resources.MagoWeb;
-            this.btnWeb.Location = new System.Drawing.Point(5, 6);
-            this.btnWeb.Name = "btnWeb";
-            this.btnWeb.Padding = new System.Windows.Forms.Padding(5, 5, 5, 30);
-            this.btnWeb.Size = new System.Drawing.Size(151, 84);
-            this.btnWeb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnWeb.TabIndex = 4;
-            this.btnWeb.TabStop = false;
-            this.btnWeb.Click += new System.EventHandler(this.btnWeb_Click);
+            btnWeb.BackColor = Color.White;
+            btnWeb.BackgroundImageLayout = ImageLayout.Center;
+            btnWeb.Cursor = Cursors.Hand;
+            btnWeb.Image = Properties.Resources.MagoWeb;
+            btnWeb.Location = new Point(5, 6);
+            btnWeb.Name = "btnWeb";
+            btnWeb.Padding = new Padding(5, 5, 5, 30);
+            btnWeb.Size = new Size(151, 84);
+            btnWeb.SizeMode = PictureBoxSizeMode.StretchImage;
+            btnWeb.TabIndex = 4;
+            btnWeb.TabStop = false;
+            btnWeb.Click += btnWeb_Click;
             // 
             // panelCloud
             // 
-            this.panelCloud.BackColor = System.Drawing.Color.White;
-            this.panelCloud.Controls.Add(this.btnCloud);
-            this.panelCloud.Location = new System.Drawing.Point(189, 58);
-            this.panelCloud.Name = "panelCloud";
-            this.panelCloud.Size = new System.Drawing.Size(164, 91);
-            this.panelCloud.TabIndex = 1;
+            panelCloud.BackColor = Color.White;
+            panelCloud.Controls.Add(btnCloud);
+            panelCloud.Location = new Point(189, 58);
+            panelCloud.Name = "panelCloud";
+            panelCloud.Size = new Size(164, 91);
+            panelCloud.TabIndex = 1;
             // 
             // btnCloud
             // 
-            this.btnCloud.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCloud.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCloud.Image = global::TbApiTester.Properties.Resources.MagoCloud;
-            this.btnCloud.Location = new System.Drawing.Point(2, 3);
-            this.btnCloud.Name = "btnCloud";
-            this.btnCloud.Size = new System.Drawing.Size(159, 85);
-            this.btnCloud.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnCloud.TabIndex = 4;
-            this.btnCloud.TabStop = false;
-            this.btnCloud.Click += new System.EventHandler(this.btnCloud_Click);
+            btnCloud.BackgroundImageLayout = ImageLayout.Zoom;
+            btnCloud.Cursor = Cursors.Hand;
+            btnCloud.Image = Properties.Resources.MagoCloud;
+            btnCloud.Location = new Point(2, 3);
+            btnCloud.Name = "btnCloud";
+            btnCloud.Size = new Size(159, 85);
+            btnCloud.SizeMode = PictureBoxSizeMode.Zoom;
+            btnCloud.TabIndex = 4;
+            btnCloud.TabStop = false;
+            btnCloud.Click += btnCloud_Click;
             // 
             // panelDevEnv
             // 
-            this.panelDevEnv.BackColor = System.Drawing.Color.White;
-            this.panelDevEnv.Controls.Add(this.btnDevEnv);
-            this.panelDevEnv.Location = new System.Drawing.Point(367, 58);
-            this.panelDevEnv.Name = "panelDevEnv";
-            this.panelDevEnv.Size = new System.Drawing.Size(164, 91);
-            this.panelDevEnv.TabIndex = 0;
+            panelDevEnv.BackColor = Color.White;
+            panelDevEnv.Controls.Add(btnDevEnv);
+            panelDevEnv.Location = new Point(367, 58);
+            panelDevEnv.Name = "panelDevEnv";
+            panelDevEnv.Size = new Size(164, 91);
+            panelDevEnv.TabIndex = 0;
             // 
             // btnDevEnv
             // 
-            this.btnDevEnv.BackColor = System.Drawing.Color.White;
-            this.btnDevEnv.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDevEnv.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDevEnv.Image = global::TbApiTester.Properties.Resources.DevEnvBtn;
-            this.btnDevEnv.Location = new System.Drawing.Point(3, 3);
-            this.btnDevEnv.Name = "btnDevEnv";
-            this.btnDevEnv.Size = new System.Drawing.Size(158, 88);
-            this.btnDevEnv.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnDevEnv.TabIndex = 3;
-            this.btnDevEnv.TabStop = false;
-            this.btnDevEnv.Click += new System.EventHandler(this.btnDevEnv_Click);
+            btnDevEnv.BackColor = Color.White;
+            btnDevEnv.BackgroundImageLayout = ImageLayout.Zoom;
+            btnDevEnv.Cursor = Cursors.Hand;
+            btnDevEnv.Image = Properties.Resources.DevEnvBtn;
+            btnDevEnv.Location = new Point(3, 3);
+            btnDevEnv.Name = "btnDevEnv";
+            btnDevEnv.Size = new Size(158, 88);
+            btnDevEnv.SizeMode = PictureBoxSizeMode.Zoom;
+            btnDevEnv.TabIndex = 3;
+            btnDevEnv.TabStop = false;
+            btnDevEnv.Click += btnDevEnv_Click;
             // 
             // StartMagoApi
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(540, 255);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.panelWeb);
-            this.Controls.Add(this.panelCloud);
-            this.Controls.Add(this.panelDevEnv);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "StartMagoApi";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TbApi-Tester";
-            this.panelWeb.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnWeb)).EndInit();
-            this.panelCloud.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnCloud)).EndInit();
-            this.panelDevEnv.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnDevEnv)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            BackColor = Color.SteelBlue;
+            ClientSize = new Size(540, 255);
+            Controls.Add(label1);
+            Controls.Add(panelWeb);
+            Controls.Add(panelCloud);
+            Controls.Add(panelDevEnv);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Name = "StartMagoApi";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "TbApi-Tester";
+            panelWeb.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnWeb).EndInit();
+            panelCloud.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnCloud).EndInit();
+            panelDevEnv.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnDevEnv).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

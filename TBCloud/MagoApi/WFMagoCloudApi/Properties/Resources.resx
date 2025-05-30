@@ -118,19 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="retrivetb" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\retrivetb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="MagoCloud" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\MagoCloud.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DevEnvBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\DevEnvBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MagoWeb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\MagoWeb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="btnMagoCloud" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MagoCloud.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnDevEnv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DevEnvBtn.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnMagoWeb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MagoWeb.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DevEnvBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\DevEnvBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ImgTokenExt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\ImgTokenExt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\img\ImgTokenExt.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

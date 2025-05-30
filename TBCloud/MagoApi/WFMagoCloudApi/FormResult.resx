@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -128,18 +128,22 @@
   <data name="labelFormContent.Font" type="System.Drawing.Font, System.Drawing">
     <value>Century Gothic, 10.2pt, style=Bold</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="labelFormContent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelFormContent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 76</value>
+    <value>29, 88</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="labelFormContent.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="labelFormContent.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>6, 6, 6, 6</value>
   </data>
   <data name="labelFormContent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 32</value>
+    <value>124, 34</value>
   </data>
   <data name="labelFormContent.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -151,7 +155,7 @@
     <value>labelFormContent</value>
   </data>
   <data name="&gt;&gt;labelFormContent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelFormContent.Parent" xml:space="preserve">
     <value>panelContent</value>
@@ -162,20 +166,23 @@
   <data name="panelContent.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="pictureBoxToken.InitialImage" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="pictureBoxToken.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 234</value>
+    <value>36, 288</value>
   </data>
   <data name="pictureBoxToken.Size" type="System.Drawing.Size, System.Drawing">
-    <value>572, 151</value>
+    <value>763, 186</value>
   </data>
   <data name="pictureBoxToken.TabIndex" type="System.Int32, mscorlib">
-    <value>141</value>
+    <value>50</value>
   </data>
   <data name="&gt;&gt;pictureBoxToken.Name" xml:space="preserve">
     <value>pictureBoxToken</value>
   </data>
   <data name="&gt;&gt;pictureBoxToken.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureBoxToken.Parent" xml:space="preserve">
     <value>panelContent</value>
@@ -189,8 +196,11 @@
   <data name="pictureBoxRequest.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="pictureBoxRequest.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="pictureBoxRequest.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 50</value>
+    <value>116, 58</value>
   </data>
   <data name="pictureBoxRequest.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -199,7 +209,7 @@
     <value>pictureBoxRequest</value>
   </data>
   <data name="&gt;&gt;pictureBoxRequest.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureBoxRequest.Parent" xml:space="preserve">
     <value>panelContent</value>
@@ -213,8 +223,11 @@
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="pictureBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 50</value>
+    <value>116, 58</value>
   </data>
   <data name="pictureBox2.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
@@ -223,7 +236,7 @@
     <value>pictureBox2</value>
   </data>
   <data name="&gt;&gt;pictureBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureBox2.Parent" xml:space="preserve">
     <value>panelContent</value>
@@ -232,10 +245,13 @@
     <value>2</value>
   </data>
   <data name="richXmlTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>128, 95</value>
+    <value>149, 110</value>
+  </data>
+  <data name="richXmlTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="richXmlTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 202</value>
+    <value>183, 232</value>
   </data>
   <data name="richXmlTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -247,7 +263,7 @@
     <value>richXmlTextBox</value>
   </data>
   <data name="&gt;&gt;richXmlTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;richXmlTextBox.Parent" xml:space="preserve">
     <value>panelContent</value>
@@ -261,8 +277,11 @@
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 50</value>
+    <value>116, 58</value>
   </data>
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -271,7 +290,7 @@
     <value>pictureBox1</value>
   </data>
   <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
     <value>panelContent</value>
@@ -282,8 +301,11 @@
   <data name="textBoxCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="textBoxCode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="textBoxCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 21</value>
+    <value>116, 21</value>
   </data>
   <data name="textBoxCode.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -292,7 +314,7 @@
     <value>textBoxCode</value>
   </data>
   <data name="&gt;&gt;textBoxCode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;textBoxCode.Parent" xml:space="preserve">
     <value>panelContent</value>
@@ -310,13 +332,13 @@
     <value>0, 0</value>
   </data>
   <data name="panelContent.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 30, 3, 0</value>
+    <value>4, 35, 4, 0</value>
   </data>
   <data name="panelContent.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>13, 40, 0, 0</value>
+    <value>15, 46, 0, 0</value>
   </data>
   <data name="panelContent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>584, 300</value>
+    <value>682, 346</value>
   </data>
   <data name="panelContent.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -325,7 +347,7 @@
     <value>panelContent</value>
   </data>
   <data name="&gt;&gt;panelContent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;panelContent.Parent" xml:space="preserve">
     <value>$this</value>
@@ -346,10 +368,13 @@
     <value>NoControl</value>
   </data>
   <data name="buttonExitForm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>509, 0</value>
+    <value>594, 0</value>
+  </data>
+  <data name="buttonExitForm.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="buttonExitForm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 54</value>
+    <value>88, 62</value>
   </data>
   <data name="buttonExitForm.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -361,7 +386,7 @@
     <value>buttonExitForm</value>
   </data>
   <data name="&gt;&gt;buttonExitForm.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonExitForm.Parent" xml:space="preserve">
     <value>panelTitleResult</value>
@@ -371,81 +396,6 @@
   </data>
   <data name="panelTitleResult.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
-  </data>
-  <data name="&gt;&gt;btnUploadXml.Name" xml:space="preserve">
-    <value>btnUploadXml</value>
-  </data>
-  <data name="&gt;&gt;btnUploadXml.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnUploadXml.Parent" xml:space="preserve">
-    <value>panelTitleResult</value>
-  </data>
-  <data name="&gt;&gt;btnUploadXml.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;labelSmile.Name" xml:space="preserve">
-    <value>labelSmile</value>
-  </data>
-  <data name="&gt;&gt;labelSmile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelSmile.Parent" xml:space="preserve">
-    <value>panelTitleResult</value>
-  </data>
-  <data name="&gt;&gt;labelSmile.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;labelTitleResult.Name" xml:space="preserve">
-    <value>labelTitleResult</value>
-  </data>
-  <data name="&gt;&gt;labelTitleResult.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelTitleResult.Parent" xml:space="preserve">
-    <value>panelTitleResult</value>
-  </data>
-  <data name="&gt;&gt;labelTitleResult.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;buttonResize.Name" xml:space="preserve">
-    <value>buttonResize</value>
-  </data>
-  <data name="&gt;&gt;buttonResize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonResize.Parent" xml:space="preserve">
-    <value>panelTitleResult</value>
-  </data>
-  <data name="&gt;&gt;buttonResize.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="panelTitleResult.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="panelTitleResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="panelTitleResult.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>Yes</value>
-  </data>
-  <data name="panelTitleResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>584, 54</value>
-  </data>
-  <data name="panelTitleResult.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelTitleResult.Name" xml:space="preserve">
-    <value>panelTitleResult</value>
-  </data>
-  <data name="&gt;&gt;panelTitleResult.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelTitleResult.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelTitleResult.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="btnUploadXml.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
@@ -460,10 +410,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnUploadXml.Location" type="System.Drawing.Point, System.Drawing">
-    <value>322, 0</value>
+    <value>375, 0</value>
+  </data>
+  <data name="btnUploadXml.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btnUploadXml.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 54</value>
+    <value>73, 62</value>
   </data>
   <data name="btnUploadXml.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -475,7 +428,7 @@
     <value>btnUploadXml</value>
   </data>
   <data name="&gt;&gt;btnUploadXml.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnUploadXml.Parent" xml:space="preserve">
     <value>panelTitleResult</value>
@@ -493,10 +446,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelSmile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>120, 3</value>
-  </data>
-  <data name="labelSmile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
+    <value>140, 4</value>
   </data>
   <data name="labelSmile.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 44</value>
@@ -511,7 +461,7 @@
     <value>labelSmile</value>
   </data>
   <data name="&gt;&gt;labelSmile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelSmile.Parent" xml:space="preserve">
     <value>panelTitleResult</value>
@@ -529,7 +479,10 @@
     <value>NoControl</value>
   </data>
   <data name="labelTitleResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 14</value>
+    <value>14, 16</value>
+  </data>
+  <data name="labelTitleResult.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="labelTitleResult.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 25</value>
@@ -547,7 +500,7 @@
     <value>labelTitleResult</value>
   </data>
   <data name="&gt;&gt;labelTitleResult.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelTitleResult.Parent" xml:space="preserve">
     <value>panelTitleResult</value>
@@ -571,13 +524,16 @@
     <value>NoControl</value>
   </data>
   <data name="buttonResize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>384, 0</value>
+    <value>448, 0</value>
+  </data>
+  <data name="buttonResize.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="buttonResize.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
   <data name="buttonResize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 54</value>
+    <value>146, 62</value>
   </data>
   <data name="buttonResize.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -589,7 +545,7 @@
     <value>buttonResize</value>
   </data>
   <data name="&gt;&gt;buttonResize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonResize.Parent" xml:space="preserve">
     <value>panelTitleResult</value>
@@ -597,26 +553,56 @@
   <data name="&gt;&gt;buttonResize.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="panelTitleResult.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panelTitleResult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panelTitleResult.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="panelTitleResult.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="panelTitleResult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>682, 62</value>
+  </data>
+  <data name="panelTitleResult.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelTitleResult.Name" xml:space="preserve">
+    <value>panelTitleResult</value>
+  </data>
+  <data name="&gt;&gt;panelTitleResult.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelTitleResult.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelTitleResult.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>7, 15</value>
   </data>
   <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>584, 300</value>
+    <value>682, 346</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>784, 560</value>
+    <value>914, 646</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>584, 300</value>
+    <value>682, 346</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
@@ -628,6 +614,6 @@
     <value>FormResult</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

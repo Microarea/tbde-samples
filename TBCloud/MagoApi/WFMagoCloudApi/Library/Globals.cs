@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Web.UI.WebControls;
-using System.Windows.Forms;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Drawing;
+//using System.Web.UI.WebControls;
+//using System.Windows.Forms;
 
 namespace TbApiTester.Libraries
 {
@@ -12,8 +12,8 @@ namespace TbApiTester.Libraries
     //===================================================================================
     class Globals
     {
-        public delegate void FontChangedEventHandler(object sender, MonthChangedEventArgs e);
-        public static event FontChangedEventHandler FontChanged;
+        //public delegate void FontChangedEventHandler(object sender, MonthChangedEventArgs e);
+        //public static event FontChangedEventHandler FontChanged;
 
         public static Font CurrentFont
         {

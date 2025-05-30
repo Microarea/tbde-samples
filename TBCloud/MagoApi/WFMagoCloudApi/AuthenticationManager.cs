@@ -1,16 +1,16 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Security.Policy;
-using System.Security.Principal;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Net.WebRequestMethods;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Net.Http;
+//using System.Security.Policy;
+//using System.Security.Principal;
+//using System.Text;
+//using System.Threading;
+//using System.Threading.Tasks;
+//using System.Windows.Forms;
+//using static System.Net.WebRequestMethods;
 
 namespace TbApiTester
 {
@@ -172,34 +172,47 @@ namespace TbApiTester
 
         internal bool DoLogin(string gwamUrl, string userName, string pwd, string subscriptionKey, string producerKey, string appKey)
         {
+            // Validate the URL format before continuing
+            if (!Uri.TryCreate(gwamUrl, UriKind.Absolute, out var uriResult) ||
+                (uriResult.Scheme != Uri.UriSchemeHttp && uriResult.Scheme != Uri.UriSchemeHttps))
+            {
+                MessageBox.Show("The specified URL is not valid.", "Invalid URL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             using (HttpClient client = new HttpClient())
             {
+                client.Timeout = TimeSpan.FromSeconds(10); // Set timeout to prevent indefinite waiting
+
                 try
                 {
+                    // Store user data info
                     userData.Producer = producerKey;
                     userData.AppKey = appKey;
 
-                    string MagoWebLogin50 = "http://localhost:60000/mw-console/api/login";
-                    string mwConsoleApi = "http://localhost:60000/mw-console/api";
+                    string MagoWebLogin50 = gwamUrl + "/mw-console/api/login";
+                    string mwConsoleApi = gwamUrl + "/mw-console/api";
 
                     HttpRequestMessage request;
-                    
+
+                    // Check if the button state indicates web login
                     if (GlobalSettings.CurrentButtonState == GlobalSettings.ButtonState.Web)
                     {
                         HttpResponseMessage checkResponse = client.GetAsync(mwConsoleApi).Result;
-                        string moduleMessage = GetModules(gwamUrl,userData, DateTime.Now);
+                        string moduleMessage = GetModules(gwamUrl, userData, DateTime.Now);
+
                         if (checkResponse.StatusCode == System.Net.HttpStatusCode.OK)
                         {
-                            // Use MagoWebLogin  for 5.0
+                            // Use new login endpoint for version 5.0+
                             request = new HttpRequestMessage(HttpMethod.Post, MagoWebLogin50);
-                            MessageBox.Show("You are on Version 5.0 or later \nNow for logIn use mw-console service:\n" + MagoWebLogin50);
+                            MessageBox.Show("Detected MagoCloud version 5.0 or later.\nUsing login endpoint:\n" + MagoWebLogin50, "Version Detected");
                         }
                         else
                         {
-                            // Use gwamUrl 2.5 
+                            // Use legacy login endpoint
                             if (string.IsNullOrEmpty(gwamUrl))
                             {
-                                MessageBox.Show(mwConsoleApi.ToString());
+                                MessageBox.Show(mwConsoleApi, "Missing URL");
                                 return false;
                             }
                             request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
@@ -207,18 +220,22 @@ namespace TbApiTester
                     }
                     else
                     {
-                        // If url empty 5000
-                        if (gwamUrl == string.Empty)
+                        // Local fallback for test/dev environment
+                        if (string.IsNullOrWhiteSpace(gwamUrl))
                         {
                             string localLogin = "http://localhost:5000/account-manager/login";
                             request = new HttpRequestMessage(HttpMethod.Post, localLogin);
                         }
-                        else // Use gwamUrl 
+                        else
+                        {
                             request = new HttpRequestMessage(HttpMethod.Post, gwamUrl + "/gwam_login/api/login");
+                        }
                     }
 
+                    // Add required headers
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, producerKey, appKey);
 
+                    // Prepare login credentials
                     var credential = new JObject
             {
                 { "GwamUrl", gwamUrl },
@@ -234,49 +251,60 @@ namespace TbApiTester
                     string requestJsonInString = JsonConvert.SerializeObject(credential);
                     request.Content = new StringContent(requestJsonInString, System.Text.Encoding.UTF8, "application/json");
 
+                    // Send login request
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
 
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         _responseBody = response.Content.ReadAsStringAsync().Result;
                         JObject jsonObject = JsonConvert.DeserializeObject<JObject>(_responseBody);
+
                         if (jsonObject != null)
                         {
                             string resultVariable = jsonObject["Result"]?.ToString();
                             string resultCodeVariable = jsonObject["ResultCode"]?.ToString();
+
                             if (resultVariable == "True" && resultCodeVariable == "0")
                             {
+                                // Store session data
                                 userData.GwamUrl = gwamUrl;
                                 userData.Token = jsonObject["JwtToken"]?.ToString();
                                 userData.UserName = jsonObject["AccountName"]?.ToString();
                                 userData.SubscriptionKey = subscriptionKey;
                                 userData.LoginKey = jsonObject["LoginKey"]?.ToString();
 
-                                MessageBox.Show("The login was successful.");
+                                MessageBox.Show("Login successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 return true;
                             }
                             else
                             {
-                                MessageBox.Show("Login Failed");
+                                MessageBox.Show("Login failed. Please check your credentials.", "Authentication Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Login reported invalid content.");
+                            MessageBox.Show("The server response content is invalid.", "Invalid Response", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("We were unable to connect to the MagoCloud login. Verify login credentials.");
+                        MessageBox.Show("Could not connect to the login service. Please verify your credentials or network connection.", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (HttpRequestException e)
                 {
-                    Console.WriteLine("\nException Caught!");
-                    Console.WriteLine("Message :{0} ", e.Message);
-                    return false;
+                    MessageBox.Show("An error occurred while sending the HTTP request:\n" + e.Message, "HTTP Request Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (TaskCanceledException e)
+                {
+                    MessageBox.Show("The request timed out:\n" + e.Message, "Request Timeout", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("An unexpected error occurred:\n" + e.Message, "Unexpected Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
             return false;
         }
 
@@ -337,8 +365,8 @@ namespace TbApiTester
                 try
                 {
                     string localIsValidToken = "http://localhost:5000/account-manager/isvalidtoken";
-                    string mwConsoleIsValidToken = "http://localhost:60000/mw-console/api/isvalidtoken";
-                    string mwConsoleApi = "http://localhost:60000/mw-console/api";
+                    string mwConsoleIsValidToken = gwamUrl + "/mw-console/api/isvalidtoken";
+                    string mwConsoleApi = gwamUrl + "/mw-console/api";
                     string requestUrl;
 
                     if (GlobalSettings.CurrentButtonState == GlobalSettings.ButtonState.Web)
@@ -461,8 +489,8 @@ namespace TbApiTester
                 try
                 {
                     string localLogoff = "http://localhost:5000/account-manager/logoff";
-                    string mwConsoleLogoff = "http://localhost:60000/mw-console/api/logoff";
-                    string mwConsoleApi = "http://localhost:60000/mw-console/api";
+                    string mwConsoleLogoff = gwamUrl + "/mw-console/api/logoff";
+                    string mwConsoleApi = gwamUrl + "/mw-console/api";
                     string requestUrl;
 
 

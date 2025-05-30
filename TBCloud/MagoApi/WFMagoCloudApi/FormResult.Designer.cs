@@ -30,166 +30,166 @@ namespace WindowsFormsResult
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormResult));
-            this.labelFormContent = new System.Windows.Forms.Label();
-            this.panelContent = new System.Windows.Forms.Panel();
-            this.richXmlTextBox = new System.Windows.Forms.RichTextBox();
-            this.textBoxCode = new System.Windows.Forms.TextBox();
-            this.buttonExitForm = new System.Windows.Forms.Button();
-            this.panelTitleResult = new System.Windows.Forms.Panel();
-            this.btnUploadXml = new System.Windows.Forms.Button();
-            this.labelSmile = new System.Windows.Forms.Label();
-            this.labelTitleResult = new System.Windows.Forms.Label();
-            this.buttonResize = new System.Windows.Forms.Button();
-            this.pictureBoxRequest = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxToken = new System.Windows.Forms.PictureBox();
-            this.panelContent.SuspendLayout();
-            this.panelTitleResult.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRequest)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxToken)).BeginInit();
-            this.SuspendLayout();
+            labelFormContent = new Label();
+            panelContent = new Panel();
+            pictureBoxRequest = new PictureBox();
+            pictureBox2 = new PictureBox();
+            richXmlTextBox = new RichTextBox();
+            pictureBox1 = new PictureBox();
+            textBoxCode = new TextBox();
+            buttonExitForm = new Button();
+            panelTitleResult = new Panel();
+            btnUploadXml = new Button();
+            labelSmile = new Label();
+            labelTitleResult = new Label();
+            buttonResize = new Button();
+            pictureBoxToken = new PictureBox();
+            panelContent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRequest).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panelTitleResult.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxToken).BeginInit();
+            SuspendLayout();
             // 
             // labelFormContent
             // 
-            resources.ApplyResources(this.labelFormContent, "labelFormContent");
-            this.labelFormContent.Name = "labelFormContent";
-            this.labelFormContent.UseCompatibleTextRendering = true;
+            resources.ApplyResources(labelFormContent, "labelFormContent");
+            labelFormContent.Name = "labelFormContent";
+            labelFormContent.UseCompatibleTextRendering = true;
             // 
             // panelContent
             // 
-            resources.ApplyResources(this.panelContent, "panelContent");
-            this.panelContent.Controls.Add(this.pictureBoxToken);
-            this.panelContent.Controls.Add(this.pictureBoxRequest);
-            this.panelContent.Controls.Add(this.pictureBox2);
-            this.panelContent.Controls.Add(this.richXmlTextBox);
-            this.panelContent.Controls.Add(this.pictureBox1);
-            this.panelContent.Controls.Add(this.textBoxCode);
-            this.panelContent.Controls.Add(this.labelFormContent);
-            this.panelContent.Name = "panelContent";
-            // 
-            // richXmlTextBox
-            // 
-            this.richXmlTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richXmlTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            resources.ApplyResources(this.richXmlTextBox, "richXmlTextBox");
-            this.richXmlTextBox.Name = "richXmlTextBox";
-            // 
-            // textBoxCode
-            // 
-            resources.ApplyResources(this.textBoxCode, "textBoxCode");
-            this.textBoxCode.Name = "textBoxCode";
-            // 
-            // buttonExitForm
-            // 
-            this.buttonExitForm.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.buttonExitForm, "buttonExitForm");
-            this.buttonExitForm.FlatAppearance.BorderSize = 0;
-            this.buttonExitForm.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.buttonExitForm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.buttonExitForm.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonExitForm.Name = "buttonExitForm";
-            this.buttonExitForm.UseVisualStyleBackColor = false;
-            this.buttonExitForm.Click += new System.EventHandler(this.buttonExitForm_Click);
-            // 
-            // panelTitleResult
-            // 
-            this.panelTitleResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            resources.ApplyResources(this.panelTitleResult, "panelTitleResult");
-            this.panelTitleResult.Controls.Add(this.btnUploadXml);
-            this.panelTitleResult.Controls.Add(this.labelSmile);
-            this.panelTitleResult.Controls.Add(this.labelTitleResult);
-            this.panelTitleResult.Controls.Add(this.buttonResize);
-            this.panelTitleResult.Controls.Add(this.buttonExitForm);
-            this.panelTitleResult.Name = "panelTitleResult";
-            this.panelTitleResult.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleResult_MouseDown);
-            this.panelTitleResult.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitleResult_MouseMove);
-            this.panelTitleResult.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelTitleResult_MouseUp);
-            // 
-            // btnUploadXml
-            // 
-            this.btnUploadXml.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            resources.ApplyResources(this.btnUploadXml, "btnUploadXml");
-            this.btnUploadXml.FlatAppearance.BorderSize = 0;
-            this.btnUploadXml.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(192)))), ((int)(((byte)(146)))));
-            this.btnUploadXml.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnUploadXml.Name = "btnUploadXml";
-            this.btnUploadXml.UseVisualStyleBackColor = false;
-            this.btnUploadXml.Click += new System.EventHandler(this.btnUploadXml_Click);
-            // 
-            // labelSmile
-            // 
-            resources.ApplyResources(this.labelSmile, "labelSmile");
-            this.labelSmile.ForeColor = System.Drawing.Color.White;
-            this.labelSmile.Name = "labelSmile";
-            // 
-            // labelTitleResult
-            // 
-            resources.ApplyResources(this.labelTitleResult, "labelTitleResult");
-            this.labelTitleResult.ForeColor = System.Drawing.Color.White;
-            this.labelTitleResult.Name = "labelTitleResult";
-            // 
-            // buttonResize
-            // 
-            this.buttonResize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(159)))), ((int)(((byte)(0)))));
-            resources.ApplyResources(this.buttonResize, "buttonResize");
-            this.buttonResize.Cursor = System.Windows.Forms.Cursors.SizeNESW;
-            this.buttonResize.FlatAppearance.BorderSize = 0;
-            this.buttonResize.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonResize.Name = "buttonResize";
-            this.buttonResize.UseVisualStyleBackColor = false;
-            this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
+            resources.ApplyResources(panelContent, "panelContent");
+            panelContent.Controls.Add(pictureBoxToken);
+            panelContent.Controls.Add(pictureBoxRequest);
+            panelContent.Controls.Add(pictureBox2);
+            panelContent.Controls.Add(richXmlTextBox);
+            panelContent.Controls.Add(pictureBox1);
+            panelContent.Controls.Add(textBoxCode);
+            panelContent.Controls.Add(labelFormContent);
+            panelContent.Name = "panelContent";
             // 
             // pictureBoxRequest
             // 
-            resources.ApplyResources(this.pictureBoxRequest, "pictureBoxRequest");
-            this.pictureBoxRequest.Name = "pictureBoxRequest";
-            this.pictureBoxRequest.TabStop = false;
+            resources.ApplyResources(pictureBoxRequest, "pictureBoxRequest");
+            pictureBoxRequest.Name = "pictureBoxRequest";
+            pictureBoxRequest.TabStop = false;
             // 
             // pictureBox2
             // 
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.TabStop = false;
+            resources.ApplyResources(pictureBox2, "pictureBox2");
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.TabStop = false;
+            // 
+            // richXmlTextBox
+            // 
+            richXmlTextBox.BorderStyle = BorderStyle.None;
+            richXmlTextBox.ForeColor = Color.FromArgb(28, 28, 28);
+            resources.ApplyResources(richXmlTextBox, "richXmlTextBox");
+            richXmlTextBox.Name = "richXmlTextBox";
             // 
             // pictureBox1
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
+            resources.ApplyResources(pictureBox1, "pictureBox1");
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.TabStop = false;
+            // 
+            // textBoxCode
+            // 
+            resources.ApplyResources(textBoxCode, "textBoxCode");
+            textBoxCode.Name = "textBoxCode";
+            // 
+            // buttonExitForm
+            // 
+            buttonExitForm.BackColor = Color.Transparent;
+            resources.ApplyResources(buttonExitForm, "buttonExitForm");
+            buttonExitForm.FlatAppearance.BorderSize = 0;
+            buttonExitForm.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 0, 0);
+            buttonExitForm.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
+            buttonExitForm.ForeColor = SystemColors.ControlLightLight;
+            buttonExitForm.Name = "buttonExitForm";
+            buttonExitForm.UseVisualStyleBackColor = false;
+            buttonExitForm.Click += buttonExitForm_Click;
+            // 
+            // panelTitleResult
+            // 
+            panelTitleResult.BackColor = Color.FromArgb(232, 159, 0);
+            resources.ApplyResources(panelTitleResult, "panelTitleResult");
+            panelTitleResult.Controls.Add(btnUploadXml);
+            panelTitleResult.Controls.Add(labelSmile);
+            panelTitleResult.Controls.Add(labelTitleResult);
+            panelTitleResult.Controls.Add(buttonResize);
+            panelTitleResult.Controls.Add(buttonExitForm);
+            panelTitleResult.Name = "panelTitleResult";
+            panelTitleResult.MouseDown += panelTitleResult_MouseDown;
+            panelTitleResult.MouseMove += panelTitleResult_MouseMove;
+            panelTitleResult.MouseUp += panelTitleResult_MouseUp;
+            // 
+            // btnUploadXml
+            // 
+            btnUploadXml.BackColor = Color.FromArgb(28, 28, 28);
+            resources.ApplyResources(btnUploadXml, "btnUploadXml");
+            btnUploadXml.FlatAppearance.BorderSize = 0;
+            btnUploadXml.FlatAppearance.MouseDownBackColor = Color.FromArgb(65, 192, 146);
+            btnUploadXml.ForeColor = SystemColors.ControlLightLight;
+            btnUploadXml.Name = "btnUploadXml";
+            btnUploadXml.UseVisualStyleBackColor = false;
+            btnUploadXml.Click += btnUploadXml_Click;
+            // 
+            // labelSmile
+            // 
+            resources.ApplyResources(labelSmile, "labelSmile");
+            labelSmile.ForeColor = Color.White;
+            labelSmile.Name = "labelSmile";
+            // 
+            // labelTitleResult
+            // 
+            resources.ApplyResources(labelTitleResult, "labelTitleResult");
+            labelTitleResult.ForeColor = Color.White;
+            labelTitleResult.Name = "labelTitleResult";
+            // 
+            // buttonResize
+            // 
+            buttonResize.BackColor = Color.FromArgb(232, 159, 0);
+            resources.ApplyResources(buttonResize, "buttonResize");
+            buttonResize.Cursor = Cursors.SizeNESW;
+            buttonResize.FlatAppearance.BorderSize = 0;
+            buttonResize.ForeColor = SystemColors.ControlLightLight;
+            buttonResize.Name = "buttonResize";
+            buttonResize.UseVisualStyleBackColor = false;
+            buttonResize.Click += buttonResize_Click;
             // 
             // pictureBoxToken
             // 
-            resources.ApplyResources(this.pictureBoxToken, "pictureBoxToken");
-            this.pictureBoxToken.Name = "pictureBoxToken";
-            this.pictureBoxToken.TabStop = false;
+            resources.ApplyResources(pictureBoxToken, "pictureBoxToken");
+            pictureBoxToken.Name = "pictureBoxToken";
+            pictureBoxToken.TabStop = false;
             // 
             // FormResult
             // 
-            this.AllowDrop = true;
+            AllowDrop = true;
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Controls.Add(this.panelTitleResult);
-            this.Controls.Add(this.panelContent);
-            this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FormResult";
-            this.ShowIcon = false;
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.panelContent.ResumeLayout(false);
-            this.panelContent.PerformLayout();
-            this.panelTitleResult.ResumeLayout(false);
-            this.panelTitleResult.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRequest)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxToken)).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLightLight;
+            Controls.Add(panelTitleResult);
+            Controls.Add(panelContent);
+            DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.None;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "FormResult";
+            ShowIcon = false;
+            SizeGripStyle = SizeGripStyle.Show;
+            panelContent.ResumeLayout(false);
+            panelContent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRequest).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panelTitleResult.ResumeLayout(false);
+            panelTitleResult.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxToken).EndInit();
+            ResumeLayout(false);
 
         }
 
@@ -208,6 +208,6 @@ namespace WindowsFormsResult
         private System.Windows.Forms.PictureBox pictureBoxRequest;
         private System.Windows.Forms.Button btnUploadXml;
         private System.Windows.Forms.Label labelSmile;
-        private System.Windows.Forms.PictureBox pictureBoxToken;
+        private PictureBox pictureBoxToken;
     }
 }

@@ -1,21 +1,27 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Net.Http;
+//using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System.IO;
-using System.Drawing;
-using System.Collections.Generic;
+//using System.IO;
+//using System.Drawing;
+//using System.Collections.Generic;
 using System.Xml.Linq;
 using System.Drawing.Drawing2D;
 using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Linq;
+//using System.Threading.Tasks;
+//using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
+//using System.Web.UI.WebControls;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+//using static TbApiTester.LogCredential;
+//using System.Windows.Controls.Primitives;
 using System.Data;
+
+
 
 
 namespace TbApiTester
@@ -50,6 +56,8 @@ namespace TbApiTester
         public System.Diagnostics.Process p = null;
         string basePath = AppDomain.CurrentDomain.BaseDirectory;
         private bool isFullScreen = false;
+        private string tableName;
+        TbResponse m_GetBoResponse;
         public XDocument loadedXmlDocument;
         public string CurrentPath { get; set; }
         private Color previousColor;
@@ -66,9 +74,8 @@ namespace TbApiTester
             btnSaveCredential.Visible = false;
             logCredential = new LogCredential();
             string currentEnvironment = GlobalSettings.CurrentButtonState.ToString();
-
+            labelMessage.Text = string.Empty;
             InitializeCredential(currentEnvironment);
-            labelHelpToken.Visible = false;
             string folderPath = Path.Combine(basePath, "Docs");
             uiManager.SetControls(this.Controls);
             labelManager = new LabelManager(this);
@@ -91,11 +98,11 @@ namespace TbApiTester
                     break;
 
                 case GlobalSettings.ButtonState.Web:
-                    text_http.Text = "https://gwam.mago.cloud";
+                    text_http.Text = "http://localhost:60000";
                     Http_label.Text = "MagoWeb authentication authority URL";
                     uiManager.ReplaceColor(Color.FromArgb(232, 159, 0), Color.FromArgb(176, 205, 66));
                     this.cbxServicesWeb.Visible = true;
-                    pictureBoxLogo.Image = Properties.Resources.MagoWeb;
+                    pictureBoxLogo.Image = pictureBoxLogo.Image = Properties.Resources.MagoWeb;
                     labelInfoAuthenticate.Text += "Web";
                     PopulateServicesComboBox();//____Service List MagoWeb
                     break;
@@ -103,7 +110,8 @@ namespace TbApiTester
                 case GlobalSettings.ButtonState.Cloud:
                     text_http.Text = "https://gwam.mago.cloud";
                     Http_label.Text = "MagoCloud authentication authority URL";
-                    pictureBoxLogo.Image = Properties.Resources.MagoCloud;
+
+                    pictureBoxLogo.Image = pictureBoxLogo.Image = Properties.Resources.MagoCloud;
                     labelInfoAuthenticate.Text += "Cloud";
                     break;
             }
@@ -389,14 +397,36 @@ namespace TbApiTester
                 }
                 else
                 {
-                    string responseContent = manager.authenticationManager._responseBody.ToString();
-                    JObject jsonObject = JObject.Parse(responseContent);
-                    string message = jsonObject["Message"]?.ToString();
-                    if (!string.IsNullOrEmpty(message))
+                    string responseContent = manager.authenticationManager._responseBody;
+
+                    if (!string.IsNullOrWhiteSpace(responseContent))
                     {
-                        message = message.Replace(":", ":\n");
+                        try
+                        {
+                            JObject jsonObject = JObject.Parse(responseContent);
+                            string message = jsonObject["Message"]?.ToString();
+
+                            if (!string.IsNullOrEmpty(message))
+                            {
+                                message = message.Replace(":", ":\n");
+                                labelMessage.Text = message;
+                            }
+                            else
+                            {
+                                labelMessage.Text = "Login failed. Server did not provide a specific error message.";
+                            }
+                        }
+                        catch (JsonReaderException)
+                        {
+                            // Response is not valid JSON
+                            labelMessage.Text = "Login failed. Response is not in valid JSON format:\n" + responseContent;
+                        }
                     }
-                    labelMessage.Text = message;
+                    else
+                    {
+                        labelMessage.Text = "Login failed. No response received from the server.";
+                    }
+
                     button_Login.BackColor = Color.Firebrick;
                     btnAccount.Visible = false;
                 }
@@ -521,7 +551,7 @@ namespace TbApiTester
             "- GetXmlParams: retrieves the whole list of parameters useful for performing the GetXmlData\n" +
             "- GetXmlData: retrives the entire business object data defined in the export profile.\n" +
             "- SetXmlData: allows the data of a business object to be written to MagoCloud using the Xml payload.";
-            ShowResult(content, false, true, true, false);
+            ShowResult(content, false, true, true);
         }
 
         // COMBOBOX TBFSSERVICE MANAGER
@@ -938,7 +968,7 @@ namespace TbApiTester
 
             - Release the thread:  
               POST {UrlSManager.TbServerUrl}/tbserver/api/tb/document/releaseLoginContext/";
-            ShowResult(content, false, true, true, false);
+            ShowResult(content, false, true, true);
         }
         /////// DATE BTN ////////
 
@@ -1390,7 +1420,7 @@ namespace TbApiTester
             "You can use it by adding it to your environment at the following path:\n" +
             "YourEnvironment\\Standard\\Applications\\ERP\\SaleOrders\\ReferenceObjects";
             info = content;
-            ShowResult(content, false, true, true, false);
+            ShowResult(content, false, true, true);
         }
         private void btnGetDataQry_Click(object sender, EventArgs e)
         {
@@ -1725,7 +1755,6 @@ namespace TbApiTester
             return;
         }
 
-        
         private async void btnArchiveBinary_Click(object sender, EventArgs e)
         {
             if (!manager.authenticationManager.IsLogged())
@@ -2035,7 +2064,7 @@ namespace TbApiTester
                 if (manager.dmMMSManager.Exists(manager.authenticationManager.userData, crudData).Result)
                 {
                     TbResponse updateResponse = manager.dmMMSManager.Update(manager.authenticationManager.userData, crudData).Result;
-                   
+
                     //if (updateResponse.Success != true)
                     //    MessageBox.Show($"Table not Updated ({updateResponse.StatusCode})");
                     //else
@@ -2044,7 +2073,7 @@ namespace TbApiTester
                 else
                 {
                     TbResponse addResponse = manager.dmMMSManager.Add(manager.authenticationManager.userData, crudData).Result;
-                  
+
                     //if (addResponse.Success != true)
                     //    MessageBox.Show($"Table not Added ({addResponse.StatusCode})");
                     //else
@@ -2243,7 +2272,7 @@ namespace TbApiTester
         private void btnGetEnumsInfo_Click(object sender, EventArgs e)
         {
             string content = $"\n-getEnumsTable: {UrlSManager.EnumsTableUrl}enums-service/getEnumsTable/\n\nThis endpoint is used to retrieve the list of available Archive Type";
-            ShowResult(content, false, true, true, false);
+            ShowResult(content, false, true, true);
         }
 
 
@@ -2333,7 +2362,7 @@ namespace TbApiTester
                     }
                     catch (JsonReaderException ex)
                     {
-                        resultBuilder.AppendLine("Error JSON: " + ex.Message);
+                        resultBuilder.AppendLine("Errore durante la deserializzazione di un oggetto JSON: " + ex.Message);
                     }
                 }
 
@@ -2341,7 +2370,7 @@ namespace TbApiTester
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Errore generale: " + ex.Message);
             }
 
         }
@@ -2369,7 +2398,7 @@ namespace TbApiTester
            $"\n- GetAllModulesByApplication: {UrlSManager.TbFsServiceUrl}/tbfs-service/GetAllModulesByApplication.\n" +
            $"\n- GetSubFolders: {UrlSManager.TbFsServiceUrl}/tbfs-service/GetSubFolders.\n" +
            $"\n- getprofilefolders: {UrlSManager.TbFsServiceUrl}/tbfs-service/getprofilefolders";
-            ShowResult(content, false, true, true,false);
+            ShowResult(content, false, true, true);
         }
 
         private void btnExpandDynamicQueries_Click(object sender, EventArgs e)
@@ -2473,16 +2502,16 @@ namespace TbApiTester
                     if (response.IsSuccessStatusCode)
                     {
                         string result = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show("Documen is opened");
+                        Console.WriteLine("Documento aperto: " + result);
                     }
                     else
                     {
-                        Console.WriteLine($"Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
+                        Console.WriteLine($"Errore: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Exception: {ex.Message}");
+                    Console.WriteLine($"Eccezione: {ex.Message}");
                 }
             }
         }
@@ -2503,16 +2532,16 @@ namespace TbApiTester
                     if (response.IsSuccessStatusCode)
                     {
                         string result = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show($"Token received : " + result, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"Token ricevuto: " + result, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        Console.WriteLine($"Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
+                        Console.WriteLine($"Errore: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Exception: {ex.Message}");
+                    Console.WriteLine($"Eccezione: {ex.Message}");
                 }
             }
         }
@@ -2708,10 +2737,8 @@ namespace TbApiTester
         "\r\nWarning: the document DocOttieni Token must be opened in order to execute the businessObject call.";
             labelHelpToken.Visible = true;
             labelHelpToken.Text = "Warning: the document DocOttieniToken must be opened in order to execute the businessObject call.";
-            ShowResult(content, false, true, true, true); 
+            ShowResult(content, false, true, true, true);
         }
-
-        
     }
 }
 

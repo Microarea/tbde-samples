@@ -1,17 +1,17 @@
 ﻿//using Microsoft.AspNetCore.Http;
 //using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic.CompilerServices;
+//using Microsoft.VisualBasic.CompilerServices;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+//using System;
+//using System.Collections.Generic;
+//using System.IO;
+//using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Eco.Persistence;
-using System.Web.Mvc;
+//using System.Net.Http;
+//using System.Text;
+//using System.Threading.Tasks;
+//using Eco.Persistence;
+//using System.Web.Mvc;
 using Newtonsoft.Json;
 
 
@@ -392,8 +392,6 @@ namespace TbApiTester
             });
         }
 
-
-        // For net.8
         //public async Task<IActionResult> UploadObject(UserData userData, MultipartFormDataContent files, Microarea.Tbf.Model.Interfaces.API.ObjectType objectType, string currNamespace, string user)
         //{
         //    UrlSManager Urls = new UrlSManager();
@@ -421,7 +419,7 @@ namespace TbApiTester
         //    //return (IActionResult)opResult;
         //}
 
-
+        
 
 
         //// Helper per ottenere i byte di un file

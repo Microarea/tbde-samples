@@ -124,10 +124,10 @@ namespace TbApiTester
                         UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MICRODMS/");
 
                     string requestUrl = UrlSManager.DmsServiceUrl + "/dms/api/attach/getbinary";
-                    string localrequestUrl = "http://localhost:60000/dms/api/attach/getbinary";
-                    string localrequestUrlWeb = "http://localhost:60000/dms/api/attach/getbinary";
+                    string localrequestUrl = "http://localhost:5000/dms/api/attach/getbinary";
+                    string localrequestUrlWeb = userData.GwamUrl+"/dms/api/attach/getbinary";
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, localrequestUrl);
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, localrequestUrlWeb);
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
 
                     // Corpo della richiesta con il valore dinamico
@@ -164,7 +164,7 @@ namespace TbApiTester
                         UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MICRODMS/");
 
                     string requestUrl = UrlSManager.DmsServiceUrl + "/dms/api/attach/binarycontent";
-                    string localrequestUrl = "http://localhost:60000/dms/api/attach/binarycontent";
+                    string localrequestUrl = userData.GwamUrl + "/dms/api/attach/binarycontent";
 
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, localrequestUrl);
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
@@ -214,7 +214,8 @@ namespace TbApiTester
                         UrlSManager.TbServerUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MICRODMS/");
 
                     string requestUrl = UrlSManager.DmsServiceUrl + "/dms/api/archive/binarycontent";
-                    string localrequestUrl = "http://localhost:5020/dms/api/archive/binarycontent";
+                    //string localrequestUrl = "http://localhost:5020/dms/api/archive/binarycontent";
+                    string localrequestUrl = userData.GwamUrl + "/dms/api/archive/binarycontent";
 
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, localrequestUrl);
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);

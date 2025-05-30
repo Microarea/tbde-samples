@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using static System.Windows.Forms.LinkLabel;
+using static System.Net.WebRequestMethods;
 
 
 namespace TbApiTester
@@ -15,7 +16,7 @@ namespace TbApiTester
         public string WebUrl { get; set; } = string.Empty;
         public string DevEnvUrl { get; set; } = string.Empty;
         public string MMSWebUrl { get; set; } = "http://localhost:60000/";
-        public string MMSDevUrl { get; set; } = "http://localhost:5000/";
+        public string MMSDevUrl { get; set; } = "http://localhost:5000";
 
         //public UrlSManager(bool isCloud)
         //{
@@ -28,11 +29,10 @@ namespace TbApiTester
             using (HttpClient client = new HttpClient())
             {
                 DevEnvUrl = isMMS ? MMSDevUrl : "http://localhost:5000";
-                WebUrl = isMMS ? MMSWebUrl : "http://localhost:60000";
+                WebUrl = isMMS ? MMSWebUrl : MMSWebUrl.TrimEnd('/'); 
                 switch (buttonState)
                 {
                     case GlobalSettings.ButtonState.DevEnv:
-                        // Caso DevEnv: verifica GwamUrl e ritorna LocalUrl se necessario
                         if (userData.GwamUrl == string.Empty || userData.GwamUrl == "https://test-gwam.mago.cloud")
                         {
                             return DevEnvUrl;
@@ -40,7 +40,6 @@ namespace TbApiTester
                         break;
 
                     case GlobalSettings.ButtonState.Web:
-                        // Caso Web: ritorna WebUrl se GwamUrl è uguale a "https://gwam.mago.cloud"
                         if (userData.GwamUrl != null | userData.GwamUrl != string.Empty)
                         {
                             return WebUrl;

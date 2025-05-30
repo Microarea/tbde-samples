@@ -1,11 +1,11 @@
-﻿using System;
+﻿//using System;
 using System.ComponentModel;
-using System.IO;
-using System.Windows.Forms;
+//using System.IO;
+//using System.Windows.Forms;
 using ICSharpCode.AvalonEdit.Editing;
 using ICSharpCode.AvalonEdit.Folding;
 using System.Windows.Threading;
-using System.Web.UI.WebControls;
+//using System.Web.UI.WebControls;
 using TbApiTester.Libraries;
 
 
@@ -49,9 +49,10 @@ namespace TbApiTester
             _textEditorControl.textEditor.FontFamily = new System.Windows.Media.FontFamily(Globals.CurrentFont.FontFamily.Name);
             _textEditorControl.textEditor.FontSize = Globals.CurrentFont.Size;
 
-            Globals.FontChanged += Globals_FontChanged;
-            _textEditorControl.textEditor.VerticalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
-            _textEditorControl.textEditor.HorizontalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
+            //mmf
+            //Globals.FontChanged += Globals_FontChanged;
+            //_textEditorControl.textEditor.VerticalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
+            //_textEditorControl.textEditor.HorizontalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Auto;
 
             _textEditorControl.textEditor.Document.TextChanged += Document_TextChanged;
             //toolStrip1.Visible = false;
@@ -70,11 +71,11 @@ namespace TbApiTester
         }
 
         //--------------------------------------------------------------------------			
-        private void Globals_FontChanged(object sender, MonthChangedEventArgs e)
-        {
-            //_textEditorControl.textEditor.FontFamily = new System.Windows.Media.FontFamily(e.FontFamily);
-            //_textEditorControl.textEditor.FontSize = e.FontSize;
-        }
+        //private void Globals_FontChanged(object sender, MonthChangedEventArgs e)
+        //{
+        //    //_textEditorControl.textEditor.FontFamily = new System.Windows.Media.FontFamily(e.FontFamily);
+        //    //_textEditorControl.textEditor.FontSize = e.FontSize;
+        //}
 
         //--------------------------------------------------------------------------			
         void InitializeFoldingManager()

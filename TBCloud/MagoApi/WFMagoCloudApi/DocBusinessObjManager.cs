@@ -1,19 +1,19 @@
-﻿using EnvDTE;
-using Newtonsoft.Json;
+﻿//using EnvDTE;
+//using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Security.Policy;
+//using System;
+//using System.Collections.Generic;
+//using System.Data.SqlTypes;
+//using System.IO;
+//using System.Linq;
+//using System.Net.Http;
+//using System.Security.Policy;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
+//using System.Threading;
+//using System.Threading.Tasks;
+//using System.Windows.Forms;
+//using System.Xml;
+//using System.Xml.Linq;
 
 namespace TbApiTester
 {
