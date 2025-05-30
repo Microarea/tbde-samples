@@ -16,7 +16,7 @@ namespace TbApiTester
         public string WebUrl { get; set; } = string.Empty;
         public string DevEnvUrl { get; set; } = string.Empty;
         public string MMSWebUrl { get; set; } = "http://localhost:60000/";
-        public string MMSDevUrl { get; set; } = "http://localhost:5000";
+        public string MMSDevUrl { get; set; } = "http://localhost:5000/";
 
         //public UrlSManager(bool isCloud)
         //{

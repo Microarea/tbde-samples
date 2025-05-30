@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 //using System;
 //using System.Collections.Generic;
@@ -15,7 +16,7 @@ using Newtonsoft.Json.Linq;
 namespace TbApiTester
 {
 
-    internal class UserData 
+    internal class UserData
     {
         internal string TbUrl = UrlSManager.TbServerUrl;
         internal string DataUrl = UrlSManager.DataServiceUrl;
@@ -25,11 +26,11 @@ namespace TbApiTester
         internal string RsUrl = UrlSManager.ReportingServiceUrl;
         internal string DmMMsUrl = UrlSManager.DmMMSUrl;
         internal string EnumsUrl = UrlSManager.EnumsTableUrl;
-        
+
         internal string GwamUrl { get; set; }
         internal string Token { get; set; }
         internal string UserName { get; set; }
-        internal string SubscriptionKey { get;  set; }
+        internal string SubscriptionKey { get; set; }
         internal string Producer { get; set; }
         internal string AppKey { get; set; }
         internal string LoginKey { get; set; }
@@ -172,17 +173,10 @@ namespace TbApiTester
 
         internal bool DoLogin(string gwamUrl, string userName, string pwd, string subscriptionKey, string producerKey, string appKey)
         {
-            // Validate the URL format before continuing
-            if (!Uri.TryCreate(gwamUrl, UriKind.Absolute, out var uriResult) ||
-                (uriResult.Scheme != Uri.UriSchemeHttp && uriResult.Scheme != Uri.UriSchemeHttps))
-            {
-                MessageBox.Show("The specified URL is not valid.", "Invalid URL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+            
 
             using (HttpClient client = new HttpClient())
             {
-                client.Timeout = TimeSpan.FromSeconds(10); // Set timeout to prevent indefinite waiting
 
                 try
                 {
@@ -198,6 +192,13 @@ namespace TbApiTester
                     // Check if the button state indicates web login
                     if (GlobalSettings.CurrentButtonState == GlobalSettings.ButtonState.Web)
                     {
+                        // Validate the URL format before continuing
+                        if (!Uri.TryCreate(gwamUrl, UriKind.Absolute, out var uriResult) ||
+                            (uriResult.Scheme != Uri.UriSchemeHttp && uriResult.Scheme != Uri.UriSchemeHttps))
+                        {
+                            MessageBox.Show("The specified URL is not valid.", "Invalid URL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return false;
+                        }
                         HttpResponseMessage checkResponse = client.GetAsync(mwConsoleApi).Result;
                         string moduleMessage = GetModules(gwamUrl, userData, DateTime.Now);
 
@@ -542,7 +543,7 @@ namespace TbApiTester
             }
         }
 
-        internal string GetModules(string gwamUrl,UserData userData, DateTime operationDate)
+        internal string GetModules(string gwamUrl, UserData userData, DateTime operationDate)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -590,7 +591,7 @@ namespace TbApiTester
 
                             if (!containsMagoAPI)
                             {
-                                return "❌ DataManager is disabled."+" The module 'MagoApi' is NOT available.";
+                                return "❌ DataManager is disabled." + " The module 'MagoApi' is NOT available.";
                             }
                             // If the module exists, return an empty string (no error message)
                             return "";

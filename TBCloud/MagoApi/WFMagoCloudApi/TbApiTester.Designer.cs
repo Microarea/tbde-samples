@@ -306,6 +306,7 @@ namespace TbApiTester
             rndPanelUrl = new RoundedPanel();
             DmMMSUrl = new Label();
             tabDocBusinessObject = new TabPage();
+            labelHelpToken = new Label();
             btnHelpBoDoc = new Button();
             btnTokenEsterno = new Button();
             btnBusinessObj = new Button();
@@ -373,7 +374,6 @@ namespace TbApiTester
             Http_label = new Label();
             button_exit = new Button();
             button_Login = new Button();
-            labelHelpToken = new Label();
             tabNavigation.SuspendLayout();
             tabTbServer.SuspendLayout();
             paneltbfsH.SuspendLayout();
@@ -3756,6 +3756,16 @@ namespace TbApiTester
             tabDocBusinessObject.TabIndex = 8;
             tabDocBusinessObject.Text = "DocBusinessObject";
             // 
+            // labelHelpToken
+            // 
+            labelHelpToken.AutoSize = true;
+            labelHelpToken.Font = new Font("Microsoft Sans Serif", 11.25F);
+            labelHelpToken.ForeColor = Color.White;
+            labelHelpToken.Location = new Point(23, 167);
+            labelHelpToken.Name = "labelHelpToken";
+            labelHelpToken.Size = new Size(0, 18);
+            labelHelpToken.TabIndex = 140;
+            // 
             // btnHelpBoDoc
             // 
             btnHelpBoDoc.BackColor = Color.FromArgb(22, 118, 186);
@@ -4631,17 +4641,6 @@ namespace TbApiTester
             button_Login.UseVisualStyleBackColor = false;
             button_Login.EnabledChanged += button_Login_Click;
             button_Login.Click += button_Login_Click;
-            // 
-            // labelHelpToken
-            // 
-            labelHelpToken.AutoSize = true;
-            labelHelpToken.Font = new Font("Microsoft Sans Serif", 11.25F);
-            labelHelpToken.ForeColor = Color.White;
-            labelHelpToken.Location = new Point(23, 167);
-            labelHelpToken.Name = "labelHelpToken";
-            labelHelpToken.Size = new Size(116, 18);
-            labelHelpToken.TabIndex = 140;
-            labelHelpToken.Text = "labelPlaceholder";
             // 
             // TbApiTester
             // 
