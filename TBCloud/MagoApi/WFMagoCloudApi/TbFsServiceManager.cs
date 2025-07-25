@@ -352,7 +352,7 @@ namespace TbApiTester
             TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
             request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
             //request.Content = GetProfileParameters(application, module, folderName);
-            request.Content = GetTextFileParameters(application, module, folderName, "marco.spazian@zucchetti.com", "DT-0208BD", "it-IT");
+            request.Content = GetTextFileParameters(application, module, folderName, "marco.spazian@zucchetti.com", "DT-655235", "it-IT");
 
             using (var resp = await _httpClient.SendAsync(request))
             {

@@ -89,6 +89,7 @@ namespace TbApiTester
                             string resultVariable = jsonObject["result"]?.ToString();
                             var bytes = Convert.FromBase64String(resultVariable);
                             var decodedString = Encoding.UTF8.GetString(bytes);
+                            requestTb = $"{request.Method} {request.RequestUri}";
                             return decodedString;
                         }
                     }

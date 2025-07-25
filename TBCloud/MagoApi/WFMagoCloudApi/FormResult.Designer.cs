@@ -32,6 +32,7 @@ namespace WindowsFormsResult
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormResult));
             labelFormContent = new Label();
             panelContent = new Panel();
+            pictureBoxToken = new PictureBox();
             pictureBoxRequest = new PictureBox();
             pictureBox2 = new PictureBox();
             richXmlTextBox = new RichTextBox();
@@ -43,13 +44,12 @@ namespace WindowsFormsResult
             labelSmile = new Label();
             labelTitleResult = new Label();
             buttonResize = new Button();
-            pictureBoxToken = new PictureBox();
             panelContent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxToken).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxRequest).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelTitleResult.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxToken).BeginInit();
             SuspendLayout();
             // 
             // labelFormContent
@@ -69,6 +69,12 @@ namespace WindowsFormsResult
             panelContent.Controls.Add(textBoxCode);
             panelContent.Controls.Add(labelFormContent);
             panelContent.Name = "panelContent";
+            // 
+            // pictureBoxToken
+            // 
+            resources.ApplyResources(pictureBoxToken, "pictureBoxToken");
+            pictureBoxToken.Name = "pictureBoxToken";
+            pictureBoxToken.TabStop = false;
             // 
             // pictureBoxRequest
             // 
@@ -160,12 +166,6 @@ namespace WindowsFormsResult
             buttonResize.UseVisualStyleBackColor = false;
             buttonResize.Click += buttonResize_Click;
             // 
-            // pictureBoxToken
-            // 
-            resources.ApplyResources(pictureBoxToken, "pictureBoxToken");
-            pictureBoxToken.Name = "pictureBoxToken";
-            pictureBoxToken.TabStop = false;
-            // 
             // FormResult
             // 
             AllowDrop = true;
@@ -183,12 +183,12 @@ namespace WindowsFormsResult
             SizeGripStyle = SizeGripStyle.Show;
             panelContent.ResumeLayout(false);
             panelContent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxToken).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxRequest).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelTitleResult.ResumeLayout(false);
             panelTitleResult.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxToken).EndInit();
             ResumeLayout(false);
 
         }

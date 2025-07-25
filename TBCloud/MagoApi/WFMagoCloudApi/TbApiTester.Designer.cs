@@ -1,4 +1,5 @@
-﻿using MspzComponent;
+﻿
+using MspzComponent;
 
 namespace TbApiTester
 {
@@ -5092,7 +5093,7 @@ namespace TbApiTester
         private System.Windows.Forms.TabPage tabLog;
         private System.Windows.Forms.Panel panel53;
         private System.Windows.Forms.Button btnClearLog;
-       
+
         private System.Windows.Forms.Label LogsLabel;
         private OrangePanel orangePanel6;
         private System.Windows.Forms.Button btnTbServerLog;

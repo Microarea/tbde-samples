@@ -518,6 +518,7 @@ namespace TbApiTester
             responseDMMSList.Add($"[{DateTime.Now}] Status: {response}\n");
             if (response.StatusCode == HttpStatusCode.OK && !string.IsNullOrEmpty(funResponse))
             {
+                Console.WriteLine(funResponse);
                 JObject data = JsonConvert.DeserializeObject<JObject>(funResponse);
                 tbResponse.ReturnValue = data["data"]?.ToString();
                 tbResponse.PlainResult = funResponse;
@@ -551,7 +552,7 @@ namespace TbApiTester
                     //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GetUrl);
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                  
+
                     requestDMMSList.Add(requestDMMS);
 
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -614,7 +615,25 @@ namespace TbApiTester
             }
 
         }
-      
+        //private static void UseMMSDataManagerLock(UserData userData, MagoAPIClient magocloudClient)
+        //{
+        //    LockData lockData = new LockData();
+        //    lockData.ProcessName = "MyApp";
+        //    lockData.Context = "MyContext";
+        //    lockData.TableName = "MA_CustSupp";
+        //    lockData.InstanceIdentity = lockData.ProcessName;
+        //    lockData.Keys = new object[] { 3211264, "0001" };
+
+        //    ITbResponse lockResponse = magocloudClient.MyMagoStudio?.UpdateTbAlive(userData, lockData).Result;
+        //    lockResponse = magocloudClient.MyMagoStudio?.LockRecord(userData, lockData).Result;
+        //    lockData.Keys = new object[] { 3211264, "0002" };
+        //    lockResponse = magocloudClient.MyMagoStudio?.LockRecord(userData, lockData).Result;
+        //    ITbResponse islockedResponse = magocloudClient.MyMagoStudio?.IsRecordLocked(userData, lockData).Result;
+        //    ITbResponse unlockResponse = magocloudClient.MyMagoStudio?.UnlockRecord(userData, lockData).Result;
+        //    lockResponse = magocloudClient.MyMagoStudio?.UpdateTbAlive(userData, lockData).Result;
+        //    ITbResponse unlockContextResponse = magocloudClient.MyMagoStudio?.UnlockContext(userData, lockData).Result;
+        //}
+
     }
 }
 

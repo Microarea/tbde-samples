@@ -1,29 +1,41 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	<RootNamespace>TbApiTester</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<RootNamespace>TbApiTester</RootNamespace>
+		<EnableWindowsFormsHighDpiAutoResizing>false</EnableWindowsFormsHighDpiAutoResizing>
+        <EnableDpiAwareness>false</EnableDpiAwareness>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="OtherControls\XmlEditorWpf.xaml" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="OtherControls\XmlEditorWpf.xaml" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AvalonEdit" Version="6.3.1.120" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
-    <PackageReference Include="System.Resources.Extensions" Version="9.0.5" />
-    <PackageReference Include="System.ServiceProcess.ServiceController" Version="9.0.5" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AvalonEdit" Version="6.3.1.120" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
+		<PackageReference Include="System.Resources.Extensions" Version="9.0.5" />
+		<PackageReference Include="System.ServiceProcess.ServiceController" Version="9.0.5" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Page Include="OtherControls\XmlEditorWpf.xaml" />
-  </ItemGroup>
+	<ItemGroup>
+		<Page Include="OtherControls\XmlEditorWpf.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Microarea.Tbf.Model">
+	    <HintPath>..\..\..\..\..\C_Web\MagoWeb13\MagoWeb-5.0.2.13\Standard\dist\tbw-packages\Microarea.Tbf.Model.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Microarea.Tbf.Model.Interfaces">
+	    <HintPath>..\..\..\..\..\C_Web\MagoWeb13\MagoWeb-5.0.2.13\Standard\dist\tbw-packages\Microarea.Tbf.Model.Interfaces.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
 
 </Project>

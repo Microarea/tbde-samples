@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "a7908be1-c708-4305-bcd2-68350a7386de",
-		"name": "TaskBuilderCloudAPI",
+		"_postman_id": "2476c8ad-5cbb-45e7-aad8-b3f6cb24de69",
+		"name": "TaskBuilderCloudAPI Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23716229"
 	},
@@ -3053,6 +3053,81 @@
 							],
 							"path": [
 								"xmldata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetReportPdf",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"namespaces\": [\r\n    \"ERP.Sales.DNForm.wrm\"\r\n  ],\r\n  \"rsInfo\": {\r\n    \"copiesNumber\": 1,\r\n    \"concatPdf\": false,\r\n    \"actionType\": 2\r\n  },\r\n  \"arguments\": [\r\n    {\r\n      \"name\": \"w_ID_SaleDocCurrent\",\r\n      \"value\": \"79\"\r\n    }\r\n  ],\r\n  \"outputNames\": [\r\n    \"Mioddt.pdf\"\r\n  ],\r\n  \"mail\": {\r\n    \"to\": [\"example@mail.com\"]\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:60000/rs/getReportPdf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "60000",
+							"path": [
+								"rs",
+								"getReportPdf"
 							]
 						}
 					},

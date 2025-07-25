@@ -143,13 +143,13 @@
     <value>6, 6, 6, 6</value>
   </data>
   <data name="labelFormContent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 34</value>
+    <value>133, 34</value>
   </data>
   <data name="labelFormContent.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="labelFormContent.Text" xml:space="preserve">
-    <value>DEV-21-C7A08B</value>
+    <value>placeholderResp</value>
   </data>
   <data name="&gt;&gt;labelFormContent.Name" xml:space="preserve">
     <value>labelFormContent</value>

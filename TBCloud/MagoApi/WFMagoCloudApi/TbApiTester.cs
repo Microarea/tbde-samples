@@ -1,25 +1,23 @@
-﻿using System;
-using System.Windows.Forms;
-//using System.Net.Http;
-using Newtonsoft.Json.Linq;
+﻿using Microarea.Tbf.Model.Database;
+using Microarea.Tbf.Model.DataManager.Providers;
+using Microarea.Tbf.Model.Interfaces;
+using Microarea.Tbf.Model.Interfaces.API;
+using Microarea.Tbf.Model.Interfaces.DataManager;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-//using System.IO;
-//using System.Drawing;
-//using System.Collections.Generic;
-using System.Xml.Linq;
-using System.Drawing.Drawing2D;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Data;
 using System.Diagnostics;
+using System.Drawing.Drawing2D;
+using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
 //using System.Threading.Tasks;
 //using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Net.Http.Headers;
-using System.Runtime.InteropServices;
-//using System.Web.UI.WebControls;
-//using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-//using static TbApiTester.LogCredential;
-//using System.Windows.Controls.Primitives;
-using System.Data;
+using System.Windows.Forms;
+using System.Xml.Linq;
 
 
 
@@ -35,6 +33,7 @@ namespace TbApiTester
         private CbxUi cbxUi;
         public bool IsCloudButtonClicked { get; set; }
         private bool isLoggedIn = false;
+       
         private readonly LabelManager labelManager;
         public string base64Data;//dms
         public string fileName;//dms
@@ -133,6 +132,7 @@ namespace TbApiTester
             DynamicQueriesPanel.Hide();
             btnAccount.Hide();
             panelDataManagerOtherCall.Hide();
+           
         }
         public void InitializeCredential(string currentEnvironment)
         {
@@ -440,24 +440,24 @@ namespace TbApiTester
             {
 
                 manager.authenticationManager.ValidToken(text_http.Text);
-                string subKey = text_subscription.Text;
-                string conn = "Data Source= localhost;Initial Catalog= 'DT-EB28E9';User Id='sa';Password='Microarea.';Connect Timeout=30;Pooling=true;Encrypt=False;";
-                string currentUser = text_user.Text;
-                string accName;
+                //string subKey = text_subscription.Text;
+                //string conn = "Data Source= localhost;Initial Catalog= 'DT-B471F5';User Id='sa';Password='Microarea.';Connect Timeout=30;Pooling=true;Encrypt=False;";
+                //string currentUser = text_user.Text;
+                //string accName = text_user.Text; ;
 
                 //TB_Locks locks = new TB_Locks();
-                //accName = locks.AccountName;
+                //locks.AccountName = accName ;
 
                 //TB_LocksConfiguration confLock = new TB_LocksConfiguration(Microarea.Tbf.Model.Database.DbType.SQLSERVER, subKey);
-                //Microarea.Tbf.Model.DataManager.Providers.SubscriptionProvider subProv = new Microarea.Tbf.Model.DataManager.Providers.SubscriptionProvider(subKey, conn, DbType.SQLSERVER);
+                //Microarea.Tbf.Model.DataManager.Providers.SubscriptionProvider subProv = new Microarea.Tbf.Model.DataManager.Providers.SubscriptionProvider(subKey, conn, Microarea.Tbf.Model.Database.DbType.SQLSERVER);
                 //Microarea.Tbf.Model.Interfaces.Database.DbDataContextProduct product = new Microarea.Tbf.Model.Interfaces.Database.DbDataContextProduct();
                 //TbLockManager lockMg = new TbLockManager(subProv, product);
 
                 //string procName = text_app.Text;
-                //string iKey = "I-663D32";
+                //string iKey = "I-3E75B1";
 
                 //string token = manager.authenticationManager.userData.LoginKey;
-                //string context = "000000002E846AA0";
+                //string context = "MyContext";
                 //RecordLockInfo pippo = new RecordLockInfo(procName, iKey, accName, token, context, 48, 48);
 
                 //ILogger<DiagnosticProvider> logger;
@@ -467,11 +467,26 @@ namespace TbApiTester
                 //});
                 //logger = factory.CreateLogger<DiagnosticProvider>();
                 //DiagnosticProvider provider = new DiagnosticProvider(logger);
-                //_ = lockMg.RecordLockAsync(pippo, provider, "MA_ActivityCodes", "ActivityCodes:466400");
+                //try
+                //{
+
+                //    var result = lockMg.RecordLockAsync(pippo, provider, "MA_ActivityCodes", "ActivityCodes:466400"); 
+                //    // usa result
+                //}
+                //catch (Exception ex)
+                //{
+                //    // Log dell'eccezione
+                //    Console.WriteLine("Errore: " + ex.Message);
+                //    Console.WriteLine("StackTrace: " + ex.StackTrace);
+                //}
+                
+                //MessageBox.Show("Record lock eseguito con successo!", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             else
                 MessageBox.Show("User is not logged, please Login!");
         }
+       
         private void button_exit_Click(object sender, EventArgs e)
         {
             DoExit();
