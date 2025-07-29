@@ -306,6 +306,49 @@ namespace TbApiTester
             panel15 = new Panel();
             rndPanelUrl = new RoundedPanel();
             DmMMSUrl = new Label();
+            LockManager = new TabPage();
+            labelDescLock = new Label();
+            roundedPanel7 = new RoundedPanel();
+            LocksUrl = new Label();
+            GroupBoxTableLock = new GroupBox();
+            btnUnlockRecord = new Button();
+            panel77 = new Panel();
+            panel80 = new Panel();
+            label16 = new Label();
+            label18 = new Label();
+            panel81 = new Panel();
+            panel83 = new Panel();
+            btnContextRecord = new Button();
+            btnIsRecordLocked = new Button();
+            panel84 = new Panel();
+            panel85 = new Panel();
+            BtnLockRecord = new Button();
+            label22 = new Label();
+            panel86 = new Panel();
+            panel87 = new Panel();
+            label25 = new Label();
+            panel88 = new Panel();
+            panel75 = new Panel();
+            panel76 = new Panel();
+            panel89 = new Panel();
+            panel90 = new Panel();
+            txtKeys = new TextBox();
+            panel93 = new Panel();
+            panel94 = new Panel();
+            label26 = new Label();
+            txtIstanceIdentity = new TextBox();
+            panel95 = new Panel();
+            panel96 = new Panel();
+            label27 = new Label();
+            label28 = new Label();
+            labelContext = new Label();
+            labelProcessName = new Label();
+            txtProcessName = new TextBox();
+            panel97 = new Panel();
+            panel98 = new Panel();
+            txtContext = new TextBox();
+            txtTableName = new TextBox();
+            lockIcon = new Label();
             tabDocBusinessObject = new TabPage();
             labelHelpToken = new Label();
             btnHelpBoDoc = new Button();
@@ -447,6 +490,19 @@ namespace TbApiTester
             panel49.SuspendLayout();
             panel2.SuspendLayout();
             rndPanelUrl.SuspendLayout();
+            LockManager.SuspendLayout();
+            roundedPanel7.SuspendLayout();
+            GroupBoxTableLock.SuspendLayout();
+            panel77.SuspendLayout();
+            panel81.SuspendLayout();
+            panel84.SuspendLayout();
+            panel86.SuspendLayout();
+            panel88.SuspendLayout();
+            panel75.SuspendLayout();
+            panel89.SuspendLayout();
+            panel93.SuspendLayout();
+            panel95.SuspendLayout();
+            panel97.SuspendLayout();
             tabDocBusinessObject.SuspendLayout();
             panel121.SuspendLayout();
             roundedPanel2.SuspendLayout();
@@ -472,7 +528,7 @@ namespace TbApiTester
             // tabNavigation
             // 
             tabNavigation.AllowDrop = true;
-            tabNavigation.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tabNavigation.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tabNavigation.Controls.Add(tabTbServer);
             tabNavigation.Controls.Add(tabWebMethods);
             tabNavigation.Controls.Add(tabDataService);
@@ -480,18 +536,19 @@ namespace TbApiTester
             tabNavigation.Controls.Add(tabDMS);
             tabNavigation.Controls.Add(tabMSH);
             tabNavigation.Controls.Add(DataManager);
+            tabNavigation.Controls.Add(LockManager);
             tabNavigation.Controls.Add(tabDocBusinessObject);
             tabNavigation.Controls.Add(tabLog);
             tabNavigation.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tabNavigation.HotTrack = true;
             tabNavigation.ImeMode = ImeMode.NoControl;
             tabNavigation.ItemSize = new Size(85, 21);
-            tabNavigation.Location = new Point(410, 56);
+            tabNavigation.Location = new Point(394, 56);
             tabNavigation.Multiline = true;
             tabNavigation.Name = "tabNavigation";
             tabNavigation.Padding = new Point(0, 0);
             tabNavigation.SelectedIndex = 0;
-            tabNavigation.Size = new Size(922, 577);
+            tabNavigation.Size = new Size(938, 577);
             tabNavigation.TabIndex = 23;
             // 
             // tabTbServer
@@ -514,10 +571,10 @@ namespace TbApiTester
             tabTbServer.Controls.Add(orangePanel5);
             tabTbServer.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold);
             tabTbServer.ForeColor = Color.White;
-            tabTbServer.Location = new Point(4, 25);
+            tabTbServer.Location = new Point(4, 46);
             tabTbServer.Name = "tabTbServer";
             tabTbServer.Padding = new Padding(3);
-            tabTbServer.Size = new Size(914, 548);
+            tabTbServer.Size = new Size(930, 527);
             tabTbServer.TabIndex = 1;
             tabTbServer.Text = "TbServer-MagicLink";
             // 
@@ -609,7 +666,7 @@ namespace TbApiTester
             panelTbTextContainer.Location = new Point(16, 199);
             panelTbTextContainer.Margin = new Padding(2);
             panelTbTextContainer.Name = "panelTbTextContainer";
-            panelTbTextContainer.Size = new Size(886, 335);
+            panelTbTextContainer.Size = new Size(902, 314);
             panelTbTextContainer.TabIndex = 115;
             // 
             // btnClearText
@@ -623,7 +680,7 @@ namespace TbApiTester
             btnClearText.FlatStyle = FlatStyle.Flat;
             btnClearText.Font = new Font("Century Gothic", 21.75F);
             btnClearText.ForeColor = Color.IndianRed;
-            btnClearText.Location = new Point(788, 257);
+            btnClearText.Location = new Point(804, 236);
             btnClearText.Name = "btnClearText";
             btnClearText.Size = new Size(63, 46);
             btnClearText.TabIndex = 116;
@@ -643,7 +700,7 @@ namespace TbApiTester
             btnSaveXmlTbServer.FlatStyle = FlatStyle.Flat;
             btnSaveXmlTbServer.Font = new Font("Century Gothic", 15F);
             btnSaveXmlTbServer.ForeColor = Color.FromArgb(22, 118, 186);
-            btnSaveXmlTbServer.Location = new Point(781, 2);
+            btnSaveXmlTbServer.Location = new Point(797, 2);
             btnSaveXmlTbServer.Name = "btnSaveXmlTbServer";
             btnSaveXmlTbServer.Size = new Size(51, 35);
             btnSaveXmlTbServer.TabIndex = 119;
@@ -658,7 +715,7 @@ namespace TbApiTester
             xmlEditorTbResult.BackColor = Color.AliceBlue;
             xmlEditorTbResult.Location = new Point(17, 39);
             xmlEditorTbResult.Name = "xmlEditorTbResult";
-            xmlEditorTbResult.Size = new Size(852, 285);
+            xmlEditorTbResult.Size = new Size(868, 264);
             xmlEditorTbResult.TabIndex = 118;
             xmlEditorTbResult.TextContent = "";
             // 
@@ -685,7 +742,7 @@ namespace TbApiTester
             BtnOpenFolder.FlatStyle = FlatStyle.Flat;
             BtnOpenFolder.Font = new Font("Century Gothic", 16.25F);
             BtnOpenFolder.ForeColor = Color.FromArgb(22, 118, 186);
-            BtnOpenFolder.Location = new Point(832, 1);
+            BtnOpenFolder.Location = new Point(848, 1);
             BtnOpenFolder.Name = "BtnOpenFolder";
             BtnOpenFolder.Size = new Size(51, 35);
             BtnOpenFolder.TabIndex = 95;
@@ -767,7 +824,7 @@ namespace TbApiTester
             PanelUrlTbServer.Controls.Add(labelTbUrl);
             PanelUrlTbServer.Location = new Point(174, 72);
             PanelUrlTbServer.Name = "PanelUrlTbServer";
-            PanelUrlTbServer.Size = new Size(771, 26);
+            PanelUrlTbServer.Size = new Size(787, 26);
             PanelUrlTbServer.TabIndex = 89;
             // 
             // labelTbUrl
@@ -886,10 +943,10 @@ namespace TbApiTester
             tabWebMethods.Controls.Add(roundedPanel3);
             tabWebMethods.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tabWebMethods.ForeColor = SystemColors.Control;
-            tabWebMethods.Location = new Point(4, 25);
+            tabWebMethods.Location = new Point(4, 46);
             tabWebMethods.Margin = new Padding(0);
             tabWebMethods.Name = "tabWebMethods";
-            tabWebMethods.Size = new Size(914, 548);
+            tabWebMethods.Size = new Size(930, 527);
             tabWebMethods.TabIndex = 4;
             tabWebMethods.Text = "WebMethods-MagicLink";
             // 
@@ -1581,10 +1638,10 @@ namespace TbApiTester
             tabDataService.Controls.Add(DynamicQueriesPanel);
             tabDataService.Font = new Font("Century Gothic", 14F, FontStyle.Bold);
             tabDataService.ForeColor = Color.White;
-            tabDataService.Location = new Point(4, 25);
+            tabDataService.Location = new Point(4, 46);
             tabDataService.Name = "tabDataService";
             tabDataService.Padding = new Padding(3);
-            tabDataService.Size = new Size(914, 548);
+            tabDataService.Size = new Size(930, 527);
             tabDataService.TabIndex = 0;
             tabDataService.Text = "DataService";
             // 
@@ -2146,9 +2203,9 @@ namespace TbApiTester
             tabRs.Controls.Add(btnGetRsItems);
             tabRs.Controls.Add(panel18);
             tabRs.Controls.Add(roundedPanel5);
-            tabRs.Location = new Point(4, 25);
+            tabRs.Location = new Point(4, 46);
             tabRs.Name = "tabRs";
-            tabRs.Size = new Size(914, 548);
+            tabRs.Size = new Size(930, 527);
             tabRs.TabIndex = 5;
             tabRs.Text = "ReportingService";
             // 
@@ -2184,7 +2241,7 @@ namespace TbApiTester
             btnExploreReport.FlatStyle = FlatStyle.Flat;
             btnExploreReport.Font = new Font("Century Gothic", 76.25F, FontStyle.Bold);
             btnExploreReport.ForeColor = Color.LightBlue;
-            btnExploreReport.Location = new Point(771, 382);
+            btnExploreReport.Location = new Point(771, 396);
             btnExploreReport.Name = "btnExploreReport";
             btnExploreReport.Size = new Size(141, 142);
             btnExploreReport.TabIndex = 101;
@@ -2485,10 +2542,10 @@ namespace TbApiTester
             tabDMS.Controls.Add(panelMicrHome);
             tabDMS.Controls.Add(roundedPanel6);
             tabDMS.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold);
-            tabDMS.Location = new Point(4, 25);
+            tabDMS.Location = new Point(4, 46);
             tabDMS.Name = "tabDMS";
             tabDMS.Padding = new Padding(3);
-            tabDMS.Size = new Size(914, 548);
+            tabDMS.Size = new Size(930, 527);
             tabDMS.TabIndex = 2;
             tabDMS.Text = "DMS";
             // 
@@ -2898,9 +2955,9 @@ namespace TbApiTester
             // 
             tabMSH.BackColor = Color.FromArgb(22, 118, 186);
             tabMSH.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold);
-            tabMSH.Location = new Point(4, 25);
+            tabMSH.Location = new Point(4, 46);
             tabMSH.Name = "tabMSH";
-            tabMSH.Size = new Size(914, 548);
+            tabMSH.Size = new Size(930, 527);
             tabMSH.TabIndex = 3;
             tabMSH.Text = "MSH";
             // 
@@ -2917,10 +2974,10 @@ namespace TbApiTester
             DataManager.Controls.Add(labelGetService);
             DataManager.Controls.Add(panel2);
             DataManager.Controls.Add(rndPanelUrl);
-            DataManager.Location = new Point(4, 25);
+            DataManager.Location = new Point(4, 46);
             DataManager.Margin = new Padding(2);
             DataManager.Name = "DataManager";
-            DataManager.Size = new Size(914, 548);
+            DataManager.Size = new Size(930, 527);
             DataManager.TabIndex = 6;
             DataManager.Text = "DataManager";
             // 
@@ -3740,6 +3797,507 @@ namespace TbApiTester
             DmMMSUrl.TabIndex = 90;
             DmMMSUrl.Text = "Url:";
             // 
+            // LockManager
+            // 
+            LockManager.BackColor = Color.FromArgb(22, 118, 186);
+            LockManager.Controls.Add(labelDescLock);
+            LockManager.Controls.Add(roundedPanel7);
+            LockManager.Controls.Add(GroupBoxTableLock);
+            LockManager.Controls.Add(lockIcon);
+            LockManager.Location = new Point(4, 46);
+            LockManager.Name = "LockManager";
+            LockManager.Size = new Size(930, 527);
+            LockManager.TabIndex = 10;
+            LockManager.Text = "LockManager";
+            // 
+            // labelDescLock
+            // 
+            labelDescLock.AutoSize = true;
+            labelDescLock.Font = new Font("Century Gothic", 9F, FontStyle.Bold);
+            labelDescLock.ForeColor = Color.White;
+            labelDescLock.Location = new Point(18, 23);
+            labelDescLock.Name = "labelDescLock";
+            labelDescLock.Size = new Size(109, 16);
+            labelDescLock.TabIndex = 113;
+            labelDescLock.Text = "labelPlaceholder";
+            // 
+            // roundedPanel7
+            // 
+            roundedPanel7.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            roundedPanel7.Controls.Add(LocksUrl);
+            roundedPanel7.Location = new Point(202, 82);
+            roundedPanel7.Name = "roundedPanel7";
+            roundedPanel7.Size = new Size(735, 26);
+            roundedPanel7.TabIndex = 111;
+            // 
+            // LocksUrl
+            // 
+            LocksUrl.AutoSize = true;
+            LocksUrl.BackColor = Color.Transparent;
+            LocksUrl.Font = new Font("Century Gothic", 9F, FontStyle.Bold);
+            LocksUrl.ForeColor = Color.FromArgb(22, 118, 186);
+            LocksUrl.Location = new Point(14, 5);
+            LocksUrl.Name = "LocksUrl";
+            LocksUrl.Size = new Size(25, 16);
+            LocksUrl.TabIndex = 90;
+            LocksUrl.Text = "Url:";
+            // 
+            // GroupBoxTableLock
+            // 
+            GroupBoxTableLock.BackColor = Color.FromArgb(22, 118, 186);
+            GroupBoxTableLock.Controls.Add(btnUnlockRecord);
+            GroupBoxTableLock.Controls.Add(panel77);
+            GroupBoxTableLock.Controls.Add(label16);
+            GroupBoxTableLock.Controls.Add(label18);
+            GroupBoxTableLock.Controls.Add(panel81);
+            GroupBoxTableLock.Controls.Add(btnContextRecord);
+            GroupBoxTableLock.Controls.Add(btnIsRecordLocked);
+            GroupBoxTableLock.Controls.Add(panel84);
+            GroupBoxTableLock.Controls.Add(BtnLockRecord);
+            GroupBoxTableLock.Controls.Add(label22);
+            GroupBoxTableLock.Controls.Add(panel86);
+            GroupBoxTableLock.Controls.Add(label25);
+            GroupBoxTableLock.Controls.Add(panel88);
+            GroupBoxTableLock.FlatStyle = FlatStyle.Popup;
+            GroupBoxTableLock.ForeColor = Color.White;
+            GroupBoxTableLock.Location = new Point(27, 122);
+            GroupBoxTableLock.Name = "GroupBoxTableLock";
+            GroupBoxTableLock.Size = new Size(658, 290);
+            GroupBoxTableLock.TabIndex = 110;
+            GroupBoxTableLock.TabStop = false;
+            GroupBoxTableLock.Text = "Enter the parameters to be able to make calls";
+            // 
+            // btnUnlockRecord
+            // 
+            btnUnlockRecord.BackColor = Color.FromArgb(232, 159, 0);
+            btnUnlockRecord.BackgroundImageLayout = ImageLayout.None;
+            btnUnlockRecord.Cursor = Cursors.Hand;
+            btnUnlockRecord.FlatAppearance.BorderSize = 0;
+            btnUnlockRecord.FlatStyle = FlatStyle.Flat;
+            btnUnlockRecord.Font = new Font("Century Gothic", 8.25F, FontStyle.Bold);
+            btnUnlockRecord.ForeColor = Color.White;
+            btnUnlockRecord.ImeMode = ImeMode.NoControl;
+            btnUnlockRecord.Location = new Point(299, 152);
+            btnUnlockRecord.Name = "btnUnlockRecord";
+            btnUnlockRecord.Size = new Size(52, 34);
+            btnUnlockRecord.TabIndex = 132;
+            btnUnlockRecord.Text = "Run";
+            btnUnlockRecord.UseVisualStyleBackColor = false;
+            btnUnlockRecord.Click += btnUnlockRecord_Click;
+            // 
+            // panel77
+            // 
+            panel77.BackColor = Color.FromArgb(232, 159, 0);
+            panel77.Controls.Add(panel80);
+            panel77.Location = new Point(349, 227);
+            panel77.Name = "panel77";
+            panel77.Size = new Size(279, 1);
+            panel77.TabIndex = 122;
+            // 
+            // panel80
+            // 
+            panel80.BackColor = Color.FromArgb(232, 159, 0);
+            panel80.Location = new Point(0, 2);
+            panel80.Name = "panel80";
+            panel80.Size = new Size(367, 1);
+            panel80.TabIndex = 63;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Microsoft Sans Serif", 11.25F);
+            label16.ForeColor = Color.White;
+            label16.ImeMode = ImeMode.NoControl;
+            label16.Location = new Point(373, 161);
+            label16.Name = "label16";
+            label16.Size = new Size(101, 18);
+            label16.TabIndex = 133;
+            label16.Text = "unlockRecord";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Microsoft Sans Serif", 11.25F);
+            label18.ForeColor = Color.White;
+            label18.ImeMode = ImeMode.NoControl;
+            label18.Location = new Point(373, 204);
+            label18.Name = "label18";
+            label18.Size = new Size(103, 18);
+            label18.TabIndex = 124;
+            label18.Text = "unlockContext";
+            // 
+            // panel81
+            // 
+            panel81.BackColor = Color.FromArgb(232, 159, 0);
+            panel81.Controls.Add(panel83);
+            panel81.Location = new Point(349, 184);
+            panel81.Name = "panel81";
+            panel81.Size = new Size(279, 1);
+            panel81.TabIndex = 131;
+            // 
+            // panel83
+            // 
+            panel83.BackColor = Color.FromArgb(232, 159, 0);
+            panel83.Location = new Point(0, 2);
+            panel83.Name = "panel83";
+            panel83.Size = new Size(367, 1);
+            panel83.TabIndex = 63;
+            // 
+            // btnContextRecord
+            // 
+            btnContextRecord.BackColor = Color.FromArgb(232, 159, 0);
+            btnContextRecord.BackgroundImageLayout = ImageLayout.None;
+            btnContextRecord.Cursor = Cursors.Hand;
+            btnContextRecord.FlatAppearance.BorderSize = 0;
+            btnContextRecord.FlatStyle = FlatStyle.Flat;
+            btnContextRecord.Font = new Font("Century Gothic", 8.25F, FontStyle.Bold);
+            btnContextRecord.ForeColor = Color.White;
+            btnContextRecord.ImeMode = ImeMode.NoControl;
+            btnContextRecord.Location = new Point(299, 195);
+            btnContextRecord.Name = "btnContextRecord";
+            btnContextRecord.Size = new Size(52, 34);
+            btnContextRecord.TabIndex = 123;
+            btnContextRecord.Text = "Run";
+            btnContextRecord.UseVisualStyleBackColor = false;
+            btnContextRecord.Click += btnContextRecord_Click;
+            // 
+            // btnIsRecordLocked
+            // 
+            btnIsRecordLocked.BackColor = Color.FromArgb(232, 159, 0);
+            btnIsRecordLocked.BackgroundImageLayout = ImageLayout.None;
+            btnIsRecordLocked.Cursor = Cursors.Hand;
+            btnIsRecordLocked.FlatAppearance.BorderSize = 0;
+            btnIsRecordLocked.FlatStyle = FlatStyle.Flat;
+            btnIsRecordLocked.Font = new Font("Century Gothic", 8.25F, FontStyle.Bold);
+            btnIsRecordLocked.ForeColor = Color.White;
+            btnIsRecordLocked.ImeMode = ImeMode.NoControl;
+            btnIsRecordLocked.Location = new Point(299, 111);
+            btnIsRecordLocked.Name = "btnIsRecordLocked";
+            btnIsRecordLocked.Size = new Size(52, 34);
+            btnIsRecordLocked.TabIndex = 129;
+            btnIsRecordLocked.Text = "Run";
+            btnIsRecordLocked.UseVisualStyleBackColor = false;
+            btnIsRecordLocked.Click += btnIsRecordLocked_Click;
+            // 
+            // panel84
+            // 
+            panel84.BackColor = Color.FromArgb(232, 159, 0);
+            panel84.Controls.Add(panel85);
+            panel84.Location = new Point(349, 144);
+            panel84.Name = "panel84";
+            panel84.Size = new Size(279, 1);
+            panel84.TabIndex = 128;
+            // 
+            // panel85
+            // 
+            panel85.BackColor = Color.FromArgb(232, 159, 0);
+            panel85.Location = new Point(0, 2);
+            panel85.Name = "panel85";
+            panel85.Size = new Size(367, 1);
+            panel85.TabIndex = 63;
+            // 
+            // BtnLockRecord
+            // 
+            BtnLockRecord.BackColor = Color.FromArgb(232, 159, 0);
+            BtnLockRecord.BackgroundImageLayout = ImageLayout.None;
+            BtnLockRecord.Cursor = Cursors.Hand;
+            BtnLockRecord.FlatAppearance.BorderSize = 0;
+            BtnLockRecord.FlatStyle = FlatStyle.Flat;
+            BtnLockRecord.Font = new Font("Century Gothic", 8.25F, FontStyle.Bold);
+            BtnLockRecord.ForeColor = Color.White;
+            BtnLockRecord.ImeMode = ImeMode.NoControl;
+            BtnLockRecord.Location = new Point(299, 71);
+            BtnLockRecord.Name = "BtnLockRecord";
+            BtnLockRecord.Size = new Size(52, 34);
+            BtnLockRecord.TabIndex = 126;
+            BtnLockRecord.Text = "Run";
+            BtnLockRecord.UseVisualStyleBackColor = false;
+            BtnLockRecord.Click += BtnLockRecord_Click;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new Font("Microsoft Sans Serif", 11.25F);
+            label22.ForeColor = Color.White;
+            label22.ImeMode = ImeMode.NoControl;
+            label22.Location = new Point(373, 120);
+            label22.Name = "label22";
+            label22.Size = new Size(117, 18);
+            label22.TabIndex = 130;
+            label22.Text = "isRecordLocked";
+            // 
+            // panel86
+            // 
+            panel86.BackColor = Color.FromArgb(232, 159, 0);
+            panel86.Controls.Add(panel87);
+            panel86.Location = new Point(349, 103);
+            panel86.Name = "panel86";
+            panel86.Size = new Size(279, 1);
+            panel86.TabIndex = 125;
+            // 
+            // panel87
+            // 
+            panel87.BackColor = Color.FromArgb(232, 159, 0);
+            panel87.Location = new Point(0, 2);
+            panel87.Name = "panel87";
+            panel87.Size = new Size(367, 1);
+            panel87.TabIndex = 63;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Font = new Font("Microsoft Sans Serif", 11.25F);
+            label25.ForeColor = Color.White;
+            label25.ImeMode = ImeMode.NoControl;
+            label25.Location = new Point(373, 80);
+            label25.Name = "label25";
+            label25.Size = new Size(85, 18);
+            label25.TabIndex = 127;
+            label25.Text = "lockRecord";
+            // 
+            // panel88
+            // 
+            panel88.BackColor = Color.White;
+            panel88.Controls.Add(panel75);
+            panel88.Controls.Add(panel89);
+            panel88.Controls.Add(txtKeys);
+            panel88.Controls.Add(panel93);
+            panel88.Controls.Add(label26);
+            panel88.Controls.Add(txtIstanceIdentity);
+            panel88.Controls.Add(panel95);
+            panel88.Controls.Add(label27);
+            panel88.Controls.Add(label28);
+            panel88.Controls.Add(labelContext);
+            panel88.Controls.Add(labelProcessName);
+            panel88.Controls.Add(txtProcessName);
+            panel88.Controls.Add(panel97);
+            panel88.Controls.Add(txtContext);
+            panel88.Controls.Add(txtTableName);
+            panel88.Location = new Point(13, 26);
+            panel88.Name = "panel88";
+            panel88.Size = new Size(272, 252);
+            panel88.TabIndex = 121;
+            // 
+            // panel75
+            // 
+            panel75.BackColor = Color.FromArgb(22, 118, 186);
+            panel75.Controls.Add(panel76);
+            panel75.Location = new Point(26, 54);
+            panel75.Name = "panel75";
+            panel75.Size = new Size(218, 1);
+            panel75.TabIndex = 108;
+            // 
+            // panel76
+            // 
+            panel76.BackColor = Color.FromArgb(232, 159, 0);
+            panel76.Location = new Point(0, 2);
+            panel76.Name = "panel76";
+            panel76.Size = new Size(367, 1);
+            panel76.TabIndex = 63;
+            // 
+            // panel89
+            // 
+            panel89.BackColor = Color.FromArgb(22, 118, 186);
+            panel89.Controls.Add(panel90);
+            panel89.Location = new Point(26, 230);
+            panel89.Name = "panel89";
+            panel89.Size = new Size(218, 1);
+            panel89.TabIndex = 107;
+            // 
+            // panel90
+            // 
+            panel90.BackColor = Color.FromArgb(232, 159, 0);
+            panel90.Location = new Point(0, 2);
+            panel90.Name = "panel90";
+            panel90.Size = new Size(367, 1);
+            panel90.TabIndex = 63;
+            // 
+            // txtKeys
+            // 
+            txtKeys.BackColor = Color.White;
+            txtKeys.BorderStyle = BorderStyle.None;
+            txtKeys.Font = new Font("Century Gothic", 9.75F);
+            txtKeys.ForeColor = SystemColors.ActiveCaptionText;
+            txtKeys.Location = new Point(26, 210);
+            txtKeys.Name = "txtKeys";
+            txtKeys.Size = new Size(230, 16);
+            txtKeys.TabIndex = 106;
+            txtKeys.Text = "3211264,0001";
+            // 
+            // panel93
+            // 
+            panel93.BackColor = Color.FromArgb(22, 118, 186);
+            panel93.Controls.Add(panel94);
+            panel93.Location = new Point(26, 186);
+            panel93.Name = "panel93";
+            panel93.Size = new Size(218, 1);
+            panel93.TabIndex = 104;
+            // 
+            // panel94
+            // 
+            panel94.BackColor = Color.FromArgb(232, 159, 0);
+            panel94.Location = new Point(0, 2);
+            panel94.Name = "panel94";
+            panel94.Size = new Size(367, 1);
+            panel94.TabIndex = 63;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.BackColor = Color.White;
+            label26.Font = new Font("Century Gothic", 8F, FontStyle.Bold);
+            label26.ForeColor = Color.FromArgb(22, 118, 186);
+            label26.ImeMode = ImeMode.NoControl;
+            label26.Location = new Point(19, 191);
+            label26.Name = "label26";
+            label26.Size = new Size(32, 15);
+            label26.TabIndex = 105;
+            label26.Text = "Keys";
+            // 
+            // txtIstanceIdentity
+            // 
+            txtIstanceIdentity.BackColor = Color.White;
+            txtIstanceIdentity.BorderStyle = BorderStyle.None;
+            txtIstanceIdentity.Font = new Font("Century Gothic", 9.75F);
+            txtIstanceIdentity.ForeColor = SystemColors.ActiveCaptionText;
+            txtIstanceIdentity.Location = new Point(26, 166);
+            txtIstanceIdentity.Name = "txtIstanceIdentity";
+            txtIstanceIdentity.Size = new Size(230, 16);
+            txtIstanceIdentity.TabIndex = 103;
+            txtIstanceIdentity.Text = "TestIstance";
+            // 
+            // panel95
+            // 
+            panel95.BackColor = Color.FromArgb(22, 118, 186);
+            panel95.Controls.Add(panel96);
+            panel95.Location = new Point(26, 142);
+            panel95.Name = "panel95";
+            panel95.Size = new Size(218, 1);
+            panel95.TabIndex = 98;
+            // 
+            // panel96
+            // 
+            panel96.BackColor = Color.FromArgb(232, 159, 0);
+            panel96.Location = new Point(0, 2);
+            panel96.Name = "panel96";
+            panel96.Size = new Size(367, 1);
+            panel96.TabIndex = 63;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.BackColor = Color.White;
+            label27.Font = new Font("Century Gothic", 8F, FontStyle.Bold);
+            label27.ForeColor = Color.FromArgb(22, 118, 186);
+            label27.ImeMode = ImeMode.NoControl;
+            label27.Location = new Point(19, 147);
+            label27.Name = "label27";
+            label27.Size = new Size(90, 15);
+            label27.TabIndex = 102;
+            label27.Text = "InstanceIdentity";
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.BackColor = Color.White;
+            label28.Font = new Font("Century Gothic", 8F, FontStyle.Bold);
+            label28.ForeColor = Color.FromArgb(22, 118, 186);
+            label28.ImeMode = ImeMode.NoControl;
+            label28.Location = new Point(19, 103);
+            label28.Name = "label28";
+            label28.Size = new Size(68, 15);
+            label28.TabIndex = 101;
+            label28.Text = "TableName";
+            // 
+            // labelContext
+            // 
+            labelContext.AutoSize = true;
+            labelContext.BackColor = Color.White;
+            labelContext.Font = new Font("Century Gothic", 8F, FontStyle.Bold);
+            labelContext.ForeColor = Color.FromArgb(22, 118, 186);
+            labelContext.ImeMode = ImeMode.NoControl;
+            labelContext.Location = new Point(19, 59);
+            labelContext.Name = "labelContext";
+            labelContext.Size = new Size(48, 15);
+            labelContext.TabIndex = 100;
+            labelContext.Text = "Context";
+            // 
+            // labelProcessName
+            // 
+            labelProcessName.AutoSize = true;
+            labelProcessName.Font = new Font("Century Gothic", 8F, FontStyle.Bold);
+            labelProcessName.ForeColor = Color.FromArgb(22, 118, 186);
+            labelProcessName.ImeMode = ImeMode.NoControl;
+            labelProcessName.Location = new Point(19, 15);
+            labelProcessName.Name = "labelProcessName";
+            labelProcessName.Size = new Size(81, 15);
+            labelProcessName.TabIndex = 99;
+            labelProcessName.Text = "ProcessName";
+            // 
+            // txtProcessName
+            // 
+            txtProcessName.BackColor = Color.White;
+            txtProcessName.BorderStyle = BorderStyle.None;
+            txtProcessName.Font = new Font("Century Gothic", 9.75F);
+            txtProcessName.ForeColor = SystemColors.ActiveCaptionText;
+            txtProcessName.Location = new Point(26, 34);
+            txtProcessName.Name = "txtProcessName";
+            txtProcessName.Size = new Size(230, 16);
+            txtProcessName.TabIndex = 32;
+            txtProcessName.Text = "TestProcess";
+            // 
+            // panel97
+            // 
+            panel97.BackColor = Color.FromArgb(22, 118, 186);
+            panel97.Controls.Add(panel98);
+            panel97.Location = new Point(26, 98);
+            panel97.Name = "panel97";
+            panel97.Size = new Size(218, 1);
+            panel97.TabIndex = 97;
+            // 
+            // panel98
+            // 
+            panel98.BackColor = Color.FromArgb(232, 159, 0);
+            panel98.Location = new Point(0, 2);
+            panel98.Name = "panel98";
+            panel98.Size = new Size(367, 1);
+            panel98.TabIndex = 63;
+            // 
+            // txtContext
+            // 
+            txtContext.BackColor = Color.White;
+            txtContext.BorderStyle = BorderStyle.None;
+            txtContext.Font = new Font("Century Gothic", 9.75F);
+            txtContext.ForeColor = SystemColors.ActiveCaptionText;
+            txtContext.Location = new Point(26, 78);
+            txtContext.Name = "txtContext";
+            txtContext.Size = new Size(230, 16);
+            txtContext.TabIndex = 33;
+            txtContext.Text = "TestTContext";
+            // 
+            // txtTableName
+            // 
+            txtTableName.BackColor = Color.White;
+            txtTableName.BorderStyle = BorderStyle.None;
+            txtTableName.Font = new Font("Century Gothic", 9.75F);
+            txtTableName.ForeColor = SystemColors.ActiveCaptionText;
+            txtTableName.Location = new Point(26, 122);
+            txtTableName.Name = "txtTableName";
+            txtTableName.Size = new Size(230, 16);
+            txtTableName.TabIndex = 34;
+            txtTableName.Text = "MA_CustSupp";
+            // 
+            // lockIcon
+            // 
+            lockIcon.AutoSize = true;
+            lockIcon.Font = new Font("Century Gothic", 29.75F);
+            lockIcon.ForeColor = Color.LightBlue;
+            lockIcon.Location = new Point(27, 442);
+            lockIcon.Name = "lockIcon";
+            lockIcon.Size = new Size(70, 49);
+            lockIcon.TabIndex = 112;
+            lockIcon.Text = "🔒";
+            // 
             // tabDocBusinessObject
             // 
             tabDocBusinessObject.BackColor = Color.FromArgb(22, 118, 186);
@@ -3751,11 +4309,11 @@ namespace TbApiTester
             tabDocBusinessObject.Controls.Add(labelBusinessObj);
             tabDocBusinessObject.Controls.Add(roundedPanel2);
             tabDocBusinessObject.Font = new Font("Century Gothic", 4.75F, FontStyle.Bold);
-            tabDocBusinessObject.Location = new Point(4, 25);
+            tabDocBusinessObject.Location = new Point(4, 46);
             tabDocBusinessObject.Name = "tabDocBusinessObject";
-            tabDocBusinessObject.Size = new Size(914, 548);
+            tabDocBusinessObject.Size = new Size(930, 527);
             tabDocBusinessObject.TabIndex = 8;
-            tabDocBusinessObject.Text = "DocBusinessObject";
+            tabDocBusinessObject.Text = "DocBusObj";
             // 
             // labelHelpToken
             // 
@@ -3876,9 +4434,9 @@ namespace TbApiTester
             tabLog.Controls.Add(orangePanel7);
             tabLog.Controls.Add(orangePanel8);
             tabLog.Controls.Add(orangePanel10);
-            tabLog.Location = new Point(4, 25);
+            tabLog.Location = new Point(4, 46);
             tabLog.Name = "tabLog";
-            tabLog.Size = new Size(914, 548);
+            tabLog.Size = new Size(930, 527);
             tabLog.TabIndex = 9;
             tabLog.Text = "Logs";
             // 
@@ -3892,7 +4450,7 @@ namespace TbApiTester
             panel53.Location = new Point(13, 43);
             panel53.Margin = new Padding(2);
             panel53.Name = "panel53";
-            panel53.Size = new Size(886, 492);
+            panel53.Size = new Size(886, 472);
             panel53.TabIndex = 120;
             // 
             // btnClearLog
@@ -3906,7 +4464,7 @@ namespace TbApiTester
             btnClearLog.FlatStyle = FlatStyle.Flat;
             btnClearLog.Font = new Font("Century Gothic", 21.75F);
             btnClearLog.ForeColor = Color.IndianRed;
-            btnClearLog.Location = new Point(778, 400);
+            btnClearLog.Location = new Point(778, 380);
             btnClearLog.Name = "btnClearLog";
             btnClearLog.Size = new Size(63, 46);
             btnClearLog.TabIndex = 116;
@@ -3922,7 +4480,7 @@ namespace TbApiTester
             richTextLog.Font = new Font("Century Gothic", 9.75F);
             richTextLog.Location = new Point(21, 53);
             richTextLog.Name = "richTextLog";
-            richTextLog.Size = new Size(846, 418);
+            richTextLog.Size = new Size(846, 398);
             richTextLog.TabIndex = 117;
             richTextLog.Text = "";
             richTextLog.WordWrap = false;
@@ -4074,7 +4632,7 @@ namespace TbApiTester
             btnReduceIcon.Font = new Font("Microsoft Sans Serif", 13F);
             btnReduceIcon.ForeColor = SystemColors.ControlLightLight;
             btnReduceIcon.ImeMode = ImeMode.NoControl;
-            btnReduceIcon.Location = new Point(1106, 0);
+            btnReduceIcon.Location = new Point(1146, 0);
             btnReduceIcon.Name = "btnReduceIcon";
             btnReduceIcon.RightToLeft = RightToLeft.No;
             btnReduceIcon.Size = new Size(81, 56);
@@ -4100,15 +4658,15 @@ namespace TbApiTester
             btnWindowMax.Dock = DockStyle.Right;
             btnWindowMax.FlatAppearance.BorderSize = 0;
             btnWindowMax.FlatStyle = FlatStyle.Flat;
-            btnWindowMax.Font = new Font("Microsoft Sans Serif", 13F);
+            btnWindowMax.Font = new Font("Impact", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnWindowMax.ForeColor = SystemColors.ControlLightLight;
             btnWindowMax.ImeMode = ImeMode.NoControl;
-            btnWindowMax.Location = new Point(1187, 0);
+            btnWindowMax.Location = new Point(1227, 0);
             btnWindowMax.Name = "btnWindowMax";
             btnWindowMax.RightToLeft = RightToLeft.No;
-            btnWindowMax.Size = new Size(119, 56);
+            btnWindowMax.Size = new Size(79, 56);
             btnWindowMax.TabIndex = 10;
-            btnWindowMax.Text = "zoom  +/-";
+            btnWindowMax.Text = "⛶";
             btnWindowMax.UseVisualStyleBackColor = false;
             btnWindowMax.Click += btnWindowMax_Click;
             // 
@@ -4277,7 +4835,7 @@ namespace TbApiTester
             LoginPanel.Controls.Add(button_Login);
             LoginPanel.Location = new Point(10, 56);
             LoginPanel.Name = "LoginPanel";
-            LoginPanel.Size = new Size(399, 577);
+            LoginPanel.Size = new Size(385, 577);
             LoginPanel.TabIndex = 92;
             // 
             // labelMessage
@@ -4286,7 +4844,7 @@ namespace TbApiTester
             labelMessage.BackColor = Color.Transparent;
             labelMessage.Font = new Font("Century Gothic", 9F, FontStyle.Bold);
             labelMessage.ForeColor = Color.Firebrick;
-            labelMessage.Location = new Point(26, 520);
+            labelMessage.Location = new Point(18, 520);
             labelMessage.Name = "labelMessage";
             labelMessage.Size = new Size(90, 16);
             labelMessage.TabIndex = 49;
@@ -4304,7 +4862,7 @@ namespace TbApiTester
             btnAccount.FlatStyle = FlatStyle.Flat;
             btnAccount.Font = new Font("Century Gothic", 21F);
             btnAccount.ForeColor = Color.FromArgb(22, 118, 186);
-            btnAccount.Location = new Point(325, 22);
+            btnAccount.Location = new Point(315, 22);
             btnAccount.Name = "btnAccount";
             btnAccount.Size = new Size(60, 46);
             btnAccount.TabIndex = 48;
@@ -4330,7 +4888,7 @@ namespace TbApiTester
             labelInfoAuthenticate.AutoSize = true;
             labelInfoAuthenticate.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
             labelInfoAuthenticate.ForeColor = Color.FromArgb(22, 118, 186);
-            labelInfoAuthenticate.Location = new Point(26, 488);
+            labelInfoAuthenticate.Location = new Point(18, 488);
             labelInfoAuthenticate.Name = "labelInfoAuthenticate";
             labelInfoAuthenticate.Size = new Size(312, 17);
             labelInfoAuthenticate.TabIndex = 23;
@@ -4347,7 +4905,7 @@ namespace TbApiTester
             button_Token.FlatStyle = FlatStyle.Flat;
             button_Token.Font = new Font("Century Gothic", 8F, FontStyle.Bold);
             button_Token.ForeColor = SystemColors.Control;
-            button_Token.Location = new Point(156, 392);
+            button_Token.Location = new Point(148, 392);
             button_Token.Name = "button_Token";
             button_Token.Size = new Size(82, 39);
             button_Token.TabIndex = 46;
@@ -4359,7 +4917,7 @@ namespace TbApiTester
             // 
             panelLineAppBox.BackColor = Color.FromArgb(22, 118, 186);
             panelLineAppBox.Controls.Add(panel13);
-            panelLineAppBox.Location = new Point(83, 371);
+            panelLineAppBox.Location = new Point(75, 371);
             panelLineAppBox.Name = "panelLineAppBox";
             panelLineAppBox.Size = new Size(230, 1);
             panelLineAppBox.TabIndex = 42;
@@ -4377,7 +4935,7 @@ namespace TbApiTester
             // 
             panelLineProdBox.BackColor = Color.FromArgb(22, 118, 186);
             panelLineProdBox.Controls.Add(panel11);
-            panelLineProdBox.Location = new Point(83, 325);
+            panelLineProdBox.Location = new Point(75, 325);
             panelLineProdBox.Name = "panelLineProdBox";
             panelLineProdBox.Size = new Size(230, 1);
             panelLineProdBox.TabIndex = 44;
@@ -4395,7 +4953,7 @@ namespace TbApiTester
             // 
             panelLineSubBox.BackColor = Color.FromArgb(22, 118, 186);
             panelLineSubBox.Controls.Add(panel9);
-            panelLineSubBox.Location = new Point(83, 278);
+            panelLineSubBox.Location = new Point(75, 278);
             panelLineSubBox.Name = "panelLineSubBox";
             panelLineSubBox.Size = new Size(230, 1);
             panelLineSubBox.TabIndex = 43;
@@ -4413,7 +4971,7 @@ namespace TbApiTester
             // 
             panelLinePwdBox.BackColor = Color.FromArgb(22, 118, 186);
             panelLinePwdBox.Controls.Add(panel7);
-            panelLinePwdBox.Location = new Point(83, 232);
+            panelLinePwdBox.Location = new Point(75, 232);
             panelLinePwdBox.Name = "panelLinePwdBox";
             panelLinePwdBox.Size = new Size(230, 1);
             panelLinePwdBox.TabIndex = 41;
@@ -4431,7 +4989,7 @@ namespace TbApiTester
             // 
             panelLineUserBox.BackColor = Color.FromArgb(22, 118, 186);
             panelLineUserBox.Controls.Add(panel5);
-            panelLineUserBox.Location = new Point(83, 187);
+            panelLineUserBox.Location = new Point(75, 187);
             panelLineUserBox.Name = "panelLineUserBox";
             panelLineUserBox.Size = new Size(230, 1);
             panelLineUserBox.TabIndex = 40;
@@ -4448,7 +5006,7 @@ namespace TbApiTester
             // panelLineHttpbox
             // 
             panelLineHttpbox.BackColor = Color.FromArgb(22, 118, 186);
-            panelLineHttpbox.Location = new Point(83, 141);
+            panelLineHttpbox.Location = new Point(75, 141);
             panelLineHttpbox.Name = "panelLineHttpbox";
             panelLineHttpbox.Size = new Size(230, 1);
             panelLineHttpbox.TabIndex = 39;
@@ -4459,7 +5017,7 @@ namespace TbApiTester
             App_label.AutoSize = true;
             App_label.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
             App_label.ForeColor = Color.FromArgb(22, 118, 186);
-            App_label.Location = new Point(67, 331);
+            App_label.Location = new Point(59, 331);
             App_label.Name = "App_label";
             App_label.Size = new Size(64, 17);
             App_label.TabIndex = 35;
@@ -4470,7 +5028,7 @@ namespace TbApiTester
             text_app.BackColor = SystemColors.ControlLightLight;
             text_app.BorderStyle = BorderStyle.None;
             text_app.Font = new Font("Microsoft Sans Serif", 10F);
-            text_app.Location = new Point(83, 353);
+            text_app.Location = new Point(75, 353);
             text_app.Name = "text_app";
             text_app.Size = new Size(230, 16);
             text_app.TabIndex = 36;
@@ -4481,7 +5039,7 @@ namespace TbApiTester
             text_producer.BackColor = SystemColors.ControlLightLight;
             text_producer.BorderStyle = BorderStyle.None;
             text_producer.Font = new Font("Microsoft Sans Serif", 10F);
-            text_producer.Location = new Point(83, 306);
+            text_producer.Location = new Point(75, 306);
             text_producer.Name = "text_producer";
             text_producer.Size = new Size(230, 16);
             text_producer.TabIndex = 38;
@@ -4492,7 +5050,7 @@ namespace TbApiTester
             Prod_label.AutoSize = true;
             Prod_label.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
             Prod_label.ForeColor = Color.FromArgb(22, 118, 186);
-            Prod_label.Location = new Point(67, 285);
+            Prod_label.Location = new Point(59, 285);
             Prod_label.Name = "Prod_label";
             Prod_label.Size = new Size(96, 17);
             Prod_label.TabIndex = 37;
@@ -4510,7 +5068,7 @@ namespace TbApiTester
             button_Logout.FlatStyle = FlatStyle.Flat;
             button_Logout.Font = new Font("Century Gothic", 8F, FontStyle.Bold);
             button_Logout.ForeColor = SystemColors.Control;
-            button_Logout.Location = new Point(244, 392);
+            button_Logout.Location = new Point(236, 392);
             button_Logout.Name = "button_Logout";
             button_Logout.Size = new Size(71, 39);
             button_Logout.TabIndex = 34;
@@ -4523,7 +5081,7 @@ namespace TbApiTester
             User_label.AutoSize = true;
             User_label.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
             User_label.ForeColor = Color.FromArgb(22, 118, 186);
-            User_label.Location = new Point(67, 148);
+            User_label.Location = new Point(59, 148);
             User_label.Name = "User_label";
             User_label.Size = new Size(76, 17);
             User_label.TabIndex = 24;
@@ -4534,7 +5092,7 @@ namespace TbApiTester
             text_subscription.BackColor = SystemColors.ControlLightLight;
             text_subscription.BorderStyle = BorderStyle.None;
             text_subscription.Font = new Font("Microsoft Sans Serif", 10F);
-            text_subscription.Location = new Point(83, 260);
+            text_subscription.Location = new Point(75, 260);
             text_subscription.Name = "text_subscription";
             text_subscription.Size = new Size(230, 16);
             text_subscription.TabIndex = 33;
@@ -4544,7 +5102,7 @@ namespace TbApiTester
             Pwd_label.AutoSize = true;
             Pwd_label.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
             Pwd_label.ForeColor = Color.FromArgb(22, 118, 186);
-            Pwd_label.Location = new Point(67, 193);
+            Pwd_label.Location = new Point(59, 193);
             Pwd_label.Name = "Pwd_label";
             Pwd_label.Size = new Size(70, 17);
             Pwd_label.TabIndex = 25;
@@ -4555,7 +5113,7 @@ namespace TbApiTester
             text_user.BackColor = SystemColors.ControlLightLight;
             text_user.BorderStyle = BorderStyle.None;
             text_user.Font = new Font("Microsoft Sans Serif", 10F);
-            text_user.Location = new Point(83, 168);
+            text_user.Location = new Point(75, 168);
             text_user.Name = "text_user";
             text_user.Size = new Size(230, 16);
             text_user.TabIndex = 26;
@@ -4565,7 +5123,7 @@ namespace TbApiTester
             // 
             text_pwd.BackColor = SystemColors.ControlLightLight;
             text_pwd.BorderStyle = BorderStyle.None;
-            text_pwd.Location = new Point(83, 214);
+            text_pwd.Location = new Point(75, 214);
             text_pwd.Name = "text_pwd";
             text_pwd.PasswordChar = '*';
             text_pwd.Size = new Size(230, 16);
@@ -4576,7 +5134,7 @@ namespace TbApiTester
             Sub_label.AutoSize = true;
             Sub_label.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
             Sub_label.ForeColor = Color.FromArgb(22, 118, 186);
-            Sub_label.Location = new Point(67, 238);
+            Sub_label.Location = new Point(59, 238);
             Sub_label.Name = "Sub_label";
             Sub_label.Size = new Size(89, 17);
             Sub_label.TabIndex = 32;
@@ -4587,7 +5145,7 @@ namespace TbApiTester
             text_http.BackColor = SystemColors.ControlLightLight;
             text_http.BorderStyle = BorderStyle.None;
             text_http.Font = new Font("Microsoft Sans Serif", 10F);
-            text_http.Location = new Point(83, 122);
+            text_http.Location = new Point(75, 122);
             text_http.Name = "text_http";
             text_http.Size = new Size(230, 16);
             text_http.TabIndex = 31;
@@ -4597,7 +5155,7 @@ namespace TbApiTester
             Http_label.AutoSize = true;
             Http_label.Font = new Font("Century Gothic", 10F, FontStyle.Bold);
             Http_label.ForeColor = Color.FromArgb(22, 118, 186);
-            Http_label.Location = new Point(50, 98);
+            Http_label.Location = new Point(42, 98);
             Http_label.Name = "Http_label";
             Http_label.Size = new Size(278, 17);
             Http_label.TabIndex = 30;
@@ -4614,7 +5172,7 @@ namespace TbApiTester
             button_exit.FlatStyle = FlatStyle.Flat;
             button_exit.Font = new Font("Century Gothic", 9F, FontStyle.Bold);
             button_exit.ForeColor = SystemColors.Control;
-            button_exit.Location = new Point(82, 437);
+            button_exit.Location = new Point(74, 437);
             button_exit.Name = "button_exit";
             button_exit.Size = new Size(234, 35);
             button_exit.TabIndex = 29;
@@ -4634,7 +5192,7 @@ namespace TbApiTester
             button_Login.FlatStyle = FlatStyle.Flat;
             button_Login.Font = new Font("Century Gothic", 8F, FontStyle.Bold);
             button_Login.ForeColor = SystemColors.Control;
-            button_Login.Location = new Point(84, 392);
+            button_Login.Location = new Point(76, 392);
             button_Login.Name = "button_Login";
             button_Login.Size = new Size(66, 39);
             button_Login.TabIndex = 28;
@@ -4756,6 +5314,23 @@ namespace TbApiTester
             panel2.ResumeLayout(false);
             rndPanelUrl.ResumeLayout(false);
             rndPanelUrl.PerformLayout();
+            LockManager.ResumeLayout(false);
+            LockManager.PerformLayout();
+            roundedPanel7.ResumeLayout(false);
+            roundedPanel7.PerformLayout();
+            GroupBoxTableLock.ResumeLayout(false);
+            GroupBoxTableLock.PerformLayout();
+            panel77.ResumeLayout(false);
+            panel81.ResumeLayout(false);
+            panel84.ResumeLayout(false);
+            panel86.ResumeLayout(false);
+            panel88.ResumeLayout(false);
+            panel88.PerformLayout();
+            panel75.ResumeLayout(false);
+            panel89.ResumeLayout(false);
+            panel93.ResumeLayout(false);
+            panel95.ResumeLayout(false);
+            panel97.ResumeLayout(false);
             tabDocBusinessObject.ResumeLayout(false);
             tabDocBusinessObject.PerformLayout();
             panel121.ResumeLayout(false);
@@ -5136,5 +5711,48 @@ namespace TbApiTester
         private System.Windows.Forms.Button btnGetEnumsInfo;
         private Button btnHelpBoDoc;
         private Label labelHelpToken;
+        private TabPage LockManager;
+        private GroupBox GroupBoxTableLock;
+        private Button btnUnlockRecord;
+        private Panel panel77;
+        private Panel panel80;
+        private Label label16;
+        private Label label18;
+        private Panel panel81;
+        private Panel panel83;
+        private Button btnContextRecord;
+        private Button btnIsRecordLocked;
+        private Panel panel84;
+        private Panel panel85;
+        private Button BtnLockRecord;
+        private Label label22;
+        private Panel panel86;
+        private Panel panel87;
+        private Label label25;
+        private Panel panel88;
+        private Panel panel89;
+        private Panel panel90;
+        private TextBox txtKeys;
+        private Panel panel93;
+        private Panel panel94;
+        private Label label26;
+        private TextBox txtIstanceIdentity;
+        private Panel panel95;
+        private Panel panel96;
+        private Label label27;
+        private Label label28;
+        private Label labelContext;
+        private Label labelProcessName;
+        private TextBox txtProcessName;
+        private Panel panel97;
+        private Panel panel98;
+        private TextBox txtContext;
+        private TextBox txtTableName;
+        private Panel panel75;
+        private Panel panel76;
+        private RoundedPanel roundedPanel7;
+        private Label LocksUrl;
+        private Label lockIcon;
+        internal Label labelDescLock;
     }
 }

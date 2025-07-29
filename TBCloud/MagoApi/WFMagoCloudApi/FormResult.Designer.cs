@@ -209,5 +209,6 @@ namespace WindowsFormsResult
         private System.Windows.Forms.Button btnUploadXml;
         private System.Windows.Forms.Label labelSmile;
         private PictureBox pictureBoxToken;
+        private TextBox textBox1;
     }
 }

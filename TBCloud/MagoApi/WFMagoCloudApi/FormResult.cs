@@ -106,12 +106,12 @@ namespace WindowsFormsResult
             mousedown = true;
         }
 
-        
+
         private void buttonExitForm_Click(object sender, EventArgs e)
         {
             Close();
         }
-       
+
         private string content;
         bool mousedown;
 

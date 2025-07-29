@@ -45,6 +45,11 @@ namespace TbApiTester
                                  "and managing electronic documents.\n" +
                                  "Is a solution for digital document management.";
 
+            //////////// Label descriptive  (DATAMANAGER LockManager )
+            form.labelDescLock.Text = "The lock action corresponds to writing a record in the TB_Locks table for each locked data item, \n" +
+                                 "while the unlock action corresponds to removing the record from this table.";
+                                 
+
         }
     }
 }

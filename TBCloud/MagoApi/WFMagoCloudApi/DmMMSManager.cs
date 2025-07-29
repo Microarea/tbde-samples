@@ -12,6 +12,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using System.Windows.Input;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace TbApiTester
 {
@@ -103,7 +105,7 @@ namespace TbApiTester
         public Dictionary<string, object> FindFields { get; set; } = new Dictionary<string, object>();
     }
 
-    
+
 
     class DmMMSManager
     {
@@ -160,7 +162,7 @@ namespace TbApiTester
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/{call}?tableName={tableName}");
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                    
+
                     requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add($"[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {request.Headers}");
                     TbResponse tbResponse = new TbResponse();
@@ -173,7 +175,7 @@ namespace TbApiTester
                         JObject data = JsonConvert.DeserializeObject<JObject>(funResponse);
                         tbResponse.ReturnValue = data["data"]["Name"]?.ToString();
                         tbResponse.PlainResult = funResponse.ToString();
-                        
+
                         tbResponse.Success = true;
                         return tbResponse;
                     }
@@ -182,7 +184,7 @@ namespace TbApiTester
                         // Extract only the first line of the error message
                         string shortMessage = funResponse.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)[0];
 
-                        MessageBox.Show(tbResponse.StatusCode.ToString()+shortMessage);
+                        MessageBox.Show(tbResponse.StatusCode.ToString() + shortMessage);
                     }
                 }
                 catch (HttpRequestException e)
@@ -235,7 +237,7 @@ namespace TbApiTester
                         }
                         return tbResponse;
                     }
-                   
+
                 }
                 catch (HttpRequestException e)
                 {
@@ -246,7 +248,7 @@ namespace TbApiTester
             }
         }
         //// it returns number of record contained accoringly query parameter________________________________________________________________
-        public async Task<TbResponse> SelectAllByKey(UserData userData,  TableData tableData)
+        public async Task<TbResponse> SelectAllByKey(UserData userData, TableData tableData)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -360,7 +362,7 @@ namespace TbApiTester
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/delete");
                     requestDMMS = $"{request.Method} {request.RequestUri}";
-                    requestDMMSList.Add(requestDMMS); 
+                    requestDMMSList.Add(requestDMMS);
                     TbResponse response = await CallWithTableData(userData, tableData, request);
                     return response.Success == true && (response.ReturnValue.ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase));
                 }
@@ -500,7 +502,7 @@ namespace TbApiTester
                 //request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
                 TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                 TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-                
+
 
                 TbResponse tbResponse = new TbResponse();
                 HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
@@ -615,24 +617,220 @@ namespace TbApiTester
             }
 
         }
-        //private static void UseMMSDataManagerLock(UserData userData, MagoAPIClient magocloudClient)
-        //{
-        //    LockData lockData = new LockData();
-        //    lockData.ProcessName = "MyApp";
-        //    lockData.Context = "MyContext";
-        //    lockData.TableName = "MA_CustSupp";
-        //    lockData.InstanceIdentity = lockData.ProcessName;
-        //    lockData.Keys = new object[] { 3211264, "0001" };
 
-        //    ITbResponse lockResponse = magocloudClient.MyMagoStudio?.UpdateTbAlive(userData, lockData).Result;
-        //    lockResponse = magocloudClient.MyMagoStudio?.LockRecord(userData, lockData).Result;
-        //    lockData.Keys = new object[] { 3211264, "0002" };
-        //    lockResponse = magocloudClient.MyMagoStudio?.LockRecord(userData, lockData).Result;
-        //    ITbResponse islockedResponse = magocloudClient.MyMagoStudio?.IsRecordLocked(userData, lockData).Result;
-        //    ITbResponse unlockResponse = magocloudClient.MyMagoStudio?.UnlockRecord(userData, lockData).Result;
-        //    lockResponse = magocloudClient.MyMagoStudio?.UpdateTbAlive(userData, lockData).Result;
-        //    ITbResponse unlockContextResponse = magocloudClient.MyMagoStudio?.UnlockContext(userData, lockData).Result;
-        //}
+        ////////////////////////
+        //////LOCKMANAGER///////
+        ////////////////////////
+
+        public async Task<bool> lockRecord(UserData userData, string processName, string context, string tableName, string instanceIdentity, string[] keys)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+
+                    if (UrlSManager.DmMMSUrl == "")
+                        UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
+
+                    HttpRequestMessage request = new HttpRequestMessage(
+                        HttpMethod.Post,
+                        UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/lockRecord"
+                    );
+
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
+                    requestDMMSList.Add(requestDMMS);
+
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
+                    TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+
+                    request.Content = PrepareLockParam(
+                        processName,
+                        context,
+                        tableName,
+                        instanceIdentity,
+                        keys
+                    );
+
+                    HttpResponseMessage response = await client.SendAsync(request);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string content = await response.Content.ReadAsStringAsync();
+                        if (bool.TryParse(content, out bool result))
+                            return result;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Error HTTP: {response.StatusCode} - {response.ReasonPhrase}");
+                    }
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("\nException Caught!");
+                    Console.WriteLine("Message: {0}", e.Message);
+                }
+
+                return false;
+            }
+        }
+
+        public async Task<bool> unlockRecord(UserData userData, string processName, string context, string tableName, string InstanceIdentity, string[]  keys)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.DmMMSUrl == "")
+                        UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
+
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/unlockRecord");
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
+                    requestDMMSList.Add(requestDMMS);
+
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
+                    TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+
+                    request.Content = PrepareLockParam(
+                                                       processName,
+                                                       context,
+                                                       tableName,
+                                                       InstanceIdentity,
+                                                       keys);
+
+                    HttpResponseMessage response = await client.SendAsync(request);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string content = await response.Content.ReadAsStringAsync();
+                        if (bool.TryParse(content, out bool result))
+                            return result;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Error HTTP: {response.StatusCode} - {response.ReasonPhrase}");
+                    }
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("\nException Caught!");
+                    Console.WriteLine("Message: {0}", e.Message);
+                }
+
+                return false;
+            }
+        }
+
+        public async Task<bool> isRecordLocked(UserData userData, string processName, string context, string tableName, string InstanceIdentity, string[] keys)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.DmMMSUrl == "")
+                        UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
+
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/isRecordLocked");
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
+                    requestDMMSList.Add(requestDMMS);
+
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
+                    TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+
+                    request.Content = PrepareLockParam(
+                                                       processName,
+                                                       context,
+                                                       tableName,
+                                                       InstanceIdentity,
+                                                       keys);
+
+                    HttpResponseMessage response = await client.SendAsync(request);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string content = await response.Content.ReadAsStringAsync();
+                        if (bool.TryParse(content, out bool result))
+                            return result;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Error HTTP: {response.StatusCode} - {response.ReasonPhrase}");
+                    }
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("\nException Caught!");
+                    Console.WriteLine("Message: {0}", e.Message);
+                }
+
+                return false;
+            }
+        }
+
+        public async Task<bool> UnlockContext(UserData userData, string processName, string context, string tableName, string InstanceIdentity, string[] keys)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    UrlSManager Urls = new UrlSManager();
+                    if (UrlSManager.DmMMSUrl == "")
+                        UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
+
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/unlockContext");
+                    requestDMMS = $"{request.Method} {request.RequestUri}";
+                    requestDMMSList.Add(requestDMMS);
+
+                    TbApiTesterManager.PrepareHeaderAutorization(request, userData);
+                    TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
+
+                    request.Content = PrepareLockParam(
+                                                       processName,
+                                                       context,
+                                                       tableName,
+                                                       InstanceIdentity,
+                                                       keys);
+
+                    HttpResponseMessage response = await client.SendAsync(request);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string content = await response.Content.ReadAsStringAsync();
+                        if (bool.TryParse(content, out bool result))
+                            return result;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Error HTTP: {response.StatusCode} - {response.ReasonPhrase}");
+                    }
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("\nException Caught!");
+                    Console.WriteLine("Message: {0}", e.Message);
+                }
+
+                return false;
+            }
+        }
+
+        public static HttpContent PrepareLockParam(string processName, string context, string tableName,
+                                            string instanceIdentity, string[] keyArray)
+        {
+            var requestBody = new JObject
+            {
+                { "ProcessName", processName },
+                { "Context", context },
+                { "TableName", tableName },
+                { "InstanceIdentity", instanceIdentity },
+                { "Keys", new JArray(keyArray) }
+            };
+
+            string jsonBody = JsonConvert.SerializeObject(requestBody);
+            return new StringContent(jsonBody, Encoding.UTF8, "application/json");
+        }
 
     }
 }

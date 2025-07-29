@@ -57,6 +57,15 @@ namespace TbApiTester
             LoginKey = string.Empty;
         }
     }
+
+    public class LockData
+    {
+        public string ProcessName { get; set; }
+        public string Context { get; set; }
+        public string TableName { get; set; }
+        public string InstanceIdentity { get; set; }
+        public string Keys { get; set; }
+    }
     public class SubscriptionInfo
     {
         public SubscriptionInfo(string subscriptionKey, string description)

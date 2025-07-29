@@ -410,7 +410,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnUploadXml.Location" type="System.Drawing.Point, System.Drawing">
-    <value>375, 0</value>
+    <value>420, 0</value>
   </data>
   <data name="btnUploadXml.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -518,13 +518,13 @@
     <value>Flat</value>
   </data>
   <data name="buttonResize.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 13pt</value>
+    <value>Impact, 21.75pt, style=Bold</value>
   </data>
   <data name="buttonResize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonResize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>448, 0</value>
+    <value>493, 0</value>
   </data>
   <data name="buttonResize.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -533,13 +533,13 @@
     <value>No</value>
   </data>
   <data name="buttonResize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 62</value>
+    <value>101, 62</value>
   </data>
   <data name="buttonResize.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="buttonResize.Text" xml:space="preserve">
-    <value>zoom  +/-</value>
+    <value>⛶</value>
   </data>
   <data name="&gt;&gt;buttonResize.Name" xml:space="preserve">
     <value>buttonResize</value>
