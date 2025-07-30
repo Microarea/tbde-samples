@@ -72,16 +72,15 @@ namespace WindowsFormsResult
             }
             if (bBlue)
             {
-                this.btnUploadXml.Visible = true;
                 this.richXmlTextBox.Visible = true;
+                this.richXmlTextBox.Dock = DockStyle.Fill;
                 panelTitleResult.BackColor = Color.FromArgb(28, 28, 28);
                 this.labelFormContent.Hide();
-                this.richXmlTextBox.ForeColor = Color.Blue;
-
-                this.labelTitleResult.Text = "Xml";
+                this.labelTitleResult.Text = "Useful links";
                 this.labelSmile.Text = "🤔";
                 this.buttonResize.BackColor = Color.FromArgb(28, 28, 28);
                 this.buttonExitForm.BackColor = Color.FromArgb(28, 28, 28);
+                this.panelContent.Padding = new System.Windows.Forms.Padding(10, 70, 0, 0);
 
             }
         }

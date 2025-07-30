@@ -49,7 +49,7 @@ namespace TbApiTester
         private ComboBox cbxProfile;
         private ComboBox cbxArchiveType;
 
-        public CbxUi(ComboBox cbxApplication, ComboBox cbxModule, ComboBox cbxDocReport, ComboBox cbxProfile,ComboBox cbxArchiveType)
+        public CbxUi(ComboBox cbxApplication, ComboBox cbxModule, ComboBox cbxDocReport, ComboBox cbxProfile, ComboBox cbxArchiveType)
         {
             this.cbxApplication = cbxApplication;
             this.cbxModule = cbxModule;
@@ -84,6 +84,37 @@ namespace TbApiTester
         private void textBoxArchiveType_MouseHover(object sender, EventArgs e)
         {
             SetComboBoxForeColor(Color.FromArgb(232, 159, 0));
+        }
+    }
+
+    public class UiHoverManager
+    {
+        private Dictionary<Button, Control[]> buttonControlMap = new();
+
+        public void Register(Button button, params Control[] controls)
+        {
+            button.MouseEnter += (s, e) => HighlightControls(controls);
+            button.MouseLeave += (s, e) => ResetControls(controls);
+
+            buttonControlMap[button] = controls;
+        }
+
+        private void HighlightControls(Control[] controls)
+        {
+            foreach (var ctrl in controls)
+            {
+                ctrl.BackColor = Color.LightYellow;
+                ctrl.Font = new Font(ctrl.Font, FontStyle.Bold);
+            }
+        }
+
+        private void ResetControls(Control[] controls)
+        {
+            foreach (var ctrl in controls)
+            {
+                ctrl.BackColor = SystemColors.Window;
+                ctrl.Font = new Font(ctrl.Font, FontStyle.Regular);
+            }
         }
     }
 }

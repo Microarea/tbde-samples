@@ -65,6 +65,7 @@ namespace TbApiTester
         private System.Windows.Forms.Timer countdownTimer;
         private int countdownSeconds = 15;
         private bool thread;
+        private UiHoverManager hoverManager;
 
         public TbApiTester(bool isCloudButtonClicked)
         {
@@ -131,6 +132,13 @@ namespace TbApiTester
             DynamicQueriesPanel.Hide();
             btnAccount.Hide();
             panelDataManagerOtherCall.Hide();
+            hoverManager = new UiHoverManager();
+
+            // Ui LockManager body param
+            hoverManager.Register(BtnLockRecord, txtProcessName, txtContext, txtTableName, txtIstanceIdentity, txtKeys);
+            hoverManager.Register(btnIsRecordLocked, txtContext, txtTableName, txtKeys);
+            hoverManager.Register(btnUnlockRecord, txtProcessName, txtContext, txtTableName, txtIstanceIdentity, txtKeys); 
+            hoverManager.Register(btnContextRecord, txtContext);
 
         }
         public void InitializeCredential(string currentEnvironment)
@@ -2246,7 +2254,211 @@ namespace TbApiTester
             ShowResult(content, false, true, true);
         }
 
+        ///  ///  ///  ///  ///  /// 
+        /// LockManager DATAMANAGER
+        ///  ///  ///  ///  ///  /// 
 
+
+        private async void BtnLockRecord_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!", "Authentication", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string processName = txtProcessName.Text;
+            string context = txtContext.Text;
+            string tableName = txtTableName.Text;
+            string instanceIdentity = txtIstanceIdentity.Text;
+            string keys = txtKeys.Text;
+
+            if (string.IsNullOrWhiteSpace(keys))
+            {
+                MessageBox.Show("Please enter a valid Keys value.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string[] keyArray = keys.Split(',').Select(k => k.Trim()).ToArray();
+
+            try
+            {
+                bool loked = await manager.dmMMSManager.lockRecord(
+                    manager.authenticationManager.userData,
+                    processName,
+                    context,
+                    tableName,
+                    instanceIdentity,
+                    keyArray
+                );
+
+                LocksUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
+
+                if (!loked)
+                {
+                    MessageBox.Show($"{keyArray + tableName} isLoked.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"{textBoxCustSupp.Text} already exists.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private async void btnUnlockRecord_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!", "Authentication", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string processName = txtProcessName.Text;
+            string context = txtContext.Text;
+            string tableName = txtTableName.Text;
+            string instanceIdentity = txtIstanceIdentity.Text;
+            string keys = txtKeys.Text;
+
+            if (string.IsNullOrWhiteSpace(keys))
+            {
+                MessageBox.Show("Please enter a valid Keys value.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string[] keyArray = keys.Split(',').Select(k => k.Trim()).ToArray();
+
+            try
+            {
+                bool loked = await manager.dmMMSManager.unlockRecord(
+                    manager.authenticationManager.userData,
+                    processName,
+                    context,
+                    tableName,
+                    instanceIdentity,
+                    keyArray
+                );
+
+                DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
+
+                if (!loked)
+                {
+                    MessageBox.Show($"{keyArray + tableName} Unloked.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"{textBoxCustSupp.Text} already exists.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnIsRecordLocked_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!", "Authentication", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string processName = txtProcessName.Text;
+            string context = txtContext.Text;
+            string tableName = txtTableName.Text;
+            string instanceIdentity = txtIstanceIdentity.Text;
+            string keys = txtKeys.Text;
+
+            if (string.IsNullOrWhiteSpace(keys))
+            {
+                MessageBox.Show("Please enter a valid Keys value.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string[] keyArray = keys.Split(',').Select(k => k.Trim()).ToArray();
+
+
+            try
+            {
+                bool loked = await manager.dmMMSManager.isRecordLocked(
+                    manager.authenticationManager.userData,
+                    processName,
+                    context,
+                    tableName,
+                    instanceIdentity,
+                    keyArray
+                );
+
+                LocksUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
+
+                if (!loked)
+                {
+                    MessageBox.Show($"{tableName} isLoked.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"{textBoxCustSupp.Text} already exists.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnContextRecord_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!", "Authentication", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string processName = txtProcessName.Text;
+            string context = txtContext.Text;
+            string tableName = txtTableName.Text;
+            string instanceIdentity = txtIstanceIdentity.Text;
+            string keys = txtKeys.Text;
+
+            if (string.IsNullOrWhiteSpace(keys))
+            {
+                MessageBox.Show("Please enter a valid Keys value.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string[] keyArray = keys.Split(',').Select(k => k.Trim()).ToArray();
+
+            try
+            {
+                bool loked = await manager.dmMMSManager.UnlockContext(
+                    manager.authenticationManager.userData,
+                    processName,
+                    context,
+                    tableName,
+                    instanceIdentity,
+                    keyArray
+                );
+
+                LocksUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
+
+                if (!loked)
+                {
+                    MessageBox.Show($"{keyArray + tableName} UnlockContext.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"{textBoxCustSupp.Text} already exists.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        ///  ///  ///  ///  ///  ///  ///  ///  ///  ///  ///  ///  ///  ///  ///  /// 
         private void cbxServicesWeb_DropDown(object sender, EventArgs e)
         {
             PopulateServicesComboBox();
@@ -2712,204 +2924,16 @@ namespace TbApiTester
             ShowResult(content, false, true, true, true);
         }
 
-        private async void BtnLockRecord_Click(object sender, EventArgs e)
+       
+
+        private void btnUsefulLinks_Click(object sender, EventArgs e)
         {
-            if (!manager.authenticationManager.IsLogged())
-            {
-                MessageBox.Show("User is not logged, please Login!", "Authentication", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            string message =
+                     "Collection Postman PlatformAPI:\n https://github.com/Microarea/tbde-samples/blob/develop/TBCloud/MagoApi/CollectionPostman/TaskBuilderCloudAPI.postman_collection.json\n" +
+                     "\nPlatform Api course:\n https://mymago.zucchetti.com/eLearning/EN\\MagoCloud\\TBDE\\API\\PlatformApi\\index.html";
 
-            string processName = txtProcessName.Text;
-            string context = txtContext.Text;
-            string tableName = txtTableName.Text;
-            string instanceIdentity = txtIstanceIdentity.Text;
-            string keys = txtKeys.Text;
+            ShowResult(message, false, true, false, false);
 
-            if (string.IsNullOrWhiteSpace(keys))
-            {
-                MessageBox.Show("Please enter a valid Keys value.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string[] keyArray = keys.Split(',').Select(k => k.Trim()).ToArray();
-
-            try
-            {
-                bool loked = await manager.dmMMSManager.lockRecord(
-                    manager.authenticationManager.userData,
-                    processName,
-                    context,
-                    tableName,
-                    instanceIdentity,
-                    keyArray
-                );
-
-                LocksUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
-
-                if (!loked)
-                {
-                    MessageBox.Show($"{keyArray + tableName} isLoked.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"{textBoxCustSupp.Text} already exists.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private async void btnUnlockRecord_Click(object sender, EventArgs e)
-        {
-            if (!manager.authenticationManager.IsLogged())
-            {
-                MessageBox.Show("User is not logged, please Login!", "Authentication", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string processName = txtProcessName.Text;
-            string context = txtContext.Text;
-            string tableName = txtTableName.Text;
-            string instanceIdentity = txtIstanceIdentity.Text;
-            string keys = txtKeys.Text;
-
-            if (string.IsNullOrWhiteSpace(keys))
-            {
-                MessageBox.Show("Please enter a valid Keys value.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string[] keyArray = keys.Split(',').Select(k => k.Trim()).ToArray();
-
-            try
-            {
-                bool loked = await manager.dmMMSManager.unlockRecord(
-                    manager.authenticationManager.userData,
-                    processName,
-                    context,
-                    tableName,
-                    instanceIdentity,
-                    keyArray
-                );
-
-                DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
-
-                if (!loked)
-                {
-                    MessageBox.Show($"{keyArray + tableName} Unloked.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"{textBoxCustSupp.Text} already exists.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private async void btnIsRecordLocked_Click(object sender, EventArgs e)
-        {
-            if (!manager.authenticationManager.IsLogged())
-            {
-                MessageBox.Show("User is not logged, please Login!", "Authentication", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string processName = txtProcessName.Text;
-            string context = txtContext.Text;
-            string tableName = txtTableName.Text;
-            string instanceIdentity = txtIstanceIdentity.Text;
-            string keys = txtKeys.Text;
-
-            if (string.IsNullOrWhiteSpace(keys))
-            {
-                MessageBox.Show("Please enter a valid Keys value.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string[] keyArray = keys.Split(',').Select(k => k.Trim()).ToArray();
-
-
-            try
-            {
-                bool loked = await manager.dmMMSManager.isRecordLocked(
-                    manager.authenticationManager.userData,
-                    processName,
-                    context,
-                    tableName,
-                    instanceIdentity,
-                    keyArray
-                );
-
-                LocksUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
-
-                if (!loked)
-                {
-                    MessageBox.Show($"{tableName} isLoked.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"{textBoxCustSupp.Text} already exists.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private async void btnContextRecord_Click(object sender, EventArgs e)
-        {
-            if (!manager.authenticationManager.IsLogged())
-            {
-                MessageBox.Show("User is not logged, please Login!", "Authentication", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string processName = txtProcessName.Text;
-            string context = txtContext.Text;
-            string tableName = txtTableName.Text;
-            string instanceIdentity = txtIstanceIdentity.Text;
-            string keys = txtKeys.Text;
-
-            if (string.IsNullOrWhiteSpace(keys))
-            {
-                MessageBox.Show("Please enter a valid Keys value.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string[] keyArray = keys.Split(',').Select(k => k.Trim()).ToArray();
-
-            try
-            {
-                bool loked = await manager.dmMMSManager.UnlockContext(
-                    manager.authenticationManager.userData,
-                    processName,
-                    context,
-                    tableName,
-                    instanceIdentity,
-                    keyArray
-                );
-
-                LocksUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
-
-                if (!loked)
-                {
-                    MessageBox.Show($"{keyArray + tableName} isLoked.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"{textBoxCustSupp.Text} already exists.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
     }
 }

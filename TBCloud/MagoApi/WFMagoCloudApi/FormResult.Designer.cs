@@ -91,8 +91,8 @@ namespace WindowsFormsResult
             // richXmlTextBox
             // 
             richXmlTextBox.BorderStyle = BorderStyle.None;
-            richXmlTextBox.ForeColor = Color.FromArgb(28, 28, 28);
             resources.ApplyResources(richXmlTextBox, "richXmlTextBox");
+            richXmlTextBox.ForeColor = Color.FromArgb(28, 28, 28);
             richXmlTextBox.Name = "richXmlTextBox";
             // 
             // pictureBox1

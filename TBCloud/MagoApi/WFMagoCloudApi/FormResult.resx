@@ -244,14 +244,17 @@
   <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="richXmlTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
   <data name="richXmlTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 110</value>
+    <value>15, 46</value>
   </data>
   <data name="richXmlTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="richXmlTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 232</value>
+    <value>784, 428</value>
   </data>
   <data name="richXmlTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>

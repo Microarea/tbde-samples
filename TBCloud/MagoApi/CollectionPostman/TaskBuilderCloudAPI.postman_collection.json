@@ -1,657 +1,819 @@
 {
 	"info": {
 		"_postman_id": "eeadcc6b-4104-43d4-804f-551175a13ac6",
-		"name": "TaskBuilderCloudAPI Copy",
+		"name": "TaskBuilderCloudAPI",
+		"description": "**Platform Api**  \nMagoWeb, MagoCloud and development environment",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23716229"
 	},
 	"item": [
 		{
-			"name": "Login",
+			"name": "Login (Web,Cloud,DevEnv)",
 			"item": [
 				{
-					"name": "pre Login",
-					"event": [
+					"name": "MagoWeb 5.0 (Mw-Console)",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var res = JSON.parse(responseBody);\r",
-									"pm.collectionVariables.set(\"prelogin-jwt-token\", res[\"JwtToken\"]);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MCloudPreLogin\",\r\n    \"password\": \"{{password}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{gwam-url}}gwam_login/api/login",
-							"host": [
-								"{{gwam-url}}gwam_login"
-							],
-							"path": [
-								"api",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var res = JSON.parse(responseBody);\r",
-									"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{gwam-url}}gwam_login/api/login",
-							"host": [
-								"{{gwam-url}}gwam_login"
-							],
-							"path": [
-								"api",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login localhost",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var res = JSON.parse(responseBody);\r",
-									"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5000/account-manager/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"account-manager",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Subscriptions per account",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"Type\": \"JWT\", \"SecurityValue\": \"{{prelogin-jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{gwam-url}}gwam_login/api/subscriptionskeysforaccount/{{account-name}}",
-							"host": [
-								"{{gwam-url}}gwam_login"
-							],
-							"path": [
-								"api",
-								"subscriptionskeysforaccount",
-								"{{account-name}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Snapshot container",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{gwam-url}}gwam_mapper/api/snapshotcontainer?subscriptionKey={{subscription-key}}",
-							"host": [
-								"{{gwam-url}}gwam_mapper"
-							],
-							"path": [
-								"api",
-								"snapshotcontainer"
-							],
-							"query": [
+							"name": "5.0 mw-console   (listen)",
+							"event": [
 								{
-									"key": "subscriptionKey",
-									"value": "{{subscription-key}}"
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res = JSON.parse(responseBody);\r",
+											"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Is Valid Token",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"token\":\"{{jwt-token}}\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{gwam-url}}gwam_login/api/isvalidtoken",
-							"host": [
-								"{{gwam-url}}gwam_login"
 							],
-							"path": [
-								"api",
-								"isvalidtoken"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Logoff",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var res = JSON.parse(responseBody);\r",
-									"pm.collectionVariables.set(\"jwt-token\", \"\");\r",
-									"console.log(res[\"Message\"]);"
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Producer-Info",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
 								],
-								"type": "text/javascript"
-							}
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:60000/mw-console/api",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "60000",
+									"path": [
+										"mw-console",
+										"api"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5.0 mw-console Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res = JSON.parse(responseBody);\r",
+											"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Producer-Info",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-url}}mw-console/api/login",
+									"host": [
+										"{{local-url}}mw-console"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5.0 mw-console  IsValidToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res = JSON.parse(responseBody);\r",
+											"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Producer-Info",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-url}}mw-console/api/isvalidtoken",
+									"host": [
+										"{{local-url}}mw-console"
+									],
+									"path": [
+										"api",
+										"isvalidtoken"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5.0 mw-console Logoff",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res = JSON.parse(responseBody);\r",
+											"pm.collectionVariables.set(\"jwt-token\", \"\");\r",
+											"console.log(res[\"Message\"]);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Producer-Info",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"token\":\"{{jwt-token}}\"}"
+								},
+								"url": {
+									"raw": "{{local-url}}mw-console/api/logoff",
+									"host": [
+										"{{local-url}}mw-console"
+									],
+									"path": [
+										"api",
+										"logoff"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "mw-console GetModules",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:60000/mw-console/api/getmodules/{{subscription-key}}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "60000",
+									"path": [
+										"mw-console",
+										"api",
+										"getmodules",
+										"{{subscription-key}}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetModules(AccountManager)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:60000/account-manager/GetModules",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "60000",
+									"path": [
+										"account-manager",
+										"GetModules"
+									]
+								}
+							},
+							"response": []
 						}
 					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"token\":\"{{jwt-token}}\"}"
-						},
-						"url": {
-							"raw": "{{gwam-url}}gwam_login/api/logoff",
-							"host": [
-								"{{gwam-url}}gwam_login"
-							],
-							"path": [
-								"api",
-								"logoff"
-							]
-						}
-					},
-					"response": []
+					"description": "Starting from version 5.0 of **Magoweb**, the gwamUrl will no longer be used for logging in.  \n**mw-console** will be the new service for handling login requests and authentication.\n\nA partire dalla versione 5.0 di **Magoweb**, gwamUrl non verrà più utilizzato per l'accesso. **mw-console** sarà il nuovo servizio per la gestione delle richieste di accesso e autenticazione."
 				},
 				{
-					"name": "Logoff localhost",
-					"event": [
+					"name": "MagoCloud (Gwam)",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var res = JSON.parse(responseBody);\r",
-									"pm.collectionVariables.set(\"jwt-token\", \"\");\r",
-									"console.log(res[\"Message\"]);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"token\":\"{{jwt-token}}\"}"
-						},
-						"url": {
-							"raw": "{{local-url}}account-manager/logoff",
-							"host": [
-								"{{local-url}}account-manager"
+							"name": "pre Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res = JSON.parse(responseBody);\r",
+											"pm.collectionVariables.set(\"prelogin-jwt-token\", res[\"JwtToken\"]);"
+										],
+										"type": "text/javascript"
+									}
+								}
 							],
-							"path": [
-								"logoff"
-							]
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Producer-Info",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MCloudPreLogin\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gwam-url}}gwam_login/api/login",
+									"host": [
+										"{{gwam-url}}gwam_login"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res = JSON.parse(responseBody);\r",
+											"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Producer-Info",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gwam-url}}gwam_login/api/login",
+									"host": [
+										"{{gwam-url}}gwam_login"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Subscriptions per account",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{ \"Type\": \"JWT\", \"SecurityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Producer-Info",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{gwam-url}}gwam_login/api/subscriptionskeysforaccount/{{account-name}}",
+									"host": [
+										"{{gwam-url}}gwam_login"
+									],
+									"path": [
+										"api",
+										"subscriptionskeysforaccount",
+										"{{account-name}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Snapshot container",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gwam-url}}gwam_mapper/api/snapshotcontainer?subscriptionKey={{subscription-key}}",
+									"host": [
+										"{{gwam-url}}gwam_mapper"
+									],
+									"path": [
+										"api",
+										"snapshotcontainer"
+									],
+									"query": [
+										{
+											"key": "subscriptionKey",
+											"value": "{{subscription-key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Is Valid Token",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Producer-Info",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"token\":\"{{jwt-token}}\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{gwam-url}}gwam_login/api/isvalidtoken",
+									"host": [
+										"{{gwam-url}}gwam_login"
+									],
+									"path": [
+										"api",
+										"isvalidtoken"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logoff",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res = JSON.parse(responseBody);\r",
+											"pm.collectionVariables.set(\"jwt-token\", \"\");\r",
+											"console.log(res[\"Message\"]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Producer-Info",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"token\":\"{{jwt-token}}\"}"
+								},
+								"url": {
+									"raw": "{{gwam-url}}gwam_login/api/logoff",
+									"host": [
+										"{{gwam-url}}gwam_login"
+									],
+									"path": [
+										"api",
+										"logoff"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "Sviluppo(DevEnv)",
+					"item": [
+						{
+							"name": "Login localhost",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res = JSON.parse(responseBody);\r",
+											"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Producer-Info",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/account-manager/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"account-manager",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logoff localhost",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res = JSON.parse(responseBody);\r",
+											"pm.collectionVariables.set(\"jwt-token\", \"\");\r",
+											"console.log(res[\"Message\"]);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Producer-Info",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"token\":\"{{jwt-token}}\"}"
+								},
+								"url": {
+									"raw": "http://localhost:5000/account-manager/logoff",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"account-manager",
+										"logoff"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "IsValidToken localhost",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res = JSON.parse(responseBody);\r",
+											"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Producer-Info",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/account-manager/isvalidtoken",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"account-manager",
+										"isvalidtoken"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
-			]
-		},
-		{
-			"name": "5.0 Mw-Console LogIn",
-			"item": [
-				{
-					"name": "5.0 mw-console   (listen)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var res = JSON.parse(responseBody);\r",
-									"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:60000/mw-console/api",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "60000",
-							"path": [
-								"mw-console",
-								"api"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "5.0 mw-console Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var res = JSON.parse(responseBody);\r",
-									"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:60000/mw-console/api/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "60000",
-							"path": [
-								"mw-console",
-								"api",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "5.0 mw-console  IsValidToken",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var res = JSON.parse(responseBody);\r",
-									"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:60000/mw-console/api/isvalidtoken",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "60000",
-							"path": [
-								"mw-console",
-								"api",
-								"isvalidtoken"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "5.0 mw-console Logoff",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var res = JSON.parse(responseBody);\r",
-									"pm.collectionVariables.set(\"jwt-token\", \"\");\r",
-									"console.log(res[\"Message\"]);"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"token\":\"{{jwt-token}}\"}"
-						},
-						"url": {
-							"raw": "http://localhost:60000/mw-console/api/logoff",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "60000",
-							"path": [
-								"mw-console",
-								"api",
-								"logoff"
-							]
-						}
-					},
-					"response": []
-				}
-			]
+			],
+			"description": "As previously stated, it is not possible to access MagoCloud without authenticating into the system. For this purpose, the following methods are exposed:\n\n- Login: Allows users to authenticate using specific username, password, and subscription. The user used must have been associated with the subscription through the provisioning system. If specific parts of the product are accessed that are subject to specific roles, the user must be equipped with those roles. The login operation will return an authentication token.\n    \n- IsValidToken: Checks the validity of a specific authentication token obtained previously from a Login operation.\n    \n- Logoff: Disconnects the authenticated user from a previous Login operation."
 		},
 		{
 			"name": "RetrieveUrl(MagoCloud)",
@@ -694,52 +856,6 @@
 							],
 							"path": [
 								"api",
-								"services",
-								"url",
-								"{{subscription-key}}",
-								"TBSERVER"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Retrieve TB Server URL local",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var res = JSON.parse(responseBody);\r",
-									"pm.collectionVariables.set(\"tbserver-url\", res[\"Content\"]);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"Type\": \"JWT\", \"appId\": \"MagoAPI\", \"SecurityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{local-url}}api/services/url/{{subscription-key}}/TBSERVER",
-							"host": [
-								"{{local-url}}api"
-							],
-							"path": [
 								"services",
 								"url",
 								"{{subscription-key}}",
@@ -984,7 +1100,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Calls to be made only in **MagoCloud** to have the service URL returned  \n  \nChiamate da effettuare solo in **MagoCloud** per farsi restituire l'url del servizio"
 		},
 		{
 			"name": "TbServer",
@@ -1008,7 +1125,8 @@
 									"const paramsBase64 = btoa(params);\r",
 									"pm.collectionVariables.set('paramsBase64', paramsBase64);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -1020,7 +1138,8 @@
 									"var params = atob(res[\"result\"]);\r",
 									"console.log(params);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1061,9 +1180,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{local-url}}tbserver/api/tb/document/runRestFunction/",
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
 							"host": [
-								"{{local-url}}tbserver"
+								"{{tbserver-url}}tbserver"
 							],
 							"path": [
 								"api",
@@ -1427,7 +1546,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "The TbServerGate microservice exposes the possibility to menage business objects  \nbased on MagicLink desktop technology."
 		},
 		{
 			"name": "WebMethods",
@@ -2123,7 +2243,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "The TbServerGate microservice exposes the possibility to access TbWebMethods (previously SOAP/WCF) via Rest."
 		},
 		{
 			"name": "DataService",
@@ -2352,7 +2473,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "The DataService microservice exposes the possibility of extracting data that are defined through  \nstandard and custom xml contained in the reference objects folder.  \nIt then allows you to extract the data defined by a hotlink or radar query."
 		},
 		{
 			"name": "TbfsService",
@@ -2646,511 +2768,8 @@
 					},
 					"response": []
 				}
-			]
-		},
-		{
-			"name": "DataManagerMMSService",
-			"item": [
-				{
-					"name": "MSSVersion",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var res = (responseBody);\r",
-									"console.log(res);\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Producer-Info",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Snapshot",
-								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Server-Info",
-								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{mms-url}}mymagostudio-service/",
-							"host": [
-								"{{mms-url}}mymagostudio-service"
-							],
-							"path": [
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "SelectAllByKey",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "MagoApi",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Snapshot",
-								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Server-Info",
-								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":23\"month\":1,\"year\":2024}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"TableName\":\"MA_CustSupp\",\"Keys\":[\"3211264\",\"0001\"],\"Data\":null}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{mms-url}}mymagostudio-service/DataManager/selectAllByKey",
-							"host": [
-								"{{mms-url}}mymagostudio-service"
-							],
-							"path": [
-								"DataManager",
-								"selectAllByKey"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "SelectAllByKey local",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "MagoApi",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"TableName\":\"MA_CustSupp\",\"Keys\":[\"3211264\",\"0001\"],\"Data\":null}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{mmsLocal-url}}mymagostudio-service/DataManager/selectAllByKey",
-							"host": [
-								"{{mmsLocal-url}}mymagostudio-service"
-							],
-							"path": [
-								"DataManager",
-								"selectAllByKey"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DataManager Lock",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "MagoApi",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Snapshot",
-								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Server-Info",
-								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":23\"month\":1,\"year\":2024}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"ProcessName\": \"TestAlex\",\r\n    \"Context\": \"TestTBLOCK\",\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"InstanceIdentity\": \"TestAlex\",\r\n    \"Keys\":[\"3211264\",\"0001\"]\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{local-url}}mymagostudio-service/DataManager/lockRecord",
-							"host": [
-								"{{local-url}}mymagostudio-service"
-							],
-							"path": [
-								"DataManager",
-								"lockRecord"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DataManager isRecordLock",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "MagoApi",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Snapshot",
-								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Server-Info",
-								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":23\"month\":1,\"year\":2024}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"Context\": \"TestCont\",\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0001\"]\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{local-url}}mymagostudio-service/DataManager/isRecordLocked",
-							"host": [
-								"{{local-url}}mymagostudio-service"
-							],
-							"path": [
-								"DataManager",
-								"isRecordLocked"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DataManager Unlock",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "MagoApi",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Snapshot",
-								"value": "{\"SubscriptionKey\": \"{{local-subscription-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Server-Info",
-								"value": "{\"subscription\":\"{{local-subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":23\"month\":1,\"year\":2024}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"ProcessName\": \"TestMarco\",\r\n    \"Context\": \"TestCont\",\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"InstanceIdentity\": \"Testinst\",\r\n    \"Keys\":[\"3211264\",\"0001\"]\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{local-url}}mymagostudio-service/DataManager/unlockRecord",
-							"host": [
-								"{{local-url}}mymagostudio-service"
-							],
-							"path": [
-								"DataManager",
-								"unlockRecord"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DataManager UnlockContext",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "MagoApi",
-								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Snapshot",
-								"value": "{\"SubscriptionKey\": \"{{local-subscription-key}}\"}",
-								"type": "text"
-							},
-							{
-								"key": "Server-Info",
-								"value": "{\"subscription\":\"{{local-subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":23\"month\":1,\"year\":2024}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"Context\": \"TestCont\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{local-url}}mymagostudio-service/DataManager/unlockContext",
-							"host": [
-								"{{local-url}}mymagostudio-service"
-							],
-							"path": [
-								"DataManager",
-								"unlockContext"
-							]
-						}
-					},
-					"response": []
-				}
-			]
+			],
+			"description": "The DMS (Document Management System) it allows for storing, sharing,and managing electronic documents.  \nIs a solution for digital document management."
 		},
 		{
 			"name": "ReportingService",
@@ -3164,7 +2783,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -3175,7 +2795,8 @@
 									"console.log(res);\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -3225,7 +2846,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -3234,7 +2856,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -3347,14 +2970,11 @@
 							"raw": "{\r\n  \"namespaces\": [\r\n    \"ERP.Sales.DNForm.wrm\"\r\n  ],\r\n  \"rsInfo\": {\r\n    \"copiesNumber\": 1,\r\n    \"concatPdf\": false,\r\n    \"actionType\": 2\r\n  },\r\n  \"arguments\": [\r\n    {\r\n      \"name\": \"w_ID_SaleDocCurrent\",\r\n      \"value\": \"79\"\r\n    }\r\n  ],\r\n  \"outputNames\": [\r\n    \"Mioddt.pdf\"\r\n  ],\r\n  \"mail\": {\r\n    \"to\": [\"example@mail.com\"]\r\n  }\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:60000/rs/getReportPdf",
-							"protocol": "http",
+							"raw": "{{reportingservice-url}}rs/getReportPdf",
 							"host": [
-								"localhost"
+								"{{reportingservice-url}}rs"
 							],
-							"port": "60000",
 							"path": [
-								"rs",
 								"getReportPdf"
 							]
 						}
@@ -3426,6 +3046,868 @@
 							],
 							"path": [
 								"xmldata"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "The ReportingServices microservice exposes the possibility of launching a report and obtaining the extracted data.  \nThe microservice supports both Xml and Json format."
+		},
+		{
+			"name": "DataManagerMMSService",
+			"item": [
+				{
+					"name": "Lock DataManager",
+					"item": [
+						{
+							"name": "DataManager LockRecord",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "MagoApi",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Snapshot",
+										"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Server-Info",
+										"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":23\"month\":1,\"year\":2024}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ProcessName\": \"TestPostman\",\r\n    \"Context\": \"TestContPostman\",\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"InstanceIdentity\": \"IstancePostman\",\r\n    \"Keys\":[\"3211264\",\"0001\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mms-url}}mymagostudio-service/DataManager/lockRecord",
+									"host": [
+										"{{mms-url}}mymagostudio-service"
+									],
+									"path": [
+										"DataManager",
+										"lockRecord"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DataManager isRecordLock",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "MagoApi",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Snapshot",
+										"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Server-Info",
+										"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":23\"month\":1,\"year\":2024}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Context\": \"TestContPostman\",\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0001\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mms-url}}mymagostudio-service/DataManager/isRecordLocked",
+									"host": [
+										"{{mms-url}}mymagostudio-service"
+									],
+									"path": [
+										"DataManager",
+										"isRecordLocked"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DataManager UnlockRecord",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "MagoApi",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Snapshot",
+										"value": "{\"SubscriptionKey\": \"{{local-subscription-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Server-Info",
+										"value": "{\"subscription\":\"{{local-subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":23\"month\":1,\"year\":2024}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ProcessName\": \"TestPostman\",\r\n    \"Context\": \"TestContPostman\",\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"InstanceIdentity\": \"IstancePostman\",\r\n    \"Keys\":[\"3211264\",\"0001\"]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mms-url}}mymagostudio-service/DataManager/unlockRecord",
+									"host": [
+										"{{mms-url}}mymagostudio-service"
+									],
+									"path": [
+										"DataManager",
+										"unlockRecord"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DataManager UnlockContext",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "MagoApi",
+										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Snapshot",
+										"value": "{\"SubscriptionKey\": \"{{local-subscription-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Server-Info",
+										"value": "{\"subscription\":\"{{local-subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":23\"month\":1,\"year\":2024}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Context\": \"TestContPostman\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{mms-url}}mymagostudio-service/DataManager/unlockContext",
+									"host": [
+										"{{mms-url}}mymagostudio-service"
+									],
+									"path": [
+										"DataManager",
+										"unlockContext"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "The lock action corresponds to writing a record in the TB_Locks table for each locked data item, while the unlock action corresponds to removing the record from this table."
+				},
+				{
+					"name": "MSSVersion",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mms-url}}mymagostudio-service/",
+							"host": [
+								"{{mms-url}}mymagostudio-service"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SelectAllByKey",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "MagoApi",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":23\"month\":1,\"year\":2024}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"TableName\":\"MA_CustSupp\",\"Keys\":[\"3211264\",\"0001\"],\"Data\":null}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mms-url}}mymagostudio-service/DataManager/selectAllByKey",
+							"host": [
+								"{{mms-url}}mymagostudio-service"
+							],
+							"path": [
+								"DataManager",
+								"selectAllByKey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Select table \"schema\" or \"prototype\"\"",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "MagoAPI",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mms-url}}mymagostudio-service/DataManager/schema?call=schema&tableName=MA_CustSupp",
+							"host": [
+								"{{mms-url}}mymagostudio-service"
+							],
+							"path": [
+								"DataManager",
+								"schema"
+							],
+							"query": [
+								{
+									"key": "call",
+									"value": "schema"
+								},
+								{
+									"key": "tableName",
+									"value": "MA_CustSupp"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exists",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "MagoAPI",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"Ma_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \"CustSuppType\":3211264,\r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 88\",\r\n        \"ISOCountryCode\":\"IT\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mms-url}}mymagostudio-service/DataManager/exists",
+							"host": [
+								"{{mms-url}}mymagostudio-service"
+							],
+							"path": [
+								"DataManager",
+								"exists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "MagoAPI",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"Ma_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \"CustSuppType\":3211264,\r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 88\",\r\n        \"ISOCountryCode\":\"IT\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mms-url}}mymagostudio-service/DataManager/add",
+							"host": [
+								"{{mms-url}}mymagostudio-service"
+							],
+							"path": [
+								"DataManager",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "MagoAPI",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 0088\"\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mms-url}}mymagostudio-service/DataManager/update",
+							"host": [
+								"{{mms-url}}mymagostudio-service"
+							],
+							"path": [
+								"DataManager",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = (responseBody);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "MagoAPI",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TableName\":\"Ma_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \"CustSuppType\":3211264,\r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 88\",\r\n        \"ISOCountryCode\":\"IT\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mms-url}}mymagostudio-service/DataManager/delete",
+							"host": [
+								"{{mms-url}}mymagostudio-service"
+							],
+							"path": [
+								"DataManager",
+								"delete"
 							]
 						}
 					},
@@ -4155,7 +4637,7 @@
 	"variable": [
 		{
 			"key": "gwam-url",
-			"value": "https://release-gwam.mago.cloud/"
+			"value": ""
 		},
 		{
 			"key": "account-name",
@@ -4182,10 +4664,6 @@
 			"value": ""
 		},
 		{
-			"key": "msh-url",
-			"value": ""
-		},
-		{
 			"key": "tbserver-url",
 			"value": ""
 		},
@@ -4209,7 +4687,7 @@
 		},
 		{
 			"key": "tbfsservice-url",
-			"value": "https://beta.mago.cloud/13/be/",
+			"value": "",
 			"type": "string"
 		},
 		{
@@ -4237,7 +4715,7 @@
 		},
 		{
 			"key": "mmsLocal-url",
-			"value": "http://localhost:5058/",
+			"value": "",
 			"type": "string"
 		}
 	]

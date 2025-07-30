@@ -381,6 +381,8 @@ namespace TbApiTester
             panelMarginLeft = new Panel();
             panelMarginBottom = new Panel();
             panelmarginright = new Panel();
+            orangePanel11 = new OrangePanel();
+            btnUsefulLinks = new Button();
             orangePanel2 = new OrangePanel();
             btnSaveCredential = new Button();
             orangePanel1 = new OrangePanel();
@@ -417,6 +419,7 @@ namespace TbApiTester
             Http_label = new Label();
             button_exit = new Button();
             button_Login = new Button();
+            label29 = new Label();
             tabNavigation.SuspendLayout();
             tabTbServer.SuspendLayout();
             paneltbfsH.SuspendLayout();
@@ -513,6 +516,7 @@ namespace TbApiTester
             orangePanel10.SuspendLayout();
             panelTitleForm.SuspendLayout();
             panelmarginright.SuspendLayout();
+            orangePanel11.SuspendLayout();
             orangePanel2.SuspendLayout();
             orangePanel1.SuspendLayout();
             LoginPanel.SuspendLayout();
@@ -3833,6 +3837,7 @@ namespace TbApiTester
             // GroupBoxTableLock
             // 
             GroupBoxTableLock.BackColor = Color.FromArgb(22, 118, 186);
+            GroupBoxTableLock.Controls.Add(label29);
             GroupBoxTableLock.Controls.Add(btnUnlockRecord);
             GroupBoxTableLock.Controls.Add(panel77);
             GroupBoxTableLock.Controls.Add(label16);
@@ -4720,6 +4725,7 @@ namespace TbApiTester
             // panelmarginright
             // 
             panelmarginright.BackColor = Color.FromArgb(22, 118, 186);
+            panelmarginright.Controls.Add(orangePanel11);
             panelmarginright.Controls.Add(orangePanel2);
             panelmarginright.Controls.Add(orangePanel1);
             panelmarginright.Dock = DockStyle.Right;
@@ -4729,13 +4735,44 @@ namespace TbApiTester
             panelmarginright.Size = new Size(48, 577);
             panelmarginright.TabIndex = 50;
             // 
+            // orangePanel11
+            // 
+            orangePanel11.AccessibleName = "ContainerBtnconsole";
+            orangePanel11.BackColor = Color.FromArgb(22, 118, 186);
+            orangePanel11.Controls.Add(btnUsefulLinks);
+            orangePanel11.Font = new Font("Microsoft Sans Serif", 7.25F);
+            orangePanel11.Location = new Point(4, 97);
+            orangePanel11.Margin = new Padding(2);
+            orangePanel11.Name = "orangePanel11";
+            orangePanel11.Size = new Size(42, 48);
+            orangePanel11.TabIndex = 120;
+            // 
+            // btnUsefulLinks
+            // 
+            btnUsefulLinks.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnUsefulLinks.BackColor = Color.FromArgb(232, 159, 0);
+            btnUsefulLinks.Cursor = Cursors.Hand;
+            btnUsefulLinks.FlatAppearance.BorderSize = 0;
+            btnUsefulLinks.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnUsefulLinks.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnUsefulLinks.FlatStyle = FlatStyle.Flat;
+            btnUsefulLinks.Font = new Font("Century Gothic", 16.7F);
+            btnUsefulLinks.ForeColor = Color.White;
+            btnUsefulLinks.Location = new Point(0, 0);
+            btnUsefulLinks.Name = "btnUsefulLinks";
+            btnUsefulLinks.Size = new Size(42, 48);
+            btnUsefulLinks.TabIndex = 116;
+            btnUsefulLinks.Text = "🔗";
+            btnUsefulLinks.UseVisualStyleBackColor = false;
+            btnUsefulLinks.Click += btnUsefulLinks_Click;
+            // 
             // orangePanel2
             // 
             orangePanel2.AccessibleName = "ContainerBtnconsole";
             orangePanel2.BackColor = Color.FromArgb(22, 118, 186);
             orangePanel2.Controls.Add(btnSaveCredential);
             orangePanel2.Font = new Font("Microsoft Sans Serif", 7.25F);
-            orangePanel2.Location = new Point(4, 97);
+            orangePanel2.Location = new Point(4, 147);
             orangePanel2.Margin = new Padding(2);
             orangePanel2.Name = "orangePanel2";
             orangePanel2.Size = new Size(42, 48);
@@ -4743,9 +4780,9 @@ namespace TbApiTester
             // 
             // btnSaveCredential
             // 
+            btnSaveCredential.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnSaveCredential.BackColor = Color.FromArgb(232, 159, 0);
             btnSaveCredential.Cursor = Cursors.Hand;
-            btnSaveCredential.Dock = DockStyle.Bottom;
             btnSaveCredential.FlatAppearance.BorderSize = 0;
             btnSaveCredential.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnSaveCredential.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -5189,6 +5226,18 @@ namespace TbApiTester
             button_Login.EnabledChanged += button_Login_Click;
             button_Login.Click += button_Login_Click;
             // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Font = new Font("Microsoft Sans Serif", 7.25F);
+            label29.ForeColor = Color.White;
+            label29.ImeMode = ImeMode.NoControl;
+            label29.Location = new Point(299, 262);
+            label29.Name = "label29";
+            label29.Size = new Size(334, 13);
+            label29.TabIndex = 134;
+            label29.Text = "*On button hover, the requested body parameters will be emphasized.";
+            // 
             // TbApiTester
             // 
             AccessibleRole = AccessibleRole.ScrollBar;
@@ -5334,6 +5383,7 @@ namespace TbApiTester
             panelTitleForm.ResumeLayout(false);
             panelTitleForm.PerformLayout();
             panelmarginright.ResumeLayout(false);
+            orangePanel11.ResumeLayout(false);
             orangePanel2.ResumeLayout(false);
             orangePanel1.ResumeLayout(false);
             LoginPanel.ResumeLayout(false);
@@ -5741,5 +5791,8 @@ namespace TbApiTester
         private Label LocksUrl;
         private Label lockIcon;
         internal Label labelDescLock;
+        private OrangePanel orangePanel11;
+        private Button btnUsefulLinks;
+        private Label label29;
     }
 }
