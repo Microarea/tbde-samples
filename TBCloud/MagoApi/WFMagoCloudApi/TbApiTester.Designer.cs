@@ -233,7 +233,6 @@ namespace TbApiTester
             panel8 = new Panel();
             roundedPanel6 = new RoundedPanel();
             labelDmsUrl = new Label();
-            tabMSH = new TabPage();
             DataManager = new TabPage();
             btnGetEnumsInfo = new Button();
             panelDataManagerOtherCall = new Panel();
@@ -534,7 +533,6 @@ namespace TbApiTester
             tabNavigation.Controls.Add(tabDataService);
             tabNavigation.Controls.Add(tabRs);
             tabNavigation.Controls.Add(tabDMS);
-            tabNavigation.Controls.Add(tabMSH);
             tabNavigation.Controls.Add(DataManager);
             tabNavigation.Controls.Add(LockManager);
             tabNavigation.Controls.Add(tabDocBusinessObject);
@@ -571,10 +569,10 @@ namespace TbApiTester
             tabTbServer.Controls.Add(orangePanel5);
             tabTbServer.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold);
             tabTbServer.ForeColor = Color.White;
-            tabTbServer.Location = new Point(4, 46);
+            tabTbServer.Location = new Point(4, 25);
             tabTbServer.Name = "tabTbServer";
             tabTbServer.Padding = new Padding(3);
-            tabTbServer.Size = new Size(930, 527);
+            tabTbServer.Size = new Size(930, 548);
             tabTbServer.TabIndex = 1;
             tabTbServer.Text = "TbServer-MagicLink";
             // 
@@ -666,7 +664,7 @@ namespace TbApiTester
             panelTbTextContainer.Location = new Point(16, 199);
             panelTbTextContainer.Margin = new Padding(2);
             panelTbTextContainer.Name = "panelTbTextContainer";
-            panelTbTextContainer.Size = new Size(902, 314);
+            panelTbTextContainer.Size = new Size(902, 335);
             panelTbTextContainer.TabIndex = 115;
             // 
             // btnClearText
@@ -680,7 +678,7 @@ namespace TbApiTester
             btnClearText.FlatStyle = FlatStyle.Flat;
             btnClearText.Font = new Font("Century Gothic", 21.75F);
             btnClearText.ForeColor = Color.IndianRed;
-            btnClearText.Location = new Point(804, 236);
+            btnClearText.Location = new Point(804, 257);
             btnClearText.Name = "btnClearText";
             btnClearText.Size = new Size(63, 46);
             btnClearText.TabIndex = 116;
@@ -715,7 +713,7 @@ namespace TbApiTester
             xmlEditorTbResult.BackColor = Color.AliceBlue;
             xmlEditorTbResult.Location = new Point(17, 39);
             xmlEditorTbResult.Name = "xmlEditorTbResult";
-            xmlEditorTbResult.Size = new Size(868, 264);
+            xmlEditorTbResult.Size = new Size(868, 285);
             xmlEditorTbResult.TabIndex = 118;
             xmlEditorTbResult.TextContent = "";
             // 
@@ -943,10 +941,10 @@ namespace TbApiTester
             tabWebMethods.Controls.Add(roundedPanel3);
             tabWebMethods.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tabWebMethods.ForeColor = SystemColors.Control;
-            tabWebMethods.Location = new Point(4, 46);
+            tabWebMethods.Location = new Point(4, 25);
             tabWebMethods.Margin = new Padding(0);
             tabWebMethods.Name = "tabWebMethods";
-            tabWebMethods.Size = new Size(930, 527);
+            tabWebMethods.Size = new Size(930, 548);
             tabWebMethods.TabIndex = 4;
             tabWebMethods.Text = "WebMethods-MagicLink";
             // 
@@ -1638,10 +1636,10 @@ namespace TbApiTester
             tabDataService.Controls.Add(DynamicQueriesPanel);
             tabDataService.Font = new Font("Century Gothic", 14F, FontStyle.Bold);
             tabDataService.ForeColor = Color.White;
-            tabDataService.Location = new Point(4, 46);
+            tabDataService.Location = new Point(4, 25);
             tabDataService.Name = "tabDataService";
             tabDataService.Padding = new Padding(3);
-            tabDataService.Size = new Size(930, 527);
+            tabDataService.Size = new Size(930, 548);
             tabDataService.TabIndex = 0;
             tabDataService.Text = "DataService";
             // 
@@ -2203,9 +2201,9 @@ namespace TbApiTester
             tabRs.Controls.Add(btnGetRsItems);
             tabRs.Controls.Add(panel18);
             tabRs.Controls.Add(roundedPanel5);
-            tabRs.Location = new Point(4, 46);
+            tabRs.Location = new Point(4, 25);
             tabRs.Name = "tabRs";
-            tabRs.Size = new Size(930, 527);
+            tabRs.Size = new Size(930, 548);
             tabRs.TabIndex = 5;
             tabRs.Text = "ReportingService";
             // 
@@ -2241,7 +2239,7 @@ namespace TbApiTester
             btnExploreReport.FlatStyle = FlatStyle.Flat;
             btnExploreReport.Font = new Font("Century Gothic", 76.25F, FontStyle.Bold);
             btnExploreReport.ForeColor = Color.LightBlue;
-            btnExploreReport.Location = new Point(771, 396);
+            btnExploreReport.Location = new Point(771, 417);
             btnExploreReport.Name = "btnExploreReport";
             btnExploreReport.Size = new Size(141, 142);
             btnExploreReport.TabIndex = 101;
@@ -2542,10 +2540,10 @@ namespace TbApiTester
             tabDMS.Controls.Add(panelMicrHome);
             tabDMS.Controls.Add(roundedPanel6);
             tabDMS.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold);
-            tabDMS.Location = new Point(4, 46);
+            tabDMS.Location = new Point(4, 25);
             tabDMS.Name = "tabDMS";
             tabDMS.Padding = new Padding(3);
-            tabDMS.Size = new Size(930, 527);
+            tabDMS.Size = new Size(930, 548);
             tabDMS.TabIndex = 2;
             tabDMS.Text = "DMS";
             // 
@@ -2951,16 +2949,6 @@ namespace TbApiTester
             labelDmsUrl.TabIndex = 90;
             labelDmsUrl.Text = "Url:";
             // 
-            // tabMSH
-            // 
-            tabMSH.BackColor = Color.FromArgb(22, 118, 186);
-            tabMSH.Font = new Font("Century Gothic", 12.75F, FontStyle.Bold);
-            tabMSH.Location = new Point(4, 46);
-            tabMSH.Name = "tabMSH";
-            tabMSH.Size = new Size(930, 527);
-            tabMSH.TabIndex = 3;
-            tabMSH.Text = "MSH";
-            // 
             // DataManager
             // 
             DataManager.BackColor = Color.FromArgb(22, 118, 186);
@@ -2974,10 +2962,10 @@ namespace TbApiTester
             DataManager.Controls.Add(labelGetService);
             DataManager.Controls.Add(panel2);
             DataManager.Controls.Add(rndPanelUrl);
-            DataManager.Location = new Point(4, 46);
+            DataManager.Location = new Point(4, 25);
             DataManager.Margin = new Padding(2);
             DataManager.Name = "DataManager";
-            DataManager.Size = new Size(930, 527);
+            DataManager.Size = new Size(930, 548);
             DataManager.TabIndex = 6;
             DataManager.Text = "DataManager";
             // 
@@ -3804,9 +3792,9 @@ namespace TbApiTester
             LockManager.Controls.Add(roundedPanel7);
             LockManager.Controls.Add(GroupBoxTableLock);
             LockManager.Controls.Add(lockIcon);
-            LockManager.Location = new Point(4, 46);
+            LockManager.Location = new Point(4, 25);
             LockManager.Name = "LockManager";
-            LockManager.Size = new Size(930, 527);
+            LockManager.Size = new Size(930, 548);
             LockManager.TabIndex = 10;
             LockManager.Text = "LockManager";
             // 
@@ -4309,9 +4297,9 @@ namespace TbApiTester
             tabDocBusinessObject.Controls.Add(labelBusinessObj);
             tabDocBusinessObject.Controls.Add(roundedPanel2);
             tabDocBusinessObject.Font = new Font("Century Gothic", 4.75F, FontStyle.Bold);
-            tabDocBusinessObject.Location = new Point(4, 46);
+            tabDocBusinessObject.Location = new Point(4, 25);
             tabDocBusinessObject.Name = "tabDocBusinessObject";
-            tabDocBusinessObject.Size = new Size(930, 527);
+            tabDocBusinessObject.Size = new Size(930, 548);
             tabDocBusinessObject.TabIndex = 8;
             tabDocBusinessObject.Text = "DocBusObj";
             // 
@@ -4434,9 +4422,9 @@ namespace TbApiTester
             tabLog.Controls.Add(orangePanel7);
             tabLog.Controls.Add(orangePanel8);
             tabLog.Controls.Add(orangePanel10);
-            tabLog.Location = new Point(4, 46);
+            tabLog.Location = new Point(4, 25);
             tabLog.Name = "tabLog";
-            tabLog.Size = new Size(930, 527);
+            tabLog.Size = new Size(930, 548);
             tabLog.TabIndex = 9;
             tabLog.Text = "Logs";
             // 
@@ -4450,7 +4438,7 @@ namespace TbApiTester
             panel53.Location = new Point(13, 43);
             panel53.Margin = new Padding(2);
             panel53.Name = "panel53";
-            panel53.Size = new Size(886, 472);
+            panel53.Size = new Size(886, 493);
             panel53.TabIndex = 120;
             // 
             // btnClearLog
@@ -4464,7 +4452,7 @@ namespace TbApiTester
             btnClearLog.FlatStyle = FlatStyle.Flat;
             btnClearLog.Font = new Font("Century Gothic", 21.75F);
             btnClearLog.ForeColor = Color.IndianRed;
-            btnClearLog.Location = new Point(778, 380);
+            btnClearLog.Location = new Point(778, 401);
             btnClearLog.Name = "btnClearLog";
             btnClearLog.Size = new Size(63, 46);
             btnClearLog.TabIndex = 116;
@@ -4480,7 +4468,7 @@ namespace TbApiTester
             richTextLog.Font = new Font("Century Gothic", 9.75F);
             richTextLog.Location = new Point(21, 53);
             richTextLog.Name = "richTextLog";
-            richTextLog.Size = new Size(846, 398);
+            richTextLog.Size = new Size(846, 419);
             richTextLog.TabIndex = 117;
             richTextLog.Text = "";
             richTextLog.WordWrap = false;
@@ -5372,7 +5360,6 @@ namespace TbApiTester
         private System.Windows.Forms.TabPage tabDataService;
         private System.Windows.Forms.TabPage tabDMS;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TabPage tabMSH;
         private System.Windows.Forms.Button buttonDSVersion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabNavigation;

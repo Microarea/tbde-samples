@@ -121,7 +121,6 @@ namespace TbApiTester
             cbxSelectionType.Items.Add("AddQueryHere");
             this.FormBorderStyle = FormBorderStyle.None;
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-            this.tabNavigation.TabPages.Remove(this.tabMSH);
             this.cbxSelectionType.SelectedIndex = 0;
             cbxSelectionType.DropDownStyle = ComboBoxStyle.DropDown;
             this.comboBoxQuery.SelectedIndex = 0;
