@@ -27,7 +27,7 @@ namespace MspzComponent
             int diameter = radius;
             Rectangle arcRect = new Rectangle(rect.Location, new Size(diameter, diameter));
             GraphicsPath path = new GraphicsPath();
-
+           
             // top left arc  
             path.AddArc(arcRect, 180, 90);
 
@@ -79,7 +79,7 @@ namespace MspzComponent
                     graphicsPath.AddArc(0, Height - 11, 10, 10, 90, 90);
                     graphicsPath.CloseFigure();
                     this.Region = new Region(graphicsPath);
-                    base.OnPaint(e);
+                  
                 }
             }
         }

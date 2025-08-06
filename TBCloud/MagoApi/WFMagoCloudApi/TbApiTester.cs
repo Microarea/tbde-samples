@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 //using System.Threading.Tasks;
 //using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -66,6 +67,7 @@ namespace TbApiTester
         private int countdownSeconds = 15;
         private bool thread;
         private UiHoverManager hoverManager;
+        public string CurrentWebUrl => text_http.Text;
 
         public TbApiTester(bool isCloudButtonClicked)
         {
@@ -375,7 +377,9 @@ namespace TbApiTester
                     _ = FillApplicationsRObj();
                     btnSaveCredential.Visible = true;
                     btnAccount.Visible = true;
-
+                    button_Login.ForeColor = Color.White;
+                    button_Login.BackColor = Color.Green;
+                    labelMessage.Text = string.Empty;
                     //account-manager/GetModules
                     //string moduleMessage = manager.authenticationManager.GetModules(text_http.Text, manager.authenticationManager.userData, DateTime.Now);
                     Query query = new Query();
@@ -388,19 +392,44 @@ namespace TbApiTester
                         DmMMSUrl.Text = "❌ Error: No response";
                         return;
                     }
-
                     string moduleMessage = CountResponse.PlainResult?.ToString() ?? "No value received";
 
-                    if (!CountResponse.Success)
+                    // Controlla se PlainResult contiene un messaggio diagnostico di errore
+                    bool isLogicalError = false;
+
+                    if (!string.IsNullOrWhiteSpace(moduleMessage))
                     {
-                        DmMMSUrl.Text = moduleMessage;  // View error message
+                        try
+                        {
+                            var resultObj = System.Text.Json.JsonSerializer.Deserialize<JsonElement>(moduleMessage);
+
+                            if (resultObj.TryGetProperty("diagnostic", out JsonElement diagnosticElement))
+                            {
+                                string diagnosticMessage = diagnosticElement.GetString();
+
+                                // Qui puoi fare un controllo specifico o generico
+                                if (!string.IsNullOrEmpty(diagnosticMessage))
+                                {
+                                    moduleMessage = diagnosticMessage;
+                                    isLogicalError = true;
+                                }
+                            }
+                        }
+                        catch
+                        {
+                            // Se fallisce la deserializzazione, si considera comunque valido il messaggio grezzo
+                        }
+                    }
+
+                    // Se CountResponse.Success è false oppure c'è un errore logico nella risposta
+                    if (!CountResponse.Success || isLogicalError)
+                    {
+                        DmMMSUrl.Text = moduleMessage;
                         DmMMSUrl.ForeColor = Color.Black;
                         DisableButtonsInControl(this.DataManager);
                         return;
                     }
-                    button_Login.ForeColor = Color.White;
-                    button_Login.BackColor = Color.Green;
-                    labelMessage.Text = string.Empty;
+                    
                 }
                 else
                 {

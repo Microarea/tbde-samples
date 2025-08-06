@@ -26,6 +26,7 @@ namespace TbApiTester
         internal string RsUrl = UrlSManager.ReportingServiceUrl;
         internal string DmMMsUrl = UrlSManager.DmMMSUrl;
         internal string EnumsUrl = UrlSManager.EnumsTableUrl;
+        internal string MMSWebUrl;
 
         internal string GwamUrl { get; set; }
         internal string Token { get; set; }
