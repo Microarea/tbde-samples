@@ -2559,6 +2559,450 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GettAllApplications",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"stream\")\r",
+									"var res = (responseBody);\r",
+									"//var data = atob(res[\"result\"]);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbfsservice-url}}tbfs-service/GettAllApplications",
+							"host": [
+								"{{tbfsservice-url}}tbfs-service"
+							],
+							"path": [
+								"GettAllApplications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllModulesByApplication",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"stream\")\r",
+									"var res = (responseBody);\r",
+									"//var data = atob(res[\"result\"]);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "appName",
+									"value": "Erp",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{tbfsservice-url}}tbfs-service/GetAllModulesByApplication",
+							"host": [
+								"{{tbfsservice-url}}tbfs-service"
+							],
+							"path": [
+								"GetAllModulesByApplication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSubFolders",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"stream\")\r",
+									"var res = (responseBody);\r",
+									"//var data = atob(res[\"result\"]);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "parentNameSpace",
+									"value": "ERP.Accounting",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "ProfileFile",
+									"type": "text"
+								},
+								{
+									"key": "isCreateFolderMode",
+									"value": "false",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{tbfsservice-url}}tbfs-service/GetSubFolders",
+							"host": [
+								"{{tbfsservice-url}}tbfs-service"
+							],
+							"path": [
+								"GetSubFolders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getprofilefolders",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"stream\")\r",
+									"var res = (responseBody);\r",
+									"//var data = atob(res[\"result\"]);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "path",
+									"value": "ERP.Accounting",
+									"type": "text"
+								},
+								{
+									"key": "folderName",
+									"value": "AccountingReasons",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{tbfsservice-url}}tbfs-service/getprofilefolders",
+							"host": [
+								"{{tbfsservice-url}}tbfs-service"
+							],
+							"path": [
+								"getprofilefolders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UploadObject",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"stream\")\r",
+									"var res = (responseBody);\r",
+									"//var data = atob(res[\"result\"]);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Files",
+									"type": "file",
+									"src": "/C:/imgPai/postmanDemo.png"
+								},
+								{
+									"key": "objectType",
+									"value": "ReferenceObject",
+									"type": "text"
+								},
+								{
+									"key": "currentNamespace",
+									"value": "MyMagoStudio.Tools",
+									"type": "text"
+								},
+								{
+									"key": "user",
+									"value": "AllUsers",
+									"type": "text"
+								},
+								{
+									"key": "startPath",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{tbfsservice-url}}tbfs-service/UploadObject/",
+							"host": [
+								"{{tbfsservice-url}}tbfs-service"
+							],
+							"path": [
+								"UploadObject",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SaveFileContent",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"stream\")\r",
+									"var res = (responseBody);\r",
+									"//var data = atob(res[\"result\"]);\r",
+									"console.log(res);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"content\" : \"Postman\",\r\n \"fileName\" : \"C:\\\\YourEnv\\\\Standard\\\\YourFolder\\\\your.xml\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbfsservice-url}}bfs-service/SaveFileContent/",
+							"host": [
+								"{{tbfsservice-url}}bfs-service"
+							],
+							"path": [
+								"SaveFileContent",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -3813,7 +4257,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 0088\"\r\n        \r\n    }\r\n}",
+							"raw": "{\r\n    \"TableName\":\"MA_CustSupp\",\r\n    \"Keys\":[\"3211264\",\"0088\"],\r\n    \"Data\":\r\n    {\r\n        \"CustSuppType\":3211264,\r\n        \"CustSupp\":\"0088\",\r\n        \"CompanyName\":\"Biciclette 89\",\r\n        \"ISOCountryCode\":\"IT\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

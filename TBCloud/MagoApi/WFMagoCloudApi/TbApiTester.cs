@@ -133,13 +133,14 @@ namespace TbApiTester
             btnExploreReport.Hide();
             DynamicQueriesPanel.Hide();
             btnAccount.Hide();
+            btnTbServerBody.Hide();
             panelDataManagerOtherCall.Hide();
             hoverManager = new UiHoverManager();
 
             // Ui LockManager body param
             hoverManager.Register(BtnLockRecord, txtProcessName, txtContext, txtTableName, txtIstanceIdentity, txtKeys);
             hoverManager.Register(btnIsRecordLocked, txtContext, txtTableName, txtKeys);
-            hoverManager.Register(btnUnlockRecord, txtProcessName, txtContext, txtTableName, txtIstanceIdentity, txtKeys); 
+            hoverManager.Register(btnUnlockRecord, txtProcessName, txtContext, txtTableName, txtIstanceIdentity, txtKeys);
             hoverManager.Register(btnContextRecord, txtContext);
 
         }
@@ -429,7 +430,7 @@ namespace TbApiTester
                         DisableButtonsInControl(this.DataManager);
                         return;
                     }
-                    
+
                 }
                 else
                 {
@@ -666,6 +667,7 @@ namespace TbApiTester
             SetXmlContent(contentBody);
             Cursor = Cursors.Default;
             labelTbUrl.Text = manager.tbServerManager.requestTb;
+            btnTbServerBody.Visible = true;
         }
         private void buttonGetTb_Click(object sender, EventArgs e)
         {
@@ -2953,7 +2955,7 @@ namespace TbApiTester
             ShowResult(content, false, true, true, true);
         }
 
-       
+
 
         private void btnUsefulLinks_Click(object sender, EventArgs e)
         {
@@ -2962,6 +2964,45 @@ namespace TbApiTester
                      "\nPlatform Api course:\n https://mymago.zucchetti.com/eLearning/EN\\MagoCloud\\TBDE\\API\\PlatformApi\\index.html";
 
             ShowResult(message, false, true, false, false);
+
+        }
+
+        private void btnTbServerBody_Click(object sender, EventArgs e)
+        {
+            var lastWithBody = manager.tbServerManager.requestTbList
+                .LastOrDefault(x => x.Contains("\nBody: "));
+            if (lastWithBody == null) { ShowResult("Nessuna request trovata."); return; }
+
+            var requestJson = lastWithBody.Split(new[] { "\nBody: " }, StringSplitOptions.None).Last();
+
+            string prettyJson = requestJson;
+            try { prettyJson = JToken.Parse(requestJson).ToString(Newtonsoft.Json.Formatting.Indented); } catch { }
+
+            string decodedXml = "(XML non disponibile)";
+            try
+            {
+                var obj = JObject.Parse(requestJson);
+                var base64Payload = (string?)obj["args"]?["param"] ?? (string?)obj["args"]?["data"];
+                if (!string.IsNullOrEmpty(base64Payload))
+                {
+                    var xmlString = Encoding.UTF8.GetString(Convert.FromBase64String(base64Payload));
+                    try { decodedXml = XDocument.Parse(xmlString).ToString(); }  // indent
+                    catch { decodedXml = xmlString; }                        
+                }
+            }
+            catch { }
+
+            var lastResp = manager.tbServerManager.responseBodiesList.Last();
+            string prettyResp = lastResp;
+            try { prettyResp = JToken.Parse(lastResp).ToString(Newtonsoft.Json.Formatting.Indented); } catch { }
+
+            // Output
+            var content =
+                $"--- REQUEST JSON ---\n{prettyJson}\n\n" +
+                $"--- REQUEST XML (decoded) ---\n{decodedXml}\n\n" +
+                $"--- RESPONSE ---\n{prettyResp}";
+
+            ShowResult(content, false, true, false, false);
 
         }
     }

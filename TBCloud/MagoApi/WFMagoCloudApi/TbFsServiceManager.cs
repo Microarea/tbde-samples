@@ -257,36 +257,28 @@ namespace TbApiTester
             selProfile = string.Empty;
             List<string> profilesList = new List<string>();
 
-            // Verifica parametri obbligatori
             if (string.IsNullOrEmpty(application) || string.IsNullOrEmpty(module) || string.IsNullOrEmpty(folderName))
                 return profilesList;
 
             try
             {
-                // Recupera URL del servizio
                 UrlSManager Urls = new UrlSManager();
                 if (UrlSManager.TbFsServiceUrl == string.Empty)
                     UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
 
-                // Prepara la richiesta HTTP
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbFsServiceUrl + "/tbfs-service/getprofilefolders");
                 TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
                 request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
-
-                // Prepara il corpo della richiesta
                 request.Content = GetProfileParameters(application, module, folderName);
 
-                // Invia la richiesta
                 using (HttpResponseMessage resp = await _httpClient.SendAsync(request))
                 {
-                    // Verifica se la risposta è valida
                     if (resp.StatusCode != HttpStatusCode.OK)
                     {
                         Console.WriteLine($"Errore nella risposta HTTP: {resp.StatusCode}");
                         return profilesList;
                     }
 
-                    // Leggi il contenuto della risposta
                     string responseContent = await resp.Content.ReadAsStringAsync();
                     if (string.IsNullOrEmpty(responseContent))
                     {
@@ -294,7 +286,6 @@ namespace TbApiTester
                         return profilesList;
                     }
 
-                    // Parse della risposta JSON
                     JObject jsonResponse = JObject.Parse(responseContent);
                     JArray folders = jsonResponse["objects"] as JArray;
 
@@ -304,7 +295,6 @@ namespace TbApiTester
                         return profilesList;
                     }
 
-                    // Processa i profili
                     foreach (var item in folders)
                     {
                         string name = item["name"]?.ToString();
@@ -320,7 +310,6 @@ namespace TbApiTester
                     }
                 }
 
-                // Ordina la lista dei profili
                 profilesList.Sort();
             }
             catch (HttpRequestException httpEx)
@@ -352,7 +341,7 @@ namespace TbApiTester
             TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
             request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
             //request.Content = GetProfileParameters(application, module, folderName);
-            request.Content = GetTextFileParameters(application, module, folderName, "marco.spazian@zucchetti.com", "DT-655235", "it-IT");
+            request.Content = GetTextFileParameters(application, module, folderName, userData.UserName, "DT-655235", "it-IT");
 
             using (var resp = await _httpClient.SendAsync(request))
             {

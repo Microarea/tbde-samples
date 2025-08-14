@@ -15,7 +15,6 @@ namespace TbApiTester
     {
         public string WebUrl { get; set; } = string.Empty;
         public string DevEnvUrl { get; set; } = string.Empty;
-        public string MMSWebUrl { get; set; } = "http://localhost:60000/";
         public string MMSDevUrl { get; set; } = "http://localhost:5000/";
 
         //public UrlSManager(bool isCloud)
@@ -29,7 +28,7 @@ namespace TbApiTester
             using (HttpClient client = new HttpClient())
             {
                 DevEnvUrl = isMMS ? MMSDevUrl : "http://localhost:5000";
-                WebUrl = isMMS ? MMSWebUrl : MMSWebUrl.TrimEnd('/'); 
+                WebUrl = isMMS ? userData.GwamUrl : userData.GwamUrl.TrimEnd('/');
                 switch (buttonState)
                 {
                     case GlobalSettings.ButtonState.DevEnv:

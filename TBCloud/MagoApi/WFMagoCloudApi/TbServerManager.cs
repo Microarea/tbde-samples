@@ -22,12 +22,8 @@ namespace TbApiTester
         public string requestTb { get; set; }
         public List<string> requestTbList = new List<string>();
         public List<string> responseTbList = new List<string>();
-
-
-
-       
-
-        //////  RetriveTbServerUrl  ///////
+        public List<string> responseHeadersList = new List<string>();
+        public List<string> responseBodiesList = new List<string>();        //////  RetriveTbServerUrl  ///////
 
 
         public (bool, string) LoadMagicLinkFile(string xmlFileName)
@@ -71,7 +67,7 @@ namespace TbApiTester
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
                     string jsonInString = PrepareGetParams(request, xmlContent, userData.UserName);
                     request.Content = new StringContent(jsonInString, Encoding.UTF8, "application/json");
-
+                  
                     // Log REQUEST
                     requestTbList.Add($"GetXmlParams_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {jsonInString}");
 
@@ -90,6 +86,9 @@ namespace TbApiTester
                             var bytes = Convert.FromBase64String(resultVariable);
                             var decodedString = Encoding.UTF8.GetString(bytes);
                             requestTb = $"{request.Method} {request.RequestUri}";
+                            // Salva body
+                            responseBodiesList.Add($"[{DateTime.Now}] {decodedString}");
+
                             return decodedString;
                         }
                     }
@@ -135,7 +134,7 @@ namespace TbApiTester
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
                     string jsonInString = PrepareGetTb(request, xmlContent, userData.UserName);
                     request.Content = new StringContent(jsonInString, Encoding.UTF8, "application/json");
-
+                    
                     //requestTb = $"GetXmlData_ {request.Method} {request.RequestUri}";
                     // Log REQUEST
                     requestTbList.Add($"GetXmlData_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {jsonInString}");
@@ -161,6 +160,7 @@ namespace TbApiTester
                                 strings.AppendLine(decodedString.ToString());
                                 outFileName = folderPath + "\\InvRsnSet" + idx.ToString() + ".xml";
                                 requestTb = $"{request.Method} {request.RequestUri}";
+                                responseBodiesList.Add($"[{DateTime.Now}] {decodedString}");
                             }
                             return strings.ToString();
                         }
@@ -242,9 +242,6 @@ namespace TbApiTester
                     string jsonInString = PrepareSetTb(request, xmlContent, nAction, userData.UserName);
                     request.Content = new StringContent(jsonInString, Encoding.UTF8, "application/json");
                     requestTbList.Add($"SetXmlData_[{DateTime.Now}] {request.Method} {request.RequestUri}\nBody: {jsonInString}");
-                   
-                    requestTbList.Add(requestTb); 
-
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     string responseBody = response.Content.ReadAsStringAsync().Result;
                     responseTbList.Add($"[{DateTime.Now}] Status: {response}\n");
@@ -259,6 +256,7 @@ namespace TbApiTester
                             var bytes = Convert.FromBase64String(resultVariable.ToString());
                             var decodedString = Encoding.UTF8.GetString(bytes);
                             requestTb = $"{request.Method} {request.RequestUri}";
+                            responseBodiesList.Add($"[{DateTime.Now}] {decodedString}");
                             return decodedString;
                         }
                         else

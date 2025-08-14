@@ -121,7 +121,7 @@ namespace TbApiTester
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DmMMSUrl + "mymagostudio-service/DataManager/version");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DmMMSUrl + "/mymagostudio-service/DataManager/version");
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
@@ -159,7 +159,7 @@ namespace TbApiTester
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/{call}?tableName={tableName}");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/{call}?tableName={tableName}");
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
 
@@ -209,7 +209,7 @@ namespace TbApiTester
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/{call}");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/{call}");
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     requestDMMS = $"{request.Method} {request.RequestUri}";
@@ -257,7 +257,7 @@ namespace TbApiTester
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/selectAllByKey");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/selectAllByKey");
                     requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
                     return await CallWithTableData(userData, tableData, request);
@@ -280,7 +280,7 @@ namespace TbApiTester
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/exists");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/exists");
                     requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
                     TbResponse response = await CallWithTableData(userData, tableData, request);
@@ -306,7 +306,7 @@ namespace TbApiTester
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/add");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/add");
                     requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
                     TbResponse response = await CallWithTableData(userData, tableData, request);
@@ -333,7 +333,7 @@ namespace TbApiTester
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/update");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/update");
                     requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
                     return await CallWithTableData(userData, tableData, request);
@@ -359,7 +359,7 @@ namespace TbApiTester
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/delete");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/delete");
                     requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
                     TbResponse response = await CallWithTableData(userData, tableData, request);
@@ -386,7 +386,7 @@ namespace TbApiTester
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/businessOjectByFindKeys");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/businessOjectByFindKeys");
                     var jsonData = JsonConvert.SerializeObject(boData);
                     request.Content = new StringContent(content: jsonData, encoding: Encoding.UTF8, mediaType: "application/json");
                     requestDMMS = $"{request.Method} {request.RequestUri}";
@@ -419,7 +419,7 @@ namespace TbApiTester
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/updateBusinessObject");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/updateBusinessObject");
                     var jsonData = JsonConvert.SerializeObject(boData);
                     request.Content = new StringContent(content: jsonData, encoding: Encoding.UTF8, mediaType: "application/json");
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
@@ -451,7 +451,7 @@ namespace TbApiTester
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/getNextId");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/getNextId");
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                     request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
@@ -543,7 +543,7 @@ namespace TbApiTester
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.EnumsTableUrl == "")
                         UrlSManager.EnumsTableUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE", true);
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + $"enums-service/getEnumsTable/");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + $"/enums-service/getEnumsTable/");
                     //UrlSManager Urls = new UrlSManager();
                     ////if (UrlSManager.EnumsTableUrl == "") UrlSManager.EnumsTableUrl = Urls.RetriveUrl(userData, DateTime.Now, "/TBFSSERVICE");
                     ////HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.EnumsTableUrl + "/enums-service/getEnumsTable/");
@@ -634,7 +634,7 @@ namespace TbApiTester
 
                     HttpRequestMessage request = new HttpRequestMessage(
                         HttpMethod.Post,
-                        UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/lockRecord"
+                        UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/lockRecord"
                     );
 
                     requestDMMS = $"{request.Method} {request.RequestUri}";
@@ -684,7 +684,7 @@ namespace TbApiTester
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/unlockRecord");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/unlockRecord");
                     requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
 
@@ -731,7 +731,7 @@ namespace TbApiTester
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/isRecordLocked");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/isRecordLocked");
                     requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
 
@@ -778,7 +778,7 @@ namespace TbApiTester
                     if (UrlSManager.DmMMSUrl == "")
                         UrlSManager.DmMMSUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MYMAGOSTUDIO", true);
 
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"mymagostudio-service/DataManager/unlockContext");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, UrlSManager.DmMMSUrl + $"/mymagostudio-service/DataManager/unlockContext");
                     requestDMMS = $"{request.Method} {request.RequestUri}";
                     requestDMMSList.Add(requestDMMS);
 

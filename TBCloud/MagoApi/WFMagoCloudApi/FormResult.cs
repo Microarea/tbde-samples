@@ -76,7 +76,7 @@ namespace WindowsFormsResult
                 this.richXmlTextBox.Dock = DockStyle.Fill;
                 panelTitleResult.BackColor = Color.FromArgb(28, 28, 28);
                 this.labelFormContent.Hide();
-                this.labelTitleResult.Text = "Useful links";
+                this.labelTitleResult.Text = "Useful";
                 this.labelSmile.Text = "🤔";
                 this.buttonResize.BackColor = Color.FromArgb(28, 28, 28);
                 this.buttonExitForm.BackColor = Color.FromArgb(28, 28, 28);

@@ -38,7 +38,7 @@ namespace TbApiTester
 
         public void ClickBtn(GlobalSettings.ButtonState click)
         {
-            this.Hide(); // Nascondi il form attuale
+            this.Hide(); 
             GlobalSettings.CurrentButtonState = click;
             TbApiTester mainForm = new TbApiTester(IsCloudButtonClicked);
             mainForm.ShowDialog();
