@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClientDocumentObjects>
+	<CodelessClientDocuments>
+		<ServerDocument namespace="ERP.Sales.Documents.Invoice">
+			<CodelessClientDocument namespace="Document.Courses.Courses.codeless.CDInvoice"></CodelessClientDocument>
+		</ServerDocument>
+	</CodelessClientDocuments>
+</ClientDocumentObjects>

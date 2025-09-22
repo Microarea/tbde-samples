@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<HotKeyLink>
+  <Function localize="Teachers" namespace="Courses.Courses.DynamicDocuments.Teachers" type="string" report="False" published="False">
+    <Param name="Disabled" type="integer" localize="0 Enabled / 1 Disabled / 2 Both" basetype="" optional="true" value="0" />
+  </Function>
+  <ClassName>HKLTeachers</ClassName>
+  <DbField name="MMS_Teachers.TeacherCode" />
+  <DbTable name="MMS_Teachers" owner="" loadFullRecord="true" />
+  <DbFieldDescription name="MMS_Teachers.TeacherName" />
+  <ComboBox datafile="" maxDisplayedFields="4">
+    <Column when="" source="MMS_Teachers.TeacherCode" localize="TeachersCode" />
+    <Column when="" source="MMS_Teachers.TeacherName" localize="TeacherName" />
+    <Column when="" source="MMS_Teachers.Disabled" localize="Disabled" />
+  </ComboBox>
+  <CallLink when="" namespace="Courses.Courses.DynamicDocuments.Teachers" addOnFlyEnabled="True" mustExistData="False" browseEnabled="True" />
+  <SelectionTypes>
+    <Selection name="Radar" type="radar" localize="" />
+    <Selection name="WebCombo" type="default" localize="" />
+    <Selection name="direct" type="direct" localize="" />
+  </SelectionTypes>
+  <SelectionModes>
+    <Mode name="Radar" type="query"><![CDATA[Select MMS_Teachers.TeacherCode {COL MMS_Teachers.TeacherCode KEY  TITLE "TeacherCode"},MMS_Teachers.TBCreated {COL MMS_Teachers.TBCreated TYPE DateTime TITLE "TBCreated"},MMS_Teachers.TBModified {COL MMS_Teachers.TBModified TYPE DateTime TITLE "TBModified"},MMS_Teachers.TBCreatedID {COL MMS_Teachers.TBCreatedID TYPE Long TITLE "TBCreatedID"},MMS_Teachers.TBModifiedID {COL MMS_Teachers.TBModifiedID TYPE Long TITLE "TBModifiedID"},MMS_Teachers.TBGuid {COL MMS_Teachers.TBGuid TYPE Uuid TITLE "TBGuid"},MMS_Teachers.TeacherName {COL MMS_Teachers.TeacherName TITLE "TeacherName"},MMS_Teachers.Disabled {COL MMS_Teachers.Disabled TYPE Bool TITLE "Disabled"} FROM MMS_Teachers]]></Mode>
+    <Mode name="WebCombo" type="query" likeOnlyAtTheEnd="False"><![CDATA[SELECT
+MMS_Teachers.TeacherCode {COL MMS_Teachers.TeacherCode},
+MMS_Teachers.TeacherName {COL MMS_Teachers.TeacherName},
+MMS_Teachers.Disabled {COL MMS_Teachers.Disabled}
+FROM
+MMS_Teachers
+WHERE
+(
+MMS_Teachers.TeacherCode LIKE {IN FILTER_VALUE} OR
+MMS_Teachers.TeacherName LIKE {IN FILTER_VALUE}
+)
+
+{WHEN Disabled == 0 EXPAND {AND MMS_Teachers.Disabled = {FALSE}}}
+{WHEN Disabled == 1 EXPAND {AND MMS_Teachers.Disabled = {TRUE}}}]]></Mode>
+    <Mode name="direct" type="query"><![CDATA[SELECT
+MMS_Teachers.TeacherCode {COL MMS_Teachers.TeacherCode},
+MMS_Teachers.TeacherName {COL MMS_Teachers.TeacherName},
+MMS_Teachers.Disabled {COL MMS_Teachers.Disabled}
+FROM
+MMS_Teachers
+WHERE
+(
+MMS_Teachers.TeacherCode = {IN FILTER_VALUE}
+)]]></Mode>
+  </SelectionModes>
+  <Dynamic>True</Dynamic>
+</HotKeyLink>

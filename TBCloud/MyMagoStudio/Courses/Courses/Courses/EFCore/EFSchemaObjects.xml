@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DatabaseObjects>
+  <Signature>Courses</Signature>
+  <Release>1</Release>
+  <Tables>
+    <Table namespace="Courses.Courses.codeless.MMS_Teachers" mastertable="true">
+      <DocumentationInfo localizable_1="True">tabella docenti</DocumentationInfo>
+      <Create release="1" createstep="1" />
+      <Columns>
+        <Column>
+          <SchemaInfo localizable_1="true" type="String" length="6" defaultvalue="">TeacherCode</SchemaInfo>
+          <DocumentationInfo localizable_1="True">codice docente</DocumentationInfo>
+        </Column>
+        <Column>
+          <SchemaInfo localizable_1="true" type="String" length="64" defaultvalue="">TeacherName</SchemaInfo>
+          <DocumentationInfo localizable_1="True">nome completo docente</DocumentationInfo>
+        </Column>
+        <Column>
+          <SchemaInfo localizable_1="true" type="Bool" length="1" defaultvalue="false">Disabled</SchemaInfo>
+          <DocumentationInfo localizable_1="True">abilitato/disabilitato</DocumentationInfo>
+        </Column>
+      </Columns>
+      <PrimaryKey name="PK_MMS_Teachers" type="NONCLUSTERED">
+        <Segments>TeacherCode</Segments>
+      </PrimaryKey>
+    </Table>
+    <Table namespace="Courses.Courses.codeless.MMS_Courses" mastertable="true">
+      <DocumentationInfo localizable_1="True">tabella principale corso</DocumentationInfo>
+      <Create release="1" createstep="2" />
+      <Columns>
+        <Column>
+          <SchemaInfo localizable_1="true" type="Long" length="0" defaultvalue="0">CourseID</SchemaInfo>
+          <DocumentationInfo localizable_1="True">codice corso</DocumentationInfo>
+        </Column>
+        <Column>
+          <SchemaInfo localizable_1="true" type="String" length="64" defaultvalue="">CourseDescription</SchemaInfo>
+          <DocumentationInfo localizable_1="True">descrizione corso</DocumentationInfo>
+        </Column>
+        <Column>
+          <SchemaInfo localizable_1="true" type="Date" length="0" defaultvalue="1799-12-31T00:00:00">CourseDate</SchemaInfo>
+          <DocumentationInfo localizable_1="True">data inizio corso</DocumentationInfo>
+        </Column>
+        <Column>
+          <SchemaInfo localizable_1="true" type="Enum" basetype="8001" length="0" defaultvalue="524353536">CourseLevel</SchemaInfo>
+          <DocumentationInfo localizable_1="True">livello corso</DocumentationInfo>
+        </Column>
+      </Columns>
+      <PrimaryKey name="PK_MMS_Courses" type="NONCLUSTERED">
+        <Segments>CourseID</Segments>
+      </PrimaryKey>
+    </Table>
+    <Table namespace="Courses.Courses.codeless.MMS_CoursesInfo">
+      <DocumentationInfo localizable_1="True">tabella slave 1a1</DocumentationInfo>
+      <Create release="1" createstep="3" />
+      <Columns>
+        <Column>
+          <SchemaInfo localizable_1="true" type="Long" length="0" defaultvalue="0">CourseID</SchemaInfo>
+          <DocumentationInfo localizable_1="True">codice corso</DocumentationInfo>
+        </Column>
+        <Column>
+          <SchemaInfo localizable_1="true" type="Integer" length="0" defaultvalue="0">CourseDays</SchemaInfo>
+          <DocumentationInfo localizable_1="True">durata del corso</DocumentationInfo>
+        </Column>
+        <Column>
+          <SchemaInfo localizable_1="true" type="String" length="6" defaultvalue="">CourseTeacher</SchemaInfo>
+          <DocumentationInfo localizable_1="True">docente corso</DocumentationInfo>
+        </Column>
+        <Column>
+          <SchemaInfo localizable_1="true" type="Money" length="0" defaultvalue="0.0">CoursePrice</SchemaInfo>
+          <DocumentationInfo localizable_1="True">prezzo corso</DocumentationInfo>
+        </Column>
+      </Columns>
+      <PrimaryKey name="PK_MMS_CoursesInfo" type="NONCLUSTERED">
+        <Segments>CourseID</Segments>
+      </PrimaryKey>
+      <ForeignKeys>
+        <ForeignKey name="FK_3659758" on="MMS_Courses" onns="Table.Courses.Courses.codeless.MMS_Courses">
+          <FKSegments>CourseID</FKSegments>
+          <PKSegments>CourseID</PKSegments>
+        </ForeignKey>
+      </ForeignKeys>
+    </Table>
+    <Table namespace="Courses.Courses.codeless.MMS_CoursesDetails">
+      <DocumentationInfo localizable_1="True">tabella slave 1aN</DocumentationInfo>
+      <Create release="1" createstep="4" />
+      <Columns>
+        <Column>
+          <SchemaInfo localizable_1="true" type="Long" length="0" defaultvalue="0">CourseID</SchemaInfo>
+          <DocumentationInfo localizable_1="True">codice corso</DocumentationInfo>
+        </Column>
+        <Column>
+          <SchemaInfo localizable_1="true" type="Integer" length="0" defaultvalue="0">Line</SchemaInfo>
+          <DocumentationInfo localizable_1="True">num riga dettaglio corso</DocumentationInfo>
+        </Column>
+        <Column>
+          <SchemaInfo localizable_1="true" type="Enum" basetype="49" length="0" defaultvalue="3211264">CustSuppType</SchemaInfo>
+          <DocumentationInfo localizable_1="True">tipologia cust/supp</DocumentationInfo>
+        </Column>
+        <Column>
+          <SchemaInfo localizable_1="true" type="String" length="12" defaultvalue="">CustSupp</SchemaInfo>
+          <DocumentationInfo localizable_1="True">codice cust/supp</DocumentationInfo>
+        </Column>
+        <Column>
+          <SchemaInfo localizable_1="true" type="Bool" length="1" defaultvalue="false">Invoiced</SchemaInfo>
+          <DocumentationInfo localizable_1="True">fatturato si/no</DocumentationInfo>
+        </Column>
+      </Columns>
+      <PrimaryKey name="PK_MMS_CoursesDetails" type="NONCLUSTERED">
+        <Segments>CourseID, Line</Segments>
+      </PrimaryKey>
+      <ForeignKeys>
+        <ForeignKey name="FK_9947156" on="MMS_Courses" onns="Table.Courses.Courses.codeless.MMS_Courses">
+          <FKSegments>CourseID</FKSegments>
+          <PKSegments>CourseID</PKSegments>
+        </ForeignKey>
+      </ForeignKeys>
+    </Table>
+  </Tables>
+  <VirtualTables />
+</DatabaseObjects>

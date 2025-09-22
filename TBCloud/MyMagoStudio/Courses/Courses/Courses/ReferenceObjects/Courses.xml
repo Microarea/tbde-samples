@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HotKeyLink>
+	<Dynamic>true</Dynamic>
+	<Function localize="Courses" namespace="Courses.Courses.DynamicDocuments.Courses" type="String" report="false" published="false"></Function>
+	<SelectionTypes>
+		<Selection type="radar" name="Radar"></Selection>
+	</SelectionTypes>
+	<SelectionModes>
+		<Mode name="Radar" type="query"><![CDATA[Select MMS_Courses.CourseID {COL MMS_Courses.CourseID KEY  TYPE Long TITLE "CourseID"},MMS_Courses.TBCreated {COL MMS_Courses.TBCreated TYPE DateTime TITLE "TBCreated"},MMS_Courses.TBModified {COL MMS_Courses.TBModified TYPE DateTime TITLE "TBModified"},MMS_Courses.TBCreatedID {COL MMS_Courses.TBCreatedID TYPE Long TITLE "TBCreatedID"},MMS_Courses.TBModifiedID {COL MMS_Courses.TBModifiedID TYPE Long TITLE "TBModifiedID"},MMS_Courses.TBGuid {COL MMS_Courses.TBGuid TYPE Uuid TITLE "TBGuid"},MMS_Courses.CourseDescription {COL MMS_Courses.CourseDescription TITLE "CourseDescription"},MMS_Courses.CourseDate {COL MMS_Courses.CourseDate TYPE Date TITLE "CourseDate"} FROM MMS_Courses]]></Mode>
+	</SelectionModes>
+</HotKeyLink>
