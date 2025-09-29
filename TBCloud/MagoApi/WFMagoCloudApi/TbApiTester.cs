@@ -1,9 +1,4 @@
-﻿using Microarea.Tbf.Model.Database;
-using Microarea.Tbf.Model.DataManager.Providers;
-using Microarea.Tbf.Model.Interfaces;
-using Microarea.Tbf.Model.Interfaces.API;
-using Microarea.Tbf.Model.Interfaces.DataManager;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;

@@ -92,7 +92,20 @@
 											"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"jwt-token\");\r",
+											"console.log(\"jwt-token:\", pm.variables.get(\"jwt-token\"));"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -145,68 +158,6 @@
 							"response": []
 						},
 						{
-							"name": "5.0 mw-console  IsValidToken",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"var res = JSON.parse(responseBody);\r",
-											"pm.collectionVariables.set(\"jwt-token\", res[\"JwtToken\"]);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "Producer-Info",
-										"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
-										"type": "text"
-									},
-									{
-										"key": "Authorization",
-										"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
-										"type": "text"
-									},
-									{
-										"key": "",
-										"value": "",
-										"type": "text",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"accountName\": \"{{account-name}}\",\r\n    \"appId\": \"MagoAPI\",\r\n    \"overwrite\": false,\r\n    \"password\": \"{{password}}\",\r\n    \"subscriptionKey\": \"{{subscription-key}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{local-url}}mw-console/api/isvalidtoken",
-									"host": [
-										"{{local-url}}mw-console"
-									],
-									"path": [
-										"api",
-										"isvalidtoken"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "5.0 mw-console Logoff",
 							"event": [
 								{
@@ -218,7 +169,8 @@
 											"console.log(res[\"Message\"]);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -272,10 +224,14 @@
 										"type": "text"
 									},
 									{
-										"key": "",
-										"value": "",
-										"type": "text",
-										"disabled": true
+										"key": "Snapshot",
+										"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -1278,7 +1234,8 @@
 								"exec": [
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -1290,7 +1247,8 @@
 									"var params = atob(res[\"retVal\"]);\r",
 									"console.log(params);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1323,7 +1281,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ns\": \"Extensions.XEngine.TBXmlTransfer.GetDocumentSchemaRest\",\r\n    \"args\": {\r\n                \"documentNamespace\": \"Document.ERP.Contacts.Documents.Contacts\",\r\n                \"profileName\": \"DefaultLight\",\r\n                \"forUser\": \"\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"ns\": \"Extensions.XEngine.TBXmlTransfer.GetDocumentSchemaRest\",\r\n    \"args\": {\r\n                \"documentNamespace\": \"Document.ERP.Sales.documents.Invoice\",\r\n                \"profileName\": \"DefaultLight\",\r\n                \"forUser\": \"\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1370,7 +1328,8 @@
 									"const paramsBase64 = btoa(params);\r",
 									"pm.collectionVariables.set('paramsBase64', paramsBase64);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						},
 						{
@@ -1390,7 +1349,8 @@
 									"}\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -1477,7 +1437,9 @@
 									"const paramsBase64 = btoa(params);\r",
 									"pm.collectionVariables.set('paramsBase64', paramsBase64);"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -1490,7 +1452,125 @@
 									"console.log(data);\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":5,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ns\": \"Extensions.XEngine.TBXmlTransfer.SetDataRest\",\r\n    \"args\": {\r\n                \"data\": \"{{paramsBase64}}\",\r\n                \"saveAction\": 0,\r\n                \"loginName\": \"{{account-name}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{tbserver-url}}tbserver/api/tb/document/runRestFunction/",
+							"host": [
+								"{{tbserver-url}}tbserver"
+							],
+							"path": [
+								"api",
+								"tb",
+								"document",
+								"runRestFunction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SetData - Customer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"require(\"btoa\")\r",
+									"const profileName = \"DefaultLight\";\r",
+									"const profileType = \"Standard\";\r",
+									"\r",
+									"const company = \"ABC\";\r",
+									"const address = \"12, Main Street\";\r",
+									"const phone = \"123-4567\";\r",
+									"const contactName = \"Nuovo Doe\";\r",
+									"\r",
+									"var params = `<?xml version='1.0'?>\r",
+									"            \t<maxs:Customers xmlns:maxs='http://www.microarea.it/Schema/2004/Smart/ERP/CustomersSuppliers/Customers/Standard/Default.xsd'\r",
+									"                 tbNamespace='Document.ERP.CustomersSuppliers.Documents.Customers' xTechProfile='Default'>\r",
+									"\t\t\t\t    <maxs:Data>\r",
+									"\t\t\t\t        <maxs:CustomersSuppliers master='true'>\r",
+									"\t\t\t\t            <maxs:CustSuppType>3211264</maxs:CustSuppType>\r",
+									"\t\t\t\t            <maxs:CustSupp>CasaNova22</maxs:CustSupp>\r",
+									"\t\t\t\t            <maxs:CompanyName>CASANOVA HERMANOS S.A TEST</maxs:CompanyName>\r",
+									"\t\t\t\t            <maxs:ISOCountryCode>ES</maxs:ISOCountryCode>\r",
+									"\t\t\t\t            <maxs:TaxIdNumber>ES17009945</maxs:TaxIdNumber>\r",
+									"\t\t\t\t            <maxs:FiscalCode>ES17009945</maxs:FiscalCode>\r",
+									"\t\t\t\t            <maxs:Address>CARRETERA DE MOLLO 6</maxs:Address>\r",
+									"\t\t\t\t            <maxs:ZIPCode>17867</maxs:ZIPCode>\r",
+									"\t\t\t\t            <maxs:City>CAMPRODON - GIRONA</maxs:City>\r",
+									"\t\t\t\t            <maxs:Country>Spagna</maxs:Country>\r",
+									"\t\t\t\t            <maxs:NaturalPerson>G</maxs:NaturalPerson>\r",
+									"\t\t\t\t            <maxs:Payment>005</maxs:Payment>\r",
+									"\t\t\t\t\t\t\t<maxs:Disabled>False</maxs:Disabled>\r",
+									"\t\t\t\t        </maxs:CustomersSuppliers>\r",
+									"\t\t\t\t         <maxs:NaturalPerson>\r",
+									"\t\t\t\t            <maxs:CustSuppType>3211264</maxs:CustSuppType>\r",
+									"\t\t\t\t            <maxs:CustSupp>000001</maxs:CustSupp>\r",
+									"\t\t\t\t        </maxs:NaturalPerson>\r",
+									"\t\t\t\t    </maxs:Data>\r",
+									"\t\t\t\t</maxs:Customers>`\r",
+									"\r",
+									"const paramsBase64 = btoa(params);\r",
+									"pm.collectionVariables.set('paramsBase64', paramsBase64);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"require(\"atob\")\r",
+									"var res = JSON.parse(responseBody);\r",
+									"var data = atob(res[\"result\"]);\r",
+									"console.log(data);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -3354,6 +3434,78 @@
 					"response": []
 				},
 				{
+					"name": "GetDataFIDO",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{ \"type\": \"jwt\", \"appId\": \"MagoAPI\", \"securityValue\": \"{{jwt-token}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Producer-Info",
+								"value": "{ \"ProducerKey\":\"{{producer-key}}\",  \"AppKey\": \"{{app-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Snapshot",
+								"value": "{\"SubscriptionKey\": \"{{subscription-key}}\"}",
+								"type": "text"
+							},
+							{
+								"key": "Server-Info",
+								"value": "{\"subscription\":\"{{subscription-key}}\", \"gmtOffset\":-60, \"date\":{\"day\":21,\"month\":9,\"year\":2022}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"namespaces\":[\"ERP.CreditLimit.CreditLimit.wrm\"],\r\n\"arguments\":\r\n[\r\n    {\"name\":\"AskFromCustomer\",\"value\":\"0003\"},\r\n    {\"name\":\"AskToCustomer\",\"value\":\"0003\"},\r\n    {\"name\":\"AskOnlyMaxedeOut\",\"value\":\"false\"},\r\n    {\"name\":\"AskAllSalesPerson\",\"value\":\"true\"},\r\n    {\"name\":\"AskSalesPerson\",\"value\":\"\"}\r\n]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{reportingservice-url}}rs/xmldata",
+							"host": [
+								"{{reportingservice-url}}rs"
+							],
+							"path": [
+								"xmldata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetReportPdf",
 					"event": [
 						{
@@ -5063,6 +5215,7 @@
 			"listen": "prerequest",
 			"script": {
 				"type": "text/javascript",
+				"requests": {},
 				"exec": [
 					""
 				]
@@ -5072,6 +5225,7 @@
 			"listen": "test",
 			"script": {
 				"type": "text/javascript",
+				"requests": {},
 				"exec": [
 					""
 				]
@@ -5121,33 +5275,27 @@
 		},
 		{
 			"key": "current-handle",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "local-url",
-			"value": "http://localhost:60000/",
-			"type": "string"
+			"value": "http://localhost:60000/"
 		},
 		{
 			"key": "tbfsservice-url",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "nsImage",
-			"value": "Image.erp.items.images.daria0.bmp",
-			"type": "string"
+			"value": "Image.erp.items.images.daria0.bmp"
 		},
 		{
 			"key": "dmsservice-url",
-			"value": "http://localhost:5020/",
-			"type": "string"
+			"value": "http://localhost:5020/"
 		},
 		{
 			"key": "reportingservice-url",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "mms-url",
@@ -5159,8 +5307,7 @@
 		},
 		{
 			"key": "mmsLocal-url",
-			"value": "",
-			"type": "string"
+			"value": ""
 		}
 	]
 }
