@@ -25,6 +25,7 @@ namespace TbApiTester
         public string CustSupp { get; set; }
         public string CompanyName { get; set; }
         public string ISOCountryCode { get; set; }
+        public Guid TBGuid { get; set; }
     }
 
     public class PVDModelHeader

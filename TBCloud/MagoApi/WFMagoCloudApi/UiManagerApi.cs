@@ -113,8 +113,10 @@ namespace TbApiTester
             foreach (var ctrl in controls)
             {
                 ctrl.BackColor = SystemColors.Window;
-                ctrl.Font = new Font(ctrl.Font, FontStyle.Regular);
+                
             }
         }
+
+       
     }
 }

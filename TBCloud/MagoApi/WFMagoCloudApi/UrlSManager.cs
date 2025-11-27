@@ -15,7 +15,7 @@ namespace TbApiTester
     {
         public string WebUrl { get; set; } = string.Empty;
         public string DevEnvUrl { get; set; } = string.Empty;
-        public string MMSDevUrl { get; set; } = "http://localhost:5000/";
+        public string MMSDevUrl { get; set; } = "http://localhost:5000";//marcourl
 
         //public UrlSManager(bool isCloud)
         //{

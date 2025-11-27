@@ -1,6 +1,7 @@
 ﻿//using Microsoft.VisualStudio.TextManager.Interop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.ComponentModel.Design;
 //using System;
 //using System.Drawing;
 //using System.Drawing.Drawing2D;
@@ -33,7 +34,7 @@ namespace TbApiTester
         {
             PrepareHeaderAutorization(request, userData);
             PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-            PrepareHeaderServerInfo(request, userData, operationDate);
+            PrepareHeaderServerInfo(request, userData, operationDate, userData.CompanyId, userData.StoreCode);
             PrepareHeaderSnapshot(request, userData);
 
             request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
@@ -60,7 +61,7 @@ namespace TbApiTester
             request.Headers.TryAddWithoutValidation("MagoAPI", dJsonInString);
         }
 
-        internal static void PrepareHeaderServerInfo(HttpRequestMessage request, UserData userData, DateTime operationDate)
+        internal static void PrepareHeaderServerInfo(HttpRequestMessage request, UserData userData, DateTime operationDate,int CompanyId,string StoreCode)
         {
             var server_info = JsonConvert.SerializeObject(new
             {
@@ -71,7 +72,10 @@ namespace TbApiTester
                     day = operationDate.Day,
                     month = operationDate.Month,
                     year = operationDate.Year
-                }
+                },
+                CompanyId = 3,
+                StoreCode = "03"
+
             });
             request.Headers.TryAddWithoutValidation("Server-Info", server_info);
         }

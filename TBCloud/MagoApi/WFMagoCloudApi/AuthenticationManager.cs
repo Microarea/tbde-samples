@@ -35,6 +35,8 @@ namespace TbApiTester
         internal string Producer { get; set; }
         internal string AppKey { get; set; }
         internal string LoginKey { get; set; }
+        internal int CompanyId = 3;
+        internal string StoreCode = "0-3";
 
         internal void Clear()
         {
@@ -162,16 +164,16 @@ namespace TbApiTester
 
                     // Prepare login credentials
                     var credential = new JObject
-            {
-                { "GwamUrl", gwamUrl },
-                { "AccountName", userName },
-                { "Password", pwd },
-                { "Token", "" },
-                { "AppId", appKey },
-                { "SubscriptionKey", subscriptionKey },
-                { "ProducerKey", "" },
-                { "AppKey", appKey }
-            };
+                    {
+                        { "GwamUrl", gwamUrl },
+                        { "AccountName", userName },
+                        { "Password", pwd },
+                        { "Token", "" },
+                        { "AppId", appKey },
+                        { "SubscriptionKey", subscriptionKey },
+                        { "ProducerKey", "" },
+                        { "AppKey", appKey }
+                    };
 
                     string requestJsonInString = JsonConvert.SerializeObject(credential);
                     request.Content = new StringContent(requestJsonInString, System.Text.Encoding.UTF8, "application/json");

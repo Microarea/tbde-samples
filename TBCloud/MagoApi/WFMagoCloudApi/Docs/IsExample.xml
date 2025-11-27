@@ -10,6 +10,7 @@
 		<Selection type="radar" name="Radar"/>
 		<Selection type="default" name="WebCombo" />
 		<Selection type="MyQry" name="MyQry" />
+		<Selection type="MyQry2" name="MyQry2" />
 	</SelectionTypes>
 
 	<SelectionModes>
@@ -49,7 +50,17 @@
 	       ORDER BY MA_AccountingReasons.Reason
         ]]>
 		</Mode>
+		
+		<Mode name="MyQry2" type="query">
+			<![CDATA[  
+	    SELECT
+		    MA_VInvEntries.InvRsn 	  {COL MA_VInvEntries.InvRsn KEY},
+		    MA_VInvEntries.StubBook  {COL MA_VInvEntries.StubBook }
 
+	    FROM MA_VInvEntries
+	       ORDER BY MA_VInvEntries.InvRsn 
+        ]]>
+		</Mode>
 
 	</SelectionModes>
 

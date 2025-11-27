@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic.ApplicationServices;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -31,8 +33,8 @@ namespace TbApiTester
         private bool isLoggedIn = false;
 
         private readonly LabelManager labelManager;
-        public string base64Data;//dms
-        public string fileName;//dms
+        public string m_base64Data;//dms
+        public string m_fileName;//dms
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
            int nLeftRect,
@@ -82,6 +84,8 @@ namespace TbApiTester
             btnTbfs.MouseLeave += new EventHandler(cbxUi.BtnTbfs_MouseLeave);
             textBoxArchiveType.MouseHover += new EventHandler(cbxUi.BtnTbfs_MouseHover);
             textBoxArchiveType.MouseLeave += new EventHandler(cbxUi.BtnTbfs_MouseLeave);
+            btnGetAttachments.MouseHover += new EventHandler(cbxUi.BtnTbfs_MouseHover);
+            btnGetAttachments.MouseLeave += new EventHandler(cbxUi.BtnTbfs_MouseLeave);
             this.cbxServicesWeb.Visible = false;
             var buttonState = GlobalSettings.CurrentButtonState;
             switch (buttonState)
@@ -137,6 +141,7 @@ namespace TbApiTester
             hoverManager.Register(btnIsRecordLocked, txtContext, txtTableName, txtKeys);
             hoverManager.Register(btnUnlockRecord, txtProcessName, txtContext, txtTableName, txtIstanceIdentity, txtKeys);
             hoverManager.Register(btnContextRecord, txtContext);
+            hoverManager.Register(btnGetAttachments, txtBoxERPpkv);
 
         }
         public void InitializeCredential(string currentEnvironment)
@@ -390,7 +395,6 @@ namespace TbApiTester
                     }
                     string moduleMessage = CountResponse.PlainResult?.ToString() ?? "No value received";
 
-                    // Controlla se PlainResult contiene un messaggio diagnostico di errore
                     bool isLogicalError = false;
 
                     if (!string.IsNullOrWhiteSpace(moduleMessage))
@@ -413,11 +417,10 @@ namespace TbApiTester
                         }
                         catch
                         {
-                            // Se fallisce la deserializzazione, si considera comunque valido il messaggio grezzo
+
                         }
                     }
 
-                    // Se CountResponse.Success è false oppure c'è un errore logico nella risposta
                     if (!CountResponse.Success || isLogicalError)
                     {
                         DmMMSUrl.Text = moduleMessage;
@@ -1307,7 +1310,7 @@ namespace TbApiTester
 
             try
             {
-                int statusCode = await UploadObject();
+                int statusCode = await UploadRefObject();
 
                 MessageBox.Show($"Upload done: {statusCode}");
                 BtnUploadRefObj.ForeColor = Color.Green;
@@ -1319,7 +1322,7 @@ namespace TbApiTester
             }
         }
 
-        private async Task<int> UploadObject()
+        private async Task<int> UploadRefObject()
         {
             string startPath = "";
             string filePath = $@"{manager.tbFsServiceManager.CurrentPath}\{manager.tbFsServiceManager.selDocObj}";
@@ -1328,19 +1331,37 @@ namespace TbApiTester
 
             //  MultipartFormData
             var form = new MultipartFormDataContent();
-            var fileContent = new ByteArrayContent(File.ReadAllBytes(filePath));
-            fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+            //var fileContent = new ByteArrayContent(File.ReadAllBytes(filePath));
+            //fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
 
-            form.Add(fileContent, "files", Path.GetFileName(filePath));
+
             form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(ObjectType.ReferenceObject.ToString())), "objectType");
             form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(currNamespace)), "currentNamespace");
             form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(user)), "user");
             form.Add(new ByteArrayContent(Encoding.UTF8.GetBytes(startPath)), "startPath");
+            return await UploadObject(filePath, form);
+
+        }
+
+
+        private async Task<int> UploadObject(string filePath, MultipartFormDataContent form)
+        {
+            if (string.IsNullOrWhiteSpace(filePath) || !File.Exists(filePath))
+                throw new FileNotFoundException("File non trovato", filePath);
+
+            // Aggiungo SOLO il file
+            var stream = File.OpenRead(filePath);
+            var fileContent = new StreamContent(stream);
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+
+            form.Add(fileContent, "Files", Path.GetFileName(filePath));
 
             // URL Prepare
             UrlSManager Urls = new UrlSManager();
-            if (UrlSManager.TbFsServiceUrl == "")
-                UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(manager.authenticationManager.userData, DateTime.Now, "/TBFSSERVICE");
+            if (string.IsNullOrEmpty(UrlSManager.TbFsServiceUrl))
+                UrlSManager.TbFsServiceUrl = Urls.RetriveUrl(manager.authenticationManager.userData,
+                                                             DateTime.Now,
+                                                             "/TBFSSERVICE");
 
             string urltbfs = UrlSManager.TbFsServiceUrl + "/tbfs-service/UploadObject/";
 
@@ -1351,21 +1372,11 @@ namespace TbApiTester
                 TbApiTesterManager.PrepareHeaderAutorization(request, manager.authenticationManager.userData);
 
                 using (HttpClient httpClient = new HttpClient())
+                using (var response = await httpClient.SendAsync(request))
                 {
-                    TbResponse opResult = null;
-
-                    using (var response = await httpClient.SendAsync(request))
-                    {
-                        opResult = new TbResponse
-                        {
-                            StatusCode = (int)response.StatusCode
-                        };
-
-                        string result = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine($"Upload result: {result}");
-
-                        return opResult.StatusCode;
-                    }
+                    string result = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"Upload result: {result}");
+                    return (int)response.StatusCode;
                 }
             }
         }
@@ -1596,6 +1607,7 @@ namespace TbApiTester
         //////////////////////
         /////  DMS BTN  //////
         //////////////////////
+        
         private void buttonMicrHome_Click(object sender, EventArgs e)
         {
             if (!manager.authenticationManager.IsLogged())
@@ -1605,7 +1617,7 @@ namespace TbApiTester
             }
             string contentBody = manager.dmsManager.GetHome(manager.authenticationManager.userData);
             ShowResult(contentBody != null ? contentBody : "Error retrieving Home", contentBody != null);
-            labelDmsUrl.Text = UrlSManager.DmsServiceUrl;
+            labelDmsUrl.Text = manager.dmsManager.requestDms;
         }
 
         private void btnDmsSetting_Click(object sender, EventArgs e)
@@ -1617,59 +1629,60 @@ namespace TbApiTester
             }
             string contentBody = manager.dmsManager.PostDmsSetting(manager.authenticationManager.userData);
             ShowResult(contentBody != null ? "DmsSetting: \n " + contentBody : "Error retrieving DmsSetting", contentBody != null);
+            labelDmsUrl.Text = manager.dmsManager.requestDms;
         }
 
-
-        private async void CbxDmsApp_SelectedIndexChanged(object sender, EventArgs e)
+        private async void btnGetAttachments_Click(object sender, EventArgs e)
         {
-            //    manager.tbFsServiceManager.selApp = (CbxDmsApp.SelectedItem == null) ? string.Empty : CbxDmsApp.SelectedItem.ToString();
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
 
+            string docnamespace = txtBoxERPDocNs.Text;//"ERP.CustomersSuppliers.Documents.Customers";
 
-            //    if (manager.tbFsServiceManager.selApp != "Application")
-            //        await FillModules(manager.tbFsServiceManager.selApp);
+            // ⚠️ IMPORTANT: No space after the semicolon;
+            //00310000 = 3211264
+            //"CustSuppType:00310000;CustSupp:FITTIZIO;"
+            string strdockey = txtBoxERPpkv.Text;
 
+            int filterType = 2;
+
+            try
+            {
+                var attachments = await manager.dmsManager.GetAttachmentsAsync(
+                    manager.authenticationManager.userData,
+                    docnamespace,
+                    strdockey,
+                    filterType);
+
+                if (attachments == null || attachments.Count == 0)
+                {
+                    MessageBox.Show("Nessun allegato trovato.");
+                    return;
+                }
+
+                // Build a formatted output string to display the attachments
+                var sb = new StringBuilder();
+                foreach (var a in attachments)
+                {
+                    sb.AppendLine($"{a.Name}");
+                    sb.AppendLine($"{a.ERPPrimaryKeyValue}");
+                    sb.AppendLine($"{a.ERPDocNamespace}");
+                    sb.AppendLine($"{a.ERPTBGuid}");
+                    sb.AppendLine(new string('-', 40)); // separation line
+                }
+                ShowResult(sb.ToString());
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Errore durante la lettura degli allegati:\n{ex.Message}");
+            }
+            labelDmsUrl.Text = manager.dmsManager.requestDms;
         }
-        //___________________________________________________________
-        private async void cbxDmsMod_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //manager.tbFsServiceManager.selMod = (cbxDmsMod.SelectedItem == null) ? string.Empty : cbxDmsMod.SelectedItem.ToString();
 
-
-            //if (manager.tbFsServiceManager.selMod != "Module")
-            //{
-            //    string application = manager.tbFsServiceManager.selApp;
-            //    string module = manager.tbFsServiceManager.selMod;
-            //    if (manager.tbFsServiceManager.DocumentPath != null && manager.tbFsServiceManager.DocumentPath.Count > 0 && cbxDmsMod != null && cbxDmsMod.SelectedIndex > -1)
-            //    {
-            //        manager.tbFsServiceManager.CurrentDocNS = manager.tbFsServiceManager.DocumentNamespace[cbxDmsDoc.SelectedIndex];
-            //    }
-            //    await FillDocuments(application, module);
-
-            //}
-
-
-        }
-        //___________________________________________________________
-        private async void cbxDmsDoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //manager.tbFsServiceManager.selDoc = (cbxDmsDoc.SelectedItem == null) ? string.Empty : cbxDmsDoc.SelectedItem.ToString();
-
-            //if (cbxDmsDoc.Items.Count == 0 || cbxDmsDoc.SelectedIndex < 0)
-            //{
-            //    return; 
-            //}
-            //if (manager.tbFsServiceManager.selDoc != "Document")
-            //{
-            //    string application = manager.tbFsServiceManager.selApp;
-            //    string module = manager.tbFsServiceManager.selMod;
-            //    string folderName = manager.tbFsServiceManager.selDoc;
-            //    if (manager.tbFsServiceManager.DocumentNamespace != null && manager.tbFsServiceManager.DocumentNamespace.Count > 0 && cbxDocReport != null && cbxDocReport.SelectedIndex > -1)
-            //    {
-            //        manager.tbFsServiceManager.CurrentDocNS = manager.tbFsServiceManager.DocumentNamespace[cbxDocReport.SelectedIndex - 1];
-            //    }
-            //    await FillProfiles(application, module, folderName);
-            //}
-        }
 
         private async void btnGetBinary_Click(object sender, EventArgs e)
         {
@@ -1697,11 +1710,11 @@ namespace TbApiTester
 
                     if (jsonResponse["Content"]?["Item1"] != null && jsonResponse["Content"]?["Item2"] != null)
                     {
-                        base64Data = jsonResponse["Content"]["Item1"].ToString();
-                        fileName = jsonResponse["Content"]["Item2"].ToString();
-                        byte[] fileBytes = Convert.FromBase64String(base64Data);
+                        m_base64Data = jsonResponse["Content"]["Item1"].ToString();
+                        m_fileName = jsonResponse["Content"]["Item2"].ToString();
+                        byte[] fileBytes = Convert.FromBase64String(m_base64Data);
 
-                        string extension = Path.GetExtension(fileName).ToLower();
+                        string extension = Path.GetExtension(m_fileName).ToLower();
 
                         switch (extension)
                         {
@@ -1710,27 +1723,27 @@ namespace TbApiTester
                             case ".png":
                             case ".bmp":
                             case ".gif":
-                                System.Drawing.Image image = Base64ToImage(base64Data);
-                                ShowImage(image, fileName);
+                                System.Drawing.Image image = Base64ToImage(m_base64Data);
+                                ShowImage(image, m_fileName);
                                 break;
 
                             case ".pdf":
-                                string pdfPath = SaveFile(fileBytes, fileName);
+                                string pdfPath = SaveFile(fileBytes, m_fileName);
                                 OpenFile(pdfPath);
                                 break;
 
                             case ".txt":
                             case ".log":
                                 string textContent = Encoding.UTF8.GetString(fileBytes);
-                                ShowText(textContent, fileName);
+                                ShowText(textContent, m_fileName);
                                 break;
 
                             default:
-                                string filePath = SaveFile(fileBytes, fileName);
+                                string filePath = SaveFile(fileBytes, m_fileName);
                                 MessageBox.Show($"File saved: {filePath}", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 break;
                         }
-                        textBoxfilename.Text = fileName;
+                        textBoxfilename.Text = m_fileName;
                     }
                     else
                     {
@@ -1746,19 +1759,9 @@ namespace TbApiTester
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
+            labelDmsUrl.Text = manager.dmsManager.requestDms;
         }
-        private async void btnAttachBinary_Click(object sender, EventArgs e)
-        {
-            if (!manager.authenticationManager.IsLogged())
-            {
-                MessageBox.Show("User is not logged, please Login!");
-                return;
-            }
 
-            string responseBody = await manager.dmsManager.AttachBinarycontent(manager.authenticationManager.userData, base64Data, textBoxfilename.Text, txtBoxErpTbGuid.Text, txtBoxERPDocNs.Text, txtBoxERPpkv.Text);
-
-            return;
-        }
 
         private async void btnArchiveBinary_Click(object sender, EventArgs e)
         {
@@ -1767,8 +1770,66 @@ namespace TbApiTester
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
-            fileName = textBoxfilename.Text;
-            string responseBody = await manager.dmsManager.ArchiveBinarycontent(manager.authenticationManager.userData, base64Data, textBoxfilename.Text);
+
+            try
+            {
+                // 1) Decido il file da caricare
+                string filePath = textBoxFileN.Text;  // oppure CurrentPath + selDocObj
+
+                if (string.IsNullOrWhiteSpace(filePath) || !File.Exists(filePath))
+                {
+                    MessageBox.Show("File non trovato.");
+                    return;
+                }
+
+                // 2) PREPARO il form con i campi TBFS
+                var form = new MultipartFormDataContent();
+                form.Add(new StringContent(ObjectType.File.ToString()), "objectType");
+                form.Add(new StringContent("MyMagoStudio.Tools"), "currentNamespace");
+                form.Add(new StringContent("AllUsers"), "user");
+                form.Add(new StringContent(""), "startPath"); // come in Postman, vuoto
+
+                // 3) UPLOAD su TBFS
+                int uploadStatus = await UploadObject(filePath, form);
+                if (uploadStatus < 200 || uploadStatus >= 300)
+                {
+                    MessageBox.Show($"Errore upload TBFS: HTTP {uploadStatus}");
+                    return;
+                }
+
+                // 4) STESSO FILE → lo mando al DMS in base64
+                byte[] fileBytes = File.ReadAllBytes(filePath);
+                string base64Data = Convert.ToBase64String(fileBytes);
+                string fileName = Path.GetFileName(filePath);
+
+                string dmsResponse = await manager.dmsManager
+                    .ArchiveBinarycontent(manager.authenticationManager.userData,
+                                          base64Data,
+                                          fileName);
+                MessageBox.Show($"Response DMS:\r\n{dmsResponse}");
+                var json = JObject.Parse(dmsResponse);
+                textBoxArcDoId.Text = json["Content"]?.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Archive Binary:\r\n{ex.Message}");
+            }
+
+            labelDmsUrl.Text = manager.dmsManager.requestDms;
+        }
+
+        private async void btnAttachBinary_Click(object sender, EventArgs e)
+        {
+            if (!manager.authenticationManager.IsLogged())
+            {
+                MessageBox.Show("User is not logged, please Login!");
+                return;
+            }
+
+            string responseBody = await manager.dmsManager.AttachBinarycontent(manager.authenticationManager.userData, m_base64Data, textBoxfilename.Text, txtBoxErpTbGuid.Text, txtBoxERPDocNs.Text, txtBoxERPpkv.Text);
+            var contentOnly = JObject.Parse(responseBody)["Content"]?.ToString();
+            labelDmsUrl.Text = manager.dmsManager.requestDms;
+            ShowResult(contentOnly, true);
             return;
         }
 
@@ -2982,7 +3043,7 @@ namespace TbApiTester
                 {
                     var xmlString = Encoding.UTF8.GetString(Convert.FromBase64String(base64Payload));
                     try { decodedXml = XDocument.Parse(xmlString).ToString(); }  // indent
-                    catch { decodedXml = xmlString; }                        
+                    catch { decodedXml = xmlString; }
                 }
             }
             catch { }
@@ -3000,6 +3061,15 @@ namespace TbApiTester
             ShowResult(content, false, true, false, false);
 
         }
+
+      
+
+
+
+        //private void btnGetAttachments_MouseHover(object sender, EventArgs e)
+        //{
+        //    this.txtBoxERPpkv.BackColor = Color.YellowGreen;
+        //}
     }
 }
 
