@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using WinFormsLabel = System.Windows.Forms.Label;
 
 namespace TbApiTester
@@ -31,6 +33,7 @@ namespace TbApiTester
             form.labelMagicLinkGet.Text = "The TbServerGate microservice exposes the possibility to menage business objects\n" +
                                           "based on MagicLink desktop technology.";
 
+
             //////////// Label descriptive REPORTING SERVICE (RsManager)
             form.labelRS.Text = "The ReportingServices microservice exposes the possibility " +
                                 "of launching a report and obtaining the extracted data.\n" +
@@ -38,7 +41,9 @@ namespace TbApiTester
 
             //////////// Label descriptive  (WebMethod)
             form.labelWmDescription.Text = "The TbServerGate microservice exposes the possibility to access\n" +
-                                           "TbWebMethods (previously SOAP/WCF) via Rest.";
+                                           "TbWebMethods (previously SOAP/WCF) via Rest.\n"; 
+                                        
+
 
             //////////// Label descriptive  (DMS)
             form.labelDms.Text = "The DMS (Document Management System) it allows for storing, sharing,\n" +

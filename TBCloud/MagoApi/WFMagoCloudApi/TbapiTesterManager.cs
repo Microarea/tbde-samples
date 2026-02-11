@@ -34,7 +34,7 @@ namespace TbApiTester
         {
             PrepareHeaderAutorization(request, userData);
             PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
-            PrepareHeaderServerInfo(request, userData, operationDate, userData.CompanyId, userData.StoreCode);
+            PrepareHeaderServerInfo(request, userData, operationDate);
             PrepareHeaderSnapshot(request, userData);
 
             request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
@@ -61,7 +61,7 @@ namespace TbApiTester
             request.Headers.TryAddWithoutValidation("MagoAPI", dJsonInString);
         }
 
-        internal static void PrepareHeaderServerInfo(HttpRequestMessage request, UserData userData, DateTime operationDate,int CompanyId,string StoreCode)
+        internal static void PrepareHeaderServerInfo(HttpRequestMessage request, UserData userData, DateTime operationDate)
         {
             var server_info = JsonConvert.SerializeObject(new
             {
@@ -73,8 +73,6 @@ namespace TbApiTester
                     month = operationDate.Month,
                     year = operationDate.Year
                 },
-                CompanyId = 3,
-                StoreCode = "03"
 
             });
             request.Headers.TryAddWithoutValidation("Server-Info", server_info);

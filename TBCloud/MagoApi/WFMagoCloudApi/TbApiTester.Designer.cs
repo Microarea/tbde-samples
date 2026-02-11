@@ -42,6 +42,7 @@ namespace TbApiTester
             labelChooseProfile = new Label();
             btnTbfs = new Button();
             panelTbTextContainer = new Panel();
+            labelCompany_Store = new Label();
             btnClearText = new Button();
             btnSaveXmlTbServer = new Button();
             xmlEditorTbResult = new XmlEditor();
@@ -197,6 +198,7 @@ namespace TbApiTester
             roundedPanel5 = new RoundedPanel();
             labelRsUrl = new Label();
             tabDMS = new TabPage();
+            label31 = new Label();
             FileNameLabel = new Label();
             labelDocIdArchive = new Label();
             textBoxFileN = new TextBox();
@@ -427,7 +429,6 @@ namespace TbApiTester
             Http_label = new Label();
             button_exit = new Button();
             button_Login = new Button();
-            label31 = new Label();
             tabNavigation.SuspendLayout();
             tabTbServer.SuspendLayout();
             paneltbfsH.SuspendLayout();
@@ -689,6 +690,7 @@ namespace TbApiTester
             // 
             panelTbTextContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelTbTextContainer.BackColor = Color.White;
+            panelTbTextContainer.Controls.Add(labelCompany_Store);
             panelTbTextContainer.Controls.Add(btnClearText);
             panelTbTextContainer.Controls.Add(btnSaveXmlTbServer);
             panelTbTextContainer.Controls.Add(xmlEditorTbResult);
@@ -699,6 +701,19 @@ namespace TbApiTester
             panelTbTextContainer.Name = "panelTbTextContainer";
             panelTbTextContainer.Size = new Size(902, 345);
             panelTbTextContainer.TabIndex = 115;
+            // 
+            // labelCompany_Store
+            // 
+            labelCompany_Store.AutoSize = true;
+            labelCompany_Store.BackColor = Color.White;
+            labelCompany_Store.Font = new Font("Century Gothic", 8.75F, FontStyle.Bold);
+            labelCompany_Store.ForeColor = Color.FromArgb(22, 118, 186);
+            labelCompany_Store.Location = new Point(573, 11);
+            labelCompany_Store.Name = "labelCompany_Store";
+            labelCompany_Store.Size = new Size(111, 16);
+            labelCompany_Store.TabIndex = 120;
+            labelCompany_Store.Text = "Company  -  Store";
+            labelCompany_Store.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnClearText
             // 
@@ -2581,6 +2596,18 @@ namespace TbApiTester
             tabDMS.Size = new Size(930, 548);
             tabDMS.TabIndex = 2;
             tabDMS.Text = "DMS";
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Font = new Font("Microsoft Sans Serif", 7.25F);
+            label31.ForeColor = Color.White;
+            label31.ImeMode = ImeMode.NoControl;
+            label31.Location = new Point(40, 492);
+            label31.Name = "label31";
+            label31.Size = new Size(334, 13);
+            label31.TabIndex = 149;
+            label31.Text = "*On button hover, the requested body parameters will be emphasized.";
             // 
             // FileNameLabel
             // 
@@ -5335,18 +5362,6 @@ namespace TbApiTester
             button_Login.EnabledChanged += button_Login_Click;
             button_Login.Click += button_Login_Click;
             // 
-            // label31
-            // 
-            label31.AutoSize = true;
-            label31.Font = new Font("Microsoft Sans Serif", 7.25F);
-            label31.ForeColor = Color.White;
-            label31.ImeMode = ImeMode.NoControl;
-            label31.Location = new Point(40, 492);
-            label31.Name = "label31";
-            label31.Size = new Size(334, 13);
-            label31.TabIndex = 149;
-            label31.Text = "*On button hover, the requested body parameters will be emphasized.";
-            // 
             // TbApiTester
             // 
             AccessibleRole = AccessibleRole.ScrollBar;
@@ -5912,5 +5927,6 @@ namespace TbApiTester
         private Label FilePathLabel;
         private Label FileNameLabel;
         private Label label31;
+        internal Label labelCompany_Store;
     }
 }

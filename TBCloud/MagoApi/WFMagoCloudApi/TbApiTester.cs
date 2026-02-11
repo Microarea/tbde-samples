@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic.ApplicationServices;
 using Newtonsoft.Json;
@@ -16,6 +17,8 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
 
@@ -204,6 +207,7 @@ namespace TbApiTester
             myToolTip.SetToolTip(btnTbfs, "TBFSSERVICE");
             myToolTip.SetToolTip(btnExploreReport, "Open Report Pdf folder ");
             myToolTip.SetToolTip(btnSaveCredential, "Save your credentials");
+            myToolTip.SetToolTip(labelCompany_Store, "MagicLink calls are executed against the default company.\r\nIn the case of CGM, a dedicated magoapiuser user must be created for the specific company.\r\nThe StoreCode will be populated only if Retail is active.");
 
             cbxServicesWeb.Items.Add("MagoWebServices");
             cbxServicesWeb.SelectedIndex = 0;
@@ -666,6 +670,15 @@ namespace TbApiTester
             Cursor = Cursors.Default;
             labelTbUrl.Text = manager.tbServerManager.requestTb;
             btnTbServerBody.Visible = true;
+
+            //MagicLink calls are executed against the default company.
+            //In the case of CGM, a dedicated magoapiuser user must be created for the specific company.
+            //The storeCode will be populated only if Retail is active.
+            var lastRespLog = manager.tbServerManager.responseTbList.LastOrDefault();
+            var (companyId, storeCode) = ExtractServerInfoFromLog(lastRespLog ?? "");
+
+            labelCompany_Store.Text = $"CompanyId= {companyId}, StoreCode= {storeCode}";
+
         }
         private void buttonGetTb_Click(object sender, EventArgs e)
         {
@@ -1607,7 +1620,7 @@ namespace TbApiTester
         //////////////////////
         /////  DMS BTN  //////
         //////////////////////
-        
+
         private void buttonMicrHome_Click(object sender, EventArgs e)
         {
             if (!manager.authenticationManager.IsLogged())
@@ -1671,6 +1684,7 @@ namespace TbApiTester
                     sb.AppendLine($"{a.ERPPrimaryKeyValue}");
                     sb.AppendLine($"{a.ERPDocNamespace}");
                     sb.AppendLine($"{a.ERPTBGuid}");
+                    sb.AppendLine($"{a.ArchivedDocId}");
                     sb.AppendLine(new string('-', 40)); // separation line
                 }
                 ShowResult(sb.ToString());
@@ -2873,6 +2887,7 @@ namespace TbApiTester
                     if (i < manager.tbServerManager.responseTbList.Count)
                     {
                         logBuilder.AppendLine($"🔵 RESPONSE: {manager.tbServerManager.responseTbList[i]}");
+
                     }
                     else
                     {
@@ -3062,14 +3077,41 @@ namespace TbApiTester
 
         }
 
-      
+        static(int? companyId, string? storeCode) ExtractServerInfoFromLog(string logText)
+        {
+            if (string.IsNullOrWhiteSpace(logText))
+                return (null, null);
 
+            const string token = "Server-Info:";
 
+            int startToken = logText.IndexOf(token, StringComparison.OrdinalIgnoreCase);
+            if (startToken < 0)
+                return (null, null);
 
-        //private void btnGetAttachments_MouseHover(object sender, EventArgs e)
-        //{
-        //    this.txtBoxERPpkv.BackColor = Color.YellowGreen;
-        //}
+            int start = startToken + token.Length;
+
+            // prendi fino a fine riga (gestisce \r\n o \n)
+            int end = logText.IndexOf("\r\n", start, StringComparison.Ordinal);
+            if (end < 0) end = logText.IndexOf('\n', start);
+            if (end < 0) end = logText.Length;
+
+            string json = logText.Substring(start, end - start).Trim();
+
+            try
+            {
+                var obj = JObject.Parse(json);
+
+                int? companyId = (int?)obj["companyId"];
+                string? storeCode = (string?)obj["storeCode"];
+
+                return (companyId, storeCode);
+            }
+            catch
+            {
+                return (null, null);
+            }
+        }
+
     }
 }
 

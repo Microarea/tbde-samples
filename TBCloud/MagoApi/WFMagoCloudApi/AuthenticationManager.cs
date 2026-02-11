@@ -35,8 +35,7 @@ namespace TbApiTester
         internal string Producer { get; set; }
         internal string AppKey { get; set; }
         internal string LoginKey { get; set; }
-        internal int CompanyId = 3;
-        internal string StoreCode = "0-3";
+       
 
         internal void Clear()
         {

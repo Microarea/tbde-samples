@@ -18,26 +18,12 @@ namespace TbApiTester
         public string requestTb { get; set; }
         public List<string> requestTbList = new List<string>();
         public List<string> responseTbList = new List<string>();
-        //Uri RsUrl = new Uri("https://develop.mago.cloud/13/be");
-        //public string RetriveWebMethodsUrl(UserData userData, DateTime operationDate)
-        //{
+    
 
-        //    using (HttpClient client = new HttpClient())
-        //    {
-        //        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, userData.GwamUrl + "/gwam_mapper/api/services/url/" + userData.SubscriptionKey + "/TBSERVER");
-        //        TbApiTesterManager.PrepareHeaders(request, userData);
+        //////Attention: if using Multicompany add CompanyId and Storecode in header Server-Info."
+       /////"subscription":"{{subscription-key}}","gmtOffset":-60,"date":{ "day":26,"month":11,"year":2025},"companyId": 1,"StoreCode":""}
 
-        //        HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
-        //        string responseBody = response.Content.ReadAsStringAsync().Result;
-        //        JObject jsonObject = JsonConvert.DeserializeObject<JObject>(responseBody);
-        //        string resultVariable = "";
-        //        if (jsonObject != null)
-        //        {
-        //            resultVariable = jsonObject["Content"]?.ToString();
-        //        }
-        //        return UrlSManager.TbServerUrl = resultVariable;
-        //    }
-        //}
+
         ////////////////////////////////////
         ////// Current Opening Date ////////
         ////////////////////////////////////
@@ -53,7 +39,7 @@ namespace TbApiTester
                     //UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
-                    TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate, userData.CompanyId, userData.StoreCode);
+                    TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate);
                     requestTb = $"{request.Method} {request.RequestUri}";
                     string jsonInString = PrepareOpeningDate(request);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
@@ -109,7 +95,7 @@ namespace TbApiTester
                     //if (UrlSManager.TbServerUrl == "") UrlSManager.TbServerUrl = RetriveWebMethodsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/runRestFunction/");
                     TbApiTesterManager.PrepareHeaders(request, userData, operationDate);
-                    TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate, userData.CompanyId, userData.StoreCode);
+                    TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate);
                     requestTb = $"{request.Method} {request.RequestUri}";
                     string jsonInString = PrepareCloseDate(request);
                     request.Content = new StringContent(jsonInString, System.Text.Encoding.UTF8, "application/json");
@@ -346,7 +332,7 @@ namespace TbApiTester
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.TbServerUrl + "/tbserver/api/tb/document/useLoginContext/");
                     requestTb = $"{request.Method} {request.RequestUri}";
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
-                    TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate, userData.CompanyId, userData.StoreCode);
+                    TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate);
                     TbApiTesterManager.PrepareHeaderSnapshot(request, userData);
 
                     request.Content = new StringContent("{}", Encoding.UTF8, "application/json");
@@ -385,7 +371,7 @@ namespace TbApiTester
                     requestTb = $"{request.Method} {request.RequestUri}";
 
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
-                    TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate, userData.CompanyId, userData.StoreCode);
+                    TbApiTesterManager.PrepareHeaderServerInfo(request, userData, operationDate);
                     TbApiTesterManager.PrepareHeaderSnapshot(request, userData);
 
                     request.Content = new StringContent("{}", Encoding.UTF8, "application/json");

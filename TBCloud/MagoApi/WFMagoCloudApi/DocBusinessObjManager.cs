@@ -44,7 +44,7 @@ namespace TbApiTester
             {
                 request.Content = new StringContent(jObject.ToString(), Encoding.UTF8, "application/json");
                 TbApiTesterManager.PrepareHeaderAutorization(request, userData);
-                TbApiTesterManager.PrepareHeaderServerInfo(request, userData, DateTime.Now, userData.CompanyId, userData.StoreCode);
+                TbApiTesterManager.PrepareHeaderServerInfo(request, userData, DateTime.Now );
                 TbApiTesterManager.PrepareHeaderMagoAPI(request, userData.Producer, userData.AppKey);
                 request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
                 try

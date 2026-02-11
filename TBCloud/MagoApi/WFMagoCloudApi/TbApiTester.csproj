@@ -20,6 +20,7 @@
 	<ItemGroup>
 		<PackageReference Include="AvalonEdit" Version="6.3.1.120" />
 		<PackageReference Include="Microarea.Tbf.Model.Library" Version="5.0.0.87" />
+		<PackageReference Include="Microsoft.Graph" Version="5.102.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
 		<PackageReference Include="System.Resources.Extensions" Version="9.0.5" />

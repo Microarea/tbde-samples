@@ -28,6 +28,9 @@ namespace TbApiTester
             public string ERPPrimaryKeyValue { get; set; }
             public string ERPDocNamespace { get; set; }
             public string ERPTBGuid { get; set; }
+            public string ArchivedDocId { get; set; }
+
+
         }
         internal string GetHome(UserData userData)
         {
@@ -37,10 +40,7 @@ namespace TbApiTester
                 {
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmsServiceUrl == "") UrlSManager.DmsServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MICRODMS");
-                    //if (UrlSManager.DmsServiceUrl == "") UrlSManager.DmsServiceUrl = RetriveDmsUrl(userData, DateTime.Now);
-
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, UrlSManager.DmsServiceUrl + "/dms/api/");
-                    //TbApiTesterManager.PrepareHeaders(request, userData, DateTime.Now);
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     requestDms = $"{request.Method} {request.RequestUri}"; ;
@@ -73,9 +73,7 @@ namespace TbApiTester
                 {
                     UrlSManager Urls = new UrlSManager();
                     if (UrlSManager.DmsServiceUrl == "") UrlSManager.DmsServiceUrl = Urls.RetriveUrl(userData, DateTime.Now, "/MICRODMS/");
-                    //UrlSManager.DmsServiceUrl = RetriveDmsUrl(userData, DateTime.Now);
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, UrlSManager.DmsServiceUrl + "/dms/api/dmssettings/get/");
-                    //TbApiTesterManager.PrepareHeaders(request, userData,DateTime.Now);
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
                     HttpResponseMessage response = client.SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None).Result;
                     requestDms = $"{request.Method} {request.RequestUri}";
@@ -120,7 +118,6 @@ namespace TbApiTester
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestUrl);
                     TbApiTesterManager.PrepareHeaderAutorization(request, userData);
 
-                    // Corpo della richiesta con il valore dinamico
                     var requestBody = new { archivedocid = archiveDocId };
                     request.Content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
 
@@ -215,7 +212,6 @@ namespace TbApiTester
                         ["Description"] = fileName,
                         ["CollectionId"] = 1,
                         ["FreeTags"] = "",
-                        // BookmarkList è una lista di Bookmark o null
                         ["BookmarkList"] = JValue.CreateNull()
                     };
 
@@ -283,11 +279,9 @@ namespace TbApiTester
 
                     if (!response.IsSuccessStatusCode)
                     {
-                        // qui puoi loggare/gestire l’errore come preferisci
                         throw new Exception($"DMS error {response.StatusCode}: {raw}");
                     }
 
-                    // Deserializzo la risposta
                     var parsed = JsonConvert.DeserializeObject<DmsAttachmentsResponse>(raw);
 
                     if (parsed == null)
@@ -296,13 +290,10 @@ namespace TbApiTester
                     if (parsed.ErrorCode != 0)
                         throw new Exception($"DMS business error {parsed.ErrorCode}: {parsed.ErrorMessage}");
 
-                    // Ritorno solo la lista di allegati (mai null)
                     return parsed.Content ?? new List<DmsAttachmentItem>();
                 }
                 catch (Exception ex)
                 {
-                    // in caso di errore puoi decidere se rilanciare o restituire lista vuota
-                    // qui rilancio, così chi chiama può fare il try/catch
                     throw new Exception($"Errore in GetAttachmentsAsync: {ex.Message}", ex);
                 }
             }
