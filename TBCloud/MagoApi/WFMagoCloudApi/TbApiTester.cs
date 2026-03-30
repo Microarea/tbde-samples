@@ -1,24 +1,14 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Logging;
-using Microsoft.VisualBasic.ApplicationServices;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
-//using System.Threading.Tasks;
-//using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 using System.Xml.Linq;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
 
@@ -1593,7 +1583,9 @@ namespace TbApiTester
                 MessageBox.Show("User is not logged, please Login!");
                 return;
             }
+           
             string contentBody = manager.rsManager.GetReportPdf(manager.authenticationManager.userData, DateTime.Now, 0);
+           
             ShowResult(contentBody != null && contentBody != "" ? contentBody : "Unable to retrieve Pdf\n" + contentBody, contentBody != null && contentBody != "");
             btnExploreReport.Visible = true;
             labelRsUrl.Text = manager.rsManager.requestRs;
@@ -2395,14 +2387,6 @@ namespace TbApiTester
 
                 LocksUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
 
-                if (!loked)
-                {
-                    MessageBox.Show($"{keyArray + tableName} isLoked.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"{textBoxCustSupp.Text} already exists.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
             }
             catch (Exception ex)
             {
@@ -2444,14 +2428,7 @@ namespace TbApiTester
 
                 DmMMSUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
 
-                if (!loked)
-                {
-                    MessageBox.Show($"{keyArray + tableName} Unloked.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"{textBoxCustSupp.Text} already exists.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+               
             }
             catch (Exception ex)
             {
@@ -2495,14 +2472,6 @@ namespace TbApiTester
 
                 LocksUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
 
-                if (!loked)
-                {
-                    MessageBox.Show($"{tableName} isLoked.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"{textBoxCustSupp.Text} already exists.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
             }
             catch (Exception ex)
             {
@@ -2545,14 +2514,6 @@ namespace TbApiTester
 
                 LocksUrl.Text = manager.dmMMSManager.requestDMMS.ToString();
 
-                if (!loked)
-                {
-                    MessageBox.Show($"{keyArray + tableName} UnlockContext.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"{textBoxCustSupp.Text} already exists.", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
             }
             catch (Exception ex)
             {

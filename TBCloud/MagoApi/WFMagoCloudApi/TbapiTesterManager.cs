@@ -1,13 +1,7 @@
-﻿//using Microsoft.VisualStudio.TextManager.Interop;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.Design;
-//using System;
-//using System.Drawing;
-//using System.Drawing.Drawing2D;
-//using System.Net.Http;
-//using System.Text;
-//using System.Web.UI.WebControls;
+
 
 namespace TbApiTester
 {

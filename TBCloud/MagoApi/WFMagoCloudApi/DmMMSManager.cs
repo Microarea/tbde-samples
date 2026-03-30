@@ -621,6 +621,17 @@ namespace TbApiTester
         //////LOCKMANAGER///////
         ////////////////////////
 
+        public class LockResponse
+        {
+            public string data { get; set; }
+            public Diagnostic diagnostic { get; set; }
+        }
+
+        public class Diagnostic
+        {
+            public List<string> Messages { get; set; }
+        }
+
         public async Task<bool> lockRecord(UserData userData, string processName, string context, string tableName, string instanceIdentity, string[] keys)
         {
             using (HttpClient client = new HttpClient())
@@ -656,8 +667,14 @@ namespace TbApiTester
                     if (response.IsSuccessStatusCode)
                     {
                         string content = await response.Content.ReadAsStringAsync();
-                        if (bool.TryParse(content, out bool result))
-                            return result;
+
+                        var resultObj = JsonConvert.DeserializeObject<LockResponse>(content);
+
+                        
+                        MessageBox.Show(JsonConvert.SerializeObject(resultObj, Formatting.Indented));
+
+                        //// Only messagge
+                        //MessageBox.Show(resultObj.data);
                     }
                     else
                     {
@@ -703,8 +720,14 @@ namespace TbApiTester
                     if (response.IsSuccessStatusCode)
                     {
                         string content = await response.Content.ReadAsStringAsync();
-                        if (bool.TryParse(content, out bool result))
-                            return result;
+
+                        var resultObj = JsonConvert.DeserializeObject<LockResponse>(content);
+
+                     
+                        MessageBox.Show(JsonConvert.SerializeObject(resultObj, Formatting.Indented));
+
+                        //// Only messagge
+                        //MessageBox.Show(resultObj.data);
                     }
                     else
                     {
@@ -750,8 +773,14 @@ namespace TbApiTester
                     if (response.IsSuccessStatusCode)
                     {
                         string content = await response.Content.ReadAsStringAsync();
-                        if (bool.TryParse(content, out bool result))
-                            return result;
+
+                        var resultObj = JsonConvert.DeserializeObject<LockResponse>(content);
+
+                       
+                        MessageBox.Show(JsonConvert.SerializeObject(resultObj, Formatting.Indented));
+
+                        //// Only messagge
+                        //MessageBox.Show(resultObj.data);
                     }
                     else
                     {
@@ -797,8 +826,13 @@ namespace TbApiTester
                     if (response.IsSuccessStatusCode)
                     {
                         string content = await response.Content.ReadAsStringAsync();
-                        if (bool.TryParse(content, out bool result))
-                            return result;
+
+                        var resultObj = JsonConvert.DeserializeObject<LockResponse>(content);
+
+                        MessageBox.Show(JsonConvert.SerializeObject(resultObj, Formatting.Indented));
+
+                        //// Only messagge
+                        //MessageBox.Show(resultObj.data);
                     }
                     else
                     {

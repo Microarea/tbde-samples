@@ -131,7 +131,7 @@ namespace TbApiTester
                         {
                             // Use new login endpoint for version 5.0+
                             request = new HttpRequestMessage(HttpMethod.Post, MagoWebLogin50);
-                            MessageBox.Show("Detected MagoCloud version 5.0 or later.\nUsing login endpoint:\n" + MagoWebLogin50, "Version Detected");
+                            MessageBox.Show("Detected MagoWeb version 5.0 or later.\nUsing login endpoint:\n" + MagoWebLogin50, "Version Detected");
                         }
                         else
                         {
@@ -199,7 +199,7 @@ namespace TbApiTester
                                 userData.SubscriptionKey = subscriptionKey;
                                 userData.LoginKey = jsonObject["LoginKey"]?.ToString();
 
-                                MessageBox.Show("Login successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //MessageBox.Show("Login successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 return true;
                             }
                             else
